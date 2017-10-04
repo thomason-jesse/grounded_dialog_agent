@@ -12,7 +12,6 @@ class KBGrounder:
         self.ontology = ontology
         self.parser = None
         self.static_kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir)
-        pass
 
     # returns possible groundings for given semantic node
     def ground_semantic_node(self, root, lambda_names, lambda_types, lambda_assignments):
