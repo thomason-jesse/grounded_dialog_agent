@@ -1,0 +1,20 @@
+bring a silver heavy aluminum can to peter
+bring(lambda x.e(and(silver(x),and(heavy(x),and(aluminum(x), can(x))))), peter)
+
+get a tall thin spray can for ray
+bring(lambda x.e(and(tall(x), and(thin(x), and(spray(x), can(x))))), ray)
+
+bring the white bottle to greg
+bring(lambda x.e(and(white(x), bottle(x))), greg)
+
+retrieve an open aluminum can for dana
+bring(lambda x.e(and(open(x), and(aluminum(x), can(x)))), dana)
+
+bring a large empty yellow cylinder to scott
+bring(lambda x.e(and(large(x), and(empty(x), and(yellow(x), cylinder(x))))), scott)
+
+go to ray 's office
+walk(a(lambda x:e.(and(office(x), possesses(ray, x)))))
+
+walk to a conference room
+walk(a(lambda x:e.(conference(x)))

@@ -1,0 +1,7 @@
+# room types
+conference(3516)
+conference(3416)
+office(3512)
+
+# room ownership
+possesses(ray, 3512)

@@ -1,0 +1,117 @@
+# confirmations
+yes :- C : yes
+no :- C : no
+
+# imperative
+bring :- M/NP/NP : lambda y:e.(lambda x:e.(bring(x, y)))
+bring :- M/PP/NP : lambda x:e.(lambda y:e.(bring(x, y)))
+walk :- M/PP : lambda x:e.(walk(x))
+
+# 'to' as recipient argument of a command (eg. ``bring coffee to peter'')
+to :- PP/NP : lambda x:e.(x)
+for :- PP/NP : lambda x:e.(x)
+
+# for "bob 's office"; "the office of the chair"
+'s :- NP/N\NP : lambda x:e.(lambda P:<e,t>.(a(lambda y:e.(and(P(y), possesses(x, y))))))
+of :- NP\N/NP : lambda x:e.(lambda P:<e,t>.(lambda y:e.(and(P(y), possesses(x, y)))))
+
+# determiners
+the :- NP/N : lambda P:<e,t>.(a(lambda x:e.(P(x))))
+
+# person atoms
+peter :- NP : peter
+ray :- NP : ray
+greg :- NP : greg
+dana :- NP : dana
+scott :- NP : scott
+justin :- NP : justin
+
+# KB bare nouns
+office :- N : office
+conference :- N : conference
+lab :- N : lab
+
+# perception bare nouns from I, Spy
+crayon :- N : crayon
+cup :- N : cup
+rectangle :- N : rectangle
+chips :- N : chips
+container :- N : container
+tube :- N : tube
+can :- N : can
+tub :- N : tub
+thing :- N : thing
+cylinder :- N : cylinder
+lid :- N : lid
+cap :- N : cap
+prism :- N : prism
+roll :- N : roll
+circles :- N : circles
+canister :- N : canister
+object :- N : object
+bottle :- N : bottle
+pineapple :- N : pineapple
+
+# perception adjectives
+text :- N/N : lambda P:<e,t>.(and(text, P))
+neon :- N/N : lambda P:<e,t>.(and(neon, P))
+yellow :- N/N : lambda P:<e,t>.(and(yellow, P))
+bright :- N/N : lambda P:<e,t>.(and(bright, P))
+paper :- N/N : lambda P:<e,t>.(and(paper, P))
+rough :- N/N : lambda P:<e,t>.(and(rough, P))
+pencil-shaped :- N/N : lambda P:<e,t>.(and(pencil-shaped, P))
+transparent :- N/N : lambda P:<e,t>.(and(transparent, P))
+half-full :- N/N : lambda P:<e,t>.(and(half-full, P))
+black :- N/N : lambda P:<e,t>.(and(black, P))
+orange :- N/N : lambda P:<e,t>.(and(orange, P))
+brown :- N/N : lambda P:<e,t>.(and(brown, P))
+coffee :- N/N : lambda P:<e,t>.(and(coffee, P))
+fat :- N/N : lambda P:<e,t>.(and(fat, P))
+silver :- N/N : lambda P:<e,t>.(and(silver, P))
+rattles :- N/N : lambda P:<e,t>.(and(rattles, P))
+gray :- N/N : lambda P:<e,t>.(and(gray, P))
+aluminum :- N/N : lambda P:<e,t>.(and(aluminum, P))
+large :- N/N : lambda P:<e,t>.(and(large, P))
+small :- N/N : lambda P:<e,t>.(and(small, P))
+soft :- N/N : lambda P:<e,t>.(and(soft, P))
+round :- N/N : lambda P:<e,t>.(and(round, P))
+heavy :- N/N : lambda P:<e,t>.(and(heavy, P))
+squishy :- N/N : lambda P:<e,t>.(and(squishy, P))
+orange-topped :- N/N : lambda P:<e,t>.(and(orange-topped, P))
+blue :- N/N : lambda P:<e,t>.(and(blue, P))
+purple :- N/N : lambda P:<e,t>.(and(purple, P))
+red :- N/N : lambda P:<e,t>.(and(red, P))
+full :- N/N : lambda P:<e,t>.(and(full, P))
+water :- N/N : lambda P:<e,t>.(and(water, P))
+cylindrical :- N/N : lambda P:<e,t>.(and(cylindrical, P))
+colored :- N/N : lambda P:<e,t>.(and(colored, P))
+beans :- N/N : lambda P:<e,t>.(and(beans, P))
+narrow :- N/N : lambda P:<e,t>.(and(narrow, P))
+shiny :- N/N : lambda P:<e,t>.(and(shiny, P))
+hollow :- N/N : lambda P:<e,t>.(and(hollow, P))
+open :- N/N : lambda P:<e,t>.(and(open, P))
+spraycan :- N/N : lambda P:<e,t>.(and(spraycan, P))
+silent :- N/N : lambda P:<e,t>.(and(silent, P))
+top :- N/N : lambda P:<e,t>.(and(top, P))
+spiky :- N/N : lambda P:<e,t>.(and(spiky, P))
+tiny :- N/N : lambda P:<e,t>.(and(tiny, P))
+plastic :- N/N : lambda P:<e,t>.(and(plastic, P))
+white :- N/N : lambda P:<e,t>.(and(white, P))
+empty :- N/N : lambda P:<e,t>.(and(empty, P))
+wide :- N/N : lambda P:<e,t>.(and(wide, P))
+inside :- N/N : lambda P:<e,t>.(and(inside, P))
+rectangular :- N/N : lambda P:<e,t>.(and(rectangular, P))
+thin :- N/N : lambda P:<e,t>.(and(thin, P))
+metallic :- N/N : lambda P:<e,t>.(and(metallic, P))
+green :- N/N : lambda P:<e,t>.(and(green, P))
+circular :- N/N : lambda P:<e,t>.(and(circular, P))
+pink :- N/N : lambda P:<e,t>.(and(pink, P))
+styrofoam :- N/N : lambda P:<e,t>.(and(styrofoam, P))
+medium-sized :- N/N : lambda P:<e,t>.(and(medium-sized, P))
+tall :- N/N : lambda P:<e,t>.(and(tall, P))
+short :- N/N : lambda P:<e,t>.(and(short, P))
+liquid :- N/N : lambda P:<e,t>.(and(liquid, P))
+light :- N/N : lambda P:<e,t>.(and(light, P))
+clear :- N/N : lambda P:<e,t>.(and(clear, P))
+metal :- N/N : lambda P:<e,t>.(and(metal, P))
+aerosol :- N/N : lambda P:<e,t>.(and(aerosol, P))

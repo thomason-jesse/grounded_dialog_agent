@@ -8,10 +8,10 @@ import KnowledgeBase
 
 class KBGrounder:
 
-    def __init__(self, ontology, static_facts_fn):
+    def __init__(self, ontology, static_facts_fn, perception_source_dir, perception_feature_dir):
         self.ontology = ontology
         self.parser = None
-        self.static_kb = KnowledgeBase.KnowledgeBase(static_facts_fn)
+        self.static_kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir)
         pass
 
     # returns possible groundings for given semantic node
@@ -81,33 +81,31 @@ class KBGrounder:
                     break  # unsatisfiable child(ren)
 
                 # if logical predicate, handle here
-                # TODO: propagate confidence values from children through logical predicates
-                # TODO: this should give us confidences at roots of patient/recipient portions of phrases
                 if self.ontology.preds[root.idx] == 'equals':
                     to_match = grounding_to_answer_set(child_grounds[0][child_ground_idx[0]])
                     satisfied = None
-                    confidence = 1.0
+                    confidence = child_grounds[0][2]
                     for i in range(1, len(root.children)):
                         child_to_match = grounding_to_answer_set(child_grounds[i][child_ground_idx[i]])
+                        confidence *= child_grounds[i][2]
                         if to_match != child_to_match:
                             satisfied = False
-                            break
                     if satisfied is None:
                         satisfied = True
                 elif self.ontology.preds[root.idx] == 'and':
                     satisfied = grounding_to_answer_set(child_grounds[0][child_ground_idx[0]])
-                    confidence = 1.0
+                    confidence = child_grounds[0][2]
                     for i in range(1, len(root.children)):
                         if satisfied != grounding_to_answer_set(child_grounds[i][child_ground_idx[i]]):
                             satisfied = False
-                            break
+                        confidence *= child_grounds[i][2]
                 elif self.ontology.preds[root.idx] == 'or':
                     satisfied = False
                     confidence = 1.0
                     for i in range(len(root.children)):
                         if grounding_to_answer_set(child_grounds[i][child_ground_idx[i]]) is not False:
                             satisfied = grounding_to_answer_set(child_grounds[i][child_ground_idx[i]])
-                            break
+                        confidence *= child_grounds[i][2]
                 elif self.ontology.preds[root.idx] == 'the':
                     if debug:
                         print "'the' child grounds to inspect: " + str(child_grounds[0][child_ground_idx[0]])  # DEBUG
@@ -117,12 +115,13 @@ class KBGrounder:
                         satisfied = child_grounds[0][child_ground_idx[0]][0][len(lambda_assignments)]
                     else:
                         satisfied = False
-                    confidence = 1.0
+                    confidence = child_grounds[0][2]
                 elif self.ontology.preds[root.idx] == 'a':
                     if debug:
                         print "'a' child grounds to inspect: " + str(child_grounds[0][child_ground_idx[0]])  # DEBUG
                     if len(child_grounds[0]) > 0:
                         # set satisfies, so choose arbitrary element to return (here, first)
+                        # TODO: sort by confidence and return highest-confidence instead of arbitrary
                         if type(child_grounds[0][child_ground_idx[0]]) is list:
                             satisfied = child_grounds[0][child_ground_idx[0]][0][len(lambda_assignments)]
                         elif type(child_grounds[0][child_ground_idx[0]]) is str:
@@ -132,7 +131,7 @@ class KBGrounder:
                                      str(child_grounds[0][child_ground_idx[0]]))
                     else:
                         satisfied = False
-                    confidence = 1.0
+                    confidence = child_grounds[0][2]
 
                 # if KB predicate, query
                 else:
