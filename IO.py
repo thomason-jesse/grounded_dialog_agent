@@ -17,3 +17,11 @@ class KeyboardIO:
 
     def say_to_user(self, u):
         print "AGENT: " + u
+
+    def perform_action(self, a, p, r):
+        if a == 'walk':
+            print "ROBOT ACTION: Navigate to location " + p
+        elif a == 'bring':
+            print "ROBOT ACTION: Pick up item " + p + " and deliver it to person " + p
+        else:
+            raise ValueError("perform_action: unrecognized action '" + a + "'")
