@@ -88,7 +88,7 @@ class Agent:
 
         # Crawl parse for recognized actions.
         if 'action' in roles:
-            action_trees = self.get_parse_subtrees(p, self.actions)
+            action_trees = self.get_parse_subtrees(p.node, self.actions)
             for at in action_trees:
                 a = self.parser.ontology.preds[at.idx]
                 if a not in self.action_belief_state['action']:
@@ -134,7 +134,7 @@ class Agent:
                 dist = [self.action_belief_state[r][entry] / mass for entry in self.action_belief_state[r]]
                 chosen[r] = np.random.choice([(self.action_belief_state[r].keys()[idx], dist[idx])
                                               for idx in range(len(self.action_belief_state[r].keys()))],
-                                             1, p=dist)
+                                             1, p=np.asarray(dist))
 
         return chosen
 

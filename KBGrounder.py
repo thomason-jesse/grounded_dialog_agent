@@ -8,9 +8,8 @@ import KnowledgeBase
 
 class KBGrounder:
 
-    def __init__(self, ontology, static_facts_fn, perception_source_dir, perception_feature_dir):
-        self.ontology = ontology
-        self.parser = None
+    def __init__(self, parser, static_facts_fn, perception_source_dir, perception_feature_dir):
+        self.parser = parser
         self.static_kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir)
 
     # returns possible groundings for given semantic node
@@ -46,7 +45,7 @@ class KBGrounder:
             if debug:
                 print "root is lambda instance"
             if root.children is None:  # lambda leaf
-                return [self.ontology.preds[lambda_assignments[lambda_names.index(root.lambda_name)]]]
+                return [self.parser.ontology.preds[lambda_assignments[lambda_names.index(root.lambda_name)]]]
             else:  # lambda predicate
                 replaced = copy.deepcopy(root)
                 replaced.is_lambda = False
@@ -54,14 +53,14 @@ class KBGrounder:
                 replaced.lambda_name = None
                 replaced.idx = lambda_assignments[lambda_names.index(root.lambda_name)]
                 if debug:
-                    print "grounding lambda predicate instance as "+self.ontology.preds[replaced.idx]
+                    print "grounding lambda predicate instance as "+self.parser.ontology.preds[replaced.idx]
                 return self.ground_semantic_node(replaced, lambda_names, lambda_types, lambda_assignments)
 
         # leaf predicate/atom
         elif root.children is None:
             if debug:
-                print "root is leaf predicate. Will return ", str([self.ontology.preds[root.idx]])
-            return [self.ontology.preds[root.idx]]
+                print "root is leaf predicate. Will return ", str([self.parser.ontology.preds[root.idx]])
+            return [self.parser.ontology.preds[root.idx]]
 
         # if type is predicate, ground arguments and evaluate
         else:
@@ -71,7 +70,7 @@ class KBGrounder:
             for c in root.children:
                 child_grounds.append(self.ground_semantic_node(c, lambda_names, lambda_types, lambda_assignments))
             if debug:
-                print self.ontology.preds[root.idx]+" child grounds: "+str(child_grounds)  # DEBUG
+                print self.parser.ontology.preds[root.idx]+" child grounds: "+str(child_grounds)  # DEBUG
             # for every combination of child groundings we resolve and return a different grounding
             child_ground_idx = [0 for _ in range(len(child_grounds))]
             while True:
@@ -80,7 +79,7 @@ class KBGrounder:
                     break  # unsatisfiable child(ren)
 
                 # if logical predicate, handle here
-                if self.ontology.preds[root.idx] == 'equals':
+                if self.is_logical(root.idx, 'equals'):
                     to_match = grounding_to_answer_set(child_grounds[0][child_ground_idx[0]])
                     satisfied = None
                     confidence = child_grounds[0][2]
@@ -91,21 +90,21 @@ class KBGrounder:
                             satisfied = False
                     if satisfied is None:
                         satisfied = True
-                elif self.ontology.preds[root.idx] == 'and':
+                elif self.is_logical(root.idx, 'and'):
                     satisfied = grounding_to_answer_set(child_grounds[0][child_ground_idx[0]])
                     confidence = child_grounds[0][2]
                     for i in range(1, len(root.children)):
                         if satisfied != grounding_to_answer_set(child_grounds[i][child_ground_idx[i]]):
                             satisfied = False
                         confidence *= child_grounds[i][2]
-                elif self.ontology.preds[root.idx] == 'or':
+                elif self.is_logical(root.idx, 'or'):
                     satisfied = False
                     confidence = 1.0
                     for i in range(len(root.children)):
                         if grounding_to_answer_set(child_grounds[i][child_ground_idx[i]]) is not False:
                             satisfied = grounding_to_answer_set(child_grounds[i][child_ground_idx[i]])
                         confidence *= child_grounds[i][2]
-                elif self.ontology.preds[root.idx] == 'the':
+                elif self.is_logical(root.idx, 'the'):
                     if debug:
                         print "'the' child grounds to inspect: " + str(child_grounds[0][child_ground_idx[0]])  # DEBUG
                     if (len(child_grounds[0]) == 1 and
@@ -115,7 +114,7 @@ class KBGrounder:
                     else:
                         satisfied = False
                     confidence = child_grounds[0][2]
-                elif self.ontology.preds[root.idx] == 'a':
+                elif self.is_logical(root.idx, 'a'):
                     if debug:
                         print "'a' child grounds to inspect: " + str(child_grounds[0][child_ground_idx[0]])  # DEBUG
                     if len(child_grounds[0]) > 0:
@@ -135,8 +134,8 @@ class KBGrounder:
                 # if KB predicate, query
                 else:
                     if debug:
-                        print "detected KB predicate "+self.ontology.preds[root.idx]  # DEBUG
-                    ql = [self.ontology.preds[root.idx]]
+                        print "detected KB predicate "+self.parser.ontology.preds[root.idx]  # DEBUG
+                    ql = [self.parser.ontology.preds[root.idx]]
                     for i in range(len(root.children)):
                         # take the first grounding result from the set if it is multi-element
                         # TODO: inspect when this happens because it sounds fishy
@@ -146,10 +145,11 @@ class KBGrounder:
 
                 # add to groundings if successful
                 if satisfied:
-                    groundings.append([[self.ontology.preds[i] for i in lambda_assignments], satisfied, confidence])
+                    groundings.append([[self.parser.ontology.preds[i] for i in lambda_assignments],
+                                       satisfied, confidence])
 
                     # 'a' predicate has a restriction to return only a singleton, so exit as soon as something is added
-                    if self.ontology.preds[root.idx] == 'a':
+                    if self.is_logical(root.idx, 'a'):
                         break
 
                 # iterate idx counter to try new grounding terms
@@ -164,12 +164,21 @@ class KBGrounder:
                 if sum(max_idx) == len(root.children):
                     break
             if debug:
-                print "groundings (root "+self.ontology.preds[root.idx]+"): "+str(groundings)  # DEBUG
+                print "groundings (root "+self.parser.ontology.preds[root.idx]+"): "+str(groundings)  # DEBUG
             return groundings
 
     # returns all possible ontological assignments to lambdas of a given type
     def assignments_for_type(self, t):
-        return [i for i in range(len(self.ontology.preds)) if self.ontology.entries[i] == t]
+        return [i for i in range(len(self.parser.ontology.preds)) if self.parser.ontology.entries[i] == t]
+
+    # determine whether a predicate is logical
+    def is_logical(self, idx, logical_root):
+        pred = self.parser.ontology.preds[idx]
+        if pred == logical_root:
+            return True
+        if '_' in pred and logical_root in pred.split('_'):  # .e.g a_i, a_l for instantiations of a
+            return True
+        return False
 
 
 # take in a semantic grounding list and return an answer set
