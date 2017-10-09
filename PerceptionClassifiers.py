@@ -163,11 +163,15 @@ class PerceptionClassifiers:
 
     # Train all classifiers given boilerplate info and labels.
     def train_classifiers(self, pidxs):
-        print "training classifiers " + ','.join([self.predicates[pidx] for pidx in pidxs])
+        debug = False
+
+        if debug:
+            print "training classifiers " + ','.join([self.predicates[pidx] for pidx in pidxs])
         for pidx in pidxs:
             train_pairs = self.get_pairs_from_labels(pidx)
             if -1 in [l for _, l in train_pairs] and 1 in [l for _, l in train_pairs]:
-                print "... '" + self.predicates[pidx] + "' fitting"
+                if debug:
+                    print "... '" + self.predicates[pidx] + "' fitting"
                 pc = {}
                 pk = {}
                 for b, m in self.contexts:
@@ -183,7 +187,8 @@ class PerceptionClassifiers:
                 self.classifiers[pidx] = pc
                 self.kappas[pidx] = pk
             else:
-                print "... '" + self.predicates[pidx] + "' lacks a +/- pair to fit"
+                if debug:
+                    print "... '" + self.predicates[pidx] + "' lacks a +/- pair to fit"
                 self.classifiers[pidx] = None
                 self.kappas[pidx] = {b: {m: 0 for _b, m in self.contexts if b == _b}
                                      for b in self.behaviors}

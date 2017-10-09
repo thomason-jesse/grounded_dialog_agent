@@ -22,6 +22,6 @@ class KeyboardIO:
         if a == 'walk':
             print "ROBOT ACTION: Navigate to location " + p
         elif a == 'bring':
-            print "ROBOT ACTION: Pick up item " + p + " and deliver it to person " + p
+            print "ROBOT ACTION: Pick up item " + p + " and deliver it to person " + r
         else:
             raise ValueError("perform_action: unrecognized action '" + a + "'")

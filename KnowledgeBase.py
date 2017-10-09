@@ -65,7 +65,7 @@ class KnowledgeBase:
             # perceptual predicates are all unary p(x) for x an object, p a predicate
             # objects in the database are expected to appear as 'e' atoms with name "oidx_N" for N in [0, 31]
             oidx = int(q[1].split('_')[1])
-            self.pc.run_classifier(self.pc.predicates.index(pred), oidx)
+            return self.pc.run_classifier(self.pc.predicates.index(pred), oidx)
 
     # Add additional fact.
     def add_static_fact(self, f):

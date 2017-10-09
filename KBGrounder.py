@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 __author__ = 'jesse'
 
-import sys
 import copy
+import sys
+from operator import mul
 import KnowledgeBase
 
 
@@ -10,13 +11,70 @@ class KBGrounder:
 
     def __init__(self, parser, static_facts_fn, perception_source_dir, perception_feature_dir):
         self.parser = parser
-        self.static_kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir)
+        self.kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir)
+
+    # Given a semantic tree, return a list of trees with the lambdas of the original tree filled by every possible
+    # grounding that satisfies those lambdas.
+    def ground_semantic_tree(self, root):
+        debug = True
+        if debug:
+            print "ground_semantic_tree: grounding at root " + self.parser.print_parse(root)
+
+        # If the head of the tree is a lambda instantiation, add candidates for all its possible fills.
+        groundings = []
+        if root.is_lambda_instantiation:
+            for assignment in self.assignments_for_type(root.type):  # assignments are ont pred idxs
+
+                # Form candidate sub-tree with this assignment instantiated.
+                candidate = copy.deepcopy(root.children[0])
+                self.instantiate_lambda(candidate, root.lambda_name, assignment)
+
+                # Call this grounding routine on the candidate to get finished products.
+                groundings.extend(self.ground_semantic_tree(candidate))
+
+        # If the head of the tree is a predicate (e.g. has any children), we need to ground those children
+        # and then apply the predicate's operation to them.
+        elif root.children is not None:
+            # TODO: write routine to ground all children then apply predicate logic or classifiers to them.
+            pass
+
+        # If the head of the tree is a leaf, just return the singleton of this root.
+        else:
+            groundings.append(root)
+
+        return groundings
+
+    # Given a tree, a lambda name, and an assignment, instantiate all lambdas of that name to the assignment.
+    def instantiate_lambda(self, root, name, assignment):
+        debug = True
+        if debug:
+            print ("instantiate_lambda called for " + self.parser.print_parse(root) + ", " + str(name) +
+                   ", " + str(assignment))
+
+        to_process = [root]
+        while len(to_process) > 0:
+            n = to_process.pop()
+            if n.is_lambda and n.lambda_name == name:
+                n.is_lambda = False
+                n.lambda_name = None
+                n.idx = assignment
+            if n.children is not None:
+                to_process.extend(n)
+
+        if debug:
+            print "instantiate_lambda: produced " + self.parser.print_parse(root)
 
     # returns possible groundings for given semantic node
-    def ground_semantic_node(self, root, lambda_names, lambda_types, lambda_assignments):
-        debug = False
+    def ground_semantic_node(self, root, lambda_names=None, lambda_types=None, lambda_assignments=None):
+        debug = True
 
         groundings = []
+        if lambda_names is None:
+            lambda_names = []
+        if lambda_types is None:
+            lambda_types = []
+        if lambda_assignments is None:
+            lambda_assignments = []
         if debug:
             print ("grounding " + self.parser.print_parse(root, True) + " with " + str(lambda_names) + "," +
                    str(lambda_types) + "," + str(lambda_assignments))
@@ -131,6 +189,11 @@ class KBGrounder:
                         satisfied = False
                     confidence = child_grounds[0][2]
 
+                # if action with grounded arguments, satisified with propagated confidence.
+                elif root.return_type == self.parser.ontology.types.index('a'):
+                    satisfied = True
+                    confidence = reduce(mul, [child_grounds[cidx][2] for cidx in range(len(child_grounds))], 1)
+
                 # if KB predicate, query
                 else:
                     if debug:
@@ -141,7 +204,9 @@ class KBGrounder:
                         # TODO: inspect when this happens because it sounds fishy
                         ql.append(grounding_to_answer_set(child_grounds[i])[0])
                     q = tuple(ql)
-                    satisfied, confidence = self.static_kb.query(q)
+                    if debug:
+                        print "running KB query q=" + str(q)
+                    satisfied, confidence = self.kb.query(q)
 
                 # add to groundings if successful
                 if satisfied:
@@ -169,7 +234,8 @@ class KBGrounder:
 
     # returns all possible ontological assignments to lambdas of a given type
     def assignments_for_type(self, t):
-        return [i for i in range(len(self.parser.ontology.preds)) if self.parser.ontology.entries[i] == t]
+        return [idx for idx in range(len(self.parser.ontology.preds))
+                if self.parser.ontology.entries[idx] == t]
 
     # determine whether a predicate is logical
     def is_logical(self, idx, logical_root):
