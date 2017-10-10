@@ -52,10 +52,11 @@ class Agent:
                    + str(self.action_belief_state))
 
         # Run the parser and grounder on the utterance
-        gp = self.parse_and_ground_utterance(u)
+        gps = self.parse_and_ground_utterance(u)
 
         # Update the belief state based on the utterance.
-        self.update_action_belief_from_parse(gp, self.roles)
+        for gp, _, conf in gps:
+            self.update_action_belief_from_grounding(gp, self.roles, count=conf / len(gps))
 
         # Ask a follow up question based on the new belief state.
         # This continues until an action is chosen.
@@ -75,25 +76,30 @@ class Agent:
             ur = self.io.get_from_user()
 
             # Update action belief based on user response.
-            gpr = self.parse_and_ground_utterance(ur)
-            if action_chosen[role_asked][0] is None:  # asked an open-ended question for a particular role
-                self.update_action_belief_from_parse(gpr, [role_asked])
+            gprs = self.parse_and_ground_utterance(ur)
+            if role_asked is None:  # asked to repeat whole thing
+                for gpr, _, conf in gprs:
+                    self.update_action_belief_from_grounding(gpr, self.roles, count=conf / len(gprs))
+            elif action_chosen[role_asked][0] is None:  # asked an open-ended question for a particular role
+                for gpr, _, conf in gprs:
+                    self.update_action_belief_from_grounding(gpr, [role_asked], count=conf / len(gprs))
             else:  # asked a yes/no question confirming one or more roles
-                if debug:
-                    print "start_action_dialog: confirmation response parse " + self.parser.print_parse(gpr.node)
-                if gpr.node.type == self.parser.ontology.types.index('c'):
-                    if gpr.node.idx == self.parser.ontology.preds.index('yes'):
-                        action_confirmed[role_asked] = action_chosen[role_asked][0]
-                        for r in roles_conf:
-                            action_confirmed[r] = action_chosen[r][0]
-                    elif gpr.node.idx == self.parser.ontology.preds.index('no'):
-                        self.action_belief_state[role_asked][action_chosen[role_asked][0]] -= 1.0
-                        for r in roles_conf:
-                            self.action_belief_state[r][action_chosen[r][0]] -= 1.0
-                else:
-                    # TODO: could add a loop here to force expected response type; create feedback for
-                    # TODO: getting synonyms for yes/no maybe
-                    print "WARNING: user did not respond to confirmation with yes/no"
+                for gpr, _, conf in gprs:
+                    if debug:
+                        print "start_action_dialog: confirmation response parse " + self.parser.print_parse(gpr)
+                    if gpr.type == self.parser.ontology.types.index('c'):
+                        if gpr.idx == self.parser.ontology.preds.index('yes'):
+                            action_confirmed[role_asked] = action_chosen[role_asked][0]
+                            for r in roles_conf:
+                                action_confirmed[r] = action_chosen[r][0]
+                        elif gpr.idx == self.parser.ontology.preds.index('no'):
+                            self.action_belief_state[role_asked][action_chosen[role_asked][0]] -= conf / len(gprs)
+                            for r in roles_conf:
+                                self.action_belief_state[r][action_chosen[r][0]] -= conf / len(gprs)
+                    else:
+                        # TODO: could add a loop here to force expected response type; create feedback for
+                        # TODO: getting synonyms for yes/no maybe
+                        print "WARNING: grounding for confirmation did not produce yes/no"
 
         # Perform the chosen action.
         self.io.perform_action(action_confirmed['action'], action_confirmed['patient'],
@@ -104,26 +110,30 @@ class Agent:
         debug = True
 
         # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
+        # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
+        # TODO: this function returns tuples of (grounded parse, parser conf * grounder conf)
         parse_generator = self.parser.most_likely_cky_parse(u, reranker_beam=self.parse_beam)
         p, _, _, _ = next(parse_generator)
         if debug:
             print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
-        g = self.grounder.ground_semantic_node(p.node)
+        gs = self.grounder.ground_semantic_tree(p.node)
         if debug:
-            print "parse_and_ground_utterance: groundings " + g
-        return g
-
+            print ("parse_and_ground_utterance: groundings " +
+                   "\n\t" + "\n\t".join([" ".join([str(t) if type(t) is bool else self.parser.print_parse(t),
+                                                   str(l), str(c)])
+                                        for t, l, c in gs]))
+        return gs
 
     # Given a parse and a list of the roles felicitous in the dialog to update, update those roles' distributions
-    def update_action_belief_from_parse(self, p, roles, count=1.0):
+    def update_action_belief_from_grounding(self, g, roles, count=1.0):
         debug = True
         if debug:
-            print ("update_action_belief_from_parse called with p " + self.parser.print_parse(p.node) +
+            print ("update_action_belief_from_grounding called with g " + self.parser.print_parse(g) +
                    " and roles " + str(roles))
 
         # Crawl parse for recognized actions.
         if 'action' in roles:
-            action_trees = self.get_parse_subtrees(p.node, self.actions)
+            action_trees = self.get_parse_subtrees(g, self.actions)
             for at in action_trees:
                 a = self.parser.ontology.preds[at.idx]
                 if a not in self.action_belief_state['action']:
@@ -141,7 +151,8 @@ class Agent:
                 for r in ['patient', 'recipient']:
                     if r in roles and at.children is not None:
                         for cn in at.children:
-                            if self.parser.ontology.types[cn.type] == self.action_args[a][r]:
+                            if (r in self.action_args[a] and
+                                    self.parser.ontology.types[cn.type] == self.action_args[a][r]):
                                 c = self.parser.ontology.preds[cn.idx]
                                 if c not in self.action_belief_state[r]:
                                     self.action_belief_state[r][c] = 0
@@ -151,12 +162,11 @@ class Agent:
 
         # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
         else:
-            to_traverse = [p.node]
+            to_traverse = [g]
             to_increment = []
             while len(to_traverse) > 0:
                 for r in roles:
                     cn = to_traverse.pop()
-                    print "role " + r + " action types expected " + str([t for a in self.actions if r in self.action_args[a] for t in self.action_args[a][r]]) + " type examining " + str(self.parser.ontology.types[cn.type])  # DEBUG
                     if self.parser.ontology.types[cn.type] in [t for a in self.actions
                                                                if r in self.action_args[a]
                                                                for t in self.action_args[a][r]]:
@@ -198,9 +208,11 @@ class Agent:
                   for r in self.roles}
         for r in [_r for _r in self.roles if current_confirmed[_r] is None]:
 
-            mass = sum([self.action_belief_state[r][entry] for entry in self.action_belief_state[r]])
+            min_count = min([self.action_belief_state[r][entry] for entry in self.action_belief_state[r]])
+            mass = sum([self.action_belief_state[r][entry] - min_count for entry in self.action_belief_state[r]])
             if mass > 0:
-                dist = [self.action_belief_state[r][entry] / mass for entry in self.action_belief_state[r]]
+                dist = [(self.action_belief_state[r][entry] - min_count) / mass
+                        for entry in self.action_belief_state[r]]
                 c = np.random.choice([self.action_belief_state[r].keys()[idx]
                                       for idx in range(len(self.action_belief_state[r].keys()))],
                                      1, p=dist)
@@ -214,14 +226,17 @@ class Agent:
         if debug:
             print "get_question_from_sampled_action called with " + str(sampled_action) + ", " + str(include_threshold)
 
-        relevant_roles = self.roles[:]
-        confidences = {r: sampled_action[r][1] for r in self.roles}
+        roles_to_include = [r for r in self.roles if sampled_action[r][1] >= include_threshold]
+        if 'action' in roles_to_include:
+            relevant_roles = ['action'] + [r for r in self.action_args[sampled_action['action'][0]].keys()]
+        else:
+            relevant_roles = self.roles[:]
+        confidences = {r: sampled_action[r][1] for r in relevant_roles}
         s_conf = sorted(confidences.items(), key=operator.itemgetter(1))
         if debug:
             print "get_question_from_sampled_action: s_conf " + str(s_conf)
 
         # Determine which args to include as already understood in question and which arg to focus on.
-        roles_to_include = [r for r in relevant_roles if sampled_action[r][1] >= include_threshold]
         least_conf_role = s_conf[0][0]
         if max([conf for _, conf in s_conf]) == 0.0:  # no confidence
             least_conf_role = None

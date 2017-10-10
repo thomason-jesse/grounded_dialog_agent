@@ -27,7 +27,7 @@ def main():
 
     # Instantiate a grounder.
     g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir)
-    g.kb.pc.commit_changes()  # save classifiers to disk
+    # g.kb.pc.commit_changes()  # save classifiers to disk
 
     # Instantiate an input/output
     if io_type == 'keyboard':
