@@ -19,6 +19,7 @@ def main():
     kb_perception_source_dir = FLAGS_kb_perception_source_dir
     kb_perception_feature_dir = FLAGS_kb_perception_feature_dir
     io_type = FLAGS_io_type
+    write_classifiers = FLAGS_write_classifiers
     assert io_type == 'keyboard' or io_type == 'file' or io_type == 'robot'
 
     # Load the parser from file.
@@ -27,7 +28,8 @@ def main():
 
     # Instantiate a grounder.
     g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir)
-    # g.kb.pc.commit_changes()  # save classifiers to disk
+    if write_classifiers:
+        g.kb.pc.commit_changes()  # save classifiers to disk
 
     # Instantiate an input/output
     if io_type == 'keyboard':
@@ -56,6 +58,8 @@ if __name__ == '__main__':
                         help="perception feature directory for knowledge base")
     parser.add_argument('--io_type', type=str, required=True,
                         help="one of 'keyboard', 'file', or 'robot'")
+    parser.add_argument('--write_classifiers', type=int, required=False, default=0,
+                        help="whether to write loaded/trained perception classifiers back to disk")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v
