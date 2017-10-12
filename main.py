@@ -45,6 +45,10 @@ def main():
     u = io.get_from_user()
     a.start_action_dialog(u)
 
+    # Retrain the in-memory parser based on induced training data.
+    a.get_parser_training_pairs_from_grounding_data(a.induced_utterance_grounding_pairs, 2,
+                                                    reranker_beam=10)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

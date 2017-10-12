@@ -16,7 +16,7 @@ class KBGrounder:
     # Given a semantic tree, return a list of trees with the lambdas of the original tree filled by every possible
     # grounding that satisfies those lambdas.
     def ground_semantic_tree(self, root):
-        debug = True
+        debug = False
         if debug:
             print "ground_semantic_tree: grounding at root " + self.parser.print_parse(root)
 

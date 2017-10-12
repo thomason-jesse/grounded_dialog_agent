@@ -7,9 +7,15 @@ bring :- M/NP/NP : lambda y:p.(lambda x:i.(bring(x, y)))
 bring :- M/PP/NP : lambda x:i.(lambda y:p.(bring(x, y)))
 walk :- M/PP : lambda x:l.(walk(x))
 
+# fun future imperative
+# bring :- M/NP/NP : lambda y:l.(lambda x:i.(bring(x, y)))
+# bring :- M/PP/NP : lambda x:i.(lambda y:l.(bring(x, y)))
+# move :- M/PP/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(relocate(x, y, z))))
+
 # 'to' as recipient argument of a command (eg. ``bring coffee to peter'')
 to :- PP/NP : lambda x:p.(x)
 to :- PP/NP : lambda x:l.(x)
+from :- PP/NP : lambda x:l.(x)
 for :- PP/NP : lambda x:p.(x)
 
 # for "bob 's office"; "the office of the chair"
@@ -18,6 +24,7 @@ of :- N\N/NP : lambda x:p.(lambda P:<l,t>.(lambda y:l.(and(P(y), possesses(x, y)
 
 # "adjacent to", e.g. "the office adjacent to the kitchen"
 adjacent :- N/PP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
+by :- N/NP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
 
 # determiners
 the :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
