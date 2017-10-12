@@ -25,6 +25,7 @@ class PerceptionClassifiers:
         self.contexts = None  # list of (behavior, modality) str tuples
         self.classifiers = None  # list of behavior, modality indexed dictionaries into SVC classifiers
         self.kappas = None  # list of behavior, modality indexed dictionaries into [0, 1] floats
+        self.weights = None  # list of behavior, modality indexed dictionaries into [0, 1] confidences summing to 1
 
         # Read in source information.
         if debug:
@@ -65,6 +66,7 @@ class PerceptionClassifiers:
                 print "reading cached classifiers from file..."
             with open(classifier_fn, 'rb') as f:
                 self.classifiers, self.kappas = pickle.load(f)
+                self.weights = [self.get_weight_from_kappa(pidx) for pidx in range(len(self.predicates))]
         else:
             if debug:
                 print "training classifiers from source information..."
@@ -72,13 +74,21 @@ class PerceptionClassifiers:
             self.kappas = [{b: {m: 0 for _b, m in self.contexts if b == _b}
                             for b in self.behaviors}
                            for _ in range(len(self.predicates))]
+            self.weights = [self.get_weight_from_kappa(pidx) for pidx in range(len(self.predicates))]
             self.train_classifiers(range(len(self.predicates)))
         if debug:
             print "... done"
 
+    # Given a predicate idx, get the normalized weights based on kappas for that predicate
+    def get_weight_from_kappa(self, pidx):
+        s = sum([self.kappas[pidx][b][m] for b, m in self.contexts])
+        return {b: {m: self.kappas[pidx][b][m] / float(s) if s > 0 else 1.0 / len(self.contexts)
+                for _b, m in self.contexts if b == _b} for b in self.behaviors}
+
     # Gets the result of specified predicate on specified object.
     # Takes in a predicate idx and object idx
-    # Returns a tuple of bool, conf for the decision and confidence in [0, 1]
+    # Returns a tuple of pos_conf, neg_conf for confidence in [0, 1] that the label does or does not apply
+    # pos_conf + neg_conf = 1.0 unless pos_conf = neg_conf = 0
     def run_classifier(self, pidx, oidx):
         debug = False
 
@@ -89,32 +99,34 @@ class PerceptionClassifiers:
             if debug:
                 print ("returning majority class label for seen pred '" + self.predicates[pidx] +
                        "' on object " + str(oidx))
-            dec = (1 if sum([1 if l else -1 for l in ls]) > 0 else -1) * float(len(self.contexts))
+            pos_conf = ls.count(1) / float(len(ls))
+            neg_conf = ls.count(-1) / float(len(ls))
         else:
 
             # Run classifiers if trained.
             if self.classifiers[pidx] is not None:
                 if debug:
                     print "running classifier '" + self.predicates[pidx] + "' on object " + str(oidx)
-                ds = []
-                ks = []
+                pos_conf = 0
+                neg_conf = 0
                 for b, m in self.contexts:
                     x, y, z = get_classifier_results(self.classifiers[pidx][b][m], b, m,
                                                      [(oidx, None)], self.features, self.kernel, None)
-                    ds.append(np.mean(z))
-                    ks.append(self.kappas[pidx][b][m])
-                dec = sum([ds[idx] * ks[idx] for idx in range(len(self.contexts))])
+                    for v in z:
+                        if v == 1:
+                            pos_conf += self.weights[pidx][b][m] / float(len(z))
+                        elif v == -1:
+                            neg_conf += self.weights[pidx][b][m] / float(len(z))
             else:
                 if debug:
                     print "classifier '" + self.predicates[pidx] + "' is untrained"
-                dec = 0
+                pos_conf = 0
+                neg_conf = 0
 
         # Prepare and send response.
-        bool_dec = True if dec > 0 else False
-        conf = abs(dec) / float(len(self.contexts))
         if debug:
-            print "... returning dec " + str(bool_dec) + " with conf " + str(conf)
-        return bool_dec, conf
+            print "... returning pos_conf " + str(pos_conf) + " and neg_conf " + str(neg_conf)
+        return pos_conf, neg_conf
 
     # Updates the in-memory classifiers given new labels in the request.
     # Takes new_preds which will extend existing list, pidxs a list of predicate idxs,
@@ -132,6 +144,7 @@ class PerceptionClassifiers:
             self.classifiers.append(None)
             self.kappas.append({b: {m: 0 for _b, m in self.contexts if b == _b}
                                 for b in self.behaviors})
+            self.weights.append(self.get_weight_from_kappa(len(self.kappas)-1))
         retrain_pidxs = []
         for idx in range(len(upidxs)):
             pidx = upidxs[idx]
@@ -186,12 +199,14 @@ class PerceptionClassifiers:
                     pk[b][m] = pk[b][m] / float(s) if s > 0 else 1.0 / len(self.contexts)
                 self.classifiers[pidx] = pc
                 self.kappas[pidx] = pk
+                self.weights[pidx] = self.get_weight_from_kappa(pidx)
             else:
                 if debug:
                     print "... '" + self.predicates[pidx] + "' lacks a +/- pair to fit"
                 self.classifiers[pidx] = None
                 self.kappas[pidx] = {b: {m: 0 for _b, m in self.contexts if b == _b}
                                      for b in self.behaviors}
+                self.weights[pidx] = self.get_weight_from_kappa(pidx)
 
 
 # Given an SVM c and its training data, calculate the agreement with gold labels according to kappa

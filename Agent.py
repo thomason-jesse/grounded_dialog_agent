@@ -55,7 +55,7 @@ class Agent:
         gps = self.parse_and_ground_utterance(u)
 
         # Update the belief state based on the utterance.
-        for gp, _, conf in gps:
+        for gp, conf in gps:
             self.update_action_belief_from_grounding(gp, self.roles, count=conf / len(gps))
 
         # Ask a follow up question based on the new belief state.
@@ -65,7 +65,8 @@ class Agent:
                 (action_confirmed['action'] == 'bring' and action_confirmed['recipient'] is None)):
 
             # Sample a chosen action from the current belief counts.
-            action_chosen = self.sample_action_from_belief(action_confirmed)
+            # If arg_max, gets current highest-confidence belief. Else, creates confidence distribution and samples.
+            action_chosen = self.sample_action_from_belief(action_confirmed, arg_max=True)
 
             # Determine what question to ask based on missing arguments in chosen action.
             q, role_asked, roles_conf = self.get_question_from_sampled_action(action_chosen,
@@ -78,13 +79,13 @@ class Agent:
             # Update action belief based on user response.
             gprs = self.parse_and_ground_utterance(ur)
             if role_asked is None:  # asked to repeat whole thing
-                for gpr, _, conf in gprs:
+                for gpr, conf in gprs:
                     self.update_action_belief_from_grounding(gpr, self.roles, count=conf / len(gprs))
             elif action_chosen[role_asked][0] is None:  # asked an open-ended question for a particular role
-                for gpr, _, conf in gprs:
+                for gpr, conf in gprs:
                     self.update_action_belief_from_grounding(gpr, [role_asked], count=conf / len(gprs))
             else:  # asked a yes/no question confirming one or more roles
-                for gpr, _, conf in gprs:
+                for gpr, conf in gprs:
                     if debug:
                         print "start_action_dialog: confirmation response parse " + self.parser.print_parse(gpr)
                     if gpr.type == self.parser.ontology.types.index('c'):
@@ -116,13 +117,20 @@ class Agent:
         p, _, _, _ = next(parse_generator)
         if debug:
             print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
+
+        # Get semantic trees with hanging lambdas instantiated.
         gs = self.grounder.ground_semantic_tree(p.node)
+
+        # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
+        s = sum([c for _, _, c in gs])
+        gn = [(t, c / s if s > 0 else c / float(len(gs))) for t, _, c in gs]
+
         if debug:
-            print ("parse_and_ground_utterance: groundings " +
-                   "\n\t" + "\n\t".join([" ".join([str(t) if type(t) is bool else self.parser.print_parse(t),
-                                                   str(l), str(c)])
-                                        for t, l, c in gs]))
-        return gs
+            print ("parse_and_ground_utterance: resulting groundings with normalized confidences " +
+                   "\n\t" + "\n\t".join([" ".join([str(t) if type(t) is bool else self.parser.print_parse(t), str(c)])
+                                        for t, c in gn]))
+
+        return gn
 
     # Given a parse and a list of the roles felicitous in the dialog to update, update those roles' distributions
     def update_action_belief_from_grounding(self, g, roles, count=1.0):
@@ -202,7 +210,7 @@ class Agent:
 
     # Sample a discrete action from the current belief counts.
     # Each argument of the discrete action is a tuple of (argument, confidence) for confidence in [0, 1].
-    def sample_action_from_belief(self, current_confirmed):
+    def sample_action_from_belief(self, current_confirmed, arg_max=False):
 
         chosen = {r: (None, 0) if current_confirmed[r] is None else (current_confirmed[r], 1.0)
                   for r in self.roles}
@@ -213,9 +221,13 @@ class Agent:
             if mass > 0:
                 dist = [(self.action_belief_state[r][entry] - min_count) / mass
                         for entry in self.action_belief_state[r]]
-                c = np.random.choice([self.action_belief_state[r].keys()[idx]
-                                      for idx in range(len(self.action_belief_state[r].keys()))],
-                                     1, p=dist)
+                if arg_max:
+                    max_idxs = [idx for idx in range(len(dist)) if dist[idx] == max(dist)]
+                    c = np.random.choice([self.action_belief_state[r].keys()[idx] for idx in max_idxs], 1)
+                else:
+                    c = np.random.choice([self.action_belief_state[r].keys()[idx]
+                                          for idx in range(len(self.action_belief_state[r].keys()))],
+                                         1, p=dist)
                 chosen[r] = (c[0], dist[self.action_belief_state[r].keys().index(c)])
 
         return chosen

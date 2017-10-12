@@ -9,11 +9,34 @@ greg:p
 dana:p
 scott:p
 justin:p
+stacy:p
 
 # locations
+3402:l
+3404:l
+3406:l
+3408:l
+3410:l
+3414a:l
+3414b:l
 3416:l
-3516:l
+3418:l
+3420:l
+3422:l
+3424:l
+3430:l
+3432:l
+3436:l
+3502:l
+3504:l
+3506:l
+3508:l
+3510:l
 3512:l
+3514:l
+3516:l
+3518:l
+3520:l
 
 # imperatives
 walk:<l,a>
@@ -23,13 +46,18 @@ bring:<i,<p,a>>
 a_i:<<i,t>,i>
 a_l:<<l,t>,l>
 
-# relations
+# relations; note that 'adjacent' is marked as commutative
 possesses:<p,<l,t>>
+*adjacent:<l,<l,t>>
 
 # KB properties
 office:<l,t>
 lab:<l,t>
 conference:<l,t>
+printer:<l,t>
+lounge:<l,t>
+kitchen:<l,t>
+pod:<l,t>
 
 # object ids from I, Spy
 oidx_0:i

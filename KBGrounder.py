@@ -9,13 +9,14 @@ class KBGrounder:
 
     def __init__(self, parser, static_facts_fn, perception_source_dir, perception_feature_dir):
         self.parser = parser
-        self.kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir)
+        self.kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir,
+                                              parser.ontology)
         self.commutative_idxs = self.get_commutative_logicals(['and', 'or'])
 
     # Given a semantic tree, return a list of trees with the lambdas of the original tree filled by every possible
     # grounding that satisfies those lambdas.
     def ground_semantic_tree(self, root):
-        debug = False
+        debug = True
         if debug:
             print "ground_semantic_tree: grounding at root " + self.parser.print_parse(root)
 
@@ -75,7 +76,7 @@ class KBGrounder:
                         for cjdx in range(len(child_groundings[cj])):  # and takes arbitrarily many children
                             cj_bool = child_groundings[cj][cjdx][0]
                             if ci_bool == cj_bool:
-                                comb.append(cj_bool)  # this needs to happen to the original, not a reference
+                                comb.append(cjdx)  # this needs to happen to the original, not a reference
                 for comb in child_combinations:
                     if len(comb) == len(child_groundings):
                         match = child_groundings[0][comb[0]][0]
@@ -127,9 +128,15 @@ class KBGrounder:
                     queries = queries_ext[:]
 
                 # Run queries to get groundings.
+                # Ignore lambda assignments contained below this level.
                 for q in queries:
-                    ans, conf = self.kb.query(tuple(q))
-                    groundings.append((ans, [], conf))  # ignore lambda assignments contained below this level
+                    if debug:
+                        print "running kb query q=" + str(q)
+                    pos_conf, neg_conf = self.kb.query(tuple(q))
+                    if pos_conf > 0:
+                        groundings.append((True, [], pos_conf))
+                    if neg_conf > 0:
+                        groundings.append((False, [], neg_conf))
 
             # Else, root and grounded children can be passed up as they are (e.g. actions).
             else:

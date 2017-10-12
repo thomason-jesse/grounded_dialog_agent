@@ -1,3 +1,6 @@
+walk to the office next to the kitchen
+M : walk(a_l(lambda x:l.(and(office(x), adjacent(x, a_l(lambda y:l.(kitchen(y))))))))
+
 get a tall thin spraycan for ray
 M : bring(a_i(lambda x:i.(and(tall(x), and(thin(x), spraycan(x))))), ray)
 
@@ -15,6 +18,9 @@ M : bring(a_i(lambda x:i.(and(large(x), and(empty(x), and(yellow(x), cylinder(x)
 
 go to ray 's office
 M : walk(a_l(lambda x:l.(and(office(x), possesses(ray, x)))))
+
+go to the office of stacy
+M : walk(a_l(lambda x:l.(and(office(x), possesses(stacy, x)))))
 
 walk to a conference room
 M : walk(a_l(lambda x:l.(conference(x))))

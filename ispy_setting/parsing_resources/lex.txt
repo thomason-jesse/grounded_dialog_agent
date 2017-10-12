@@ -14,7 +14,10 @@ for :- PP/NP : lambda x:p.(x)
 
 # for "bob 's office"; "the office of the chair"
 's :- NP/N\NP : lambda x:p.(lambda P:<l,t>.(a_l(lambda y:l.(and(P(y), possesses(x, y))))))
-of :- NP\N/NP : lambda x:p.(lambda P:<l,t>.(lambda y:l.(and(P(y), possesses(x, y)))))
+of :- N\N/NP : lambda x:p.(lambda P:<l,t>.(lambda y:l.(and(P(y), possesses(x, y)))))
+
+# "adjacent to", e.g. "the office adjacent to the kitchen"
+adjacent :- N/PP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
 
 # determiners
 the :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
@@ -31,11 +34,16 @@ greg :- NP : greg
 dana :- NP : dana
 scott :- NP : scott
 justin :- NP : justin
+stacy :- NP : stacy
 
 # KB bare nouns
 office :- N : office
 conference :- N : conference
 lab :- N : lab
+printer :- N : printer
+lounge :- N : lounge
+kitchen :- N : kitchen
+pod :- N : pod
 
 # perception bare nouns from I, Spy
 crayon :- N : crayon
