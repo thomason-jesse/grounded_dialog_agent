@@ -23,31 +23,43 @@ def main():
     assert io_type == 'keyboard' or io_type == 'file' or io_type == 'robot'
 
     # Load the parser from file.
+    print "main: loading parser from file..."
     with open(parser_fn, 'rb') as f:
         p = pickle.load(f)
+    print "main: ... done"
 
     # Instantiate a grounder.
+    print "main: instantiating grounder..."
     g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir)
     if write_classifiers:
+        print "main: and writing grounder perception classifiers to file..."
         g.kb.pc.commit_changes()  # save classifiers to disk
+    print "main: ... done"
 
     # Instantiate an input/output
+    print "main: instantiating specified IO..."
     if io_type == 'keyboard':
         io = IO.KeyboardIO()
     else:
         raise ValueError("io_type '" + io_type + "' is not yet implemented.")
+    print "main: ... done"
 
     # Instantiate an Agent.
+    print "main: instantiating Agent..."
     a = Agent.Agent(p, g, io)
+    print "main: ... done"
 
     # Start a dialog.
+    print "main: running command dialog..."
     io.say_to_user("Enter a command: ")
     u = io.get_from_user()
     a.start_action_dialog(u)
+    print "main: ... done"
 
     # Retrain the in-memory parser based on induced training data.
-    a.get_parser_training_pairs_from_grounding_data(a.induced_utterance_grounding_pairs, 2,
-                                                    reranker_beam=10)
+    print "main: re-training parser on pairs induced from conversation..."
+    a.train_parser_from_induced_pairs(10, 10, 3, verbose=2)
+    print "main: ... done"
 
 
 if __name__ == '__main__':

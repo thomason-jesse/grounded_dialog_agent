@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 __author__ = 'jesse'
 
+import math
 import numpy as np
 import operator
 
@@ -21,10 +22,11 @@ class Agent:
         self.roles = ['action', 'patient', 'recipient']
         self.actions = ['walk', 'bring']
         self.action_args = {'walk': {'patient': ['l']},
-                            'bring': {'patient': ['i'], 'recipient': ['l']}}  # expected argument types per action
+                            'bring': {'patient': ['i'], 'recipient': ['p']}}  # expected argument types per action
 
         self.action_belief_state = None  # maintained during action dialogs to track action, patient, recipient
-        self.induced_utterance_grounding_pairs = []  # pairs of [utterance, SemanticNode] induced from conversations
+        # pairs of [utterance, grounded SemanticNode] induced from conversations
+        self.induced_utterance_grounding_pairs = []
 
     # Start a new action dialog from utterance u given by a user.
     # Clarifies the arguments of u until the action is confirmed by the user.
@@ -46,7 +48,7 @@ class Agent:
                                                   if self.parser.ontology.types[self.parser.ontology.entries[
                                                       self.parser.ontology.preds.index(r)]] in
                                                   self.action_args['bring']['recipient']}}
-        for r in self.roles:
+        for r in ['patient', 'recipient']:  # questions currently support None action, but I think it's weird maybe
             self.action_belief_state[r][None] = 1.0
         if debug:
             print ("start_action_dialog starting with u '" + str(u) + "' and action belief state: "
@@ -60,7 +62,8 @@ class Agent:
 
         # Update the belief state based on the utterance.
         for gp, conf in gps:
-            self.update_action_belief_from_grounding(gp, self.roles, count=conf / len(gps))
+            # conf scores sum to 1 based on parse_and_ground_utterance behavior.
+            self.update_action_belief_from_grounding(gp, self.roles, count=conf)
 
         # Ask a follow up question based on the new belief state.
         # This continues until an action is chosen.
@@ -73,8 +76,8 @@ class Agent:
             action_chosen = self.sample_action_from_belief(action_confirmed, arg_max=True)
 
             # Determine what question to ask based on missing arguments in chosen action.
-            q, role_asked, roles_conf = self.get_question_from_sampled_action(action_chosen,
-                                                                              self.threshold_to_accept_role)
+            q, role_asked, roles_conf, roles_in_q = self.get_question_from_sampled_action(action_chosen,
+                                                                                          self.threshold_to_accept_role)
 
             # Ask question and get user response.
             self.io.say_to_user(q)
@@ -85,31 +88,16 @@ class Agent:
             if role_asked is None:  # asked to repeat whole thing
                 user_utterances_by_role['all'].append(ur)
                 for gpr, conf in gprs:
-                    self.update_action_belief_from_grounding(gpr, self.roles, count=conf / len(gprs))
+                    # conf scores across gprs will sum to 1 based on parse_and_ground_utterance behavior.
+                    self.update_action_belief_from_grounding(gpr, self.roles, count=conf)
             elif action_chosen[role_asked][0] is None:  # asked an open-ended question for a particular role
                 user_utterances_by_role[role_asked].append(ur)
                 for gpr, conf in gprs:
-                    self.update_action_belief_from_grounding(gpr, [role_asked], count=conf / len(gprs))
+                    self.update_action_belief_from_grounding(gpr, [role_asked], count=conf)
             else:  # asked a yes/no question confirming one or more roles
                 for gpr, conf in gprs:
-                    if debug:
-                        print "start_action_dialog: confirmation response parse " + self.parser.print_parse(gpr)
-                    if gpr.type == self.parser.ontology.types.index('c'):
-                        if gpr.idx == self.parser.ontology.preds.index('yes'):
-                            action_confirmed[role_asked] = action_chosen[role_asked][0]
-                            for r in roles_conf:
-                                action_confirmed[r] = action_chosen[r][0]
-                        elif gpr.idx == self.parser.ontology.preds.index('no'):
-                            for r in roles_conf:
-                                self.action_belief_state[r][action_chosen[r][0]] -= \
-                                    (conf / len(gprs)) / float(len(roles_conf))
-                                if debug:
-                                    print ("start_action_dialog: subtracting count from " + r + " " +
-                                           action_chosen[r][0])
-                    else:
-                        # TODO: could add a loop here to force expected response type; create feedback for
-                        # TODO: getting synonyms for yes/no maybe
-                        print "WARNING: grounding for confirmation did not produce yes/no"
+                    self.update_action_belief_from_confirmation(gpr, action_confirmed, action_chosen,
+                                                                roles_in_q, count=conf)
 
             if debug:
                 print "start_action_dialog: updated action belief state: " + str(self.action_belief_state)
@@ -122,6 +110,42 @@ class Agent:
         # Perform the chosen action.
         self.io.perform_action(action_confirmed['action'], action_confirmed['patient'],
                                action_confirmed['recipient'])
+
+    def update_action_belief_from_confirmation(self, g, action_confirmed, action_chosen, roles_in_q, count=1.0):
+        debug = True
+
+        if debug:
+            print "update_action_belief_from_confirmation: confirmation response parse " + self.parser.print_parse(g)
+        if g.type == self.parser.ontology.types.index('c'):
+            if g.idx == self.parser.ontology.preds.index('yes'):
+                for r in roles_in_q:
+                    action_confirmed[r] = action_chosen[r][0]
+                    if debug:
+                        print ("update_action_belief_from_confirmation: confirmed role " + r + " with argument " +
+                               action_chosen[r][0])
+            elif g.idx == self.parser.ontology.preds.index('no'):
+                if len(roles_in_q) > 0:
+
+                    # Find the second-closest count among the roles to establish an amount by which to decrement
+                    # the whole set to ensure at least one argument is no longer maximal.
+                    min_diff = None
+                    for r in roles_in_q:
+                        second = max([self.action_belief_state[r][c] for c in self.action_belief_state[r]
+                                      if c != action_chosen[r][0]])
+                        diff = self.action_belief_state[r][action_chosen[r][0]] - second
+                        if diff < min_diff or min_diff is None:
+                            min_diff = diff
+
+                    inc = min_diff + count / float(len(roles_in_q))  # add hinge of count distributed over roles
+                    for r in roles_in_q:
+                        self.action_belief_state[r][action_chosen[r][0]] -= inc
+                        if debug:
+                            print ("update_action_belief_from_confirmation: subtracting from " + r + " " +
+                                   action_chosen[r][0] + "; " + str(inc))
+        else:
+            # TODO: could add a loop here to force expected response type; create feedback for
+            # TODO: getting synonyms for yes/no maybe
+            print "WARNING: grounding for confirmation did not produce yes/no"
 
     # Given a dictionary of roles to utterances and another of roles to confirmed predicates, build
     # SemanticNodes corresponding to those predicates and to the whole command to match up with entries
@@ -205,47 +229,58 @@ class Agent:
         return sorted(gn, key=lambda x: x[1], reverse=True)
 
     # Given a parse and a list of the roles felicitous in the dialog to update, update those roles' distributions
+    # Increase count of possible slot files for each role that appear in the groundings, and decay those that
+    # appear in no groundings.
     def update_action_belief_from_grounding(self, g, roles, count=1.0):
         debug = True
         if debug:
             print ("update_action_belief_from_grounding called with g " + self.parser.print_parse(g) +
                    " and roles " + str(roles))
 
+        # Track which slot-fills appear for each role so we can decay everything but then after updating counts
+        # positively.
+        role_candidates_seen = {r: set() for r in roles}
+
         # Crawl parse for recognized actions.
         if 'action' in roles:
             action_trees = self.get_parse_subtrees(g, self.actions)
-            for at in action_trees:
-                a = self.parser.ontology.preds[at.idx]
-                if a not in self.action_belief_state['action']:
-                    self.action_belief_state['action'][a] = 0
-                # TODO: these updates could be scaled by a normalized parse confidence
-                self.action_belief_state['action'][a] += count / float(len(action_trees))
-                if debug:
-                    print "update_action_belief_from_parse: adding count to action " + a
+            if len(action_trees) > 0:
+                inc = count / float(len(action_trees))
+                for at in action_trees:
+                    a = self.parser.ontology.preds[at.idx]
+                    if a not in self.action_belief_state['action']:
+                        self.action_belief_state['action'][a] = 0
+                    # TODO: these updates could be scaled by a normalized parse confidence
+                    self.action_belief_state['action'][a] += inc
+                    role_candidates_seen['action'].add(a)
+                    if debug:
+                        print "update_action_belief_from_grounding: adding count to action " + a + "; " + str(inc)
 
-                # Update patient and recipient, if present, with action tree args.
-                # These disregard argument order in favor of finding matching argument types.
-                # This gives us more robustness to bad parses with incorrectly ordered args or incomplete args.
-                # However, if we eventually have commands that take two args of the same type, we will
-                # have to introduce explicit ordering constraints here for those.
-                for r in ['patient', 'recipient']:
-                    if r in roles and at.children is not None:
-                        for cn in at.children:
-                            if (r in self.action_args[a] and
-                                    self.parser.ontology.types[cn.type] in self.action_args[a][r]):
-                                c = self.parser.ontology.preds[cn.idx]
-                                if c not in self.action_belief_state[r]:
-                                    self.action_belief_state[r][c] = 0
-                                self.action_belief_state[r][c] += count / len(action_trees)
-                                if debug:
-                                    print "update_action_belief_from_parse: adding count to " + r + " " + c
+                    # Update patient and recipient, if present, with action tree args.
+                    # These disregard argument order in favor of finding matching argument types.
+                    # This gives us more robustness to bad parses with incorrectly ordered args or incomplete args.
+                    # However, if we eventually have commands that take two args of the same type, we will
+                    # have to introduce explicit ordering constraints here for those.
+                    for r in ['patient', 'recipient']:
+                        if r in roles and at.children is not None:
+                            for cn in at.children:
+                                if (r in self.action_args[a] and
+                                        self.parser.ontology.types[cn.type] in self.action_args[a][r]):
+                                    c = self.parser.ontology.preds[cn.idx]
+                                    if c not in self.action_belief_state[r]:
+                                        self.action_belief_state[r][c] = 0
+                                    self.action_belief_state[r][c] += inc
+                                    role_candidates_seen[r].add(c)
+                                    if debug:
+                                        print ("update_action_belief_from_grounding: adding count to " + r +
+                                               " " + c + "; " + str(inc))
 
         # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
         else:
-            to_traverse = [g]
-            to_increment = []
-            while len(to_traverse) > 0:
-                for r in roles:
+            for r in roles:
+                to_traverse = [g]
+                to_increment = []
+                while len(to_traverse) > 0:
                     cn = to_traverse.pop()
                     if self.parser.ontology.types[cn.type] in [t for a in self.actions
                                                                if r in self.action_args[a]
@@ -254,13 +289,29 @@ class Agent:
                             c = self.parser.ontology.preds[cn.idx]
                             if c not in self.action_belief_state[r]:
                                 self.action_belief_state[r][c] = 0
-                            to_increment.append((r, c))
+                            to_increment.append(c)
                     if cn.children is not None:
                         to_traverse.extend(cn.children)
-            for r, c in to_increment:
-                self.action_belief_state[r][c] += count / len(to_increment)
-                if debug:
-                    print "update_action_belief_from_parse: adding count to " + r + " " + c
+                if len(to_increment) > 0:
+                    inc = count / float(len(to_increment))
+                    for c in to_increment:
+                        self.action_belief_state[r][c] += inc
+                        role_candidates_seen[r].add(c)
+                        if debug:
+                            print ("update_action_belief_from_grounding: adding count to " + r + " " + c +
+                                   "; " + str(inc))
+
+        # Decay counts of everything not seen per role (except None, which is a special filler for question asking).
+        for r in roles:
+            to_decrement = [fill for fill in self.action_belief_state[r] if fill not in role_candidates_seen[r]
+                            and fill is not None]
+            if len(to_decrement) > 0:
+                inc = count / float(len(to_decrement))
+                for td in to_decrement:
+                    self.action_belief_state[r][td] -= inc
+                    if debug:
+                        print ("update_action_belief_from_grounding: subtracting count from " + r + " " + td +
+                               "; " + str(inc))
 
     # Given a parse and a list of predicates, return the subtrees in the parse rooted at those predicates.
     # If a subtree is rooted beneath one of the specified predicates, it will not be returned (top-level only).
@@ -330,66 +381,86 @@ class Agent:
                    " with least_conf_role " + str(least_conf_role))
 
         # Ask a question.
+        roles_in_q = []  # different depending on action selection
         if roles_to_include == self.roles:  # all roles are above threshold, so perform.
             if sampled_action['action'][0] == 'walk':
                 q = "You want me to go to " + sampled_action['patient'][0] + "?"
+                roles_in_q.extend(['action', 'patient'])
             else:
                 q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
                      sampled_action['recipient'][0] + "?")
+                roles_in_q.extend(['action', 'patient', 'recipient'])
         elif least_conf_role == 'action':  # ask for action confirmation
             if sampled_action['action'][0] is None:
                 if 'patient' in roles_to_include:
                     q = "What should I do involving " + sampled_action['patient'][0] + "?"
+                    roles_in_q.extend(['patient'])
                 elif 'recipient' in roles_to_include:
                     q = "What should I do involving " + sampled_action['recipient'][0] + "?"
+                    roles_in_q.extend(['recipient'])
                 else:
                     q = "What kind of action should I perform?"
             elif sampled_action['action'][0] == 'walk':
                 if 'patient' in roles_to_include:
                     q = "You want me to go to " + sampled_action['patient'][0] + "?"
+                    roles_in_q.extend(['action', 'patient'])
                 else:
                     q = "You want me to go somewhere?"
+                    roles_in_q.extend(['action'])
             else:  # i.e. bring
                 if 'patient' in roles_to_include:
                     if 'recipient' in roles_to_include:
                         q = ("You want me to deliver " + sampled_action['patient'][0] + " to "
                              + sampled_action['recipient'][0] + "?")
+                        roles_in_q.extend(['action', 'patient', 'recipient'])
                     else:
                         q = "You want me to deliver " + sampled_action['patient'][0] + " to someone?"
+                        roles_in_q.extend(['action', 'patient'])
                 elif 'recipient' in roles_to_include:
                     q = "You want me to deliver something to " + sampled_action['recipient'][0] + "?"
+                    roles_in_q.extend(['action', 'recipient'])
                 else:
                     q = "You want me to deliver something for someone?"
+                    roles_in_q.extend(['action'])
         elif least_conf_role == 'patient':  # ask for patient confirmation
             if sampled_action['patient'][0] is None:
                 if 'action' in roles_to_include:
                     if sampled_action['action'][0] == 'walk':
                         q = "Where should I go?"
+                        roles_in_q.extend(['action'])
                     elif 'recipient' in roles_to_include:
                         q = "What should I deliver to " + sampled_action['recipient'][0] + "?"
+                        roles_in_q.extend(['action', 'recipient'])
                     else:  # i.e. bring with no recipient
                         q = "What should I find to deliver?"
+                        roles_in_q.extend(['action'])
                 else:
                     if 'recipient' in roles_to_include:
                         q = ("What else is involved in what I should do besides " +
                              sampled_action['recipient'][0] + "?")
+                        roles_in_q.extend(['recipient'])
                     else:
                         q = "What is involved in what I should do?"
             else:
                 if 'action' in roles_to_include:
                     if sampled_action['action'][0] == 'walk':
                         q = "You want me to walk to " + sampled_action['patient'][0] + "?"
+                        roles_in_q.extend(['action', 'patient'])
                     elif 'recipient' in roles_to_include:
                         q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
                              sampled_action['recipient'][0] + "?")
+                        roles_in_q.extend(['action', 'patient', 'recipient'])
                     else:
                         q = "You want me to deliver " + sampled_action['patient'][0] + " to someone?"
+                        roles_in_q.extend(['action', 'patient'])
                 else:
                     if 'recipient' in roles_to_include:
                         q = ("You want me to do something involving " + sampled_action['patient'][0] +
                              " for " + sampled_action['recipient'][0] + "?")
+                        roles_in_q.extend(['patient', 'recipient'])
                     else:
                         q = "You want me to do something involving " + sampled_action['patient'][0] + "?"
+                        roles_in_q.extend(['patient'])
         elif least_conf_role == 'recipient':  # ask for recipient confirmation
             if sampled_action['recipient'][0] is None:
                 if 'action' in roles_to_include:
@@ -398,11 +469,14 @@ class Agent:
                                          "with empty recipient ask in spite of action being walk")
                     elif 'patient' in roles_to_include:
                         q = "To whom should I deliver " + sampled_action['patient'][0] + "?"
+                        roles_in_q.extend(['action', 'patient'])
                     else:  # i.e. bring with no recipient
                         q = "Who should receive what I deliver?"
+                        roles_in_q.extend(['action'])
                 else:
                     if 'patient' in roles_to_include:
                         q = "Who is involved in what I should do with " + sampled_action['patient'][0] + "?"
+                        roles_in_q.extend(['patient'])
                     else:
                         q = "Who is involved in what I should do?"
             else:
@@ -410,103 +484,60 @@ class Agent:
                     if 'patient' in roles_to_include:
                         q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
                              sampled_action['recipient'][0] + "?")
+                        roles_in_q.extend(['action', 'patient', 'recipient'])
                     else:
                         q = "You want me to deliver something to " + sampled_action['recipient'][0] + "?"
+                        roles_in_q.extend(['action', 'recipient'])
                 elif 'patient' in roles_to_include:
                     q = ("You want me to do something with " + sampled_action['patient'][0] + " for " +
                          sampled_action['recipient'][0] + "?")
+                    roles_in_q.extend(['patient', 'recipient'])
                 else:
                     q = "You want me to do something for " + sampled_action['recipient'][0] + "?"
+                    roles_in_q.extend(['recipient'])
         else:  # least_conf_role is None, i.e. no confidence in any arg, so ask for full restatement
             q = "Could you rephrase your request?"
 
         # Return the question and the roles included in it.
         # If the user affirms, all roles included in the question should have confidence boosted to 1.0
         # If the user denies, all roles included in the question should have their counts subtracted.
-        return q, least_conf_role, roles_to_include
+        return q, least_conf_role, roles_to_include, roles_in_q
 
-    # take in data set d=(x,g) for x strings and g correct groundings and calculate training pairs
-    # training pairs in t are of form (x, y_chosen, y_correct, chosen_lex_entries, correct_lex_entries)
-    # k determines how many parses to get for re-ranking
-    # beam determines how many cky_trees to look through before giving up on a given input
-    # TODO: this is almost identical to the cky parser training function, and could probably be done more
-    # TODO: smartly by passing a function to that function to be used for the comparator that, instead
-    # TODO: of comparing parses, grounds the generated parse and compares the groundings like this does.
-    def get_parser_training_pairs_from_grounding_data(self, d, verbose, reranker_beam=1):
-        t = []
-        num_trainable = 0
-        num_matches = 0
-        num_fails = 0
-        num_genlex_only = 0
-        for [x, g] in d:
-            correct_parse = None
-            correct_new_lexicon_entries = []
-            # TODO: providing some possible known roots through some kind of reverse parsing might help here
-            cky_parse_generator = self.parser.most_likely_cky_parse(x, reranker_beam=reranker_beam,
+    # Update the parser by re-training it from the current set of induced utterance/grounding pairs.
+    def train_parser_from_induced_pairs(self, epochs, parse_reranker_beam, interpolation_reranker_beam,
+                                        verbose=0):
+
+        # Induce utterance/semantic form pairs from utterance/grounding pairs, then run over those induced
+        # pairs the specified number of epochs.
+        utterance_semantic_pairs = []
+        for [x, g] in self.induced_utterance_grounding_pairs:
+
+            parses = []
+            cky_parse_generator = self.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam,
                                                                     debug=False)
-            chosen_parse, chosen_score, chosen_new_lexicon_entries, chosen_skipped_surface_forms = \
-                next(cky_parse_generator)
-            current_parse = chosen_parse
-            correct_score = chosen_score
-            current_new_lexicon_entries = chosen_new_lexicon_entries
-            current_skipped_surface_forms = chosen_skipped_surface_forms
-            match = False
-            first = True
-            if chosen_parse is None:
-                if verbose >= 2:
-                    print "WARNING: could not find valid parse for '" + x + "' during training"
-                num_fails += 1
-                continue
-            while correct_parse is None and current_parse is not None:
-                gs = self.grounder.ground_semantic_tree(current_parse.node)
+            parse, score, _, _ = next(cky_parse_generator)
+            while parse is not None and len(parses) < interpolation_reranker_beam:
+
+                gs = self.grounder.ground_semantic_tree(parse.node)
                 gn = self.sort_groundings_by_conf(gs)
-                gz, _ = gn[0]  # top confidence grounding, which may be True/False
-                if ((type(gz) is bool and gz == g) or
-                        (type(gz) is not bool and g.equal_allowing_commutativity(gz, self.parser.ontology))):
-                    correct_parse = current_parse
-                    correct_new_lexicon_entries = current_new_lexicon_entries
-                    correct_skipped_surface_forms = current_skipped_surface_forms
-                    if first:
-                        match = True
-                        num_matches += 1
-                    else:
-                        num_trainable += 1
-                    break
-                first = False
-                current_parse, correct_score, current_new_lexicon_entries, current_skipped_surface_forms = \
-                    next(cky_parse_generator)
-            if correct_parse is None:
-                if verbose >= 2:
-                    print "WARNING: could not find correct parse for '"+str(x)+"' during training"
-                num_fails += 1
-                continue
-            if verbose >= 2:
-                print "\tx: "+str(x)
-                print "\t\tchosen_parse: "+self.parser.print_parse(chosen_parse.node, show_category=True)
-                print "\t\tchosen_score: "+str(chosen_score)
-                print "\t\tchosen_skips: "+str(chosen_skipped_surface_forms)
-                if len(chosen_new_lexicon_entries) > 0:
-                    print "\t\tchosen_new_lexicon_entries: "
-                    for sf, sem in chosen_new_lexicon_entries:
-                        print "\t\t\t'"+sf+"' :- "+self.parser.print_parse(sem, show_category=True)
-            if not match or len(correct_new_lexicon_entries) > 0:
-                if len(correct_new_lexicon_entries) > 0:
-                    num_genlex_only += 1
-                if verbose >= 2:
-                    print "\t\ttraining example generated:"
-                    print "\t\t\tcorrect_parse: "+self.parser.print_parse(correct_parse.node, show_category=True)
-                    print "\t\t\tcorrect_score: "+str(correct_score)
-                    print "\t\t\tcorrect_skips: " + str(correct_skipped_surface_forms)
-                    if len(correct_new_lexicon_entries) > 0:
-                        print "\t\t\tcorrect_new_lexicon_entries: "
-                        for sf, sem in correct_new_lexicon_entries:
-                            print "\t\t\t\t'"+sf+"' :- "+self.parser.print_parse(sem, show_category=True)
-                    print "\t\t\tg: "+self.parser.print_parse(g, show_category=True)
-                t.append([x, chosen_parse, correct_parse, chosen_new_lexicon_entries, correct_new_lexicon_entries,
-                          chosen_skipped_surface_forms, correct_skipped_surface_forms])
-        if verbose >= 1:
-            print "\tmatched "+str(num_matches)+"/"+str(len(d))
-            print "\ttrained "+str(num_trainable)+"/"+str(len(d))
-            print "\tgenlex only "+str(num_genlex_only)+"/"+str(len(d))
-            print "\tfailed "+str(num_fails)+"/"+str(len(d))
-        return t, num_fails
+                if len(gn) > 0:
+                    gz, g_score = gn[0]  # top confidence grounding, which may be True/False
+                    if ((type(gz) is bool and gz == g) or
+                            (type(gz) is not bool and g.equal_allowing_commutativity(gz, self.parser.ontology))):
+                        parses.append([parse, score + math.log(g_score)])
+                        if verbose > 0:
+                            print ("for x '" + str(x) + "' with grounding " + self.parser.print_parse(g) +
+                                   " found semantic form " + self.parser.print_parse(parse.node, True) +
+                                   " with scores p " + str(score) + ", g " + str(g_score))
+                    parse, score, _, _ = next(cky_parse_generator)
+
+            if len(parses) == 0 and verbose > 0:
+                print ("no semantic parse found matching grounding for pair '" + str(x) +
+                       "', " + self.parser.print_parse(g))
+
+            best_interpolated_parse = sorted(parses, key=lambda t: t[1], reverse=True)[0][0]
+            utterance_semantic_pairs.append([x, best_interpolated_parse.node])
+            print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
+
+        self.parser.train_learner_on_semantic_forms(utterance_semantic_pairs, epochs=epochs,
+                                                    reranker_beam=parse_reranker_beam, verbose=verbose)
