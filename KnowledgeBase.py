@@ -13,7 +13,8 @@ import PerceptionClassifiers
 class KnowledgeBase:
 
     # Initialize given a facts filename.
-    def __init__(self, static_facts_fn, perception_source_dir, perception_feature_dir, ontology):
+    def __init__(self, static_facts_fn, perception_source_dir, perception_feature_dir, active_test_set,
+                 ontology):
         self.static_facts = None
         self.static_preds = None
         self.perceptual_preds = None
@@ -23,8 +24,9 @@ class KnowledgeBase:
         self.extract_facts_from_file(static_facts_fn)
 
         # Initialize perception classifiers from source directories.
+        self.active_test_set = active_test_set
         self.pc = PerceptionClassifiers.PerceptionClassifiers(perception_source_dir, perception_feature_dir,
-                                                              kernel='linear')
+                                                              active_test_set, kernel='linear')
         self.perceptual_preds = self.pc.predicates  # Should make perceptual_preds a reference for pc preds.
 
     # Read in facts from file.

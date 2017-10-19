@@ -7,11 +7,18 @@ import KnowledgeBase
 
 class KBGrounder:
 
-    def __init__(self, parser, static_facts_fn, perception_source_dir, perception_feature_dir):
+    # parser - an instance of CKYParser
+    # static_facts_fn - a filename for a static facts plain text file
+    # perception_source_dir - the directory for perception source containing predicates, labels, and trained classifiers
+    # perception_feature_dir - the directory for perception containing oidxs and object features
+    # active_test_set - a list of oidxs to consider as test objects (labels ignored during SVM training/testing)
+    def __init__(self, parser, static_facts_fn,
+                 perception_source_dir, perception_feature_dir,
+                 active_test_set):
         self.parser = parser
         self.kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir,
-                                              parser.ontology)
-        self.commutative_idxs = self.get_commutative_logicals(['and', 'or'])
+                                              active_test_set, parser.ontology)
+        self.active_test_set = active_test_set
 
     # Given a semantic tree, return a list of trees with the lambdas of the original tree filled by every possible
     # grounding that satisfies those lambdas.
@@ -54,9 +61,8 @@ class KBGrounder:
                         cj_tree = child_groundings[1][cjdx][0]
                         cj_la = child_groundings[1][cjdx][1]
                         conf *= child_groundings[1][cjdx][2]
-                        if ci_tree.equal_allowing_commutativity(cj_tree, self.commutative_idxs,
-                                                                ignore_syntax=True,
-                                                                ontology=self.parser.ontology):
+                        if ci_tree.equal_allowing_commutativity(cj_tree, self.parser.ontology,
+                                                                ignore_syntax=True):
                             match = copy.deepcopy(root)
                             match.children = [ci_tree, cj_tree]
                             groundings.append((match, ci_la + cj_la, conf))
@@ -122,9 +128,18 @@ class KBGrounder:
                 for cidx in range(len(child_groundings)):
                     queries_ext = []
                     for gidx in range(len(child_groundings[cidx])):
-                        for q in queries:
-                            queries_ext.append(q + [self.parser.ontology.preds[
-                                                    child_groundings[cidx][gidx][0].idx]])
+                        args = [self.parser.ontology.preds[child_groundings[cidx][gidx][0].idx]]
+
+                        # Verify that all object oidx args are part of the active_test_set.
+                        active_test_query = True
+                        for arg in args:
+                            if 'oidx' in arg and int(arg.split('_')[1]) not in self.active_test_set:
+                                active_test_query = False
+                                break
+
+                        if active_test_query:
+                            for q in queries:
+                                queries_ext.append(q + args)
                     queries = queries_ext[:]
 
                 # Run queries to get groundings.
@@ -133,10 +148,10 @@ class KBGrounder:
                     if debug:
                         print "running kb query q=" + str(q)
                     pos_conf, neg_conf = self.kb.query(tuple(q))
-                    if pos_conf > 0:
-                        groundings.append((True, [], pos_conf))
-                    if neg_conf > 0:
-                        groundings.append((False, [], neg_conf))
+                    # if pos_conf > 0:  # without these removals, zero confidence groundings will be returned
+                    groundings.append((True, [], pos_conf))
+                    # if neg_conf > 0:
+                    groundings.append((False, [], neg_conf))
 
             # Else, root and grounded children can be passed up as they are (e.g. actions).
             else:

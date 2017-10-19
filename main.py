@@ -18,6 +18,8 @@ def main():
     kb_static_facts_fn = FLAGS_kb_static_facts_fn
     kb_perception_source_dir = FLAGS_kb_perception_source_dir
     kb_perception_feature_dir = FLAGS_kb_perception_feature_dir
+    active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
+    active_train_set = [int(oidx) for oidx in FLAGS_active_train_set.split(',')]
     io_type = FLAGS_io_type
     write_classifiers = FLAGS_write_classifiers
     assert io_type == 'keyboard' or io_type == 'file' or io_type == 'robot'
@@ -30,7 +32,8 @@ def main():
 
     # Instantiate a grounder.
     print "main: instantiating grounder..."
-    g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir)
+    g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
+                              active_test_set)
     if write_classifiers:
         print "main: and writing grounder perception classifiers to file..."
         g.kb.pc.commit_changes()  # save classifiers to disk
@@ -46,14 +49,12 @@ def main():
 
     # Instantiate an Agent.
     print "main: instantiating Agent..."
-    a = Agent.Agent(p, g, io)
+    a = Agent.Agent(p, g, io, active_train_set)
     print "main: ... done"
 
     # Start a dialog.
     print "main: running command dialog..."
-    io.say_to_user("Enter a command: ")
-    u = io.get_from_user()
-    a.start_action_dialog(u)
+    a.start_action_dialog()
     print "main: ... done"
 
     # Retrain the in-memory parser based on induced training data.
@@ -72,6 +73,11 @@ if __name__ == '__main__':
                         help="perception source directory for knowledge base")
     parser.add_argument('--kb_perception_feature_dir', type=str, required=True,
                         help="perception feature directory for knowledge base")
+    parser.add_argument('--active_test_set', type=str, required=True,
+                        help="objects to consider possibilities for grounding; " +
+                             "excluded from perception classifier training")
+    parser.add_argument('--active_train_set', type=str, required=True,
+                        help="objects to consider 'local' and able to be queried by opportunistic active learning")
     parser.add_argument('--io_type', type=str, required=True,
                         help="one of 'keyboard', 'file', or 'robot'")
     parser.add_argument('--write_classifiers', type=int, required=False, default=0,

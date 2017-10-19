@@ -9,12 +9,13 @@ from sklearn.svm import SVC
 
 class PerceptionClassifiers:
 
-    def __init__(self, source_dir, feature_dir, kernel='linear'):
-        debug = False
+    def __init__(self, source_dir, feature_dir, active_test_set, kernel='linear'):
+        debug = True
 
         # Initialization parameters.
         self.source_dir = source_dir  # str; expects predicates.pickle, labels.pickle for object/pred relationships
         self.feature_dir = feature_dir  # str; expects oidxs.pickle, features.pickle for objects
+        self.active_test_set = active_test_set  # list of int; oidxs' labels to be excluded from SVM training/test
         self.kernel = kernel  # str
 
         self.predicates = None  # list of strs
@@ -26,6 +27,10 @@ class PerceptionClassifiers:
         self.classifiers = None  # list of behavior, modality indexed dictionaries into SVC classifiers
         self.kappas = None  # list of behavior, modality indexed dictionaries into [0, 1] floats
         self.weights = None  # list of behavior, modality indexed dictionaries into [0, 1] confidences summing to 1
+
+        self.classifiers_fn = "classifiers_" + '_'.join([str(oidx) for oidx in active_test_set]) + ".pickle"
+        if debug:
+            print "classifiers_fn = " + self.classifiers_fn
 
         # Read in source information.
         if debug:
@@ -60,7 +65,7 @@ class PerceptionClassifiers:
             print "... done"
 
         # Read in cashed classifiers or train fresh ones.
-        classifier_fn = os.path.join(source_dir, "classifiers.pickle")
+        classifier_fn = os.path.join(source_dir, self.classifiers_fn)
         if os.path.isfile(classifier_fn):
             if debug:
                 print "reading cached classifiers from file..."
@@ -90,10 +95,10 @@ class PerceptionClassifiers:
     # Returns a tuple of pos_conf, neg_conf for confidence in [0, 1] that the label does or does not apply
     # pos_conf + neg_conf = 1.0 unless pos_conf = neg_conf = 0
     def run_classifier(self, pidx, oidx):
-        debug = False
+        debug = True
 
         # Check existing labels.
-        ls = [l for _p, _o, l in self.labels if _p == pidx and _o == oidx]
+        ls = [l for _p, _o, l in self.labels if _p == pidx and _o == oidx and _o not in self.active_test_set]
         if len(ls) > 0 and sum([1 if l else -1 for l in ls]) != 0:
             # This object is already labeled and has majority class.
             if debug:
@@ -163,20 +168,20 @@ class PerceptionClassifiers:
             pickle.dump(self.predicates, f)
         with open(os.path.join(self.source_dir, "labels.pickle"), 'wb') as f:
             pickle.dump(self.labels, f)
-        with open(os.path.join(self.source_dir, "classifiers.pickle"), 'wb') as f:
+        with open(os.path.join(self.source_dir, self.classifiers_fn), 'wb') as f:
             pickle.dump([self.classifiers, self.kappas], f)
 
     # Get oidx, l from pidx, oidx, l labels.
     def get_pairs_from_labels(self, pidx):
         pairs = []
         for pjdx, oidx, l in self.labels:
-            if pjdx == pidx:
+            if pjdx == pidx and oidx not in self.active_test_set:
                 pairs.append((oidx, 1 if l else -1))
         return pairs
 
     # Train all classifiers given boilerplate info and labels.
     def train_classifiers(self, pidxs):
-        debug = False
+        debug = True
 
         if debug:
             print "training classifiers " + ','.join([self.predicates[pidx] for pidx in pidxs])
