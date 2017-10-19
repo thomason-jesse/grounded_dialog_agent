@@ -9,6 +9,7 @@ import pickle
 import Agent
 import KBGrounder
 import IO
+import os
 
 
 def main():
@@ -28,6 +29,19 @@ def main():
     print "main: loading parser from file..."
     with open(parser_fn, 'rb') as f:
         p = pickle.load(f)
+    print "main: ... done"
+
+    # Create a new labels.pickle that erases the labels of the active training set for test purposes.
+    print "main: creating new labels.pickle that blinds the active training set for this test..."
+    with open(os.path.join(kb_perception_source_dir, 'full_annotations.pickle'), 'rb') as f:
+        fa = pickle.load(f)
+    with open(os.path.join(kb_perception_source_dir, 'labels.pickle'), 'wb') as f:
+        labels = []
+        for oidx in fa:
+            if oidx not in active_train_set:
+                for pidx in range(len(fa[oidx])):
+                    labels.append((pidx, oidx, fa[oidx][pidx]))
+        pickle.dump(labels, f)
     print "main: ... done"
 
     # Instantiate a grounder.
