@@ -10,7 +10,7 @@ from sklearn.svm import SVC
 class PerceptionClassifiers:
 
     def __init__(self, source_dir, feature_dir, active_test_set, kernel='linear'):
-        debug = True
+        debug = False
 
         # Initialization parameters.
         self.source_dir = source_dir  # str; expects predicates.pickle, labels.pickle for object/pred relationships
@@ -95,17 +95,17 @@ class PerceptionClassifiers:
     # Returns a tuple of pos_conf, neg_conf for confidence in [0, 1] that the label does or does not apply
     # pos_conf + neg_conf = 1.0 unless pos_conf = neg_conf = 0
     def run_classifier(self, pidx, oidx):
-        debug = True
+        debug = False
 
         # Check existing labels.
         ls = [l for _p, _o, l in self.labels if _p == pidx and _o == oidx and _o not in self.active_test_set]
-        if len(ls) > 0 and sum([1 if l else -1 for l in ls]) != 0:
-            # This object is already labeled and has majority class.
+        if len(ls) > 0:
+            # This object is already labeled.
             if debug:
-                print ("returning majority class label for seen pred '" + self.predicates[pidx] +
+                print ("returning class balance for seen pred '" + self.predicates[pidx] +
                        "' on object " + str(oidx))
             pos_conf = ls.count(1) / float(len(ls))
-            neg_conf = ls.count(-1) / float(len(ls))
+            neg_conf = ls.count(0) / float(len(ls))
         else:
 
             # Run classifiers if trained.
@@ -181,7 +181,7 @@ class PerceptionClassifiers:
 
     # Train all classifiers given boilerplate info and labels.
     def train_classifiers(self, pidxs):
-        debug = True
+        debug = False
 
         if debug:
             print "training classifiers " + ','.join([self.predicates[pidx] for pidx in pidxs])

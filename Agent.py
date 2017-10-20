@@ -20,6 +20,7 @@ class Agent:
         self.parse_beam = 1
         self.threshold_to_accept_role = 0.9
         self.threshold_to_accept_perceptual_conf = 0.5  # per perceptual predicate, e.g. 0.25 for two
+        self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
 
         # static information about expected actions and their arguments
         self.roles = ['action', 'patient', 'recipient']
@@ -35,7 +36,7 @@ class Agent:
     # Start a new action dialog from utterance u given by a user.
     # Clarifies the arguments of u until the action is confirmed by the user.
     def start_action_dialog(self):
-        debug = True
+        debug = False
 
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
         # As more open-ended and yes/no utterances are parsed, these counts will be updated to reflect the roles
@@ -87,130 +88,8 @@ class Agent:
             # Get groundings and latent parse from utterance.
             gprs, pr = self.parse_and_ground_utterance(ur)
 
-            # While top grounding confidence does not pass perception threshold, ask a question that
-            # strengthens an SVM involved in the current parse.
-            # In effect, this can start a sub-dialog about perception, which, when resolved, returns to
-            # the existing slot-filling dialog.
-            if len(gprs) > 0:
-
-                perception_above_threshold = False
-                top_conf = gprs[0][1]
-                perceptual_pred_trees = self.get_parse_subtrees(pr.node, self.grounder.kb.perceptual_preds)
-                if debug:
-                    print ("start_action_dialog: perceptual confidence " + str(top_conf) + " versus " +
-                           "threshold " + str(self.threshold_to_accept_perceptual_conf) + " across " +
-                           str(len(perceptual_pred_trees)) + " predicates")
-                    _ = raw_input()  # DEBUG
-                while not perception_above_threshold:
-                    if top_conf < math.pow(self.threshold_to_accept_perceptual_conf, len(perceptual_pred_trees)):
-                        if debug:
-                            print ("start_action_dialog: perceptual confidence " + str(top_conf) + " below " +
-                                   "threshold; entering dialog to strengthen perceptual classifiers")
-
-                        # Sub-dialog to ask perceptual predicate questions about objects in the active training
-                        # set until confidence threshold is reached or no more information can be gained
-                        # from the objects in the active training set.
-
-                        # For current SVMs, calculate the least-reliable predicates when applied to test objects.
-                        # Additionally record current confidences against active training set objects.
-                        pred_test_conf = {}  # from predicates to confidence sums
-                        pred_train_conf = {}  # from predicates to active training idx oidx to confidences
-                        for root in perceptual_pred_trees:
-                            pred = self.parser.ontology.preds[root.idx]
-
-                            test_conf = 0
-                            for oidx in self.grounder.active_test_set:
-                                pos_conf, neg_conf = self.grounder.kb.query((pred, 'oidx_' + str(oidx)))
-                                test_conf += max(pos_conf, neg_conf)
-                            pred_test_conf[pred] = test_conf
-
-                            pred_train_conf[pred] = []
-                            for oidx in self.active_train_set:
-                                pos_conf, neg_conf = self.grounder.kb.query((pred, 'oidx_' + str(oidx)))
-                                pred_train_conf[pred].append(max(pos_conf, neg_conf))
-
-                        # Examine preds in order of least test confidence until we reach one for which we can
-                        # formulate a useful question against the active training set objects. If all of the
-                        # active training set objects have been labeled or have total confidence already
-                        # for every predicate, the sub-dialog can't be productive and ends.
-                        q = None
-                        q_type = None
-                        q_pred = None
-                        for pred, test_conf in sorted(pred_test_conf.items(), key=operator.itemgetter(1)):
-
-                            # If at least one active training object is unlabeled or unconfident
-                            # TODO: this part isn't working as expected
-                            if sum(pred_train_conf[pred]) < len(self.active_train_set):
-
-                                # If all objects are below the perception threshold, ask for positive label.
-                                if min(pred_train_conf[pred]) < self.threshold_to_accept_perceptual_conf:
-                                    q = ("Among these nearby objects, could you show me one you would describe " +
-                                         "as '" + pred + "', or say 'none' if none do?")
-                                    q_type = 'pos'
-
-                                # Else, ask for the label of the least-confident object.
-                                else:
-                                    oidx = self.active_train_set[pred_train_conf[pred].index(
-                                        min(pred_train_conf[pred]))]
-                                    q = "Would you describe nearby object oidx_" + str(oidx) + " as '" + pred + "'?"
-                                    q_type = oidx
-
-                                # Ask the question we settled on.
-                                q_pred = pred
-                                break
-
-                            # Nothing more to be gained by asking questions about the active training set
-                            # with respect to this predicate.
-                            else:
-                                continue
-
-                        # If we didn't settle on a question, all active training set objects have been labeled
-                        # for every predicate of interest, so this sub-dialog can't get us anywhere.
-                        if q is None:
-                            break
-
-                        # Ask the question and get a user response.
-                        self.io.say_to_user(q)
-                        sub_gprs = None
-                        if q_type == 'pos':
-                            sub_ur = self.io.get_oidx_from_user(self.active_train_set)
-                        else:  # i.e. q_type is a particular oidx atom we asked a yes/no about
-                            sub_ur = self.io.get_from_user()
-                            sub_gprs, _ = self.parse_and_ground_utterance(ur)
-
-                        # Update perceptual classifiers from user response.
-                        upidxs = []
-                        uoidxs = []
-                        ulabels = []
-                        perception_pidx = self.grounder.kb.pc.predicates.index(q_pred)
-                        if q_type == 'pos':  # response is expected to be an oidx or 'none'
-                            if sub_ur is None:
-                                upidxs = [perception_pidx] * len(self.active_train_set)
-                                uoidxs = self.active_train_set
-                                ulabels = [0] * len(self.active_train_set)
-                            else:  # an oidx
-                                upidxs = [perception_pidx]
-                                uoidxs = [sub_ur]
-                                ulabels = [1]
-                        else:  # response is expected to be a confirmation yes/no
-                            for sg in sub_gprs:
-                                if sg.idx == self.parser.ontology.preds('yes'):
-                                    upidxs = [perception_pidx]
-                                    uoidxs = [q_type]
-                                    ulabels = [1]
-                                elif sg.idx == self.parser.ontology.preds('no'):
-                                    upidxs = [perception_pidx]
-                                    uoidxs = [q_type]
-                                    ulabels = [0]
-                        self.grounder.kb.pc.update_classifiers([], upidxs, uoidxs, ulabels)
-
-                        # Re-ground original utterance with updated classifiers.
-                        gprs, pr = self.parse_and_ground_utterance(ur)
-                        top_conf = gprs[0][1]
-                        perceptual_pred_trees = self.get_parse_subtrees(pr.node, self.grounder.kb.perceptual_preds)
-
-                    else:
-                        perception_above_threshold = True
+            # Start a sub-dialog to ask clarifying percpetual quesitons before continuing with slot-filling.
+            self.conduct_perception_subdialog(ur, gprs, pr, self.max_perception_subdialog_qs)
 
             if role_asked is None:  # asked to repeat whole thing
                 user_utterances_by_role['all'].append(ur)
@@ -234,9 +113,171 @@ class Agent:
                                                                               action_confirmed)
         self.induced_utterance_grounding_pairs.extend(new_i_pairs)
 
+        # TODO: update SVMs with positive example from active test set
+        # TODO: this is tricky since in live experiment these labels still have to be ignored
+        # TODO: will have to do fold-by-fold training as usual
+        # TODO: also tricky because without explicitly asking, the labels come from reverse-grounding,
+        # TODO: which can be noisy and should be overwritten later on by explicit human conversation.
+
         # Perform the chosen action.
         self.io.perform_action(action_confirmed['action'], action_confirmed['patient'],
                                action_confirmed['recipient'])
+
+    # While top grounding confidence does not pass perception threshold, ask a question that
+    # strengthens an SVM involved in the current parse.
+    # In effect, this can start a sub-dialog about perception, which, when resolved, returns to
+    # the existing slot-filling dialog.
+    # ur - the user response to the last question, which may contain perceptual predicates
+    # gprs - groundings of parse from last response
+    # pr - the associated latent parse
+    # max_questions - the maximum number of questions to ask in this sub-dialog
+    def conduct_perception_subdialog(self, ur, gprs, pr, max_questions):
+        debug = True
+
+        if len(gprs) > 0:
+
+            perception_above_threshold = False
+            top_conf = gprs[0][1]
+            perceptual_pred_trees = self.get_parse_subtrees(pr.node, self.grounder.kb.perceptual_preds)
+            num_qs = 0
+            if debug:
+                print ("conduct_perception_subdialog: perceptual confidence " + str(top_conf) + " versus " +
+                       "threshold " + str(self.threshold_to_accept_perceptual_conf) + " across " +
+                       str(len(perceptual_pred_trees)) + " predicates")
+            while not perception_above_threshold and num_qs < max_questions:
+                if top_conf < math.pow(self.threshold_to_accept_perceptual_conf, len(perceptual_pred_trees)):
+                    if debug:
+                        print ("conduct_perception_subdialog: perceptual confidence " + str(top_conf) +
+                               " below threshold; entering dialog to strengthen perceptual classifiers")
+
+                    # Sub-dialog to ask perceptual predicate questions about objects in the active training
+                    # set until confidence threshold is reached or no more information can be gained
+                    # from the objects in the active training set.
+
+                    # For current SVMs, calculate the least-reliable predicates when applied to test objects.
+                    # Additionally record current confidences against active training set objects.
+                    pred_test_conf = {}  # from predicates to confidence sums
+                    pred_train_conf = {}  # from predicates to active training idx oidx to confidences
+                    for root in perceptual_pred_trees:
+                        pred = self.parser.ontology.preds[root.idx]
+
+                        test_conf = 0
+                        for oidx in self.grounder.active_test_set:
+                            pos_conf, neg_conf = self.grounder.kb.query((pred, 'oidx_' + str(oidx)))
+                            test_conf += max(pos_conf, neg_conf)
+                        pred_test_conf[pred] = test_conf
+
+                        pred_train_conf[pred] = []
+                        for oidx in self.active_train_set:
+                            pos_conf, neg_conf = self.grounder.kb.query((pred, 'oidx_' + str(oidx)))
+                            pred_train_conf[pred].append(max(pos_conf, neg_conf))
+                    if debug:
+                        print ("conduct_perception_subdialog: examined classifiers to get pred_test_conf: " +
+                               str(pred_test_conf) + " and pred_train_conf: " + str(pred_train_conf) +
+                               " for active train set " + str(self.active_train_set))
+
+                    # Examine preds in order of least test confidence until we reach one for which we can
+                    # formulate a useful question against the active training set objects. If all of the
+                    # active training set objects have been labeled or have total confidence already
+                    # for every predicate, the sub-dialog can't be productive and ends.
+                    q = None
+                    q_type = None
+                    perception_pidx = None
+                    for pred, test_conf in sorted(pred_test_conf.items(), key=operator.itemgetter(1)):
+
+                        # If at least one active training object is unlabeled or unconfident
+                        if sum(pred_train_conf[pred]) < len(self.active_train_set):
+                            perception_pidx = self.grounder.kb.pc.predicates.index(pred)
+
+                            # If all objects are below the perception threshold, ask for label we have least of.
+                            if min(pred_train_conf[pred]) < self.threshold_to_accept_perceptual_conf:
+                                ls = [l for _p, _o, l in self.grounder.kb.pc.labels if _p == perception_pidx
+                                      and _o not in self.grounder.active_test_set]
+                                print ls  # DEBUG
+                                if ls.count(1) <= ls.count(0):  # more negative labels or labels are equal
+                                    q = ("Among these nearby objects, could you show me one you would describe " +
+                                         "as '" + pred + "', or say 'none' if none do?")
+                                    q_type = 'pos'
+                                else:  # more positive labels
+                                    q = ("Among these nearby objects, could you show me one you would not describe " +
+                                         "as '" + pred + "', or say 'all' if you would describe all as '"
+                                         + pred + "'?")
+                                    q_type = 'neg'
+
+                            # Else, ask for the label of the least-confident object.
+                            else:
+                                oidx = self.active_train_set[pred_train_conf[pred].index(
+                                    min(pred_train_conf[pred]))]
+                                q = "Would you describe nearby object oidx_" + str(oidx) + " as '" + pred + "'?"
+                                q_type = oidx
+
+                            # Ask the question we settled on.
+                            break
+
+                        # Nothing more to be gained by asking questions about the active training set
+                        # with respect to this predicate.
+                        else:
+                            continue
+
+                    # If we didn't settle on a question, all active training set objects have been labeled
+                    # for every predicate of interest, so this sub-dialog can't get us anywhere.
+                    if q is None:
+                        break
+
+                    # Ask the question and get a user response.
+                    self.io.say_to_user(q)
+                    sub_gprs = None
+                    if q_type == 'pos' or q_type == 'neg':
+                        sub_ur = self.io.get_oidx_from_user(self.active_train_set)
+                    else:  # i.e. q_type is a particular oidx atom we asked a yes/no about
+                        sub_ur = self.io.get_from_user()
+                        sub_gprs, _ = self.parse_and_ground_utterance(sub_ur)
+                    num_qs += 1
+
+                    # Update perceptual classifiers from user response.
+                    upidxs = []
+                    uoidxs = []
+                    ulabels = []
+                    if q_type == 'pos':  # response is expected to be an oidx or 'none' (e.g. None)
+                        if sub_ur is None:
+                            upidxs = [perception_pidx] * len(self.active_train_set)
+                            uoidxs = self.active_train_set
+                            ulabels = [0] * len(self.active_train_set)
+                        else:  # an oidx
+                            upidxs = [perception_pidx]
+                            uoidxs = [sub_ur]
+                            ulabels = [1]
+                    elif q_type == 'neg':  # response is expected to be an oidx or 'all' (e.g. None)
+                        if sub_ur is None:
+                            upidxs = [perception_pidx] * len(self.active_train_set)
+                            uoidxs = self.active_train_set
+                            ulabels = [1] * len(self.active_train_set)
+                        else:  # an oidx
+                            upidxs = [perception_pidx]
+                            uoidxs = [sub_ur]
+                            ulabels = [0]
+                    else:  # response is expected to be a confirmation yes/no
+                        for sg, _ in sub_gprs:
+                            if sg.idx == self.parser.ontology.preds.index('yes'):
+                                upidxs = [perception_pidx]
+                                uoidxs = [q_type]
+                                ulabels = [1]
+                            elif sg.idx == self.parser.ontology.preds.index('no'):
+                                upidxs = [perception_pidx]
+                                uoidxs = [q_type]
+                                ulabels = [0]
+                    if debug:
+                        print ("conduct_perception_subdialog: updating classifiers with upidxs " + str(upidxs) +
+                               ", uoidxs " + str(uoidxs) + ", ulabels " + str(ulabels))
+                    self.grounder.kb.pc.update_classifiers([], upidxs, uoidxs, ulabels)
+
+                    # Re-ground original utterance with updated classifiers.
+                    gprs, pr = self.parse_and_ground_utterance(ur)
+                    top_conf = gprs[0][1]
+                    perceptual_pred_trees = self.get_parse_subtrees(pr.node, self.grounder.kb.perceptual_preds)
+
+                else:
+                    perception_above_threshold = True
 
     def update_action_belief_from_confirmation(self, g, action_confirmed, action_chosen, roles_in_q, count=1.0):
         debug = True
@@ -359,7 +400,7 @@ class Agent:
     # Increase count of possible slot files for each role that appear in the groundings, and decay those that
     # appear in no groundings.
     def update_action_belief_from_grounding(self, g, roles, count=1.0):
-        debug = True
+        debug = False
         if debug:
             print ("update_action_belief_from_grounding called with g " + self.parser.print_parse(g) +
                    " and roles " + str(roles))
@@ -377,7 +418,6 @@ class Agent:
                     a = self.parser.ontology.preds[at.idx]
                     if a not in self.action_belief_state['action']:
                         self.action_belief_state['action'][a] = 0
-                    # TODO: these updates could be scaled by a normalized parse confidence
                     self.action_belief_state['action'][a] += inc
                     role_candidates_seen['action'].add(a)
                     if debug:
@@ -652,7 +692,7 @@ class Agent:
                     gz, g_score = gn[0]  # top confidence grounding, which may be True/False
                     if ((type(gz) is bool and gz == g) or
                             (type(gz) is not bool and g.equal_allowing_commutativity(gz, self.parser.ontology))):
-                        parses.append([parse, score + math.log(g_score)])
+                        parses.append([parse, score + math.log(g_score + 1.0)])  # add 1 for zero probabilities
                         if verbose > 0:
                             print ("for x '" + str(x) + "' with grounding " + self.parser.print_parse(g) +
                                    " found semantic form " + self.parser.print_parse(parse.node, True) +

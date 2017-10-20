@@ -19,14 +19,14 @@ class KeyboardIO:
     # Get an integer oidx from those provided or None.
     def get_oidx_from_user(self, oidxs):
         print "YOU POINT TO OIDX:"
-        u = raw_input()
         while True:  # until return happens
+            u = raw_input()
             try:
                 ui = int(u)
                 if ui in oidxs:
                     return ui
             except ValueError:
-                if 'none' in u:
+                if 'none' in u or 'all' in u:
                     return None
 
     # Say a string to the user.
