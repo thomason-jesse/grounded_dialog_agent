@@ -399,6 +399,10 @@ class Agent:
                                     self.parser.lexicon.surface_forms.append(tk)
                                     self.parser.lexicon.entries.append([])
                                 sfidx = self.parser.lexicon.surface_forms.index(tk)
+                                if sfidx not in self.parser.theta._skipwords_given_surface_form:
+                                    self.parser.theta._skipwords_given_surface_form[sfidx] = \
+                                        self.parser.theta._skipwords_given_surface_form[nsfidx]
+                                self.parser.lexicon.neighbor_surface_forms.append(sfidx)
                                 self.parser.lexicon.entries[sfidx].append(sem_idx)
                                 self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, sfidx)] = \
                                     self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, nsfidx)]
@@ -425,6 +429,10 @@ class Agent:
                                         self.parser.lexicon.surface_forms.append(tk)
                                         self.parser.lexicon.entries.append([])
                                     sfidx = self.parser.lexicon.surface_forms.index(tk)
+                                    self.parser.lexicon.neighbor_surface_forms.append(sfidx)
+                                    if sfidx not in self.parser.theta._skipwords_given_surface_form:
+                                        self.parser.theta._skipwords_given_surface_form[sfidx] = \
+                                            self.parser.theta._skipwords_given_surface_form[nsfidx]
                                     if sem not in self.parser.lexicon.semantic_forms:
                                         self.parser.lexicon.semantic_forms.append(sem)
                                     sem_idx = self.parser.lexicon.semantic_forms.index(sem)
@@ -463,6 +471,8 @@ class Agent:
                             self.parser.lexicon.surface_forms.append(tk)
                             self.parser.lexicon.entries.append([])
                         sfidx = self.parser.lexicon.surface_forms.index(tk)
+                        if sfidx not in self.parser.theta._skipwords_given_surface_form:
+                            self.parser.theta._skipwords_given_surface_form[sfidx] = - self.parser.theta.lexicon_weight
                         if sem not in self.parser.lexicon.semantic_forms:
                             self.parser.lexicon.semantic_forms.append(sem)
                         sem_idx = self.parser.lexicon.semantic_forms.index(sem)
