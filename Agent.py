@@ -307,7 +307,7 @@ class Agent:
 
                 # Beam through neighbors to determine which, if any, are perceptual
                 perceptual_neighbors = []
-                for idx in range(self.word_neighbors_to_consider_as_synonyms):
+                for idx in range(len(nn)):
                     nsfidx, _ = nn[idx]
 
                     # Determine if lexical entries for the neighbor contain perceptual predicates.
@@ -936,13 +936,13 @@ class Agent:
                                    " with scores p " + str(score) + ", g " + str(g_score))
                     parse, score, _, _ = next(cky_parse_generator)
 
-            if len(parses) == 0 and verbose > 0:
+            if len(parses) > 0:
+                best_interpolated_parse = sorted(parses, key=lambda t: t[1], reverse=True)[0][0]
+                utterance_semantic_pairs.append([x, best_interpolated_parse.node])
+                print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
+            elif verbose > 0:
                 print ("no semantic parse found matching grounding for pair '" + str(x) +
                        "', " + self.parser.print_parse(g))
-
-            best_interpolated_parse = sorted(parses, key=lambda t: t[1], reverse=True)[0][0]
-            utterance_semantic_pairs.append([x, best_interpolated_parse.node])
-            print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
 
         self.parser.train_learner_on_semantic_forms(utterance_semantic_pairs, epochs=epochs,
                                                     reranker_beam=parse_reranker_beam, verbose=verbose)
