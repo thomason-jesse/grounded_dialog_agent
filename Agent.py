@@ -62,7 +62,8 @@ class Agent:
 
         # Ask a follow up question based on the new belief state.
         # This continues until an action is chosen.
-        user_utterances_by_role = {r: [] for r in self.roles + ['all']}
+        user_utterances_by_role = {r: [] for r in self.roles + ['all']}  # to later induce grounding matches
+        perception_labels_requested = []  # list of (pidx, oidx) tuples of labels we've already gotten from this user
         action_confirmed = {r: None for r in self.roles}
         first_utterance = True
         while (action_confirmed['action'] is None or action_confirmed['patient'] is None or
@@ -94,7 +95,8 @@ class Agent:
             gprs, pr = self.parse_and_ground_utterance(ur)
 
             # Start a sub-dialog to ask clarifying percpetual quesitons before continuing with slot-filling.
-            self.conduct_perception_subdialog(ur, gprs, pr, self.max_perception_subdialog_qs)
+            self.conduct_perception_subdialog(ur, gprs, pr, self.max_perception_subdialog_qs,
+                                              perception_labels_requested)
 
             if role_asked is None:  # asked to repeat whole thing
                 user_utterances_by_role['all'].append(ur)
@@ -136,7 +138,8 @@ class Agent:
     # gprs - groundings of parse from last response
     # pr - the associated latent parse
     # max_questions - the maximum number of questions to ask in this sub-dialog
-    def conduct_perception_subdialog(self, ur, gprs, pr, max_questions):
+    # labeled_tuples - a list of (pidx, oidx) tuples labeled by the user; modified in-place with new entries
+    def conduct_perception_subdialog(self, ur, gprs, pr, max_questions, labeled_tuples):
         debug = True
 
         if len(gprs) > 0:
@@ -165,6 +168,7 @@ class Agent:
                     pred_train_conf = {}  # from predicates to active training idx oidx to confidences
                     for root in perceptual_pred_trees:
                         pred = self.parser.ontology.preds[root.idx]
+                        pidx = self.grounder.kb.pc.predicates.index(pred)
 
                         test_conf = 0
                         for oidx in self.grounder.active_test_set:
@@ -174,8 +178,11 @@ class Agent:
 
                         pred_train_conf[pred] = []
                         for oidx in self.active_train_set:
-                            pos_conf, neg_conf = self.grounder.kb.query((pred, 'oidx_' + str(oidx)))
-                            pred_train_conf[pred].append(max(pos_conf, neg_conf))
+                            if (pidx, oidx) not in labeled_tuples:
+                                pos_conf, neg_conf = self.grounder.kb.query((pred, 'oidx_' + str(oidx)))
+                                pred_train_conf[pred].append(max(pos_conf, neg_conf))
+                            else:
+                                pred_train_conf[pred].append(1)
                     if debug:
                         print ("conduct_perception_subdialog: examined classifiers to get pred_test_conf: " +
                                str(pred_test_conf) + " and pred_train_conf: " + str(pred_train_conf) +
@@ -198,7 +205,6 @@ class Agent:
                             if min(pred_train_conf[pred]) < self.threshold_to_accept_perceptual_conf:
                                 ls = [l for _p, _o, l in self.grounder.kb.pc.labels if _p == perception_pidx
                                       and _o not in self.grounder.active_test_set]
-                                print ls  # DEBUG
                                 if ls.count(1) <= ls.count(0):  # more negative labels or labels are equal
                                     q = ("Among these nearby objects, could you show me one you would describe " +
                                          "as '" + pred + "', or say 'none' if none do?")
@@ -244,33 +250,39 @@ class Agent:
                     uoidxs = []
                     ulabels = []
                     if q_type == 'pos':  # response is expected to be an oidx or 'none' (e.g. None)
-                        if sub_ur is None:
+                        if sub_ur is None:  # None, so every object in active train is a negative example
                             upidxs = [perception_pidx] * len(self.active_train_set)
                             uoidxs = self.active_train_set
                             ulabels = [0] * len(self.active_train_set)
-                        else:  # an oidx
+                            labeled_tuples.extend([(perception_pidx, oidx) for oidx in self.active_train_set])
+                        else:  # an oidx of a positive example
                             upidxs = [perception_pidx]
                             uoidxs = [sub_ur]
                             ulabels = [1]
+                            labeled_tuples.append((perception_pidx, sub_ur))
                     elif q_type == 'neg':  # response is expected to be an oidx or 'all' (e.g. None)
-                        if sub_ur is None:
+                        if sub_ur is None:  # None, so every object in active train set is a positive example
                             upidxs = [perception_pidx] * len(self.active_train_set)
                             uoidxs = self.active_train_set
                             ulabels = [1] * len(self.active_train_set)
-                        else:  # an oidx
+                            labeled_tuples.extend([(perception_pidx, oidx) for oidx in self.active_train_set])
+                        else:  # an oidx of a negative example
                             upidxs = [perception_pidx]
                             uoidxs = [sub_ur]
                             ulabels = [0]
+                            labeled_tuples.append((perception_pidx, sub_ur))
                     else:  # response is expected to be a confirmation yes/no
                         for sg, _ in sub_gprs:
                             if sg.idx == self.parser.ontology.preds.index('yes'):
                                 upidxs = [perception_pidx]
                                 uoidxs = [q_type]
                                 ulabels = [1]
+                                labeled_tuples.append((perception_pidx, q_type))
                             elif sg.idx == self.parser.ontology.preds.index('no'):
                                 upidxs = [perception_pidx]
                                 uoidxs = [q_type]
                                 ulabels = [0]
+                                labeled_tuples.append((perception_pidx, q_type))
                     if debug:
                         print ("conduct_perception_subdialog: updating classifiers with upidxs " + str(upidxs) +
                                ", uoidxs " + str(uoidxs) + ", ulabels " + str(ulabels))
@@ -901,7 +913,7 @@ class Agent:
                     q = "You want me to do something for " + sampled_action['recipient'][0] + "?"
                     roles_in_q.extend(['recipient'])
         else:  # least_conf_role is None, i.e. no confidence in any arg, so ask for full restatement
-            q = "Could you rephrase your request?"
+            q = "Could you rephrase your original request?"
 
         # Return the question and the roles included in it.
         # If the user affirms, all roles included in the question should have confidence boosted to 1.0

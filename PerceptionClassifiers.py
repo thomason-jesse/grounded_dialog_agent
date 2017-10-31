@@ -102,10 +102,10 @@ class PerceptionClassifiers:
         if len(ls) > 0:
             # This object is already labeled.
             if debug:
-                print ("returning class balance for seen pred '" + self.predicates[pidx] +
+                print ("returning Laplace-1 smoothed class balance for seen pred '" + self.predicates[pidx] +
                        "' on object " + str(oidx))
-            pos_conf = ls.count(1) / float(len(ls))
-            neg_conf = ls.count(0) / float(len(ls))
+            pos_conf = (1 + ls.count(1)) / float(len(ls) + 2)
+            neg_conf = (1 + ls.count(0)) / float(len(ls) + 2)
         else:
 
             # Run classifiers if trained.
