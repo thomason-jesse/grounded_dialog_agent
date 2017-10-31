@@ -4,6 +4,7 @@ __author__ = 'jesse'
 import math
 import numpy as np
 import operator
+import signal
 
 
 class Agent:
@@ -22,6 +23,8 @@ class Agent:
         self.threshold_to_accept_perceptual_conf = 0.5  # per perceptual predicate, e.g. 0.25 for two
         self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
+        self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
+        self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
 
         # static information about expected actions and their arguments
         self.roles = ['action', 'patient', 'recipient']
@@ -66,6 +69,7 @@ class Agent:
         perception_labels_requested = []  # list of (pidx, oidx) tuples of labels we've already gotten from this user
         action_confirmed = {r: None for r in self.roles}
         first_utterance = True
+        perception_subdialog_qs = 0  # track how many have been asked so far to disallow more of them after
         while (action_confirmed['action'] is None or action_confirmed['patient'] is None or
                 (action_confirmed['action'] == 'bring' and action_confirmed['recipient'] is None)):
 
@@ -94,9 +98,22 @@ class Agent:
             # Get groundings and latent parse from utterance.
             gprs, pr = self.parse_and_ground_utterance(ur)
 
-            # Start a sub-dialog to ask clarifying percpetual quesitons before continuing with slot-filling.
-            self.conduct_perception_subdialog(ur, gprs, pr, self.max_perception_subdialog_qs,
-                                              perception_labels_requested)
+            # Start a sub-dialog to ask clarifying perceptual questions before continuing with slot-filling.
+            # If sub-dialog results in fewer than the maximum number of questions, allow asking off-topic
+            # questions in the style of CORL'17 paper to improve future interactions.
+            if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                perception_subdialog_qs += self.conduct_perception_subdialog(ur, gprs, pr,
+                                                                             self.max_perception_subdialog_qs,
+                                                                             perception_labels_requested)
+            if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                self.io.say_to_user("I'm still learning the meanings of some words. I'm going to ask you a " +
+                                    "few questions about these nearby objects before we continue.")
+                perception_subdialog_qs += self.conduct_perception_subdialog(ur, gprs, pr,
+                                                                             self.max_perception_subdialog_qs -
+                                                                             perception_subdialog_qs,
+                                                                             perception_labels_requested,
+                                                                             allow_off_topic_preds=True)
+                self.io.say_to_user("Thanks. Now, back to business.")
 
             if role_asked is None:  # asked to repeat whole thing
                 user_utterances_by_role['all'].append(ur)
@@ -139,24 +156,30 @@ class Agent:
     # pr - the associated latent parse
     # max_questions - the maximum number of questions to ask in this sub-dialog
     # labeled_tuples - a list of (pidx, oidx) tuples labeled by the user; modified in-place with new entries
-    def conduct_perception_subdialog(self, ur, gprs, pr, max_questions, labeled_tuples):
+    # allow_off_topic_preds - if flipped to true, considers all predicates, not just those in parse of utterance
+    # returns - an integer, the number of questions asked
+    def conduct_perception_subdialog(self, ur, gprs, pr, max_questions, labeled_tuples,
+                                     allow_off_topic_preds=False):
         debug = True
 
+        num_qs = 0
         if len(gprs) > 0:
 
             perception_above_threshold = False
             top_conf = gprs[0][1]
             perceptual_pred_trees = self.get_parse_subtrees(pr.node, self.grounder.kb.perceptual_preds)
-            num_qs = 0
             if debug:
                 print ("conduct_perception_subdialog: perceptual confidence " + str(top_conf) + " versus " +
                        "threshold " + str(self.threshold_to_accept_perceptual_conf) + " across " +
                        str(len(perceptual_pred_trees)) + " predicates")
-            while not perception_above_threshold and num_qs < max_questions:
-                if top_conf < math.pow(self.threshold_to_accept_perceptual_conf, len(perceptual_pred_trees)):
+            while (allow_off_topic_preds or not perception_above_threshold) and num_qs < max_questions:
+                if (allow_off_topic_preds or
+                        top_conf < math.pow(self.threshold_to_accept_perceptual_conf,
+                                                len(perceptual_pred_trees))):
                     if debug:
                         print ("conduct_perception_subdialog: perceptual confidence " + str(top_conf) +
-                               " below threshold; entering dialog to strengthen perceptual classifiers")
+                               " below threshold or we are allowing off-topic predicates; " +
+                               "entering dialog to strengthen perceptual classifiers")
 
                     # Sub-dialog to ask perceptual predicate questions about objects in the active training
                     # set until confidence threshold is reached or no more information can be gained
@@ -166,8 +189,12 @@ class Agent:
                     # Additionally record current confidences against active training set objects.
                     pred_test_conf = {}  # from predicates to confidence sums
                     pred_train_conf = {}  # from predicates to active training idx oidx to confidences
-                    for root in perceptual_pred_trees:
-                        pred = self.parser.ontology.preds[root.idx]
+                    if allow_off_topic_preds:
+                        preds_to_consider = self.grounder.kb.pc.predicates[:]
+                    else:
+                        preds_to_consider = [self.parser.ontology.preds[root.idx]
+                                             for root in perceptual_pred_trees]
+                    for pred in preds_to_consider:
                         pidx = self.grounder.kb.pc.predicates.index(pred)
 
                         test_conf = 0
@@ -295,6 +322,8 @@ class Agent:
 
                 else:
                     perception_above_threshold = True
+
+        return num_qs
 
     # Given a user utterance, pass over the tokens to identify potential new predicates. This can initiate
     # a sub-dialog in which the user is asked whether a word requires perceiving the real world, and then whether
@@ -435,8 +464,7 @@ class Agent:
                                                    if p in self.grounder.kb.perceptual_preds]
                                 for cpr in candidate_preds:
                                     s = sem_prefix + cpr + sem_suffix
-                                    sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None,
-                                                                                          [], False)
+                                    sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None, [])
                                     if tk not in self.parser.lexicon.surface_forms:
                                         self.parser.lexicon.surface_forms.append(tk)
                                         self.parser.lexicon.entries.append([])
@@ -477,8 +505,7 @@ class Agent:
 
                         # Create a lexical entry corresponding to the newly-acquired perceptual concept.
                         s = sem_prefix + tk + sem_suffix
-                        sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None,
-                                                                              [], False)
+                        sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None, [])
                         if tk not in self.parser.lexicon.surface_forms:
                             self.parser.lexicon.surface_forms.append(tk)
                             self.parser.lexicon.entries.append([])
@@ -565,8 +592,7 @@ class Agent:
             else:  # i.e. 'bring'
                 sem_str += '(' + rs['patient'] + ',' + rs['recipient'] + ')'
             cat_idx = self.parser.lexicon.read_category_from_str('M')  # a command
-            grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx,
-                                                                            None, [], False)
+            grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
             for u in us['all']:
                 pairs.append([u, grounded_form])
             if debug:
@@ -584,8 +610,7 @@ class Agent:
 
             else:
                 cat_idx = self.parser.lexicon.read_category_from_str('NP')  # patients and recipients always NP alone
-                grounded_form = self.parser.lexicon.read_semantic_form_from_str(rs[r], cat_idx,
-                                                                                None, [], False)
+                grounded_form = self.parser.lexicon.read_semantic_form_from_str(rs[r], cat_idx, None, [])
 
                 for u in us[r]:
                     pairs.append([u, grounded_form])
@@ -603,8 +628,10 @@ class Agent:
         # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
         # TODO: this function returns tuples of (grounded parse, parser conf * grounder conf)
         parse_generator = self.parser.most_likely_cky_parse(u, reranker_beam=self.parse_beam)
-        p, _, _, _ = next(parse_generator)
-        if p is not None:
+        cgtr = self.call_generator_with_timeout(parse_generator, self.budget_for_parsing)
+        p = None
+        if cgtr is not None:
+            p = cgtr[0]  # most_likely_cky_parse returns a 4-tuple, the first of which is the parsenode
             if debug:
                 print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
 
@@ -928,12 +955,21 @@ class Agent:
         # pairs the specified number of epochs.
         utterance_semantic_pairs = []
         for [x, g] in self.induced_utterance_grounding_pairs:
+            if verbose > 0:
+                print ("train_parser_from_induced_pairs: looking for semantic forms for x '" + str(x) +
+                       "' with grounding " + self.parser.print_parse(g))
 
             parses = []
             cky_parse_generator = self.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam,
                                                                     debug=False)
-            parse, score, _, _ = next(cky_parse_generator)
-            while parse is not None and len(parses) < interpolation_reranker_beam:
+            cgtr = self.call_generator_with_timeout(cky_parse_generator, self.budget_for_parsing)
+            parse = None
+            if cgtr is not None:
+                parse = cgtr[0]
+                score = cgtr[1]  # most_likely_cky_parse returns a 4-tuple headed by the parsenode and score
+            latent_forms_considered = 1
+            while (parse is not None and len(parses) < interpolation_reranker_beam and
+                   latent_forms_considered < self.latent_forms_to_consider_for_induction):
 
                 gs = self.grounder.ground_semantic_tree(parse.node)
                 gn = self.sort_groundings_by_conf(gs)
@@ -943,10 +979,15 @@ class Agent:
                             (type(gz) is not bool and g.equal_allowing_commutativity(gz, self.parser.ontology))):
                         parses.append([parse, score + math.log(g_score + 1.0)])  # add 1 for zero probabilities
                         if verbose > 0:
-                            print ("for x '" + str(x) + "' with grounding " + self.parser.print_parse(g) +
-                                   " found semantic form " + self.parser.print_parse(parse.node, True) +
+                            print ("train_parser_from_induced_pairs: ... found semantic form " +
+                                   self.parser.print_parse(parse.node, True) +
                                    " with scores p " + str(score) + ", g " + str(g_score))
-                    parse, score, _, _ = next(cky_parse_generator)
+                    cgtr = self.call_generator_with_timeout(cky_parse_generator, self.budget_for_parsing)
+                    parse = None
+                    if cgtr is not None:
+                        parse = cgtr[0]
+                        score = cgtr[1]
+                    latent_forms_considered += 1
 
             if len(parses) > 0:
                 best_interpolated_parse = sorted(parses, key=lambda t: t[1], reverse=True)[0][0]
@@ -958,3 +999,31 @@ class Agent:
 
         self.parser.train_learner_on_semantic_forms(utterance_semantic_pairs, epochs=epochs,
                                                     reranker_beam=parse_reranker_beam, verbose=verbose)
+
+    # Call the given generator with the given time limit and return None if there is a timeout.
+    # https://stackoverflow.com/questions/366682/how-to-limit-execution-time-of-a-function-call-in-python
+    # g - the generator
+    # t - the timeout (in seconds)
+    # returns - the result of calling next(g) or None
+    def call_generator_with_timeout(self, g, t):
+        signal.signal(signal.SIGALRM, self.timeout_signal_handler)
+        signal.alarm(t)
+        try:
+            r = next(g)
+            signal.alarm(0)
+        except AssertionError:
+            r = None
+        return r
+
+    def call_function_with_timeout(self, f, args, t):
+        signal.signal(signal.SIGALRM, self.timeout_signal_handler)
+        signal.alarm(t)
+        try:
+            r = f(**args)
+            signal.alarm(0)
+        except AssertionError:
+            r = None
+        return r
+
+    def timeout_signal_handler(self, signum, frame):
+        raise AssertionError()
