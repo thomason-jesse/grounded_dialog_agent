@@ -36,10 +36,24 @@ class KeyboardIO:
     def say_to_user(self, u):
         print "AGENT: " + u
 
+    # Say a string with words aligned to ontological values.
+    # u - a string utterance, possibly tagged with role-fill words like <p>this</p>
+    # rvs - role values as a dictionary of roles -> strings
+    # For KeyboardIO, this simply replaces the tags with the roll-fills and discards the filler text.
+    def say_to_user_with_referents(self, u, rvs):
+        for r in rvs:
+            ts = "<" + r[0] + ">"
+            te = "</" + r[0] + ">"
+            if ts in u:
+                pre_tag = u.split(ts)[0]
+                post_tag = u.split(te)[1]
+                u = pre_tag + rvs[r] + post_tag
+        print "AGENT: " + u
+
     # Write out what action is taken given an action, patient, and recipient as strings.
     def perform_action(self, a, p, r, s, g):
         if a == 'walk':
-            print "ROBOT ACTION: Navigate to location " + p
+            print "ROBOT ACTION: Navigate to location " + g
         elif a == 'bring':
             print "ROBOT ACTION: Pick up item " + p + " and deliver it to person " + r
         elif a == 'move':

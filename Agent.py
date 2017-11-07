@@ -30,7 +30,7 @@ class Agent:
         self.roles = ['action', 'patient', 'recipient', 'source', 'goal']
         self.actions = ['walk', 'bring', 'move']
         # expected argument types per action
-        self.action_args = {'walk': {'patient': ['l']},
+        self.action_args = {'walk': {'goal': ['l']},
                             'bring': {'patient': ['i'], 'recipient': ['p']},
                             'move': {'patient': ['i'], 'source': ['l'], 'goal': ['l']}}
 
@@ -51,7 +51,7 @@ class Agent:
                                     'patient': {p: 1.0 for p in self.parser.ontology.preds
                                                 if (self.parser.ontology.types[self.parser.ontology.entries[
                                                     self.parser.ontology.preds.index(p)]] in
-                                                    self.action_args['walk']['patient'] or
+                                                    self.action_args['walk']['goal'] or
                                                     self.parser.ontology.types[self.parser.ontology.entries[
                                                         self.parser.ontology.preds.index(p)]] in
                                                     self.action_args['bring']['patient'])},
@@ -99,7 +99,8 @@ class Agent:
             first_utterance = False
 
             # Ask question and get user response.
-            self.io.say_to_user(q)
+            rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
+            self.io.say_to_user_with_referents(q, rvs)
             ur = self.io.get_from_user()
 
             # Possible sub-dialog to clarify whether new words are perceptual and, possibly synonyms of existing
@@ -232,6 +233,7 @@ class Agent:
                     # active training set objects have been labeled or have total confidence already
                     # for every predicate, the sub-dialog can't be productive and ends.
                     q = None
+                    rvs = {}
                     q_type = None
                     perception_pidx = None
                     for pred, test_conf in sorted(pred_test_conf.items(), key=operator.itemgetter(1)):
@@ -258,7 +260,8 @@ class Agent:
                             else:
                                 oidx = self.active_train_set[pred_train_conf[pred].index(
                                     min(pred_train_conf[pred]))]
-                                q = "Would you describe nearby object oidx_" + str(oidx) + " as '" + pred + "'?"
+                                q = "Would you describe <p>this</p> nearby object as '" + pred + "'?"
+                                rvs['patient'] = 'oidx_' + str(oidx)
                                 q_type = oidx
 
                             # Ask the question we settled on.
@@ -275,7 +278,7 @@ class Agent:
                         break
 
                     # Ask the question and get a user response.
-                    self.io.say_to_user(q)
+                    self.io.say_to_user_with_referents(q, rvs)
                     sub_gprs = None
                     if q_type == 'pos' or q_type == 'neg':
                         sub_ur = self.io.get_oidx_from_user(self.active_train_set)
@@ -601,7 +604,7 @@ class Agent:
         if 'all' in us:  # need to build SemanticNode representing all roles
             sem_str = rs['action']
             if rs['action'] == 'walk':
-                sem_str += '(' + rs['patient'] + ')'
+                sem_str += '(' + rs['goal'] + ')'
             elif rs['action'] == 'bring':
                 sem_str += '(' + rs['patient'] + ',' + rs['recipient'] + ')'
             else:  # ie. 'move'
@@ -705,7 +708,7 @@ class Agent:
                     # These disregard argument order in favor of finding matching argument types.
                     # This gives us more robustness to bad parses with incorrectly ordered args or incomplete args.
                     if self.parser.ontology.preds[at.idx] != 'move':
-                        for r in ['patient', 'recipient']:
+                        for r in ['goal', 'patient', 'recipient']:
                             if r in roles and at.children is not None:
                                 for cn in at.children:
                                     if (r in self.action_args[a] and
@@ -859,45 +862,50 @@ class Agent:
         roles_in_q = []  # different depending on action selection
         if roles_to_include == self.roles:  # all roles are above threshold, so perform.
             if sampled_action['action'][0] == 'walk':
-                q = "You want me to go to " + sampled_action['patient'][0] + "?"
-                roles_in_q.extend(['action', 'patient'])
+                q = "You want me to go to <g>here</g>?"
+                roles_in_q.extend(['action', 'goal'])
             elif sampled_action['action'][0] == 'bring':
-                q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
-                     sampled_action['recipient'][0] + "?")
+                q = "You want me to deliver <p>this</p> to <r>this person</r>?"
                 roles_in_q.extend(['action', 'patient', 'recipient'])
             else:  # eg. move
-                q = ("You want me to move " + sampled_action['patient'][0] + " from " +
-                     sampled_action['source'][0] + " to " + sampled_action['goal'][0] + "?")
+                q = "You want me to move <p>this</p> from <s>here</s> to <g>there</g>?"
                 roles_in_q.extend(['action', 'patient', 'source', 'goal'])
+
         elif least_conf_role == 'action':  # ask for action confirmation
             if sampled_action['action'][0] is None:  # need to clarify what the action is
                 args = []
                 for r in [_r for _r in self.roles if _r != 'action']:
                     if r in roles_to_include:
-                        args.append(sampled_action[r][0])
-                        roles_in_q.extend(r)
+                        if r == 'patient':
+                            args.append("<p>this</p>")
+                        elif r == 'recipient':
+                            args.append("<r>this person</r>")
+                        elif r == 'source':
+                            args.append("<s>here</s>")
+                        elif r == 'goal':
+                            args.append("<g>here</g>")
+                        roles_in_q.append(r)
                 if len(args) > 0:
                     q = "What should I do involving " + ','.join(args) + " ?"
                 else:
                     q = "What kind of action should I perform?"
             elif sampled_action['action'][0] == 'walk':
-                if 'patient' in roles_to_include:
-                    q = "You want me to go to " + sampled_action['patient'][0] + "?"
-                    roles_in_q.extend(['action', 'patient'])
+                if 'goal' in roles_to_include:
+                    q = "You want me to go to <g>here</g>?"
+                    roles_in_q.extend(['action', 'goal'])
                 else:
                     q = "You want me to go somewhere?"
                     roles_in_q.extend(['action'])
             elif sampled_action['action'][0] == 'bring':
                 if 'patient' in roles_to_include:
                     if 'recipient' in roles_to_include:
-                        q = ("You want me to deliver " + sampled_action['patient'][0] + " to "
-                             + sampled_action['recipient'][0] + "?")
+                        q = "You want me to deliver <p>this</p> to <r>this person</r>?"
                         roles_in_q.extend(['action', 'patient', 'recipient'])
                     else:
-                        q = "You want me to deliver " + sampled_action['patient'][0] + " to someone?"
+                        q = "You want me to deliver <p>this</p> to someone?"
                         roles_in_q.extend(['action', 'patient'])
                 elif 'recipient' in roles_to_include:
-                    q = "You want me to deliver something to " + sampled_action['recipient'][0] + "?"
+                    q = "You want me to deliver something to <r>this person</r>?"
                     roles_in_q.extend(['action', 'recipient'])
                 else:
                     q = "You want me to deliver something for someone?"
@@ -905,30 +913,28 @@ class Agent:
             else:  # eg. 'move'
                 roles_in_q.append('action')
                 if 'patient' in roles_to_include:
-                    q = "You want me to move " + sampled_action['patient'][0]
+                    q = "You want me to move <p>this</p>"
                     roles_in_q.append('patient')
                 else:
                     q = "You want me to move something"
                 if 'source' in roles_to_include:
-                    q += " from " + sampled_action['source'][0]
+                    q += " from <s>here</s>"
                     roles_in_q.append('source')
                 else:
                     q += " from somewhere"
                 if 'goal' in roles_to_include:
-                    q += " to " + sampled_action['goal'][0]
+                    q += " to <g>there</g>"
                     roles_in_q.append('goal')
                 else:
                     q += " to somewhere"
                 q += "?"
+
         elif least_conf_role == 'patient':  # ask for patient confirmation
             if sampled_action['patient'][0] is None:
                 if 'action' in roles_to_include:
-                    if sampled_action['action'][0] == 'walk':
-                        q = "Where should I go?"
-                        roles_in_q.extend(['action'])
-                    elif sampled_action['action'][0] == 'bring':
+                    if sampled_action['action'][0] == 'bring':
                         if 'recipient' in roles_to_include:
-                            q = "What should I deliver to " + sampled_action['recipient'][0] + "?"
+                            q = "What should I deliver to <r>this person</r>?"
                             roles_in_q.extend(['action', 'recipient'])
                         else:  # i.e. bring with no recipient
                             q = "What should I find to deliver?"
@@ -937,52 +943,63 @@ class Agent:
                         q = "What should I move"
                         roles_in_q.append('action')
                         if 'source' in roles_to_include:
-                            q += " from " + sampled_action['source'][0]
+                            q += " from <s>here</s>"
                             roles_in_q.append('source')
                         if 'goal' in roles_to_include:
-                            q += " to " + sampled_action['goal'][0]
+                            q += " to <g>there</g>"
                             roles_in_q.append('goal')
                         q += "?"
                 else:
                     args = []
                     for r in [_r for _r in self.roles if _r != 'action']:
                         if r in roles_to_include:
-                            args.append(sampled_action[r][0])
-                            roles_in_q.extend(r)
+                            if r == 'patient':
+                                args.append("<p>this</p>")
+                            elif r == 'recipient':
+                                args.append("<r>this person</r>")
+                            elif r == 'source':
+                                args.append("<s>here</s>")
+                            elif r == 'goal':
+                                args.append("<g>here</g>")
+                            roles_in_q.append(r)
                     if len(args) > 0:
                         q = "What else is involved in what I should do besides " + ','.join(args) + " ?"
                     else:
                         q = "What is involved in what I should do?"
             else:
                 if 'action' in roles_to_include:
-                    if sampled_action['action'][0] == 'walk':
-                        q = "You want me to walk to " + sampled_action['patient'][0] + "?"
-                        roles_in_q.extend(['action', 'patient'])
-                    elif sampled_action['action'][0] == 'bring':
+                    if sampled_action['action'][0] == 'bring':
                         if 'recipient' in roles_to_include:
-                            q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
-                                 sampled_action['recipient'][0] + "?")
+                            q = "You want me to deliver <p>this</p> to <r>this person</r>?"
                             roles_in_q.extend(['action', 'patient', 'recipient'])
                         else:
-                            q = "You want me to deliver " + sampled_action['patient'][0] + " to someone?"
+                            q = "You want me to deliver <p>this</p> to someone?"
                             roles_in_q.extend(['action', 'patient'])
                     else:  # ie. 'move'
-                        q = "You want me to move " + sampled_action['patient'][0]
+                        q = "You want me to move <p>this</p>"
                         roles_in_q.extend(['action', 'patient'])
                         if 'source' in roles_to_include:
-                            q += " from " + sampled_action['source'][0]
+                            q += " from <s>here</s>"
                             roles_in_q.append('source')
                         if 'goal' in roles_to_include:
-                            q += " to " + sampled_action['goal'][0]
+                            q += " to <g>there</g>"
                             roles_in_q.append('goal')
                         q += "?"
                 else:
                     args = []
                     for r in [_r for _r in self.roles if _r != 'action']:
                         if r in roles_to_include:
-                            args.append(sampled_action[r][0])
-                            roles_in_q.extend(r)
+                            if r == 'patient':
+                                args.append("<p>this</p>")
+                            elif r == 'recipient':
+                                args.append("<r>this person</r>")
+                            elif r == 'source':
+                                args.append("<s>here</s>")
+                            elif r == 'goal':
+                                args.append("<g>here</g>")
+                            roles_in_q.append(r)
                     q = "You want me to do something involving " + ','.join(args) + " ?"
+
         elif least_conf_role == 'recipient':  # ask for recipient confirmation
             if sampled_action['recipient'][0] is None:
                 if 'action' in roles_to_include:
@@ -990,33 +1007,32 @@ class Agent:
                         raise ValueError("ERROR: get_question_from_sampled_action got a sampled action " +
                                          "with empty recipient ask in spite of action being walk")
                     elif 'patient' in roles_to_include:
-                        q = "To whom should I deliver " + sampled_action['patient'][0] + "?"
+                        q = "To whom should I deliver <p>this</p>?"
                         roles_in_q.extend(['action', 'patient'])
                     else:  # i.e. bring with no recipient
                         q = "Who should receive what I deliver?"
                         roles_in_q.extend(['action'])
                 else:
                     if 'patient' in roles_to_include:
-                        q = "Who is involved in what I should do with " + sampled_action['patient'][0] + "?"
+                        q = "Who is involved in what I should do with <p>this</p>?"
                         roles_in_q.extend(['patient'])
                     else:
                         q = "Who is involved in what I should do?"
             else:
                 if 'action' in roles_to_include:
                     if 'patient' in roles_to_include:
-                        q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
-                             sampled_action['recipient'][0] + "?")
+                        q = "You want me to deliver <p>this</p> to <r>this person</r>?"
                         roles_in_q.extend(['action', 'patient', 'recipient'])
                     else:
-                        q = "You want me to deliver something to " + sampled_action['recipient'][0] + "?"
+                        q = "You want me to deliver something to <r>this person</r>?"
                         roles_in_q.extend(['action', 'recipient'])
                 elif 'patient' in roles_to_include:
-                    q = ("You want me to do something with " + sampled_action['patient'][0] + " for " +
-                         sampled_action['recipient'][0] + "?")
+                    q = "You want me to do something with <p>this</p> for <r>this person</r>?"
                     roles_in_q.extend(['patient', 'recipient'])
                 else:
-                    q = "You want me to do something for " + sampled_action['recipient'][0] + "?"
+                    q = "You want me to do something for <r>this person</r>?"
                     roles_in_q.extend(['recipient'])
+
         elif least_conf_role == 'source':  # ask for source confirmation
             if 'action' in roles_to_include:
                 if sampled_action['action'][0] != 'move':
@@ -1024,18 +1040,18 @@ class Agent:
                                      "for '" + sampled_action['action'][0] + "' with infelicitous " +
                                      "least confident role 'source'")
                 if 'patient' in roles_to_include:
-                    q = sampled_action['patient'][0]
+                    q = "<p>this</p>"
                     roles_in_q.append('patient')
                 else:
                     q = "something"
                 if sampled_action['source'][0] is None:
                     q = "Where should I move " + q + " from on its way"
                 else:
-                    q = "I should move " + q + " from " + sampled_action['source'][0]
+                    q = "I should move " + q + " from <s>here</s>"
                     roles_in_q.append('source')
                 roles_in_q.append('action')
                 if 'goal' in roles_to_include:
-                    q += " to " + sampled_action['goal'][0]
+                    q += " to <g>there</g>"
                     roles_in_q.append('goal')
                 else:
                     q += " somewhere else?"
@@ -1044,41 +1060,60 @@ class Agent:
                 args = []
                 for r in [_r for _r in self.roles if _r != 'action']:
                     if r in roles_to_include:
-                        args.append(sampled_action[r][0])
-                        roles_in_q.extend(r)
+                        if r == 'patient':
+                            args.append("<p>this</p>")
+                        elif r == 'recipient':
+                            args.append("<r>this person</r>")
+                        elif r == 'source':
+                            args.append("<s>here</s>")
+                        elif r == 'goal':
+                            args.append("<g>here</g>")
+                        roles_in_q.append(r)
                 if len(args) > 0:
                     q = "What is the first place I should go regarding " + ','.join(args) + " ?"
                 else:
                     q = "What is the first place involved in what I should do?"
+
         elif least_conf_role == 'goal':  # ask for goal confirmation
             if 'action' in roles_to_include:
-                if sampled_action['action'][0] != 'move':
-                    raise ValueError("ERROR: get_question_from_sampled_action got a sampled action " +
-                                     "for '" + sampled_action['action'][0] + "' with infelicitous " +
-                                     "least confident role 'goal'")
-                if 'patient' in roles_to_include:
-                    q = sampled_action['patient'][0]
-                    roles_in_q.append('patient')
-                else:
-                    q = "something"
-                if 'source' in roles_to_include:
-                    q += " from " + sampled_action['source'][0]
-                    roles_in_q.append('source')
-                else:
-                    q += " from somewhere"
-                if sampled_action['goal'][0] is None:
-                    q = "To where should I move " + q
-                else:
-                    q = "I should move " + q + " to " + sampled_action['goal'][0]
-                    roles_in_q.append('goal')
-                roles_in_q.append('action')
-                q += "?"
+                if sampled_action['action'][0] == 'walk':
+                    if 'goal' in roles_to_include:
+                        q = "You want me to walk to <g>here</g>?"
+                        roles_in_q.extend(['action', 'goal'])
+                    else:
+                        q = "Where should I go?"
+                        roles_in_q.extend(['action'])
+                else:  # ie. move
+                    if 'patient' in roles_to_include:
+                        q = "<p>this</p>"
+                        roles_in_q.append('patient')
+                    else:
+                        q = "something"
+                    if 'source' in roles_to_include:
+                        q += " from <s>here</s>"
+                        roles_in_q.append('source')
+                    else:
+                        q += " from somewhere"
+                    if sampled_action['goal'][0] is None:
+                        q = "To where should I move " + q
+                    else:
+                        q = "I should move " + q + " to <g>there</g>"
+                        roles_in_q.append('goal')
+                    roles_in_q.append('action')
+                    q += "?"
             else:
                 args = []
                 for r in [_r for _r in self.roles if _r != 'action']:
                     if r in roles_to_include:
-                        args.append(sampled_action[r][0])
-                        roles_in_q.extend(r)
+                        if r == 'patient':
+                            args.append("<p>this</p>")
+                        elif r == 'recipient':
+                            args.append("<r>this person</r>")
+                        elif r == 'source':
+                            args.append("<s>here</s>")
+                        elif r == 'goal':
+                            args.append("<g>here</g>")
+                        roles_in_q.append(r)
                 if len(args) > 0:
                     q = "What is the second place I should go regarding " + ','.join(args) + " ?"
                 else:
