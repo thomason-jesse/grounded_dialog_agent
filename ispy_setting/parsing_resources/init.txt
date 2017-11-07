@@ -24,3 +24,12 @@ M : walk(a_l(lambda x:l.(and(office(x), possesses(stacy, x)))))
 
 walk to a conference room
 M : walk(a_l(lambda x:l.(conference(x))))
+
+move the open yellow spraycan from the kitchen to ray 's office
+M : move(a_i(lambda x:i.(and(open(x), and(yellow(x), spraycan(x))))), a_l(lambda y:l.(kitchen(y))), a_l(lambda z:l.(and(office(z), possesses(ray, z)))))
+
+get the open yellow spraycan from the kitchen and take it to ray 's office
+M : move(a_i(lambda x:i.(and(open(x), and(yellow(x), spraycan(x))))), a_l(lambda y:l.(kitchen(y))), a_l(lambda z:l.(and(office(z), possesses(ray, z)))))
+
+take the silver can from the pod next to scott 's office to dana 's office
+M : move(a_i(lambda x:i.(and(silver(x), can(x)))), a_l(lambda y:l.(and(pod(y), adjacent(y, a_l(lambda z:l.(and(office(z), possesses(scott, z)))))))), a_l(lambda w:l.(and(office(w), possesses(dana, w)))))

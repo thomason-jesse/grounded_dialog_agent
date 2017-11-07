@@ -125,8 +125,8 @@ class PerceptionClassifiers:
             else:
                 if debug:
                     print "classifier '" + self.predicates[pidx] + "' is untrained"
-                pos_conf = 0
-                neg_conf = 0
+                pos_conf = 0.5  # confidences are equally uncertain
+                neg_conf = 0.5
 
         # Prepare and send response.
         if debug:

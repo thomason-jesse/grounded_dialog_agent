@@ -13,7 +13,10 @@ class KeyboardIO:
     # Get a string from the user.
     def get_from_user(self):
         print "YOU: "
-        u = raw_input()
+        u = None
+        while u is None or len(u) == 0:
+            u = raw_input()
+            u = u.strip()
         return u
 
     # Get an integer oidx from those provided or None.
@@ -34,10 +37,12 @@ class KeyboardIO:
         print "AGENT: " + u
 
     # Write out what action is taken given an action, patient, and recipient as strings.
-    def perform_action(self, a, p, r):
+    def perform_action(self, a, p, r, s, g):
         if a == 'walk':
             print "ROBOT ACTION: Navigate to location " + p
         elif a == 'bring':
             print "ROBOT ACTION: Pick up item " + p + " and deliver it to person " + r
+        elif a == 'move':
+            print "ROBOT ACTION: Move item " + p + " from " + s + " to " + g
         else:
             raise ValueError("perform_action: unrecognized action '" + a + "'")

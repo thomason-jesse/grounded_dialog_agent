@@ -21,16 +21,18 @@ class Agent:
         self.parse_beam = 1
         self.threshold_to_accept_role = 0.9  # include role filler in questions above this threshold
         self.threshold_to_accept_perceptual_conf = 0.5  # per perceptual predicate, e.g. 0.25 for two
-        self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
+        self.max_perception_subdialog_qs = 0  # DEBUG: usually 5  # based on CORL17 experimental condition
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
         self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
 
         # static information about expected actions and their arguments
-        self.roles = ['action', 'patient', 'recipient']
-        self.actions = ['walk', 'bring']
+        self.roles = ['action', 'patient', 'recipient', 'source', 'goal']
+        self.actions = ['walk', 'bring', 'move']
+        # expected argument types per action
         self.action_args = {'walk': {'patient': ['l']},
-                            'bring': {'patient': ['i'], 'recipient': ['p']}}  # expected argument types per action
+                            'bring': {'patient': ['i'], 'recipient': ['p']},
+                            'move': {'patient': ['i'], 'source': ['l'], 'goal': ['l']}}
 
         self.action_belief_state = None  # maintained during action dialogs to track action, patient, recipient
 
@@ -40,7 +42,7 @@ class Agent:
     # Start a new action dialog from utterance u given by a user.
     # Clarifies the arguments of u until the action is confirmed by the user.
     def start_action_dialog(self):
-        debug = False
+        debug = True
 
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
         # As more open-ended and yes/no utterances are parsed, these counts will be updated to reflect the roles
@@ -56,8 +58,17 @@ class Agent:
                                     'recipient': {r: 1.0 for r in self.parser.ontology.preds
                                                   if self.parser.ontology.types[self.parser.ontology.entries[
                                                       self.parser.ontology.preds.index(r)]] in
-                                                  self.action_args['bring']['recipient']}}
-        for r in ['patient', 'recipient']:  # questions currently support None action, but I think it's weird maybe
+                                                  self.action_args['bring']['recipient']},
+                                    'source': {r: 1.0 for r in self.parser.ontology.preds
+                                               if self.parser.ontology.types[self.parser.ontology.entries[
+                                                   self.parser.ontology.preds.index(r)]] in
+                                               self.action_args['move']['source']},
+                                    'goal': {r: 1.0 for r in self.parser.ontology.preds
+                                             if self.parser.ontology.types[self.parser.ontology.entries[
+                                                 self.parser.ontology.preds.index(r)]] in
+                                             self.action_args['move']['goal']}}
+        # questions currently support None action, but I think it's weird maybe so I removed it here
+        for r in ['patient', 'recipient', 'source', 'goal']:
             self.action_belief_state[r][None] = 1.0
         if debug:
             print ("start_action_dialog starting with blank action belief state: "
@@ -70,8 +81,8 @@ class Agent:
         action_confirmed = {r: None for r in self.roles}
         first_utterance = True
         perception_subdialog_qs = 0  # track how many have been asked so far to disallow more of them after
-        while (action_confirmed['action'] is None or action_confirmed['patient'] is None or
-                (action_confirmed['action'] == 'bring' and action_confirmed['recipient'] is None)):
+        while (action_confirmed['action'] is None or
+               None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
 
             # Sample a chosen action from the current belief counts.
             # If arg_max, gets current highest-confidence belief. Else, creates confidence distribution and samples.
@@ -145,7 +156,8 @@ class Agent:
 
         # Perform the chosen action.
         self.io.perform_action(action_confirmed['action'], action_confirmed['patient'],
-                               action_confirmed['recipient'])
+                               action_confirmed['recipient'], action_confirmed['source'],
+                               action_confirmed['goal'])
 
     # While top grounding confidence does not pass perception threshold, ask a question that
     # strengthens an SVM involved in the current parse.
@@ -160,7 +172,7 @@ class Agent:
     # returns - an integer, the number of questions asked
     def conduct_perception_subdialog(self, ur, gprs, pr, max_questions, labeled_tuples,
                                      allow_off_topic_preds=False):
-        debug = True
+        debug = False
 
         num_qs = 0
         if len(gprs) > 0:
@@ -330,7 +342,7 @@ class Agent:
     # it means the same thing as a few neighboring words. This dialog's length is limited linearly with respect
     # to the number of words in the utterance, but could be long for many new predicates.
     def preprocess_utterance_for_new_predicates(self, u):
-        debug = True
+        debug = False
         if debug:
             print ("preprocess_utterance_for_new_predicates: called with utterance " + u)
 
@@ -546,7 +558,8 @@ class Agent:
         debug = True
 
         if debug:
-            print "update_action_belief_from_confirmation: confirmation response parse " + self.parser.print_parse(g)
+            print ("update_action_belief_from_confirmation: confirmation response parse " +
+                   self.parser.print_parse(g) + " with roles_in_q " + str(roles_in_q))
         if g.type == self.parser.ontology.types.index('c'):
             if g.idx == self.parser.ontology.preds.index('yes'):
                 for r in roles_in_q:
@@ -582,15 +595,17 @@ class Agent:
     # SemanticNodes corresponding to those predicates and to the whole command to match up with entries
     # in the utterance dictionary.
     def induce_utterance_grounding_pairs_from_conversation(self, us, rs):
-        debug = True
+        debug = False
 
         pairs = []
         if 'all' in us:  # need to build SemanticNode representing all roles
             sem_str = rs['action']
             if rs['action'] == 'walk':
                 sem_str += '(' + rs['patient'] + ')'
-            else:  # i.e. 'bring'
+            elif rs['action'] == 'bring':
                 sem_str += '(' + rs['patient'] + ',' + rs['recipient'] + ')'
+            else:  # ie. 'move'
+                sem_str += '(' + rs['patient'] + ',' + rs['source'] + ',' + rs['goal'] + ')'
             cat_idx = self.parser.lexicon.read_category_from_str('M')  # a command
             grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
             for u in us['all']:
@@ -630,7 +645,7 @@ class Agent:
         parse_generator = self.parser.most_likely_cky_parse(u, reranker_beam=self.parse_beam)
         cgtr = self.call_generator_with_timeout(parse_generator, self.budget_for_parsing)
         p = None
-        if cgtr is not None:
+        if cgtr is not None and cgtr[0] is not None:
             p = cgtr[0]  # most_likely_cky_parse returns a 4-tuple, the first of which is the parsenode
             if debug:
                 print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
@@ -689,21 +704,36 @@ class Agent:
                     # Update patient and recipient, if present, with action tree args.
                     # These disregard argument order in favor of finding matching argument types.
                     # This gives us more robustness to bad parses with incorrectly ordered args or incomplete args.
-                    # However, if we eventually have commands that take two args of the same type, we will
-                    # have to introduce explicit ordering constraints here for those.
-                    for r in ['patient', 'recipient']:
-                        if r in roles and at.children is not None:
-                            for cn in at.children:
-                                if (r in self.action_args[a] and
-                                        self.parser.ontology.types[cn.type] in self.action_args[a][r]):
-                                    c = self.parser.ontology.preds[cn.idx]
-                                    if c not in self.action_belief_state[r]:
-                                        self.action_belief_state[r][c] = 0
-                                    self.action_belief_state[r][c] += inc
-                                    role_candidates_seen[r].add(c)
-                                    if debug:
-                                        print ("update_action_belief_from_grounding: adding count to " + r +
-                                               " " + c + "; " + str(inc))
+                    if self.parser.ontology.preds[at.idx] != 'move':
+                        for r in ['patient', 'recipient']:
+                            if r in roles and at.children is not None:
+                                for cn in at.children:
+                                    if (r in self.action_args[a] and
+                                            self.parser.ontology.types[cn.type] in self.action_args[a][r]):
+                                        c = self.parser.ontology.preds[cn.idx]
+                                        if c not in self.action_belief_state[r]:
+                                            self.action_belief_state[r][c] = 0
+                                        self.action_belief_state[r][c] += inc
+                                        role_candidates_seen[r].add(c)
+                                        if debug:
+                                            print ("update_action_belief_from_grounding: adding count to " + r +
+                                                   " " + c + "; " + str(inc))
+
+                    # For 'move', order matters, so handle this separately
+                    else:
+                        role_order = ['patient', 'source', 'goal']
+                        for idx in range(len(at.children)):
+                            cn = at.children[idx]
+                            r = role_order[idx]
+                            if self.parser.ontology.types[cn.type] in self.action_args[a][r]:
+                                c = self.parser.ontology.preds[cn.idx]
+                                if c not in self.action_belief_state[r]:
+                                    self.action_belief_state[r][c] = 0
+                                self.action_belief_state[r][c] += inc
+                                role_candidates_seen[r].add(c)
+                                if debug:
+                                    print ("update_action_belief_from_grounding: adding count to " + r +
+                                           " " + c + "; " + str(inc))
 
         # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
         else:
@@ -807,7 +837,8 @@ class Agent:
                             sampled_action[r][0] is not None]  # can't be confident to include absence
         if 'action' in roles_to_include:
             relevant_roles = ['action'] + [r for r in (self.action_args[sampled_action['action'][0]].keys()
-                                           if sampled_action['action'][0] is not None else ['patient', 'recipient'])]
+                                           if sampled_action['action'][0] is not None else
+                                                       ['patient', 'recipient', 'source', 'goal'])]
         else:
             relevant_roles = self.roles[:]
         roles_to_include = [r for r in roles_to_include if r in relevant_roles]  # strip recipient from 'bring' etc.
@@ -830,18 +861,23 @@ class Agent:
             if sampled_action['action'][0] == 'walk':
                 q = "You want me to go to " + sampled_action['patient'][0] + "?"
                 roles_in_q.extend(['action', 'patient'])
-            else:
+            elif sampled_action['action'][0] == 'bring':
                 q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
                      sampled_action['recipient'][0] + "?")
                 roles_in_q.extend(['action', 'patient', 'recipient'])
+            else:  # eg. move
+                q = ("You want me to move " + sampled_action['patient'][0] + " from " +
+                     sampled_action['source'][0] + " to " + sampled_action['goal'][0] + "?")
+                roles_in_q.extend(['action', 'patient', 'source', 'goal'])
         elif least_conf_role == 'action':  # ask for action confirmation
-            if sampled_action['action'][0] is None:
-                if 'patient' in roles_to_include:
-                    q = "What should I do involving " + sampled_action['patient'][0] + "?"
-                    roles_in_q.extend(['patient'])
-                elif 'recipient' in roles_to_include:
-                    q = "What should I do involving " + sampled_action['recipient'][0] + "?"
-                    roles_in_q.extend(['recipient'])
+            if sampled_action['action'][0] is None:  # need to clarify what the action is
+                args = []
+                for r in [_r for _r in self.roles if _r != 'action']:
+                    if r in roles_to_include:
+                        args.append(sampled_action[r][0])
+                        roles_in_q.extend(r)
+                if len(args) > 0:
+                    q = "What should I do involving " + ','.join(args) + " ?"
                 else:
                     q = "What kind of action should I perform?"
             elif sampled_action['action'][0] == 'walk':
@@ -851,7 +887,7 @@ class Agent:
                 else:
                     q = "You want me to go somewhere?"
                     roles_in_q.extend(['action'])
-            else:  # i.e. bring
+            elif sampled_action['action'][0] == 'bring':
                 if 'patient' in roles_to_include:
                     if 'recipient' in roles_to_include:
                         q = ("You want me to deliver " + sampled_action['patient'][0] + " to "
@@ -866,23 +902,55 @@ class Agent:
                 else:
                     q = "You want me to deliver something for someone?"
                     roles_in_q.extend(['action'])
+            else:  # eg. 'move'
+                roles_in_q.append('action')
+                if 'patient' in roles_to_include:
+                    q = "You want me to move " + sampled_action['patient'][0]
+                    roles_in_q.append('patient')
+                else:
+                    q = "You want me to move something"
+                if 'source' in roles_to_include:
+                    q += " from " + sampled_action['source'][0]
+                    roles_in_q.append('source')
+                else:
+                    q += " from somewhere"
+                if 'goal' in roles_to_include:
+                    q += " to " + sampled_action['goal'][0]
+                    roles_in_q.append('goal')
+                else:
+                    q += " to somewhere"
+                q += "?"
         elif least_conf_role == 'patient':  # ask for patient confirmation
             if sampled_action['patient'][0] is None:
                 if 'action' in roles_to_include:
                     if sampled_action['action'][0] == 'walk':
                         q = "Where should I go?"
                         roles_in_q.extend(['action'])
-                    elif 'recipient' in roles_to_include:
-                        q = "What should I deliver to " + sampled_action['recipient'][0] + "?"
-                        roles_in_q.extend(['action', 'recipient'])
-                    else:  # i.e. bring with no recipient
-                        q = "What should I find to deliver?"
-                        roles_in_q.extend(['action'])
+                    elif sampled_action['action'][0] == 'bring':
+                        if 'recipient' in roles_to_include:
+                            q = "What should I deliver to " + sampled_action['recipient'][0] + "?"
+                            roles_in_q.extend(['action', 'recipient'])
+                        else:  # i.e. bring with no recipient
+                            q = "What should I find to deliver?"
+                            roles_in_q.extend(['action'])
+                    else:  # ie. 'move'
+                        q = "What should I move"
+                        roles_in_q.append('action')
+                        if 'source' in roles_to_include:
+                            q += " from " + sampled_action['source'][0]
+                            roles_in_q.append('source')
+                        if 'goal' in roles_to_include:
+                            q += " to " + sampled_action['goal'][0]
+                            roles_in_q.append('goal')
+                        q += "?"
                 else:
-                    if 'recipient' in roles_to_include:
-                        q = ("What else is involved in what I should do besides " +
-                             sampled_action['recipient'][0] + "?")
-                        roles_in_q.extend(['recipient'])
+                    args = []
+                    for r in [_r for _r in self.roles if _r != 'action']:
+                        if r in roles_to_include:
+                            args.append(sampled_action[r][0])
+                            roles_in_q.extend(r)
+                    if len(args) > 0:
+                        q = "What else is involved in what I should do besides " + ','.join(args) + " ?"
                     else:
                         q = "What is involved in what I should do?"
             else:
@@ -890,21 +958,31 @@ class Agent:
                     if sampled_action['action'][0] == 'walk':
                         q = "You want me to walk to " + sampled_action['patient'][0] + "?"
                         roles_in_q.extend(['action', 'patient'])
-                    elif 'recipient' in roles_to_include:
-                        q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
-                             sampled_action['recipient'][0] + "?")
-                        roles_in_q.extend(['action', 'patient', 'recipient'])
-                    else:
-                        q = "You want me to deliver " + sampled_action['patient'][0] + " to someone?"
+                    elif sampled_action['action'][0] == 'bring':
+                        if 'recipient' in roles_to_include:
+                            q = ("You want me to deliver " + sampled_action['patient'][0] + " to " +
+                                 sampled_action['recipient'][0] + "?")
+                            roles_in_q.extend(['action', 'patient', 'recipient'])
+                        else:
+                            q = "You want me to deliver " + sampled_action['patient'][0] + " to someone?"
+                            roles_in_q.extend(['action', 'patient'])
+                    else:  # ie. 'move'
+                        q = "You want me to move " + sampled_action['patient'][0]
                         roles_in_q.extend(['action', 'patient'])
+                        if 'source' in roles_to_include:
+                            q += " from " + sampled_action['source'][0]
+                            roles_in_q.append('source')
+                        if 'goal' in roles_to_include:
+                            q += " to " + sampled_action['goal'][0]
+                            roles_in_q.append('goal')
+                        q += "?"
                 else:
-                    if 'recipient' in roles_to_include:
-                        q = ("You want me to do something involving " + sampled_action['patient'][0] +
-                             " for " + sampled_action['recipient'][0] + "?")
-                        roles_in_q.extend(['patient', 'recipient'])
-                    else:
-                        q = "You want me to do something involving " + sampled_action['patient'][0] + "?"
-                        roles_in_q.extend(['patient'])
+                    args = []
+                    for r in [_r for _r in self.roles if _r != 'action']:
+                        if r in roles_to_include:
+                            args.append(sampled_action[r][0])
+                            roles_in_q.extend(r)
+                    q = "You want me to do something involving " + ','.join(args) + " ?"
         elif least_conf_role == 'recipient':  # ask for recipient confirmation
             if sampled_action['recipient'][0] is None:
                 if 'action' in roles_to_include:
@@ -939,6 +1017,72 @@ class Agent:
                 else:
                     q = "You want me to do something for " + sampled_action['recipient'][0] + "?"
                     roles_in_q.extend(['recipient'])
+        elif least_conf_role == 'source':  # ask for source confirmation
+            if 'action' in roles_to_include:
+                if sampled_action['action'][0] != 'move':
+                    raise ValueError("ERROR: get_question_from_sampled_action got a sampled action " +
+                                     "for '" + sampled_action['action'][0] + "' with infelicitous " +
+                                     "least confident role 'source'")
+                if 'patient' in roles_to_include:
+                    q = sampled_action['patient'][0]
+                    roles_in_q.append('patient')
+                else:
+                    q = "something"
+                if sampled_action['source'][0] is None:
+                    q = "Where should I move " + q + " from on its way"
+                else:
+                    q = "I should move " + q + " from " + sampled_action['source'][0]
+                    roles_in_q.append('source')
+                roles_in_q.append('action')
+                if 'goal' in roles_to_include:
+                    q += " to " + sampled_action['goal'][0]
+                    roles_in_q.append('goal')
+                else:
+                    q += " somewhere else?"
+                q += "?"
+            else:
+                args = []
+                for r in [_r for _r in self.roles if _r != 'action']:
+                    if r in roles_to_include:
+                        args.append(sampled_action[r][0])
+                        roles_in_q.extend(r)
+                if len(args) > 0:
+                    q = "What is the first place I should go regarding " + ','.join(args) + " ?"
+                else:
+                    q = "What is the first place involved in what I should do?"
+        elif least_conf_role == 'goal':  # ask for goal confirmation
+            if 'action' in roles_to_include:
+                if sampled_action['action'][0] != 'move':
+                    raise ValueError("ERROR: get_question_from_sampled_action got a sampled action " +
+                                     "for '" + sampled_action['action'][0] + "' with infelicitous " +
+                                     "least confident role 'goal'")
+                if 'patient' in roles_to_include:
+                    q = sampled_action['patient'][0]
+                    roles_in_q.append('patient')
+                else:
+                    q = "something"
+                if 'source' in roles_to_include:
+                    q += " from " + sampled_action['source'][0]
+                    roles_in_q.append('source')
+                else:
+                    q += " from somewhere"
+                if sampled_action['goal'][0] is None:
+                    q = "To where should I move " + q
+                else:
+                    q = "I should move " + q + " to " + sampled_action['goal'][0]
+                    roles_in_q.append('goal')
+                roles_in_q.append('action')
+                q += "?"
+            else:
+                args = []
+                for r in [_r for _r in self.roles if _r != 'action']:
+                    if r in roles_to_include:
+                        args.append(sampled_action[r][0])
+                        roles_in_q.extend(r)
+                if len(args) > 0:
+                    q = "What is the second place I should go regarding " + ','.join(args) + " ?"
+                else:
+                    q = "What is the second place involved in what I should do?"
         else:  # least_conf_role is None, i.e. no confidence in any arg, so ask for full restatement
             q = "Could you rephrase your original request?"
 

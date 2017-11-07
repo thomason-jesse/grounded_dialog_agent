@@ -148,10 +148,10 @@ class KBGrounder:
                     if debug:
                         print "running kb query q=" + str(q)
                     pos_conf, neg_conf = self.kb.query(tuple(q))
-                    # if pos_conf > 0:  # without these removals, zero confidence groundings will be returned
-                    groundings.append((True, [], pos_conf))
-                    # if neg_conf > 0:
-                    groundings.append((False, [], neg_conf))
+                    if pos_conf > 0:
+                        groundings.append((True, [], pos_conf))
+                    if neg_conf > 0:
+                        groundings.append((False, [], neg_conf))
 
             # Else, root and grounded children can be passed up as they are (e.g. actions).
             else:

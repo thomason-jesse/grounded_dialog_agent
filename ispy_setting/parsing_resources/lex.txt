@@ -6,11 +6,11 @@ no :- C : no
 bring :- M/NP/NP : lambda y:p.(lambda x:i.(bring(x, y)))
 bring :- M/PP/NP : lambda x:i.(lambda y:p.(bring(x, y)))
 walk :- M/PP : lambda x:l.(walk(x))
+move :- M/PP/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
 
-# fun future imperative
-# bring :- M/NP/NP : lambda y:l.(lambda x:i.(bring(x, y)))
-# bring :- M/PP/NP : lambda x:i.(lambda y:l.(bring(x, y)))
-# move :- M/PP/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(relocate(x, y, z))))
+# imperatives forming 'move', eg. ``get the X from Y and take it to Z''
+get :- M/M/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
+take :- M/PP : lambda x:l.(x)
 
 # 'to' as recipient argument of a command (eg. ``bring coffee to peter'')
 to :- PP/NP : lambda x:p.(x)

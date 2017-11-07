@@ -41,10 +41,7 @@ stacy:p
 # imperatives
 walk:<l,a>
 bring:<i,<p,a>>
-
-# fun future imperatives
-# bring:<i,<l,a>>
-# relocate:<i,<l,<l,a>>>
+move:<i,<l,<l,a>>>
 
 # logical
 a_i:<<i,t>,i>
