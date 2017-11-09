@@ -42,7 +42,7 @@ class Agent:
     # Start a new action dialog from utterance u given by a user.
     # Clarifies the arguments of u until the action is confirmed by the user.
     def start_action_dialog(self):
-        debug = True
+        debug = False
 
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
         # As more open-ended and yes/no utterances are parsed, these counts will be updated to reflect the roles
@@ -156,9 +156,7 @@ class Agent:
         # TODO: which can be noisy and should be overwritten later on by explicit human conversation.
 
         # Perform the chosen action.
-        self.io.perform_action(action_confirmed['action'], action_confirmed['patient'],
-                               action_confirmed['recipient'], action_confirmed['source'],
-                               action_confirmed['goal'])
+        self.io.perform_action(action_confirmed)
 
     # While top grounding confidence does not pass perception threshold, ask a question that
     # strengthens an SVM involved in the current parse.
@@ -281,7 +279,9 @@ class Agent:
                     self.io.say_to_user_with_referents(q, rvs)
                     sub_gprs = None
                     if q_type == 'pos' or q_type == 'neg':
-                        sub_ur = self.io.get_oidx_from_user(self.active_train_set)
+                        sub_ur = -1
+                        while sub_ur is not None and sub_ur not in self.active_train_set:
+                            sub_ur = self.io.get_oidx_from_user(self.active_train_set)
                     else:  # i.e. q_type is a particular oidx atom we asked a yes/no about
                         sub_ur = self.io.get_from_user()
                         sub_gprs, _ = self.parse_and_ground_utterance(sub_ur)
@@ -558,7 +558,7 @@ class Agent:
             self.io.say_to_user(q)
 
     def update_action_belief_from_confirmation(self, g, action_confirmed, action_chosen, roles_in_q, count=1.0):
-        debug = True
+        debug = False
 
         if debug:
             print ("update_action_belief_from_confirmation: confirmation response parse " +
@@ -640,7 +640,7 @@ class Agent:
 
     # Parse and ground a given utterance.
     def parse_and_ground_utterance(self, u):
-        debug = True
+        debug = False
 
         # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
         # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
@@ -691,9 +691,11 @@ class Agent:
         role_candidates_seen = {r: set() for r in roles}
 
         # Crawl parse for recognized actions.
+        updated_based_on_action_trees = False
         if 'action' in roles:
             action_trees = self.get_parse_subtrees(g, self.actions)
             if len(action_trees) > 0:
+                updated_based_on_action_trees = True
                 inc = count / float(len(action_trees))
                 for at in action_trees:
                     a = self.parser.ontology.preds[at.idx]
@@ -739,7 +741,8 @@ class Agent:
                                            " " + c + "; " + str(inc))
 
         # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
-        else:
+        # If we were trying to update an action but didn't find any trees, also take this route.
+        if not updated_based_on_action_trees:
             for r in roles:
                 to_traverse = [g]
                 to_increment = []
@@ -809,6 +812,10 @@ class Agent:
     # Sample a discrete action from the current belief counts.
     # Each argument of the discrete action is a tuple of (argument, confidence) for confidence in [0, 1].
     def sample_action_from_belief(self, current_confirmed, arg_max=False):
+        debug = False
+        if debug:
+            print ("sample_action_from_belief: sampling from belief " + str(self.action_belief_state) +
+                   " with current_confirmed=" + str(current_confirmed) + " and arg_max=" + str(arg_max))
 
         chosen = {r: (None, 0) if current_confirmed[r] is None else (current_confirmed[r], 1.0)
                   for r in self.roles}
@@ -817,22 +824,29 @@ class Agent:
             min_count = min([self.action_belief_state[r][entry] for entry in self.action_belief_state[r]])
             mass = sum([self.action_belief_state[r][entry] - min_count for entry in self.action_belief_state[r]])
             if mass > 0:
+                valid_entries = [entry for entry in self.action_belief_state[r]]
+                                 # if (entry is not None
+                                 #     or chosen['action'][0] is None or
+                                 #     r not in self.action_args[chosen['action'][0]].keys())]
                 dist = [(self.action_belief_state[r][entry] - min_count) / mass
-                        for entry in self.action_belief_state[r]]
+                        for entry in valid_entries]
                 if arg_max:
                     max_idxs = [idx for idx in range(len(dist)) if dist[idx] == max(dist)]
-                    c = np.random.choice([self.action_belief_state[r].keys()[idx] for idx in max_idxs], 1)
+                    c = np.random.choice([valid_entries[idx] for idx in max_idxs], 1)
                 else:
-                    c = np.random.choice([self.action_belief_state[r].keys()[idx]
-                                          for idx in range(len(self.action_belief_state[r].keys()))],
+                    c = np.random.choice([valid_entries[idx]
+                                          for idx in range(len(valid_entries))],
                                          1, p=dist)
-                chosen[r] = (c[0], dist[self.action_belief_state[r].keys().index(c)])
+                chosen[r] = (c[0], dist[valid_entries.index(c)])
+
+        if debug:
+            print ("sample_action_from_belief: sampled chosen=" + str(chosen))
 
         return chosen
 
     # Return a string question based on a discrete sampled action.
     def get_question_from_sampled_action(self, sampled_action, include_threshold):
-        debug = True
+        debug = False
         if debug:
             print "get_question_from_sampled_action called with " + str(sampled_action) + ", " + str(include_threshold)
 
@@ -885,8 +899,12 @@ class Agent:
                         elif r == 'goal':
                             args.append("<g>here</g>")
                         roles_in_q.append(r)
-                if len(args) > 0:
-                    q = "What should I do involving " + ','.join(args) + " ?"
+                if len(args) > 2:
+                    q = "What should I do involving " + ', '.join(args[:-1]) + ", and " + args[-1] + "?"
+                elif len(args) == 2:
+                    q = "What should I do involving " + args[0] + " and " + args[1] + "?"
+                elif len(args) == 1:
+                    q = "What should I do involving " + args[0] + "?"
                 else:
                     q = "What kind of action should I perform?"
             elif sampled_action['action'][0] == 'walk':
@@ -962,8 +980,13 @@ class Agent:
                             elif r == 'goal':
                                 args.append("<g>here</g>")
                             roles_in_q.append(r)
-                    if len(args) > 0:
-                        q = "What else is involved in what I should do besides " + ','.join(args) + " ?"
+                    if len(args) > 2:
+                        q = ("What is involved in what I should do besides " +
+                             ', '.join(args[:-1]) + ", and " + args[-1] + "?")
+                    elif len(args) == 2:
+                        q = "What is involved in what I should do besides " + args[0] + " and " + args[1] + "?"
+                    elif len(args) == 1:
+                        q = "What is involved in what I should do besides " + args[0] + "?"
                     else:
                         q = "What is involved in what I should do?"
             else:
@@ -998,7 +1021,13 @@ class Agent:
                             elif r == 'goal':
                                 args.append("<g>here</g>")
                             roles_in_q.append(r)
-                    q = "You want me to do something involving " + ','.join(args) + " ?"
+                    if len(args) > 2:
+                        q = ("You want me to do something involving " +
+                             ', '.join(args[:-1]) + ", and " + args[-1] + "?")
+                    elif len(args) == 2:
+                        q = "You want me to do something involving " + args[0] + " and " + args[1] + "?"
+                    else:
+                        q = "You want me to do something involving " + args[0] + "?"
 
         elif least_conf_role == 'recipient':  # ask for recipient confirmation
             if sampled_action['recipient'][0] is None:
@@ -1069,8 +1098,13 @@ class Agent:
                         elif r == 'goal':
                             args.append("<g>here</g>")
                         roles_in_q.append(r)
-                if len(args) > 0:
-                    q = "What is the first place I should go regarding " + ','.join(args) + " ?"
+                if len(args) > 2:
+                    q = ("What is the first place involved regarding " +
+                         ', '.join(args[:-1]) + ", and " + args[-1] + "?")
+                elif len(args) == 2:
+                    q = "What is the first place involved regarding " + args[0] + " and " + args[1] + "?"
+                elif len(args) == 1:
+                    q = "What is the first place involved regarding " + args[0] + "?"
                 else:
                     q = "What is the first place involved in what I should do?"
 
@@ -1114,12 +1148,21 @@ class Agent:
                         elif r == 'goal':
                             args.append("<g>here</g>")
                         roles_in_q.append(r)
-                if len(args) > 0:
-                    q = "What is the second place I should go regarding " + ','.join(args) + " ?"
+                if len(args) > 2:
+                    q = ("What is the second place involved regarding " +
+                         ', '.join(args[:-1]) + ", and " + args[-1] + "?")
+                elif len(args) == 2:
+                    q = "What is the second place involved regarding " + args[0] + " and " + args[1] + "?"
+                elif len(args) == 1:
+                    q = "What is the second place involved regarding " + args[0] + "?"
                 else:
                     q = "What is the second place involved in what I should do?"
         else:  # least_conf_role is None, i.e. no confidence in any arg, so ask for full restatement
             q = "Could you rephrase your original request?"
+
+        if debug:
+            print ("get_question_from_sampled_action: returning q='" + q + "', least_conf_role=" + least_conf_role +
+                   ", roles_to_include=" + str(roles_to_include) + ", and roles_in_q=" + str(roles_in_q))
 
         # Return the question and the roles included in it.
         # If the user affirms, all roles included in the question should have confidence boosted to 1.0
