@@ -73,7 +73,7 @@ class SeverIO:
     # id - a numerical id number to pass to the server for identification.
     # spin_time - seconds to spin between polling the server.
     def __init__(self, uid, client_dir, spin_time=1):
-        self.uid = uid
+        self.uid = hex(uid)[2:]  # convert back to hex and discard 0x prefix
         self.client_dir = client_dir
         self.spin_time = spin_time
 
@@ -103,7 +103,7 @@ class SeverIO:
             time.sleep(self.spin_time)
         with open(fn, 'r') as f:
             u = f.read().strip()
-        cmd = "rm " + fn
+        cmd = "rm -f " + fn
         os.system(cmd)
         return u
 
@@ -143,4 +143,6 @@ class SeverIO:
             time.sleep(self.spin_time)
         with open(fn, 'w') as f:
             f.write(u)
+        cmd = "chmod a+rx " + fn
+        os.system(cmd)
         return u

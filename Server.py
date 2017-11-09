@@ -44,7 +44,7 @@ class Server:
 
                             # Check for newly-connected users.
                             if fnp[1] == 'newu':
-                                uid = int(fnp[0])
+                                uid = int(fnp[0], 16)
                                 if uid not in self.users:
                                     print "Server: found new user " + str(uid)
 
@@ -71,7 +71,7 @@ class Server:
                 # Remove flagged files.
                 for fn in files_to_remove:
                     path = os.path.join(self.client_dir, fn)
-                    cmd = "rm " + path
+                    cmd = "rm -f " + path
                     print "Server executing: " + cmd  # DEBUG
                     os.system(cmd)
 
