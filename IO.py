@@ -143,6 +143,6 @@ class SeverIO:
             time.sleep(self.spin_time)
         with open(fn, 'w') as f:
             f.write(u)
-        cmd = "chmod a+rx " + fn
+        cmd = "chmod a+r " + fn
         os.system(cmd)
         return u

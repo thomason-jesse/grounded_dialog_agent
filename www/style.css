@@ -6,6 +6,16 @@
 	background-color:Lavender;
 }
 
+#err{
+	background-color:red;
+	color:white;
+}
+
+#err{
+	background-color:red;
+	color:white;
+}
+
 .table{
 	border-spacing:0;
 	border-collapse: collapse;
@@ -22,6 +32,19 @@
 	font-size:20px;
 }
 
-.slider{
-	width: 700px !important;
+.panel_img {
+	width: 200px;
+	height: 200px;
+}
+.patient_panel {
+	background-color:Aquamarine;
+}
+.recipient_panel {
+	background-color:Lightsalmon;
+}
+.source_panel {
+	background-color:Beige;
+}
+.goal_panel {
+	background-color:Cornsilk;
 }
