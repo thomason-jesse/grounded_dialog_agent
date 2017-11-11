@@ -16,15 +16,18 @@ class Server:
 
     devnull = open(os.devnull, 'w')
 
-    def __init__(self, grounder_fn, spin_time, cycles_per_user, client_dir):
+    def __init__(self, active_train_set, grounder_fn, spin_time, cycles_per_user, client_dir, log_dir):
+        self.active_train_set = active_train_set
         self.grounder_fn = grounder_fn
         self.spin_time = spin_time
         self.cycles_per_user = cycles_per_user
         self.client_dir = client_dir
+        self.log_dir = log_dir
 
         # State and message information.
         self.users = []  # uids
         self.agents = {}  # from uid -> subprocesses running agents
+        self.logs = {}  # from uid -> file handles
         self.time_remaining = {}  # from uid -> int
 
     # Begin to spin forever, checking the disk for relevant communications.
@@ -52,15 +55,19 @@ class Server:
                                     cmd = ["python", "main.py",
                                            "--grounder_fn", self.grounder_fn,
                                            "--io_type", "server",
+                                           "--active_train_set", ','.join([str(oidx)
+                                                                           for oidx in self.active_train_set]),
                                            "--uid", str(uid),
                                            "--client_dir", self.client_dir,
                                            "--spin_time", str(self.spin_time)]
                                     print ("Server: ... executing subprocess " + str(cmd) +
                                            ", ie. '" + ' '.join(cmd) + "'")
-                                    sp = subprocess.Popen(cmd, stdout=Server.devnull, stderr=subprocess.STDOUT)
+                                    f = open(os.path.join(self.log_dir, str(uid) + ".log"), 'w')
+                                    sp = subprocess.Popen(cmd, stdout=f, stderr=f)
 
                                     self.users.append(uid)
                                     self.agents[uid] = sp
+                                    self.logs[uid] = f
                                     self.time_remaining[uid] = self.cycles_per_user
 
                                     print "Server: ... launched Agent for user " + str(uid)
@@ -107,6 +114,8 @@ class Server:
         if self.agents[uid].poll() is None:  # process hasn't terminated yet.
             self.agents[uid].kill()
         del self.agents[uid]
+        self.logs[uid].close()
+        del self.logs[uid]
         del self.time_remaining[uid]
 
 
@@ -127,6 +136,7 @@ def main():
     server_spin_time = FLAGS_server_spin_time
     cycles_per_user = FLAGS_cycles_per_user
     client_dir = FLAGS_client_dir
+    log_dir = FLAGS_log_dir
     write_classifiers = FLAGS_write_classifiers
 
     # Load the parser from file.
@@ -163,7 +173,7 @@ def main():
 
     # Start the Server.
     print "main: instantiated server..."
-    s = Server(grounder_fn, server_spin_time, cycles_per_user, client_dir)
+    s = Server(active_train_set, grounder_fn, server_spin_time, cycles_per_user, client_dir, log_dir)
     print "main: ... done"
 
     print "main: spinning server..."
@@ -191,6 +201,8 @@ if __name__ == '__main__':
                         help="cycles of server spins before terminating a user (time limit)")
     parser.add_argument('--client_dir', type=str, required=True,
                         help="directory where client files should be read")
+    parser.add_argument('--log_dir', type=str, required=True,
+                        help="directory where client logfiles should be saved")
     parser.add_argument('--write_classifiers', type=int, required=False, default=0,
                         help="whether to write loaded/trained perception classifiers back to disk")
     args = parser.parse_args()

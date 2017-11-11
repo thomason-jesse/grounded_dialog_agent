@@ -21,7 +21,7 @@ class Agent:
         self.parse_beam = 1
         self.threshold_to_accept_role = 0.9  # include role filler in questions above this threshold
         self.threshold_to_accept_perceptual_conf = 0.5  # per perceptual predicate, e.g. 0.25 for two
-        self.max_perception_subdialog_qs = 0  # DEBUG: usually 5  # based on CORL17 experimental condition
+        self.max_perception_subdialog_qs = 1  # DEBUG should be 5  # based on CORL17 experimental condition
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
         self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
@@ -872,6 +872,11 @@ class Agent:
             print ("get_question_from_sampled_action: roles_to_include " + str(roles_to_include) +
                    " with least_conf_role " + str(least_conf_role))
 
+        # No useful question can be formed.
+        if least_conf_role is not None and sampled_action[least_conf_role][0] is None and len(roles_to_include) == 0:
+            q = "Please rephrase your original request."
+            return q, None, roles_to_include, []
+
         # Ask a question.
         roles_in_q = []  # different depending on action selection
         if roles_to_include == self.roles:  # all roles are above threshold, so perform.
@@ -1004,9 +1009,13 @@ class Agent:
                         if 'source' in roles_to_include:
                             q += " from <s>here</s>"
                             roles_in_q.append('source')
+                        else:
+                            q += " from somewhere"
                         if 'goal' in roles_to_include:
                             q += " to <g>there</g>"
                             roles_in_q.append('goal')
+                        else:
+                            q += " to somewhere"
                         q += "?"
                 else:
                     args = []
@@ -1026,7 +1035,7 @@ class Agent:
                              ', '.join(args[:-1]) + ", and " + args[-1] + "?")
                     elif len(args) == 2:
                         q = "You want me to do something involving " + args[0] + " and " + args[1] + "?"
-                    else:
+                    elif len(args) == 1:
                         q = "You want me to do something involving " + args[0] + "?"
 
         elif least_conf_role == 'recipient':  # ask for recipient confirmation
@@ -1083,7 +1092,7 @@ class Agent:
                     q += " to <g>there</g>"
                     roles_in_q.append('goal')
                 else:
-                    q += " somewhere else?"
+                    q += " somewhere else"
                 q += "?"
             else:
                 args = []
@@ -1158,7 +1167,7 @@ class Agent:
                 else:
                     q = "What is the second place involved in what I should do?"
         else:  # least_conf_role is None, i.e. no confidence in any arg, so ask for full restatement
-            q = "Could you rephrase your original request?"
+            q = "Please rephrase your original request."
 
         if debug:
             print ("get_question_from_sampled_action: returning q='" + q + "', least_conf_role=" + least_conf_role +
@@ -1232,9 +1241,9 @@ class Agent:
         signal.alarm(t)
         try:
             r = next(g)
-            signal.alarm(0)
         except AssertionError:
             r = None
+        signal.alarm(0)
         return r
 
     def call_function_with_timeout(self, f, args, t):
@@ -1242,9 +1251,9 @@ class Agent:
         signal.alarm(t)
         try:
             r = f(**args)
-            signal.alarm(0)
         except AssertionError:
             r = None
+        signal.alarm(0)
         return r
 
     def timeout_signal_handler(self, signum, frame):

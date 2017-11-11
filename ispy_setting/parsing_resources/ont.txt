@@ -10,6 +10,8 @@ dana:p
 scott:p
 justin:p
 stacy:p
+guni:p
+garrett:p
 
 # locations
 3402:l
@@ -17,6 +19,7 @@ stacy:p
 3406:l
 3408:l
 3410:l
+3414:l
 3414a:l
 3414b:l
 3416:l
@@ -59,6 +62,7 @@ printer:<l,t>
 lounge:<l,t>
 kitchen:<l,t>
 pod:<l,t>
+unoccupied:<l,t>
 
 # object ids from I, Spy
 oidx_0:i

@@ -15,6 +15,38 @@
 <link rel="stylesheet" href="style.css">
 
 <script type="text/javascript">
+// Functions that don't access the server or the client-side display.
+
+function draw_alternate_name(name) {
+  // TODO: mimic IJCAI'15 nickname/lastname/firstname/etc. name rewrite rules for anonymized people
+  return name;
+}
+
+// Given a referent message, recolor it and fill the appropriate interface panels.
+function process_referent_message(c) {
+  var ca = c.split('\n');
+  
+  // Fill interface panels.
+  var roles = ca[1].split(';');
+  var i;
+  for (i=0; i < roles.length; i++) {
+    ra = roles[i].split(':');
+    fill_panel('interface', ra[0], ra[1]);
+  }
+
+  // Recolor message.
+  var m = ca[0];
+  m = m.replace("<p>", "<span class=\"patient_text\">");
+  m = m.replace("<r>", "<span class=\"recipient_text\">");
+  m = m.replace("<s>", "<span class=\"source_text\">");
+  m = m.replace("<g>", "<span class=\"goal_text\">");
+  m = m.replace("</p>", "</span>");
+  m = m.replace("</r>", "</span>");
+  m = m.replace("</s>", "</span>");
+  m = m.replace("</g>", "</span>");
+  return m;
+}
+
 // Functions related to manipulating the actual interface and running the task.
 
 // Show an error in the error div.
@@ -40,21 +72,37 @@ function disable_user_text() {
 // role - one of 'patient', 'recipient', 'source', or 'goal'
 // atom - the ontological atom used to find the corresponding image for the panel
 function fill_panel(type, role, atom) {
-  if (role == "source" || role == "goal") {
-    var rd = "maps/";
-  } else if (role == "patient") {
-    var rd = "objects/";
-  } else if (role == "recipient") {
-    // TODO: if we decide to use recipient, decide how
+  if (role == "recipient") {
+    var content = draw_alternate_name(atom);
+  } else {
+    if (role == "source" || role == "goal") {
+      var rd = "maps/";
+      var ext = "png";
+    } else if (role == "patient") {
+      var rd = "objects/";
+      var ext = "jpg";
+    }
+    var fn = "images/" + rd + atom + "." + ext;
+    var content = "<img src=\"" + fn + "\" class=\"panel_img\">";
   }
-  var fn = "images/" + rd + atom + ".png";
-  var img = "<img src=\"" + fn + "\" class=\"panel_img\">";
-  $('#' + type + '_' + role + '_panel').html(img);
+  $('#' + type + '_' + role + '_panel').html(content);
 }
 
 // Remove all rows from the dialog table except the user input row.
 function clear_dialog_table() {
-  $("#dialog_table > tr").slice($('#myTable tr').length - 1).remove();
+  $("#dialog_table > tr").slice($('#dialog_table tr').length - 1).remove();
+}
+
+// Delete the specified row from the dialog table.
+// i - and index. if negative, will subtract from length.
+function delete_row_from_dialog_table(i) {
+  var table = document.getElementById('dialog_table');
+  if (i < 0) {
+    var base = table.rows.length;
+  } else {
+    var base = 0;
+  }
+  table.deleteRow(base + i);
 }
 
 // Add a new row to the bottom of the dialog table.
@@ -67,9 +115,12 @@ function add_row_to_dialog_table(m, u) {
   var msg_cell = row.insertCell(1);
   if (u) {
     name_cell.innerHTML = "YOU";
+    var row_class = "user_row";
   } else {
     name_cell.innerHTML = "ROBOT";
+    var row_class = "robot_row";
   }
+  row.className = row_class;
   msg_cell.innerHTML = m;
 }
 
@@ -109,42 +160,53 @@ function send_agent_string_message(d, uid, m) {
 // return - true if the message was an action (dialog over), false otherwise
 function get_agent_message(d, uid) {
   disable_user_text();  // disable user input from typing
+  add_row_to_dialog_table("<i>thinking...</i>", false);
 
-  // Spin until agent message exists, process and delete it when it does.
-  var got_message = false;
+  // Spin until request for user feedback exists, processing agent messages as they arrive.
+  var got_user_request = false;
   var action_message = false;
   smsgs_url = d + uid + ".smsgs.txt";
   rmsgs_url = d + uid + ".rmsgs.txt";
   amsgs_url = d + uid + ".amsgs.txt";
-  while (!got_message) {
+  smsgur_url = d + uid + ".smsgur.txt";
+  omsgur_url = d + uid + ".omsgur.txt";
+  while (!got_user_request && !action_message) {
+    sleep(1000);  // sleep for one second before polling
 
     // Check for a string message, '[uid].smsgs.txt'
     if (url_exists(smsgs_url)) {
       var m = get_and_delete_file(smsgs_url);
+      delete_row_from_dialog_table(-2);  // delete 'thinking'
       add_row_to_dialog_table(m, false);
       enable_user_text();  // TODO: need to detect whether we're pointing, later on
-      got_message = true;
     }
 
     // Check for a referent message.
-    else if (url_exists(rmsgs_url)) {
-      var m = get_and_delete_file(rmsgs_url);
-      // TODO: these contents need to be processed into string and panel
+    if (url_exists(rmsgs_url)) {
+      var contents = get_and_delete_file(rmsgs_url);
+      var m = process_referent_message(contents);
+      delete_row_from_dialog_table(-2);  // delete 'thinking'
       add_row_to_dialog_table(m, false);
       enable_user_text();  // TODO: need to detect whether we're pointing, later on
-      got_message = true;
     }
 
     // Check for an action message.
-    else if (url_exists(amsgs_url)) {
+    if (url_exists(amsgs_url)) {
       var contents = get_and_delete_file(amsgs_url);
       // TODO: these contents need to be processed into string and panel
-      $('#action_text').html(m)
-      got_message = true;
+      $('#action_text').html(contents)
       action_message = true;
     }
 
-    sleep(1000);  // sleep for one second before polling again
+    // Check for a request for user messages.
+    // TODO: use this to differentiate between needing to unlock textbox versus object selector
+    if (url_exists(smsgur_url)) {  // string message request
+      get_and_delete_file(smsgur_url);
+      got_user_request = true;
+    } else if (url_exists(omsgur_url)) {  // oidx message request
+      get_and_delete_file(omsgur_url);
+      got_user_request = true;
+    }
   }
 
   return action_message;
@@ -157,7 +219,7 @@ function show_task(task_num, d, uid) {
 
   // Sample a task of the matching number.
   if (task_num == 1) {
-    var task_text = "<p>By commanding the robot, solve this problem:<br>The object shown below is at the X marked on the left map. The object belongs at the X marked on the right map.</p>";
+    var task_text = "<p>Solve this problem by commanding the robot:<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">left map</span>. The object belongs at the X marked on the <span class=\"goal_text\">right_map</span>.</p>";
     var patient = "oidx_28";
     var recipient = 0;
     var source = "3520";
@@ -319,15 +381,20 @@ else {
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-5">
-        
         <table id="dialog_table"><tbody>
-          <tr id="user_input_row"><td>YOU</td><td><input type="text" id="user_input"></td></tr>
+          <tr id="user_input_row"><td class="user_row">YOU</td><td><input type="text" id="user_input" style="width:100%;" placeholder="type your response here..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"></td></tr>
         </tbody></table>
         <button class="btn" id="user_say" onclick="send_agent_user_input('<?php echo $d;?>', '<?php echo $uid;?>')">Say</button>
-
       </div>
       <div class="col-md-5">
-        
+        <div class="row">
+          <div class="col-md-1 patient_panel" id="interface_patient_panel"></div>
+          <div class="col-md-1 recipient_panel" id="interface_recipient_panel"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 source_panel" id="interface_source_panel"></div>
+          <div class="col-md-1 goal_panel" id="interface_goal_panel"></div>
+        </div>
       </div>
       <div class="col-md-1"></div>
     </div>
@@ -336,6 +403,8 @@ else {
   <div class="row" id="next_task_div">
     <div class="col-md-1"></div>
     <div class="col-md-10">
+      <p>Give your commands all at once, as opposed to in individual steps.</p>
+      <p>The can take a while to think of its response, so be patient on startup and when waiting for a reply.</p>
       <button class="btn" name="user_say" onclick="show_task(<?php echo $task_num;?>, '<?php echo $d;?>', '<?php echo $uid;?>')">Show next task</button>
     </div>
     <div class="col-md-1"></div>

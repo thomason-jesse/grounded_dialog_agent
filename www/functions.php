@@ -5,10 +5,10 @@
 // data - the data to put in the file
 // err_msg - the error message to display if getting the file handle fails
 function write_file($fn, $data, $err_msg) {
-  $f = fopen($fn, 'w') or die($err_msg);
-  fwrite($f, $data);
-  fclose($f);
-  chmod($fn, "a+r");
+	$f = fopen($fn, 'w') or die($err_msg);
+	fwrite($f, $data);
+	fclose($f);
+	chmod($fn, "a+r");
 }
 
 // Unlink the given file.

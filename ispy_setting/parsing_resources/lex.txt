@@ -42,6 +42,8 @@ dana :- NP : dana
 scott :- NP : scott
 justin :- NP : justin
 stacy :- NP : stacy
+garrett :- NP : garrett
+guni :- NP : guni
 
 # KB bare nouns
 office :- N : office
@@ -51,6 +53,9 @@ printer :- N : printer
 lounge :- N : lounge
 kitchen :- N : kitchen
 pod :- N : pod
+
+# KB adjectives
+empty :- N/N : lambda P:<l,t>.(and(unoccupied, P))
 
 # perception bare nouns from I, Spy
 crayon :- N : crayon

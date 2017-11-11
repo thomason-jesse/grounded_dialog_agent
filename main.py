@@ -18,17 +18,16 @@ def main():
     parser_fn = FLAGS_parser_fn
     io_type = FLAGS_io_type
     grounder_fn = FLAGS_grounder_fn
+    active_train_set = [int(oidx) for oidx in FLAGS_active_train_set.split(',')]
     kb_static_facts_fn = None
     kb_perception_source_dir = None
     kb_perception_feature_dir = None
     active_test_set = None
-    active_train_set = None
     if grounder_fn is None:
         kb_static_facts_fn = FLAGS_kb_static_facts_fn
         kb_perception_source_dir = FLAGS_kb_perception_source_dir
         kb_perception_feature_dir = FLAGS_kb_perception_feature_dir
         active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
-        active_train_set = [int(oidx) for oidx in FLAGS_active_train_set.split(',')]
     write_classifiers = FLAGS_write_classifiers
     uid = FLAGS_uid
     client_dir = FLAGS_client_dir
@@ -124,7 +123,7 @@ if __name__ == '__main__':
     parser.add_argument('--active_test_set', type=str, required=False,
                         help="objects to consider possibilities for grounding; " +
                              "excluded from perception classifier training")
-    parser.add_argument('--active_train_set', type=str, required=False,
+    parser.add_argument('--active_train_set', type=str, required=True,
                         help="objects to consider 'local' and able to be queried by opportunistic active learning")
     parser.add_argument('--uid', type=int, required=False,
                         help="for ServerIO")

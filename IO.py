@@ -81,20 +81,50 @@ class SeverIO:
     # Polls the disk until a string message from the user appears.
     # Deletes the string message file from the disk.
     def get_from_user(self):
+        path = os.path.join(self.client_dir, str(self.uid) + '.smsgur.txt')  # request
+        self._poll_for_file_write_contents(path, ' ')
+        print "get_from_user requested feedback"
+
         path = os.path.join(self.client_dir, str(self.uid) + '.smsgu.txt')
         u = self._poll_for_file_get_contents_delete(path)
+
+        # Preprocess user utterance from the web.
+        u = u.lower()
+        tks = u.split()
+        tks = [tk.strip() for tk in tks]
+        to_add = []
+        for idx in range(len(tks)):  # replace possession with recognized tokens
+            if "'" in tks[idx] and tks[idx][0] != "'":  # contains apostrophe
+                if tks[idx][-1] != "s":  # word ends like jess'
+                    tks[idx] = tks[idx][:-1]  # cut off apostrophe
+                else:  # word ends like jesse's
+                    tks[idx] = tks[idx][:-2]  # cut off apostrophe s
+                to_add.append([idx + 1, "'s"])
+        for aidx in range(len(to_add)):
+            idx, tk = to_add[aidx]
+            tks.insert(idx + aidx, tk)
+        tks = [tk.strip(',?.\"/\\!*&^%$#@()~+-') for tk in tks]
+        u = ' '.join(tks)
+
+        print "get_from_user: " + u
         return u
 
     # Get an integer oidx from those provided or None.
     # Polls the disk until an oidx message from the user appears.
     # Assumes that the file equals 'None' or an integer.
     def get_oidx_from_user(self):
+        path = os.path.join(self.client_dir, str(self.uid) + '.omsgur.txt')  # request
+        self._poll_for_file_write_contents(path, ' ')
+        print "get_oidx_from_user requested feedback"
+
         path = os.path.join(self.client_dir, str(self.uid) + '.omsgu.txt')
         u = self._poll_for_file_get_contents_delete(path)
         if u == 'None':
             u = None
         else:
             u = int(u)
+
+        print "get_oidx_from_user: " + str(u)
         return u
 
     # Poll the disk for the specified file (blocking), get its contents and delete it from the disk.
@@ -112,6 +142,7 @@ class SeverIO:
     def say_to_user(self, u):
         path = os.path.join(self.client_dir, str(self.uid) + '.smsgs.txt')
         self._poll_for_file_write_contents(path, u)
+        print "say_to_user: " + str(u)
 
     # Say a string with words aligned to ontological values.
     # u - a string utterance, possibly tagged with role-fill words like <p>this</p>
@@ -121,6 +152,7 @@ class SeverIO:
         path = os.path.join(self.client_dir, str(self.uid) + '.rmsgs.txt')
         s = u + '\n' + ';'.join([str(r) + ':' + str(rvs[r]) for r in rvs])
         self._poll_for_file_write_contents(path, s)
+        print "say_to_user_with_referents: " + str(u) + " " + str(rvs)
 
     # Write out what action is taken given an action, patient, and recipient as strings.
     # If the server already has a waiting one of these (which would be weird), poll until it clears.
@@ -136,6 +168,7 @@ class SeverIO:
         path = os.path.join(self.client_dir, str(self.uid) + '.amsgs.txt')
         s = a_str + '\n' + ';'.join([str(r) + ':' + str(rvs[r]) for r in rvs])
         self._poll_for_file_write_contents(path, s)
+        print "perform_action: " + str(rvs)
 
     # Poll the disk for the specified file (blocking), and write it when it doesn't exist.
     def _poll_for_file_write_contents(self, fn, u):

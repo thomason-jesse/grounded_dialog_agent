@@ -3,12 +3,7 @@
 	padding:20px;
 	font-size:20px;
 	text-align:left;
-	background-color:Lavender;
-}
-
-#err{
-	background-color:red;
-	color:white;
+	background-color:AliceBlue;
 }
 
 #err{
@@ -17,19 +12,20 @@
 }
 
 .table{
-	border-spacing:0;
-	border-collapse: collapse;
-	margin: 0px auto;
-}
-.td, .tr{
-	border: none;
-}
-.table>tbody>tr>td{
-  border-top: 0px;
+	font-size:20px;
+	border-spacing:4px;
+	margin: 4px auto;
 }
 
 .btn div{
 	font-size:20px;
+}
+
+.user_row {
+	background-color: Bisque;
+}
+.robot_row {
+	background-color: Beige;
 }
 
 .panel_img {
@@ -37,14 +33,34 @@
 	height: 200px;
 }
 .patient_panel {
-	background-color:Aquamarine;
+	background-color:RoyalBlue;
+	width: 200px;
+	height: 200px;
+}
+.patient_text {
+	color:Blue;
 }
 .recipient_panel {
-	background-color:Lightsalmon;
+	background-color:Tomato;
+	width: 200px;
+	height: 200px;
+}
+.recipient_text {
+	color:DarkRed;
 }
 .source_panel {
-	background-color:Beige;
+	background-color:PaleVioletRed;
+	width: 200px;
+	height: 200px;
+}
+.source_text {
+	color:Purple;
 }
 .goal_panel {
-	background-color:Cornsilk;
+	background-color:LightGreen;
+	width: 200px;
+	height: 200px;
+}
+.goal_text {
+	color:SeaGreen;
 }

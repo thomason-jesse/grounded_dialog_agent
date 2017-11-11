@@ -4,10 +4,9 @@ require_once('functions.php');
 $fn = urldecode($_GET['fn']);
 $opt = $_GET['opt'];
 
-clearstatcache();  // forget existing file statuses since we're doing a lot of reading/writing
-
 # Exists option.
 if (strcmp($opt, "exists") == 0) {
+	clearstatcache();
 	if (is_file($fn)) {
 		echo "1";
 	} else {
