@@ -4,20 +4,8 @@
 // fn - the filename
 // returns a string of file contents or false
 function read_file($fn) {
-	$handle = curl_init($fn);
-	curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
-
-	/* Get the HTML or whatever is linked in $url. */
-	$response = curl_exec($handle);
-
-	/* Check for 404 (file not found). */
-	$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-	if($httpCode == 404) {
-		return false;
-	}
-
-	curl_close($handle);
-	return $response;
+	clearstatcache();
+	return file_get_contents($fn);
 }
 
 // Write to file.

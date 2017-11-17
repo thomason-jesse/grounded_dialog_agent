@@ -174,21 +174,10 @@ function get_agent_message(d, uid) {
   sleep(5000);  // sleep for five seconds before initial polling
   while (!got_user_request && !action_message) {
 
-    // Check for a string message, '[uid].smsgs.txt'
-    var contents = get_and_delete_file(smsgs_url);
-    if (contents) {
-      add_row_to_dialog_table(contents, false, -1);
-    }
-
-    // Check for a referent message.
-    contents = get_and_delete_file(rmsgs_url);
-    if (contents) {
-      var m = process_referent_message(contents);
-      add_row_to_dialog_table(m, false, -1);
-    }
+    populate_from_string_or_referent_messages(smsgs_url, rmsgs_url);
 
     // Check for an action message.
-    contents = get_and_delete_file(amsgs_url);
+    var contents = get_and_delete_file(amsgs_url);
     if (contents) {
       // TODO: these contents need to be processed into string and panel
       $('#action_text').html(contents)
@@ -199,22 +188,37 @@ function get_agent_message(d, uid) {
     contents = get_and_delete_file(smsgur_url);
     if (contents) {  // string message request
       got_user_request = true;
-      delete_row_from_dialog_table(-2);  // delete 'thinking'
-      enable_user_text();  // TODO: need to detect whether we're pointing, later on
     }
     contents = get_and_delete_file(omsgur_url);
     if (contents) {  // oidx message request
       got_user_request = true;
-      delete_row_from_dialog_table(-2);  // delete 'thinking'
-      enable_user_text();  // TODO: unlock buttons for object selection instead
     }
 
-    if (!got_user_request && !action_message) {
-      sleep(1000);
-    }
+    sleep(1000);
   }
+  populate_from_string_or_referent_messages(smsgs_url, rmsgs_url);  // in case one was written after finding user message
+
+  delete_row_from_dialog_table(-2);  // delete 'thinking'
+  enable_user_text();  // TODO: unlock buttons for object selection instead if omsgur was the trigger
 
   return action_message;
+}
+
+// Check fo string or referent messages.
+function populate_from_string_or_referent_messages(smsgs_url, rmsgs_url) {
+
+  var contents = get_and_delete_file(smsgs_url);
+  if (contents) {
+    add_row_to_dialog_table(contents, false, -1);
+  }
+
+  // Check for a referent message.
+  contents = get_and_delete_file(rmsgs_url);
+  if (contents) {
+    var m = process_referent_message(contents);
+    add_row_to_dialog_table(m, false, -1);
+  }
+
 }
 
 // Sample a task corresponding to the number and give it to the user.
@@ -260,7 +264,8 @@ function show_task(task_num, d, uid) {
 // url - url to get from and then delete
 // returns - the contents of the url page
 function get_and_delete_file(url) {
-  var contents = http_get(url);
+  var read_url = "manage_files.php?opt=read&fn=" + encodeURIComponent(url) + "&v=" + Math.floor(Math.random() * 999999999).toString();
+  var contents = http_get(read_url);
   if (contents == "0") {  // file not written
     return false;
   } else {
@@ -284,11 +289,7 @@ function http_get(url)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false); // false for synchronous request
     xmlHttp.send(null);
-    if (xmlHttp.status == 404 || xmlHttp.status == 500) {
-      return "0";
-    } else {
-      return xmlHttp.responseText;
-    }
+    return xmlHttp.responseText;
 }
 
 // Check whether the given url returns a 404.
