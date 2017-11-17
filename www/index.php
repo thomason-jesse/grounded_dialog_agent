@@ -79,6 +79,16 @@ function disable_user_text() {
   $('#user_say').prop("disabled", true);
 }
 
+// Enable the user to see and interact with the nearby object buttons.
+function enable_user_train_object_answer() {
+  $('#nearby_objects_div').prop("hidden", false);
+}
+
+// Disable the user from the nearby object buttons.
+function disable_user_train_object_answer() {
+  $('#nearby_objects_div').prop("hidden", true);
+}
+
 // Hide all the panels.
 // type - either 'task' or 'interface'
 function clear_panels(type) {
@@ -155,11 +165,22 @@ function add_row_to_dialog_table(m, u, i) {
 }
 
 // Get user input text and send it to the agent.
-function send_agent_user_input(d, uid) {
+// d - the message
+// uid - user id
+// show - whether to show raw message or process it like a pointing operation
+function send_agent_user_input(d, uid, show) {
   disable_user_text();
   var m = $('#user_input').val();  // read the value
   $('#user_input').val('');  // clear user text
-  add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
+  if (show) {
+    add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
+  } else {
+    if (d == "None") {
+      add_row_to_dialog_table("*you shake your head", true, 0);
+    } else {
+      add_row_to_dialog_table("*you point*", true, 0);
+    }
+  }
   send_agent_string_message(d, uid, m);  // send user string message to the agent
   show_agent_thinking();
 }
@@ -184,8 +205,6 @@ function show_agent_thinking() {
 }
 
 function poll_for_agent_messages() {
-  var got_user_request = false;
-
   populate_from_string_or_referent_messages(smsgs_url, rmsgs_url);
 
   // Check for an action message.
@@ -201,15 +220,13 @@ function poll_for_agent_messages() {
   // Check for a request for user messages.
   contents = get_and_delete_file(smsgur_url);
   if (contents) {  // string message request
-    got_user_request = true;
+    delete_row_from_dialog_table(-2);  // delete 'thinking'
+    enable_user_text();
   }
   contents = get_and_delete_file(omsgur_url);
   if (contents) {  // oidx message request
-    got_user_request = true;
-  }
-  if (got_user_request) {
     delete_row_from_dialog_table(-2);  // delete 'thinking'
-    enable_user_text();  // TODO: unlock buttons for object selection instead if omsgur was the trigger
+    enable_user_train_object_answer();
   }
 }
 
@@ -408,13 +425,15 @@ else {
     <hr>
 
     <div class="row">
-      <div class="col-md-4" id="nearby_objects_div">
+      <div class="col-md-4" id="nearby_objects_div" hidden>
         <?php
           for ($idx = 0; $idx < count($active_train_set); $idx++) {
             echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\">";
-            echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\">";
+            $oidx = explode('_', $active_train_set[$idx])[1];
+            echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\" onclick=\"send_agent_user_input('" . $oidx . "', '" . $uid . "', false)\">";
             echo "</div>";
           }
+          echo "<button class=\"btn\" onclick=\"send_agent_user_input('None', '" . $uid . "', false)\">All / None</button>";
         ?>
       </div>
       <div class="col-md-4">
@@ -422,7 +441,7 @@ else {
           <table id="dialog_table"><tbody>
             <tr id="user_input_row"><td class="user_row">YOU</td><td><input type="text" id="user_input" style="width:100%;" placeholder="type your response here..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"></td></tr>
           </tbody></table>
-          <button class="btn" id="user_say" onclick="send_agent_user_input('<?php echo $d;?>', '<?php echo $uid;?>')">Say</button>
+          <button class="btn" id="user_say" onclick="send_agent_user_input('<?php echo $d;?>', '<?php echo $uid;?>', true)">Say</button>
         </p>
         <p id="finished_task_div">
           <div id="action_text"></div>
