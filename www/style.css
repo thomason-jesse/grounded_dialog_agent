@@ -28,38 +28,49 @@
 	background-color: Beige;
 }
 
-.panel_img {
-	width: 200px;
-	height: 200px;
+.va {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.obj_img {
+	width: 300px;
+	height: 300px;
+	vertical-align: middle;
+}
+.map_img {
+	width: 668px;
+	height: 500px;
+	vertical-align: middle;
 }
 .patient_panel {
 	background-color:RoyalBlue;
-	width: 200px;
-	height: 200px;
+	width: 347px;
+	height: 347px;
 }
 .patient_text {
 	color:Blue;
 }
 .recipient_panel {
 	background-color:Tomato;
-	width: 200px;
-	height: 200px;
+	width: 347px;
+	height: 347px;
 }
 .recipient_text {
 	color:DarkRed;
 }
 .source_panel {
 	background-color:PaleVioletRed;
-	width: 200px;
-	height: 200px;
+	width: 694px;
+	height: 525px;
 }
 .source_text {
 	color:Purple;
 }
 .goal_panel {
 	background-color:LightGreen;
-	width: 200px;
-	height: 200px;
+	width: 694px;
+	height: 525px;
 }
 .goal_text {
 	color:SeaGreen;

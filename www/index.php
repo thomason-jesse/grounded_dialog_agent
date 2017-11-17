@@ -15,6 +15,15 @@
 <link rel="stylesheet" href="style.css">
 
 <script type="text/javascript">
+// Global vars for the script.
+var iv;  // the interval function that polls for robot response.
+// urls the agent uses to communicate with this user
+var smsgs_url;
+var rmsgs_url;
+var amsgs_url;
+var smsgur_url;
+var omsgur_url;
+
 // Functions that don't access the server or the client-side display.
 
 function draw_alternate_name(name) {
@@ -78,12 +87,19 @@ function fill_panel(type, role, atom) {
     if (role == "source" || role == "goal") {
       var rd = "maps/";
       var ext = "png";
+      var img_class = "map_img";
+      var va = false;
     } else if (role == "patient") {
       var rd = "objects/";
       var ext = "jpg";
+      var img_class = "obj_img";
+      var va = true;
     }
     var fn = "images/" + rd + atom + "." + ext;
-    var content = "<img src=\"" + fn + "\" class=\"panel_img\">";
+    var content = "<img src=\"" + fn + "\" class=\"" + img_class + "\">";
+    if (va) {
+      content = "<span class=\"va\"></span>" + content;
+    }
   }
   $('#' + type + '_' + role + '_panel').html(content);
 }
@@ -132,14 +148,7 @@ function send_agent_user_input(d, uid) {
   $('#user_input').val('');  // clear user text
   add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
   send_agent_string_message(d, uid, m);  // send user string message to the agent
-
-  var finished = get_agent_message(d, uid);  // get a response from the agent
-  if (!finished) {
-    enable_user_text();
-  }
-  else {
-    $('#finished_task_div').show();  // show button to advance to next task
-  }
+  show_agent_thinking();
 }
 
 // Write a string message to disk for the server to pick up.
@@ -155,53 +164,40 @@ function send_agent_string_message(d, uid, m) {
   }
 }
 
-// Gets the next agent message and renders it on the dialog interface.
-// d - the directory where messages live
-// uid - the integer user id to read messages for
-// return - true if the message was an action (dialog over), false otherwise
-function get_agent_message(d, uid) {
+// Disables user feedback and adds the "thinking" row for the agent.
+function show_agent_thinking() {
   disable_user_text();  // disable user input from typing
   add_row_to_dialog_table("<i>thinking...</i>", false, 0);
+}
 
-  // Spin until request for user feedback exists, processing agent messages as they arrive.
+function poll_for_agent_messages() {
   var got_user_request = false;
-  var action_message = false;
-  smsgs_url = d + uid + ".smsgs.txt";
-  rmsgs_url = d + uid + ".rmsgs.txt";
-  amsgs_url = d + uid + ".amsgs.txt";
-  smsgur_url = d + uid + ".smsgur.txt";
-  omsgur_url = d + uid + ".omsgur.txt";
-  sleep(5000);  // sleep for five seconds before initial polling
-  while (!got_user_request && !action_message) {
 
-    populate_from_string_or_referent_messages(smsgs_url, rmsgs_url);
+  populate_from_string_or_referent_messages(smsgs_url, rmsgs_url);
 
-    // Check for an action message.
-    var contents = get_and_delete_file(amsgs_url);
-    if (contents) {
-      // TODO: these contents need to be processed into string and panel
-      $('#action_text').html(contents)
-      action_message = true;
-    }
-
-    // Check for a request for user messages.
-    contents = get_and_delete_file(smsgur_url);
-    if (contents) {  // string message request
-      got_user_request = true;
-    }
-    contents = get_and_delete_file(omsgur_url);
-    if (contents) {  // oidx message request
-      got_user_request = true;
-    }
-
-    sleep(1000);
+  // Check for an action message.
+  var contents = get_and_delete_file(amsgs_url);
+  if (contents) {
+    delete_row_from_dialog_table(-2);  // delete 'thinking'
+    var m = process_referent_message(contents);
+    $('#action_text').html(m)
+    $('#finished_task_div').show();  // show advance to next task button
+    clearInterval(iv);
   }
-  populate_from_string_or_referent_messages(smsgs_url, rmsgs_url);  // in case one was written after finding user message
 
-  delete_row_from_dialog_table(-2);  // delete 'thinking'
-  enable_user_text();  // TODO: unlock buttons for object selection instead if omsgur was the trigger
-
-  return action_message;
+  // Check for a request for user messages.
+  contents = get_and_delete_file(smsgur_url);
+  if (contents) {  // string message request
+    got_user_request = true;
+  }
+  contents = get_and_delete_file(omsgur_url);
+  if (contents) {  // oidx message request
+    got_user_request = true;
+  }
+  if (got_user_request) {
+    delete_row_from_dialog_table(-2);  // delete 'thinking'
+    enable_user_text();  // TODO: unlock buttons for object selection instead if omsgur was the trigger
+  }
 }
 
 // Check fo string or referent messages.
@@ -228,7 +224,7 @@ function show_task(task_num, d, uid) {
 
   // Sample a task of the matching number.
   if (task_num == 1) {
-    var task_text = "<p>Solve this problem by commanding the robot:<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">left map</span>. The object belongs at the X marked on the <span class=\"goal_text\">right_map</span>.</p>";
+    var task_text = "<p>Give the robot a command to solve this problem:<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">left map</span>. The object belongs at the X marked on the <span class=\"goal_text\">right_map</span>.</p>";
     var patient = "oidx_28";
     var recipient = 0;
     var source = "3520";
@@ -255,7 +251,15 @@ function show_task(task_num, d, uid) {
 
   // Get first message from robot and unhide display.
   $('#interaction_div').show();
-  get_agent_message(d, uid);
+  show_agent_thinking(d, uid);
+
+  // Start infinite, 5 second poll for robot feedback that ends when action message is shown.
+  smsgs_url = d + uid + ".smsgs.txt";
+  rmsgs_url = d + uid + ".rmsgs.txt";
+  amsgs_url = d + uid + ".amsgs.txt";
+  smsgur_url = d + uid + ".smsgur.txt";
+  omsgur_url = d + uid + ".omsgur.txt";
+  iv = setInterval(poll_for_agent_messages, 5000);
 }
 
 // Functions related to server-side processing.

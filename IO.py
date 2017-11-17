@@ -162,7 +162,7 @@ class SeverIO:
         elif rvs['action'] == 'bring':
             a_str = "The robot finds <p>this</p> and delivers it to <r>this person</r>."
         elif rvs['action'] == 'move':
-            a_str = "The robot moves item <p>this</p> from <s>here</s> to <g>there</g>."
+            a_str = "The robot moves <p>this</p> from <s>here</s> to <g>there</g>."
         else:
             a_str = "ERROR: unrecognized action for robot"
         path = os.path.join(self.client_dir, str(self.uid) + '.amsgs.txt')

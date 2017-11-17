@@ -4,8 +4,13 @@
 // fn - the filename
 // returns a string of file contents or false
 function read_file($fn) {
-	clearstatcache();
-	return file_get_contents($fn);
+	$cmd = "cat " . $fn;
+	$d = shell_exec($cmd);
+	if (!$d || strcmp("cat:", substr($d, 0, 4)) == 0) {
+		return false;
+	} else {
+		return $d;
+	}
 }
 
 // Write to file.
