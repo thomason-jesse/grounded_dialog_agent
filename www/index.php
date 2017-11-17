@@ -108,9 +108,10 @@ function delete_row_from_dialog_table(i) {
 // Add a new row to the bottom of the dialog table.
 // m - the string message to add
 // u - true if message is from the user, false otherwise
-function add_row_to_dialog_table(m, u) {
+// i - the position at which to add the row (expected negative)
+function add_row_to_dialog_table(m, u, i) {
   var table = document.getElementById('dialog_table');
-  var row = table.insertRow(table.rows.length - 1);
+  var row = table.insertRow(table.rows.length - 1 + i);
   var name_cell = row.insertCell(0);
   var msg_cell = row.insertCell(1);
   if (u) {
@@ -129,7 +130,7 @@ function send_agent_user_input(d, uid) {
   disable_user_text();
   var m = $('#user_input').val();  // read the value
   $('#user_input').val('');  // clear user text
-  add_row_to_dialog_table(m, true);  // add the user text to the dialog table history
+  add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
   send_agent_string_message(d, uid, m);  // send user string message to the agent
 
   var finished = get_agent_message(d, uid);  // get a response from the agent
@@ -160,7 +161,7 @@ function send_agent_string_message(d, uid, m) {
 // return - true if the message was an action (dialog over), false otherwise
 function get_agent_message(d, uid) {
   disable_user_text();  // disable user input from typing
-  add_row_to_dialog_table("<i>thinking...</i>", false);
+  add_row_to_dialog_table("<i>thinking...</i>", false, 0);
 
   // Spin until request for user feedback exists, processing agent messages as they arrive.
   var got_user_request = false;
@@ -170,42 +171,46 @@ function get_agent_message(d, uid) {
   amsgs_url = d + uid + ".amsgs.txt";
   smsgur_url = d + uid + ".smsgur.txt";
   omsgur_url = d + uid + ".omsgur.txt";
+  sleep(5000);  // sleep for five seconds before initial polling
   while (!got_user_request && !action_message) {
-    sleep(1000);  // sleep for one second before polling
 
     // Check for a string message, '[uid].smsgs.txt'
-    if (url_exists(smsgs_url)) {
-      var m = get_and_delete_file(smsgs_url);
-      delete_row_from_dialog_table(-2);  // delete 'thinking'
-      add_row_to_dialog_table(m, false);
-      enable_user_text();  // TODO: need to detect whether we're pointing, later on
+    var contents = get_and_delete_file(smsgs_url);
+    if (contents) {
+      add_row_to_dialog_table(contents, false, -1);
     }
 
     // Check for a referent message.
-    if (url_exists(rmsgs_url)) {
-      var contents = get_and_delete_file(rmsgs_url);
+    contents = get_and_delete_file(rmsgs_url);
+    if (contents) {
       var m = process_referent_message(contents);
-      delete_row_from_dialog_table(-2);  // delete 'thinking'
-      add_row_to_dialog_table(m, false);
-      enable_user_text();  // TODO: need to detect whether we're pointing, later on
+      add_row_to_dialog_table(m, false, -1);
     }
 
     // Check for an action message.
-    if (url_exists(amsgs_url)) {
-      var contents = get_and_delete_file(amsgs_url);
+    contents = get_and_delete_file(amsgs_url);
+    if (contents) {
       // TODO: these contents need to be processed into string and panel
       $('#action_text').html(contents)
       action_message = true;
     }
 
     // Check for a request for user messages.
-    // TODO: use this to differentiate between needing to unlock textbox versus object selector
-    if (url_exists(smsgur_url)) {  // string message request
-      get_and_delete_file(smsgur_url);
+    contents = get_and_delete_file(smsgur_url);
+    if (contents) {  // string message request
       got_user_request = true;
-    } else if (url_exists(omsgur_url)) {  // oidx message request
-      get_and_delete_file(omsgur_url);
+      delete_row_from_dialog_table(-2);  // delete 'thinking'
+      enable_user_text();  // TODO: need to detect whether we're pointing, later on
+    }
+    contents = get_and_delete_file(omsgur_url);
+    if (contents) {  // oidx message request
       got_user_request = true;
+      delete_row_from_dialog_table(-2);  // delete 'thinking'
+      enable_user_text();  // TODO: unlock buttons for object selection instead
+    }
+
+    if (!got_user_request && !action_message) {
+      sleep(1000);
     }
   }
 
@@ -256,12 +261,19 @@ function show_task(task_num, d, uid) {
 // returns - the contents of the url page
 function get_and_delete_file(url) {
   var contents = http_get(url);
-  var del_url = "manage_files.php?opt=del&fn=" + encodeURIComponent(url);
-  success = http_get(del_url);
-  if (success == "0") {
-    show_error("Failed to delete file '" + url + "' using url '" + del_url + "'.");
+  if (contents == "0") {  // file not written
+    return false;
+  } else {
+
+    // delete the read file
+    var del_url = "manage_files.php?opt=del&fn=" + encodeURIComponent(url);
+    success = http_get(del_url);
+    if (success == "0") {
+      show_error("Failed to delete file '" + url + "' using url '" + del_url + "'.");
+    }
+
+    return contents;
   }
-  return contents;
 }
 
 // Get the contents of the given url.
@@ -272,7 +284,11 @@ function http_get(url)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false); // false for synchronous request
     xmlHttp.send(null);
-    return xmlHttp.responseText;
+    if (xmlHttp.status == 404 || xmlHttp.status == 500) {
+      return "0";
+    } else {
+      return xmlHttp.responseText;
+    }
 }
 
 // Check whether the given url returns a 404.
