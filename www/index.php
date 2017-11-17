@@ -36,11 +36,14 @@ function process_referent_message(c) {
   var ca = c.split('\n');
   
   // Fill interface panels.
+  clear_panels('interface');
   var roles = ca[1].split(';');
   var i;
   for (i=0; i < roles.length; i++) {
     ra = roles[i].split(':');
-    fill_panel('interface', ra[0], ra[1]);
+    if (ra[1] != "None") {
+      fill_panel('interface', ra[0], ra[1]);      
+    }
   }
 
   // Recolor message.
@@ -76,6 +79,15 @@ function disable_user_text() {
   $('#user_say').prop("disabled", true);
 }
 
+// Hide all the panels.
+// type - either 'task' or 'interface'
+function clear_panels(type) {
+  $('#' + type + "_patient_panel").prop("hidden", true);
+  $('#' + type + "_recipient_panel").prop("hidden", true);
+  $('#' + type + "_source_panel").prop("hidden", true);
+  $('#' + type + "_goal_panel").prop("hidden", true);
+}
+
 // Fill a panel with an image.
 // type - either 'task' or 'interface'
 // role - one of 'patient', 'recipient', 'source', or 'goal'
@@ -102,6 +114,7 @@ function fill_panel(type, role, atom) {
     }
   }
   $('#' + type + '_' + role + '_panel').html(content);
+  $('#' + type + '_' + role + '_panel').prop("hidden", false);
 }
 
 // Remove all rows from the dialog table except the user input row.
@@ -336,6 +349,9 @@ function sleep(milliseconds) {
 require_once('functions.php');
 
 $d = 'client/';
+$fold = 0;  # out of three
+$active_train_set = get_active_train_set($fold);
+shuffle($active_train_set);
 
 # This is a new landing, so we need to set up the task and call the Server to make an instance.
 if (!isset($_POST['uid'])) {
@@ -352,8 +368,7 @@ if (!isset($_POST['uid'])) {
   $inst .= "Use the chat box below to command the robot to complete the given task.</p><br/>";
   ?>
   <div class="row" id="inst_div">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-12">
       <?php echo $inst;?>
       <form action="index.php" method="POST">
         <input type="hidden" name="uid" value="<?php echo $uid;?>">
@@ -361,7 +376,6 @@ if (!isset($_POST['uid'])) {
         <input type="submit" class="btn" value="Okay">
       </form>
     </div>
-    <div class="col-md-1"></div>
   </div>
   <?php
 }
@@ -376,79 +390,72 @@ else {
   ?>
   <div id="interaction_div" style="display:none;">
     <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-5" id="task_text"></div>
-      <div class="col-md-5"></div>
-      <div class="col-md-1"></div>
+      <div class="col-md-12" id="task_text"></div>
     </div>
     <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-5">
+      <div class="col-md-12">
         <div class="row">
-          <div class="col-md-1 patient_panel" id="task_patient_panel"></div>
-          <div class="col-md-1 recipient_panel" id="task_recipient_panel"></div>
+          <div class="col-md-1 patient_panel" id="task_patient_panel" hidden></div>
+          <div class="col-md-1 recipient_panel" id="task_recipient_panel" hidden></div>
         </div>
         <div class="row">
-          <div class="col-md-1 source_panel" id="task_source_panel"></div>
-          <div class="col-md-1 goal_panel" id="task_goal_panel"></div>
+          <div class="col-md-1 source_panel" id="task_source_panel" hidden></div>
+          <div class="col-md-1 goal_panel" id="task_goal_panel" hidden></div>
         </div>
       </div>
-      <div class="col-md-5" id="nearby_objects_div">
-        Nearby Objects
-      </div>
-      <div class="col-md-1"></div>
     </div>
 
+    <hr>
+
     <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-5">
-        <table id="dialog_table"><tbody>
-          <tr id="user_input_row"><td class="user_row">YOU</td><td><input type="text" id="user_input" style="width:100%;" placeholder="type your response here..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"></td></tr>
-        </tbody></table>
-        <button class="btn" id="user_say" onclick="send_agent_user_input('<?php echo $d;?>', '<?php echo $uid;?>')">Say</button>
+      <div class="col-md-4" id="nearby_objects_div">
+        <?php
+          for ($idx = 0; $idx < count($active_train_set); $idx++) {
+            echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\">";
+            echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\">";
+            echo "</div>";
+          }
+        ?>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
+        <p>
+          <table id="dialog_table"><tbody>
+            <tr id="user_input_row"><td class="user_row">YOU</td><td><input type="text" id="user_input" style="width:100%;" placeholder="type your response here..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"></td></tr>
+          </tbody></table>
+          <button class="btn" id="user_say" onclick="send_agent_user_input('<?php echo $d;?>', '<?php echo $uid;?>')">Say</button>
+        </p>
+        <p id="finished_task_div">
+          <div id="action_text"></div>
+            <form action="index.php" method="POST">
+              <input type="hidden" name="uid" value="<?php echo $uid;?>">
+              <input type="hidden" name="task_num" value="<?php echo $task_num;?>">
+              <input type="submit" class="btn" value="Okay">
+            </form>
+        </p>
+      </div>
+      <div class="col-md-4">
         <div class="row">
-          <div class="col-md-1 patient_panel" id="interface_patient_panel"></div>
-          <div class="col-md-1 recipient_panel" id="interface_recipient_panel"></div>
+          <div class="col-md-1 patient_panel" id="interface_patient_panel" hidden></div>
+          <div class="col-md-1 recipient_panel" id="interface_recipient_panel" hidden></div>
         </div>
         <div class="row">
-          <div class="col-md-1 source_panel" id="interface_source_panel"></div>
-          <div class="col-md-1 goal_panel" id="interface_goal_panel"></div>
+          <div class="col-md-1 source_panel" id="interface_source_panel" hidden></div>
+          <div class="col-md-1 goal_panel" id="interface_goal_panel" hidden></div>
         </div>
       </div>
-      <div class="col-md-1"></div>
     </div>
   </div>
 
   <div class="row" id="next_task_div">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+    <div class="col-md-12">
       <p>Give your commands all at once, as opposed to in individual steps.</p>
       <p>The can take a while to think of its response, so be patient on startup and when waiting for a reply.</p>
       <button class="btn" name="user_say" onclick="show_task(<?php echo $task_num;?>, '<?php echo $d;?>', '<?php echo $uid;?>')">Show next task</button>
     </div>
-    <div class="col-md-1"></div>
   </div>
 
     <?php
 }
-
-# Show form to advance after completion/reading instructions.
-?>
-<div class="row" id="finished_task_div" style="display:none;">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-    <div id="action_text"></div>
-    <form action="index.php" method="POST">
-      <input type="hidden" name="uid" value="<?php echo $uid;?>">
-      <input type="hidden" name="task_num" value="<?php echo $task_num;?>">
-      <input type="submit" class="btn" value="Okay">
-    </form>
-  </div>
-  <div class="col-md-1"></div>
-</div>
-<?php
 
 # Show exit instructions.
 # TODO: this should be it's own page that the user can navigate to only after finishing the task.

@@ -27,6 +27,11 @@
 .robot_row {
 	background-color: Beige;
 }
+.robot_obj_panel {
+	background-color:Beige;
+	width: 347px;
+	height: 347px;
+}
 
 .va {
     display: inline-block;
