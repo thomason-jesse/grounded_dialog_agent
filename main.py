@@ -32,6 +32,7 @@ def main():
     uid = FLAGS_uid
     client_dir = FLAGS_client_dir
     spin_time = FLAGS_spin_time
+    num_dialogs = FLAGS_num_dialogs
     assert io_type == 'keyboard' or io_type == 'server'
     assert io_type != 'server' or (uid is not None and client_dir is not None)
 
@@ -91,9 +92,10 @@ def main():
     print "main: ... done"
 
     # Start a dialog.
-    print "main: running command dialog..."
-    a.start_action_dialog()
-    print "main: ... done"
+    for _ in range(num_dialogs):
+        print "main: running command dialog..."
+        a.start_action_dialog()
+        print "main: ... done"
 
     # Retrain the in-memory parser based on induced training data.
     # print "main: re-training parser on pairs induced from conversation..."
@@ -131,6 +133,8 @@ if __name__ == '__main__':
                         help="for ServerIO")
     parser.add_argument('--spin_time', type=int, required=False, default=1,
                         help="for ServerIO")
+    parser.add_argument('--num_dialogs', type=int, required=False, default=1,
+                        help="number of times to call start_action_dialog")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

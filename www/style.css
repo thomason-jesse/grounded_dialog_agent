@@ -32,6 +32,11 @@
 	width: 347px;
 	height: 347px;
 }
+.robot_obj_panel_highlight {
+	background-color:RoyalBlue;
+	width: 347px;
+	height: 347px;
+}
 
 .va {
     display: inline-block;

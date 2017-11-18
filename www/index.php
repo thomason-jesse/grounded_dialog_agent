@@ -127,6 +127,23 @@ function fill_panel(type, role, atom) {
   $('#' + type + '_' + role + '_panel').prop("hidden", false);
 }
 
+// Unhighlight all nearby objects.
+function nearby_objects_clear_all() {
+  for (var idx = 0; idx < 8; idx++) {
+    $('#robot_obj_' + idx).removeClass("robot_obj_panel_highlight");
+  }
+}
+
+function nearby_objects_highlight(idx) {
+  $('#robot_obj_' + idx).removeClass("robot_obj_panel");
+  $('#robot_obj_' + idx).addClass("robot_obj_panel_highlight");
+}
+
+function nearby_objects_clear(idx) {
+  $('#robot_obj_' + idx).removeClass("robot_obj_panel_highlight");
+  $('#robot_obj_' + idx).addClass("robot_obj_panel");
+}
+
 // Remove all rows from the dialog table except the user input row.
 function clear_dialog_table() {
   $("#dialog_table > tr").slice($('#dialog_table tr').length - 1).remove();
@@ -165,23 +182,29 @@ function add_row_to_dialog_table(m, u, i) {
 }
 
 // Get user input text and send it to the agent.
-// d - the message
+// d - the directory
 // uid - user id
-// show - whether to show raw message or process it like a pointing operation
-function send_agent_user_input(d, uid, show) {
+function send_agent_user_text_input(d, uid) {
   disable_user_text();
   var m = $('#user_input').val();  // read the value
   $('#user_input').val('');  // clear user text
-  if (show) {
-    add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
-  } else {
-    if (d == "None") {
-      add_row_to_dialog_table("*you shake your head", true, 0);
-    } else {
-      add_row_to_dialog_table("*you point*", true, 0);
-    }
-  }
+  add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
   send_agent_string_message(d, uid, m);  // send user string message to the agent
+  show_agent_thinking();
+}
+
+// Get user oidx point and send it to the agent.
+// point - the object pointed to or "None"
+// d - the directory
+// uid - user id
+function send_agent_user_oidx_input(point, d, uid) {
+  disable_user_train_object_answer();
+  if (point == "None") {
+    add_row_to_dialog_table("*you shake your head*", true, 0);
+  } else {
+    add_row_to_dialog_table("*you point*", true, 0);
+  }
+  send_agent_string_message(d, uid, point);  // send user string message to the agent
   show_agent_thinking();
 }
 
@@ -214,6 +237,7 @@ function poll_for_agent_messages() {
     var m = process_referent_message(contents);
     $('#action_text').html(m)
     $('#finished_task_div').show();  // show advance to next task button
+    disable_user_text();  // just in case
     clearInterval(iv);
   }
 
@@ -339,16 +363,6 @@ function url_exists(url) {
   }
 }
 
-// Sleep for milliseconds.
-// Implementation from: https://stackoverflow.com/questions/16873323/javascript-sleep-wait-before-continuing
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
 </script>
 
 </head>
@@ -428,29 +442,29 @@ else {
       <div class="col-md-4" id="nearby_objects_div" hidden>
         <?php
           for ($idx = 0; $idx < count($active_train_set); $idx++) {
-            echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\">";
+            echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\" onmouseover=\"nearby_objects_highlight('" . $idx . "')\" onmouseleave=\"nearby_objects_clear('" . $idx . "')\">";
             $oidx = explode('_', $active_train_set[$idx])[1];
-            echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\" onclick=\"send_agent_user_input('" . $oidx . "', '" . $uid . "', false)\">";
+            echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\" onclick=\"{nearby_objects_clear_all(); nearby_objects_highlight('" . $idx . "'); send_agent_user_oidx_input('" . $oidx . "', '". $d . "', '" . $uid . "');}\">";
             echo "</div>";
           }
-          echo "<button class=\"btn\" onclick=\"send_agent_user_input('None', '" . $uid . "', false)\">All / None</button>";
+          echo "<button class=\"btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">All / None</button>";
         ?>
       </div>
       <div class="col-md-4">
-        <p>
+        <div>
           <table id="dialog_table"><tbody>
             <tr id="user_input_row"><td class="user_row">YOU</td><td><input type="text" id="user_input" style="width:100%;" placeholder="type your response here..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"></td></tr>
           </tbody></table>
-          <button class="btn" id="user_say" onclick="send_agent_user_input('<?php echo $d;?>', '<?php echo $uid;?>', true)">Say</button>
-        </p>
-        <p id="finished_task_div" hidden>
+          <button class="btn" id="user_say" onclick="send_agent_user_text_input('<?php echo $d;?>', '<?php echo $uid;?>')">Say</button>
+        </div>
+        <div id="finished_task_div" hidden>
           <div id="action_text"></div>
             <form action="index.php" method="POST">
               <input type="hidden" name="uid" value="<?php echo $uid;?>">
               <input type="hidden" name="task_num" value="<?php echo $task_num;?>">
               <input type="submit" class="btn" value="Okay">
             </form>
-        </p>
+        </div>
       </div>
       <div class="col-md-4">
         <div class="row">

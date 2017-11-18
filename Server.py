@@ -16,13 +16,14 @@ class Server:
 
     devnull = open(os.devnull, 'w')
 
-    def __init__(self, active_train_set, grounder_fn, spin_time, cycles_per_user, client_dir, log_dir):
+    def __init__(self, active_train_set, grounder_fn, spin_time, cycles_per_user, client_dir, log_dir, num_dialogs):
         self.active_train_set = active_train_set
         self.grounder_fn = grounder_fn
         self.spin_time = spin_time
         self.cycles_per_user = cycles_per_user
         self.client_dir = client_dir
         self.log_dir = log_dir
+        self.num_dialogs = num_dialogs
 
         # State and message information.
         self.users = []  # uids
@@ -59,7 +60,8 @@ class Server:
                                                                            for oidx in self.active_train_set]),
                                            "--uid", str(uid),
                                            "--client_dir", self.client_dir,
-                                           "--spin_time", str(self.spin_time)]
+                                           "--spin_time", str(self.spin_time),
+                                           "--num_dialogs", str(self.num_dialogs)]
                                     print ("Server: ... executing subprocess " + str(cmd) +
                                            ", ie. '" + ' '.join(cmd) + "'")
                                     f = open(os.path.join(self.log_dir, str(uid) + ".log"), 'w')
@@ -112,7 +114,7 @@ class Server:
     def remove_user(self, uid):
         self.users.remove(uid)
         if self.agents[uid].poll() is None:  # process hasn't terminated yet.
-            self.agents[uid].kill()
+            self.agents[uid].terminate()
         del self.agents[uid]
         self.logs[uid].close()
         del self.logs[uid]
@@ -138,6 +140,8 @@ def main():
     client_dir = FLAGS_client_dir
     log_dir = FLAGS_log_dir
     write_classifiers = FLAGS_write_classifiers
+    load_grounder = FLAGS_load_grounder
+    num_dialogs = FLAGS_num_dialogs
 
     # Load the parser from file.
     print "main: loading parser from file..."
@@ -159,21 +163,27 @@ def main():
     print "main: ... done"
 
     # Instantiate a grounder.
-    print "main: instantiating grounder..."
-    g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
-                              active_test_set)
-    if write_classifiers:
-        print "main: and writing grounder perception classifiers to file..."
-        g.kb.pc.commit_changes()  # save classifiers to disk
-    print "main: writing grounder to pickle..."
     grounder_fn = os.path.join(client_dir, 'grounder.pickle')
-    with open(grounder_fn, 'wb') as f:
-        pickle.dump(g, f)
-    print "main: ... done"
+    if load_grounder != 1:
+        print "main: instantiating grounder..."
+        g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
+                                  active_test_set)
+        if write_classifiers:
+            print "main: and writing grounder perception classifiers to file..."
+            g.kb.pc.commit_changes()  # save classifiers to disk
+        print "main: writing grounder to pickle..."
+        with open(grounder_fn, 'wb') as f:
+            pickle.dump(g, f)
+        print "main: ... done"
+    else:
+        print "main: loading grounder..."
+        with open(grounder_fn, 'rb') as f:
+            g = pickle.load(f)
+        print "main: ... done"
 
     # Start the Server.
     print "main: instantiated server..."
-    s = Server(active_train_set, grounder_fn, server_spin_time, cycles_per_user, client_dir, log_dir)
+    s = Server(active_train_set, grounder_fn, server_spin_time, cycles_per_user, client_dir, log_dir, num_dialogs)
     print "main: ... done"
 
     print "main: spinning server..."
@@ -205,6 +215,10 @@ if __name__ == '__main__':
                         help="directory where client logfiles should be saved")
     parser.add_argument('--write_classifiers', type=int, required=False, default=0,
                         help="whether to write loaded/trained perception classifiers back to disk")
+    parser.add_argument('--load_grounder', type=int, required=False, default=0,
+                        help="whether to load the grounder from disk (for testing purposes)")
+    parser.add_argument('--num_dialogs', type=int, required=False, default=1,
+                        help="number of times to call start_action_dialog per agent")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v
