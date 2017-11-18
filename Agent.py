@@ -21,7 +21,7 @@ class Agent:
         self.parse_beam = 1
         self.threshold_to_accept_role = 0.9  # include role filler in questions above this threshold
         self.threshold_to_accept_perceptual_conf = 0.5  # per perceptual predicate, e.g. 0.25 for two
-        self.max_perception_subdialog_qs = 1  # DEBUG should be 5  # based on CORL17 experimental condition
+        self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
         self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction

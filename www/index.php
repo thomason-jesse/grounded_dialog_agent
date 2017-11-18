@@ -443,7 +443,7 @@ else {
           </tbody></table>
           <button class="btn" id="user_say" onclick="send_agent_user_input('<?php echo $d;?>', '<?php echo $uid;?>', true)">Say</button>
         </p>
-        <p id="finished_task_div">
+        <p id="finished_task_div" hidden>
           <div id="action_text"></div>
             <form action="index.php" method="POST">
               <input type="hidden" name="uid" value="<?php echo $uid;?>">
