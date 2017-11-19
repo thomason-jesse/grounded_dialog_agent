@@ -307,8 +307,9 @@ class Agent:
                         break
 
                     # If q is not None, we're going to engage in the sub-dialog.
-                    self.io.say_to_user("I'm still learning the meanings of some words. I'm going to ask you a " +
-                                        "few questions about these nearby objects before we continue.")
+                    if num_qs == 0:
+                        self.io.say_to_user("I'm still learning the meanings of some words. I'm going to ask you a " +
+                                            "few questions about these nearby objects before we continue.")
 
                     # Ask the question and get a user response.
                     self.io.say_to_user_with_referents(q, rvs)
