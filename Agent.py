@@ -39,9 +39,16 @@ class Agent:
         # pairs of [utterance, grounded SemanticNode] induced from conversations
         self.induced_utterance_grounding_pairs = []
 
+        # pairs of (pred, oidx, label) gathered during perceptual sub-dialogs
+        # We use pred as a str instead of its id to make collapsing labels across users easier later.
+        self.new_perceptual_labels = []
+        # pairs of (pred, pred, syn) for syn bool gathered during perceptual sub-dialogs
+        self.perceptual_pred_synonymy = []
+
     # Start a new action dialog from utterance u given by a user.
     # Clarifies the arguments of u until the action is confirmed by the user.
-    def start_action_dialog(self):
+    # perception_labels_requested - pairs of (pidx, oidx) labels already requested from user; modified in-place
+    def start_action_dialog(self, perception_labels_requested):
         debug = False
 
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
@@ -77,7 +84,6 @@ class Agent:
         # Ask a follow up question based on the new belief state.
         # This continues until an action is chosen.
         user_utterances_by_role = {r: [] for r in self.roles + ['all']}  # to later induce grounding matches
-        perception_labels_requested = []  # list of (pidx, oidx) tuples of labels we've already gotten from this user
         action_confirmed = {r: None for r in self.roles}
         first_utterance = True
         perception_subdialog_qs = 0  # track how many have been asked so far to disallow more of them after
@@ -118,14 +124,14 @@ class Agent:
                                                                              self.max_perception_subdialog_qs,
                                                                              perception_labels_requested)
             if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                self.io.say_to_user("I'm still learning the meanings of some words. I'm going to ask you a " +
-                                    "few questions about these nearby objects before we continue.")
-                perception_subdialog_qs += self.conduct_perception_subdialog(ur, gprs, pr,
-                                                                             self.max_perception_subdialog_qs -
-                                                                             perception_subdialog_qs,
-                                                                             perception_labels_requested,
-                                                                             allow_off_topic_preds=True)
-                self.io.say_to_user("Thanks. Now, back to business.")
+                num_new_qs = self.conduct_perception_subdialog(ur, gprs, pr,
+                                                               self.max_perception_subdialog_qs -
+                                                               perception_subdialog_qs,
+                                                               perception_labels_requested,
+                                                               allow_off_topic_preds=True)
+                perception_subdialog_qs += num_new_qs
+                if num_new_qs > 0:
+                    self.io.say_to_user("Thanks. Now, back to business.")
 
             if role_asked is None:  # asked to repeat whole thing
                 user_utterances_by_role['all'].append(ur)
@@ -145,9 +151,9 @@ class Agent:
                 print "start_action_dialog: updated action belief state: " + str(self.action_belief_state)
 
         # Induce utterance/grounding pairs from this conversation.
-        new_i_pairs = self.induce_utterance_grounding_pairs_from_conversation(user_utterances_by_role,
-                                                                              action_confirmed)
-        self.induced_utterance_grounding_pairs.extend(new_i_pairs)
+        # new_i_pairs = self.induce_utterance_grounding_pairs_from_conversation(user_utterances_by_role,
+        #                                                                       action_confirmed)
+        # self.induced_utterance_grounding_pairs.extend(new_i_pairs)
 
         # TODO: update SVMs with positive example from active test set
         # TODO: this is tricky since in live experiment these labels still have to be ignored
@@ -157,6 +163,9 @@ class Agent:
 
         # Perform the chosen action.
         self.io.perform_action(action_confirmed)
+
+        # Return the chosen action and the user utterances by role from this dialog.
+        return action_confirmed, user_utterances_by_role
 
     # While top grounding confidence does not pass perception threshold, ask a question that
     # strengthens an SVM involved in the current parse.
@@ -171,7 +180,7 @@ class Agent:
     # returns - an integer, the number of questions asked
     def conduct_perception_subdialog(self, ur, gprs, pr, max_questions, labeled_tuples,
                                      allow_off_topic_preds=False):
-        debug = False
+        debug = True
 
         num_qs = 0
         if len(gprs) > 0:
@@ -219,6 +228,10 @@ class Agent:
                             if (pidx, oidx) not in labeled_tuples:
                                 pos_conf, neg_conf = self.grounder.kb.query((pred, 'oidx_' + str(oidx)))
                                 pred_train_conf[pred].append(max(pos_conf, neg_conf))
+                                if pred_train_conf[pred][-1] < 0:
+                                    pred_train_conf[pred][-1] = 0.
+                                elif pred_train_conf[pred][-1] > 1:
+                                    pred_train_conf[pred][-1] = 1.
                             else:
                                 pred_train_conf[pred].append(1)
                     if debug:
@@ -226,7 +239,7 @@ class Agent:
                                str(pred_test_conf) + " and pred_train_conf: " + str(pred_train_conf) +
                                " for active train set " + str(self.active_train_set))
 
-                    # Examine preds in order of least test confidence until we reach one for which we can
+                    # Examine preds probabilistically for least test confidence until we reach one for which we can
                     # formulate a useful question against the active training set objects. If all of the
                     # active training set objects have been labeled or have total confidence already
                     # for every predicate, the sub-dialog can't be productive and ends.
@@ -234,7 +247,16 @@ class Agent:
                     rvs = {}
                     q_type = None
                     perception_pidx = None
-                    for pred, test_conf in sorted(pred_test_conf.items(), key=operator.itemgetter(1)):
+                    pred = None
+                    # Order predicates weighted by their negative test confidence as a probability.
+                    sum_inv_test_conf = sum([1 - pred_test_conf[pred] for pred in preds_to_consider])
+                    sampled_preds_to_ask = np.random.choice(preds_to_consider, len(preds_to_consider), replace=False,
+                                                            p=[(1 - pred_test_conf[pred]) / sum_inv_test_conf
+                                                               for pred in preds_to_consider])
+                    for pred in sampled_preds_to_ask:
+                        if debug:
+                            print ("conduct_perception_subdialog: sampled pred '" + pred +
+                                   "' with pred_train_conf " + str(pred_train_conf[pred]))
 
                         # If at least one active training object is unlabeled or unconfident
                         if sum(pred_train_conf[pred]) < len(self.active_train_set):
@@ -254,10 +276,19 @@ class Agent:
                                          + pred + "'?")
                                     q_type = 'neg'
 
-                            # Else, ask for the label of the least-confident object.
+                            # Else, ask for the label of the (sampled) least-confident object.
                             else:
-                                oidx = self.active_train_set[pred_train_conf[pred].index(
-                                    min(pred_train_conf[pred]))]
+                                sum_inv_train_conf = sum([1 - pred_train_conf[pred][idx]
+                                                          for idx in range(len(pred_train_conf[pred]))])
+                                pred_train_conf_idx = np.random.choice(range(len(pred_train_conf[pred])), 1,
+                                                                       p=[(1 - pred_train_conf[pred][idx]) /
+                                                                          sum_inv_train_conf
+                                                                          for idx in
+                                                                          range(len(pred_train_conf[pred]))])[0]
+                                if debug:
+                                    print ("conduct_perception_subdialog: sampled idx " + str(pred_train_conf_idx) +
+                                           " out of confidences " + str(pred_train_conf[pred]))
+                                oidx = self.active_train_set[pred_train_conf_idx]
                                 q = "Would you describe <p>this</p> nearby object as '" + pred + "'?"
                                 rvs['patient'] = 'oidx_' + str(oidx)
                                 q_type = oidx
@@ -274,6 +305,10 @@ class Agent:
                     # for every predicate of interest, so this sub-dialog can't get us anywhere.
                     if q is None:
                         break
+
+                    # If q is not None, we're going to engage in the sub-dialog.
+                    self.io.say_to_user("I'm still learning the meanings of some words. I'm going to ask you a " +
+                                        "few questions about these nearby objects before we continue.")
 
                     # Ask the question and get a user response.
                     self.io.say_to_user_with_referents(q, rvs)
@@ -297,22 +332,26 @@ class Agent:
                             uoidxs = self.active_train_set
                             ulabels = [0] * len(self.active_train_set)
                             labeled_tuples.extend([(perception_pidx, oidx) for oidx in self.active_train_set])
+                            self.new_perceptual_labels.extend([(pred, oidx, 0) for oidx in self.active_train_set])
                         else:  # an oidx of a positive example
                             upidxs = [perception_pidx]
                             uoidxs = [sub_ur]
                             ulabels = [1]
                             labeled_tuples.append((perception_pidx, sub_ur))
+                            self.new_perceptual_labels.append((pred, sub_ur, 1))
                     elif q_type == 'neg':  # response is expected to be an oidx or 'all' (e.g. None)
                         if sub_ur is None:  # None, so every object in active train set is a positive example
                             upidxs = [perception_pidx] * len(self.active_train_set)
                             uoidxs = self.active_train_set
                             ulabels = [1] * len(self.active_train_set)
                             labeled_tuples.extend([(perception_pidx, oidx) for oidx in self.active_train_set])
+                            self.new_perceptual_labels.extend([(pred, oidx, 1) for oidx in self.active_train_set])
                         else:  # an oidx of a negative example
                             upidxs = [perception_pidx]
                             uoidxs = [sub_ur]
                             ulabels = [0]
                             labeled_tuples.append((perception_pidx, sub_ur))
+                            self.new_perceptual_labels.append((pred, sub_ur, 0))
                     else:  # response is expected to be a confirmation yes/no
                         for sg, _ in sub_gprs:
                             if sg.idx == self.parser.ontology.preds.index('yes'):
@@ -320,11 +359,13 @@ class Agent:
                                 uoidxs = [q_type]
                                 ulabels = [1]
                                 labeled_tuples.append((perception_pidx, q_type))
+                                self.new_perceptual_labels.append((pred, q_type, 1))
                             elif sg.idx == self.parser.ontology.preds.index('no'):
                                 upidxs = [perception_pidx]
                                 uoidxs = [q_type]
                                 ulabels = [0]
                                 labeled_tuples.append((perception_pidx, q_type))
+                                self.new_perceptual_labels.append((pred, q_type, 0))
                     if debug:
                         print ("conduct_perception_subdialog: updating classifiers with upidxs " + str(upidxs) +
                                ", uoidxs " + str(uoidxs) + ", ulabels " + str(ulabels))
@@ -393,7 +434,13 @@ class Agent:
                         # The new word tk is a synonym of the neighbor, so share lexical entries between them.
                         if _c == 'yes':
                             synonym_identified = [nsfidx, psts]
+                            self.perceptual_pred_synonymy.append((tk, self.parser.lexicon.surface_forms[nsfidx],
+                                                                  True))
                             break
+                        # The new word is not a synonym according to this user.
+                        else:
+                            self.perceptual_pred_synonymy.append((tk, self.parser.lexicon.surface_forms[nsfidx],
+                                                                  False))
 
                     # Whether we identified a synonym or not, we need to determine whether this word is being
                     # Used as an adjective or a noun, which we can do based on its position in the utterance.

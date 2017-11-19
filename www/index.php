@@ -239,6 +239,12 @@ function poll_for_agent_messages() {
     $('#finished_task_div').show();  // show advance to next task button
     disable_user_text();  // just in case
     clearInterval(iv);
+
+    // We need to return early here because the Agent is fast and has likely already booted
+    // up the next dialog and sent the greeting message and user request. Instead of eating
+    // those here and ending the client-side dialog, we return until this function is set
+    // up for polling again.
+    return;
   }
 
   // Check for a request for user messages.

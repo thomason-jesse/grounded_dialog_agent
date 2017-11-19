@@ -16,13 +16,16 @@ class Server:
 
     devnull = open(os.devnull, 'w')
 
-    def __init__(self, active_train_set, grounder_fn, spin_time, cycles_per_user, client_dir, log_dir, num_dialogs):
+    def __init__(self, active_train_set, grounder_fn, spin_time, cycles_per_user,
+                 client_dir, log_dir, data_dir,
+                 num_dialogs):
         self.active_train_set = active_train_set
         self.grounder_fn = grounder_fn
         self.spin_time = spin_time
         self.cycles_per_user = cycles_per_user
         self.client_dir = client_dir
         self.log_dir = log_dir
+        self.data_dir = data_dir
         self.num_dialogs = num_dialogs
 
         # State and message information.
@@ -48,9 +51,9 @@ class Server:
 
                             # Check for newly-connected users.
                             if fnp[1] == 'newu':
-                                uid = int(fnp[0], 16)
+                                uid = fnp[0]
                                 if uid not in self.users:
-                                    print "Server: found new user " + str(uid)
+                                    print "Server: found new user " + uid
 
                                     # Spawn a process that instantiates an Agent and starts a ServerIO dialog.
                                     cmd = ["python", "main.py",
@@ -58,13 +61,14 @@ class Server:
                                            "--io_type", "server",
                                            "--active_train_set", ','.join([str(oidx)
                                                                            for oidx in self.active_train_set]),
-                                           "--uid", str(uid),
+                                           "--uid", uid,
                                            "--client_dir", self.client_dir,
+                                           "--data_dir", self.data_dir,
                                            "--spin_time", str(self.spin_time),
                                            "--num_dialogs", str(self.num_dialogs)]
                                     print ("Server: ... executing subprocess " + str(cmd) +
                                            ", ie. '" + ' '.join(cmd) + "'")
-                                    f = open(os.path.join(self.log_dir, str(uid) + ".log"), 'w')
+                                    f = open(os.path.join(self.log_dir, uid + ".log"), 'w')
                                     sp = subprocess.Popen(cmd, stdout=f, stderr=f)
 
                                     self.users.append(uid)
@@ -72,7 +76,7 @@ class Server:
                                     self.logs[uid] = f
                                     self.time_remaining[uid] = self.cycles_per_user
 
-                                    print "Server: ... launched Agent for user " + str(uid)
+                                    print "Server: ... launched Agent for user " + uid
 
                                 # Even if we already have this user, the file should be removed.
                                 files_to_remove.append(fn)
@@ -87,7 +91,7 @@ class Server:
                 # Check for finished users.
                 for uid in self.users:
                     if self.agents[uid].poll() is not None:  # None means process hans't terminated yet.
-                        print "Server: detected finished user " + str(uid)
+                        print "Server: detected finished user " + uid
                         self.remove_user(uid)
                         print "Server: ... removed user."
 
@@ -97,11 +101,11 @@ class Server:
                 for uid in self.time_remaining:
                     self.time_remaining[uid] -= 1
                     if self.time_remaining[uid] <= 0:
-                        print "Server: user " + str(uid) + " timed out and will be removed"
+                        print "Server: user " + uid + " timed out and will be removed"
                         users_for_removal.append(uid)
                 for uid in users_for_removal:
                     self.remove_user(uid)
-                    print "Server: ... removed user " + str(uid)
+                    print "Server: ... removed user " + uid
 
         # Clean up upon sigterm.
         except KeyboardInterrupt:
@@ -109,7 +113,7 @@ class Server:
             users_for_removal = self.users[:]
             for uid in users_for_removal:
                 self.remove_user(uid)
-                print "Server: ... removed user " + str(uid)
+                print "Server: ... removed user " + uid
 
     def remove_user(self, uid):
         self.users.remove(uid)
@@ -139,6 +143,7 @@ def main():
     cycles_per_user = FLAGS_cycles_per_user
     client_dir = FLAGS_client_dir
     log_dir = FLAGS_log_dir
+    data_dir = FLAGS_data_dir
     write_classifiers = FLAGS_write_classifiers
     load_grounder = FLAGS_load_grounder
     num_dialogs = FLAGS_num_dialogs
@@ -183,7 +188,9 @@ def main():
 
     # Start the Server.
     print "main: instantiated server..."
-    s = Server(active_train_set, grounder_fn, server_spin_time, cycles_per_user, client_dir, log_dir, num_dialogs)
+    s = Server(active_train_set, grounder_fn, server_spin_time, cycles_per_user,
+               client_dir, log_dir, data_dir,
+               num_dialogs)
     print "main: ... done"
 
     print "main: spinning server..."
@@ -213,6 +220,8 @@ if __name__ == '__main__':
                         help="directory where client files should be read")
     parser.add_argument('--log_dir', type=str, required=True,
                         help="directory where client logfiles should be saved")
+    parser.add_argument('--data_dir', type=str, required=True,
+                        help="direcotry where we will write out information gathered during dialogs")
     parser.add_argument('--write_classifiers', type=int, required=False, default=0,
                         help="whether to write loaded/trained perception classifiers back to disk")
     parser.add_argument('--load_grounder', type=int, required=False, default=0,

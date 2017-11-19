@@ -30,11 +30,12 @@ def main():
         active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
     write_classifiers = FLAGS_write_classifiers
     uid = FLAGS_uid
+    data_dir = FLAGS_data_dir
     client_dir = FLAGS_client_dir
     spin_time = FLAGS_spin_time
     num_dialogs = FLAGS_num_dialogs
     assert io_type == 'keyboard' or io_type == 'server'
-    assert io_type != 'server' or (uid is not None and client_dir is not None)
+    assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
 
     if grounder_fn is None:
 
@@ -92,18 +93,31 @@ def main():
     print "main: ... done"
 
     # Start a dialog.
+    perception_labels_requested = []
+    action_confirmed_per_dialog = []
+    utterances_by_role_per_dialog = []
     for _ in range(num_dialogs):
         print "main: running command dialog..."
-        a.start_action_dialog()
-        print "main: ... done"
+        action_confirmed, user_utterances_by_role = a.start_action_dialog(perception_labels_requested=
+                                                                          perception_labels_requested)
+        action_confirmed_per_dialog.append(action_confirmed)
+        utterances_by_role_per_dialog.append(user_utterances_by_role)
+        print "main: ... done; got action " + str(action_confirmed)
 
     # Retrain the in-memory parser based on induced training data.
     # print "main: re-training parser on pairs induced from conversation..."
     # a.train_parser_from_induced_pairs(10, 10, 3, verbose=2)
     # print "main: ... done"
 
-    # TODO: for server, need to write out relevant things at dialog's end, such as induced pairs,
-    # TODO: new predicates and labels, and new synonymy information from human labels.
+    # Write out new information gleaned from this user.
+    if uid is not None:  # DEBUG
+        print "main: writing new information from dialog(s) to file..."
+        fn = os.path.join(data_dir, uid + ".pickle")
+        d = [action_confirmed_per_dialog, utterances_by_role_per_dialog,
+             a.new_perceptual_labels, a.perceptual_pred_synonymy]
+        with open(fn, 'wb') as f:
+            pickle.dump(d, f)
+        print "main: ... done; wrote data d = " + str(d)
 
 
 if __name__ == '__main__':
@@ -127,8 +141,10 @@ if __name__ == '__main__':
                              "excluded from perception classifier training")
     parser.add_argument('--active_train_set', type=str, required=True,
                         help="objects to consider 'local' and able to be queried by opportunistic active learning")
-    parser.add_argument('--uid', type=int, required=False,
+    parser.add_argument('--uid', type=str, required=False,
                         help="for ServerIO")
+    parser.add_argument('--data_dir', type=str, required=False,
+                        help="for writing out information gathered during this dialog")
     parser.add_argument('--client_dir', type=str, required=False,
                         help="for ServerIO")
     parser.add_argument('--spin_time', type=int, required=False, default=1,

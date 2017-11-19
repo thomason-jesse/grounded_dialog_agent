@@ -73,7 +73,7 @@ class SeverIO:
     # id - a numerical id number to pass to the server for identification.
     # spin_time - seconds to spin between polling the server.
     def __init__(self, uid, client_dir, spin_time=1):
-        self.uid = hex(uid)[2:]  # convert back to hex and discard 0x prefix
+        self.uid = uid
         self.client_dir = client_dir
         self.spin_time = spin_time
 
@@ -81,11 +81,11 @@ class SeverIO:
     # Polls the disk until a string message from the user appears.
     # Deletes the string message file from the disk.
     def get_from_user(self):
-        path = os.path.join(self.client_dir, str(self.uid) + '.smsgur.txt')  # request
+        path = os.path.join(self.client_dir, self.uid + '.smsgur.txt')  # request
         self._poll_for_file_write_contents(path, ' ')
         print "get_from_user requested feedback"
 
-        path = os.path.join(self.client_dir, str(self.uid) + '.smsgu.txt')
+        path = os.path.join(self.client_dir, self.uid + '.smsgu.txt')
         u = self._poll_for_file_get_contents_delete(path)
 
         # Preprocess user utterance from the web.
@@ -113,11 +113,11 @@ class SeverIO:
     # Polls the disk until an oidx message from the user appears.
     # Assumes that the file equals 'None' or an integer.
     def get_oidx_from_user(self):
-        path = os.path.join(self.client_dir, str(self.uid) + '.omsgur.txt')  # request
+        path = os.path.join(self.client_dir, self.uid + '.omsgur.txt')  # request
         self._poll_for_file_write_contents(path, ' ')
         print "get_oidx_from_user requested feedback"
 
-        path = os.path.join(self.client_dir, str(self.uid) + '.omsgu.txt')
+        path = os.path.join(self.client_dir, self.uid + '.omsgu.txt')
         u = self._poll_for_file_get_contents_delete(path)
         if u == 'None':
             u = None
@@ -140,7 +140,7 @@ class SeverIO:
     # Say a string to the user.
     # This polls the disk until the existing message string is cleared, then writes the given new one.
     def say_to_user(self, u):
-        path = os.path.join(self.client_dir, str(self.uid) + '.smsgs.txt')
+        path = os.path.join(self.client_dir, self.uid + '.smsgs.txt')
         self._poll_for_file_write_contents(path, u)
         print "say_to_user: " + str(u)
 
@@ -149,7 +149,7 @@ class SeverIO:
     # rvs - role values as a dictionary of roles -> strings
     # This polls the disk until the existing referent message is cleared, then writes the given new one.
     def say_to_user_with_referents(self, u, rvs):
-        path = os.path.join(self.client_dir, str(self.uid) + '.rmsgs.txt')
+        path = os.path.join(self.client_dir, self.uid + '.rmsgs.txt')
         s = u + '\n' + ';'.join([str(r) + ':' + str(rvs[r]) for r in rvs])
         self._poll_for_file_write_contents(path, s)
         print "say_to_user_with_referents: " + str(u) + " " + str(rvs)
@@ -165,7 +165,7 @@ class SeverIO:
             a_str = "The robot moves <p>this</p> from <s>here</s> to <g>there</g>."
         else:
             a_str = "ERROR: unrecognized action for robot"
-        path = os.path.join(self.client_dir, str(self.uid) + '.amsgs.txt')
+        path = os.path.join(self.client_dir, self.uid + '.amsgs.txt')
         s = a_str + '\n' + ';'.join([str(r) + ':' + str(rvs[r]) for r in rvs])
         self._poll_for_file_write_contents(path, s)
         print "perform_action: " + str(rvs)
