@@ -35,9 +35,10 @@ else {
   $names = array("tasks_easy", "understood", "frustrated", "object_qs", "use_navigation", "use_delivery", "use_relocation");
   $survey_responses = array();
   for ($idx = 0; $idx < count($names); $idx ++) {
-    $survey_responses[] = $names[$idx] + "," + $_POST[$names[$idx]];
+    $survey_responses[] = $names[$idx] . "," . $_POST[$names[$idx]];
   }
   $data = implode('\n', $survey_responses);
+  $data = $data . '\n' . htmlspecialchars($_POST['open_response']);
   $err_msg = "Failed to write survey data " . $data . " to file " . $fn;
   write_file($fn, $data, $err_msg);
 

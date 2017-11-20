@@ -142,7 +142,6 @@ function fill_panel(type, role, atom) {
   if (va) {
     content = "<span class=\"va\"></span>" + content;
   }
-  }
   $('#' + type + '_' + role + '_panel').html(content);
   $('#' + type + '_' + role + '_panel').prop("hidden", false);
 }
@@ -449,7 +448,7 @@ else {
 
   # If this is a subseqent task, write out the completed action to appropriate logfile.
   if ($task_num > 1) {
-    $fn = 'user_data/' . $uid . '.' $task_num - 1 . '.txt';
+    $fn = 'user_data/' . $uid . '.' . $task_num - 1 . '.txt';
     $err_msg = "Failed to write action chosen " . $action_chosen . " to file " . $fn;
     write_file($fn, $action_chosen, $err_msg);
   }
@@ -478,6 +477,8 @@ else {
                 }
               ?>
             </table>
+            Feel free to leave any comments you have about your experience here (optional):
+            <textarea rows="4" cols="50" maxlength="512" name="open_response"></textarea>
             <input type="submit" class="btn" id="survey_submit_button" value="Submit responses and get Mechanical Turk code" disabled>
           </form>
         </div>
