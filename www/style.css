@@ -11,22 +11,31 @@
 	color:white;
 }
 
-.table{
-	font-size:20px;
-	border-spacing:4px;
-	margin: 4px auto;
-}
-
 .btn div{
 	font-size:20px;
 }
 
+.td {
+	padding: 6px;
+}
+.th {
+	padding: 6px;
+}
+
+.dialog_table{
+	border-collapse: separate;
+	font-size:20px;
+	border-spacing:6px;
+	margin: 6px auto;
+	width:100%;
+}
 .user_row {
 	background-color: Bisque;
 }
 .robot_row {
 	background-color: Beige;
 }
+
 .robot_obj_panel {
 	background-color:Beige;
 	width: 347px;

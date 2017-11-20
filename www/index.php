@@ -278,20 +278,17 @@ function populate_from_string_or_referent_messages(smsgs_url, rmsgs_url) {
 }
 
 // Sample a task corresponding to the number and give it to the user.
-function show_task(task_num, d, uid) {
+function show_task(d, uid, action, patient, recipient, source, goal) {
   $('#next_task_div').hide();  // hide next task div
   clear_dialog_table();  // Clear the dialog history.
 
   // Sample a task of the matching number.
-  if (task_num == 1) {
-    var task_text = "<p>Give the robot a command to solve this problem:<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">left map</span>. The object belongs at the X marked on the <span class=\"goal_text\">right_map</span>.</p>";
-    var patient = "oidx_28";
-    var recipient = 0;
-    var source = "3520";
-    var goal = "3512";
-  }
-  else {
-    show_error("Task number " + task_num + " unrecognized.");
+  if (action == 'move') {
+    var task_text = "<p>Give the robot a command to solve this problem:<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">pink map</span>. The object belongs at the X marked on the <span class=\"goal_text\">green map</span>.</p>";
+  } else if (action == 'bring') {
+    var task_text = "<p>Give the robot a command to solve this problem:<br><span class=\"recipient_text\">This person</span> needs <span class=\"patient_text\">the object</span> shown below.</p>";
+  } else if (action == 'walk') {
+    var task_text = "<p>Give the robot a command to solve this problem:<br>The robot should be at the X marked on the <span class=\"goal_text\">green map</span>.</p>";
   }
 
   // Render the task on the display.
@@ -385,8 +382,12 @@ function url_exists(url) {
 <?php
 require_once('functions.php');
 
+# Variables that control what tasks and objects will be shown.
+# These should be changed whenever a new Turk task is made.
+$fold = 0;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
+$setting = "init";  # either init, train, or test
+
 $d = 'client/';
-$fold = 0;  # out of three
 $active_train_set = get_active_train_set($fold);
 shuffle($active_train_set);
 
@@ -423,6 +424,15 @@ else {
   $uid = $_POST['uid'];
   $task_num = $_POST['task_num'];
 
+  # Draw a task based on the number.
+  # task_roles is a dictionary of roles -> targets for relevant roles.
+  $task_roles = draw_task($task_num, $setting);
+  $action = $task_roles['action'];
+  $patient = (array_key_exists('patient', $task_roles) ? $task_roles['patient'] : false);
+  $recipient = (array_key_exists('recipient', $task_roles) ? $task_roles['recipient'] : false);
+  $source = (array_key_exists('source', $task_roles) ? $task_roles['source'] : false);
+  $goal = (array_key_exists('goal', $task_roles) ? $task_roles['goal'] : false);
+
   # Show the goal and interface rows.
   ?>
   <div id="interaction_div" style="display:none;">
@@ -430,56 +440,71 @@ else {
       <div class="col-md-12" id="task_text"></div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-8">
         <div class="row">
           <div class="col-md-1 patient_panel" id="task_patient_panel" hidden></div>
           <div class="col-md-1 recipient_panel" id="task_recipient_panel" hidden></div>
-        </div>
-        <div class="row">
           <div class="col-md-1 source_panel" id="task_source_panel" hidden></div>
           <div class="col-md-1 goal_panel" id="task_goal_panel" hidden></div>
         </div>
+      </div>
+      <div class="col-md-4">
+        <table id="person_directory" class="dialog_table">
+          <thead><tr><th>Person</th><th>Name</th></tr></thead>
+          <tbody>
+            <tr><td><img src="images/people/B.png"></td><td>Robert "Bob" Brown</td></tr>
+            <tr><td><img src="images/people/D.png"></td><td>David "Dave" Daniel</td></tr>
+            <tr><td><img src="images/people/H.png"></td><td>Dr. Heidi Hughes</td></tr>
+            <tr><td><img src="images/people/M.png"></td><td>Mallory "Mal" Maroon</td></tr>
+            <tr><td><img src="images/people/N.png"></td><td>Dr. Nancy Nagel</td></tr>
+            <tr><td><img src="images/people/P.png"></td><td>Peggy Parker, Intern</td></tr>
+            <tr><td><img src="images/people/R.png"></td><td>Richard Rogue, Secretary</td></tr>
+            <tr><td><img src="images/people/S.png"></td><td>Dr. Sybil Smalt</td></tr>
+            <tr><td><img src="images/people/W.png"></td><td>Walter Ward, Supervisor</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
     <hr>
 
     <div class="row">
-      <div class="col-md-4" id="nearby_objects_div" hidden>
-        <?php
-          for ($idx = 0; $idx < count($active_train_set); $idx++) {
-            echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\" onmouseover=\"nearby_objects_highlight('" . $idx . "')\" onmouseleave=\"nearby_objects_clear('" . $idx . "')\">";
-            $oidx = explode('_', $active_train_set[$idx])[1];
-            echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\" onclick=\"{nearby_objects_clear_all(); nearby_objects_highlight('" . $idx . "'); send_agent_user_oidx_input('" . $oidx . "', '". $d . "', '" . $uid . "');}\">";
-            echo "</div>";
-          }
-          echo "<button class=\"btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">All / None</button>";
-        ?>
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div>
-          <table id="dialog_table"><tbody>
+          <table id="dialog_table" class="dialog_table"><tbody>
             <tr id="user_input_row"><td class="user_row">YOU</td><td><input type="text" id="user_input" style="width:100%;" placeholder="type your response here..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"></td></tr>
           </tbody></table>
           <button class="btn" id="user_say" onclick="send_agent_user_text_input('<?php echo $d;?>', '<?php echo $uid;?>')">Say</button>
         </div>
         <div id="finished_task_div" hidden>
           <div id="action_text"></div>
+          To advance to the next task, click the button below.
             <form action="index.php" method="POST">
               <input type="hidden" name="uid" value="<?php echo $uid;?>">
-              <input type="hidden" name="task_num" value="<?php echo $task_num;?>">
+              <input type="hidden" name="task_num" value="<?php echo $task_num + 1;?>">
               <input type="submit" class="btn" value="Okay">
             </form>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-md-1 patient_panel" id="interface_patient_panel" hidden></div>
-          <div class="col-md-1 recipient_panel" id="interface_recipient_panel" hidden></div>
+      <div class="col-md-6">
+        <div id="nearby_objects_div" hidden>
+          <?php
+            for ($idx = 0; $idx < count($active_train_set); $idx++) {
+              echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\" onmouseover=\"nearby_objects_highlight('" . $idx . "')\" onmouseleave=\"nearby_objects_clear('" . $idx . "')\">";
+              $oidx = explode('_', $active_train_set[$idx])[1];
+              echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\" onclick=\"{nearby_objects_clear_all(); nearby_objects_highlight('" . $idx . "'); send_agent_user_oidx_input('" . $oidx . "', '". $d . "', '" . $uid . "');}\">";
+              echo "</div>";
+            }
+            echo "<div class=\"col-md-1\"><button class=\"btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">All / None</button></div>";
+          ?>
         </div>
-        <div class="row">
-          <div class="col-md-1 source_panel" id="interface_source_panel" hidden></div>
-          <div class="col-md-1 goal_panel" id="interface_goal_panel" hidden></div>
+        <div>
+          <div class="row">
+            <div class="col-md-1 patient_panel" id="interface_patient_panel" hidden></div>
+            <div class="col-md-1 recipient_panel" id="interface_recipient_panel" hidden></div>
+            <div class="col-md-1 source_panel" id="interface_source_panel" hidden></div>
+            <div class="col-md-1 goal_panel" id="interface_goal_panel" hidden></div>
+          </div>
         </div>
       </div>
     </div>
@@ -489,7 +514,7 @@ else {
     <div class="col-md-12">
       <p>Give your commands all at once, as opposed to in individual steps.</p>
       <p>The can take a while to think of its response, so be patient on startup and when waiting for a reply.</p>
-      <button class="btn" name="user_say" onclick="show_task(<?php echo $task_num;?>, '<?php echo $d;?>', '<?php echo $uid;?>')">Show next task</button>
+      <button class="btn" name="user_say" onclick="show_task('<?php echo $d;?>', '<?php echo $uid;?>', '<?php echo $action;?>', '<?php echo $patient;?>', '<?php echo $recipient;?>', '<?php echo $source;?>', '<?php echo $goal;?>')">Show next task</button>
     </div>
   </div>
 

@@ -289,7 +289,7 @@ class Agent:
                                     print ("conduct_perception_subdialog: sampled idx " + str(pred_train_conf_idx) +
                                            " out of confidences " + str(pred_train_conf[pred]))
                                 oidx = self.active_train_set[pred_train_conf_idx]
-                                q = "Would you describe <p>this</p> nearby object as '" + pred + "'?"
+                                q = "Would you use the word '" + pred + "' when describing <p>this</p> object?"
                                 rvs['patient'] = 'oidx_' + str(oidx)
                                 q_type = oidx
 

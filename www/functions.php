@@ -44,4 +44,33 @@ function get_active_train_set($f) {
 	}
 }
 
+// Draw a task given a task number and a setting.
+// task_num - either 1, 2, or 3
+// setting - either init, train, or test
+function draw_task($task_num, $setting) {
+
+	// Convert the task number into the task type.
+	if ($task_num == 1) {
+		$task_name = "walking";
+	} elseif ($task_num == 2) {
+		$task_name = "delivery";
+	} elseif ($task_num == 3) {
+		$task_name = "relocation";
+	} else {
+		return false;
+	}
+
+	// Decode the appropriate json file to see all tasks.
+	$fn = "tasks/" . $task_name . "_" . $setting . ".json";
+	$s = read_file($fn);
+	if (!s) {
+		return false;
+	}
+	$d = json_decode($s, true);
+
+	// Draw from these tasks uniformly at random.
+	$key = array_rand($d);
+	return $d[$key];
+}
+
 ?>
