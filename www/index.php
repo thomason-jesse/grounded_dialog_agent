@@ -448,7 +448,7 @@ else {
 
   # If this is a subseqent task, write out the completed action to appropriate logfile.
   if ($task_num > 1) {
-    $fn = 'user_data/' . $uid . '.' . $task_num - 1 . '.txt';
+    $fn = 'user_data/' . $uid . '.' . ($task_num - 1) . '.txt';
     $err_msg = "Failed to write action chosen " . $action_chosen . " to file " . $fn;
     write_file($fn, $action_chosen, $err_msg);
   }
