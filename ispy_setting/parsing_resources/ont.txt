@@ -3,15 +3,15 @@ yes:c
 no:c
 
 # people
-peter:p
-ray:p
-greg:p
-dana:p
-scott:p
-justin:p
-stacy:p
-guni:p
-garrett:p
+p:p
+r:p
+d:p
+b:p
+n:p
+h:p
+m:p
+s:p
+w:p
 
 # locations
 3402:l

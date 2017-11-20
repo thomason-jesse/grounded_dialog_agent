@@ -51,10 +51,16 @@
     display: inline-block;
     height: 100%;
     vertical-align: middle;
+    text-align: center;
 }
 .obj_img {
 	width: 300px;
 	height: 300px;
+	vertical-align: middle;
+}
+.person_img {
+	width: 40px;
+	height: 40px;
 	vertical-align: middle;
 }
 .map_img {

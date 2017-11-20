@@ -26,9 +26,20 @@ var omsgur_url;
 
 // Functions that don't access the server or the client-side display.
 
-function draw_alternate_name(name) {
-  // TODO: mimic IJCAI'15 nickname/lastname/firstname/etc. name rewrite rules for anonymized people
-  return name;
+// Enable the survey submit button if all radio buttons have been checked.
+function enable_survey_submit() {
+  var names = ["tasks_easy", "understood", "frustrated", "object_qs", "use_navigation", "use_delivery", "use_relocation"];
+  var unchecked = false;
+  var idx;
+  for (idx = 0; idx < names.length; idx++) {
+    if (!$("input[name='tasks_easy']:checked").val()) {
+      unchecked = true;
+      break;
+    }
+  }
+  if (!unchecked) {
+    $('#survey_submit_button').prop("disabled", false);
+  }
 }
 
 // Given a referent message, recolor it and fill the appropriate interface panels.
@@ -57,6 +68,12 @@ function process_referent_message(c) {
   m = m.replace("</s>", "</span>");
   m = m.replace("</g>", "</span>");
   return m;
+}
+
+// Given a referent message, return the roles as their self-same string.
+function get_roles_from_referent_message(c) {
+  var ca = c.split('\n');
+  return ca[1];
 }
 
 // Functions related to manipulating the actual interface and running the task.
@@ -104,24 +121,27 @@ function clear_panels(type) {
 // atom - the ontological atom used to find the corresponding image for the panel
 function fill_panel(type, role, atom) {
   if (role == "recipient") {
-    var content = draw_alternate_name(atom);
-  } else {
-    if (role == "source" || role == "goal") {
-      var rd = "maps/";
-      var ext = "png";
-      var img_class = "map_img";
-      var va = false;
-    } else if (role == "patient") {
-      var rd = "objects/";
-      var ext = "jpg";
-      var img_class = "obj_img";
-      var va = true;
-    }
-    var fn = "images/" + rd + atom + "." + ext;
-    var content = "<img src=\"" + fn + "\" class=\"" + img_class + "\">";
-    if (va) {
-      content = "<span class=\"va\"></span>" + content;
-    }
+    atom = atom.toUpperCase(); // because people names are capitalized in pngs for some reason
+    var rd = "people/";
+    var ext = "png";
+    var img_class = "person_img";
+    var va = true;
+  } else if (role == "source" || role == "goal") {
+    var rd = "maps/";
+    var ext = "png";
+    var img_class = "map_img";
+    var va = false;
+  } else if (role == "patient") {
+    var rd = "objects/";
+    var ext = "jpg";
+    var img_class = "obj_img";
+    var va = true;
+  }
+  var fn = "images/" + rd + atom + "." + ext;
+  var content = "<img src=\"" + fn + "\" class=\"" + img_class + "\">";
+  if (va) {
+    content = "<span class=\"va\"></span>" + content;
+  }
   }
   $('#' + type + '_' + role + '_panel').html(content);
   $('#' + type + '_' + role + '_panel').prop("hidden", false);
@@ -237,6 +257,8 @@ function poll_for_agent_messages() {
     var m = process_referent_message(contents);
     $('#action_text').html(m)
     $('#finished_task_div').show();  // show advance to next task button
+    var roles = get_roles_from_referent_message(contents);
+    $('#input[name="action_chosen"]').val(roles);  // the roles chosen for the action
     disable_user_text();  // just in case
     clearInterval(iv);
 
@@ -423,122 +445,147 @@ else {
 
   $uid = $_POST['uid'];
   $task_num = $_POST['task_num'];
+  $action_chosen = $_POST['action_chosen'];
 
-  # Draw a task based on the number.
-  # task_roles is a dictionary of roles -> targets for relevant roles.
-  $task_roles = draw_task($task_num, $setting);
-  $action = $task_roles['action'];
-  $patient = (array_key_exists('patient', $task_roles) ? $task_roles['patient'] : false);
-  $recipient = (array_key_exists('recipient', $task_roles) ? $task_roles['recipient'] : false);
-  $source = (array_key_exists('source', $task_roles) ? $task_roles['source'] : false);
-  $goal = (array_key_exists('goal', $task_roles) ? $task_roles['goal'] : false);
+  # If this is a subseqent task, write out the completed action to appropriate logfile.
+  if ($task_num > 1) {
+    $fn = 'user_data/' . $uid . '.' $task_num - 1 . '.txt';
+    $err_msg = "Failed to write action chosen " . $action_chosen . " to file " . $fn;
+    write_file($fn, $action_chosen, $err_msg);
+  }
 
-  # Show the goal and interface rows.
-  ?>
-  <div id="interaction_div" style="display:none;">
-    <div class="row">
-      <div class="col-md-12" id="task_text"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
-        <div class="row">
-          <div class="col-md-1 patient_panel" id="task_patient_panel" hidden></div>
-          <div class="col-md-1 recipient_panel" id="task_recipient_panel" hidden></div>
-          <div class="col-md-1 source_panel" id="task_source_panel" hidden></div>
-          <div class="col-md-1 goal_panel" id="task_goal_panel" hidden></div>
+  # If this is the end, advance to the survey instead.
+  if ($task_num == 4) {
+    ?>
+    <div id="survey_div">
+      <div class="row">
+        <div class="col-md-12">
+          <form action="generate_code.php" method="POST">
+            <input type="hidden" name="uid" value="<?php echo $uid;?>">
+            <table>
+              <tr>
+                <td>&nbsp;</td><td>Strongly Disagree</td><td>Disagree</td><td>Slightly Disagree</td><td>Neutral</td><td>Slightly Disagree</td><td>Agree</td><td>Strongly Agree</td>
+              </tr>
+              <?php
+                $qs = array("The tasks were easy to understand.", "The robot understood me.", "The robot frustrated me.", "The robot asked too many questions about objects.", "I would use a robot like this to help navigate a new building.", "I would use a robot like this to get items for myself or others.", "I would use a robot like this to move items from place to place.");
+                $names = array("tasks_easy", "understood", "frustrated", "object_qs", "use_navigation", "use_delivery", "use_relocation");
+                for ($idx = 0; $idx < count($qs); $idx ++) {
+                  echo "<tr><td>" . $qs[$idx] . "</td>";
+                  for ($l = 0; $l < 7; $l ++) {
+                    echo "<td><input type=\"radio\" name=\"" . $names[$idx] . "\" value=\"" . $l . "\" onclick=\"enable_survey_submit()\"></td>";
+                  }
+                  echo "</tr>";
+                }
+              ?>
+            </table>
+            <input type="submit" class="btn" id="survey_submit_button" value="Submit responses and get Mechanical Turk code" disabled>
+          </form>
         </div>
-      </div>
-      <div class="col-md-4">
-        <table id="person_directory" class="dialog_table">
-          <thead><tr><th>Person</th><th>Name</th></tr></thead>
-          <tbody>
-            <tr><td><img src="images/people/B.png"></td><td>Robert "Bob" Brown</td></tr>
-            <tr><td><img src="images/people/D.png"></td><td>David "Dave" Daniel</td></tr>
-            <tr><td><img src="images/people/H.png"></td><td>Dr. Heidi Hughes</td></tr>
-            <tr><td><img src="images/people/M.png"></td><td>Mallory "Mal" Maroon</td></tr>
-            <tr><td><img src="images/people/N.png"></td><td>Dr. Nancy Nagel</td></tr>
-            <tr><td><img src="images/people/P.png"></td><td>Peggy Parker, Intern</td></tr>
-            <tr><td><img src="images/people/R.png"></td><td>Richard Rogue, Secretary</td></tr>
-            <tr><td><img src="images/people/S.png"></td><td>Dr. Sybil Smalt</td></tr>
-            <tr><td><img src="images/people/W.png"></td><td>Walter Ward, Supervisor</td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
+    <?php
+  }
 
-    <hr>
+  # Still tasks to do.
+  else {
 
-    <div class="row">
-      <div class="col-md-6">
-        <div>
-          <table id="dialog_table" class="dialog_table"><tbody>
-            <tr id="user_input_row"><td class="user_row">YOU</td><td><input type="text" id="user_input" style="width:100%;" placeholder="type your response here..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"></td></tr>
-          </tbody></table>
-          <button class="btn" id="user_say" onclick="send_agent_user_text_input('<?php echo $d;?>', '<?php echo $uid;?>')">Say</button>
-        </div>
-        <div id="finished_task_div" hidden>
-          <div id="action_text"></div>
-          To advance to the next task, click the button below.
-            <form action="index.php" method="POST">
-              <input type="hidden" name="uid" value="<?php echo $uid;?>">
-              <input type="hidden" name="task_num" value="<?php echo $task_num + 1;?>">
-              <input type="submit" class="btn" value="Okay">
-            </form>
-        </div>
+    # Draw a task based on the number.
+    # task_roles is a dictionary of roles -> targets for relevant roles.
+    $task_roles = draw_task($task_num, $setting);
+    $action = $task_roles['action'];
+    $patient = (array_key_exists('patient', $task_roles) ? $task_roles['patient'] : false);
+    $recipient = (array_key_exists('recipient', $task_roles) ? $task_roles['recipient'] : false);
+    $source = (array_key_exists('source', $task_roles) ? $task_roles['source'] : false);
+    $goal = (array_key_exists('goal', $task_roles) ? $task_roles['goal'] : false);
+
+    # Show the goal and interface rows.
+    ?>
+    <div id="interaction_div" style="display:none;">
+      <div class="row">
+        <div class="col-md-12" id="task_text"></div>
       </div>
-      <div class="col-md-6">
-        <div id="nearby_objects_div" hidden>
-          <?php
-            for ($idx = 0; $idx < count($active_train_set); $idx++) {
-              echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\" onmouseover=\"nearby_objects_highlight('" . $idx . "')\" onmouseleave=\"nearby_objects_clear('" . $idx . "')\">";
-              $oidx = explode('_', $active_train_set[$idx])[1];
-              echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\" onclick=\"{nearby_objects_clear_all(); nearby_objects_highlight('" . $idx . "'); send_agent_user_oidx_input('" . $oidx . "', '". $d . "', '" . $uid . "');}\">";
-              echo "</div>";
-            }
-            echo "<div class=\"col-md-1\"><button class=\"btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">All / None</button></div>";
-          ?>
-        </div>
-        <div>
+      <div class="row">
+        <div class="col-md-8">
           <div class="row">
-            <div class="col-md-1 patient_panel" id="interface_patient_panel" hidden></div>
-            <div class="col-md-1 recipient_panel" id="interface_recipient_panel" hidden></div>
-            <div class="col-md-1 source_panel" id="interface_source_panel" hidden></div>
-            <div class="col-md-1 goal_panel" id="interface_goal_panel" hidden></div>
+            <div class="col-md-1 patient_panel" id="task_patient_panel" hidden></div>
+            <div class="col-md-1 recipient_panel" id="task_recipient_panel" hidden></div>
+            <div class="col-md-1 source_panel" id="task_source_panel" hidden></div>
+            <div class="col-md-1 goal_panel" id="task_goal_panel" hidden></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <table id="person_directory" class="dialog_table">
+            <thead><tr><th>Person</th><th>Name</th></tr></thead>
+            <tbody>
+              <tr><td><img src="images/people/B.png"></td><td>Robert "Bob" Brown</td></tr>
+              <tr><td><img src="images/people/D.png"></td><td>David "Dave" Daniel</td></tr>
+              <tr><td><img src="images/people/H.png"></td><td>Dr. Heidi Hughes</td></tr>
+              <tr><td><img src="images/people/M.png"></td><td>Mallory "Mal" Maroon</td></tr>
+              <tr><td><img src="images/people/N.png"></td><td>Dr. Nancy Nagel</td></tr>
+              <tr><td><img src="images/people/P.png"></td><td>Peggy Parker, Intern</td></tr>
+              <tr><td><img src="images/people/R.png"></td><td>Richard Rogue, Secretary</td></tr>
+              <tr><td><img src="images/people/S.png"></td><td>Dr. Sybil Smalt</td></tr>
+              <tr><td><img src="images/people/W.png"></td><td>Walter Ward, Supervisor</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <table id="dialog_table" class="dialog_table"><tbody>
+              <tr id="user_input_row"><td class="user_row">YOU</td><td><input type="text" id="user_input" style="width:100%;" placeholder="type your response here..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"></td></tr>
+            </tbody></table>
+            <button class="btn" id="user_say" onclick="send_agent_user_text_input('<?php echo $d;?>', '<?php echo $uid;?>')">Say</button>
+          </div>
+          <div id="finished_task_div" hidden>
+            <div id="action_text"></div>
+            To advance to the next task, click the button below.
+              <form action="index.php" method="POST">
+                <input type="hidden" name="uid" value="<?php echo $uid;?>">
+                <input type="hidden" name="task_num" value="<?php echo $task_num + 1;?>">
+                <input type="hidden" name="action_chosen" value="">
+                <input type="submit" class="btn" value="Okay">
+              </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div id="nearby_objects_div" hidden>
+            <?php
+              for ($idx = 0; $idx < count($active_train_set); $idx++) {
+                echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\" onmouseover=\"nearby_objects_highlight('" . $idx . "')\" onmouseleave=\"nearby_objects_clear('" . $idx . "')\">";
+                $oidx = explode('_', $active_train_set[$idx])[1];
+                echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\" onclick=\"{nearby_objects_clear_all(); nearby_objects_highlight('" . $idx . "'); send_agent_user_oidx_input('" . $oidx . "', '". $d . "', '" . $uid . "');}\">";
+                echo "</div>";
+              }
+              echo "<div class=\"col-md-1\"><button class=\"btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">All / None</button></div>";
+            ?>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-1 patient_panel" id="interface_patient_panel" hidden></div>
+              <div class="col-md-1 recipient_panel" id="interface_recipient_panel" hidden></div>
+              <div class="col-md-1 source_panel" id="interface_source_panel" hidden></div>
+              <div class="col-md-1 goal_panel" id="interface_goal_panel" hidden></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row" id="next_task_div">
-    <div class="col-md-12">
-      <p>Give your commands all at once, as opposed to in individual steps.</p>
-      <p>The can take a while to think of its response, so be patient on startup and when waiting for a reply.</p>
-      <button class="btn" name="user_say" onclick="show_task('<?php echo $d;?>', '<?php echo $uid;?>', '<?php echo $action;?>', '<?php echo $patient;?>', '<?php echo $recipient;?>', '<?php echo $source;?>', '<?php echo $goal;?>')">Show next task</button>
+    <div class="row" id="next_task_div">
+      <div class="col-md-12">
+        <p>Give your commands all at once, as opposed to in individual steps.</p>
+        <p>The can take a while to think of its response, so be patient on startup and when waiting for a reply.</p>
+        <button class="btn" name="user_say" onclick="show_task('<?php echo $d;?>', '<?php echo $uid;?>', '<?php echo $action;?>', '<?php echo $patient;?>', '<?php echo $recipient;?>', '<?php echo $source;?>', '<?php echo $goal;?>')">Show next task</button>
+      </div>
     </div>
-  </div>
 
-    <?php
-}
-
-# Show exit instructions.
-# TODO: this should be it's own page that the user can navigate to only after finishing the task.
-if (false) {
-  $uid = $_POST['uid'];
-  $mturk_code = $uid."_".substr(sha1("phm_salted_hash".$uid."rwhpidcwha_0"),0,13);
-  ?>
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <p>
-        Thank you for your participation!</p>
-      <p>Copy the code below, return to Mechanical Turk, and enter it to receive payment:<br/>
-        <?php echo $mturk_code; ?>
-      </p>
-    </div>
-    <div class="col-md-1"></div>
-  </div>
-  <?php
+      <?php
+  }
 }
 ?>
 

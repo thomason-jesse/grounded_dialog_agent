@@ -1,0 +1,35 @@
+walk to the office next to the kitchen
+M : walk(a_l(lambda x:l.(and(office(x), adjacent(x, a_l(lambda y:l.(kitchen(y))))))))
+
+get a tall thin spraycan for richard
+M : bring(a_i(lambda x:i.(and(tall(x), and(thin(x), spraycan(x))))), r)
+
+bring a silver heavy aluminum can to peggy
+M : bring(a_i(lambda x:i.(and(silver(x),and(heavy(x),and(aluminum(x), can(x)))))), p)
+
+bring the white bottle to david
+M : bring(a_i(lambda x:i.(and(white(x), bottle(x)))), d)
+
+retrieve an open aluminum can for robert
+M : bring(a_i(lambda x:i.(and(open(x), and(aluminum(x), can(x))))), b)
+
+bring a large empty yellow cylinder to nancy
+M : bring(a_i(lambda x:i.(and(large(x), and(empty(x), and(yellow(x), cylinder(x)))))), n)
+
+go to richard 's office
+M : walk(a_l(lambda x:l.(and(office(x), possesses(r, x)))))
+
+go to the office of mallory
+M : walk(a_l(lambda x:l.(and(office(x), possesses(m, x)))))
+
+walk to a conference room
+M : walk(a_l(lambda x:l.(conference(x))))
+
+move the open yellow spraycan from the kitchen to richard 's office
+M : move(a_i(lambda x:i.(and(open(x), and(yellow(x), spraycan(x))))), a_l(lambda y:l.(kitchen(y))), a_l(lambda z:l.(and(office(z), possesses(r, z)))))
+
+get the open yellow spraycan from the kitchen and take it to richard 's office
+M : move(a_i(lambda x:i.(and(open(x), and(yellow(x), spraycan(x))))), a_l(lambda y:l.(kitchen(y))), a_l(lambda z:l.(and(office(z), possesses(r, z)))))
+
+take the silver can from the pod next to nancy 's office to robert 's office
+M : move(a_i(lambda x:i.(and(silver(x), can(x)))), a_l(lambda y:l.(and(pod(y), adjacent(y, a_l(lambda z:l.(and(office(z), possesses(n, z)))))))), a_l(lambda w:l.(and(office(w), possesses(b, w)))))
