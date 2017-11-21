@@ -208,7 +208,7 @@ function send_agent_user_text_input(d, uid) {
   var m = $('#user_input').val();  // read the value
   $('#user_input').val('');  // clear user text
   add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
-  send_agent_string_message(d, uid, m);  // send user string message to the agent
+  send_agent_string_message(d, uid, m, false);  // send user string message to the agent
   show_agent_thinking();
 }
 
@@ -223,7 +223,7 @@ function send_agent_user_oidx_input(point, d, uid) {
   } else {
     add_row_to_dialog_table("*you point*", true, 0);
   }
-  send_agent_string_message(d, uid, point);  // send user string message to the agent
+  send_agent_string_message(d, uid, point, true);  // send user string message to the agent
   show_agent_thinking();
 }
 
@@ -231,8 +231,13 @@ function send_agent_user_oidx_input(point, d, uid) {
 // d - the directory where messages live
 // uid - the user id
 // m - the string message to write to file
-function send_agent_string_message(d, uid, m) {
-  var fn = d + uid + ".smsgu.txt";
+// om - whether this is an object message (true/false)
+function send_agent_string_message(d, uid, m, om) {
+  if (!om) {
+    var fn = d + uid + ".smsgu.txt";
+  } else {
+    var fn = d + uid + ".omsgu.txt";
+  }
   var url = "manage_files.php?opt=write&fn=" + fn + "&m=" + encodeURIComponent(m);
   var success = http_get(url);
   if (success == "0") {
