@@ -112,7 +112,8 @@ class SeverIO:
     # Get an integer oidx from those provided or None.
     # Polls the disk until an oidx message from the user appears.
     # Assumes that the file equals 'None' or an integer.
-    def get_oidx_from_user(self):
+    # oidxs - not used in this implementation; insurance trusted from the client side
+    def get_oidx_from_user(self, oidxs):
         path = os.path.join(self.client_dir, self.uid + '.omsgur.txt')  # request
         self._poll_for_file_write_contents(path, ' ')
         print "get_oidx_from_user requested feedback"

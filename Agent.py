@@ -180,7 +180,7 @@ class Agent:
     # returns - an integer, the number of questions asked
     def conduct_perception_subdialog(self, ur, gprs, pr, max_questions, labeled_tuples,
                                      allow_off_topic_preds=False):
-        debug = True
+        debug = False
 
         num_qs = 0
         if len(gprs) > 0:
