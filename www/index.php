@@ -472,7 +472,7 @@ else {
             <input type="hidden" name="uid" value="<?php echo $uid;?>">
             <table class="dialog_table">
               <tr>
-                <td>&nbsp;</td><td style="text-align:center">Strongly Disagree</td><td style="text-align:center">Disagree</td><td style="text-align:center">Slightly Disagree</td><td style="text-align:center">Neutral</td><td style="text-align:center">Slightly Disagree</td><td style="text-align:center">Agree</td><td style="text-align:center">Strongly Agree</td>
+                <td>&nbsp;</td><td style="text-align:center">Strongly Disagree</td><td style="text-align:center">Disagree</td><td style="text-align:center">Slightly Disagree</td><td style="text-align:center">Neutral</td><td style="text-align:center">Slightly Agree</td><td style="text-align:center">Agree</td><td style="text-align:center">Strongly Agree</td>
               </tr>
               <?php
                 $qs = array("The tasks were easy to understand.", "The robot understood me.", "The robot frustrated me.", "The robot asked too many questions about objects.", "I would use a robot like this to help navigate a new building.", "I would use a robot like this to get items for myself or others.", "I would use a robot like this to move items from place to place.");
