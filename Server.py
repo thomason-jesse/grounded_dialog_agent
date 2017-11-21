@@ -18,7 +18,7 @@ class Server:
 
     def __init__(self, active_train_set, grounder_fn, spin_time, cycles_per_user,
                  client_dir, log_dir, data_dir,
-                 num_dialogs):
+                 num_dialogs, init_phase):
         self.active_train_set = active_train_set
         self.grounder_fn = grounder_fn
         self.spin_time = spin_time
@@ -27,6 +27,7 @@ class Server:
         self.log_dir = log_dir
         self.data_dir = data_dir
         self.num_dialogs = num_dialogs
+        self.init_phase = init_phase
 
         # State and message information.
         self.users = []  # uids
@@ -65,7 +66,8 @@ class Server:
                                            "--client_dir", self.client_dir,
                                            "--data_dir", self.data_dir,
                                            "--spin_time", str(self.spin_time),
-                                           "--num_dialogs", str(self.num_dialogs)]
+                                           "--num_dialogs", str(self.num_dialogs),
+                                           "--init_phase", str(self.init_phase)]
                                     print ("Server: ... executing subprocess " + str(cmd) +
                                            ", ie. '" + ' '.join(cmd) + "'")
                                     f = open(os.path.join(self.log_dir, uid + ".log"), 'w')
@@ -147,6 +149,7 @@ def main():
     write_classifiers = FLAGS_write_classifiers
     load_grounder = FLAGS_load_grounder
     num_dialogs = FLAGS_num_dialogs
+    init_phase = FLAGS_init_phase
 
     # Load the parser from file.
     print "main: loading parser from file..."
@@ -190,7 +193,7 @@ def main():
     print "main: instantiated server..."
     s = Server(active_train_set, grounder_fn, server_spin_time, cycles_per_user,
                client_dir, log_dir, data_dir,
-               num_dialogs)
+               num_dialogs, init_phase)
     print "main: ... done"
 
     print "main: spinning server..."
@@ -228,6 +231,8 @@ if __name__ == '__main__':
                         help="whether to load the grounder from disk (for testing purposes)")
     parser.add_argument('--num_dialogs', type=int, required=False, default=1,
                         help="number of times to call start_action_dialog per agent")
+    parser.add_argument('--init_phase', type=int, required=False, default=0,
+                        help="don't actually launch an agent; just ask for the specified number of responses")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

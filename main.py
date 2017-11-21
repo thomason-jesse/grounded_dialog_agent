@@ -34,6 +34,7 @@ def main():
     client_dir = FLAGS_client_dir
     spin_time = FLAGS_spin_time
     num_dialogs = FLAGS_num_dialogs
+    init_phase = FLAGS_init_phase
     assert io_type == 'keyboard' or io_type == 'server'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
 
@@ -87,37 +88,51 @@ def main():
         io = None  # won't be executed due to asserts
     print "main: ... done"
 
-    # Instantiate an Agent.
-    print "main: instantiating Agent..."
-    a = Agent.Agent(p, g, io, active_train_set)
-    print "main: ... done"
+    # Normal operation.
+    if init_phase == 0:
+        # Instantiate an Agent.
+        print "main: instantiating Agent..."
+        a = Agent.Agent(p, g, io, active_train_set)
+        print "main: ... done"
 
-    # Start a dialog.
-    perception_labels_requested = []
-    action_confirmed_per_dialog = []
-    utterances_by_role_per_dialog = []
-    for _ in range(num_dialogs):
-        print "main: running command dialog..."
-        action_confirmed, user_utterances_by_role = a.start_action_dialog(perception_labels_requested=
-                                                                          perception_labels_requested)
-        action_confirmed_per_dialog.append(action_confirmed)
-        utterances_by_role_per_dialog.append(user_utterances_by_role)
-        print "main: ... done; got action " + str(action_confirmed)
+        # Start a dialog.
+        perception_labels_requested = []
+        action_confirmed_per_dialog = []
+        utterances_by_role_per_dialog = []
+        for _ in range(num_dialogs):
+            print "main: running command dialog..."
+            action_confirmed, user_utterances_by_role = a.start_action_dialog(perception_labels_requested=
+                                                                              perception_labels_requested)
+            action_confirmed_per_dialog.append(action_confirmed)
+            utterances_by_role_per_dialog.append(user_utterances_by_role)
+            print "main: ... done; got action " + str(action_confirmed)
 
-    # Retrain the in-memory parser based on induced training data.
-    # print "main: re-training parser on pairs induced from conversation..."
-    # a.train_parser_from_induced_pairs(10, 10, 3, verbose=2)
-    # print "main: ... done"
+        # Retrain the in-memory parser based on induced training data.
+        # print "main: re-training parser on pairs induced from conversation..."
+        # a.train_parser_from_induced_pairs(10, 10, 3, verbose=2)
+        # print "main: ... done"
 
-    # Write out new information gleaned from this user.
-    if uid is not None:  # DEBUG
-        print "main: writing new information from dialog(s) to file..."
-        fn = os.path.join(data_dir, uid + ".pickle")
-        d = [action_confirmed_per_dialog, utterances_by_role_per_dialog,
-             a.new_perceptual_labels, a.perceptual_pred_synonymy]
-        with open(fn, 'wb') as f:
-            pickle.dump(d, f)
-        print "main: ... done; wrote data d = " + str(d)
+        # Write out new information gleaned from this user.
+        if uid is not None:  # DEBUG
+            print "main: writing new information from dialog(s) to file..."
+            fn = os.path.join(data_dir, uid + ".pickle")
+            d = [action_confirmed_per_dialog, utterances_by_role_per_dialog,
+                 a.new_perceptual_labels, a.perceptual_pred_synonymy]
+            with open(fn, 'wb') as f:
+                pickle.dump(d, f)
+            print "main: ... done; wrote data d = " + str(d)
+
+    # Just ask the user for a few rephrases of the command.
+    else:
+        print "main: starting init phase dialog..."
+        for nd in range(num_dialogs):
+            io.say_to_user("What should I do?")
+            _ = io.get_from_user()
+            for ip in range(init_phase - 1):
+                io.say_to_user("What's another way you could phrase that command?")
+                _ = io.get_from_user()
+            io.perform_action({'action': 'init_phase'})
+        print "main: ... done"
 
 
 if __name__ == '__main__':
@@ -151,6 +166,8 @@ if __name__ == '__main__':
                         help="for ServerIO")
     parser.add_argument('--num_dialogs', type=int, required=False, default=1,
                         help="number of times to call start_action_dialog")
+    parser.add_argument('--init_phase', type=int, required=False, default=0,
+                        help="don't actually launch an agent; just ask for the specified number of responses")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

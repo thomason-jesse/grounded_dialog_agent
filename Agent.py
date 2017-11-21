@@ -214,6 +214,8 @@ class Agent:
                     else:
                         preds_to_consider = [self.parser.ontology.preds[root.idx]
                                              for root in perceptual_pred_trees]
+                    if len(preds_to_consider) == 0:  # no further preds to consider
+                        return num_qs
                     for pred in preds_to_consider:
                         pidx = self.grounder.kb.pc.predicates.index(pred)
 
@@ -419,8 +421,8 @@ class Agent:
                            str(perceptual_neighbors))
 
                 # If there are perceptual neighbors, confirm with the user that this new word requires perception.
-                q = ("I haven't heard the word '" + tk + "' before. Does understanding whether it applies to " +
-                     "an object involve perceiving the world, like understanding a color, shape, or weight does?")
+                q = ("I haven't heard the word '" + tk + "' before. Does it refer to a property of physical objects, " +
+                     "like a color, shape, or weight?")
                 c = self.get_yes_no_from_user(q)
                 if c == 'yes':
 
@@ -778,15 +780,16 @@ class Agent:
                         for idx in range(len(at.children)):
                             cn = at.children[idx]
                             r = role_order[idx]
-                            if self.parser.ontology.types[cn.type] in self.action_args[a][r]:
-                                c = self.parser.ontology.preds[cn.idx]
-                                if c not in self.action_belief_state[r]:
-                                    self.action_belief_state[r][c] = 0
-                                self.action_belief_state[r][c] += inc
-                                role_candidates_seen[r].add(c)
-                                if debug:
-                                    print ("update_action_belief_from_grounding: adding count to " + r +
-                                           " " + c + "; " + str(inc))
+                            if r in roles:  # we might not have asked about each arg
+                                if self.parser.ontology.types[cn.type] in self.action_args[a][r]:
+                                    c = self.parser.ontology.preds[cn.idx]
+                                    if c not in self.action_belief_state[r]:
+                                        self.action_belief_state[r][c] = 0
+                                    self.action_belief_state[r][c] += inc
+                                    role_candidates_seen[r].add(c)
+                                    if debug:
+                                        print ("update_action_belief_from_grounding: adding count to " + r +
+                                               " " + c + "; " + str(inc))
 
         # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
         # If we were trying to update an action but didn't find any trees, also take this route.

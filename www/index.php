@@ -302,7 +302,6 @@ function populate_from_string_or_referent_messages(smsgs_url, rmsgs_url) {
     var m = process_referent_message(contents);
     add_row_to_dialog_table(m, false, -1);
   }
-
 }
 
 // Sample a task corresponding to the number and give it to the user.
@@ -311,12 +310,16 @@ function show_task(d, uid, action, patient, recipient, source, goal) {
   clear_dialog_table();  // Clear the dialog history.
 
   // Sample a task of the matching number.
+  var prob_form = "Command the robot with a complete sentence. ";
+  prob_form += "The robot does not understand questions, but it may ask you questions of its own. ";
+  prob_form += "The robot understands high-level commands, so it doesn't need step-by-step instructions, and it doesn't matter what location it starts in. "
+  prob_form += "<br>Give the robot a command to solve this problem:";
   if (action == 'move') {
-    var task_text = "<p><b>Give the robot a command to solve this problem:<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">pink map</span>. The object belongs at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
+    var task_text = "<p><b>" + prob_form + "<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">pink map</span>. The object belongs at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
   } else if (action == 'bring') {
-    var task_text = "<p><b>Give the robot a command to solve this problem:<br><span class=\"recipient_text\">This person</span> needs <span class=\"patient_text\">the object</span> shown below.</b></p>";
+    var task_text = "<p><b>" + prob_form + "<br><span class=\"recipient_text\">This person</span> needs <span class=\"patient_text\">the object</span> shown below.</b></p>";
   } else if (action == 'walk') {
-    var task_text = "<p><b>Give the robot a command to solve this problem:<br>The robot should be at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
+    var task_text = "<p><b>" + prob_form + "<br>The robot should be at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
   }
 
   // Render the task on the display.
@@ -430,8 +433,7 @@ if (!isset($_POST['uid'])) {
   # Show instructions.
   $inst = "<p>In this HIT, you will command a robot to perform several tasks. ";
   $inst .= "The robot is learning, and will ask you to reword your commands ";
-  $inst .= "and help it better understand concepts. ";
-  $inst .= "Use the chat box below to command the robot to complete the given task.</p><br/>";
+  $inst .= "and help it better understand which words apply to physical objects.</p><br/>";
   ?>
   <div class="row" id="inst_div">
     <div class="col-md-12">
@@ -455,7 +457,7 @@ else {
 
   # If this is a subseqent task, write out the completed action to appropriate logfile.
   if ($task_num > 1) {
-    $fn = 'user_data/' . $uid . '.' . ($task_num - 1) . '.txt';
+    $fn = 'user_data/' . $uid . '.' . ($task_num - 1) . '.chosen.txt';
     $err_msg = "Failed to write action chosen " . $action_chosen . " to file " . $fn;
     write_file($fn, $action_chosen, $err_msg);
   }
@@ -506,6 +508,16 @@ else {
     $recipient = (array_key_exists('recipient', $task_roles) ? $task_roles['recipient'] : false);
     $source = (array_key_exists('source', $task_roles) ? $task_roles['source'] : false);
     $goal = (array_key_exists('goal', $task_roles) ? $task_roles['goal'] : false);
+
+    # Write drawn task to file.
+    $fn = 'user_data/' . $uid . '.' . $task_num . '.drawn.txt';
+    $drawn_roles = array();
+    foreach ($task_roles as $r => $v) {
+      $drawn_roles[] = $r . ":" . $v;
+    }
+    $data = implode(";", $drawn_roles);
+    $err_msg = "Failed to write drawn task " . $data . " to file " . $fn;
+    write_file($fn, $data, $err_msg);
 
     # Show the goal and interface rows.
     ?>

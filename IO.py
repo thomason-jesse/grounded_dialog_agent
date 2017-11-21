@@ -89,6 +89,7 @@ class SeverIO:
         u = self._poll_for_file_get_contents_delete(path)
 
         # Preprocess user utterance from the web.
+        print "get_from_user (raw): '" + u + "'"
         u = u.lower()
         tks = u.split()
         tks = [tk.strip() for tk in tks]
@@ -106,7 +107,7 @@ class SeverIO:
         tks = [tk.strip(',?.\"/\\!*&^%$#@()~+-') for tk in tks]
         u = ' '.join(tks)
 
-        print "get_from_user: " + u
+        print "get_from_user (processed): '" + u + "'"
         return u
 
     # Get an integer oidx from those provided or None.
@@ -164,6 +165,8 @@ class SeverIO:
             a_str = "The robot finds <p>this</p> and delivers it to <r>this person</r>."
         elif rvs['action'] == 'move':
             a_str = "The robot moves <p>this</p> from <s>here</s> to <g>there</g>."
+        elif rvs['action'] == 'init_phase':
+            a_str = "Thanks!"
         else:
             a_str = "ERROR: unrecognized action for robot"
         path = os.path.join(self.client_dir, self.uid + '.amsgs.txt')
