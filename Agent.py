@@ -20,7 +20,7 @@ class Agent:
         # hyperparameters
         self.parse_beam = 1
         self.threshold_to_accept_role = 0.9  # include role filler in questions above this threshold
-        self.threshold_to_accept_perceptual_conf = 0.5  # per perceptual predicate, e.g. 0.25 for two
+        self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
         self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
@@ -873,9 +873,6 @@ class Agent:
             mass = sum([self.action_belief_state[r][entry] - min_count for entry in self.action_belief_state[r]])
             if mass > 0:
                 valid_entries = [entry for entry in self.action_belief_state[r]]
-                                 # if (entry is not None
-                                 #     or chosen['action'][0] is None or
-                                 #     r not in self.action_args[chosen['action'][0]].keys())]
                 dist = [(self.action_belief_state[r][entry] - min_count) / mass
                         for entry in valid_entries]
                 if arg_max:

@@ -72,6 +72,7 @@
 	background-color:RoyalBlue;
 	width: 347px;
 	height: 347px;
+	text-align: center;
 }
 .patient_text {
 	color:Blue;
@@ -80,6 +81,7 @@
 	background-color:Tomato;
 	width: 347px;
 	height: 347px;
+	text-align: center;
 }
 .recipient_text {
 	color:DarkRed;
@@ -88,6 +90,7 @@
 	background-color:PaleVioletRed;
 	width: 694px;
 	height: 525px;
+	text-align: center;
 }
 .source_text {
 	color:Purple;
@@ -96,6 +99,7 @@
 	background-color:LightGreen;
 	width: 694px;
 	height: 525px;
+	text-align: center;
 }
 .goal_text {
 	color:SeaGreen;

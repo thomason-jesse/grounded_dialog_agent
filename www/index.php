@@ -29,15 +29,15 @@ var omsgur_url;
 // Enable the survey submit button if all radio buttons have been checked.
 function enable_survey_submit() {
   var names = ["tasks_easy", "understood", "frustrated", "object_qs", "use_navigation", "use_delivery", "use_relocation"];
-  var unchecked = false;
+  var all_checked = true;
   var idx;
   for (idx = 0; idx < names.length; idx++) {
-    if (!$("input[name='tasks_easy']:checked").val()) {
-      unchecked = true;
+    if (!$("input[name='" + names[idx] + "']:checked").val()) {
+      all_checked = false;
       break;
     }
   }
-  if (!unchecked) {
+  if (all_checked) {
     $('#survey_submit_button').prop("disabled", false);
   }
 }
@@ -247,7 +247,6 @@ function show_agent_thinking() {
 }
 
 function poll_for_agent_messages() {
-  populate_from_string_or_referent_messages(smsgs_url, rmsgs_url);
 
   // Check for an action message.
   var contents = get_and_delete_file(amsgs_url);
@@ -257,7 +256,7 @@ function poll_for_agent_messages() {
     $('#action_text').html(m)
     $('#finished_task_div').show();  // show advance to next task button
     var roles = get_roles_from_referent_message(contents);
-    $('#input[name="action_chosen"]').val(roles);  // the roles chosen for the action
+    $('#action_chosen_post').val(roles);  // the roles chosen for the action
     disable_user_text();  // just in case
     clearInterval(iv);
 
@@ -267,6 +266,9 @@ function poll_for_agent_messages() {
     // up for polling again.
     return;
   }
+
+  // Check for string or referent messages.
+  populate_from_string_or_referent_messages(smsgs_url, rmsgs_url);
 
   // Check for a request for user messages.
   contents = get_and_delete_file(smsgur_url);
@@ -305,11 +307,11 @@ function show_task(d, uid, action, patient, recipient, source, goal) {
 
   // Sample a task of the matching number.
   if (action == 'move') {
-    var task_text = "<p>Give the robot a command to solve this problem:<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">pink map</span>. The object belongs at the X marked on the <span class=\"goal_text\">green map</span>.</p>";
+    var task_text = "<p><b>Give the robot a command to solve this problem:<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">pink map</span>. The object belongs at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
   } else if (action == 'bring') {
-    var task_text = "<p>Give the robot a command to solve this problem:<br><span class=\"recipient_text\">This person</span> needs <span class=\"patient_text\">the object</span> shown below.</p>";
+    var task_text = "<p><b>Give the robot a command to solve this problem:<br><span class=\"recipient_text\">This person</span> needs <span class=\"patient_text\">the object</span> shown below.</b></p>";
   } else if (action == 'walk') {
-    var task_text = "<p>Give the robot a command to solve this problem:<br>The robot should be at the X marked on the <span class=\"goal_text\">green map</span>.</p>";
+    var task_text = "<p><b>Give the robot a command to solve this problem:<br>The robot should be at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
   }
 
   // Render the task on the display.
@@ -461,17 +463,18 @@ else {
         <div class="col-md-12">
           <form action="generate_code.php" method="POST">
             <input type="hidden" name="uid" value="<?php echo $uid;?>">
-            <table>
+            <table class="dialog_table">
               <tr>
-                <td>&nbsp;</td><td>Strongly Disagree</td><td>Disagree</td><td>Slightly Disagree</td><td>Neutral</td><td>Slightly Disagree</td><td>Agree</td><td>Strongly Agree</td>
+                <td>&nbsp;</td><td style="text-align:center">Strongly Disagree</td><td style="text-align:center">Disagree</td><td style="text-align:center">Slightly Disagree</td><td style="text-align:center">Neutral</td><td style="text-align:center">Slightly Disagree</td><td style="text-align:center">Agree</td><td style="text-align:center">Strongly Agree</td>
               </tr>
               <?php
                 $qs = array("The tasks were easy to understand.", "The robot understood me.", "The robot frustrated me.", "The robot asked too many questions about objects.", "I would use a robot like this to help navigate a new building.", "I would use a robot like this to get items for myself or others.", "I would use a robot like this to move items from place to place.");
                 $names = array("tasks_easy", "understood", "frustrated", "object_qs", "use_navigation", "use_delivery", "use_relocation");
                 for ($idx = 0; $idx < count($qs); $idx ++) {
-                  echo "<tr><td>" . $qs[$idx] . "</td>";
+                  $tr_class = ($idx % 2 == 0) ? "robot_row" : "user_row";
+                  echo "<tr class=\"" . $tr_class . "\"><td>" . $qs[$idx] . "</td>";
                   for ($l = 0; $l < 7; $l ++) {
-                    echo "<td><input type=\"radio\" name=\"" . $names[$idx] . "\" value=\"" . $l . "\" onclick=\"enable_survey_submit()\"></td>";
+                    echo "<td style=\"text-align:center\"><input type=\"radio\" name=\"" . $names[$idx] . "\" value=\"" . $l . "\" onclick=\"enable_survey_submit()\"></td>";
                   }
                   echo "</tr>";
                 }
@@ -548,7 +551,7 @@ else {
               <form action="index.php" method="POST">
                 <input type="hidden" name="uid" value="<?php echo $uid;?>">
                 <input type="hidden" name="task_num" value="<?php echo $task_num + 1;?>">
-                <input type="hidden" name="action_chosen" value="">
+                <input type="hidden" id="action_chosen_post" name="action_chosen" value="">
                 <input type="submit" class="btn" value="Okay">
               </form>
           </div>

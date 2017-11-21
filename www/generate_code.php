@@ -37,8 +37,8 @@ else {
   for ($idx = 0; $idx < count($names); $idx ++) {
     $survey_responses[] = $names[$idx] . "," . $_POST[$names[$idx]];
   }
-  $data = implode('\n', $survey_responses);
-  $data = $data . '\n' . htmlspecialchars($_POST['open_response']);
+  $data = implode("\n", $survey_responses);
+  $data = $data . "\n" . htmlspecialchars($_POST['open_response']);
   $err_msg = "Failed to write survey data " . $data . " to file " . $fn;
   write_file($fn, $data, $err_msg);
 
