@@ -144,6 +144,11 @@ function fill_panel(type, role, atom) {
   }
   $('#' + type + '_' + role + '_panel').html(content);
   $('#' + type + '_' + role + '_panel').prop("hidden", false);
+  if (!va && type == 'task') {  // maps are present
+    var task_text = $('#task_text').html();
+    task_text += "<br/>Letters in offices indicate that the corresponding person owns that office.";
+    $('#task_text').html(task_text);
+  }
 }
 
 // Unhighlight all nearby objects.
