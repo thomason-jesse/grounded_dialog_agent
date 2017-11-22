@@ -1,0 +1,68 @@
+go to the pod
+M : walk(a_l(lambda x:l.(pod(x))))
+
+you should be in the pod room
+M : walk(a_l(lambda x:l.(pod(x))))
+
+give walter the spice container
+M : bring(a_i(lambda x:i.(and(spice(x), container(x)))), w)
+
+walter needs the spices
+M : bring(a_i(lambda x:i.(spice(x))), w)
+
+get the spice in the southwest pod and bring it to the northwest pod
+M : move(a_i(lambda x:i.(spice(x))), a_l(lambda y:l.(and(pod(y), and(south(y), west(y))))), a_l(lambda z:l.(and(pod(z), and(north(z), west(z))))))
+
+get the spice in the bottom left pod and bring it to the top left pod
+M : move(a_i(lambda x:i.(spice(x))), a_l(lambda y:l.(and(pod(y), and(south(y), west(y))))), a_l(lambda z:l.(and(pod(z), and(north(z), west(z))))))
+
+go to the top right pod
+M : walk(a_l(lambda x:l.(and(north(x), and(east(x), pod(x))))))
+
+nancy needs the empty peach can robot
+M : bring(a_i(lambda x:i.(and(empty(x), and(peach(x), can(x))))), n)
+
+go to the conference room
+M : walk(a_l(lambda x:l.(conference(x))))
+
+wait in the conference room
+M : walk(a_l(lambda x:l.(conference(x))))
+
+navigate to the conference room
+M : walk(a_l(lambda x:l.(conference(x))))
+
+go to bob 's office
+M : walk(a_l(lambda x:l.(and(office(x), possesses(b, x)))))
+
+visit bob 's office
+M : walk(a_l(lambda x:l.(and(office(x), possesses(b, x)))))
+
+deliver the blue pringles to sybil
+M : bring(a_i(lambda x:i.(and(blue(x), pringles(x)))), s)
+
+bring the long blue cylinder to sybil smalt
+M : bring(a_i(lambda x:i.(and(long(x), and(blue(x), cylinder(x))))), s)
+
+bring the coffee bean container in the office next to dave 's to heidi hughes 's office
+M : move(a_i(lambda x:i.(and(coffee(x), and(beans(x), container(x))))), a_l(lambda y:l.(and(office(y), adjacent(a_l(lambda z:l.(and(office(z), possesses(d, z)))))))), a_l(lambda z:l.(and(office(z), possesses(h, z)))))
+
+bring the clear container with beans from the office next to dave 's office to heidi hughes
+M : move(a_i(lambda x:i.(and(clear(x), and(container(x), beans(x))))), a_l(lambda y:l.(and(office(y), adjacent(a_l(lambda z:l.(and(office(z), possesses(d, z)))))))), a_l(lambda z:l.(and(office(z), possesses(h, z)))))
+
+go to the north conference room
+M : walk(a_l(lambda x:l.(and(north(x), conference(x)))))
+
+go to the conference room between the empty pod and the empty office
+M : walk(a_l(lambda x:l.(and(conference(x), and(adjacent(x, a_l(lambda y:l.(unoccupied(y), pod(y)))), adjacent(x, a_l(lambda z:l.(unoccupied(z), office(z)))))))))
+
+give the spice to walter ward
+M : bring(a_i(lambda x:i.(spice(x))), w)
+
+give the spice container to the supervisor
+M : bring(a_i(lambda x:i.(and(spice(x), container(x)))), w)
+
+bring the spice container from the lab across from dr smalt 's office and bring it to the south conference room
+M : move(a_i(lambda x:i.(and(spice(x), container(x)))), a_l(lambda y:l.(and(lab(y), adjacent(a_l(lambda z:l.(and(office(z), possesses(s, z)))))))), a_l(lambda z:l.(and(conference(z), south(z)))))
+
+take the spices from the lab just east of the kitchen and bring it to the conference room between the lounge and the pod
+M : move(a_i(lambda x:i.(and(spice(x)))), a_l(lambda y:l.(and(lab(y), eastof(y, a_l(lambda z:l.(kitchen(z))))))), a_l(lambda x:l.(and(conference(x), and(adjacent(x, a_l(lambda y:l.(lounge(y)))), adjacent(x, a_l(lambda z:l.(pod(z)))))))))
