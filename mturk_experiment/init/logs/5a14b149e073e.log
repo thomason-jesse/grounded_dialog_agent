@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'sleep'
+get_from_user (processed): 'sleep'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'eat'
+get_from_user (processed): 'eat'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'jump'
+get_from_user (processed): 'jump'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'sleep'
+get_from_user (processed): 'sleep'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'eat'
+get_from_user (processed): 'eat'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'pray'
+get_from_user (processed): 'pray'
+perform_action: {'action': 'init_phase'}
+main: ... done

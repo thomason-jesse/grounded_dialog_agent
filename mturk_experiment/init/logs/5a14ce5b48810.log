@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Go to the conference room that is not next to a lounge.'
+get_from_user (processed): 'go to the conference room that is not next to a lounge'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Go to the conference room that is between a pod and an office.'
+get_from_user (processed): 'go to the conference room that is between a pod and an office'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Give Mal the empty can of peaches.'
+get_from_user (processed): 'give mal the empty can of peaches'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Give Mallory the can.'
+get_from_user (processed): 'give mallory the can'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Move the styrofoam from the kitchen to the conference room across the hall.'
+get_from_user (processed): 'move the styrofoam from the kitchen to the conference room across the hall'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Move the styrofoam from the kitchen to the conference room that is between a lounge and a pod.'
+get_from_user (processed): 'move the styrofoam from the kitchen to the conference room that is between a lounge and a pod'
+perform_action: {'action': 'init_phase'}
+main: ... done

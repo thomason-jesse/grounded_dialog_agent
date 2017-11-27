@@ -71,6 +71,7 @@ north:<l,t>
 east:<l,t>
 south:<l,t>
 west:<l,t>
+center:<l,t>
 
 # object ids from I, Spy
 oidx_0:i
@@ -119,3 +120,11 @@ cylinder:<i,t>
 coffee:<i,t>
 bean:<i,t>
 clear:<i,t>
+styrofoam:<i,t>
+tower:<i,t>
+white:<i,t>
+rectangle:<i,t>
+column:<i,t>
+block:<i,t>
+yellow:<i,t>
+metallic:<i,t>

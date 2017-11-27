@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'its good'
+get_from_user (processed): 'its good'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'why cross the spot'
+get_from_user (processed): 'why cross the spot'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'object  on the table'
+get_from_user (processed): 'object on the table'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'next step to control project'
+get_from_user (processed): 'next step to control project'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'difficult part to control plan'
+get_from_user (processed): 'difficult part to control plan'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'complement of simple system'
+get_from_user (processed): 'complement of simple system'
+perform_action: {'action': 'init_phase'}
+main: ... done

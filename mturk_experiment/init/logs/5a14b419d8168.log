@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Go to Bob's office.'
+get_from_user (processed): 'go to bob 's office'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Visit Bob's office.'
+get_from_user (processed): 'visit bob 's office'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Deliver the blue Pringles to Sybil.'
+get_from_user (processed): 'deliver the blue pringles to sybil'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Bring the long blue cylinder to Sybil Smalt.'
+get_from_user (processed): 'bring the long blue cylinder to sybil smalt'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Bring the coffee bean container in the office next to Dave's to Heidi Hughes' office.'
+get_from_user (processed): 'bring the coffee bean container in the office next to dave 's to heidi hughes 's office'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Bring the clear container with beans from the office next to Dave's office to Heidi Hughes.'
+get_from_user (processed): 'bring the clear container with beans from the office next to dave 's office to heidi hughes'
+perform_action: {'action': 'init_phase'}
+main: ... done

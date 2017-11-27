@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'go to pod'
+get_from_user (processed): 'go to pod'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'enter the pod'
+get_from_user (processed): 'enter the pod'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'give walter ward a yellow can'
+get_from_user (processed): 'give walter ward a yellow can'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'bring the yellow can to walter ward'
+get_from_user (processed): 'bring the yellow can to walter ward'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'take the object from david's office and put it in the kitchen'
+get_from_user (processed): 'take the object from david 's office and put it in the kitchen'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Bring the object from david's office to the kitchen.'
+get_from_user (processed): 'bring the object from david 's office to the kitchen'
+perform_action: {'action': 'init_phase'}
+main: ... done

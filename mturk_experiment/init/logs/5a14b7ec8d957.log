@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'go to the office that Peggy Parker is in'
+get_from_user (processed): 'go to the office that peggy parker is in'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Move to Peggy Parker's office'
+get_from_user (processed): 'move to peggy parker 's office'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Give Dr. Nancy Nagel the white column'
+get_from_user (processed): 'give dr nancy nagel the white column'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Give the Styrofoam block to Dr. Nancy Nagel'
+get_from_user (processed): 'give the styrofoam block to dr nancy nagel'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Move the yellow can from the west, center pod to Mal's office'
+get_from_user (processed): 'move the yellow can from the west center pod to mal 's office'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Take the yellow metallic cylinder from the middle pod on the west side to Mallory "Mal" Maroon's office'
+get_from_user (processed): 'take the yellow metallic cylinder from the middle pod on the west side to mallory mal maroon 's office'
+perform_action: {'action': 'init_phase'}
+main: ... done

@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'the northeast pod awaits you.'
+get_from_user (processed): 'the northeast pod awaits you'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'go to the top right pod!!!'
+get_from_user (processed): 'go to the top right pod'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Nancy needs the empty peach can, robot.'
+get_from_user (processed): 'nancy needs the empty peach can robot'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Give Doctor Nancy Nagel the empty peach can, you empty peach can!!!!'
+get_from_user (processed): 'give doctor nancy nagel the empty peach can you empty peach can'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Take the empty peach can from Peggy by any means necessary and bring it to the empty office next to the conference room.'
+get_from_user (processed): 'take the empty peach can from peggy by any means necessary and bring it to the empty office next to the conference room'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Get that nasty peach can trash from disgusting intern Peggy and bring it to the abandoned office next to Dave's office.'
+get_from_user (processed): 'get that nasty peach can trash from disgusting intern peggy and bring it to the abandoned office next to dave 's office'
+perform_action: {'action': 'init_phase'}
+main: ... done

@@ -56,8 +56,6 @@ bring the styrofoam tower to nancy
 
 bring the long white rectangle to nancy nagel
 
-move the small container with a gray cap from the pod between mal and peggy to the kitchen
-
 go to the office that peggy parker is in
 
 move to peggy parker 's office
@@ -69,3 +67,35 @@ give the styrofoam block to dr nancy nagel
 move the yellow can from the west center pod to mal 's office
 
 take the yellow metallic cylinder from the middle pod on the west side to mallory mal maroon 's office
+
+go to the intern 's office
+
+go to peggy 's office
+
+bob needs the can
+
+give robert the can
+
+take the can from the lounge to the printer room
+
+go to the conference room that is between a pod and an office
+
+give mal the empty can of peaches
+
+give mallory the can
+
+move the styrofoam from the kitchen to the conference room that is between a lounge and a pod
+
+give the yellow can to nancy
+
+move the spice from the conference room to the lab
+
+move the cylinder from the conference room to the lab
+
+go to pod
+
+enter the pod
+
+give walter ward a yellow can
+
+bring the yellow can to walter ward
