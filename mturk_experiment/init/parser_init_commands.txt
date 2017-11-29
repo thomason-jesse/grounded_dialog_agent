@@ -46,9 +46,6 @@ M : bring(a_i(lambda x:i.(and(long(x), and(blue(x), cylinder(x))))), s)
 bring the coffee bean container in the office next to dave 's to heidi hughes 's office
 M : move(a_i(lambda x:i.(and(coffee(x), and(bean(x), container(x))))), a_l(lambda y:l.(and(office(y), adjacent(y, a_l(lambda z:l.(and(office(z), possesses(d, z)))))))), a_l(lambda z:l.(and(office(z), possesses(h, z)))))
 
-bring the clear container with beans from the office next to dave 's office to heidi hughes
-M : move(a_i(lambda x:i.(and(clear(x), and(container(x), bean(x))))), a_l(lambda y:l.(and(office(y), adjacent(y, a_l(lambda z:l.(and(office(z), possesses(d, z)))))))), a_l(lambda z:l.(and(office(z), possesses(h, z)))))
-
 go to the north conference room
 M : walk(a_l(lambda x:l.(and(north(x), conference(x)))))
 

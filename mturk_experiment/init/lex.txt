@@ -43,7 +43,7 @@ of :- N\N/NP : lambda x:p.(lambda P:<l,t>.(lambda y:l.(and(P(y), possesses(x, y)
 adjacent :- N/PP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
 next :- N/PP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
 by :- N/NP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
-between :- N/NP/NP\NP : lambda x:l.(lambda y:l.(lambda z:l.(and(adjacent(y, x), adjacent(z, x)))))
+between :- N/NP/NP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(lambda z:l.(and(P(x), and(adjacent(y, x), adjacent(z, x)))))))
 
 # determiners
 the :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
@@ -64,10 +64,10 @@ mallory :- NP : m
 walter :- NP : w
 sybil :- NP : s
 
-# Attach a N description to another (e.g. "clear container with beans", "middle pod on the west", "can of peaches")
+# Attach a N description to another (e.g. "clear container with beans", "the middle pod on the west", "can of peaches")
 with :- N\N/N : lambda P:<i,t>.(lambda Q:<i,t>.(and(P, Q)))
-on :- N\N/NP : lambda P:<i,t>.(lambda Q:<i,t>.(and(P, Q)))
 of :- N\N/N : lambda P:<i,t>.(lambda Q:<i,t>.(and(P, Q)))
+on :- NP\NP/NP : lambda x:l.(lambda P:<l,t>.(lambda Q:<l,t>.(and(P(x), Q(x)))))
 
 # KB bare nouns
 office :- N : office
