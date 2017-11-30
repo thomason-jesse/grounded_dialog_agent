@@ -17,6 +17,8 @@
 <script type="text/javascript">
 // Global vars for the script.
 var iv;  // the interval function that polls for robot response.
+var num_user_turns;  // the number of dialog turns the user has taken
+var num_polls_since_last_message;  // the number of times we've polled and gotten no response
 // urls the agent uses to communicate with this user
 var smsgs_url;
 var rmsgs_url;
@@ -215,6 +217,7 @@ function send_agent_user_text_input(d, uid) {
   add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
   send_agent_string_message(d, uid, m, false);  // send user string message to the agent
   show_agent_thinking();
+  increment_user_turns();
 }
 
 // Get user oidx point and send it to the agent.
@@ -230,6 +233,20 @@ function send_agent_user_oidx_input(point, d, uid) {
   }
   send_agent_string_message(d, uid, point, true);  // send user string message to the agent
   show_agent_thinking();
+  increment_user_turns();
+}
+
+// Increment the number of dialog turns the user has made.
+// If the number of turns exceeds a threshold, offer the user the option
+// to advance to payment (in case dialog gets super wonky).
+function increment_user_turns() {
+  if ($('#user_say').prop("disabled") && ('#nearby_objects_div').prop("hidden")) {
+    num_user_turns += 1;
+  }
+  if (num_user_turns >= 30) {
+    $('#skip_to_end').prop("hidden", false);
+    $('#dialog_too_long_div').prop("hidden", false);
+  }
 }
 
 // Write a string message to disk for the server to pick up.
@@ -258,6 +275,9 @@ function show_agent_thinking() {
 
 function poll_for_agent_messages() {
 
+  // Increment time so far.
+  num_polls_since_last_message += 1;
+
   // Check for an action message.
   var contents = get_and_delete_file(amsgs_url);
   if (contents) {
@@ -268,6 +288,8 @@ function poll_for_agent_messages() {
     var roles = get_roles_from_referent_message(contents);
     $('#action_chosen_post').val(roles);  // the roles chosen for the action
     disable_user_text();  // just in case
+    num_polls_since_last_message = 0;
+    num_user_turns = 0;
     clearInterval(iv);
 
     // We need to return early here because the Agent is fast and has likely already booted
@@ -285,11 +307,20 @@ function poll_for_agent_messages() {
   if (contents) {  // string message request
     delete_row_from_dialog_table(-2);  // delete 'thinking'
     enable_user_text();
+    num_polls_since_last_message = 0;
   }
   contents = get_and_delete_file(omsgur_url);
   if (contents) {  // oidx message request
     delete_row_from_dialog_table(-2);  // delete 'thinking'
     enable_user_train_object_answer();
+    num_polls_since_last_message = 0;
+  }
+
+  // We poll every 5 seconds (5000 ms); if polling has gone on with no messages for
+  // two minutes, allow skipping.
+  if (num_polls_since_last_message * 5 > 60 * 2) {
+    $('#skip_to_end').prop("hidden", false);
+    $('#robot_unresponsive_div').prop("hidden", false);
   }
 }
 
@@ -299,6 +330,7 @@ function populate_from_string_or_referent_messages(smsgs_url, rmsgs_url) {
   var contents = get_and_delete_file(smsgs_url);
   if (contents) {
     add_row_to_dialog_table(contents, false, -1);
+    num_polls_since_last_message = 0;
   }
 
   // Check for a referent message.
@@ -306,6 +338,7 @@ function populate_from_string_or_referent_messages(smsgs_url, rmsgs_url) {
   if (contents) {
     var m = process_referent_message(contents);
     add_row_to_dialog_table(m, false, -1);
+    num_polls_since_last_message = 0;
   }
 }
 
@@ -421,7 +454,7 @@ require_once('functions.php');
 # Variables that control what tasks and objects will be shown.
 # These should be changed whenever a new Turk task is made.
 $fold = 0;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
-$setting = "init";  # either init, train, or test
+$setting = "train";  # either init, train, or test
 
 $d = 'client/';
 $active_train_set = get_active_train_set($fold);
@@ -475,6 +508,7 @@ else {
         <div class="col-md-12">
           <form action="generate_code.php" method="POST">
             <input type="hidden" name="uid" value="<?php echo $uid;?>">
+            <input type="hidden" name="too_long" value="0">
             <table class="dialog_table">
               <tr>
                 <td>&nbsp;</td><td style="text-align:center">Strongly Disagree</td><td style="text-align:center">Disagree</td><td style="text-align:center">Slightly Disagree</td><td style="text-align:center">Neutral</td><td style="text-align:center">Slightly Agree</td><td style="text-align:center">Agree</td><td style="text-align:center">Strongly Agree</td>
@@ -576,6 +610,20 @@ else {
                 <input type="hidden" id="action_chosen_post" name="action_chosen" value="">
                 <input type="submit" class="btn" value="Okay">
               </form>
+          </div>
+          <div id="skip_to_end" hidden>
+            </hr>
+            <div id="dialog_too_long_div" hidden>
+              <p>This conversation has gotten pretty long! If you'd like to prematurely end the task, you can do so by clicking the button below. Feel free to continue chatting with the robot, though!</p>
+            </div>
+            <div id="robot_unresponsive_div" hidden>
+              <p>It looks like the robot might have encountered a problem. If you'd like to end the task and advance to payment, you can do so by clicking the button below.</p>
+            </div>
+            <form action="generate_code.php" method="POST">
+              <input type="hidden" name="uid" value="<?php echo $uid;?>">
+              <input type="hidden" name="too_long" value="1">
+              <input type="submit" class="btn" value="End task and get Mechanical Turk code">
+            </form>
           </div>
         </div>
         <div class="col-md-6">

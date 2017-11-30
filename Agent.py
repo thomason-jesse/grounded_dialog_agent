@@ -269,13 +269,13 @@ class Agent:
                                 ls = [l for _p, _o, l in self.grounder.kb.pc.labels if _p == perception_pidx
                                       and _o not in self.grounder.active_test_set]
                                 if ls.count(1) <= ls.count(0):  # more negative labels or labels are equal
-                                    q = ("Among these nearby objects, could you show me one you would describe " +
-                                         "as '" + pred + "', or say 'none' if none do?")
+                                    q = ("Among these nearby objects, could you show me one you would use the word '"
+                                         + pred + "' when describing, or say 'none' if there are none?")
                                     q_type = 'pos'
                                 else:  # more positive labels
-                                    q = ("Among these nearby objects, could you show me one you would not describe " +
-                                         "as '" + pred + "', or say 'all' if you would describe all as '"
-                                         + pred + "'?")
+                                    q = ("Among these nearby objects, could you show me one you could not use the " +
+                                         "word '" + pred + "' when describing, or say 'all' if you could describe " +
+                                         "all as '" + pred + "'?")
                                     q_type = 'neg'
 
                             # Else, ask for the label of the (sampled) least-confident object.
