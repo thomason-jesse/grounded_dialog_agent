@@ -421,174 +421,180 @@ class Agent:
                            str(perceptual_neighbors))
 
                 # If there are perceptual neighbors, confirm with the user that this new word requires perception.
-                q = ("I haven't heard the word '" + tk + "' before. Does it refer to a property of physical objects, " +
-                     "like a color, shape, or weight?")
-                c = self.get_yes_no_from_user(q)
-                if c == 'yes':
+                # If there were no neighbors at all, the word isn't in the embedding space and might be a brand name
+                # (e.g. pringles) that we still want to pick up as perceptual.
+                if len(perceptual_neighbors) > 0 or len(nn) == 0:
+                    q = ("I haven't heard the word '" + tk + "' before. Does it refer to a property of " +
+                         "physical objects, like a color, shape, or weight?")
+                    c = self.get_yes_no_from_user(q)
+                    if c == 'yes':
 
-                    # Ask about each neighbor in the order we found them, corresponding to closest distances.
-                    synonym_identified = None
-                    for nsfidx, psts in perceptual_neighbors:
+                        # Ask about each neighbor in the order we found them, corresponding to closest distances.
+                        synonym_identified = None
+                        for nsfidx, psts in perceptual_neighbors:
 
-                        _q = ("Does '" + tk + "' mean the same thing as '" +
-                              self.parser.lexicon.surface_forms[nsfidx] + "'?")
-                        _c = self.get_yes_no_from_user(_q)
+                            _q = ("Does '" + tk + "' mean the same thing as '" +
+                                  self.parser.lexicon.surface_forms[nsfidx] + "'?")
+                            _c = self.get_yes_no_from_user(_q)
 
-                        # The new word tk is a synonym of the neighbor, so share lexical entries between them.
-                        if _c == 'yes':
-                            synonym_identified = [nsfidx, psts]
-                            self.perceptual_pred_synonymy.append((tk, self.parser.lexicon.surface_forms[nsfidx],
-                                                                  True))
-                            break
-                        # The new word is not a synonym according to this user.
-                        else:
-                            self.perceptual_pred_synonymy.append((tk, self.parser.lexicon.surface_forms[nsfidx],
-                                                                  False))
+                            # The new word tk is a synonym of the neighbor, so share lexical entries between them.
+                            if _c == 'yes':
+                                synonym_identified = [nsfidx, psts]
+                                self.perceptual_pred_synonymy.append((tk, self.parser.lexicon.surface_forms[nsfidx],
+                                                                      True))
+                                break
+                            # The new word is not a synonym according to this user.
+                            else:
+                                self.perceptual_pred_synonymy.append((tk, self.parser.lexicon.surface_forms[nsfidx],
+                                                                      False))
 
-                    # Whether we identified a synonym or not, we need to determine whether this word is being
-                    # Used as an adjective or a noun, which we can do based on its position in the utterance.
-                    # We assume if the token to the right of tk is the end of utterance or a non-perceptual
-                    # word based on our lexicon (or appropriate beam search). Otherwise, it is an adjective.
-                    tk_probably_adjective = False
-                    if tkidx < len(tks) - 1:  # the word is not the last one, so it might be an adjective
+                        # Whether we identified a synonym or not, we need to determine whether this word is being
+                        # Used as an adjective or a noun, which we can do based on its position in the utterance.
+                        # We assume if the token to the right of tk is the end of utterance or a non-perceptual
+                        # word based on our lexicon (or appropriate beam search). Otherwise, it is an adjective.
+                        tk_probably_adjective = False
+                        if tkidx < len(tks) - 1:  # the word is not the last one, so it might be an adjective
 
-                        # If next word is in the lexicon, see if it's perceptual. If it's not, check whether
-                        # its neighbors in beam are.
-                        next_candidate_semantic_forms = []
-                        if tks[tkidx+1] in self.parser.lexicon.surface_forms:
-                            next_candidate_semantic_forms.extend([self.parser.lexicon.semantic_forms[sem_idx]
-                                                                  for sem_idx in self.parser.lexicon.entries[
-                                self.parser.lexicon.surface_forms.index(tks[tkidx+1])]])
-                        else:
-                            nnn = self.parser.lexicon.get_lexicon_word_embedding_neighbors(
-                                tks[tkidx+1], self.word_neighbors_to_consider_as_synonyms)
-                            for nsfidx, _ in nnn:
+                            # If next word is in the lexicon, see if it's perceptual. If it's not, check whether
+                            # its neighbors in beam are.
+                            next_candidate_semantic_forms = []
+                            if tks[tkidx+1] in self.parser.lexicon.surface_forms:
                                 next_candidate_semantic_forms.extend([self.parser.lexicon.semantic_forms[sem_idx]
-                                                                      for sem_idx in
-                                                                      self.parser.lexicon.entries[nsfidx]])
-                        psts = []
-                        for ncsf in next_candidate_semantic_forms:
-                            psts.extend(self.get_parse_subtrees(ncsf, self.grounder.kb.perceptual_preds))
-                        if len(psts) > 0:  # next word is perceptual, so this one is probably an adjective
-                            tk_probably_adjective = True
-                    if debug:
-                        print ("preprocess_utterance_for_new_predicates: examined following token and guessed " +
-                               " that '" + tk + "'s probably adjective value is " + str(tk_probably_adjective))
-
-                    # Prepare to add new entries.
-                    noun_cat_idx = self.parser.lexicon.categories.index('N')  # assumed to exist
-                    adj_cat_idx = self.parser.lexicon.categories.index([noun_cat_idx, 1, noun_cat_idx])  # i.e. N/N
-                    item_type_idx = self.parser.ontology.types.index('i')
-                    bool_type_idx = self.parser.ontology.types.index('t')
-                    pred_type_idx = self.parser.ontology.types.index([item_type_idx, bool_type_idx])
-                    if tk_probably_adjective:
-                        cat_to_match = adj_cat_idx
-                        sem_prefix = "lambda P:<i,t>.(and("
-                        sem_suffix = ", P))"
-                    else:
-                        cat_to_match = noun_cat_idx
-                        sem_prefix = ""
-                        sem_suffix = ""
-
-                    # Add synonym lexical entry for appropriate form (adj or noun) of identified synonym,
-                    # or create one if necessary.
-                    # If the synonym has more than one N or N/N entry (as appropriate), both will be added.
-                    if synonym_identified is not None:
-                        nsfidx, psts = synonym_identified
+                                                                      for sem_idx in self.parser.lexicon.entries[
+                                    self.parser.lexicon.surface_forms.index(tks[tkidx+1])]])
+                            else:
+                                nnn = self.parser.lexicon.get_lexicon_word_embedding_neighbors(
+                                    tks[tkidx+1], self.word_neighbors_to_consider_as_synonyms)
+                                for nsfidx, _ in nnn:
+                                    next_candidate_semantic_forms.extend([self.parser.lexicon.semantic_forms[sem_idx]
+                                                                          for sem_idx in
+                                                                          self.parser.lexicon.entries[nsfidx]])
+                            psts = []
+                            for ncsf in next_candidate_semantic_forms:
+                                psts.extend(self.get_parse_subtrees(ncsf, self.grounder.kb.perceptual_preds))
+                            if len(psts) > 0:  # next word is perceptual, so this one is probably an adjective
+                                tk_probably_adjective = True
                         if debug:
-                            print ("preprocess_utterance_for_new_predicates: searching for synonym category matches")
+                            print ("preprocess_utterance_for_new_predicates: examined following token and guessed " +
+                                   " that '" + tk + "'s probably adjective value is " + str(tk_probably_adjective))
 
-                        synonym_had_category_match = False
-                        for sem_idx in self.parser.lexicon.entries[nsfidx]:
-                            if self.parser.lexicon.semantic_forms[sem_idx].category == cat_to_match:
-                                if tk not in self.parser.lexicon.surface_forms:
-                                    self.parser.lexicon.surface_forms.append(tk)
-                                    self.parser.lexicon.entries.append([])
-                                sfidx = self.parser.lexicon.surface_forms.index(tk)
-                                if sfidx not in self.parser.theta._skipwords_given_surface_form:
-                                    self.parser.theta._skipwords_given_surface_form[sfidx] = \
-                                        self.parser.theta._skipwords_given_surface_form[nsfidx]
-                                self.parser.lexicon.neighbor_surface_forms.append(sfidx)
-                                self.parser.lexicon.entries[sfidx].append(sem_idx)
-                                self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, sfidx)] = \
-                                    self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, nsfidx)]
-                                self.parser.theta.update_probabilities()
-                                synonym_had_category_match = True
-                                if debug:
-                                    print ("preprocess_utterance_for_new_predicates: added a lexical entry" +
-                                           " due to category match: " +
-                                           self.parser.print_parse(self.parser.lexicon.semantic_forms[sem_idx], True))
+                        # Prepare to add new entries.
+                        noun_cat_idx = self.parser.lexicon.categories.index('N')  # assumed to exist
+                        adj_cat_idx = self.parser.lexicon.categories.index([noun_cat_idx, 1, noun_cat_idx])  # i.e. N/N
+                        item_type_idx = self.parser.ontology.types.index('i')
+                        bool_type_idx = self.parser.ontology.types.index('t')
+                        pred_type_idx = self.parser.ontology.types.index([item_type_idx, bool_type_idx])
+                        if tk_probably_adjective:
+                            cat_to_match = adj_cat_idx
+                            sem_prefix = "lambda P:<i,t>.(and("
+                            sem_suffix = ", P))"
+                        else:
+                            cat_to_match = noun_cat_idx
+                            sem_prefix = ""
+                            sem_suffix = ""
 
-                        # Create a new adjective entry N/N : lambda P.(synonympred, P) or N : synonympred
-                        # All perception predicates associated with entries in the chosen synonym generate entries.
-                        if not synonym_had_category_match:
+                        # Add synonym lexical entry for appropriate form (adj or noun) of identified synonym,
+                        # or create one if necessary.
+                        # If the synonym has more than one N or N/N entry (as appropriate), both will be added.
+                        if synonym_identified is not None:
+                            nsfidx, psts = synonym_identified
                             if debug:
-                                print ("preprocess_utterance_for_new_predicates: no category match for synonym")
-                            for pst in psts:  # trees with candidate synonym preds in them somewhere
-                                candidate_preds = [p for p in self.scrape_preds_from_parse(pst)
-                                                   if p in self.grounder.kb.perceptual_preds]
-                                for cpr in candidate_preds:
-                                    s = sem_prefix + cpr + sem_suffix
-                                    sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None, [])
+                                print ("preprocess_utterance_for_new_predicates: " +
+                                       "searching for synonym category matches")
+
+                            synonym_had_category_match = False
+                            for sem_idx in self.parser.lexicon.entries[nsfidx]:
+                                if self.parser.lexicon.semantic_forms[sem_idx].category == cat_to_match:
                                     if tk not in self.parser.lexicon.surface_forms:
                                         self.parser.lexicon.surface_forms.append(tk)
                                         self.parser.lexicon.entries.append([])
                                     sfidx = self.parser.lexicon.surface_forms.index(tk)
-                                    self.parser.lexicon.neighbor_surface_forms.append(sfidx)
                                     if sfidx not in self.parser.theta._skipwords_given_surface_form:
                                         self.parser.theta._skipwords_given_surface_form[sfidx] = \
                                             self.parser.theta._skipwords_given_surface_form[nsfidx]
-                                    if sem not in self.parser.lexicon.semantic_forms:
-                                        self.parser.lexicon.semantic_forms.append(sem)
-                                    sem_idx = self.parser.lexicon.semantic_forms.index(sem)
+                                    self.parser.lexicon.neighbor_surface_forms.append(sfidx)
                                     self.parser.lexicon.entries[sfidx].append(sem_idx)
                                     self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, sfidx)] = \
-                                        self.parser.theta.lexicon_weight  # fresh entry not borrowing neighbor value
+                                        self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, nsfidx)]
+                                    self.parser.theta.update_probabilities()
+                                    synonym_had_category_match = True
                                     if debug:
-                                        print ("preprocess_utterance_for_new_predicates: created lexical entry for " +
-                                               " candidate pred extracted from synonym trees: " +
-                                               self.parser.print_parse(sem, True))
+                                        print ("preprocess_utterance_for_new_predicates: added a lexical entry" +
+                                               " due to category match: " +
+                                               self.parser.print_parse(self.parser.lexicon.semantic_forms[sem_idx],
+                                                                       True))
 
-                    # No identified synonym, so we instead have to create a new ontological predicate
-                    # and then add a lexical entry pointing to it as a N or N/N entry, as appropriate.
-                    else:
-                        if debug:
-                            print ("preprocess_utterance_for_new_predicates: no synonym found, so adding new " +
-                                   "ontological concept for '" + tk + "'")
+                            # Create a new adjective entry N/N : lambda P.(synonympred, P) or N : synonympred
+                            # All perception predicates associated with entries in the chosen synonym generate entries.
+                            if not synonym_had_category_match:
+                                if debug:
+                                    print ("preprocess_utterance_for_new_predicates: no category match for synonym")
+                                for pst in psts:  # trees with candidate synonym preds in them somewhere
+                                    candidate_preds = [p for p in self.scrape_preds_from_parse(pst)
+                                                       if p in self.grounder.kb.perceptual_preds]
+                                    for cpr in candidate_preds:
+                                        s = sem_prefix + cpr + sem_suffix
+                                        sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None, [])
+                                        if tk not in self.parser.lexicon.surface_forms:
+                                            self.parser.lexicon.surface_forms.append(tk)
+                                            self.parser.lexicon.entries.append([])
+                                        sfidx = self.parser.lexicon.surface_forms.index(tk)
+                                        self.parser.lexicon.neighbor_surface_forms.append(sfidx)
+                                        if sfidx not in self.parser.theta._skipwords_given_surface_form:
+                                            self.parser.theta._skipwords_given_surface_form[sfidx] = \
+                                                self.parser.theta._skipwords_given_surface_form[nsfidx]
+                                        if sem not in self.parser.lexicon.semantic_forms:
+                                            self.parser.lexicon.semantic_forms.append(sem)
+                                        sem_idx = self.parser.lexicon.semantic_forms.index(sem)
+                                        self.parser.lexicon.entries[sfidx].append(sem_idx)
+                                        self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, sfidx)] = \
+                                            self.parser.theta.lexicon_weight  # fresh entry not borrowing neighbor value
+                                        if debug:
+                                            print ("preprocess_utterance_for_new_predicates: created lexical entry " +
+                                                   "for candidate pred extracted from synonym trees: " +
+                                                   self.parser.print_parse(sem, True))
 
-                        # Create a new ontological predicate to represent the new perceptual concept.
-                        self.parser.ontology.preds.append(tk)
-                        self.parser.ontology.entries.append(pred_type_idx)
-                        self.parser.ontology.num_args.append(self.parser.ontology.calc_num_pred_args(
-                            len(self.parser.ontology.preds) - 1))
+                        # No identified synonym, so we instead have to create a new ontological predicate
+                        # and then add a lexical entry pointing to it as a N or N/N entry, as appropriate.
+                        else:
+                            if debug:
+                                print ("preprocess_utterance_for_new_predicates: no synonym found, so adding new " +
+                                       "ontological concept for '" + tk + "'")
 
-                        # Create a new perceptual predicate to represent the new perceptual concept.
-                        self.grounder.kb.pc.update_classifiers([tk], [], [], [])  # blank concept
-                        if debug:
-                            print ("preprocess_utterance_for_new_predicates: updated perception classifiers with" +
-                                   " new concept '" + tk + "'")
+                            # Create a new ontological predicate to represent the new perceptual concept.
+                            self.parser.ontology.preds.append(tk)
+                            self.parser.ontology.entries.append(pred_type_idx)
+                            self.parser.ontology.num_args.append(self.parser.ontology.calc_num_pred_args(
+                                len(self.parser.ontology.preds) - 1))
 
-                        # Create a lexical entry corresponding to the newly-acquired perceptual concept.
-                        s = sem_prefix + tk + sem_suffix
-                        sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None, [])
-                        if tk not in self.parser.lexicon.surface_forms:
-                            self.parser.lexicon.surface_forms.append(tk)
-                            self.parser.lexicon.entries.append([])
-                        sfidx = self.parser.lexicon.surface_forms.index(tk)
-                        if sfidx not in self.parser.theta._skipwords_given_surface_form:
-                            self.parser.theta._skipwords_given_surface_form[sfidx] = - self.parser.theta.lexicon_weight
-                        if sem not in self.parser.lexicon.semantic_forms:
-                            self.parser.lexicon.semantic_forms.append(sem)
-                        sem_idx = self.parser.lexicon.semantic_forms.index(sem)
-                        self.parser.lexicon.entries[sfidx].append(sem_idx)
-                        self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, sfidx)] = \
-                            self.parser.theta.lexicon_weight  # fresh entry not borrowing neighbor value
-                        if debug:
-                            print ("preprocess_utterance_for_new_predicates: created lexical entry for new perceptual" +
-                                   " concept: " + self.parser.print_parse(sem, True))
+                            # Create a new perceptual predicate to represent the new perceptual concept.
+                            self.grounder.kb.pc.update_classifiers([tk], [], [], [])  # blank concept
+                            if debug:
+                                print ("preprocess_utterance_for_new_predicates: updated perception classifiers with" +
+                                       " new concept '" + tk + "'")
 
-                    # Since entries may have been added, update probabilities before any more parsing is done.
-                    self.parser.theta.update_probabilities()
+                            # Create a lexical entry corresponding to the newly-acquired perceptual concept.
+                            s = sem_prefix + tk + sem_suffix
+                            sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None, [])
+                            if tk not in self.parser.lexicon.surface_forms:
+                                self.parser.lexicon.surface_forms.append(tk)
+                                self.parser.lexicon.entries.append([])
+                            sfidx = self.parser.lexicon.surface_forms.index(tk)
+                            if sfidx not in self.parser.theta._skipwords_given_surface_form:
+                                self.parser.theta._skipwords_given_surface_form[sfidx] =\
+                                    - self.parser.theta.lexicon_weight
+                            if sem not in self.parser.lexicon.semantic_forms:
+                                self.parser.lexicon.semantic_forms.append(sem)
+                            sem_idx = self.parser.lexicon.semantic_forms.index(sem)
+                            self.parser.lexicon.entries[sfidx].append(sem_idx)
+                            self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, sfidx)] = \
+                                self.parser.theta.lexicon_weight  # fresh entry not borrowing neighbor value
+                            if debug:
+                                print ("preprocess_utterance_for_new_predicates: created lexical entry for new " +
+                                       "perceptual concept: " + self.parser.print_parse(sem, True))
+
+                        # Since entries may have been added, update probabilities before any more parsing is done.
+                        self.parser.theta.update_probabilities()
 
     # Given an initial query, keep pestering the user for a response we can parse into a yes/no confirmation
     # until it's given.

@@ -16,6 +16,7 @@ move :- M/PP : lambda x:l.(walk(x))
 visit :- M/NP : lambda x:l.(walk(x))
 enter :- M/NP : lambda x:l.(walk(x))
 move :- M/PP/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
+take :- M/PP/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
 
 # imperatives forming 'move', eg. ``get the X from Y and bring it to Z''
 get :- M/M/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
@@ -43,11 +44,12 @@ of :- N\N/NP : lambda x:p.(lambda P:<l,t>.(lambda y:l.(and(P(y), possesses(x, y)
 adjacent :- N/PP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
 next :- N/PP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
 by :- N/NP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
-between :- N/NP/NP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(lambda z:l.(and(P(x), and(adjacent(y, x), adjacent(z, x)))))))
+between :- N/NP/NP\N : lambda P:<l,t>.(lambda y:l.(lambda z:l.(lambda x:l.(and(P(x), and(adjacent(y, x), adjacent(z, x)))))))
 
-# determiners
+# determiners (e.g. "the spice container", "the intern")
 the :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
 the :- NP/N : lambda P:<i,t>.(a_i(lambda x:i.(P(x))))
+the :- NP/NP : lambda x:p.(x)
 a :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
 a :- NP/N : lambda P:<i,t>.(a_i(lambda x:i.(P(x))))
 an :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
@@ -78,35 +80,41 @@ lounge :- N : lounge
 kitchen :- N : kitchen
 pod :- N : pod
 
+# Vacuous KB-looking words (e.g. "conference room")
+room :- N\N : lambda P:<l,t>.(P)
+
 # KB adjectives
 empty :- N/N : lambda P:<l,t>.(and(unoccupied, P))
 north :- N/N : lambda P:<l,t>.(and(north, P))
+top :- N/N : lambda P:<l,t>.(and(north, P))
 east :- N/N : lambda P:<l,t>.(and(east, P))
+right :- N/N : lambda P:<l,t>.(and(east, P))
 south :- N/N : lambda P:<l,t>.(and(south, P))
+bottom :- N/N : lambda P:<l,t>.(and(south, P))
 west :- N/N : lambda P:<l,t>.(and(west, P))
-center :- N/N : lambda P:<l,t>.(and(center, P))
-middle :- N/N : lambda P:<l,t>.(and(center, P))
+left :- N/N : lambda P:<l,t>.(and(west, P))
 northeast :- N/N : lambda P:<l,t>.(and(north, and(east, P)))
 northwest :- N/N : lambda P:<l,t>.(and(north, and(west, P)))
 southeast :- N/N : lambda P:<l,t>.(and(south, and(east, P)))
 southwest :- N/N : lambda P:<l,t>.(and(south, and(west, P)))
-north :- N/PP : lambda y:l.(lambda x:l.(northof(x, y)))
-east :- N/PP : lambda y:l.(lambda x:l.(eastof(x, y)))
-south :- N/PP : lambda y:l.(lambda x:l.(southof(x, y)))
-west :- N/PP : lambda y:l.(lambda x:l.(westof(x, y)))
+north :- N\NP/PP : lambda y:l.(lambda P:<l,t>.(a_l(lambda x:l.(and(P(x), northof(x, y))))))
+east :- N\NP/PP : lambda y:l.(lambda P:<l,t>.(a_l(lambda x:l.(and(P(x), eastof(x, y))))))
+south :- N\NP/PP : lambda y:l.(lambda P:<l,t>.(a_l(lambda x:l.(and(P(x), southof(x, y))))))
+west :- N\NP/PP : lambda y:l.(lambda P:<l,t>.(a_l(lambda x:l.(and(P(x), westof(x, y))))))
 
 # perception bare nouns from MTurk init
+spices :- N : spice
 spice :- N : spice
 container :- N : container
 can :- N : can
 pringles :- N : pringles
 cylinder :- N : cylinder
-bean :- N : bean
+beans :- N : bean
 tower :- N : tower
 rectangle :- N : rectangle
 column :- N : column
 block :- N : block
-peach :- N : peach
+peaches :- N : peach
 
 # perception adjectives from MTurk init
 spice :- N/N : lambda P:<i,t>.(and(spice, P))

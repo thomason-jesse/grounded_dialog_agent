@@ -275,8 +275,10 @@ function show_agent_thinking() {
 
 function poll_for_agent_messages() {
 
-  // Increment time so far.
-  num_polls_since_last_message += 1;
+  // Increment time so far if user is unable to respond.
+  if ($('#user_say').prop("disabled") && ('#nearby_objects_div').prop("hidden")) {
+    num_polls_since_last_message += 1;
+  }
 
   // Check for an action message.
   var contents = get_and_delete_file(amsgs_url);
@@ -288,6 +290,8 @@ function poll_for_agent_messages() {
     var roles = get_roles_from_referent_message(contents);
     $('#action_chosen_post').val(roles);  // the roles chosen for the action
     disable_user_text();  // just in case
+    disable_user_train_object_answer();  // just in case
+    $('#skip_to_end').prop("hidden", true);  // /just in case
     num_polls_since_last_message = 0;
     num_user_turns = 0;
     clearInterval(iv);

@@ -71,7 +71,6 @@ north:<l,t>
 east:<l,t>
 south:<l,t>
 west:<l,t>
-center:<l,t>
 
 # object ids from I, Spy
 oidx_0:i
