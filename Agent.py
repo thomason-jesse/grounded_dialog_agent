@@ -890,14 +890,19 @@ class Agent:
         for r in [_r for _r in self.roles if current_confirmed[_r] is None]:
 
             min_count = min([self.action_belief_state[r][entry] for entry in self.action_belief_state[r]])
-            mass = sum([self.action_belief_state[r][entry] - min_count for entry in self.action_belief_state[r]])
+            mass = sum([self.action_belief_state[r][entry] - min_count + 1 for entry in self.action_belief_state[r]])
             if mass > 0:
                 valid_entries = [entry for entry in self.action_belief_state[r]]
-                dist = [(self.action_belief_state[r][entry] - min_count) / mass
+                dist = [(self.action_belief_state[r][entry] - min_count + 1) / mass
                         for entry in valid_entries]
+                if debug:
+                    print ("sample_action_from_belief: role '" + r + "' valid entries: " + str(valid_entries) +
+                           ", dist: " + str(dist))
                 if arg_max:
                     max_idxs = [idx for idx in range(len(dist)) if dist[idx] == max(dist)]
                     c = np.random.choice([valid_entries[idx] for idx in max_idxs], 1)
+                    if debug:
+                        print ("sample_action_from_belief: ... max_idxs: " + str(max_idxs) + ", c " + str(c))
                 else:
                     c = np.random.choice([valid_entries[idx]
                                           for idx in range(len(valid_entries))],
@@ -917,9 +922,11 @@ class Agent:
 
         # Include roles in the question if they exceed the specified confidence threshold or a
         # uniform sample drawn in [0, 1] is less than the confidence in the role (which is also in [0, 1])
+        # Don't sample 'action'; that needs to be above inclusion threshold (with threshold 1.0, it needs
+        # to be explicitly confirmed.)
         roles_to_include = [r for r in self.roles if
                             (sampled_action[r][1] >= include_threshold or
-                             sampled_action[r][1] > np.random.random(1)[0]) and
+                             (r != 'action' and sampled_action[r][1] > np.random.random(1)[0])) and
                             sampled_action[r][0] is not None]  # can't be confident to include absence
         if 'action' in roles_to_include:
             relevant_roles = ['action'] + [r for r in (self.action_args[sampled_action['action'][0]].keys()
@@ -934,7 +941,10 @@ class Agent:
             print "get_question_from_sampled_action: s_conf " + str(s_conf)
 
         # Determine which args to include as already understood in question and which arg to focus on.
-        least_conf_role = s_conf[0][0]
+        if 'action' in roles_to_include:
+            least_conf_role = s_conf[0][0]
+        else:
+            least_conf_role = 'action'  # need to get action confirmed first
         if max([conf for _, conf in s_conf]) == 0.0:  # no confidence
             least_conf_role = None
         if debug:

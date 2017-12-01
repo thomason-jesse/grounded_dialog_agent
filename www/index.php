@@ -242,9 +242,7 @@ function send_agent_user_oidx_input(point, d, uid) {
 // If the number of turns exceeds a threshold, offer the user the option
 // to advance to payment (in case dialog gets super wonky).
 function increment_user_turns() {
-  if ($('#user_say').prop("disabled") && $('#nearby_objects_div').prop("hidden")) {
-    num_user_turns += 1;
-  }
+  num_user_turns += 1;
   if (num_user_turns >= 30) {
     $('#skip_to_end').prop("hidden", false);
     $('#dialog_too_long_div').prop("hidden", false);
