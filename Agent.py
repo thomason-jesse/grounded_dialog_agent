@@ -397,7 +397,7 @@ class Agent:
     # it means the same thing as a few neighboring words. This dialog's length is limited linearly with respect
     # to the number of words in the utterance, but could be long for many new predicates.
     def preprocess_utterance_for_new_predicates(self, u):
-        debug = True
+        debug = False
         if debug:
             print ("preprocess_utterance_for_new_predicates: called with utterance " + u)
 
@@ -1106,6 +1106,8 @@ class Agent:
                         q = "You want me to do something involving " + args[0] + " and " + args[1] + "?"
                     elif len(args) == 1:
                         q = "You want me to do something involving " + args[0] + "?"
+                    else:
+                        q = "What is involved in what I should do?"
 
         elif least_conf_role == 'recipient':  # ask for recipient confirmation
             if sampled_action['recipient'][0] is None:
