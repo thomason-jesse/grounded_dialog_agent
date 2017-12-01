@@ -202,7 +202,7 @@ function add_row_to_dialog_table(m, u, i) {
   } else {
     name_cell.innerHTML = "ROBOT";
     var row_class = "robot_row";
-    m = str.replace("not", "<b>not</b>");  // bold the word 'not' in robot utterances
+    m = m.replace("not", "<b>not</b>");  // bold the word 'not' in robot utterances
   }
   row.className = row_class;
   msg_cell.innerHTML = m;
