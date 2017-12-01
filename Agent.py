@@ -139,17 +139,20 @@ class Agent:
             if role_asked is None:  # asked to repeat whole thing
                 user_utterances_by_role['all'].append(ur)
                 for gpr, conf in gprs:
-                    # conf scores across gprs will sum to 1 based on parse_and_ground_utterance behavior.
-                    self.update_action_belief_from_grounding(gpr, self.roles, count=conf)
+                    if type(gpr) is not bool:
+                        # conf scores across gprs will sum to 1 based on parse_and_ground_utterance behavior.
+                        self.update_action_belief_from_grounding(gpr, self.roles, count=conf)
             # asked an open-ended question for a particular role (e.g. "where should i go?")
             elif action_chosen[role_asked][0] is None or role_asked not in roles_in_q:
                 user_utterances_by_role[role_asked].append(ur)
                 for gpr, conf in gprs:
-                    self.update_action_belief_from_grounding(gpr, [role_asked], count=conf)
+                    if type(gpr) is not bool:
+                        self.update_action_belief_from_grounding(gpr, [role_asked], count=conf)
             else:  # asked a yes/no question confirming one or more roles
                 for gpr, conf in gprs:
-                    self.update_action_belief_from_confirmation(gpr, action_confirmed, action_chosen,
-                                                                roles_in_q, count=conf)
+                    if type(gpr) is not bool:
+                        self.update_action_belief_from_confirmation(gpr, action_confirmed, action_chosen,
+                                                                    roles_in_q, count=conf)
 
             if debug:
                 print "start_action_dialog: updated action belief state: " + str(self.action_belief_state)
@@ -361,18 +364,19 @@ class Agent:
                             self.new_perceptual_labels.append((pred, sub_ur, 0))
                     else:  # response is expected to be a confirmation yes/no
                         for sg, _ in sub_gprs:
-                            if sg.idx == self.parser.ontology.preds.index('yes'):
-                                upidxs = [perception_pidx]
-                                uoidxs = [q_type]
-                                ulabels = [1]
-                                labeled_tuples.append((perception_pidx, q_type))
-                                self.new_perceptual_labels.append((pred, q_type, 1))
-                            elif sg.idx == self.parser.ontology.preds.index('no'):
-                                upidxs = [perception_pidx]
-                                uoidxs = [q_type]
-                                ulabels = [0]
-                                labeled_tuples.append((perception_pidx, q_type))
-                                self.new_perceptual_labels.append((pred, q_type, 0))
+                            if type(sg) is not bool:
+                                if sg.idx == self.parser.ontology.preds.index('yes'):
+                                    upidxs = [perception_pidx]
+                                    uoidxs = [q_type]
+                                    ulabels = [1]
+                                    labeled_tuples.append((perception_pidx, q_type))
+                                    self.new_perceptual_labels.append((pred, q_type, 1))
+                                elif sg.idx == self.parser.ontology.preds.index('no'):
+                                    upidxs = [perception_pidx]
+                                    uoidxs = [q_type]
+                                    ulabels = [0]
+                                    labeled_tuples.append((perception_pidx, q_type))
+                                    self.new_perceptual_labels.append((pred, q_type, 0))
                     if debug:
                         print ("conduct_perception_subdialog: updating classifiers with upidxs " + str(upidxs) +
                                ", uoidxs " + str(uoidxs) + ", ulabels " + str(ulabels))
@@ -609,12 +613,12 @@ class Agent:
             u = self.io.get_from_user()
             gps, _ = self.parse_and_ground_utterance(u)
             for g, _ in gps:
-                if g.type == self.parser.ontology.types.index('c'):
+                if type(g) is not bool and g.type == self.parser.ontology.types.index('c'):
                     if g.idx == self.parser.ontology.preds.index('yes'):
                         return 'yes'
                     elif g.idx == self.parser.ontology.preds.index('no'):
                         return 'no'
-            self.io.say_to_user("I am expected a 'yes' or 'no' response.")
+            self.io.say_to_user("I am expected a simple 'yes' or 'no' response.")
             self.io.say_to_user(q)
 
     def update_action_belief_from_confirmation(self, g, action_confirmed, action_chosen, roles_in_q, count=1.0):
@@ -623,7 +627,7 @@ class Agent:
         if debug:
             print ("update_action_belief_from_confirmation: confirmation response parse " +
                    self.parser.print_parse(g) + " with roles_in_q " + str(roles_in_q))
-        if type(g) is not bool and g.type == self.parser.ontology.types.index('c'):
+        if g.type == self.parser.ontology.types.index('c'):
             if g.idx == self.parser.ontology.preds.index('yes'):
                 for r in roles_in_q:
                     action_confirmed[r] = action_chosen[r][0]
