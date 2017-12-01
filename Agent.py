@@ -620,14 +620,14 @@ class Agent:
         if debug:
             print ("update_action_belief_from_confirmation: confirmation response parse " +
                    self.parser.print_parse(g) + " with roles_in_q " + str(roles_in_q))
-        if type(g) is bool or g.type == self.parser.ontology.types.index('c'):  # bool or conf parse
-            if g or g.idx == self.parser.ontology.preds.index('yes'):  # i.e. True or 'yes' parse
+        if type(g) is not bool and g.type == self.parser.ontology.types.index('c'):
+            if g.idx == self.parser.ontology.preds.index('yes'):
                 for r in roles_in_q:
                     action_confirmed[r] = action_chosen[r][0]
                     if debug:
                         print ("update_action_belief_from_confirmation: confirmed role " + r + " with argument " +
                                action_chosen[r][0])
-            elif not g or g.idx == self.parser.ontology.preds.index('no'):  # i.e. False or 'no' parse
+            elif g.idx == self.parser.ontology.preds.index('no'):
                 if len(roles_in_q) > 0:
 
                     # Find the second-closest count among the roles to establish an amount by which to decrement

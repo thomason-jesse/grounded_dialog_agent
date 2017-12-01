@@ -1,6 +1,10 @@
 # confirmations
 yes :- C : yes
+yep :- C : yes
+sure :- C : yes
 no :- C : no
+nope :- C : no
+wrong :- C : no
 
 # imperative
 bring :- M/NP/NP : lambda y:p.(lambda x:i.(bring(x, y)))
