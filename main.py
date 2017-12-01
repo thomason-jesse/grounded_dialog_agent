@@ -16,6 +16,7 @@ def main():
 
     # Load parameters from command line.
     parser_fn = FLAGS_parser_fn
+    word_embeddings_fn = FLAGS_word_embeddings_fn
     io_type = FLAGS_io_type
     grounder_fn = FLAGS_grounder_fn
     active_train_set = [int(oidx) for oidx in FLAGS_active_train_set.split(',')]
@@ -44,6 +45,7 @@ def main():
         print "main: loading parser from file..."
         with open(parser_fn, 'rb') as f:
             p = pickle.load(f)
+        p.lexicon.wv = p.lexicon.load_word_embeddings(word_embeddings_fn)
         print "main: ... done"
 
         # Create a new labels.pickle that erases the labels of the active training set for test purposes.
@@ -141,6 +143,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--parser_fn', type=str, required=False,
                         help="a parser pickle to load")
+    parser.add_argument('--word_embeddings_fn', type=str, required=False,
+                        help="fresh word embeddings to deal with gensim version differences")
     parser.add_argument('--io_type', type=str, required=True,
                         help="one of 'keyboard' or 'server'")
     parser.add_argument('--write_classifiers', type=int, required=False, default=0,
