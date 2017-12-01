@@ -49,7 +49,7 @@ class Agent:
     # Clarifies the arguments of u until the action is confirmed by the user.
     # perception_labels_requested - pairs of (pidx, oidx) labels already requested from user; modified in-place
     def start_action_dialog(self, perception_labels_requested):
-        debug = True
+        debug = False
 
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
         # As more open-ended and yes/no utterances are parsed, these counts will be updated to reflect the roles
@@ -620,14 +620,14 @@ class Agent:
         if debug:
             print ("update_action_belief_from_confirmation: confirmation response parse " +
                    self.parser.print_parse(g) + " with roles_in_q " + str(roles_in_q))
-        if g.type == self.parser.ontology.types.index('c'):
-            if g.idx == self.parser.ontology.preds.index('yes'):
+        if type(g) is bool or g.type == self.parser.ontology.types.index('c'):  # bool or conf parse
+            if g or g.idx == self.parser.ontology.preds.index('yes'):  # i.e. True or 'yes' parse
                 for r in roles_in_q:
                     action_confirmed[r] = action_chosen[r][0]
                     if debug:
                         print ("update_action_belief_from_confirmation: confirmed role " + r + " with argument " +
                                action_chosen[r][0])
-            elif g.idx == self.parser.ontology.preds.index('no'):
+            elif not g or g.idx == self.parser.ontology.preds.index('no'):  # i.e. False or 'no' parse
                 if len(roles_in_q) > 0:
 
                     # Find the second-closest count among the roles to establish an amount by which to decrement
@@ -738,7 +738,7 @@ class Agent:
     # Increase count of possible slot files for each role that appear in the groundings, and decay those that
     # appear in no groundings.
     def update_action_belief_from_grounding(self, g, roles, count=1.0):
-        debug = True
+        debug = False
         if debug:
             print ("update_action_belief_from_grounding called with g " + self.parser.print_parse(g) +
                    " and roles " + str(roles))
@@ -870,7 +870,7 @@ class Agent:
     # Sample a discrete action from the current belief counts.
     # Each argument of the discrete action is a tuple of (argument, confidence) for confidence in [0, 1].
     def sample_action_from_belief(self, current_confirmed, arg_max=False):
-        debug = True
+        debug = False
         if debug:
             print ("sample_action_from_belief: sampling from belief " + str(self.action_belief_state) +
                    " with current_confirmed=" + str(current_confirmed) + " and arg_max=" + str(arg_max))
