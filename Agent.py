@@ -19,7 +19,7 @@ class Agent:
 
         # hyperparameters
         self.parse_beam = 1
-        self.threshold_to_accept_role = 0.9  # include role filler in questions above this threshold
+        self.threshold_to_accept_role = 1.0  # include role filler in questions above this threshold
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
@@ -58,10 +58,10 @@ class Agent:
                                     'patient': {p: 1.0 for p in self.parser.ontology.preds
                                                 if (self.parser.ontology.types[self.parser.ontology.entries[
                                                     self.parser.ontology.preds.index(p)]] in
-                                                    self.action_args['walk']['goal'] or
+                                                    self.action_args['bring']['patient'] or
                                                     self.parser.ontology.types[self.parser.ontology.entries[
                                                         self.parser.ontology.preds.index(p)]] in
-                                                    self.action_args['bring']['patient'])},
+                                                    self.action_args['move']['patient'])},
                                     'recipient': {r: 1.0 for r in self.parser.ontology.preds
                                                   if self.parser.ontology.types[self.parser.ontology.entries[
                                                       self.parser.ontology.preds.index(r)]] in
@@ -71,10 +71,13 @@ class Agent:
                                                    self.parser.ontology.preds.index(r)]] in
                                                self.action_args['move']['source']},
                                     'goal': {r: 1.0 for r in self.parser.ontology.preds
-                                             if self.parser.ontology.types[self.parser.ontology.entries[
+                                             if (self.parser.ontology.types[self.parser.ontology.entries[
                                                  self.parser.ontology.preds.index(r)]] in
-                                             self.action_args['move']['goal']}}
-        # questions currently support None action, but I think it's weird maybe so I removed it here
+                                                 self.action_args['walk']['goal'] or
+                                                 self.parser.ontology.types[self.parser.ontology.entries[
+                                                     self.parser.ontology.preds.index(r)]] in
+                                                 self.action_args['move']['goal'])}}
+        # question generation supports None action, but I think it's weird maybe so I removed it here
         for r in ['patient', 'recipient', 'source', 'goal']:
             self.action_belief_state[r][None] = 1.0
         if debug:
@@ -425,7 +428,7 @@ class Agent:
                 # If there were no neighbors at all, the word isn't in the embedding space and might be a brand name
                 # (e.g. pringles) that we still want to pick up as perceptual.
                 if len(perceptual_neighbors) > 0 or len(nn) == 0:
-                    q = ("I haven't heard the word '" + tk + "' before. Does it refer to a property of " +
+                    q = ("I haven't heard the word '" + tk + "' before. Is it the name of, or a property of, " +
                          "physical objects, like a color, shape, or weight?")
                     c = self.get_yes_no_from_user(q)
                     if c == 'yes':
@@ -632,8 +635,9 @@ class Agent:
 
                     # Find the second-closest count among the roles to establish an amount by which to decrement
                     # the whole set to ensure at least one argument is no longer maximal.
+                    roles_to_dec = [r for r in roles_in_q if action_confirmed[r] is None]
                     min_diff = None
-                    for r in roles_in_q:
+                    for r in roles_to_dec:
                         second = max([self.action_belief_state[r][c] for c in self.action_belief_state[r]
                                       if c != action_chosen[r][0]])
                         diff = self.action_belief_state[r][action_chosen[r][0]] - second
@@ -641,7 +645,7 @@ class Agent:
                             min_diff = diff
 
                     inc = min_diff + count / float(len(roles_in_q))  # add hinge of count distributed over roles
-                    for r in roles_in_q:
+                    for r in roles_to_dec:
                         self.action_belief_state[r][action_chosen[r][0]] -= inc
                         if debug:
                             print ("update_action_belief_from_confirmation: subtracting from " + r + " " +
