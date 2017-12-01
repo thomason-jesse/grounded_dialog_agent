@@ -136,6 +136,7 @@ def main():
 
     # Load parameters from command line.
     parser_fn = FLAGS_parser_fn
+    word_embeddings_fn = FLAGS_word_embeddings_fn
     kb_static_facts_fn = FLAGS_kb_static_facts_fn
     kb_perception_source_dir = FLAGS_kb_perception_source_dir
     kb_perception_feature_dir = FLAGS_kb_perception_feature_dir
@@ -155,6 +156,7 @@ def main():
     print "main: loading parser from file..."
     with open(parser_fn, 'rb') as f:
         p = pickle.load(f)
+    p.lexicon.wv = p.lexicon.load_word_embeddings(word_embeddings_fn)
     print "main: ... done"
 
     # Create a new labels.pickle that erases the labels of the active training set for test purposes.
@@ -206,6 +208,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--parser_fn', type=str, required=True,
                         help="a parser pickle to load")
+    parser.add_argument('--word_embeddings_fn', type=str, required=True,
+                        help="fresh word embeddings to deal with gensim version differences")
     parser.add_argument('--kb_static_facts_fn', type=str, required=True,
                         help="static facts file for the knowledge base")
     parser.add_argument('--kb_perception_source_dir', type=str, required=True,
