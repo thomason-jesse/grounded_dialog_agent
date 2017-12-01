@@ -397,7 +397,7 @@ class Agent:
     # it means the same thing as a few neighboring words. This dialog's length is limited linearly with respect
     # to the number of words in the utterance, but could be long for many new predicates.
     def preprocess_utterance_for_new_predicates(self, u):
-        debug = False
+        debug = True
         if debug:
             print ("preprocess_utterance_for_new_predicates: called with utterance " + u)
 
@@ -414,7 +414,7 @@ class Agent:
                     tk, self.word_neighbors_to_consider_as_synonyms)
 
                 # Beam through neighbors to determine which, if any, are perceptual
-                perceptual_neighbors = []
+                perceptual_neighbors = {}  # from surface forms to parse subtress
                 for idx in range(len(nn)):
                     nsfidx, _ = nn[idx]
 
@@ -423,7 +423,9 @@ class Agent:
                         psts = self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx],
                                                        self.grounder.kb.perceptual_preds)
                         if len(psts) > 0:
-                            perceptual_neighbors.append([nsfidx, psts])
+                            if nsfidx not in perceptual_neighbors:
+                                perceptual_neighbors[nsfidx] = []
+                            perceptual_neighbors[nsfidx].extend(psts)
                 if debug:
                     print ("preprocess_utterance_for_new_predicates: identified perceptual neighbors: " +
                            str(perceptual_neighbors))
@@ -431,7 +433,7 @@ class Agent:
                 # If there are perceptual neighbors, confirm with the user that this new word requires perception.
                 # If there were no neighbors at all, the word isn't in the embedding space and might be a brand name
                 # (e.g. pringles) that we still want to pick up as perceptual.
-                if len(perceptual_neighbors) > 0 or len(nn) == 0:
+                if len(perceptual_neighbors.keys()) > 0 or len(nn) == 0:
                     q = ("I haven't heard the word '" + tk + "' before. Is it the name of, or a property of, " +
                          "physical objects, like a color, shape, or weight?")
                     c = self.get_yes_no_from_user(q)
@@ -439,7 +441,7 @@ class Agent:
 
                         # Ask about each neighbor in the order we found them, corresponding to closest distances.
                         synonym_identified = None
-                        for nsfidx, psts in perceptual_neighbors:
+                        for nsfidx in perceptual_neighbors.keys():
 
                             _q = ("Does '" + tk + "' mean the same thing as '" +
                                   self.parser.lexicon.surface_forms[nsfidx] + "'?")
@@ -447,7 +449,7 @@ class Agent:
 
                             # The new word tk is a synonym of the neighbor, so share lexical entries between them.
                             if _c == 'yes':
-                                synonym_identified = [nsfidx, psts]
+                                synonym_identified = [nsfidx, perceptual_neighbors[nsfidx]]
                                 self.perceptual_pred_synonymy.append((tk, self.parser.lexicon.surface_forms[nsfidx],
                                                                       True))
                                 break
@@ -618,7 +620,7 @@ class Agent:
                         return 'yes'
                     elif g.idx == self.parser.ontology.preds.index('no'):
                         return 'no'
-            self.io.say_to_user("I am expected a simple 'yes' or 'no' response.")
+            self.io.say_to_user("I am expecting a simple 'yes' or 'no' response.")
             self.io.say_to_user(q)
 
     def update_action_belief_from_confirmation(self, g, action_confirmed, action_chosen, roles_in_q, count=1.0):

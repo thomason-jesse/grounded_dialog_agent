@@ -89,6 +89,7 @@ function show_error(e) {
 // Enable the user text input.
 function enable_user_text() {
   $('#user_input').prop("disabled", false);
+  $('#user_input').focus();
   $('#user_say').prop("disabled", false);
 }
 
