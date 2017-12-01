@@ -146,7 +146,7 @@ function fill_panel(type, role, atom) {
   }
   $('#' + type + '_' + role + '_panel').html(content);
   $('#' + type + '_' + role + '_panel').prop("hidden", false);
-  if (!va && type == 'task') {  // maps are present
+  if (!va && type == 'task' && role == "goal") {  // maps are present (walk and move tasks)
     var task_text = $('#task_text').html();
     task_text += "<br/>Letters in offices indicate that the corresponding person owns that office.";
     $('#task_text').html(task_text);
@@ -202,6 +202,7 @@ function add_row_to_dialog_table(m, u, i) {
   } else {
     name_cell.innerHTML = "ROBOT";
     var row_class = "robot_row";
+    m = str.replace("not", "<b>not</b>");  // bold the word 'not' in robot utterances
   }
   row.className = row_class;
   msg_cell.innerHTML = m;
@@ -355,7 +356,7 @@ function show_task(d, uid, action, patient, recipient, source, goal) {
   var prob_form = "Command the robot with a complete sentence. ";
   prob_form += "The robot does not understand questions, but it may ask you questions of its own. ";
   prob_form += "The robot understands high-level commands, so it doesn't need step-by-step instructions, and it doesn't matter what location it starts in. "
-  prob_form += "<br>Give the robot a command to solve this problem:";
+  prob_form += "<br/><br/>Give the robot a command to solve this problem:";
   if (action == 'move') {
     var task_text = "<p><b>" + prob_form + "<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">pink map</span>. The object belongs at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
   } else if (action == 'bring') {

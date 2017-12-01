@@ -275,8 +275,8 @@ class Agent:
                                     q_type = 'pos'
                                 else:  # more positive labels
                                     q = ("Among these nearby objects, could you show me one you could not use the " +
-                                         "word '" + pred + "' when describing, or say 'all' if you could describe " +
-                                         "all as '" + pred + "'?")
+                                         "word '" + pred + "' when describing, or say 'all' if you could use " +
+                                         "'" + pred + "' when describing all of them?")
                                     q_type = 'neg'
 
                             # Else, ask for the label of the (sampled) least-confident object.
