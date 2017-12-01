@@ -49,7 +49,7 @@ class Agent:
     # Clarifies the arguments of u until the action is confirmed by the user.
     # perception_labels_requested - pairs of (pidx, oidx) labels already requested from user; modified in-place
     def start_action_dialog(self, perception_labels_requested):
-        debug = False
+        debug = True
 
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
         # As more open-ended and yes/no utterances are parsed, these counts will be updated to reflect the roles
@@ -138,7 +138,8 @@ class Agent:
                 for gpr, conf in gprs:
                     # conf scores across gprs will sum to 1 based on parse_and_ground_utterance behavior.
                     self.update_action_belief_from_grounding(gpr, self.roles, count=conf)
-            elif action_chosen[role_asked][0] is None:  # asked an open-ended question for a particular role
+            # asked an open-ended question for a particular role (e.g. "where should i go?")
+            elif action_chosen[role_asked][0] is None or role_asked not in roles_in_q:
                 user_utterances_by_role[role_asked].append(ur)
                 for gpr, conf in gprs:
                     self.update_action_belief_from_grounding(gpr, [role_asked], count=conf)
@@ -737,7 +738,7 @@ class Agent:
     # Increase count of possible slot files for each role that appear in the groundings, and decay those that
     # appear in no groundings.
     def update_action_belief_from_grounding(self, g, roles, count=1.0):
-        debug = False
+        debug = True
         if debug:
             print ("update_action_belief_from_grounding called with g " + self.parser.print_parse(g) +
                    " and roles " + str(roles))
@@ -869,7 +870,7 @@ class Agent:
     # Sample a discrete action from the current belief counts.
     # Each argument of the discrete action is a tuple of (argument, confidence) for confidence in [0, 1].
     def sample_action_from_belief(self, current_confirmed, arg_max=False):
-        debug = False
+        debug = True
         if debug:
             print ("sample_action_from_belief: sampling from belief " + str(self.action_belief_state) +
                    " with current_confirmed=" + str(current_confirmed) + " and arg_max=" + str(arg_max))
@@ -904,7 +905,11 @@ class Agent:
         if debug:
             print "get_question_from_sampled_action called with " + str(sampled_action) + ", " + str(include_threshold)
 
-        roles_to_include = [r for r in self.roles if sampled_action[r][1] >= include_threshold and
+        # Include roles in the question if they exceed the specified confidence threshold or a
+        # uniform sample drawn in [0, 1] is less than the confidence in the role (which is also in [0, 1])
+        roles_to_include = [r for r in self.roles if
+                            (sampled_action[r][1] >= include_threshold or
+                             sampled_action[r][1] > np.random.random(1)[0]) and
                             sampled_action[r][0] is not None]  # can't be confident to include absence
         if 'action' in roles_to_include:
             relevant_roles = ['action'] + [r for r in (self.action_args[sampled_action['action'][0]].keys()
