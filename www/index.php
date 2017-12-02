@@ -650,10 +650,12 @@ else {
           </div>
           <div>
             <div class="row">
+            <span class="align-bottom">
               <div class="col-md-1 patient_panel" id="interface_patient_panel" hidden></div>
               <div class="col-md-1 recipient_panel" id="interface_recipient_panel" hidden></div>
               <div class="col-md-1 source_panel" id="interface_source_panel" hidden></div>
               <div class="col-md-1 goal_panel" id="interface_goal_panel" hidden></div>
+            </span>
             </div>
           </div>
         </div>

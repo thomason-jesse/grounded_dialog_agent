@@ -1074,6 +1074,7 @@ class Agent:
                     roles_in_q.append('goal')
                 else:
                     q += " to somewhere"
+                q += " (not give it to someone)"
                 q += "?"
 
         elif least_conf_role == 'patient':  # ask for patient confirmation
@@ -1140,6 +1141,7 @@ class Agent:
                             roles_in_q.append('goal')
                         else:
                             q += " to somewhere"
+                        q += " (not give it to someone)"
                         q += "?"
                 else:
                     args = []
