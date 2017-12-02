@@ -25,6 +25,7 @@ class Agent:
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
         self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
+        self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
 
         # static information about expected actions and their arguments
         self.roles = ['action', 'patient', 'recipient', 'source', 'goal']
@@ -101,12 +102,17 @@ class Agent:
             # Determine what question to ask based on missing arguments in chosen action.
             if not first_utterance:
                 q = last_q
-                while q == last_q and (q is None or "rephrase" not in q):
+                times_sampled = 0
+                while (q == last_q and (q is None or "rephrase" not in q) and
+                       times_sampled < self.get_novel_question_beam):
                     q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
                         action_chosen, self.threshold_to_accept_role)
+                    times_sampled += 1
                     if debug:
                         print "sampled q " + str(q)
                 last_q = q
+                if times_sampled == self.get_novel_question_beam:
+                    self.io.say_to_user("Sorry, I didn't understand that.")
             else:
                 q = "What should I do?"
                 role_asked = None
