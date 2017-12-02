@@ -90,6 +90,7 @@ class Agent:
         action_confirmed = {r: None for r in self.roles}
         first_utterance = True
         perception_subdialog_qs = 0  # track how many have been asked so far to disallow more of them after
+        last_q = None
         while (action_confirmed['action'] is None or
                None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
 
@@ -99,8 +100,13 @@ class Agent:
 
             # Determine what question to ask based on missing arguments in chosen action.
             if not first_utterance:
-                q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
-                    action_chosen, self.threshold_to_accept_role)
+                q = last_q
+                while q == last_q and (q is None or "rephrase" not in q):
+                    q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
+                        action_chosen, self.threshold_to_accept_role)
+                    if debug:
+                        print "sampled q " + str(q)
+                last_q = q
             else:
                 q = "What should I do?"
                 role_asked = None
