@@ -54,7 +54,7 @@ else {
       <p>
         Thank you for your participation!</p>
       <p>Copy the code below, return to Mechanical Turk, and enter it to receive payment:<br/>
-        <?php echo $mturk_code; ?>
+        <b><?php echo $mturk_code; ?></b>
       </p>
     </div>
   </div>

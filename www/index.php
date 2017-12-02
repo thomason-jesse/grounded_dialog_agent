@@ -639,7 +639,7 @@ else {
         <div class="col-md-6">
           <div id="nearby_objects_div" hidden>
             <?php
-              echo "<div class=\"col-md-1\"><button class=\"btn robot_obj_btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">Shake Head</button></div>";
+              echo "<div class=\"col-md-1 robot_obj_panel\"><span class=\"va\"></span><button class=\"btn robot_obj_btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">Shake Head</button></div>";
               for ($idx = 0; $idx < count($active_train_set); $idx++) {
                 echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\" onmouseover=\"nearby_objects_highlight('" . $idx . "')\" onmouseleave=\"nearby_objects_clear('" . $idx . "')\">";
                 $oidx = explode('_', $active_train_set[$idx])[1];
