@@ -17,8 +17,8 @@
 <script type="text/javascript">
 // Global vars for the script.
 var iv;  // the interval function that polls for robot response.
-var num_user_turns;  // the number of dialog turns the user has taken
-var num_polls_since_last_message;  // the number of times we've polled and gotten no response
+var num_user_turns = 0;  // the number of dialog turns the user has taken
+var num_polls_since_last_message = 0;  // the number of times we've polled and gotten no response
 // urls the agent uses to communicate with this user
 var smsgs_url;
 var rmsgs_url;
@@ -475,7 +475,13 @@ if (!isset($_POST['uid'])) {
   # Show instructions.
   $inst = "<p>In this HIT, you will command a robot to perform several tasks. ";
   $inst .= "The robot is learning, and will ask you to reword your commands ";
-  $inst .= "and help it better understand which words apply to physical objects.</p><br/>";
+  $inst .= "and help it better understand which words apply to physical objects. ";
+  $inst .= "After three tasks, you will complete a short survey about your experience.</p>";
+  $inst .= "<p>You will receive a <b>payment bonus</b> for <b>each correctly completed</b> ";
+  $inst .= "task out of the three. If the robot completes all three tasks correctly, your ";
+  $inst .= "payment will be <b>doubled</b> (This bonus may take a few days to come through.)</p>";
+  $inst .= "<p>Once you start the HIT, <b>do not navigate away from this page</b> ";
+  $inst .= "until you reach the end and claim your payment code for Mechanical Turk.</p><br/>";
   ?>
   <div class="row" id="inst_div">
     <div class="col-md-12">
@@ -633,13 +639,13 @@ else {
         <div class="col-md-6">
           <div id="nearby_objects_div" hidden>
             <?php
+              echo "<div class=\"col-md-1\"><button class=\"btn robot_obj_btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">Shake Head</button></div>";
               for ($idx = 0; $idx < count($active_train_set); $idx++) {
                 echo "<div class=\"col-md-1 robot_obj_panel\" id=\"robot_obj_" . $idx ."\" onmouseover=\"nearby_objects_highlight('" . $idx . "')\" onmouseleave=\"nearby_objects_clear('" . $idx . "')\">";
                 $oidx = explode('_', $active_train_set[$idx])[1];
                 echo "<span class=\"va\"></span><img src=\"images/objects/" . $active_train_set[$idx] . ".jpg\" class=\"obj_img\" onclick=\"{nearby_objects_clear_all(); nearby_objects_highlight('" . $idx . "'); send_agent_user_oidx_input('" . $oidx . "', '". $d . "', '" . $uid . "');}\">";
                 echo "</div>";
               }
-              echo "<div class=\"col-md-1\"><button class=\"btn\" onclick=\"send_agent_user_oidx_input('None', '" . $d . "', '" . $uid . "')\">All / None</button></div>";
             ?>
           </div>
           <div>
@@ -657,7 +663,7 @@ else {
     <div class="row" id="next_task_div">
       <div class="col-md-12">
         <p>Give your commands all at once, as opposed to in individual steps.</p>
-        <p>The can take a while to think of its response, so be patient on startup and when waiting for a reply.</p>
+        <p>The robot can take a while to think of its response, so be patient on startup and when waiting for a reply.</p>
         <button class="btn" name="user_say" onclick="show_task('<?php echo $d;?>', '<?php echo $uid;?>', '<?php echo $action;?>', '<?php echo $patient;?>', '<?php echo $recipient;?>', '<?php echo $source;?>', '<?php echo $goal;?>')">Show next task</button>
       </div>
     </div>

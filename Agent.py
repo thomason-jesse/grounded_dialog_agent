@@ -92,6 +92,7 @@ class Agent:
         first_utterance = True
         perception_subdialog_qs = 0  # track how many have been asked so far to disallow more of them after
         last_q = None
+        last_rvs = None
         while (action_confirmed['action'] is None or
                None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
 
@@ -102,69 +103,84 @@ class Agent:
             # Determine what question to ask based on missing arguments in chosen action.
             if not first_utterance:
                 q = last_q
+                rvs = last_rvs
                 times_sampled = 0
-                while (q == last_q and (q is None or "rephrase" not in q) and
+                while (q == last_q and last_rvs == rvs and (q is None or "rephrase" not in q) and
                        times_sampled < self.get_novel_question_beam):
                     q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
                         action_chosen, self.threshold_to_accept_role)
+                    rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
                     times_sampled += 1
                     if debug:
                         print "sampled q " + str(q)
                 last_q = q
+                last_rvs = rvs
                 if times_sampled == self.get_novel_question_beam:
                     self.io.say_to_user("Sorry, I didn't understand that.")
             else:
                 q = "What should I do?"
                 role_asked = None
                 roles_in_q = []
+                rvs = {}
             first_utterance = False
 
             # Ask question and get user response.
-            rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
-            self.io.say_to_user_with_referents(q, rvs)
-            ur = self.io.get_from_user()
+            if role_asked is None or (action_chosen[role_asked][0] is None or role_asked not in roles_in_q):
+                conf_q = False
+            else:
+                conf_q = True
 
-            # Possible sub-dialog to clarify whether new words are perceptual and, possibly synonyms of existing
-            # neighbor words.
-            self.preprocess_utterance_for_new_predicates(ur)
+            # Confirmation yes/no question.
+            if conf_q:
+                ur = self.get_yes_no_from_user(q, rvs)
+                self.update_action_belief_from_confirmation(ur, action_confirmed, action_chosen,
+                                                            roles_in_q, count=1.0)
 
-            # Get groundings and latent parse from utterance.
-            gprs, pr = self.parse_and_ground_utterance(ur)
+            # Open-ended response question.
+            else:
+                self.io.say_to_user_with_referents(q, rvs)
+                ur = self.io.get_from_user()
 
-            # Start a sub-dialog to ask clarifying perceptual questions before continuing with slot-filling.
-            # If sub-dialog results in fewer than the maximum number of questions, allow asking off-topic
-            # questions in the style of CORL'17 paper to improve future interactions.
-            if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                perception_subdialog_qs += self.conduct_perception_subdialog(ur, gprs, pr,
-                                                                             self.max_perception_subdialog_qs,
-                                                                             perception_labels_requested)
-            if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                num_new_qs = self.conduct_perception_subdialog(ur, gprs, pr,
-                                                               self.max_perception_subdialog_qs -
-                                                               perception_subdialog_qs,
-                                                               perception_labels_requested,
-                                                               allow_off_topic_preds=True)
-                perception_subdialog_qs += num_new_qs
+                # Possible sub-dialog to clarify whether new words are perceptual and, possibly synonyms of existing
+                # neighbor words.
+                self.preprocess_utterance_for_new_predicates(ur)
+
+                # Get groundings and latent parse from utterance.
+                gprs, pr = self.parse_and_ground_utterance(ur)
+
+                # Start a sub-dialog to ask clarifying perceptual questions before continuing with slot-filling.
+                # If sub-dialog results in fewer than the maximum number of questions, allow asking off-topic
+                # questions in the style of CORL'17 paper to improve future interactions.
+                num_new_qs = 0
+                if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                    num_new_qs += self.conduct_perception_subdialog(ur, gprs, pr,
+                                                                    self.max_perception_subdialog_qs,
+                                                                    perception_labels_requested)
+                    perception_subdialog_qs += num_new_qs
+                if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                    preface_msg = True if perception_subdialog_qs == 0 else False
+                    num_new_qs += self.conduct_perception_subdialog(ur, gprs, pr,
+                                                                    self.max_perception_subdialog_qs -
+                                                                    perception_subdialog_qs,
+                                                                    perception_labels_requested,
+                                                                    allow_off_topic_preds=True,
+                                                                    preface_msg=preface_msg)
+                    perception_subdialog_qs += num_new_qs
                 if num_new_qs > 0:
                     self.io.say_to_user("Thanks. Now, back to business.")
 
-            if role_asked is None:  # asked to repeat whole thing
-                user_utterances_by_role['all'].append(ur)
-                for gpr, conf in gprs:
-                    if type(gpr) is not bool:
-                        # conf scores across gprs will sum to 1 based on parse_and_ground_utterance behavior.
-                        self.update_action_belief_from_grounding(gpr, self.roles, count=conf)
-            # asked an open-ended question for a particular role (e.g. "where should i go?")
-            elif action_chosen[role_asked][0] is None or role_asked not in roles_in_q:
-                user_utterances_by_role[role_asked].append(ur)
-                for gpr, conf in gprs:
-                    if type(gpr) is not bool:
-                        self.update_action_belief_from_grounding(gpr, [role_asked], count=conf)
-            else:  # asked a yes/no question confirming one or more roles
-                for gpr, conf in gprs:
-                    if type(gpr) is not bool:
-                        self.update_action_belief_from_confirmation(gpr, action_confirmed, action_chosen,
-                                                                    roles_in_q, count=conf)
+                if role_asked is None:  # asked to repeat whole thing
+                    user_utterances_by_role['all'].append(ur)
+                    for gpr, conf in gprs:
+                        if type(gpr) is not bool:
+                            # conf scores across gprs will sum to 1 based on parse_and_ground_utterance behavior.
+                            self.update_action_belief_from_grounding(gpr, self.roles, count=conf)
+                # asked an open-ended question for a particular role (e.g. "where should i go?")
+                elif action_chosen[role_asked][0] is None or role_asked not in roles_in_q:
+                    user_utterances_by_role[role_asked].append(ur)
+                    for gpr, conf in gprs:
+                        if type(gpr) is not bool:
+                            self.update_action_belief_from_grounding(gpr, [role_asked], count=conf)
 
             if debug:
                 print "start_action_dialog: updated action belief state: " + str(self.action_belief_state)
@@ -198,7 +214,7 @@ class Agent:
     # allow_off_topic_preds - if flipped to true, considers all predicates, not just those in parse of utterance
     # returns - an integer, the number of questions asked
     def conduct_perception_subdialog(self, ur, gprs, pr, max_questions, labeled_tuples,
-                                     allow_off_topic_preds=False):
+                                     allow_off_topic_preds=False, preface_msg=True):
         debug = False
 
         num_qs = 0
@@ -289,11 +305,11 @@ class Agent:
                                       and _o not in self.grounder.active_test_set]
                                 if ls.count(1) <= ls.count(0):  # more negative labels or labels are equal
                                     q = ("Among these nearby objects, could you show me one you would use the word '"
-                                         + pred + "' when describing, or say 'none' if there are none?")
+                                         + pred + "' when describing, or shake your head if there are none?")
                                     q_type = 'pos'
                                 else:  # more positive labels
                                     q = ("Among these nearby objects, could you show me one you could not use the " +
-                                         "word '" + pred + "' when describing, or say 'all' if you could use " +
+                                         "word '" + pred + "' when describing, or shake your head if you could use " +
                                          "'" + pred + "' when describing all of them?")
                                     q_type = 'neg'
 
@@ -328,20 +344,18 @@ class Agent:
                         break
 
                     # If q is not None, we're going to engage in the sub-dialog.
-                    if num_qs == 0:
+                    if num_qs == 0 and preface_msg:
                         self.io.say_to_user("I'm still learning the meanings of some words. I'm going to ask you a " +
                                             "few questions about these nearby objects before we continue.")
 
                     # Ask the question and get a user response.
-                    self.io.say_to_user_with_referents(q, rvs)
-                    sub_gprs = None
                     if q_type == 'pos' or q_type == 'neg':
+                        self.io.say_to_user_with_referents(q, rvs)
                         sub_ur = -1
                         while sub_ur is not None and sub_ur not in self.active_train_set:
                             sub_ur = self.io.get_oidx_from_user(self.active_train_set)
                     else:  # i.e. q_type is a particular oidx atom we asked a yes/no about
-                        sub_ur = self.io.get_from_user()
-                        sub_gprs, _ = self.parse_and_ground_utterance(sub_ur)
+                        sub_ur = self.get_yes_no_from_user(q, rvs)
                     num_qs += 1
 
                     # Update perceptual classifiers from user response.
@@ -375,20 +389,18 @@ class Agent:
                             labeled_tuples.append((perception_pidx, sub_ur))
                             self.new_perceptual_labels.append((pred, sub_ur, 0))
                     else:  # response is expected to be a confirmation yes/no
-                        for sg, _ in sub_gprs:
-                            if type(sg) is not bool:
-                                if sg.idx == self.parser.ontology.preds.index('yes'):
-                                    upidxs = [perception_pidx]
-                                    uoidxs = [q_type]
-                                    ulabels = [1]
-                                    labeled_tuples.append((perception_pidx, q_type))
-                                    self.new_perceptual_labels.append((pred, q_type, 1))
-                                elif sg.idx == self.parser.ontology.preds.index('no'):
-                                    upidxs = [perception_pidx]
-                                    uoidxs = [q_type]
-                                    ulabels = [0]
-                                    labeled_tuples.append((perception_pidx, q_type))
-                                    self.new_perceptual_labels.append((pred, q_type, 0))
+                        if sub_ur == 'yes':
+                            upidxs = [perception_pidx]
+                            uoidxs = [q_type]
+                            ulabels = [1]
+                            labeled_tuples.append((perception_pidx, q_type))
+                            self.new_perceptual_labels.append((pred, q_type, 1))
+                        elif sub_ur == 'no':
+                            upidxs = [perception_pidx]
+                            uoidxs = [q_type]
+                            ulabels = [0]
+                            labeled_tuples.append((perception_pidx, q_type))
+                            self.new_perceptual_labels.append((pred, q_type, 0))
                     if debug:
                         print ("conduct_perception_subdialog: updating classifiers with upidxs " + str(upidxs) +
                                ", uoidxs " + str(uoidxs) + ", ulabels " + str(ulabels))
@@ -444,10 +456,10 @@ class Agent:
 
                 # If there are perceptual neighbors, confirm with the user that this new word requires perception.
                 # If there were no neighbors at all, the word isn't in the embedding space and might be a brand name
-                # (e.g. pringles) that we still want to pick up as perceptual.
-                if len(perceptual_neighbors.keys()) > 0 or len(nn) == 0:
-                    q = ("I haven't heard the word '" + tk + "' before. Is it the name of, or a property of, " +
-                         "physical objects, like a color, shape, or weight?")
+                # (e.g. pringles) that we could consider perceptual by adding an "or len(nn) == 0".
+                if len(perceptual_neighbors.keys()) > 0:
+                    q = ("I haven't heard the word '" + tk + "' before. Does it refer to properties of " +
+                         "things, like a color, shape, or weight?")
                     c = self.get_yes_no_from_user(q)
                     if c == 'yes':
 
@@ -620,9 +632,12 @@ class Agent:
 
     # Given an initial query, keep pestering the user for a response we can parse into a yes/no confirmation
     # until it's given.
-    def get_yes_no_from_user(self, q):
+    def get_yes_no_from_user(self, q, rvs=None):
 
-        self.io.say_to_user(q)
+        if rvs is None:
+            self.io.say_to_user(q)
+        else:
+            self.io.say_to_user_with_referents(q, rvs)
         while True:
             u = self.io.get_from_user()
             gps, _ = self.parse_and_ground_utterance(u)
@@ -633,45 +648,63 @@ class Agent:
                     elif g.idx == self.parser.ontology.preds.index('no'):
                         return 'no'
             self.io.say_to_user("I am expecting a simple 'yes' or 'no' response.")
-            self.io.say_to_user(q)
+            if rvs is None:
+                self.io.say_to_user(q)
+            else:
+                self.io.say_to_user_with_referents(q, rvs)
 
+    def update_action_belief_from_confirmation_grounding(self, g, action_confirmed, action_chosen, roles_in_q,
+                                                         count=1.0):
+        debug = False
+
+        if debug:
+            print ("update_action_belief_from_confirmation_grounding: confirmation response parse " +
+                   self.parser.print_parse(g) + " with roles_in_q " + str(roles_in_q))
+        if g.type == self.parser.ontology.types.index('c'):
+            if g.idx == self.parser.ontology.preds.index('yes'):
+                self.update_action_belief_from_confirmation('yes', action_confirmed, action_chosen, roles_in_q,
+                                                            count=count)
+            elif g == 'no' or g.idx == self.parser.ontology.preds.index('no'):
+                self.update_action_belief_from_confirmation('no', action_confirmed, action_chosen, roles_in_q,
+                                                            count=count)
+        else:
+            print "WARNING: grounding for confirmation did not produce yes/no"
+
+    # g is a string of values 'yes'|'no'
     def update_action_belief_from_confirmation(self, g, action_confirmed, action_chosen, roles_in_q, count=1.0):
         debug = False
 
         if debug:
             print ("update_action_belief_from_confirmation: confirmation response parse " +
                    self.parser.print_parse(g) + " with roles_in_q " + str(roles_in_q))
-        if g.type == self.parser.ontology.types.index('c'):
-            if g.idx == self.parser.ontology.preds.index('yes'):
-                for r in roles_in_q:
-                    action_confirmed[r] = action_chosen[r][0]
+        if g == 'yes':
+            for r in roles_in_q:
+                action_confirmed[r] = action_chosen[r][0]
+                if debug:
+                    print ("update_action_belief_from_confirmation: confirmed role " + r + " with argument " +
+                           action_chosen[r][0])
+        elif g == 'no':
+            if len(roles_in_q) > 0:
+
+                # Find the second-closest count among the roles to establish an amount by which to decrement
+                # the whole set to ensure at least one argument is no longer maximal.
+                roles_to_dec = [r for r in roles_in_q if action_confirmed[r] is None]
+                min_diff = None
+                for r in roles_to_dec:
+                    second = max([self.action_belief_state[r][c] for c in self.action_belief_state[r]
+                                  if c != action_chosen[r][0]])
+                    diff = self.action_belief_state[r][action_chosen[r][0]] - second
+                    if diff < min_diff or min_diff is None:
+                        min_diff = diff
+
+                inc = min_diff + count / float(len(roles_in_q))  # add hinge of count distributed over roles
+                for r in roles_to_dec:
+                    self.action_belief_state[r][action_chosen[r][0]] -= inc
                     if debug:
-                        print ("update_action_belief_from_confirmation: confirmed role " + r + " with argument " +
-                               action_chosen[r][0])
-            elif g.idx == self.parser.ontology.preds.index('no'):
-                if len(roles_in_q) > 0:
-
-                    # Find the second-closest count among the roles to establish an amount by which to decrement
-                    # the whole set to ensure at least one argument is no longer maximal.
-                    roles_to_dec = [r for r in roles_in_q if action_confirmed[r] is None]
-                    min_diff = None
-                    for r in roles_to_dec:
-                        second = max([self.action_belief_state[r][c] for c in self.action_belief_state[r]
-                                      if c != action_chosen[r][0]])
-                        diff = self.action_belief_state[r][action_chosen[r][0]] - second
-                        if diff < min_diff or min_diff is None:
-                            min_diff = diff
-
-                    inc = min_diff + count / float(len(roles_in_q))  # add hinge of count distributed over roles
-                    for r in roles_to_dec:
-                        self.action_belief_state[r][action_chosen[r][0]] -= inc
-                        if debug:
-                            print ("update_action_belief_from_confirmation: subtracting from " + r + " " +
-                                   action_chosen[r][0] + "; " + str(inc))
+                        print ("update_action_belief_from_confirmation: subtracting from " + r + " " +
+                               action_chosen[r][0] + "; " + str(inc))
         else:
-            # TODO: could add a loop here to force expected response type; create feedback for
-            # TODO: getting synonyms for yes/no maybe
-            print "WARNING: grounding for confirmation did not produce yes/no"
+            print "WARNING: confirmation update string was not yes/no; '" + str(g) + "'"
 
     # Given a dictionary of roles to utterances and another of roles to confirmed predicates, build
     # SemanticNodes corresponding to those predicates and to the whole command to match up with entries
@@ -978,7 +1011,7 @@ class Agent:
                 q = "You want me to deliver <p>this</p> to <r>this person</r>?"
                 roles_in_q.extend(['action', 'patient', 'recipient'])
             else:  # eg. move
-                q = "You want me to move <p>this</p> from <s>here</s> to <g>there</g>?"
+                q = "You want me to relocate <p>this</p> from <s>here</s> to <g>there</g>?"
                 roles_in_q.extend(['action', 'patient', 'source', 'goal'])
 
         elif least_conf_role == 'action':  # ask for action confirmation
@@ -1027,10 +1060,10 @@ class Agent:
             else:  # eg. 'move'
                 roles_in_q.append('action')
                 if 'patient' in roles_to_include:
-                    q = "You want me to move <p>this</p>"
+                    q = "You want me to relocate <p>this</p>"
                     roles_in_q.append('patient')
                 else:
-                    q = "You want me to move something"
+                    q = "You want me to relocate an item"
                 if 'source' in roles_to_include:
                     q += " from <s>here</s>"
                     roles_in_q.append('source')
@@ -1095,7 +1128,7 @@ class Agent:
                             q = "You want me to deliver <p>this</p> to someone?"
                             roles_in_q.extend(['action', 'patient'])
                     else:  # ie. 'move'
-                        q = "You want me to move <p>this</p>"
+                        q = "You want me to relocate <p>this</p>"
                         roles_in_q.extend(['action', 'patient'])
                         if 'source' in roles_to_include:
                             q += " from <s>here</s>"
