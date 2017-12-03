@@ -502,9 +502,10 @@ else {
   $uid = $_POST['uid'];
   $task_num = $_POST['task_num'];
   $action_chosen = $_POST['action_chosen'];
+  $too_long = $_POST['too_long'];
 
   # If this is a subseqent task, write out the completed action to appropriate logfile.
-  if ($task_num > 1) {
+  if ($task_num > 1 && $too_long != 1) {
     $fn = 'user_data/' . $uid . '.' . ($task_num - 1) . '.chosen.txt';
     $err_msg = "Failed to write action chosen " . $action_chosen . " to file " . $fn;
     write_file($fn, $action_chosen, $err_msg);
@@ -629,10 +630,11 @@ else {
             <div id="robot_unresponsive_div" hidden>
               <p>It looks like the robot might have encountered a problem. If you'd like to end the task and advance to payment, you can do so by clicking the button below.</p>
             </div>
-            <form action="generate_code.php" method="POST">
+            <form action="index.php" method="POST">
               <input type="hidden" name="uid" value="<?php echo $uid;?>">
+              <input type="hidden" name="task_num" value="4">
               <input type="hidden" name="too_long" value="1">
-              <input type="submit" class="btn" value="End task and get Mechanical Turk code">
+              <input type="submit" class="btn" value="End task and take survey">
             </form>
           </div>
         </div>
