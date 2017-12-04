@@ -480,7 +480,7 @@ if (!isset($_POST['uid'])) {
   $inst .= "<p>You will receive a <b>payment bonus</b> for <b>each correctly completed</b> ";
   $inst .= "task out of the three. If the robot completes all three tasks correctly, your ";
   $inst .= "payment will be <b>doubled</b> (This bonus may take a few days to come through.)</p>";
-  $inst .= "<p>Once you start the HIT, <b>do not navigate away from this page</b> ";
+  $inst .= "<p>Once you start the HIT, <b>do not refresh or navigate away from this page</b> ";
   $inst .= "until you reach the end and claim your payment code for Mechanical Turk.</p><br/>";
   ?>
   <div class="row" id="inst_div">
