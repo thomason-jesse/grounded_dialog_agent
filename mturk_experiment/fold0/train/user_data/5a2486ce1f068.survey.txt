@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,0
+object_qs,0
+use_navigation,3
+use_delivery,3
+use_relocation,3
+The robot never asked me any questions. It said robot was experiencing a difficulty and I could go to survey and end task. 

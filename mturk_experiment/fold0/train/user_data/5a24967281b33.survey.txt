@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,2
+object_qs,0
+use_navigation,3
+use_delivery,3
+use_relocation,3
+The robot was unresponsive and the survey said there was an error with it. Bummed me out was really looking forward to completing the task.
