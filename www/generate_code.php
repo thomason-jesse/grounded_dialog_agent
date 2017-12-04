@@ -21,7 +21,7 @@
 <?php
 require_once('functions.php');
 
-if (!isset($_POST['uid']) || !isset($_POST['too_long'])) {
+if (!isset($_POST['uid'])) {
   die("You must have found this page by accident.");
 }
 
