@@ -45,6 +45,7 @@ class Server:
 
                 # Walk the filesystem for new inputs from client-side webpage.
                 files_to_remove = []  # list of filenames
+                user_just_launched = []
                 for _, _, files in os.walk(self.client_dir):
                     for fn in files:
                         fnp = fn.split('.')
@@ -77,6 +78,7 @@ class Server:
                                     self.agents[uid] = sp
                                     self.logs[uid] = f
                                     self.time_remaining[uid] = self.cycles_per_user
+                                    user_just_launched.append(uid)
 
                                     print "Server: ... launched Agent for user " + uid
 
@@ -92,10 +94,11 @@ class Server:
 
                 # Check for finished users.
                 for uid in self.users:
-                    if self.agents[uid].poll() is not None:  # None means process hans't terminated yet.
-                        print "Server: detected finished user " + uid
-                        self.remove_user(uid)
-                        print "Server: ... removed user."
+                    if uid not in user_just_launched:
+                        if self.agents[uid].poll() is not None:  # None means process hans't terminated yet.
+                            print "Server: detected finished user " + uid
+                            self.remove_user(uid)
+                            print "Server: ... removed user."
 
                 time.sleep(self.spin_time)
 
@@ -121,6 +124,7 @@ class Server:
         self.users.remove(uid)
         if self.agents[uid].poll() is None:  # process hasn't terminated yet.
             self.agents[uid].terminate()
+            print "Server: ... forcibly terminating process for user " + uid
         del self.agents[uid]
         self.logs[uid].close()
         del self.logs[uid]
