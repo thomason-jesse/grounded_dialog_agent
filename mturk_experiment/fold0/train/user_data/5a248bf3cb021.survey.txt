@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,4
+frustrated,6
+object_qs,0
+use_navigation,0
+use_delivery,3
+use_relocation,0
+Sorry we did not get very far.  I tried my hardest to get the robot to do what I asked, but had no real luck...

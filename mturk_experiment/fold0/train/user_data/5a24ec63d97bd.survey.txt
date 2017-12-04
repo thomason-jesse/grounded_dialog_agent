@@ -1,0 +1,10 @@
+tasks_easy,1
+understood,1
+frustrated,5
+object_qs,3
+use_navigation,2
+use_delivery,3
+use_relocation,3
+The task was unclear and the first page was buggy and did not work properly. First of all, I would recommend the problem be a little bit more clear. I wasn't sure of what to do. But before I could even start to really help the robot, it said at the bottom that a robot &quot;encountered a problem&quot; and I would not be able to proceed.
+
+I like the idea of the HIT and it seems like it was well set up, just a few bugs to iron out. Most importantly I would recommend to clearly have the problem and where the robot needs

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,1
+object_qs,3
+use_navigation,5
+use_delivery,4
+use_relocation,3
+I had to reload the page several times because the robot was taking way too long to think and tell me where it wanted to go. In the end, it still did not want to respond.

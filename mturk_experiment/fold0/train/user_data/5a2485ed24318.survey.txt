@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,4
+object_qs,2
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The instructions were not particularly clear which lead to confusion about how to best guide the robot.  I felt that with a better understanding of what my objective was I could have better instructed the robot.
