@@ -634,6 +634,7 @@ else {
               <input type="hidden" name="uid" value="<?php echo $uid;?>">
               <input type="hidden" name="task_num" value="4">
               <input type="hidden" name="too_long" value="1">
+              <input type="hidden" id="action_chosen_post" name="action_chosen" value="">
               <input type="submit" class="btn" value="End task and take survey">
             </form>
           </div>
