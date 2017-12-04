@@ -519,7 +519,6 @@ else {
         <div class="col-md-12">
           <form action="generate_code.php" method="POST">
             <input type="hidden" name="uid" value="<?php echo $uid;?>">
-            <input type="hidden" name="too_long" value="0">
             <table class="dialog_table">
               <tr>
                 <td>&nbsp;</td><td style="text-align:center">Strongly Disagree</td><td style="text-align:center">Disagree</td><td style="text-align:center">Slightly Disagree</td><td style="text-align:center">Neutral</td><td style="text-align:center">Slightly Agree</td><td style="text-align:center">Agree</td><td style="text-align:center">Strongly Agree</td>
@@ -618,6 +617,7 @@ else {
               <form action="index.php" method="POST">
                 <input type="hidden" name="uid" value="<?php echo $uid;?>">
                 <input type="hidden" name="task_num" value="<?php echo $task_num + 1;?>">
+                <input type="hidden" name="too_long" value="0">
                 <input type="hidden" id="action_chosen_post" name="action_chosen" value="">
                 <input type="submit" class="btn" value="Okay">
               </form>

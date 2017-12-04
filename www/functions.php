@@ -63,7 +63,7 @@ function draw_task($task_num, $setting) {
 	// Decode the appropriate json file to see all tasks.
 	$fn = "tasks/" . $task_name . "_" . $setting . ".json";
 	$s = read_file($fn);
-	if (!s) {
+	if (!$s) {
 		return false;
 	}
 	$d = json_decode($s, true);
