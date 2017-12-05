@@ -709,6 +709,8 @@ class Agent:
     # Given a dictionary of roles to utterances and another of roles to confirmed predicates, build
     # SemanticNodes corresponding to those predicates and to the whole command to match up with entries
     # in the utterance dictionary.
+    # us - dictionary mapping roles to utterances
+    # rs - dictionary mapping roles to ontological predicates (groundings)
     def induce_utterance_grounding_pairs_from_conversation(self, us, rs):
         debug = False
 
