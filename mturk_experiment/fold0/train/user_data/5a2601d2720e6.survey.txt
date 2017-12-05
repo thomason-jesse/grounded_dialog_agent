@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,4
+object_qs,2
+use_navigation,4
+use_delivery,4
+use_relocation,4
+Wow I really had a great time on this experience. I sort of got stuck at the end. The robot had the wrong object in mind and wasn't sure how to get him back on track. Thanks for the opportunity

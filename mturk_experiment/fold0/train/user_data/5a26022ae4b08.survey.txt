@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,6
+object_qs,6
+use_navigation,3
+use_delivery,3
+use_relocation,3
+The first task was a learning curve for me as well.  I do think I got the hang of it and even though the robot was frustrating it was a fun task to work on.  Thanks.

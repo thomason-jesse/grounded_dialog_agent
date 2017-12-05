@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,0
+object_qs,0
+use_navigation,0
+use_delivery,0
+use_relocation,0
+Nothing worked on this. I could not type into the box
