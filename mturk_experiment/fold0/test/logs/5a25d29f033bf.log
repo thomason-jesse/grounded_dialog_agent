@@ -1,0 +1,163 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'good'
+get_from_user (processed): 'good'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'column' when describing, or shake your head if you could use 'column' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'rectangle' when describing, or shake your head if you could use 'rectangle' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 7
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'business'
+get_from_user (processed): 'business'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go somewhere? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'bed'
+get_from_user (processed): 'bed'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'heaven'
+get_from_user (processed): 'heaven'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'lab'
+get_from_user (processed): 'lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'sdfjkh'
+get_from_user (processed): 'sdfjkh'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'empowering'
+get_from_user (processed): 'empowering'
+say_to_user: I haven't heard the word 'empowering' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'color'
+get_from_user (processed): 'color'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'empowering' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'empowering' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'empowering'
+get_from_user (processed): 'empowering'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'empowering'
+get_from_user (processed): 'empowering'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'should travel'
+get_from_user (processed): 'should travel'
+say_to_user: I haven't heard the word 'should' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'black triangle 80'
+get_from_user (processed): 'black triangle 80'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'should' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'response'
+get_from_user (processed): 'response'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'poi'
+get_from_user (processed): 'poi'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'himalayaa'
+get_from_user (processed): 'himalayaa'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'ajith'
+get_from_user (processed): 'ajith'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'i understand'
+get_from_user (processed): 'i understand'
+say_to_user: I haven't heard the word 'i' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'i understand'
+get_from_user (processed): 'i understand'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'i' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'simple yes'
+get_from_user (processed): 'simple yes'
+say_to_user: Does 'i' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'very good my opinion'
+get_from_user (processed): 'very good my opinion'
+say_to_user: I haven't heard the word 'opinion' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'likely very nice'
+get_from_user (processed): 'likely very nice'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'opinion' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'opinion' mean the same thing as 'column'?
+get_from_user requested feedback
+get_from_user (raw): 'bye'
+get_from_user (processed): 'bye'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'opinion' mean the same thing as 'column'?
+get_from_user requested feedback

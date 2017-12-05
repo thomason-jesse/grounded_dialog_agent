@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,2
+object_qs,4
+use_navigation,2
+use_delivery,4
+use_relocation,4
+I could not finish the last task. The robot did not understand my commands so I had to break it into parts, and after the first part I was unable to continue talking to the robot.
