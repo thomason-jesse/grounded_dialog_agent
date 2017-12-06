@@ -1300,8 +1300,9 @@ class Agent:
             q = "Please rephrase your original request."
 
         if debug:
-            print ("get_question_from_sampled_action: returning q='" + q + "', least_conf_role=" + least_conf_role +
-                   ", roles_to_include=" + str(roles_to_include) + ", and roles_in_q=" + str(roles_in_q))
+            print ("get_question_from_sampled_action: returning q='" + q + "', least_conf_role=" +
+                   str(least_conf_role) + ", roles_to_include=" + str(roles_to_include) + ", and roles_in_q="
+                   + str(roles_in_q))
 
         # Return the question and the roles included in it.
         # If the user affirms, all roles included in the question should have confidence boosted to 1.0
