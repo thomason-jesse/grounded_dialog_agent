@@ -812,7 +812,7 @@ class Agent:
                 print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
 
             # Get semantic trees with hanging lambdas instantiated.
-            gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"node": p.node},
+            gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": p.node},
                                                  self.budget_for_grounding)
             if gs is not None:
                 # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
