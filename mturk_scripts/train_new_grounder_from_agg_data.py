@@ -25,6 +25,7 @@ def main():
     kb_perception_source_base_dir = FLAGS_kb_perception_source_base_dir
     kb_perception_source_target_dir = FLAGS_kb_perception_source_target_dir
     active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
+    training_log_fn = FLAGS_training_log_fn
     use_condor = FLAGS_use_condor
     condor_target_dir = FLAGS_condor_target_dir
     condor_parser_script_dir = FLAGS_condor_parser_script_dir
@@ -35,7 +36,8 @@ def main():
     # Load the aggregate information from file
     print "main: loading aggregate conversation file..."
     with open(agg_fn, 'rb') as f:
-        agg_role_utterances_role_chosen_pairs, agg_perceptual_labels, agg_perceptual_synonymy = pickle.load(f)
+        agg_all_utterances, agg_role_utterances_role_chosen_pairs, agg_perceptual_labels,\
+            agg_perceptual_synonymy = pickle.load(f)
     print "... done"
 
     # Load a grounder from file
@@ -85,6 +87,9 @@ def main():
     a = Agent.Agent(p, g, io, None)
     print "main: ... done"
 
+    # Open logfile.
+    log_f = open(training_log_fn, 'w')
+
     # Analyze synonymy votes and decide which pairs to treat as synonymous.
     synonymy_votes = {}  # maps from tuples of preds to the sum of votes for and against their being synonymous
     for predi, predj, v in agg_perceptual_synonymy:
@@ -97,66 +102,83 @@ def main():
             synonymy_votes[key] = 0
         synonymy_votes[key] += 1 if v else -1
     print "main: synonymy votes: " + str(synonymy_votes)
-    synonymy_candidates = [key for key in synonymy_votes.keys() if synonymy_votes[key] > 0]
+    synonymy_candidates = {key: synonymy_votes[key] for key in synonymy_votes.keys() if synonymy_votes[key] > 0}
     print "main: synonymy candidates: " + str(synonymy_candidates)
 
     # Decide based on synonymy and pred labels which lexicon entries to add (similar to procedure in Agent.py,
     # but based on voting instead of single-user feedback.)
-    preds = list(set([pred for pred, _, _ in agg_perceptual_labels] +
+    all_preds = list(set([pred for pred, _, _ in agg_perceptual_labels] +
                      [pred for pred, _ in synonymy_votes.keys()] +
                      [pred for _, pred in synonymy_votes.keys()]))
+    preds = [pred for pred in all_preds if pred not in a.parser.lexicon.surface_forms]
     print "main: preds to consider: " + str(preds)
     utterances_with_pred = {}
-    for pred in preds:
+    for pred in all_preds:
         utterances_with_pred[pred] = []
-        for _, utterances_by_role in agg_role_utterances_role_chosen_pairs:
-            for r in utterances_by_role.keys():
-                for u in utterances_by_role[r]:
-                    if pred in a.parser.tokenize(u):
-                        utterances_with_pred[pred].append(u)
+        for u in agg_all_utterances:
+            if pred in a.parser.tokenize(u):
+                utterances_with_pred[pred].append(u)
+    # print "main: utterances with preds: " + str(utterances_with_pred)
 
     # Iterate over pedicates to identify likely adjectives (those left of other already-known predicates).
     # This process should repeat until no further adjectives around found (allowing chaining unseen adjs).
     # Afterwards, any predicate not flagged as an adjective is probably a noun (no percept neighbors to the right).
-    pred_is_adj = {pred: False for pred in preds}
-    new_adjs = True
-    print g.kb.perceptual_preds  # DEBUG
-    while new_adjs:
-        print "main: checking for new adjectives..."
-        new_adjs = False
+    pred_is_perc = {pred: False for pred in preds}
+    new_perceptual_adds = True
+    known_perc_preds = [tk for tk in a.parser.lexicon.surface_forms if a.is_token_perceptual(tk)]
+    while new_perceptual_adds:
+        new_perceptual_adds = False
+        print "main: checking for new adjectives and nouns..."
         for pred in preds:
-            if not pred_is_adj[pred]:
-                adj_votes = [a.is_token_adjective(a.parser.tokenize(u).index(pred),
-                                                  a.parser.tokenize(u))
-                             for u in utterances_with_pred[pred]]
-                nt = adj_votes.count(True)
-                if nt >= len(adj_votes) / 2.0 and nt > 0:
-                    pred_is_adj[pred] = True
-                    new_adjs = True
-                    # print ("main: decided '" + pred + "' was adj based on utterances: " +
-                    #        "\n\t".join(utterances_with_pred[pred]))
+            if not pred_is_perc[pred] and len(utterances_with_pred[pred]) > 0:
+                syn = get_syn_from_candidates(a, pred, synonymy_candidates)
 
-                    # Add new adjective to lexicon.
-                    syn = get_syn_from_candidates(a, pred, synonymy_candidates)
+                # Turkers tend to use malformed language, so add all new preds as both adjectives and nouns.
+                if True:
+                    pred_is_perc[pred] = True
+                    new_perceptual_adds = True
                     a.add_new_perceptual_lexical_entries(pred, True, syn)
-
-                    print "main: added adjective '" + pred + "'"
+                    a.add_new_perceptual_lexical_entries(pred, False, syn)
+                    print "main: added noun and adjective for '" + pred + "'"
                     if syn is not None:
                         print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
-    print "main: adding remaining predicates as nouns..."
-    for pred in preds:
-        # We only add noun predicates to the system if they ever got a positive example, because this helps filter
-        # users saying words are perceptual without really meaning it, then having to backtrack and say "None"
-        # when the system asks them to show an example of something they would call, for example, "d".
-        if not pred_is_adj[pred] and len(utterances_with_pred[pred]) > 0:
-            if len([1 for _pred, _, label in agg_perceptual_labels
-                    if _pred == pred and label]) > 0:
-                syn = get_syn_from_candidates(a, pred, synonymy_candidates)
-                a.add_new_perceptual_lexical_entries(pred, False, syn)
+                    log_f.write("added adjective and noun entry for '" + pred + "' with synonym " + str(syn) + "\n")
 
-                print "main: added noun '" + pred + "'"
-                if syn is not None:
-                    print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                # Determine whether each predicate is mostly behaving like a noun or adjective before adding.
+                else:
+                    # Just count how often a pred is 'acting' like an adjective or noun based on position.
+                    la = ln = 0
+                    for u in utterances_with_pred[pred]:
+                        tks = a.parser.tokenize(u)
+                        tkidx = tks.index(pred)
+                        if tkidx < len(tks) - 1 and (tks[tkidx + 1] in known_perc_preds or tks[tkidx + 1] in all_preds
+                                                     or tks[tkidx + 1] not in a.parser.lexicon.surface_forms):
+                            la += 1
+                        elif tkidx == len(tks) - 1 or tks[tkidx + 1] in a.parser.lexicon.surface_forms:
+                            ln += 1
+                    la /= float(len(utterances_with_pred[pred]))
+                    ln /= float(len(utterances_with_pred[pred]))
+
+                    if la > 0.5:
+                        pred_is_perc[pred] = True
+                        new_perceptual_adds = True
+                        a.add_new_perceptual_lexical_entries(pred, True, syn)
+
+                        print "main: added adjective '" + pred + "'"
+                        if syn is not None:
+                            print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                        log_f.write("added adjective '" + pred + "' with synonym " + str(syn) + "\n")
+
+                    elif ln > 0.5:
+                        pred_is_perc[pred] = True
+                        new_perceptual_adds = True
+                        a.add_new_perceptual_lexical_entries(pred, False, syn)
+
+                        print "main: added noun '" + pred + "'"
+                        if syn is not None:
+                            print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                        log_f.write("added noun '" + pred + "' with synonym " + str(syn) + "\n")
+
     print "main: ... done"
 
     # Retrain perceptual classifiers from aggregated labels.
@@ -172,6 +194,8 @@ def main():
     print ("main: updating predicate classifiers with " + str(len(upidxs)) + " new labels across " +
            str(len(set(upidxs))) + " predicates...")
     a.grounder.kb.pc.update_classifiers([], upidxs, uoidxs, ulabels)
+    log_f.write("updated classifiers with " + str(len(upidxs)) + " new labels across " +
+                str(len(set(upidxs))) + " predicates...\n")
     print "main: ... done"
 
     # Write new classifiers to file.
@@ -186,6 +210,7 @@ def main():
                                                                            action_confirmed)
         a.induced_utterance_grounding_pairs.extend(new_i_pairs)
     print "main: ...... done; induced " + str(len(a.induced_utterance_grounding_pairs)) + " pairs"
+    log_f.write("induced " + str(len(a.induced_utterance_grounding_pairs)) + " utterance/grounding pairs\n")
 
     # Iterate inducing new pairs using most up-to-date parser and training for single epoch.
     # Each of these stages can be distributed over the UT Condor system for more linear-time computation.
@@ -193,19 +218,27 @@ def main():
     for epoch in range(10):
 
         # Get grouding->semantics pairs
-        print "main: ... re-training parser on pairs induced from aggregated conversations..."
+        print "main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs..."
         utterance_semantic_pairs = a.get_semantic_forms_for_induced_pairs(1, 3, verbose=1,
                                                                           use_condor=use_condor,
                                                                           condor_target_dir=condor_target_dir,
                                                                           condor_script_dir=condor_grounder_script_dir)
         print ("main: ...... got " + str(len(utterance_semantic_pairs)) + " utterance/semantics pairs from " +
                "induced utterance/grounding pairs")
+        log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_pairs)) +
+                    " utterance/semantic pairs\n")
 
         # Train parser on utterances->semantics pairs
+        print "main: ... re-training parser on pairs induced from aggregated conversations..."
+        perf = []
         a.parser.train_learner_on_semantic_forms(parser_base_pairs + utterance_semantic_pairs,
                                                  epochs=1, reranker_beam=1, verbose=2,
                                                  use_condor=use_condor, condor_target_dir=condor_target_dir,
-                                                 condor_script_dir=condor_parser_script_dir)
+                                                 condor_script_dir=condor_parser_script_dir,
+                                                 perf_log=perf)
+        log_f.write("epoch " + str(epoch) + ": parser trained on " + str(perf[0][0]) + " examples and " +
+                    "failed on " + str(perf[0][1]) + " out of " +
+                    str(len(parser_base_pairs) + len(utterance_semantic_pairs)) + "\n")
     print "main: ... done"
 
     # Write the new parser to file.
@@ -214,9 +247,11 @@ def main():
         pickle.dump(p, f)
     print "main: ... done"
 
+    # Close logfile.
+    log_f.close()
+
 
 def get_syn_from_candidates(a, pred, synonymy_candidates):
-    syn = None
     for key in synonymy_candidates:
         nsfidx = None
         if key[0] == pred and key[1] in a.parser.lexicon.surface_forms:
@@ -224,8 +259,14 @@ def get_syn_from_candidates(a, pred, synonymy_candidates):
         elif key[1] == pred and key[0] in a.parser.lexicon.surface_forms:
             nsfidx = a.parser.lexicon.surface_forms.index(key[0])
         if nsfidx is not None:
-            syn = [nsfidx, a.parser.lexicon.semantic_forms[nsfidx]]
-    return syn
+            forms = []
+            for sem_idx in a.parser.lexicon.entries[nsfidx]:
+                psts = a.get_parse_subtrees(a.parser.lexicon.semantic_forms[sem_idx],
+                                            a.grounder.kb.perceptual_preds)
+                if len(psts) > 0:
+                    forms.extend(psts)
+            return [nsfidx, forms]
+    return None
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -247,6 +288,8 @@ if __name__ == '__main__':
                         help="perception source directory for the target KB after retraining")
     parser.add_argument('--active_test_set', type=str, required=True,
                         help="objects to consider possibilities for grounding")
+    parser.add_argument('--training_log_fn', type=str, required=True,
+                        help="logfile to write training epoch information out to")
     parser.add_argument('--use_condor', type=int, required=False, default=0,
                         help="whether to invoke the UT condor system to distribute parser training")
     parser.add_argument('--condor_target_dir', type=str, required=False, default=None,

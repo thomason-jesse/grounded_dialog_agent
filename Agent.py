@@ -6,6 +6,7 @@ import numpy as np
 import operator
 import os
 import pickle
+import random
 import signal
 
 
@@ -585,16 +586,18 @@ class Agent:
                        "ontological concept for '" + tk + "'")
 
             # Create a new ontological predicate to represent the new perceptual concept.
-            self.parser.ontology.preds.append(tk)
-            self.parser.ontology.entries.append(pred_type_idx)
-            self.parser.ontology.num_args.append(self.parser.ontology.calc_num_pred_args(
-                len(self.parser.ontology.preds) - 1))
+            if tk not in self.parser.ontology.preds:
+                self.parser.ontology.preds.append(tk)
+                self.parser.ontology.entries.append(pred_type_idx)
+                self.parser.ontology.num_args.append(self.parser.ontology.calc_num_pred_args(
+                    len(self.parser.ontology.preds) - 1))
 
             # Create a new perceptual predicate to represent the new perceptual concept.
-            self.grounder.kb.pc.update_classifiers([tk], [], [], [])  # blank concept
-            if debug:
-                print ("add_new_perceptual_lexical_entries: updated perception classifiers with" +
-                       " new concept '" + tk + "'")
+            if tk not in self.grounder.kb.pc.predicates:
+                self.grounder.kb.pc.update_classifiers([tk], [], [], [])  # blank concept
+                if debug:
+                    print ("add_new_perceptual_lexical_entries: updated perception classifiers with" +
+                           " new concept '" + tk + "'")
 
             # Create a lexical entry corresponding to the newly-acquired perceptual concept.
             s = sem_prefix + tk + sem_suffix
@@ -620,38 +623,54 @@ class Agent:
         self.parser.theta.update_probabilities()
 
     # We assume if the token to the right of tk is the end of utterance or a non-perceptual
-    # word based on our lexicon (or appropriate beam search). Otherwise, it is an adjective.
+    # word based on our lexicon (or appropriate beam search), it's a noun. Otherwise, it is an adjective.
     # tkidx - the index of the token in question
     # tks - the sequence of tokens
-    def is_token_adjective(self, tkidx, tks, debug=False):
-        tk_probably_adjective = False
-        if tkidx < len(tks) - 1:  # the word is not the last one, so it might be an adjective
+    def is_token_adjective(self, tkidx, tks):
+        if tkidx < len(tks) - 1 and self.is_token_perceptual(tks[tkidx + 1]):
+            return True
+        else:
+            return False
 
-            # If next word is in the lexicon, see if it's perceptual. If it's not, check whether
-            # its neighbors in beam are.
-            next_candidate_semantic_forms = []
-            if tks[tkidx+1] in self.parser.lexicon.surface_forms:
-                next_candidate_semantic_forms.extend([self.parser.lexicon.semantic_forms[sem_idx]
-                                                      for sem_idx in self.parser.lexicon.entries[
-                    self.parser.lexicon.surface_forms.index(tks[tkidx+1])]])
-            else:
-                nnn = self.parser.lexicon.get_lexicon_word_embedding_neighbors(
-                    tks[tkidx+1], self.word_neighbors_to_consider_as_synonyms)
-                for nsfidx, _ in nnn:
-                    next_candidate_semantic_forms.extend([self.parser.lexicon.semantic_forms[sem_idx]
-                                                          for sem_idx in
-                                                          self.parser.lexicon.entries[nsfidx]])
-            if debug:
-                print ("tk_probably_adjective: for token '" + tks[tkidx] + "' right neighbor '" +
-                       tks[tkidx + 1] + "', identified semantic forms: " +
-                       "\t\n".join([self.parser.print_parse(ncsf) for ncsf in next_candidate_semantic_forms]))
-            psts = []
-            for ncsf in next_candidate_semantic_forms:
-                psts.extend(self.get_parse_subtrees(ncsf, self.grounder.kb.perceptual_preds))
-            # next word is perceptual or has perceptual neighbors, so this one is probably an adjective
-            if len(psts) > 0:
-                tk_probably_adjective = True
-        return tk_probably_adjective
+    # If word is last or has non-perceptual to the right and perceptual to the left, probably a noun.
+    # If the word to the left is 'the'/'a' that picks out an object, etc., also probably a noun.
+    # tkidx - the index of the token in question
+    # tks - the sequence of tokens
+    def is_token_noun(self, tkidx, tks):
+        if ((tkidx == len(tks) - 1 or not self.is_token_perceptual(tks[tkidx + 1])) and
+                (tkidx == 0 or self.is_token_perceptual(tks[tkidx - 1]))):
+            return True
+        elif tkidx > 0 and (tkidx == len(tks) - 1 or tks[tkidx + 1] in self.parser.lexicon.surface_forms):
+            # Check whether left of this is 'the'/'a' and right is a -known- word that isn't perceptual.
+            if tks[tkidx - 1] in self.parser.lexicon.surface_forms:
+                sts = []
+                for sf_idx in self.parser.lexicon.entries[self.parser.lexicon.surface_forms.index(tks[tkidx - 1])]:
+                    sts.extend(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sf_idx], ['a_i']))
+                if len(sts) > 0:
+                    return True
+        return False
+
+    # tk - the token in question
+    def is_token_perceptual(self, tk):
+        candidate_semantic_forms = []
+        if tk in self.parser.lexicon.surface_forms:
+            candidate_semantic_forms.extend([self.parser.lexicon.semantic_forms[sem_idx]
+                                             for sem_idx in self.parser.lexicon.entries[
+                self.parser.lexicon.surface_forms.index(tk)]])
+        else:
+            nnn = self.parser.lexicon.get_lexicon_word_embedding_neighbors(
+                tk, self.word_neighbors_to_consider_as_synonyms)
+            for nsfidx, _ in nnn:
+                candidate_semantic_forms.extend([self.parser.lexicon.semantic_forms[sem_idx]
+                                                 for sem_idx in self.parser.lexicon.entries[nsfidx]])
+        psts = []
+        for ncsf in candidate_semantic_forms:
+            psts.extend(self.get_parse_subtrees(ncsf, self.grounder.kb.perceptual_preds))
+        # next word is probably not perceptual
+        if len(psts) > 0:
+            return True
+        else:
+            return False
 
     # Given an initial query, keep pestering the user for a response we can parse into a yes/no confirmation
     # until it's given.
@@ -1363,10 +1382,21 @@ class Agent:
             err = os.system(cmd)  # blocking call to script that launches jobs and collects them map-reduce style
             print "_condor_get_training_pairs output: " + str(err)
             with open(pairs_out_fn, 'rb') as f:
-                utterance_semantic_pairs = pickle.load(f)
+                raw_pairs = pickle.load(f)
             os.system("rm " + agent_fn)
             os.system("rm " + pairs_in_fn)
             os.system("rm " + pairs_out_fn)
+
+            # Since we distributed the computation, we need to update the local Ontology with any new types
+            # that were introduced by weird 'and' rules in the pairs.
+            # We do this by getting sem forms as strings, so we need to read them in afresh now.
+            utterance_semantic_pairs = []
+            for s, sem_str in raw_pairs:
+                ccg_str, form_str = sem_str.split(" : ")
+                ccg = self.parser.lexicon.read_category_from_str(ccg_str)
+                form = self.parser.lexicon.read_semantic_form_from_str(form_str, None, None, [])
+                form.category = ccg
+                utterance_semantic_pairs.append([s, form])
 
         else:
 
@@ -1415,9 +1445,14 @@ class Agent:
                     latent_forms_considered += 1
 
                 if len(parses) > 0:
-                    best_interpolated_parse = sorted(parses, key=lambda t: t[1], reverse=True)[0][0]
+                    sorted_interpolation = sorted(parses, key=lambda t: t[1], reverse=True)
+                    best_interpolated_parses = [parse for parse, score in sorted_interpolation
+                                                if np.isclose(score, sorted_interpolation[0][1])]
+                    best_interpolated_parse = random.choice(best_interpolated_parses)[0][0]
                     utterance_semantic_pairs.append([x, best_interpolated_parse.node])
                     print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
+                    best_interpolated_parse.node.commutative_lower_node(self.parser.ontology)
+                    print "... commutative lowered to " + self.parser.print_parse(best_interpolated_parse.node)
                 elif verbose > 0:
                     print ("get_semantic_forms_for_induced_pairs: no semantic parse found matching " +
                            "grounding for pair '" + str(x) + "', " + self.parser.print_parse(g))

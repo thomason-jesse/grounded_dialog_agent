@@ -6,7 +6,9 @@ sys.path.append('/u/jesse/phm/tsp/')  # necessary to import CKYParser from above
 
 import argparse
 import math
+import numpy as np
 import pickle
+import random
 
 
 def main():
@@ -66,9 +68,14 @@ def main():
         latent_forms_considered += 1
 
     if len(parses) > 0:
-        best_interpolated_parse = sorted(parses, key=lambda t: t[1], reverse=True)[0][0]
-        utterance_semantic_pair = [x, best_interpolated_parse.node]
+        sorted_interpolation = sorted(parses, key=lambda t: t[1], reverse=True)
+        best_interpolated_parses = [parse for parse, score in sorted_interpolation
+                                    if np.isclose(score, sorted_interpolation[0][1])]
+        best_interpolated_parse = random.choice(best_interpolated_parses)
         print "... re-ranked to choose " + a.parser.print_parse(best_interpolated_parse.node)
+        best_interpolated_parse.node.commutative_lower_node(a.parser.ontology)
+        print "... commutative lowered to " + a.parser.print_parse(best_interpolated_parse.node)
+        utterance_semantic_pair = [x, a.parser.print_parse(best_interpolated_parse.node, True)]
     else:
         print ("get_semantic_forms_for_induced_pairs: no semantic parse found matching " +
                "grounding for pair '" + str(x) + "', " + a.parser.print_parse(g))
