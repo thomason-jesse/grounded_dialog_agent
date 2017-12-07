@@ -7,15 +7,30 @@ sys.path.append('../')  # necessary to import Agent, IO from above directory
 
 import argparse
 import pickle
+import os
 import Agent
+import KBGrounder
 import IO
 
 
 def main():
 
     # Load parameters from command line.
-    grounder_fn = FLAGS_grounder_fn
     agg_fn = FLAGS_agg_fn
+    parser_fn = FLAGS_parser_fn
+    parser_outfile = FLAGS_parser_outfile
+    parser_base_pairs_fn = FLAGS_parser_base_pairs_fn
+    kb_static_facts_fn = FLAGS_kb_static_facts_fn
+    kb_perception_feature_dir = FLAGS_kb_perception_feature_dir
+    kb_perception_source_base_dir = FLAGS_kb_perception_source_base_dir
+    kb_perception_source_target_dir = FLAGS_kb_perception_source_target_dir
+    active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
+    use_condor = FLAGS_use_condor
+    condor_target_dir = FLAGS_condor_target_dir
+    condor_parser_script_dir = FLAGS_condor_parser_script_dir
+    condor_grounder_script_dir = FLAGS_condor_grounder_script_dir
+    assert not use_condor or (condor_target_dir is not None and condor_parser_script_dir is not None
+                              and condor_grounder_script_dir is not None)
 
     # Load the aggregate information from file
     print "main: loading aggregate conversation file..."
@@ -24,16 +39,43 @@ def main():
     print "... done"
 
     # Load a grounder from file
-    print "main: loading grounder from file..."
-    with open(grounder_fn, 'rb') as f:
-        g = pickle.load(f)
+    print "main: loading base parser from file..."
+    with open(parser_fn, 'rb') as f:
+        p = pickle.load(f)
+        p.lexicon.wv = None  # if the parser has word embeddings, we don't want to use them during training
     print "main: ... done"
 
-    # Grab a reference to the parser from the loaded grounder.
-    p = g.parser
-    p.lexicon.wv = None  # if the parser has word embeddings, we don't want to use them during training
+    # Load parser base pairs, if any.
+    print "main: loading base parser pairs from file..."
+    if parser_base_pairs_fn is not None:
+        parser_base_pairs = p.read_in_paired_utterance_semantics(parser_base_pairs_fn)
+    else:
+        parser_base_pairs = []
+    print "main: ... done"
 
-    # Instantiate an input/output
+    # Copy the base grounder labels.pickle and predicates.pickle into the target directory.
+    print "main: copying base KB perception labels and pickles to target dir..."
+    base_labels_fn = os.path.join(kb_perception_source_base_dir, "labels.pickle")
+    base_pickles_fn = os.path.join(kb_perception_source_base_dir, "predicates.pickle")
+    if os.path.isfile(base_labels_fn):
+        os.system("cp " + base_labels_fn + " " + os.path.join(kb_perception_source_target_dir, "labels.pickle"))
+    else:
+        print "ERROR: file not found '" + base_labels_fn + "'"
+        return 1
+    if os.path.isfile(base_pickles_fn):
+        os.system("cp " + base_pickles_fn + " " + os.path.join(kb_perception_source_target_dir, "predicates.pickle"))
+    else:
+        print "ERROR: file not found '" + base_pickles_fn + "'"
+        return 1
+    print "main: ... done"
+
+    # Instantiate a new grounder with the base parser and with perception source at the target dir.
+    print "main: instantiating grounder..."
+    g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_target_dir,
+                              kb_perception_feature_dir, active_test_set)
+    print "main: ... done"
+
+    # Instantiate vestigial input/output
     print "main: instantiating basic IO..."
     io = IO.KeyboardIO()
     print "main: ... done"
@@ -78,6 +120,7 @@ def main():
     # Afterwards, any predicate not flagged as an adjective is probably a noun (no percept neighbors to the right).
     pred_is_adj = {pred: False for pred in preds}
     new_adjs = True
+    print g.kb.perceptual_preds  # DEBUG
     while new_adjs:
         print "main: checking for new adjectives..."
         new_adjs = False
@@ -131,27 +174,45 @@ def main():
     a.grounder.kb.pc.update_classifiers([], upidxs, uoidxs, ulabels)
     print "main: ... done"
 
-    # TODO: the following should probably be done in a loop so changes to the parser can improve possible
-    # TODO: induction at the next epoch.
+    # Write new classifiers to file.
+    print "main: committing grouder classifiers to file..."
+    g.kb.pc.commit_changes()  # save classifiers to disk
+    print "main: ... done"
 
     # Induce pairs from agg data.
-    print "main: creating induced pairs from aggregated conversations..."
+    print "main: ... creating induced pairs from aggregated conversations..."
     for action_confirmed, user_utterances_by_role in agg_role_utterances_role_chosen_pairs:
         new_i_pairs = a.induce_utterance_grounding_pairs_from_conversation(user_utterances_by_role,
                                                                            action_confirmed)
-        # TODO: add option to parallelize this
         a.induced_utterance_grounding_pairs.extend(new_i_pairs)
-    print "main: ... done; induced " + str(len(a.induced_utterance_grounding_pairs)) + " pairs"
+    print "main: ...... done; induced " + str(len(a.induced_utterance_grounding_pairs)) + " pairs"
 
-    # Retrain parser from induced pairs.
-    print "main: re-training parser on pairs induced from aggregated conversations..."
-    # TODO: this should train not just on induced pairs but on parser init pairs as well
-    # TODO: add option to parallelize this
-    a.train_parser_from_induced_pairs(10, 1, 3, verbose=2)
+    # Iterate inducing new pairs using most up-to-date parser and training for single epoch.
+    # Each of these stages can be distributed over the UT Condor system for more linear-time computation.
+    print "main: training parser by alternative grounding->semantics and semantics->parser training steps..."
+    for epoch in range(10):
+
+        # Get grouding->semantics pairs
+        print "main: ... re-training parser on pairs induced from aggregated conversations..."
+        utterance_semantic_pairs = a.get_semantic_forms_for_induced_pairs(1, 3, verbose=1,
+                                                                          use_condor=use_condor,
+                                                                          condor_target_dir=condor_target_dir,
+                                                                          condor_script_dir=condor_grounder_script_dir)
+        print ("main: ...... got " + str(len(utterance_semantic_pairs)) + " utterance/semantics pairs from " +
+               "induced utterance/grounding pairs")
+
+        # Train parser on utterances->semantics pairs
+        a.parser.train_learner_on_semantic_forms(parser_base_pairs + utterance_semantic_pairs,
+                                                 epochs=1, reranker_beam=1, verbose=2,
+                                                 use_condor=use_condor, condor_target_dir=condor_target_dir,
+                                                 condor_script_dir=condor_parser_script_dir)
     print "main: ... done"
 
-    # TODO: new grounder needs to live in a new place and point to a new perceptual directory where
-    # TODO: it can write out base classifiers that won't interfere with less trained versions.
+    # Write the new parser to file.
+    print "main: writing re-trained parser to file..."
+    with open(parser_outfile, 'wb') as f:
+        pickle.dump(p, f)
+    print "main: ... done"
 
 
 def get_syn_from_candidates(a, pred, synonymy_candidates):
@@ -168,10 +229,32 @@ def get_syn_from_candidates(a, pred, synonymy_candidates):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--grounder_fn', type=str, required=True,
-                        help="a grounder pickle to load as a training base")
     parser.add_argument('--agg_fn', type=str, required=True,
                         help="the aggregated data for the users to use as retraining material")
+    parser.add_argument('--parser_fn', type=str, required=True,
+                        help="a parser base pickle to load")
+    parser.add_argument('--parser_outfile', type=str, required=True,
+                        help="where to store the newly-trained parser")
+    parser.add_argument('--parser_base_pairs_fn', type=str, required=False,
+                        help="base training pairs, if any, to append to parser for training")
+    parser.add_argument('--kb_static_facts_fn', type=str, required=True,
+                        help="static facts file for the knowledge base")
+    parser.add_argument('--kb_perception_feature_dir', type=str, required=True,
+                        help="perception feature directory for knowledge base")
+    parser.add_argument('--kb_perception_source_base_dir', type=str, required=True,
+                        help="perception source directory for the base KB")
+    parser.add_argument('--kb_perception_source_target_dir', type=str, required=True,
+                        help="perception source directory for the target KB after retraining")
+    parser.add_argument('--active_test_set', type=str, required=True,
+                        help="objects to consider possibilities for grounding")
+    parser.add_argument('--use_condor', type=int, required=False, default=0,
+                        help="whether to invoke the UT condor system to distribute parser training")
+    parser.add_argument('--condor_target_dir', type=str, required=False, default=None,
+                        help="directory to write condor files")
+    parser.add_argument('--condor_parser_script_dir', type=str, required=False, default=None,
+                        help="path to TSP condor help scripts")
+    parser.add_argument('--condor_grounder_script_dir', type=str, required=False, default=None,
+                        help="path to grounded mturk condor help scripts")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

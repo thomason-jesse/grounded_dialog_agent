@@ -4,6 +4,8 @@ __author__ = 'jesse'
 import math
 import numpy as np
 import operator
+import os
+import pickle
 import signal
 
 
@@ -25,7 +27,7 @@ class Agent:
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
         self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
         self.budget_for_grounding = 10  # how many seconds we allow the parser before giving up on an utterance
-        self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
+        self.latent_forms_to_consider_for_induction = 10  # maximum parses to consider for grounding during induction
         self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
 
         # static information about expected actions and their arguments
@@ -747,7 +749,8 @@ class Agent:
             cat_idx = self.parser.lexicon.read_category_from_str('M')  # a command
             grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
             for u in us['all']:
-                pairs.append([u, grounded_form])
+                if [u, grounded_form] not in pairs:
+                    pairs.append([u, grounded_form])
             if debug:
                 print ("induce_utterance_grounding_pairs_from_conversation: adding 'all' pairs for gr form " +
                        self.parser.print_parse(grounded_form) + " for utterances: " + ' ; '.join(us['all']))
@@ -766,7 +769,8 @@ class Agent:
                 grounded_form = self.parser.lexicon.read_semantic_form_from_str(rs[r], cat_idx, None, [])
 
                 for u in us[r]:
-                    pairs.append([u, grounded_form])
+                    if [u, grounded_form] not in pairs:
+                        pairs.append([u, grounded_form])
                 if debug and len(us[r]) > 0:
                     print ("induce_utterance_grounding_pairs_from_conversation: adding '" + r + "' pairs for gr form " +
                            self.parser.print_parse(grounded_form) + " for utterances: " + ' ; '.join(us[r]))
@@ -1334,65 +1338,91 @@ class Agent:
         # If the user denies, all roles included in the question should have their counts subtracted.
         return q, least_conf_role, roles_to_include, roles_in_q
 
-    # Update the parser by re-training it from the current set of induced utterance/grounding pairs.
-    def train_parser_from_induced_pairs(self, epochs, parse_reranker_beam, interpolation_reranker_beam,
-                                        verbose=0):
+    # Given the current set of utterance/grounding pairs, return pairs of utterance/semantics
+    # based on parsing in beams and searching for parses that yield correct grounding.
+    def get_semantic_forms_for_induced_pairs(self, parse_reranker_beam, interpolation_reranker_beam, verbose=0,
+                                             use_condor=False, condor_target_dir=None, condor_script_dir=None):
 
-        # Induce utterance/semantic form pairs from utterance/grounding pairs, then run over those induced
-        # pairs the specified number of epochs.
-        utterance_semantic_pairs = []
-        for [x, g] in self.induced_utterance_grounding_pairs:
-            if verbose > 0:
-                print ("train_parser_from_induced_pairs: looking for semantic forms for x '" + str(x) +
-                       "' with grounding " + self.parser.print_parse(g))
+        if use_condor:
+            agent_fn = os.path.join(condor_target_dir, "temp.agent.pickle")
+            with open(agent_fn, 'wb') as f:
+                pickle.dump(self, f)
+            pairs_in_fn = os.path.join(condor_target_dir, "temp.gpairs.in.pickle")
+            with open(pairs_in_fn, 'wb') as f:
+                pickle.dump(self.induced_utterance_grounding_pairs, f)
+            pairs_out_fn = os.path.join(condor_target_dir, "temp.gpairs.out.pickle")
+            script_fn = os.path.join(condor_script_dir, "_condor_get_utt_sem_pairs.py")
+            cmd = ("python " + script_fn +
+                   " --target_dir " + condor_target_dir +
+                   " --script_dir " + condor_script_dir +
+                   " --agent_infile " + agent_fn +
+                   " --parse_reranker_beam " + str(parse_reranker_beam) +
+                   " --interpolation_reranker_beam " + str(interpolation_reranker_beam) +
+                   " --pairs_infile " + pairs_in_fn +
+                   " --outfile " + pairs_out_fn)
+            err = os.system(cmd)  # blocking call to script that launches jobs and collects them map-reduce style
+            print "_condor_get_training_pairs output: " + str(err)
+            with open(pairs_out_fn, 'rb') as f:
+                utterance_semantic_pairs = pickle.load(f)
+            os.system("rm " + agent_fn)
+            os.system("rm " + pairs_in_fn)
+            os.system("rm " + pairs_out_fn)
 
-            parses = []
-            cky_parse_generator = self.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam,
-                                                                    debug=False)
-            cgtr = self.call_generator_with_timeout(cky_parse_generator, self.budget_for_parsing)
-            parse = None
-            if cgtr is not None:
-                parse = cgtr[0]
-                score = cgtr[1]  # most_likely_cky_parse returns a 4-tuple headed by the parsenode and score
-            latent_forms_considered = 1
-            while (parse is not None and len(parses) < interpolation_reranker_beam and
-                   latent_forms_considered < self.latent_forms_to_consider_for_induction):
+        else:
 
-                # if verbose > 0:
-                #     print ("train_parser_from_induced_pairs: ... grounding semantic form " +
-                #            self.parser.print_parse(parse.node, True) + " with scores p " + str(score))
-                gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": parse.node},
-                                                     self.budget_for_grounding)
-                if gs is not None:
-                    gn = self.sort_groundings_by_conf(gs)
-                else:
-                    gn = []
-                if len(gn) > 0:
-                    gz, g_score = gn[0]  # top confidence grounding, which may be True/False
-                    if ((type(gz) is bool and gz == g) or
-                            (type(gz) is not bool and g.equal_allowing_commutativity(gz, self.parser.ontology))):
-                        parses.append([parse, score + math.log(g_score + 1.0)])  # add 1 for zero probabilities
-                        if verbose > 0:
-                            print ("train_parser_from_induced_pairs: ... found semantic form " +
-                                   self.parser.print_parse(parse.node, True) +
-                                   " with scores p " + str(score) + ", g " + str(g_score))
-                    cgtr = self.call_generator_with_timeout(cky_parse_generator, self.budget_for_parsing)
-                    parse = None
-                    if cgtr is not None:
-                        parse = cgtr[0]
-                        score = cgtr[1]
-                latent_forms_considered += 1
+            # Induce utterance/semantic form pairs from utterance/grounding pairs.
+            utterance_semantic_pairs = []
+            for [x, g] in self.induced_utterance_grounding_pairs:
+                if verbose > 0:
+                    print ("get_semantic_forms_for_induced_pairs: looking for semantic forms for x '" + str(x) +
+                           "' with grounding " + self.parser.print_parse(g))
 
-            if len(parses) > 0:
-                best_interpolated_parse = sorted(parses, key=lambda t: t[1], reverse=True)[0][0]
-                utterance_semantic_pairs.append([x, best_interpolated_parse.node])
-                print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
-            elif verbose > 0:
-                print ("no semantic parse found matching grounding for pair '" + str(x) +
-                       "', " + self.parser.print_parse(g))
+                parses = []
+                cky_parse_generator = self.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam,
+                                                                        debug=False)
+                cgtr = self.call_generator_with_timeout(cky_parse_generator, self.budget_for_parsing)
+                parse = None
+                if cgtr is not None:
+                    parse = cgtr[0]
+                    score = cgtr[1]  # most_likely_cky_parse returns a 4-tuple headed by the parsenode and score
+                latent_forms_considered = 1
+                while (parse is not None and len(parses) < interpolation_reranker_beam and
+                       latent_forms_considered < self.latent_forms_to_consider_for_induction):
 
-        self.parser.train_learner_on_semantic_forms(utterance_semantic_pairs, epochs=epochs,
-                                                    reranker_beam=parse_reranker_beam, verbose=verbose)
+                    if verbose > 2:
+                        print ("get_semantic_forms_for_induced_pairs: ... grounding semantic form " +
+                               self.parser.print_parse(parse.node, True) + " with scores p " + str(score))
+                    gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": parse.node},
+                                                         self.budget_for_grounding)
+                    if gs is not None:
+                        gn = self.sort_groundings_by_conf(gs)
+                    else:
+                        gn = []
+                    if len(gn) > 0:
+                        gz, g_score = gn[0]  # top confidence grounding, which may be True/False
+                        if ((type(gz) is bool and gz == g) or
+                                (type(gz) is not bool and g.equal_allowing_commutativity(gz, self.parser.ontology))):
+                            parses.append([parse, score + math.log(g_score + 1.0)])  # add 1 for zero probabilities
+                            if verbose > 1:
+                                print ("get_semantic_forms_for_induced_pairs: ... found semantic form " +
+                                       self.parser.print_parse(parse.node, True) +
+                                       " with scores p " + str(score) + ", g " + str(g_score))
+                        cgtr = self.call_generator_with_timeout(cky_parse_generator, self.budget_for_parsing)
+                        parse = None
+                        if cgtr is not None:
+                            parse = cgtr[0]
+                            score = cgtr[1]
+                    latent_forms_considered += 1
+
+                if len(parses) > 0:
+                    best_interpolated_parse = sorted(parses, key=lambda t: t[1], reverse=True)[0][0]
+                    utterance_semantic_pairs.append([x, best_interpolated_parse.node])
+                    print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
+                elif verbose > 0:
+                    print ("get_semantic_forms_for_induced_pairs: no semantic parse found matching " +
+                           "grounding for pair '" + str(x) + "', " + self.parser.print_parse(g))
+
+        return utterance_semantic_pairs
 
     # Call the given generator with the given time limit and return None if there is a timeout.
     # https://stackoverflow.com/questions/366682/how-to-limit-execution-time-of-a-function-call-in-python

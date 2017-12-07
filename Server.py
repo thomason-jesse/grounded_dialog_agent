@@ -191,11 +191,6 @@ def main():
         with open(grounder_fn, 'wb') as f:
             pickle.dump(g, f)
         print "main: ... done"
-    else:
-        print "main: loading grounder..."
-        with open(grounder_fn, 'rb') as f:
-            g = pickle.load(f)
-        print "main: ... done"
 
     # Start the Server.
     print "main: instantiated server..."

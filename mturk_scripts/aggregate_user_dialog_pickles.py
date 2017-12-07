@@ -39,8 +39,10 @@ def main():
                         idx = task - 1
                         # If task was correct, note this user's data for inclusion in aggregated pickle.
                         if tasks_correct[idx]:
-                            agg_role_utterances_role_chosen_pairs.append((actions_confirmed[idx],
-                                                                          utterances_by_role[idx]))
+                            pair = (actions_confirmed[idx], utterances_by_role[idx])
+                            if pair not in agg_role_utterances_role_chosen_pairs:
+                                agg_role_utterances_role_chosen_pairs.append((actions_confirmed[idx],
+                                                                              utterances_by_role[idx]))
                             num_correct_tasks += 1
 
                     # Regardless of correctness, record perceptual labels gathered from this user.
