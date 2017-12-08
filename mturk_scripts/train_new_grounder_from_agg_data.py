@@ -142,7 +142,8 @@ def main():
                     print "main: added noun and adjective for '" + pred + "'"
                     if syn is not None:
                         print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
-                    log_f.write("added adjective and noun entry for '" + pred + "' with synonym " + str(syn) + "\n")
+                    log_f.write("added adjective and noun entry for '" + pred + "' with synonym " +
+                                str(a.parser.lexicon.surface_forms[syn[0]] if syn is not None else None) + "\n")
 
                 # Determine whether each predicate is mostly behaving like a noun or adjective before adding.
                 else:
