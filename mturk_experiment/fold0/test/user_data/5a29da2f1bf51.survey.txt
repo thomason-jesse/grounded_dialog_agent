@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+I believe the third lab was set up so it's impossible to complete and as such the double bonus was a scam.

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,5
+object_qs,4
+use_navigation,2
+use_delivery,3
+use_relocation,5
+It was definitely a unique experience. Are you planning on using him as a little snack runner?
