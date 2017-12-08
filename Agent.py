@@ -90,7 +90,8 @@ class Agent:
                                                  self.action_args['move']['goal'])}}
         # question generation supports None action, but I think it's weird maybe so I removed it here
         for r in ['patient', 'recipient', 'source', 'goal']:
-            self.action_belief_state[r][None] = 1.0
+            # None starts with half the probability mass to encourage clarification over instance checks.
+            self.action_belief_state[r][None] = len(self.action_belief_state[r])
         for r in self.roles:
             self.action_belief_state[r] = self.make_distribution_from_positive_counts(self.action_belief_state[r])
         if debug:
@@ -752,8 +753,7 @@ class Agent:
                         print ("update_action_belief_from_confirmation: subtracted mass " + r + " " +
                                action_chosen[r][0] + ": " + str(mass))
 
-                    to_inc = [arg for arg in self.action_belief_state[r] if arg != action_chosen[r][0] and
-                              arg is not None]
+                    to_inc = [arg for arg in self.action_belief_state[r] if arg != action_chosen[r][0]]
                     to_inc_mass_sum = sum([self.action_belief_state[r][arg] for arg in to_inc])
                     to_inc_dist = {arg: self.action_belief_state[r][arg] / to_inc_mass_sum for arg in to_inc}
                     for arg in to_inc:
@@ -956,15 +956,14 @@ class Agent:
         # Decay counts of everything not seen per role (except None, which is a special filler for question asking).
         for r in roles:
             if mass_added[r] > 0:
-                to_decrement = [fill for fill in self.action_belief_state[r] if fill not in role_candidates_seen[r]
-                                and fill is not None]
+                to_decrement = [fill for fill in self.action_belief_state[r] if fill not in role_candidates_seen[r]]
                 if len(to_decrement) > 0:
                     sum_dec_mass = sum([self.action_belief_state[r][td] for td in to_decrement])
                     to_decrement_dist = {td: self.action_belief_state[r][td] / sum_dec_mass for td in to_decrement}
                     for td in to_decrement:
                         self.action_belief_state[r][td] -= mass_added[r] * to_decrement_dist[td]
                         if debug and mass_added[r] > 0:
-                            print ("update_action_belief_from_grounding: subtracting mass from " + r + " " + td +
+                            print ("update_action_belief_from_grounding: subtracting mass from " + r + " " + str(td) +
                                    ": " + str(mass_added[r] * to_decrement_dist[td]))
 
     # Given a parse and a list of predicates, return the subtrees in the parse rooted at those predicates.
