@@ -161,10 +161,6 @@ def main():
                                     if "Error" in contents:
                                         user_data["error_found_in_logfile"] = "1"
 
-                                    # Check whether logfile includes written main.
-                                    if "main: ... done; wrote data d" in contents:
-                                        user_data["incomplete_logfile"] = "0"
-
                             # Store.
                             user_data_to_write.append(user_data)
                             if user_open_response is not None:
@@ -174,10 +170,10 @@ def main():
                             if bonuses > 0:
                                 print row[id_header] + " gen id " + gen_id + " bonuses: " + str(bonuses)
 
-                            # Alert pickle exists but logfile incomplete.
-                            if user_data["incomplete_logfile"] == "1" and user_data["pickle_exists"] == "1":
+                            # Alert error.
+                            if user_data["error_found_in_logfile"] == "1":
                                 print ("WARNING: " + row[id_header] + " gen id " + gen_id +
-                                       " has pickle but incomplete log")
+                                       " logfile may contain runtime error report")
 
                             # Alert no tasks drawn.
                             if user_data["task_1_correct"] == '-2':

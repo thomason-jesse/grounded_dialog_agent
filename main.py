@@ -111,20 +111,15 @@ def main():
             utterances_by_role_per_dialog.append(user_utterances_by_role)
             print "main: ... done; got action " + str(action_confirmed)
 
-        # Retrain the in-memory parser based on induced training data.
-        # print "main: re-training parser on pairs induced from conversation..."
-        # a.train_parser_from_induced_pairs(10, 10, 3, verbose=2)
-        # print "main: ... done"
-
-        # Write out new information gleaned from this user.
-        if uid is not None:  # DEBUG
-            print "main: writing new information from dialog(s) to file..."
-            fn = os.path.join(data_dir, uid + ".pickle")
-            d = [action_confirmed_per_dialog, utterances_by_role_per_dialog,
-                 a.new_perceptual_labels, a.perceptual_pred_synonymy]
-            with open(fn, 'wb') as f:
-                pickle.dump(d, f)
-            print "main: ... done; wrote data d = " + str(d)
+            # Write out new information gleaned from this user after every dialog.
+            if uid is not None:  # DEBUG
+                print "main: writing new information from dialog(s) to file..."
+                fn = os.path.join(data_dir, uid + ".pickle")
+                d = [action_confirmed_per_dialog, utterances_by_role_per_dialog,
+                     a.new_perceptual_labels, a.perceptual_pred_synonymy]
+                with open(fn, 'wb') as f:
+                    pickle.dump(d, f)
+                print "main: ... done; wrote data d = " + str(d)
 
     # Just ask the user for a few rephrases of the command.
     else:

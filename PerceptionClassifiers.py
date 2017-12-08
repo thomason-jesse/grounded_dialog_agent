@@ -10,7 +10,7 @@ from sklearn.svm import SVC
 class PerceptionClassifiers:
 
     def __init__(self, source_dir, feature_dir, active_test_set, kernel='linear'):
-        debug = False
+        debug = True
 
         # Initialization parameters.
         self.source_dir = source_dir  # str; expects predicates.pickle, labels.pickle for object/pred relationships
@@ -82,7 +82,10 @@ class PerceptionClassifiers:
             self.weights = [self.get_weight_from_kappa(pidx) for pidx in range(len(self.predicates))]
             self.train_classifiers(range(len(self.predicates)))
         if debug:
-            print "... done"
+            print "... done;"
+            for pidx in range(len(self.predicates)):
+                print ("... " + self.predicates[pidx] + ": " +
+                       ("trained" if self.classifiers[pidx] is not None else "untrained"))
 
     # Given a predicate idx, get the normalized weights based on kappas for that predicate
     def get_weight_from_kappa(self, pidx):
@@ -172,11 +175,28 @@ class PerceptionClassifiers:
             pickle.dump([self.classifiers, self.kappas], f)
 
     # Get oidx, l from pidx, oidx, l labels.
+    # Labels for each (pidx, oidx) are tallied and a majority vote is used to determine the object label.
+    # In the event of a tie, the pair is ignored.
     def get_pairs_from_labels(self, pidx):
+        debug = False
+        if debug:
+            print "get_pairs_from_labels: called for pred '" + self.predicates[pidx] + "'"
+
         pairs = []
+        oidx_votes = {}
         for pjdx, oidx, l in self.labels:
             if pjdx == pidx and oidx not in self.active_test_set:
-                pairs.append((oidx, 1 if l else -1))
+                if oidx not in oidx_votes:
+                    oidx_votes[oidx] = []
+                oidx_votes[oidx].append(1 if l else -1)
+        for oidx in oidx_votes:
+            s = sum(oidx_votes[oidx])
+            if debug:
+                print "get_pairs_from_labels: ... oidx " + str(oidx) + " vote sum " + str(s)
+            if s > 0:
+                pairs.append((oidx, 1))
+            elif s < 0:
+                pairs.append((oidx, -1))
         return pairs
 
     # Train all classifiers given boilerplate info and labels.
@@ -189,7 +209,7 @@ class PerceptionClassifiers:
             train_pairs = self.get_pairs_from_labels(pidx)
             if -1 in [l for _, l in train_pairs] and 1 in [l for _, l in train_pairs]:
                 if debug:
-                    print "... '" + self.predicates[pidx] + "' fitting"
+                    print "... '" + self.predicates[pidx] + "' fitting with pairs " + str(train_pairs)
                 pc = {}
                 pk = {}
                 for b, m in self.contexts:
@@ -205,6 +225,12 @@ class PerceptionClassifiers:
                 self.classifiers[pidx] = pc
                 self.kappas[pidx] = pk
                 self.weights[pidx] = self.get_weight_from_kappa(pidx)
+                if debug:
+                    print ("...... kappas / weights: " +
+                           '\n\t'.join([str((self.contexts[idx],
+                                             pk[self.contexts[idx][0]][self.contexts[idx][1]],
+                                             self.weights[pidx][self.contexts[idx][0]][self.contexts[idx][1]]))
+                                        for idx in range(len(self.contexts))]))
             else:
                 if debug:
                     print "... '" + self.predicates[pidx] + "' lacks a +/- pair to fit"
@@ -227,14 +253,27 @@ def get_margin_kappa(c, behavior, modality, pairs, object_feats, kernel, xval=No
 # Given an SVM and its training data, fit that training data, optionally retraining leaving
 # one object out at a time.
 def get_classifier_results(c, behavior, modality, pairs, object_feats, kernel, xval):
+    debug = False
+    if debug:
+        print ("get_classifier_results: called on " + str(type(c)) + ", " + behavior + ", " + modality + " with " +
+               " pairs " + str(pairs) + " and xval " + str(xval))
+
     if c is None:
+        if debug:
+            print ("get_classifier_results: no trained classifier, returning 'no'")
         x, y = get_data_for_classifier(behavior, modality, pairs, object_feats)
         z = [-1 for _ in range(len(x))]  # No classifier trained, so guess majority class no.
     else:
         if xval is None:
+            if debug:
+                print ("get_classifier_results: running classifier for actual predictions")
             x, y = get_data_for_classifier(behavior, modality, pairs, object_feats)
             z = c.predict(x)
+            if debug:
+                print ("get_classifier_results: ... got z = " + str(z))
         else:
+            if debug:
+                print ("get_classifier_results: performing xval predictions...")
             x = []
             y = []
             z = []
@@ -259,7 +298,11 @@ def get_classifier_results(c, behavior, modality, pairs, object_feats, kernel, x
                     x.extend(_x)
                     y.extend(_y)
                     z.extend(_z)
+                if debug:
+                    print ("get_classifier_results: ... got z = " + str(z))
             else:
+                if debug:
+                    print ("get_classifier_results: xval called for single object; returning full 'no'")
                 x, y = get_data_for_classifier(behavior, modality, pairs, object_feats)
                 z = [-1 for _ in range(len(x))]  # Single object, so guess majority class no.
     return x, y, z

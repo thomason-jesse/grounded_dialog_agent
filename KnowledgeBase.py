@@ -73,19 +73,26 @@ class KnowledgeBase:
     # pos_conf + neg_conf = 1.0 or pos_conf = neg_conf = 0.0
     def query(self, q):
         assert type(q) is tuple
+        debug = False
 
         pred = q[0]
         if pred in self.static_preds:
+            if debug:
+                print "query: pred '" + pred + "' is static"
             if q in self.static_facts:
                 return 1.0, 0.0
             else:
                 return 0.0, 1.0
         elif pred in self.perceptual_preds:
+            if debug:
+                print "query: pred '" + pred + "' is perceptual"
             # perceptual predicates are all unary p(x) for x an object, p a predicate
             # objects in the database are expected to appear as 'e' atoms with name "oidx_N" for N in [0, 31]
             oidx = int(q[1].split('_')[1])
             return self.pc.run_classifier(self.pc.predicates.index(pred), oidx)
         else:  # pred doesn't appear in static facts or in known perceptual preds
+            if debug:
+                print "query: pred '" + pred + "' is unknown; returning full false confidence"
             return 0.0, 1.0  # return confident false by closed-world assumption
 
     # Add additional fact.

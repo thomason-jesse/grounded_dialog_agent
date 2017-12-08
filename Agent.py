@@ -59,14 +59,19 @@ class Agent:
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
         # As more open-ended and yes/no utterances are parsed, these counts will be updated to reflect the roles
         # we are trying to fill. Action beliefs are sampled from probability distributions induced from these counts.
+        # For the patient role, explicitly limit 'i' types to those in the grounder's active test set to avoid sampling
+        # irrelevant items (the grounder only thinks about whether predicates apply to test set).
         self.action_belief_state = {'action': {a: 1.0 for a in self.actions},
                                     'patient': {p: 1.0 for p in self.parser.ontology.preds
-                                                if (self.parser.ontology.types[self.parser.ontology.entries[
-                                                    self.parser.ontology.preds.index(p)]] in
-                                                    self.action_args['bring']['patient'] or
-                                                    self.parser.ontology.types[self.parser.ontology.entries[
-                                                        self.parser.ontology.preds.index(p)]] in
-                                                    self.action_args['move']['patient'])},
+                                                if ((self.parser.ontology.types[self.parser.ontology.entries[
+                                                     self.parser.ontology.preds.index(p)]] in
+                                                     self.action_args['bring']['patient'] or
+                                                     self.parser.ontology.types[self.parser.ontology.entries[
+                                                         self.parser.ontology.preds.index(p)]] in
+                                                     self.action_args['move']['patient']) and
+                                                    (self.parser.ontology.types[self.parser.ontology.entries[
+                                                     self.parser.ontology.preds.index(p)]] != 'i' or
+                                                     int(p.split('_')[1]) in self.grounder.active_test_set))},
                                     'recipient': {r: 1.0 for r in self.parser.ontology.preds
                                                   if self.parser.ontology.types[self.parser.ontology.entries[
                                                       self.parser.ontology.preds.index(r)]] in
@@ -818,7 +823,7 @@ class Agent:
                 # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
                 gn = self.sort_groundings_by_conf(gs)
                 if debug:
-                    print ("parse_and_ground_utterance: resulting groundings with normalized confidences " +
+                    print ("parse_and_ground_utterance: resulting groundings with normalized confidences: " +
                            "\n\t" + "\n\t".join([" ".join([str(t) if type(t) is bool else self.parser.print_parse(t),
                                                            str(c)])
                                                 for t, c in gn]))
@@ -1055,7 +1060,7 @@ class Agent:
         roles_in_q = []  # different depending on action selection
         if roles_to_include == self.roles:  # all roles are above threshold, so perform.
             if sampled_action['action'][0] == 'walk':
-                q = "You want me to go to <g>here</g>?"
+                q = "You want me to go to <g>here</g> (not manipulate any objects)?"
                 roles_in_q.extend(['action', 'goal'])
             elif sampled_action['action'][0] == 'bring':
                 q = "You want me to deliver <p>this</p> to <r>this person</r>?"
@@ -1088,10 +1093,10 @@ class Agent:
                     q = "What kind of action should I perform?"
             elif sampled_action['action'][0] == 'walk':
                 if 'goal' in roles_to_include:
-                    q = "You want me to go to <g>here</g>?"
+                    q = "You want me to go to <g>here</g> (not manipulate any objects)?"
                     roles_in_q.extend(['action', 'goal'])
                 else:
-                    q = "You want me to go somewhere?"
+                    q = "You want me to go somewhere? (not manipulate any objects)"
                     roles_in_q.extend(['action'])
             elif sampled_action['action'][0] == 'bring':
                 if 'patient' in roles_to_include:
@@ -1299,7 +1304,7 @@ class Agent:
             if 'action' in roles_to_include:
                 if sampled_action['action'][0] == 'walk':
                     if 'goal' in roles_to_include:
-                        q = "You want me to walk to <g>here</g>?"
+                        q = "You want me to go to <g>here</g> (not manipulate any objects)?"
                         roles_in_q.extend(['action', 'goal'])
                     else:
                         q = "Where should I go?"

@@ -25,10 +25,14 @@ def main():
         for lidx in range(1, len(lines)):
             data = lines[lidx].strip().split(',')
 
+            # Aggregate users if they completed task 3 (correctly or not).
+            # We could conceivably draw data from users who did not complete all tasks as well.
             uid = data[headers.index("uid")]
             pickle_exists = data[headers.index("pickle_exists")]
+            task_3_correct = data[headers.index("task_3_correct")]
             log_exists = data[headers.index("log_exists")]
-            if pickle_exists == "1" and log_exists == "1":
+            if (pickle_exists == "1" and log_exists == "1" and
+                    (task_3_correct == "0" or task_3_correct == "1")):
 
                 # Load user utterances from logfile.
                 log_fn = os.path.join(log_dir, uid + ".log")

@@ -205,7 +205,9 @@ class KBGrounder:
     # returns all possible ontological assignments to lambdas of a given type
     def assignments_for_type(self, t):
         return [idx for idx in range(len(self.parser.ontology.preds))
-                if self.parser.ontology.entries[idx] == t]
+                if (self.parser.ontology.entries[idx] == t and
+                    (self.parser.ontology.types[t] != 'i'
+                     or int(self.parser.ontology.preds[idx].split('_')[1]) in self.active_test_set))]
 
     # determine whether a predicate is logical
     def is_logical(self, idx, logical_root):
