@@ -23,6 +23,7 @@ class Agent:
         # hyperparameters
         self.parse_beam = 1
         self.threshold_to_accept_role = 1.0  # include role filler in questions above this threshold
+        self.update_mass = 0.5  # prob mass to move to args that appear in positive groundings
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
@@ -57,8 +58,8 @@ class Agent:
         debug = False
 
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
-        # As more open-ended and yes/no utterances are parsed, these counts will be updated to reflect the roles
-        # we are trying to fill. Action beliefs are sampled from probability distributions induced from these counts.
+        # Perform belief updates modeled after IJCAI'15 paper based on presence/absence of arguments in answers.
+        # Action beliefs are sampled from a probability distribution drawn from this histogram of beliefs.
         # For the patient role, explicitly limit 'i' types to those in the grounder's active test set to avoid sampling
         # irrelevant items (the grounder only thinks about whether predicates apply to test set).
         self.action_belief_state = {'action': {a: 1.0 for a in self.actions},
@@ -90,6 +91,8 @@ class Agent:
         # question generation supports None action, but I think it's weird maybe so I removed it here
         for r in ['patient', 'recipient', 'source', 'goal']:
             self.action_belief_state[r][None] = 1.0
+        for r in self.roles:
+            self.action_belief_state[r] = self.make_distribution_from_positive_counts(self.action_belief_state[r])
         if debug:
             print ("start_action_dialog starting with blank action belief state: "
                    + str(self.action_belief_state))
@@ -209,6 +212,13 @@ class Agent:
 
         # Return the chosen action and the user utterances by role from this dialog.
         return action_confirmed, user_utterances_by_role
+
+    # Given a dictionary of key -> value for positive values, return a dictionary over the same keys
+    # with the value ssumming to 1.
+    def make_distribution_from_positive_counts(self, d):
+        assert True not in [True if d[k] < 0 else False for k in d.keys()]
+        s = sum([d[k] for k in d.keys()])
+        return {k: d[k] / float(s) for k in d.keys()}
 
     # While top grounding confidence does not pass perception threshold, ask a question that
     # strengthens an SVM involved in the current parse.
@@ -732,23 +742,18 @@ class Agent:
         elif g == 'no':
             if len(roles_in_q) > 0:
 
-                # Find the second-closest count among the roles to establish an amount by which to decrement
-                # the whole set to ensure at least one argument is no longer maximal.
                 roles_to_dec = [r for r in roles_in_q if action_confirmed[r] is None]
-                min_diff = None
                 for r in roles_to_dec:
-                    second = max([self.action_belief_state[r][c] for c in self.action_belief_state[r]
-                                  if c != action_chosen[r][0]])
-                    diff = self.action_belief_state[r][action_chosen[r][0]] - second
-                    if diff < min_diff or min_diff is None:
-                        min_diff = diff
+                    self.action_belief_state[r][action_chosen[r][0]] -= self.update_mass * count
 
-                inc = min_diff + count / float(len(roles_in_q))  # add hinge of count distributed over roles
-                for r in roles_to_dec:
-                    self.action_belief_state[r][action_chosen[r][0]] -= inc
                     if debug:
-                        print ("update_action_belief_from_confirmation: subtracting from " + r + " " +
-                               action_chosen[r][0] + "; " + str(inc))
+                        print ("update_action_belief_from_confirmation: decaying " + r + " " +
+                               action_chosen[r][0])
+
+                    for arg in self.action_belief_state[r]:
+                        if arg != action_chosen[r][0]:
+                            self.action_belief_state[r][arg] += \
+                                self.update_mass * count / (len(self.action_belief_state[r]) - 1)
         else:
             print "WARNING: confirmation update string was not yes/no; '" + str(g) + "'"
 
@@ -844,8 +849,7 @@ class Agent:
         return sorted(gn, key=lambda x: x[1], reverse=True)
 
     # Given a parse and a list of the roles felicitous in the dialog to update, update those roles' distributions
-    # Increase count of possible slot files for each role that appear in the groundings, and decay those that
-    # appear in no groundings.
+    # Distribute portion of mass from everything not in confirmations to everything that is evenly.
     def update_action_belief_from_grounding(self, g, roles, count=1.0):
         debug = False
         if debug:
@@ -858,6 +862,7 @@ class Agent:
 
         # Crawl parse for recognized actions.
         updated_based_on_action_trees = False
+        mass_added = {r: 0.0 for r in roles}
         if 'action' in roles:
             action_trees = self.get_parse_subtrees(g, self.actions)
             if len(action_trees) > 0:
@@ -865,12 +870,13 @@ class Agent:
                 inc = count / float(len(action_trees))
                 for at in action_trees:
                     a = self.parser.ontology.preds[at.idx]
-                    if a not in self.action_belief_state['action']:
-                        self.action_belief_state['action'][a] = 0
-                    self.action_belief_state['action'][a] += inc
+                    mass = (1 - self.action_belief_state['action'][a]) * self.update_mass * inc
+                    self.action_belief_state['action'][a] += mass
+                    mass_added['action'] += mass
                     role_candidates_seen['action'].add(a)
                     if debug:
-                        print "update_action_belief_from_grounding: adding count to action " + a + "; " + str(inc)
+                        print ("update_action_belief_from_grounding: adding mass to action " + a + ": " +
+                               str(self.update_mass * inc))
 
                     # Update patient and recipient, if present, with action tree args.
                     # These disregard argument order in favor of finding matching argument types.
@@ -883,12 +889,14 @@ class Agent:
                                             self.parser.ontology.types[cn.type] in self.action_args[a][r]):
                                         c = self.parser.ontology.preds[cn.idx]
                                         if c not in self.action_belief_state[r]:
-                                            self.action_belief_state[r][c] = 0
-                                        self.action_belief_state[r][c] += inc
+                                            continue
+                                        mass = (1 - self.action_belief_state[r][c]) * self.update_mass * inc
+                                        self.action_belief_state[r][c] += mass
+                                        mass_added[r] += mass
                                         role_candidates_seen[r].add(c)
                                         if debug:
-                                            print ("update_action_belief_from_grounding: adding count to " + r +
-                                                   " " + c + "; " + str(inc))
+                                            print ("update_action_belief_from_grounding: adding mass to " + r +
+                                                   " " + c + ": " + str(self.update_mass * inc))
 
                     # For 'move', order matters, so handle this separately
                     else:
@@ -900,12 +908,14 @@ class Agent:
                                 if self.parser.ontology.types[cn.type] in self.action_args[a][r]:
                                     c = self.parser.ontology.preds[cn.idx]
                                     if c not in self.action_belief_state[r]:
-                                        self.action_belief_state[r][c] = 0
-                                    self.action_belief_state[r][c] += inc
+                                        continue
+                                    mass = (1 - self.action_belief_state[r][c]) * self.update_mass * inc
+                                    self.action_belief_state[r][c] += mass
+                                    mass_added[r] += mass
                                     role_candidates_seen[r].add(c)
                                     if debug:
-                                        print ("update_action_belief_from_grounding: adding count to " + r +
-                                               " " + c + "; " + str(inc))
+                                        print ("update_action_belief_from_grounding: adding mass to " + r +
+                                               " " + c + ": " + str(self.update_mass * inc))
 
         # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
         # If we were trying to update an action but didn't find any trees, also take this route.
@@ -921,30 +931,31 @@ class Agent:
                         if not cn.is_lambda:  # otherwise utterance isn't grounded
                             c = self.parser.ontology.preds[cn.idx]
                             if c not in self.action_belief_state[r]:
-                                self.action_belief_state[r][c] = 0
+                                continue
                             to_increment.append(c)
                     if cn.children is not None:
                         to_traverse.extend(cn.children)
                 if len(to_increment) > 0:
                     inc = count / float(len(to_increment))
                     for c in to_increment:
-                        self.action_belief_state[r][c] += inc
+                        mass = (1 - self.action_belief_state[r][c]) * self.update_mass * inc
+                        self.action_belief_state[r][c] += mass
+                        mass_added[r] += mass
                         role_candidates_seen[r].add(c)
                         if debug:
-                            print ("update_action_belief_from_grounding: adding count to " + r + " " + c +
-                                   "; " + str(inc))
+                            print ("update_action_belief_from_grounding: adding mass to " + r + " " + c +
+                                   ": " + str(self.update_mass * inc))
 
         # Decay counts of everything not seen per role (except None, which is a special filler for question asking).
         for r in roles:
             to_decrement = [fill for fill in self.action_belief_state[r] if fill not in role_candidates_seen[r]
                             and fill is not None]
             if len(to_decrement) > 0:
-                inc = count / float(len(to_decrement))
                 for td in to_decrement:
-                    self.action_belief_state[r][td] -= inc
-                    if debug:
-                        print ("update_action_belief_from_grounding: subtracting count from " + r + " " + td +
-                               "; " + str(inc))
+                    self.action_belief_state[r][td] -= mass_added[r] / len(to_decrement)
+                    if debug and mass_added[r] > 0:
+                        print ("update_action_belief_from_grounding: subtracting mass from " + r + " " + td +
+                               ": " + str(mass_added[r] / len(to_decrement)))
 
     # Given a parse and a list of predicates, return the subtrees in the parse rooted at those predicates.
     # If a subtree is rooted beneath one of the specified predicates, it will not be returned (top-level only).
@@ -988,25 +999,24 @@ class Agent:
                   for r in self.roles}
         for r in [_r for _r in self.roles if current_confirmed[_r] is None]:
 
-            min_count = min([self.action_belief_state[r][entry] for entry in self.action_belief_state[r]])
-            mass = sum([self.action_belief_state[r][entry] - min_count + 1 for entry in self.action_belief_state[r]])
-            if mass > 0:
-                valid_entries = [entry for entry in self.action_belief_state[r]]
-                dist = [(self.action_belief_state[r][entry] - min_count + 1) / mass
-                        for entry in valid_entries]
+            valid_entries = [entry for entry in self.action_belief_state[r]]
+            dist = [self.action_belief_state[r][entry] for entry in valid_entries]
+            s = sum(dist)
+            # this normalization shouldn't be necessary but may ensure we get a sum to 1.0 so numpy doesn't crash
+            dist = [dist[idx] / s for idx in range(len(dist))]
+            if debug:
+                print ("sample_action_from_belief: role '" + r + "' valid entries: " + str(valid_entries) +
+                       ", dist: " + str(dist))
+            if arg_max:
+                max_idxs = [idx for idx in range(len(dist)) if dist[idx] == max(dist)]
+                c = np.random.choice([valid_entries[idx] for idx in max_idxs], 1)
                 if debug:
-                    print ("sample_action_from_belief: role '" + r + "' valid entries: " + str(valid_entries) +
-                           ", dist: " + str(dist))
-                if arg_max:
-                    max_idxs = [idx for idx in range(len(dist)) if dist[idx] == max(dist)]
-                    c = np.random.choice([valid_entries[idx] for idx in max_idxs], 1)
-                    if debug:
-                        print ("sample_action_from_belief: ... max_idxs: " + str(max_idxs) + ", c " + str(c))
-                else:
-                    c = np.random.choice([valid_entries[idx]
-                                          for idx in range(len(valid_entries))],
-                                         1, p=dist)
-                chosen[r] = (c[0], dist[valid_entries.index(c)])
+                    print ("sample_action_from_belief: ... max_idxs: " + str(max_idxs) + ", c " + str(c))
+            else:
+                c = np.random.choice([valid_entries[idx]
+                                      for idx in range(len(valid_entries))],
+                                     1, p=dist)
+            chosen[r] = (c[0], dist[valid_entries.index(c)])
 
         if debug:
             print ("sample_action_from_belief: sampled chosen=" + str(chosen))
