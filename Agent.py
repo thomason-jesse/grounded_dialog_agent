@@ -426,8 +426,9 @@ class Agent:
 
                     # Re-ground original utterance with updated classifiers.
                     gprs, pr = self.parse_and_ground_utterance(ur)
-                    top_conf = gprs[0][1]
-                    perceptual_pred_trees = self.get_parse_subtrees(pr.node, self.grounder.kb.perceptual_preds)
+                    if len(gprs) > 0:
+                        top_conf = gprs[0][1]
+                        perceptual_pred_trees = self.get_parse_subtrees(pr.node, self.grounder.kb.perceptual_preds)
 
                 else:
                     perception_above_threshold = True
@@ -731,8 +732,8 @@ class Agent:
         debug = False
 
         if debug:
-            print ("update_action_belief_from_confirmation: confirmation response parse " +
-                   self.parser.print_parse(g) + " with roles_in_q " + str(roles_in_q))
+            print ("update_action_belief_from_confirmation: confirmation response str " +
+                   g + " with roles_in_q " + str(roles_in_q))
         if g == 'yes':
             for r in roles_in_q:
                 action_confirmed[r] = action_chosen[r][0]
@@ -744,16 +745,22 @@ class Agent:
 
                 roles_to_dec = [r for r in roles_in_q if action_confirmed[r] is None]
                 for r in roles_to_dec:
-                    self.action_belief_state[r][action_chosen[r][0]] -= self.update_mass * count
+                    mass = self.action_belief_state[r][action_chosen[r][0]] * self.update_mass * count
+                    self.action_belief_state[r][action_chosen[r][0]] -= mass
 
                     if debug:
-                        print ("update_action_belief_from_confirmation: decaying " + r + " " +
-                               action_chosen[r][0])
+                        print ("update_action_belief_from_confirmation: subtracted mass " + r + " " +
+                               action_chosen[r][0] + ": " + str(mass))
 
-                    for arg in self.action_belief_state[r]:
-                        if arg != action_chosen[r][0]:
-                            self.action_belief_state[r][arg] += \
-                                self.update_mass * count / (len(self.action_belief_state[r]) - 1)
+                    to_inc = [arg for arg in self.action_belief_state[r] if arg != action_chosen[r][0] and
+                              arg is not None]
+                    to_inc_mass_sum = sum([self.action_belief_state[r][arg] for arg in to_inc])
+                    to_inc_dist = {arg: self.action_belief_state[r][arg] / to_inc_mass_sum for arg in to_inc}
+                    for arg in to_inc:
+                        self.action_belief_state[r][arg] += mass * to_inc_dist[arg]
+                        if debug:
+                            print ("update_action_belief_from_confirmation: added mass " + r + " " +
+                                   str(arg) + ": " + str(mass * to_inc_dist[arg]))
         else:
             print "WARNING: confirmation update string was not yes/no; '" + str(g) + "'"
 
@@ -948,14 +955,17 @@ class Agent:
 
         # Decay counts of everything not seen per role (except None, which is a special filler for question asking).
         for r in roles:
-            to_decrement = [fill for fill in self.action_belief_state[r] if fill not in role_candidates_seen[r]
-                            and fill is not None]
-            if len(to_decrement) > 0:
-                for td in to_decrement:
-                    self.action_belief_state[r][td] -= mass_added[r] / len(to_decrement)
-                    if debug and mass_added[r] > 0:
-                        print ("update_action_belief_from_grounding: subtracting mass from " + r + " " + td +
-                               ": " + str(mass_added[r] / len(to_decrement)))
+            if mass_added[r] > 0:
+                to_decrement = [fill for fill in self.action_belief_state[r] if fill not in role_candidates_seen[r]
+                                and fill is not None]
+                if len(to_decrement) > 0:
+                    sum_dec_mass = sum([self.action_belief_state[r][td] for td in to_decrement])
+                    to_decrement_dist = {td: self.action_belief_state[r][td] / sum_dec_mass for td in to_decrement}
+                    for td in to_decrement:
+                        self.action_belief_state[r][td] -= mass_added[r] * to_decrement_dist[td]
+                        if debug and mass_added[r] > 0:
+                            print ("update_action_belief_from_grounding: subtracting mass from " + r + " " + td +
+                                   ": " + str(mass_added[r] * to_decrement_dist[td]))
 
     # Given a parse and a list of predicates, return the subtrees in the parse rooted at those predicates.
     # If a subtree is rooted beneath one of the specified predicates, it will not be returned (top-level only).
