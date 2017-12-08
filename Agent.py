@@ -105,10 +105,6 @@ class Agent:
         while (action_confirmed['action'] is None or
                None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
 
-            # Sample a chosen action from the current belief counts.
-            # If arg_max, gets current highest-confidence belief. Else, creates confidence distribution and samples.
-            action_chosen = self.sample_action_from_belief(action_confirmed, arg_max=True)
-
             # Determine what question to ask based on missing arguments in chosen action.
             if not first_utterance:
                 q = last_q
@@ -116,6 +112,8 @@ class Agent:
                 times_sampled = 0
                 while (q == last_q and last_rvs == rvs and (q is None or "rephrase" not in q) and
                        times_sampled < self.get_novel_question_beam):
+                    action_chosen = self.sample_action_from_belief(action_confirmed,
+                                                                   arg_max=True if times_sampled == 0 else False)
                     q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
                         action_chosen, self.threshold_to_accept_role)
                     rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
@@ -127,6 +125,7 @@ class Agent:
                 if times_sampled == self.get_novel_question_beam:
                     self.io.say_to_user("Sorry, I didn't understand that.")
             else:
+                action_chosen = self.sample_action_from_belief(action_confirmed, arg_max=True)
                 q = "What should I do?"
                 role_asked = None
                 roles_in_q = []
