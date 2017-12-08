@@ -457,7 +457,7 @@ require_once('functions.php');
 
 # Variables that control what tasks and objects will be shown.
 # These should be changed whenever a new Turk task is made.
-$fold = 1;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
+$fold = 0;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
 $setting = "train";  # either init, train, or test
 
 $d = 'client/';
@@ -477,9 +477,9 @@ if (!isset($_POST['uid'])) {
   $inst .= "The robot is learning, and will ask you to reword your commands ";
   $inst .= "and help it better understand which words apply to physical objects. ";
   $inst .= "After three tasks, you will complete a short survey about your experience.</p>";
-  $inst .= "<p>You will receive a <b>payment bonus</b> for <b>each correctly completed</b> ";
-  $inst .= "task out of the three. If the robot completes all three tasks correctly, your ";
-  $inst .= "payment will be <b>doubled</b> (This bonus may take a few days to come through.)</p>";
+  # $inst .= "<p>You will receive a <b>payment bonus</b> for <b>each correctly completed</b> ";
+  # $inst .= "task out of the three. If the robot completes all three tasks correctly, your ";
+  # $inst .= "payment will be <b>doubled</b> (This bonus may take a few days to come through.)</p>";
   $inst .= "<p>Once you start the HIT, <b>do not refresh or navigate away from this page</b> ";
   $inst .= "until you reach the end and claim your payment code for Mechanical Turk.</p><br/>";
   ?>
