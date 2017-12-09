@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,0
+frustrated,4
+object_qs,3
+use_navigation,0
+use_delivery,0
+use_relocation,0
+this robot needs to learn concepts like size, location terms, direction before completing these tasks. Also, we need to know which way the robot is oriented to help give directions

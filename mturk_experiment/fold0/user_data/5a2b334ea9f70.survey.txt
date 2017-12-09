@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+These HITs are kind of just awful. The game responds randomly, entering a random string of characters or a single character provides the same results as attempting to interact with the game with meaningful responses.

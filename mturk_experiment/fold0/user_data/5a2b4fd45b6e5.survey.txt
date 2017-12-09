@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,4
+object_qs,4
+use_navigation,2
+use_delivery,4
+use_relocation,4
+The robot kept repeating the question of specifying what item I wanted delivered or what location I wanted it to go to, even after I had answered the exact same question previously multiple times.
