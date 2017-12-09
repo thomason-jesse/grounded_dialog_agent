@@ -468,10 +468,6 @@ shuffle($active_train_set);
 if (!isset($_POST['uid'])) {
   $uid = uniqid();
 
-  # Write a new user file so the Server creates an Agent assigned to this uid.
-  $fn = $d . $uid . '.newu.txt';
-  write_file($fn, ' ', 'Could not create file to request new dialog agent.');
-
   # Show instructions.
   $inst = "<p>In this HIT, you will command a robot to perform several tasks. ";
   $inst .= "The robot is learning, and will ask you to reword your commands ";
@@ -503,6 +499,12 @@ else {
   $task_num = $_POST['task_num'];
   $action_chosen = $_POST['action_chosen'];
   $too_long = $_POST['too_long'];
+
+  # Write a new user file so the Server creates an Agent assigned to this uid.
+  if ($task_num == 1) {
+    $fn = $d . $uid . '.newu.txt';
+    write_file($fn, ' ', 'Could not create file to request new dialog agent.');
+  }
 
   # If this is a subseqent task, write out the completed action to appropriate logfile.
   if ($task_num > 1 && $too_long != 1) {
