@@ -1,0 +1,225 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go into the Pod Room across from Dr. Nancy Nagel's office.'
+get_from_user (processed): 'go into the pod room across from dr nancy nagel 's office'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'empty' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'bean' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'empty' when describing, or shake your head if you could use 'empty' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3408'}
+get_from_user requested feedback
+get_from_user (raw): 'No. Go to the Pod in front of the one you mentioned.'
+get_from_user (processed): 'no go to the pod in front of the one you mentioned'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3408'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the Pod next to the Lounge closest to Dr. Nancy Nagel's office.'
+get_from_user (processed): 'go to the pod next to the lounge closest to dr nancy nagel 's office'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3408'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the Pod room next to the Printer room.'
+get_from_user (processed): 'go to the pod room next to the printer room'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3504'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the Pod right in front of the Pod you just mentioned'
+get_from_user (processed): 'go to the pod right in front of the pod you just mentioned'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the large Pod room by Dr. Nancy Nagel's office'
+get_from_user (processed): 'go to the large pod room by dr nancy nagel 's office'
+say_to_user: I haven't heard the word 'large' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'large' mean the same thing as 'white'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}], [{'all': ["go into the pod room across from dr nancy nagel 's office"], 'patient': [], 'goal': ["go to the pod next to the lounge closest to dr nancy nagel 's office", 'go to the pod room next to the printer room', 'go to the pod right in front of the pod you just mentioned', "go to the large pod room by dr nancy nagel 's office"], 'source': [], 'action': [], 'recipient': []}], [('rectangle', 10, 0), ('rectangle', 3, 0), ('rectangle', 27, 0), ('rectangle', 7, 0), ('rectangle', 18, 0), ('rectangle', 2, 0), ('rectangle', 20, 0), ('rectangle', 17, 0), ('empty', 20, 1), ('bean', 10, 0), ('bean', 3, 0), ('bean', 27, 0), ('bean', 7, 0), ('bean', 18, 0), ('bean', 2, 0), ('bean', 20, 0), ('bean', 17, 0), ('metallic', 2, 1), ('empty', 10, 0)], [('large', 'white', False)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the jar of peanuts to Dr. Sybil Smalt.'
+get_from_user (processed): 'take the jar of peanuts to dr sybil smalt'
+say_to_user: I haven't heard the word 'jar' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'peanuts' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go get the peanut container'
+get_from_user (processed): 'go get the peanut container'
+say_to_user: I haven't heard the word 'peanut' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to Dr. Sybil Smalt'
+get_from_user (processed): 'to dr sybil smalt'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'white' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'styrofoam' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'empty' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Take the can of nuts to Dr. Sybil Smalt.'
+get_from_user (processed): 'take the can of nuts to dr sybil smalt'
+say_to_user: I haven't heard the word 'nuts' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Take the can with the red lid to Dr. Sybil Smalt'
+get_from_user (processed): 'take the can with the red lid to dr sybil smalt'
+say_to_user: I haven't heard the word 'red' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'red' mean the same thing as 'white'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'red' mean the same thing as 'yellow'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'red' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'lid' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go to Dr. Sybil Smalt'
+get_from_user (processed): 'go to dr sybil smalt'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Dr. Sybil Smalt's office'
+get_from_user (processed): 'go to dr sybil smalt 's office'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3430', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3430', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3430', 'source': None}], [{'all': ["go into the pod room across from dr nancy nagel 's office"], 'patient': [], 'goal': ["go to the pod next to the lounge closest to dr nancy nagel 's office", 'go to the pod room next to the printer room', 'go to the pod right in front of the pod you just mentioned', "go to the large pod room by dr nancy nagel 's office"], 'source': [], 'action': [], 'recipient': []}, {'all': ['take the jar of peanuts to dr sybil smalt'], 'patient': [], 'goal': ['go get the peanut container', 'to dr sybil smalt', 'take the can of nuts to dr sybil smalt', 'take the can with the red lid to dr sybil smalt', 'go to dr sybil smalt', "go to dr sybil smalt 's office"], 'source': [], 'action': [], 'recipient': []}], [('rectangle', 10, 0), ('rectangle', 3, 0), ('rectangle', 27, 0), ('rectangle', 7, 0), ('rectangle', 18, 0), ('rectangle', 2, 0), ('rectangle', 20, 0), ('rectangle', 17, 0), ('empty', 20, 1), ('bean', 10, 0), ('bean', 3, 0), ('bean', 27, 0), ('bean', 7, 0), ('bean', 18, 0), ('bean', 2, 0), ('bean', 20, 0), ('bean', 17, 0), ('metallic', 2, 1), ('empty', 10, 0), ('white', 10, 0), ('white', 3, 0), ('white', 27, 0), ('white', 7, 0), ('white', 18, 0), ('white', 2, 0), ('white', 20, 0), ('white', 17, 0), ('column', 10, 0), ('column', 3, 0), ('column', 27, 0), ('column', 7, 0), ('column', 18, 0), ('column', 2, 0), ('column', 20, 0), ('column', 17, 0), ('styrofoam', 20, 1), ('empty', 2, 1), ('can', 2, 1)], [('large', 'white', False), ('red', 'white', False), ('red', 'yellow', False), ('red', 'blue', False)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the lounge in front of Dr. Heidi Hughes's office'
+get_from_user (processed): 'go to the lounge in front of dr heidi hughes 's office'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the lounge in front of Dr. Heidi Hughes's office'
+get_from_user (processed): 'go to the lounge in front of dr heidi hughes 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the Lounge room closest to Dr. Heidi Hughes's office'
+get_from_user (processed): 'go to the lounge room closest to dr heidi hughes 's office'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'large' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'empty' when describing, or shake your head if you could use 'empty' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'tower' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3406'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3406', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3406', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3430', 'source': None}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3406', 'source': None}], [{'all': ["go into the pod room across from dr nancy nagel 's office"], 'patient': [], 'goal': ["go to the pod next to the lounge closest to dr nancy nagel 's office", 'go to the pod room next to the printer room', 'go to the pod right in front of the pod you just mentioned', "go to the large pod room by dr nancy nagel 's office"], 'source': [], 'action': [], 'recipient': []}, {'all': ['take the jar of peanuts to dr sybil smalt'], 'patient': [], 'goal': ['go get the peanut container', 'to dr sybil smalt', 'take the can of nuts to dr sybil smalt', 'take the can with the red lid to dr sybil smalt', 'go to dr sybil smalt', "go to dr sybil smalt 's office"], 'source': [], 'action': [], 'recipient': []}, {'all': ["go to the lounge in front of dr heidi hughes 's office"], 'patient': [], 'goal': ["go to the lounge in front of dr heidi hughes 's office", "go to the lounge room closest to dr heidi hughes 's office"], 'source': [], 'action': [], 'recipient': []}], [('rectangle', 10, 0), ('rectangle', 3, 0), ('rectangle', 27, 0), ('rectangle', 7, 0), ('rectangle', 18, 0), ('rectangle', 2, 0), ('rectangle', 20, 0), ('rectangle', 17, 0), ('empty', 20, 1), ('bean', 10, 0), ('bean', 3, 0), ('bean', 27, 0), ('bean', 7, 0), ('bean', 18, 0), ('bean', 2, 0), ('bean', 20, 0), ('bean', 17, 0), ('metallic', 2, 1), ('empty', 10, 0), ('white', 10, 0), ('white', 3, 0), ('white', 27, 0), ('white', 7, 0), ('white', 18, 0), ('white', 2, 0), ('white', 20, 0), ('white', 17, 0), ('column', 10, 0), ('column', 3, 0), ('column', 27, 0), ('column', 7, 0), ('column', 18, 0), ('column', 2, 0), ('column', 20, 0), ('column', 17, 0), ('styrofoam', 20, 1), ('empty', 2, 1), ('can', 2, 1), ('block', 10, 0), ('block', 3, 0), ('block', 27, 0), ('block', 7, 0), ('block', 18, 0), ('block', 2, 0), ('block', 20, 0), ('block', 17, 0), ('large', 3, 1), ('can', 27, 0), ('empty', 27, 0), ('tower', 10, 0), ('tower', 3, 0), ('tower', 27, 0), ('tower', 7, 0), ('tower', 18, 0), ('tower', 2, 0), ('tower', 20, 0), ('tower', 17, 0)], [('large', 'white', False), ('red', 'white', False), ('red', 'yellow', False), ('red', 'blue', False)]]
