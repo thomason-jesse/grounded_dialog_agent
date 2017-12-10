@@ -18,6 +18,7 @@ def main():
     # Load parameters from command line.
     agg_fn = FLAGS_agg_fn
     parser_fn = FLAGS_parser_fn
+    embeddings_fn = FLAGS_embeddings_fn
     parser_outfile = FLAGS_parser_outfile
     parser_base_pairs_fn = FLAGS_parser_base_pairs_fn
     kb_static_facts_fn = FLAGS_kb_static_facts_fn
@@ -26,6 +27,7 @@ def main():
     kb_perception_source_target_dir = FLAGS_kb_perception_source_target_dir
     active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
     training_log_fn = FLAGS_training_log_fn
+    epochs = FLAGS_epochs
     use_condor = FLAGS_use_condor
     condor_target_dir = FLAGS_condor_target_dir
     condor_parser_script_dir = FLAGS_condor_parser_script_dir
@@ -44,7 +46,10 @@ def main():
     print "main: loading base parser from file..."
     with open(parser_fn, 'rb') as f:
         p = pickle.load(f)
-        p.lexicon.wv = None  # if the parser has word embeddings, we don't want to use them during training
+        p.lexicon.wv = None
+        if embeddings_fn is not None:
+            print "main: ... adding embeddings"
+            p.lexicon.wv = p.lexicon.load_word_embeddings(embeddings_fn)
     print "main: ... done"
 
     # Load parser base pairs, if any.
@@ -90,6 +95,27 @@ def main():
     # Open logfile.
     log_f = open(training_log_fn, 'w')
 
+    # Look through aggregated labels to identify good perceptual candidates.
+    preds_by_label = {}
+    for pred, oidx, l in agg_perceptual_labels:
+        if pred not in preds_by_label:
+            preds_by_label[pred] = {}
+        if oidx not in preds_by_label[pred]:
+            preds_by_label[pred][oidx] = 0
+        preds_by_label[pred][oidx] += 1 if l else -1
+    # print "main: preds_by_label: " + str(preds_by_label)
+    preds_by_oidx_label = {}
+    for pred in preds_by_label:
+        preds_by_oidx_label[pred] = {True: [], False: []}
+        for oidx in preds_by_label[pred]:
+            if preds_by_label[pred][oidx] > 0:
+                preds_by_oidx_label[pred][True].append(oidx)
+            elif preds_by_label[pred][oidx] < 0:
+                preds_by_oidx_label[pred][False].append(oidx)
+    # print "main: preds_by_oidx_label: " + str(preds_by_oidx_label)
+    preds_w_pos = [pred for pred in preds_by_oidx_label if len(preds_by_oidx_label[pred][True]) > 0]
+    print "main: preds_w_pos: " + str(preds_w_pos)
+
     # Analyze synonymy votes and decide which pairs to treat as synonymous.
     synonymy_votes = {}  # maps from tuples of preds to the sum of votes for and against their being synonymous
     for predi, predj, v in agg_perceptual_synonymy:
@@ -110,7 +136,9 @@ def main():
     all_preds = list(set([pred for pred, _, _ in agg_perceptual_labels] +
                      [pred for pred, _ in synonymy_votes.keys()] +
                      [pred for _, pred in synonymy_votes.keys()]))
-    preds = [pred for pred in all_preds if pred not in a.parser.lexicon.surface_forms]
+    preds = [pred for pred in all_preds if pred not in a.parser.lexicon.surface_forms and
+             (pred in preds_w_pos or len([synp for synp in preds_w_pos if (pred, synp) in synonymy_candidates
+                                         or (synp, pred) in synonymy_candidates])) > 0]
     print "main: preds to consider: " + str(preds)
     utterances_with_pred = {}
     for pred in all_preds:
@@ -213,10 +241,15 @@ def main():
     print "main: ...... done; induced " + str(len(a.induced_utterance_grounding_pairs)) + " pairs"
     log_f.write("induced " + str(len(a.induced_utterance_grounding_pairs)) + " utterance/grounding pairs\n")
 
+    # DEBUG - write the Agent out to file for use by other scripts
+    # with open("agent.temp.pickle", 'wb') as f:
+    #     pickle.dump(a, f)
+    # END DEBUG
+
     # Iterate inducing new pairs using most up-to-date parser and training for single epoch.
     # Each of these stages can be distributed over the UT Condor system for more linear-time computation.
     print "main: training parser by alternative grounding->semantics and semantics->parser training steps..."
-    for epoch in range(10):
+    for epoch in range(epochs):
 
         # Get grouding->semantics pairs
         print "main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs..."
@@ -275,6 +308,8 @@ if __name__ == '__main__':
                         help="the aggregated data for the users to use as retraining material")
     parser.add_argument('--parser_fn', type=str, required=True,
                         help="a parser base pickle to load")
+    parser.add_argument('--embeddings_fn', type=str, required=False,
+                        help="embeddings to use during training, if any")
     parser.add_argument('--parser_outfile', type=str, required=True,
                         help="where to store the newly-trained parser")
     parser.add_argument('--parser_base_pairs_fn', type=str, required=False,
@@ -291,6 +326,8 @@ if __name__ == '__main__':
                         help="objects to consider possibilities for grounding")
     parser.add_argument('--training_log_fn', type=str, required=True,
                         help="logfile to write training epoch information out to")
+    parser.add_argument('--epochs', type=int, required=False, default=10,
+                        help="how many times to iterate over grounding/parsing data")
     parser.add_argument('--use_condor', type=int, required=False, default=0,
                         help="whether to invoke the UT condor system to distribute parser training")
     parser.add_argument('--condor_target_dir', type=str, required=False, default=None,
