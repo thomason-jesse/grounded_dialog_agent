@@ -266,7 +266,7 @@ def main():
         print "main: ... re-training parser on pairs induced from aggregated conversations..."
         perf = []
         a.parser.train_learner_on_semantic_forms(parser_base_pairs + utterance_semantic_pairs,
-                                                 epochs=1, reranker_beam=1, verbose=2,
+                                                 epochs=1, epoch_offset=epoch, reranker_beam=1, verbose=2,
                                                  use_condor=use_condor, condor_target_dir=condor_target_dir,
                                                  condor_script_dir=condor_parser_script_dir,
                                                  perf_log=perf)

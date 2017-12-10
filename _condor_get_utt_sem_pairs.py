@@ -83,7 +83,7 @@ def main():
                 os.system("rm " + err_fn)  # remove err file
 
             # Output pickle hasn't been written yet.
-            except (IOError, ValueError):
+            except (IOError, ValueError, EOFError):
 
                 # Check for a non-empty error log, suggesting the job has crashed.
                 try:
