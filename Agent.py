@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 __author__ = 'jesse'
 
+import copy
 import math
 import numpy as np
 import operator
@@ -1452,15 +1453,18 @@ class Agent:
                     else:
                         gn = []
                     if len(gn) > 0:
-                        gz, g_score = gn[0]  # top confidence grounding, which may be True/False
-                        if ((type(gz) is bool and gz == g) or
-                                (type(gz) is not bool and g.equal_allowing_commutativity(gz, self.parser.ontology))):
-                            parses.append([parse, score + math.log(g_score + 1.0)])  # add 1 for zero probabilities
-                            if verbose > 1:
+                        for gz, g_score in gn:
+                            print ("get_semantic_forms_for_induced_pairs: ...... form grounded to " +
+                                   str(self.parser.print_parse(gz) if type(gz) is not bool else str(gz)) +
+                                   " with score " + str(g_score))
+                            if ((type(gz) is bool and gz == g) or
+                                    (type(gz) is not bool and g.equal_allowing_commutativity(gz, self.parser.ontology))):
+                                parses.append([parse, score + math.log(g_score + 1.0)])  # add 1 for zero probabilities
                                 print ("get_semantic_forms_for_induced_pairs: ... found semantic form " +
                                        self.parser.print_parse(parse.node, True) +
                                        " with scores p " + str(score) + ", g " + str(g_score))
-                        cgtr = self.call_generator_with_timeout(cky_parse_generator, self.budget_for_parsing)
+                                break
+                        cgtr = self.call_generator_with_timeout(cky_parse_generator, None)  # a.budget_for_parsing)
                         parse = None
                         if cgtr is not None:
                             parse = cgtr[0]
@@ -1476,6 +1480,24 @@ class Agent:
                     print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
                     best_interpolated_parse.node.commutative_lower_node(self.parser.ontology)
                     print "... commutative lowered to " + self.parser.print_parse(best_interpolated_parse.node)
+                elif len(self.parser.tokenize(x)) <= self.parser.max_multiword_expression:
+                    # Find the categories of entries in lexicon, if any, matching g.
+                    matching_categories = []
+                    for surface_idx in range(len(self.parser.lexicon.surface_forms)):
+                        for sem_idx in self.parser.lexicon.entries[surface_idx]:
+                            if g.equal_allowing_commutativity(self.parser.lexicon.semantic_forms[sem_idx],
+                                                              self.parser.ontology, ignore_syntax=True):
+                                matching_categories.append(self.parser.lexicon.semantic_forms[sem_idx].category)
+                    if len(matching_categories) > 0:
+                        utterance_semantic_pairs = []
+                        for c in matching_categories:
+                            print ("get_semantic_forms_for_induced_pairs: no semantic parse found; adding " +
+                                   "possible synonymy pair " + "'" + str(x) + "' with " +
+                                   self.parser.lexicon.compose_str_from_category(c) + " : " +
+                                   self.parser.print_parse(g))
+                            parse = copy.deepcopy(g)
+                            parse.category = c
+                            utterance_semantic_pairs.append([x, self.parser.print_parse(parse, True)])
                 elif verbose > 0:
                     print ("get_semantic_forms_for_induced_pairs: no semantic parse found matching " +
                            "grounding for pair '" + str(x) + "', " + self.parser.print_parse(g))
