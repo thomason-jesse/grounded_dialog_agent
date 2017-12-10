@@ -73,8 +73,8 @@ def main():
         return 1
 
     # Report.
-    print ("main: aggregated data from " + str(num_users) + " users and " + str(num_correct_tasks) + " tasks for an " +
-           "average tasks per user of " + str(num_correct_tasks / float(num_users)))
+    print ("main: aggregated data from " + str(num_users) + " users and " + str(num_correct_tasks) + " correct " +
+           "tasks for an average correct tasks per user of " + str(num_correct_tasks / float(num_users)))
     print ("main: got a total of " + str(len(agg_all_utterances)) + " string utterances over all those users")
     print ("main: this resulted in " + str(len(agg_role_utterances_role_chosen_pairs)) +
            " pairs of confirmed actions with dialog utterances per role")
