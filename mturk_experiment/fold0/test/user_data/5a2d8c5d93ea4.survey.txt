@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,5
+object_qs,0
+use_navigation,6
+use_delivery,6
+use_relocation,6
+the interface for typing commands seems to not completely register all my keystrokes
