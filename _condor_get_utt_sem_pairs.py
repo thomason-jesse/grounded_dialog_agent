@@ -64,12 +64,14 @@ def main():
             err_fn = ("err." + log_fn).replace("/", "-")
             try:
                 with open(fn, 'rb') as f:
-                    pair = pickle.load(f)
-                    if pair is not None:
-                        t.append(pair)
-                        print ("_condor_get_utt_sem_pairs: got ground pair idx " + str(idx) + " for '" +
-                               str(d[idx][0]) + "', " + a.parser.print_parse(d[idx][1]))
-                        print ("_condor_get_utt_sem_pairs: ... " + pair[1])
+                    pairs = pickle.load(f)
+                    if pairs is not None:
+                        t.extend(pairs)
+                        for pair in pairs:
+                            pass
+                            # print ("_condor_get_utt_sem_pairs: got ground pair idx " + str(idx) + " for '" +
+                            #        str(d[idx][0]) + "', " + a.parser.print_parse(d[idx][1]))
+                            # print ("_condor_get_utt_sem_pairs: ... " + pair[1])
                     else:
                         print ("_condor_get_utt_sem_pairs: got no ground pair for '" +
                                str(d[idx][0]) + "', " + a.parser.print_parse(d[idx][1]))

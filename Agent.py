@@ -29,7 +29,7 @@ class Agent:
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
         self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
         self.budget_for_grounding = 10  # how many seconds we allow the parser before giving up on an utterance
-        self.latent_forms_to_consider_for_induction = 10  # maximum parses to consider for grounding during induction
+        self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
         self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
 
         # static information about expected actions and their arguments
@@ -1485,26 +1485,32 @@ class Agent:
     # Call the given generator with the given time limit and return None if there is a timeout.
     # https://stackoverflow.com/questions/366682/how-to-limit-execution-time-of-a-function-call-in-python
     # g - the generator
-    # t - the timeout (in seconds)
+    # t - the timeout (in seconds); if None, just calls next on the generator
     # returns - the result of calling next(g) or None
     def call_generator_with_timeout(self, g, t):
-        signal.signal(signal.SIGALRM, self.timeout_signal_handler)
-        signal.alarm(t)
-        try:
+        if t is not None:
+            signal.signal(signal.SIGALRM, self.timeout_signal_handler)
+            signal.alarm(t)
+            try:
+                r = next(g)
+            except AssertionError:
+                r = None
+            signal.alarm(0)
+        else:
             r = next(g)
-        except AssertionError:
-            r = None
-        signal.alarm(0)
         return r
 
     def call_function_with_timeout(self, f, args, t):
-        signal.signal(signal.SIGALRM, self.timeout_signal_handler)
-        signal.alarm(t)
-        try:
+        if t is not None:
+            signal.signal(signal.SIGALRM, self.timeout_signal_handler)
+            signal.alarm(t)
+            try:
+                r = f(**args)
+            except AssertionError:
+                r = None
+            signal.alarm(0)
+        else:
             r = f(**args)
-        except AssertionError:
-            r = None
-        signal.alarm(0)
         return r
 
     def timeout_signal_handler(self, signum, frame):
