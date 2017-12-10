@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,6
+object_qs,4
+use_navigation,2
+use_delivery,2
+use_relocation,2
+The robot did well up until the last task. I think it thought that white and clear meant the same thing. So I could not get it to pick the correct object. It was like talking to baby groot from gaurdians of the galaxy. 
