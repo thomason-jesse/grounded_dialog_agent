@@ -249,11 +249,12 @@ def main():
     # Iterate inducing new pairs using most up-to-date parser and training for single epoch.
     # Each of these stages can be distributed over the UT Condor system for more linear-time computation.
     print "main: training parser by alternative grounding->semantics and semantics->parser training steps..."
+    last_pairs = None
     for epoch in range(epochs):
 
         # Get grouding->semantics pairs
         print "main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs..."
-        utterance_semantic_pairs = a.get_semantic_forms_for_induced_pairs(1, 3, verbose=1,
+        utterance_semantic_pairs = a.get_semantic_forms_for_induced_pairs(1, 10, verbose=1,
                                                                           use_condor=use_condor,
                                                                           condor_target_dir=condor_target_dir,
                                                                           condor_script_dir=condor_grounder_script_dir)
@@ -261,6 +262,17 @@ def main():
                "induced utterance/grounding pairs")
         log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_pairs)) +
                     " utterance/semantic pairs\n")
+        if last_pairs is not None and last_pairs >= len(utterance_semantic_pairs):
+            print ("main: ........ no additional pairs on this pass, so previous parser was better. " +
+                   "Stopping training early.")
+            break
+        last_pairs = len(utterance_semantic_pairs)
+
+        # Write the new parser to file.
+        print "main: writing current re-trained parser to file..."
+        with open(parser_outfile, 'wb') as f:
+            pickle.dump(p, f)
+        print "main: ... done"
 
         # Train parser on utterances->semantics pairs
         print "main: ... re-training parser on pairs induced from aggregated conversations..."
@@ -273,12 +285,7 @@ def main():
         log_f.write("epoch " + str(epoch) + ": parser trained on " + str(perf[0][0]) + " examples and " +
                     "failed on " + str(perf[0][1]) + " out of " +
                     str(len(parser_base_pairs) + len(utterance_semantic_pairs)) + "\n")
-    print "main: ... done"
 
-    # Write the new parser to file.
-    print "main: writing re-trained parser to file..."
-    with open(parser_outfile, 'wb') as f:
-        pickle.dump(p, f)
     print "main: ... done"
 
     # Close logfile.
