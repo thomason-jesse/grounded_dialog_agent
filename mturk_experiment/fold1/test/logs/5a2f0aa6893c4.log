@@ -1,0 +1,76 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the LAB using the hallway that gives access to Mr. Mallory's office.'
+get_from_user (processed): 'go to the lab using the hallway that gives access to mr mallory 's office'
+say_to_user: I haven't heard the word 'using' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Using refers to utilize, as in something that you will be interacting with.'
+get_from_user (processed): 'using refers to utilize as in something that you will be interacting with'
+sf using taking on skipword score of nearest neighbor can
+sf refers taking on skipword score of nearest neighbor towards
+sf utilize taking on skipword score of nearest neighbor deliver
+sf as taking on skipword score of nearest neighbor for
+sf something taking on skipword score of nearest neighbor sure
+sf that taking on skipword score of nearest neighbor the
+sf you taking on skipword score of nearest neighbor can
+sf will taking on skipword score of nearest neighbor can
+sf be taking on skipword score of nearest neighbor get
+sf interacting taking on skipword score of nearest neighbor navigate
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'using' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'hallway' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+sf hallway taking on skipword score of nearest neighbor room
+sf gives taking on skipword score of nearest neighbor give
+sf access taking on skipword score of nearest neighbor navigate
+sf mr taking on skipword score of nearest neighbor yes
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'LAB'
+get_from_user (processed): 'lab'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_8'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'can' when describing <p>this</p> object? {'patient': 'oidx_30'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Would you use the word 'styrofoam' when describing <p>this</p> object? {'patient': 'oidx_30'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_1'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'LAB'
+get_from_user (processed): 'lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested 

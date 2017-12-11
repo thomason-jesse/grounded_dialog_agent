@@ -1,0 +1,133 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go o lab'
+get_from_user (processed): 'go o lab'
+say_to_user: I haven't heard the word 'o' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'go to b'
+get_from_user (processed): 'go to b'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'o' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'go to  lab'
+get_from_user (processed): 'go to lab'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'o' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+sf o taking on skipword score of nearest neighbor small
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'cylinder' when describing <p>this</p> object? {'patient': 'oidx_8'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_8'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'long' when describing, or shake your head if you could use 'long' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 29
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'tower' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to relocate an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'move to pod'
+get_from_user (processed): 'move to pod'
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'lounge'
+get_from_user (processed): 'lounge'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'action': 'move', 'source': '3514', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'source': '3514', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'lab'
+get_from_user (processed): 'lab'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3514', 'patient': 'oidx_6', 'goal': '3414'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3414', 'source': '3514'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3414', 'source': '3514'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3414', 'source': '3514'}], [{'all': ['go o lab'], 'patient': [], 'goal': ['lab'], 'source': ['move to pod', 'lounge'], 'action': [], 'recipient': []}], [('cylinder', 8, 1), ('empty', 8, 1), ('long', 29, 0), ('clear', 5, 0), ('clear', 14, 0), ('clear', 8, 0), ('clear', 15, 0), ('clear', 1, 0), ('clear', 30, 0), ('clear', 29, 0), ('clear', 31, 0), ('tower', 5, 0), ('tower', 14, 0), ('tower', 8, 0), ('tower', 15, 0), ('tower', 1, 0), ('tower', 30, 0), ('tower', 29, 0), ('tower', 31, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'pick it up'
+get_from_user (processed): 'pick it up'
+sf pick taking on skipword score of nearest neighbor get
+sf it taking on skipword score of nearest neighbor the
+sf up taking on skipword score of nearest neighbor maroon
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'white' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'long' when describing, or shake your head if you could use 'long' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 29
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spice' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Would you use the word 'styrofoam' when describing <p>this</p> object? {'patient': 'oidx_31'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 8
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'styrofoam'
+get_from_user (processed): 'styrofoam'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'r'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'B'
+get_from_user (processed): 'b'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Robert "Bob" Brown'
+get_from_user (processed): 'robert bob brown'
+say_to_user: I haven't heard the word 'bob' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'brown' before. Does it refer to prop
