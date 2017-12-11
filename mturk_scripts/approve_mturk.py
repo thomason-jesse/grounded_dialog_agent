@@ -157,6 +157,12 @@ def main():
                                             elif msg_type == "get_oidx_from_user":
                                                 oidx_from_user_count += 1
 
+                                    # Record for task 3.
+                                    user_data["task_" + str(task) + "_str_from_user"] = \
+                                        str(str_from_user_count)
+                                    user_data["task_" + str(task) + "_oidx_from_user"] = \
+                                        str(oidx_from_user_count)
+
                                     # Check for errors.
                                     if "Error" in contents:
                                         user_data["error_found_in_logfile"] = "1"
