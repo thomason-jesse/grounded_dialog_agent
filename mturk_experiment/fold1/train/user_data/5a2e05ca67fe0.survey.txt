@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,4
+frustrated,1
+object_qs,1
+use_navigation,2
+use_delivery,1
+use_relocation,1
+The last task did not work.  It did not present a task for me to command the robot to accomplish.  There was a blank space where it said a task should be written.  So it was frustrating to talk to the robot about objects and people without knowing what task could satisfy the objective of the exercise.  

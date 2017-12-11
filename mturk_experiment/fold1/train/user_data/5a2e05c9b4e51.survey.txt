@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,4
+object_qs,4
+use_navigation,5
+use_delivery,5
+use_relocation,5
+In the third task the question wording was a little confusing.  I wanted the robot to take the item from one place and deliver it to another.  Otherwise, it was pretty fun!
