@@ -87,7 +87,7 @@ def main():
         best_interpolated_parse.node.commutative_lower_node(a.parser.ontology)
         print ("get_semantic_forms_for_induced_pairs: ... commutative lowered to " +
                a.parser.print_parse(best_interpolated_parse.node))
-        utterance_semantic_pairs = [[x, a.parser.print_parse(best_interpolated_parse.node, True)]]
+        utterance_semantic_pairs = [[x, a.parser.print_parse(best_interpolated_parse.node, True), g]]
     elif len(a.parser.tokenize(x)) <= a.parser.max_multiword_expression:
         # Find the categories of entries in lexicon, if any, matching g.
         matching_categories = []
@@ -104,7 +104,7 @@ def main():
                        a.parser.print_parse(g))
                 parse = copy.deepcopy(g)
                 parse.category = c
-                utterance_semantic_pairs.append([x, a.parser.print_parse(parse, True)])
+                utterance_semantic_pairs.append([x, a.parser.print_parse(parse, True), g])
     else:
         print ("get_semantic_forms_for_induced_pairs: no semantic parse found matching " +
                "grounding for pair '" + str(x) + "', " + a.parser.print_parse(g))

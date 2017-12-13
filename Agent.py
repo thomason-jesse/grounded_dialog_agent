@@ -517,7 +517,9 @@ class Agent:
     # tk - the string token to be added
     # tk_probably_adjective - whether the new token should be treated as an adjective entry
     # synonym_identified - a tuple of the [surface_form_idx, semantic entries for that surface form] flagged syn w tk
-    def add_new_perceptual_lexical_entries(self, tk, tk_probably_adjective, synonym_identified, debug=False):
+    def add_new_perceptual_lexical_entries(self, tk, tk_probably_adjective, synonym_identified, known_ont_pred=None,
+                                           debug=False):
+        assert synonym_identified is None or known_ont_pred is None
 
         # Prepare to add new entries.
         noun_cat_idx = self.parser.lexicon.categories.index('N')  # assumed to exist
@@ -595,6 +597,8 @@ class Agent:
                                    "for candidate pred extracted from synonym trees: " +
                                    self.parser.print_parse(sem, True))
 
+            ont_tk = None
+
         # No identified synonym, so we instead have to create a new ontological predicate
         # and then add a lexical entry pointing to it as a N or N/N entry, as appropriate.
         else:
@@ -603,21 +607,31 @@ class Agent:
                        "ontological concept for '" + tk + "'")
 
             # Create a new ontological predicate to represent the new perceptual concept.
-            if tk not in self.parser.ontology.preds:
-                self.parser.ontology.preds.append(tk)
-                self.parser.ontology.entries.append(pred_type_idx)
-                self.parser.ontology.num_args.append(self.parser.ontology.calc_num_pred_args(
-                    len(self.parser.ontology.preds) - 1))
+            if known_ont_pred is not None:
+                ont_tk = known_ont_pred
+            elif tk in self.parser.ontology.preds:
+                i = 0
+                while tk + "_" + str(i) in self.parser.ontology.preds:
+                    i += 1
+                ont_tk = tk + "_" + str(i)
+            else:
+                ont_tk = tk
+            self.parser.ontology.preds.append(ont_tk)
+            self.parser.ontology.entries.append(pred_type_idx)
+            self.parser.ontology.num_args.append(self.parser.ontology.calc_num_pred_args(
+                len(self.parser.ontology.preds) - 1))
 
             # Create a new perceptual predicate to represent the new perceptual concept.
-            if tk not in self.grounder.kb.pc.predicates:
-                self.grounder.kb.pc.update_classifiers([tk], [], [], [])  # blank concept
+            if ont_tk not in self.grounder.kb.pc.predicates:
+                self.grounder.kb.pc.update_classifiers([ont_tk], [], [], [])  # blank concept
                 if debug:
                     print ("add_new_perceptual_lexical_entries: updated perception classifiers with" +
-                           " new concept '" + tk + "'")
+                           " new concept '" + ont_tk + "'")
 
             # Create a lexical entry corresponding to the newly-acquired perceptual concept.
-            s = sem_prefix + tk + sem_suffix
+            s = sem_prefix + ont_tk + sem_suffix
+            if debug:
+                print ("add_new_perceptual_lexical_entries: adding lexical entry '" + s + "'")
             sem = self.parser.lexicon.read_semantic_form_from_str(s, cat_to_match, None, [])
             if tk not in self.parser.lexicon.surface_forms:
                 self.parser.lexicon.surface_forms.append(tk)
@@ -638,6 +652,9 @@ class Agent:
 
         # Since entries may have been added, update probabilities before any more parsing is done.
         self.parser.theta.update_probabilities()
+
+        # Return the new ontological concept string, if any, produced by this procedure.
+        return ont_tk
 
     # We assume if the token to the right of tk is the end of utterance or a non-perceptual
     # word based on our lexicon (or appropriate beam search), it's a noun. Otherwise, it is an adjective.
@@ -1415,12 +1432,12 @@ class Agent:
             # that were introduced by weird 'and' rules in the pairs.
             # We do this by getting sem forms as strings, so we need to read them in afresh now.
             utterance_semantic_pairs = []
-            for s, sem_str in raw_pairs:
+            for s, sem_str, g in raw_pairs:
                 ccg_str, form_str = sem_str.split(" : ")
                 ccg = self.parser.lexicon.read_category_from_str(ccg_str)
                 form = self.parser.lexicon.read_semantic_form_from_str(form_str, None, None, [])
                 form.category = ccg
-                utterance_semantic_pairs.append([s, form])
+                utterance_semantic_pairs.append([s, form, g])
 
         else:
 
@@ -1476,7 +1493,7 @@ class Agent:
                     best_interpolated_parses = [parse for parse, score in sorted_interpolation
                                                 if np.isclose(score, sorted_interpolation[0][1])]
                     best_interpolated_parse = random.choice(best_interpolated_parses)[0][0]
-                    utterance_semantic_pairs.append([x, best_interpolated_parse.node])
+                    utterance_semantic_pairs.append([x, best_interpolated_parse.node, g])
                     print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
                     best_interpolated_parse.node.commutative_lower_node(self.parser.ontology)
                     print "... commutative lowered to " + self.parser.print_parse(best_interpolated_parse.node)
@@ -1497,7 +1514,7 @@ class Agent:
                                    self.parser.print_parse(g))
                             parse = copy.deepcopy(g)
                             parse.category = c
-                            utterance_semantic_pairs.append([x, self.parser.print_parse(parse, True)])
+                            utterance_semantic_pairs.append([x, parse, g])
                 elif verbose > 0:
                     print ("get_semantic_forms_for_induced_pairs: no semantic parse found matching " +
                            "grounding for pair '" + str(x) + "', " + self.parser.print_parse(g))

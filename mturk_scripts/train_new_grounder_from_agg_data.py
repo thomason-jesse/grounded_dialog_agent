@@ -16,7 +16,7 @@ import IO
 def main():
 
     # Load parameters from command line.
-    agg_fn = FLAGS_agg_fn
+    agg_fns = FLAGS_agg_fns.split(',')
     parser_fn = FLAGS_parser_fn
     embeddings_fn = FLAGS_embeddings_fn
     parser_outfile = FLAGS_parser_outfile
@@ -27,6 +27,7 @@ def main():
     kb_perception_source_target_dir = FLAGS_kb_perception_source_target_dir
     active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
     training_log_fn = FLAGS_training_log_fn
+    full_pairs_log_fn = FLAGS_full_pairs_log_fn
     epochs = FLAGS_epochs
     use_condor = FLAGS_use_condor
     condor_target_dir = FLAGS_condor_target_dir
@@ -36,10 +37,20 @@ def main():
                               and condor_grounder_script_dir is not None)
 
     # Load the aggregate information from file
-    print "main: loading aggregate conversation file..."
-    with open(agg_fn, 'rb') as f:
-        agg_all_utterances, agg_role_utterances_role_chosen_pairs, agg_perceptual_labels,\
-            agg_perceptual_synonymy = pickle.load(f)
+    print "main: loading aggregate conversation files..."
+    agg_all_utterances = []
+    agg_role_utterances_role_chosen_pairs = []
+    agg_perceptual_labels = []
+    agg_perceptual_synonymy = []
+    for agg_fn in agg_fns:
+        print "main: ... loading from '" + agg_fn + "'"
+        with open(agg_fn, 'rb') as f:
+            _agg_all_utterances, _agg_role_utterances_role_chosen_pairs, _agg_perceptual_labels,\
+                _agg_perceptual_synonymy = pickle.load(f)
+            agg_all_utterances.extend(_agg_all_utterances)
+            agg_role_utterances_role_chosen_pairs.extend(_agg_role_utterances_role_chosen_pairs)
+            agg_perceptual_labels.extend(_agg_perceptual_labels)
+            agg_perceptual_synonymy.extend(_agg_perceptual_synonymy)
     print "... done"
 
     # Load a grounder from file
@@ -165,8 +176,8 @@ def main():
                 if True:
                     pred_is_perc[pred] = True
                     new_perceptual_adds = True
-                    a.add_new_perceptual_lexical_entries(pred, True, syn)
-                    a.add_new_perceptual_lexical_entries(pred, False, syn)
+                    ont_pred = a.add_new_perceptual_lexical_entries(pred, True, syn)
+                    a.add_new_perceptual_lexical_entries(pred, False, syn, ont_pred)
                     print "main: added noun and adjective for '" + pred + "'"
                     if syn is not None:
                         print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
@@ -250,34 +261,41 @@ def main():
     # Each of these stages can be distributed over the UT Condor system for more linear-time computation.
     print "main: training parser by alternative grounding->semantics and semantics->parser training steps..."
     last_pairs = None
+    fplfn = open(full_pairs_log_fn, 'w')
     for epoch in range(epochs):
 
         # Get grouding->semantics pairs
         print "main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs..."
-        utterance_semantic_pairs = a.get_semantic_forms_for_induced_pairs(1, 10, verbose=1,
+        utterance_semantic_grounding_triples = a.get_semantic_forms_for_induced_pairs(1, 10, verbose=1,
                                                                           use_condor=use_condor,
                                                                           condor_target_dir=condor_target_dir,
                                                                           condor_script_dir=condor_grounder_script_dir)
-        print ("main: ...... got " + str(len(utterance_semantic_pairs)) + " utterance/semantics pairs from " +
-               "induced utterance/grounding pairs")
-        log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_pairs)) +
+        print ("main: ...... got " + str(len(utterance_semantic_grounding_triples)) + " utterance/semantics " +
+               "pairs from induced utterance/grounding pairs")
+        log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_grounding_triples)) +
                     " utterance/semantic pairs\n")
-        if last_pairs is not None and last_pairs >= len(utterance_semantic_pairs):
-            print ("main: ........ no additional pairs on this pass, so previous parser was better. " +
-                   "Stopping training early.")
-            break
-        last_pairs = len(utterance_semantic_pairs)
+        # if last_pairs is not None and last_pairs >= len(utterance_semantic_grounding_triples):
+        #     print ("main: ........ no additional pairs on this pass, so previous parser was better. " +
+        #            "Stopping training early.")
+        #     break
+        # last_pairs = len(utterance_semantic_grounding_triples)
 
-        # TODO: write out induced pairs to logfile(s) for later inspection and qualitative analysis.
+        # Write out induced pairs to logfile(s) for later inspection and qualitative analysis.
+        fplfn.write("epoch " + str(epoch) + ":\n\n" +
+                    '\n\n'.join(['\n'.join([x, a.parser.print_parse(y, True),
+                                            a.parser.print_parse(z, False)])
+                                 for x, y, z in utterance_semantic_grounding_triples])
+                    + '\n\n')
 
         # Write the new parser to file.
         print "main: writing current re-trained parser to file..."
-        with open(parser_outfile, 'wb') as f:
+        with open(parser_outfile + "." + str(epoch), 'wb') as f:
             pickle.dump(p, f)
         print "main: ... done"
 
         # Train parser on utterances->semantics pairs
         print "main: ... re-training parser on pairs induced from aggregated conversations..."
+        utterance_semantic_pairs = [[x, y] for x, y, _ in utterance_semantic_grounding_triples]
         perf = []
         a.parser.train_learner_on_semantic_forms(parser_base_pairs + utterance_semantic_pairs,
                                                  epochs=1, epoch_offset=epoch, reranker_beam=1, verbose=2,
@@ -288,6 +306,13 @@ def main():
                     "failed on " + str(perf[0][1]) + " out of " +
                     str(len(parser_base_pairs) + len(utterance_semantic_pairs)) + "\n")
 
+    # Write the final parser to file.
+    print "main: writing current re-trained parser to file..."
+    with open(parser_outfile + ".final", 'wb') as f:
+        pickle.dump(p, f)
+    print "main: ... done"
+
+    fplfn.close()
     print "main: ... done"
 
     # Close logfile.
@@ -313,8 +338,8 @@ def get_syn_from_candidates(a, pred, synonymy_candidates):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--agg_fn', type=str, required=True,
-                        help="the aggregated data for the users to use as retraining material")
+    parser.add_argument('--agg_fns', type=str, required=True,
+                        help="the aggregated data pickles for the users to use as retraining material")
     parser.add_argument('--parser_fn', type=str, required=True,
                         help="a parser base pickle to load")
     parser.add_argument('--embeddings_fn', type=str, required=False,
@@ -335,6 +360,8 @@ if __name__ == '__main__':
                         help="objects to consider possibilities for grounding")
     parser.add_argument('--training_log_fn', type=str, required=True,
                         help="logfile to write training epoch information out to")
+    parser.add_argument('--full_pairs_log_fn', type=str, required=True,
+                        help="logfile to write utterance/semantic/grounding triples to")
     parser.add_argument('--epochs', type=int, required=False, default=10,
                         help="how many times to iterate over grounding/parsing data")
     parser.add_argument('--use_condor', type=int, required=False, default=0,

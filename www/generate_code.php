@@ -44,7 +44,7 @@ else {
 
   # Show exit instructions.
   $uid = $_POST['uid'];
-  $mturk_code = $uid."_".substr(sha1("phm_salted_hash".$uid."rwhpidcwha_train13"),0,13);
+  $mturk_code = $uid."_".substr(sha1("phm_salted_hash".$uid."rwhpidcwha_test21"),0,13);
   ?>
   <div class="row">
     <div class="col-md-12">
