@@ -1,0 +1,223 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to David "Dave" Daniel's office.'
+get_from_user (processed): 'go to david dave daniel 's office'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'blue' when describing <p>this</p> object? {'patient': 'oidx_30'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'coffee' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Would you use the word 'blue' when describing <p>this</p> object? {'patient': 'oidx_8'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to relocate an item from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3420', 'goal': '3420'}
+get_from_user requested feedback
+get_from_user (raw): 'I want you to be at that office.'
+get_from_user (processed): 'i want you to be at that office'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to relocate an item from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3420', 'goal': '3420'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3420', 'goal': '3420'}
+get_from_user requested feedback
+get_from_user (raw): 'yourself'
+get_from_user (processed): 'yourself'
+say_to_user: I haven't heard the word 'yourself' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to relocate <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3420', 'patient': 'oidx_26', 'goal': '3420'}
+get_from_user requested feedback
+get_from_user (raw): 'No, just go and stay at David "Dave" Daniel's office.'
+get_from_user (processed): 'no just go and stay at david dave daniel 's office'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to relocate <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3420', 'patient': 'oidx_26', 'goal': '3420'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_26', 'goal': '3420', 'source': '3420'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_26', 'goal': '3420', 'source': '3420'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_26', 'goal': '3420', 'source': '3420'}], [{'all': ["go to david dave daniel 's office"], 'patient': ['yourself'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('blue', 30, 0), ('coffee', 5, 0), ('coffee', 14, 0), ('coffee', 8, 0), ('coffee', 15, 0), ('coffee', 1, 0), ('coffee', 30, 0), ('coffee', 29, 0), ('coffee', 31, 0), ('blue', 8, 0), ('clear', 5, 0), ('clear', 14, 0), ('clear', 8, 0), ('clear', 15, 0), ('clear', 1, 0), ('clear', 30, 0), ('clear', 29, 0), ('clear', 31, 0), ('pringles', 5, 0), ('pringles', 14, 0), ('pringles', 8, 0), ('pringles', 15, 0), ('pringles', 1, 0), ('pringles', 30, 0), ('pringles', 29, 0), ('pringles', 31, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give the blue Pringles container to David "Dave" Daniel.'
+get_from_user (processed): 'give the blue pringles container to david dave daniel'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_14'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Would you use the word 'blue' when describing <p>this</p> object? {'patient': 'oidx_15'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peach' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spice' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to relocate an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Pringles'
+get_from_user (processed): 'pringles'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Blue Pringles'
+get_from_user (processed): 'blue pringles'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'p'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Blue container'
+get_from_user (processed): 'blue container'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A blue Pringles container.'
+get_from_user (processed): 'a blue pringles container'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'To Dave.'
+get_from_user (processed): 'to dave'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_26', 'goal': '3420', 'source': '3420'}, {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13', 'goal': None, 'source': None}], [{'all': ["go to david dave daniel 's office"], 'patient': ['yourself'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['give the blue pringles container to david dave daniel'], 'patient': ['pringles', 'blue pringles', 'blue container', 'a blue pringles container'], 'goal': [], 'source': [], 'action': [], 'recipient': ['to dave']}], [('blue', 30, 0), ('coffee', 5, 0), ('coffee', 14, 0), ('coffee', 8, 0), ('coffee', 15, 0), ('coffee', 1, 0), ('coffee', 30, 0), ('coffee', 29, 0), ('coffee', 31, 0), ('blue', 8, 0), ('clear', 5, 0), ('clear', 14, 0), ('clear', 8, 0), ('clear', 15, 0), ('clear', 1, 0), ('clear', 30, 0), ('clear', 29, 0), ('clear', 31, 0), ('pringles', 5, 0), ('pringles', 14, 0), ('pringles', 8, 0), ('pringles', 15, 0), ('pringles', 1, 0), ('pringles', 30, 0), ('pringles', 29, 0), ('pringles', 31, 0), ('column', 5, 0), ('column', 14, 0), ('column', 8, 0), ('column', 15, 0), ('column', 1, 0), ('column', 30, 0), ('column', 29, 0), ('column', 31, 0), ('empty', 14, 0), ('blue', 15, 0), ('peach', 5, 0), ('peach', 14, 0), ('peach', 8, 0), ('peach', 15, 0), ('peach', 1, 0), ('peach', 30, 0), ('peach', 29, 0), ('peach', 31, 0), ('spice', 5, 0), ('spice', 14, 0), ('spice', 8, 0), ('spice', 15, 0), ('spice', 1, 0), ('spice', 30, 0), ('spice', 29, 0), ('spice', 31, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move the white medicine bottle from the office next to the conference room to Walter Ward's office.'
+get_from_user (processed): 'move the white medicine bottle from the office next to the conference room to walter ward 's office'
+say_to_user: I haven't heard the word 'medicine' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'container' when describing, or shake your head if you could use 'container' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'white' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 14
+say_to_user_with_referents: Would you use the word 'white' when describing <p>this</p> object? {'patient': 'oidx_30'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Would you use the word 'white' when describing <p>this</p> object? {'patient': 'oidx_5'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'white' when describing <p>this</p> object? {'patient': 'oidx_15'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to relocate an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3418', 'goal': '3422'}
+get_from_user requested feedback
+get_from_user (raw): 'A white medicine bottle.'
+get_from_user (processed): 'a white medicine bottle'
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to <g>there</g> (not give it to someone)? {'action': 'move', 'patient': 'oidx_11', 'goal': '3422'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'A white medicine bottle.'
+get_from_user (processed): 'a white medicine bottle'
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'No. That's not medicine, it's soda.'
+get_from_user (processed): 'no that 's not medicine it 's soda'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'NO.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to relocate <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'source': '3418', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'YES.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'source': '3418', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'TO WALTER WARD'S OFFICE.'
+get_from_user (processed): 'to walter ward 's office'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3418', 'patient': 'oidx_6', 'goal': '3422'}
+get_from_user requested feedback
+get_from_user (raw): 'YES.'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3422', 'source': '3418'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3422', 'source': '3418'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_26', 'goal': '3420', 'source': '3420'}, {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13', 'goal': None, 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3422', 'source': '3418'}], [{'all': ["go to david dave daniel 's office"], 'patient': ['yourself'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['give the blue pringles container to david dave daniel'], 'patient': ['pringles', 'blue pringles', 'blue container', 'a blue pringles container'], 'goal': [], 'source': [], 'action': [], 'recipient': ['to dave']}, {'all': ["move the white medicine bottle from the office next to the conference room to walter ward 's office"], 'patient': ['a white medicine bottle', 'a white medicine bottle'], 'goal': ["to walter ward 's office"], 'source': [], 'action': [], 'recipient': []}], [('blue', 30, 0), ('coffee', 5, 0), ('coffee', 14, 0), ('coffee', 8, 0), ('coffee', 15, 0), ('coffee', 1, 0), ('coffee', 30, 0), ('coffee', 29, 0), ('coffee', 31, 0), ('blue', 8, 0), ('clear', 5, 0), ('clear', 14, 0), ('clear', 8, 0), ('clear', 15, 0), ('clear', 1, 0), ('clear', 30, 0), ('clear', 29, 0), ('clear', 31, 0), ('pringles', 5, 0), ('pringles', 14, 0), ('pringles', 8, 0), ('pringles', 15, 0), ('pringles', 1, 0), ('pringles', 30, 0), ('pringles', 29, 0), ('pringles', 31, 0), ('column', 5, 0), ('column', 14, 0), ('column', 8, 0), ('column', 15, 0), ('column', 1, 0), ('column', 30, 0), ('column', 29, 0), ('column', 31, 0), ('empty', 14, 0), ('blue', 15, 0), ('peach', 5, 0), ('peach', 14, 0), ('peach', 8, 0), ('peach', 15, 0), ('peach', 1, 0), ('peach', 30, 0), ('peach', 29, 0), ('peach', 31, 0), ('spice', 5, 0), ('spice', 14, 0), ('spice', 8, 0), ('spice', 15, 0), ('spice', 1, 0), ('spice', 30, 0), ('spice', 29, 0), ('spice', 31, 0), ('container', 5, 1), ('container', 14, 1), ('container', 8, 1), ('container', 15, 1), ('container', 1, 1), ('container', 30, 1), ('container', 29, 1), ('container', 31, 1), ('white', 14, 1), ('white', 30, 0), ('white', 5, 1), ('white', 15, 1)], []]
