@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,6
+frustrated,1
+object_qs,1
+use_navigation,4
+use_delivery,4
+use_relocation,5
+Thank you! It's great to feel like I'm making progress in understanding how the robot parses information. 
