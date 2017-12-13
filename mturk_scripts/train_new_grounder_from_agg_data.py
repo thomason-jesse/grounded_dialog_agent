@@ -268,6 +268,8 @@ def main():
             break
         last_pairs = len(utterance_semantic_pairs)
 
+        # TODO: write out induced pairs to logfile(s) for later inspection and qualitative analysis.
+
         # Write the new parser to file.
         print "main: writing current re-trained parser to file..."
         with open(parser_outfile, 'wb') as f:
