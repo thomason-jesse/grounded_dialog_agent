@@ -10,13 +10,35 @@ def main():
 
     experiment_dir = FLAGS_experiment_dir
     num_folds = FLAGS_num_folds
-    outfile = FLAGS_outfile
+
+    # TODO: if we restart with type-raising, enable this and use during aggregation as well.
+    strip_repeat_workers = False
+    seen_turk_ids = {}
+    for cond in ["train", "test"]:
+        for fold in range(num_folds):
+            summary_csv_fn = os.path.join(experiment_dir, "fold" + str(fold), cond, "summary.csv")
+            with open(summary_csv_fn, 'r') as f:
+                lines = f.readlines()
+                headers = lines[0].strip().split(',')
+                for lidx in range(1, len(lines)):
+                    data = lines[lidx].strip().split(',')
+                    turk_id = data[headers.index('worker_id')]
+                    if turk_id in seen_turk_ids:
+                        e_cond, e_fold = seen_turk_ids[turk_id]
+                        if fold < e_fold:  # Record earlier sighting.
+                            seen_turk_ids[turk_id] = (cond, fold)
+                        elif fold == e_fold and (fold == 0 and cond == "train") or (fold > 0 and cond == "test"):
+                            # fold 0 did train first, then test; all others test first
+                            seen_turk_ids[turk_id] = (cond, fold)
+                    else:
+                        seen_turk_ids[turk_id] = (cond, fold)
 
     cond_results = {}
     for cond in ["train", "test"]:
         cond_results[cond] = []
 
         for fold in range(num_folds):
+            print "aggregating over cond '" + cond + "' fold " + str(fold)
 
             # This stores lists of the actual data values before averaging but after selecting for retrain-able users.
             raw_results = {"task_1_correct": [],
@@ -40,12 +62,21 @@ def main():
                     if (pickle_exists == "1" and log_exists == "1" and
                             (task_3_correct == "0" or task_3_correct == "1")):
 
-                        for task in range(1, 4):
-                            task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
-                            raw_results["task_" + str(task) + "_correct"].append(task_correct)
-                            if task_correct:
-                                task_user_strs = int(data[headers.index("task_" + str(task) + "_str_from_user")])
-                                raw_results["task_" + str(task) + "_str_from_user"].append(task_user_strs)
+                        # This is the condition and fold in which we first saw the worker.
+                        turk_id = data[headers.index('worker_id')]
+                        if (not strip_repeat_workers or
+                                (turk_id in seen_turk_ids and seen_turk_ids[turk_id] == (cond, fold))):
+
+                            for task in range(1, 4):
+                                task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
+                                raw_results["task_" + str(task) + "_correct"].append(task_correct)
+                                if task_correct:
+                                    task_user_strs = int(data[headers.index("task_" + str(task) + "_str_from_user")])
+                                    raw_results["task_" + str(task) + "_str_from_user"].append(task_user_strs)
+                        else:
+                            print "WARNING: ignoring repeat worker " + turk_id
+                        if strip_repeat_workers and turk_id in seen_turk_ids:
+                            del seen_turk_ids[turk_id]  # In case of repeat users across batches in same fold/cond.
 
             pr = {}
             for r in raw_results:
@@ -74,8 +105,6 @@ if __name__ == '__main__':
                         help="directory to crawl to find fold directories")
     parser.add_argument('--num_folds', type=int, required=True,
                         help="how many folds to iterate over")
-    parser.add_argument('--outfile', type=str, required=True,
-                        help="the outfile to store structured averages and stddevs")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

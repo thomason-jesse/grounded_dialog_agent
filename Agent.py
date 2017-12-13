@@ -9,6 +9,7 @@ import os
 import pickle
 import random
 import signal
+import sys
 
 
 class Agent:
@@ -271,8 +272,24 @@ class Agent:
                                              for root in perceptual_pred_trees]
                     if len(preds_to_consider) == 0:  # no further preds to consider
                         return num_qs
+                    pred_to_surface = {}
                     for pred in preds_to_consider:
                         pidx = self.grounder.kb.pc.predicates.index(pred)
+
+                        # Calculate the surface form to use with this pred.
+                        sems_with_pred = [sem_idx for sem_idx in range(len(self.parser.lexicon.semantic_forms))
+                                          if len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx],
+                                                                         [pred])) > 0]
+                        sfs_with_sems = [(sf_idx, sem_idx) for sf_idx in range(len(self.parser.lexicon.surface_forms))
+                                         for sem_idx in self.parser.lexicon.entries[sf_idx]
+                                         if sem_idx in sems_with_pred]
+                        sf_sem_scores = [self.parser.theta.lexicon_entry_given_token[(sem_idx, sf_idx)] if
+                                         (sem_idx, sf_idx) in self.parser.theta.lexicon_entry_given_token else
+                                         -sys.maxint
+                                         for sem_idx, sf_idx in sfs_with_sems]
+                        best_sf_sem_score = max(sf_sem_scores)
+                        pred_to_surface[pred] = self.parser.lexicon.surface_forms[
+                            sfs_with_sems[sf_sem_scores.index(best_sf_sem_score)][0]]
 
                         test_conf = 0
                         for oidx in self.grounder.active_test_set:
@@ -325,12 +342,14 @@ class Agent:
                                       and _o not in self.grounder.active_test_set]
                                 if ls.count(1) <= ls.count(0):  # more negative labels or labels are equal
                                     q = ("Among these nearby objects, could you show me one you would use the word '"
-                                         + pred + "' when describing, or shake your head if there are none?")
+                                         + pred_to_surface[pred] + "' when describing, or shake your head if there " +
+                                         "are none?")
                                     q_type = 'pos'
                                 else:  # more positive labels
                                     q = ("Among these nearby objects, could you show me one you could not use the " +
-                                         "word '" + pred + "' when describing, or shake your head if you could use " +
-                                         "'" + pred + "' when describing all of them?")
+                                         "word '" + pred_to_surface[pred] + "' when describing, or shake your head " +
+                                         "if you could use " + "'" + pred_to_surface[pred] + "' when describing all " +
+                                         "of them?")
                                     q_type = 'neg'
 
                             # Else, ask for the label of the (sampled) least-confident object.
@@ -346,7 +365,8 @@ class Agent:
                                     print ("conduct_perception_subdialog: sampled idx " + str(pred_train_conf_idx) +
                                            " out of confidences " + str(pred_train_conf[pred]))
                                 oidx = self.active_train_set[pred_train_conf_idx]
-                                q = "Would you use the word '" + pred + "' when describing <p>this</p> object?"
+                                q = ("Would you use the word '" + pred_to_surface[pred] +
+                                     "' when describing <p>this</p> object?")
                                 rvs['patient'] = 'oidx_' + str(oidx)
                                 q_type = oidx
 
@@ -832,7 +852,7 @@ class Agent:
 
     # Parse and ground a given utterance.
     def parse_and_ground_utterance(self, u):
-        debug = False
+        debug = True
 
         # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
         # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
