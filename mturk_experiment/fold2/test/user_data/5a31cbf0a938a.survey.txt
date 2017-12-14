@@ -1,0 +1,16 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+These get worse and worse. I don't understand why the interface doesn't have a method of setting some sort of control.
+
+Do you want me to move to lab?
+No
+Where do you want me to move?
+Office N
+Do you want me to move to lab?
+
+It's just pointless, the entire exercise is evidently designed to frustrate respondents, probably to elicit irritated responses in the comments. Good job, you did it, you wasted half an hour of my time and made me angry, congratulations.

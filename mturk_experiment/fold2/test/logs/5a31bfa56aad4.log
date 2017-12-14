@@ -1,0 +1,1453 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Leave'
+get_from_user (processed): 'leave'
+parse_and_ground_utterance: parsed 'leave' to lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3502 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3414 0.0131578947368
+	3414a 0.0131578947368
+	3414b 0.0131578947368
+	3436 0.0131578947368
+	3416 0.0131578947368
+	3516 0.0131578947368
+	3506 0.0131578947368
+	3406 0.0131578947368
+	3514 0.0131578947368
+	3520 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3424 0.0131578947368
+	3504 0.0131578947368
+	3518 0.0131578947368
+	3418 0.0131578947368
+	3432 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3408 0.0131578947368
+	3414 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3414 0.0131578947368
+	3414b 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3406 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3414a 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 0
+parse_and_ground_utterance: parsed 'leave' to lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_11 0.011358046938
+	oidx_12 0.011358046938
+	oidx_13 0.011358046938
+	oidx_22 0.011358046938
+	oidx_26 0.011358046938
+	oidx_28 0.011358046938
+	oidx_22 0.011241979305
+	oidx_6 0.0111115156866
+	oidx_25 0.0111115156866
+	oidx_11 0.0110098440391
+	oidx_12 0.0107611276828
+	oidx_11 0.0105425974142
+	oidx_11 0.0105425974142
+	oidx_22 0.0102222422442
+	oidx_22 0.0102222422442
+	oidx_25 0.00985745825493
+	oidx_6 0.00939733299576
+	oidx_12 0.00917380714221
+	oidx_12 0.00917380714221
+	oidx_6 0.00869978063334
+	oidx_6 0.00869978063334
+	oidx_22 0.00865144851871
+	oidx_22 0.00865144851871
+	oidx_12 0.00860311640408
+	oidx_12 0.00860311640408
+	oidx_26 0.00859315011037
+	oidx_13 0.00855998792953
+	oidx_25 0.00831312371631
+	oidx_25 0.00831312371631
+	oidx_25 0.00824186482935
+	oidx_25 0.00824186482935
+	oidx_28 0.00821645948705
+	oidx_28 0.00821645948705
+	oidx_28 0.00726666287674
+	oidx_13 0.00722255292466
+	oidx_13 0.00722255292466
+	oidx_26 0.00676649604816
+	oidx_26 0.00676649604816
+	oidx_26 0.00672745857096
+	oidx_26 0.00672745857096
+	oidx_28 0.00631973380908
+	oidx_28 0.00631973380908
+	oidx_6 0.00573726986354
+	oidx_6 0.00573726986354
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_6 0.00567902346899
+	oidx_11 0.00567902346899
+	oidx_12 0.00567902346899
+	oidx_13 0.00567902346899
+	oidx_22 0.00567902346899
+	oidx_25 0.00567902346899
+	oidx_26 0.00567902346899
+	oidx_28 0.00567902346899
+	oidx_11 0.00492987569223
+	oidx_11 0.00492987569223
+	oidx_13 0.00454321877519
+	oidx_13 0.00454321877519
+	oidx_11 0.0038019567645
+	oidx_6 0.00357081054611
+	oidx_26 0.00334364960736
+	oidx_22 0.00323604705742
+	oidx_28 0.00300770580936
+	oidx_12 0.00261434343555
+	oidx_13 0.00222378603207
+	oidx_25 0.00189699310262
+	oidx_13 0.00170172828687
+	oidx_26 0.0014078985655
+	oidx_6 0.00121099733903
+	oidx_22 0.000997291926261
+	oidx_13 0.000853725725887
+	oidx_26 0.000791774764273
+	oidx_26 0.000775671498203
+	oidx_11 0.000706445556802
+	oidx_6 0.000673993994122
+	oidx_12 0.000672776299462
+	oidx_13 0.000670352436206
+	oidx_25 0.000669116859135
+	oidx_13 0.00061458734732
+	oidx_25 0.000607111640337
+	oidx_28 0.000607111640337
+	oidx_22 0.000589120676343
+	oidx_28 0.000539195195297
+	oidx_11 0.000538811580799
+	oidx_11 0.000498645963131
+	oidx_12 0.000491669877856
+	oidx_26 0.000401470115481
+	oidx_12 0.000366952285688
+	oidx_13 0.000234428213374
+	oidx_26 0.000234428213374
+	oidx_25 0.000197875382195
+	oidx_28 0.000196919699234
+	oidx_25 0.000134798798824
+	oidx_26 0.000134736456913
+	oidx_11 0.000134657257512
+	oidx_12 0.000128935517356
+	oidx_28 0.000119558388821
+	oidx_26 0.000119044821859
+	oidx_11 0.000117214106687
+	oidx_6 9.84598496171e-05
+say_to_user_with_referents: Would you use the word 'yellow' when describing <p>this</p> object? {'patient': 'oidx_0'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'leave' to lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3502 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3414 0.0131578947368
+	3414a 0.0131578947368
+	3414b 0.0131578947368
+	3436 0.0131578947368
+	3416 0.0131578947368
+	3516 0.0131578947368
+	3506 0.0131578947368
+	3406 0.0131578947368
+	3514 0.0131578947368
+	3520 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3424 0.0131578947368
+	3504 0.0131578947368
+	3518 0.0131578947368
+	3418 0.0131578947368
+	3432 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3408 0.0131578947368
+	3414 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3414 0.0131578947368
+	3414b 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3406 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3414a 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spice' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'leave' to lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3502 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3414 0.0131578947368
+	3414a 0.0131578947368
+	3414b 0.0131578947368
+	3436 0.0131578947368
+	3416 0.0131578947368
+	3516 0.0131578947368
+	3506 0.0131578947368
+	3406 0.0131578947368
+	3514 0.0131578947368
+	3520 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3424 0.0131578947368
+	3504 0.0131578947368
+	3518 0.0131578947368
+	3418 0.0131578947368
+	3432 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3408 0.0131578947368
+	3414 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3414 0.0131578947368
+	3414b 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3406 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3414a 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+say_to_user_with_referents: Would you use the word 'yellow' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'leave' to lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3502 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3414 0.0131578947368
+	3414a 0.0131578947368
+	3414b 0.0131578947368
+	3436 0.0131578947368
+	3416 0.0131578947368
+	3516 0.0131578947368
+	3506 0.0131578947368
+	3406 0.0131578947368
+	3514 0.0131578947368
+	3520 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3424 0.0131578947368
+	3504 0.0131578947368
+	3518 0.0131578947368
+	3418 0.0131578947368
+	3432 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3408 0.0131578947368
+	3414 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3414 0.0131578947368
+	3414b 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3406 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3414a 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+say_to_user_with_referents: Would you use the word 'long' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'leave' to lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3502 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3414 0.0131578947368
+	3414a 0.0131578947368
+	3414b 0.0131578947368
+	3436 0.0131578947368
+	3416 0.0131578947368
+	3516 0.0131578947368
+	3506 0.0131578947368
+	3406 0.0131578947368
+	3514 0.0131578947368
+	3520 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3424 0.0131578947368
+	3504 0.0131578947368
+	3518 0.0131578947368
+	3418 0.0131578947368
+	3432 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3408 0.0131578947368
+	3414 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3414 0.0131578947368
+	3414b 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3406 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3414a 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yellow container'
+get_from_user (processed): 'yellow container'
+parse_and_ground_utterance: parsed 'yellow container' to and(container,yellow)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Soda'
+get_from_user (processed): 'soda'
+parse_and_ground_utterance: parsed 'soda' to lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_11 0.0113734856518
+	oidx_12 0.0113734856518
+	oidx_13 0.0113734856518
+	oidx_22 0.0113734856518
+	oidx_26 0.0113734856518
+	oidx_28 0.0113734856518
+	oidx_22 0.011257260251
+	oidx_6 0.0111266192966
+	oidx_25 0.0111266192966
+	oidx_11 0.0110248094493
+	oidx_12 0.010775755019
+	oidx_11 0.0105569277076
+	oidx_11 0.0105569277076
+	oidx_22 0.0102361370866
+	oidx_22 0.0102361370866
+	oidx_25 0.00987085725548
+	oidx_6 0.00941010655936
+	oidx_12 0.00918627687262
+	oidx_12 0.00918627687262
+	oidx_6 0.00871160603117
+	oidx_6 0.00871160603117
+	oidx_22 0.00866320821989
+	oidx_22 0.00866320821989
+	oidx_12 0.00861481040861
+	oidx_12 0.00861481040861
+	oidx_26 0.00860483056796
+	oidx_13 0.00857162331058
+	oidx_25 0.0083244235409
+	oidx_25 0.0083244235409
+	oidx_25 0.00825306779349
+	oidx_25 0.00825306779349
+	oidx_28 0.00822762791833
+	oidx_28 0.00822762791833
+	oidx_28 0.00727654027286
+	oidx_13 0.0072323703632
+	oidx_13 0.0072323703632
+	oidx_26 0.0067756935798
+	oidx_26 0.0067756935798
+	oidx_26 0.00673660303992
+	oidx_26 0.00673660303992
+	oidx_28 0.0063283240678
+	oidx_28 0.0063283240678
+	oidx_6 0.00574506839335
+	oidx_6 0.00574506839335
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_6 0.00568674282591
+	oidx_11 0.00568674282591
+	oidx_12 0.00568674282591
+	oidx_13 0.00568674282591
+	oidx_22 0.00568674282591
+	oidx_25 0.00568674282591
+	oidx_26 0.00568674282591
+	oidx_28 0.00568674282591
+	oidx_11 0.004936576751
+	oidx_11 0.004936576751
+	oidx_13 0.00454939426072
+	oidx_13 0.00454939426072
+	oidx_11 0.00380712467082
+	oidx_6 0.00357566426106
+	oidx_26 0.00334819454802
+	oidx_22 0.00324044573659
+	oidx_12 0.00261789704828
+	oidx_28 0.00260252112856
+	oidx_13 0.00222680876972
+	oidx_25 0.00189957163869
+	oidx_26 0.00140981228739
+	oidx_13 0.00119421599344
+	oidx_6 0.00107044570841
+	oidx_13 0.000854886174268
+	oidx_26 0.000802834281304
+	oidx_26 0.000792851004235
+	oidx_11 0.000707405810871
+	oidx_11 0.000701167650272
+	oidx_6 0.00067491013758
+	oidx_13 0.000671263629784
+	oidx_25 0.000670026373224
+	oidx_13 0.000615422740785
+	oidx_25 0.000607936872257
+	oidx_28 0.000607936872257
+	oidx_22 0.000589921453588
+	oidx_28 0.000539928110064
+	oidx_11 0.000539543974128
+	oidx_13 0.000528152256049
+	oidx_12 0.000492338192628
+	oidx_12 0.000468319997428
+	oidx_26 0.000402015823934
+	oidx_12 0.000367451074905
+	oidx_11 0.000314443426844
+	oidx_13 0.000234746865878
+	oidx_26 0.000234746865878
+	oidx_22 0.000210743998842
+	oidx_28 0.000197187367338
+	oidx_25 0.000134982027516
+	oidx_26 0.000134919600864
+	oidx_12 0.000129110776233
+	oidx_28 0.000119720901598
+	oidx_11 0.000117373432939
+	oidx_6 9.85936836689e-05
+	oidx_25 7.69382852917e-05
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Walter Ward'
+get_from_user (processed): 'walter ward'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'walter ward' to lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(w,2)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3422 0.333333333333
+	3422 0.333333333333
+	3422 0.333333333333
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Sybil Smalt'
+get_from_user (processed): 'dr sybil smalt'
+parse_and_ground_utterance: parsed 'dr sybil smalt' to s
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	s 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 's', 'patient': 'oidx_6', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 's', 'patient': 'oidx_6', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 's', 'patient': 'oidx_6', 'goal': None, 'source': None}], [{'all': ['leave'], 'patient': ['yellow container'], 'goal': [], 'source': [], 'action': [], 'recipient': ['soda', 'walter ward', 'dr sybil smalt']}], [('peach', 0, 1), ('yellow', 0, 0), ('spice', 21, 0), ('spice', 24, 0), ('spice', 19, 0), ('spice', 23, 0), ('spice', 16, 0), ('spice', 0, 0), ('spice', 4, 0), ('spice', 9, 0), ('yellow', 19, 1), ('long', 19, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver to Walter Ward'
+get_from_user (processed): 'deliver to walter ward'
+parse_and_ground_utterance: parsed 'deliver to walter ward' to lambda 1:i.(bring(1,w))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,w) 0.125
+	bring(oidx_11,w) 0.125
+	bring(oidx_12,w) 0.125
+	bring(oidx_13,w) 0.125
+	bring(oidx_22,w) 0.125
+	bring(oidx_25,w) 0.125
+	bring(oidx_26,w) 0.125
+	bring(oidx_28,w) 0.125
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+parse_and_ground_utterance: parsed 'deliver to walter ward' to lambda 1:i.(bring(1,w))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,w) 0.125
+	bring(oidx_11,w) 0.125
+	bring(oidx_12,w) 0.125
+	bring(oidx_13,w) 0.125
+	bring(oidx_22,w) 0.125
+	bring(oidx_25,w) 0.125
+	bring(oidx_26,w) 0.125
+	bring(oidx_28,w) 0.125
+say_to_user_with_referents: Would you use the word 'cylinder' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'deliver to walter ward' to lambda 1:i.(bring(1,w))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,w) 0.125
+	bring(oidx_11,w) 0.125
+	bring(oidx_12,w) 0.125
+	bring(oidx_13,w) 0.125
+	bring(oidx_22,w) 0.125
+	bring(oidx_25,w) 0.125
+	bring(oidx_26,w) 0.125
+	bring(oidx_28,w) 0.125
+say_to_user_with_referents: Would you use the word 'large' when describing <p>this</p> object? {'patient': 'oidx_23'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'deliver to walter ward' to lambda 1:i.(bring(1,w))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,w) 0.125
+	bring(oidx_11,w) 0.125
+	bring(oidx_12,w) 0.125
+	bring(oidx_13,w) 0.125
+	bring(oidx_22,w) 0.125
+	bring(oidx_25,w) 0.125
+	bring(oidx_26,w) 0.125
+	bring(oidx_28,w) 0.125
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'white' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 21
+parse_and_ground_utterance: parsed 'deliver to walter ward' to lambda 1:i.(bring(1,w))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,w) 0.125
+	bring(oidx_11,w) 0.125
+	bring(oidx_12,w) 0.125
+	bring(oidx_13,w) 0.125
+	bring(oidx_22,w) 0.125
+	bring(oidx_25,w) 0.125
+	bring(oidx_26,w) 0.125
+	bring(oidx_28,w) 0.125
+say_to_user_with_referents: Would you use the word 'container' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'deliver to walter ward' to lambda 1:i.(bring(1,w))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,w) 0.125
+	bring(oidx_11,w) 0.125
+	bring(oidx_12,w) 0.125
+	bring(oidx_13,w) 0.125
+	bring(oidx_22,w) 0.125
+	bring(oidx_25,w) 0.125
+	bring(oidx_26,w) 0.125
+	bring(oidx_28,w) 0.125
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'Walter Ward'
+get_from_user (processed): 'walter ward'
+parse_and_ground_utterance: parsed 'walter ward' to lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(w,2)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3422 0.333333333333
+	3422 0.333333333333
+	3422 0.333333333333
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'Pringles'
+get_from_user (processed): 'pringles'
+parse_and_ground_utterance: parsed 'pringles' to pringles
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	pringles 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'Blue Container'
+get_from_user (processed): 'blue container'
+parse_and_ground_utterance: parsed 'blue container' to and(container,blue)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'Pringles Can'
+get_from_user (processed): 'pringles can'
+parse_and_ground_utterance: parsed 'pringles can' to pringles
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	pringles 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 's', 'patient': 'oidx_6', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_13', 'goal': None, 'source': None}], [{'all': ['leave'], 'patient': ['yellow container'], 'goal': [], 'source': [], 'action': [], 'recipient': ['soda', 'walter ward', 'dr sybil smalt']}, {'all': ['deliver to walter ward'], 'patient': ['walter ward', 'pringles', 'blue container', 'pringles can'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('peach', 0, 1), ('yellow', 0, 0), ('spice', 21, 0), ('spice', 24, 0), ('spice', 19, 0), ('spice', 23, 0), ('spice', 16, 0), ('spice', 0, 0), ('spice', 4, 0), ('spice', 9, 0), ('yellow', 19, 1), ('long', 19, 0), ('column', 19, 1), ('cylinder', 19, 1), ('large', 23, 1), ('white', 21, 1), ('container', 19, 1)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver Pringles Can to Dr. Sybil Smalt'
+get_from_user (processed): 'deliver pringles can to dr sybil smalt'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes, Deliver Pringles Can to Dr. Sybil Smalt'
+get_from_user (processed): 'yes deliver pringles can to dr sybil smalt'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Pringles Can'
+get_from_user (processed): 'pringles can'
+parse_and_ground_utterance: parsed 'pringles can' to pringles
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	pringles 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'large' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'pringles can' to pringles
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	pringles 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'pringles can' to pringles
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	pringles 1.0
+say_to_user_with_referents: Would you use the word 'white' when describing <p>this</p> object? {'patient': 'oidx_23'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'pringles can' to pringles
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	pringles 1.0
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_21'}
+get_from_user requested feedback
+get_from_user (raw): 'I don't know'
+get_from_user (processed): 'i don' 's know'
+parse_and_ground_utterance: parsed 'i don' 's know' to a_l(lambda 1:l.(and(possesses(s,1),kitchen(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_21'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'pringles can' to pringles
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	pringles 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 21
+parse_and_ground_utterance: parsed 'pringles can' to pringles
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	pringles 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'n'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes, Deliver Pringles Can'
+get_from_user (processed): 'yes deliver pringles can'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'n'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'n'}
+get_from_user requested feedback
+get_from_user (raw): 'Nevermind'
+get_from_user (processed): 'nevermind'
+parse_and_ground_utterance: parsed 'nevermind' to lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_11 0.0121341428252
+	oidx_11 0.0121341428252
+	oidx_12 0.0121341428252
+	oidx_13 0.0121341428252
+	oidx_22 0.0121341428252
+	oidx_26 0.0121341428252
+	oidx_28 0.0121341428252
+	oidx_22 0.0120167156366
+	oidx_22 0.0120167156366
+	oidx_22 0.0120107447626
+	oidx_11 0.0120088871573
+	oidx_11 0.0120088871573
+	oidx_12 0.011899288448
+	oidx_12 0.011899288448
+	oidx_6 0.0118683238749
+	oidx_25 0.0118683238749
+	oidx_25 0.0114883596308
+	oidx_12 0.0113731881057
+	oidx_6 0.0105957803111
+	oidx_25 0.0105214761014
+	oidx_25 0.0105214761014
+	oidx_13 0.0100517673468
+	oidx_13 0.0100517673468
+	oidx_13 0.00979574953839
+	oidx_26 0.00941766052822
+	oidx_26 0.00941766052822
+	oidx_28 0.00931589029807
+	oidx_28 0.00931589029807
+	oidx_6 0.00929423705762
+	oidx_6 0.00929423705762
+	oidx_22 0.0092426024073
+	oidx_22 0.0092426024073
+	oidx_26 0.00921577864404
+	oidx_12 0.00919096775697
+	oidx_12 0.00919096775697
+	oidx_6 0.00894012329445
+	oidx_6 0.00894012329445
+	oidx_25 0.00888115985505
+	oidx_25 0.00888115985505
+	oidx_28 0.00877789055441
+	oidx_28 0.00877789055441
+	oidx_28 0.00783577697696
+	oidx_26 0.00722885104481
+	oidx_26 0.00722885104481
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_6 0.00606707141261
+	oidx_11 0.00606707141261
+	oidx_12 0.00606707141261
+	oidx_13 0.00606707141261
+	oidx_22 0.00606707141261
+	oidx_25 0.00606707141261
+	oidx_26 0.00606707141261
+	oidx_28 0.00606707141261
+	oidx_11 0.00526673433265
+	oidx_11 0.00526673433265
+	oidx_13 0.00485365713009
+	oidx_13 0.00485365713009
+	oidx_11 0.00385965474523
+	oidx_6 0.00325128539262
+	oidx_26 0.00317482367071
+	oidx_28 0.00277657738765
+	oidx_13 0.00251658797772
+	oidx_12 0.00241353087428
+	oidx_22 0.00215422590431
+	oidx_26 0.00150410034141
+	oidx_25 0.0014660704071
+	oidx_13 0.00127408499665
+	oidx_6 0.00114203697179
+	oidx_13 0.000912060845324
+	oidx_26 0.000856527728839
+	oidx_13 0.000837774830499
+	oidx_11 0.000754717015283
+	oidx_11 0.000748061647351
+	oidx_6 0.000720048035782
+	oidx_26 0.000716680533465
+	oidx_25 0.00071483764593
+	oidx_13 0.000656582129981
+	oidx_22 0.000629375320165
+	oidx_28 0.000576038428626
+	oidx_11 0.000575815738956
+	oidx_13 0.000563475007096
+	oidx_12 0.000525265703985
+	oidx_12 0.000499641175156
+	oidx_26 0.000428902587558
+	oidx_12 0.000392026152815
+	oidx_11 0.000335473360462
+	oidx_11 0.000283372197715
+	oidx_13 0.00026884029014
+	oidx_13 0.000250446704339
+	oidx_26 0.000250446704339
+	oidx_28 0.000242188594068
+	oidx_22 0.00022483852882
+	oidx_28 0.000210375231645
+	oidx_25 0.000144009607156
+	oidx_26 0.000143943005419
+	oidx_22 0.000141686098857
+	oidx_12 0.000137745687386
+	oidx_11 0.000125223352169
+	oidx_6 0.000121094297034
+	oidx_28 0.000119679216906
+	oidx_6 0.000105187615822
+	oidx_25 8.20839073471e-05
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'n'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'n'}
+get_from_user requested feedback
+get_from_user (raw): 'No, I need to deliver something to Dr. Sybil'
+get_from_user (processed): 'no i need to deliver something to dr sybil'
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user: I haven't heard the word 'something' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'n'}
+get_from_user requested feedback
+get_from_user (raw): 'Nothing'
+get_from_user (processed): 'nothing'
+parse_and_ground_utterance: parsed 'nothing' to lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3502 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3414 0.0131578947368
+	3414a 0.0131578947368
+	3414b 0.0131578947368
+	3436 0.0131578947368
+	3416 0.0131578947368
+	3516 0.0131578947368
+	3506 0.0131578947368
+	3406 0.0131578947368
+	3514 0.0131578947368
+	3520 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3424 0.0131578947368
+	3504 0.0131578947368
+	3518 0.0131578947368
+	3418 0.0131578947368
+	3432 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3408 0.0131578947368
+	3414 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3414 0.0131578947368
+	3414b 0.0131578947368
+	3422 0.0131578947368
+	3424 0.0131578947368
+	3430 0.0131578947368
+	3432 0.0131578947368
+	3436 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+	3514 0.0131578947368
+	3516 0.0131578947368
+	3518 0.0131578947368
+	3520 0.0131578947368
+	3402 0.0131578947368
+	3404 0.0131578947368
+	3406 0.0131578947368
+	3408 0.0131578947368
+	3410 0.0131578947368
+	3414a 0.0131578947368
+	3416 0.0131578947368
+	3418 0.0131578947368
+	3420 0.0131578947368
+	3502 0.0131578947368
+	3504 0.0131578947368
+	3506 0.0131578947368
+	3508 0.0131578947368
+	3510 0.0131578947368
+	3512 0.0131578947368
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 's', 'patient': 'oidx_6', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_13', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_13', 'goal': None, 'source': None}], [{'all': ['leave'], 'patient': ['yellow container'], 'goal': [], 'source': [], 'action': [], 'recipient': ['soda', 'walter ward', 'dr sybil smalt']}, {'all': ['deliver to walter ward'], 'patient': ['walter ward', 'pringles', 'blue container', 'pringles can'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['deliver pringles can to dr sybil smalt'], 'patient': ['pringles can', 'nevermind', 'no', 'no i need to deliver something to dr sybil', 'nothing'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('peach', 0, 1), ('yellow', 0, 0), ('spice', 21, 0), ('spice', 24, 0), ('spice', 19, 0), ('spice', 23, 0), ('spice', 16, 0), ('spice', 0, 0), ('spice', 4, 0), ('spice', 9, 0), ('yellow', 19, 1), ('long', 19, 0), ('column', 19, 1), ('cylinder', 19, 1), ('large', 23, 1), ('white', 21, 1), ('container', 19, 1), ('large', 19, 1), ('rectangle', 21, 0), ('rectangle', 24, 0), ('rectangle', 19, 0), ('rectangle', 23, 0), ('rectangle', 16, 0), ('rectangle', 0, 0), ('rectangle', 4, 0), ('rectangle', 9, 0), ('white', 23, 0), ('empty', 21, 0), ('can', 21, 0)], []]

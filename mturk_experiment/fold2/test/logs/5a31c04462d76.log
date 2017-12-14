@@ -1,0 +1,365 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go to Dr. Nancy Nagel in the office'
+get_from_user (processed): 'go to dr nancy nagel in the office'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to the office'
+get_from_user (processed): 'to the office'
+parse_and_ground_utterance: parsed 'to the office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'cylinder' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'to the office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'tower' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+parse_and_ground_utterance: parsed 'to the office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: Would you use the word 'cylinder' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'to the office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 23
+parse_and_ground_utterance: parsed 'to the office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: Would you use the word 'metallic' when describing <p>this</p> object? {'patient': 'oidx_0'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'to the office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3422'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3422', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3422', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3422', 'source': None}], [{'all': ['go to dr nancy nagel in the office'], 'patient': [], 'goal': ['to the office'], 'source': [], 'action': [], 'recipient': []}], [('cylinder', 19, 0), ('tower', 19, 1), ('cylinder', 4, 1), ('column', 23, 1), ('metallic', 0, 1)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take richard rogue the styrofoam'
+get_from_user (processed): 'take richard rogue the styrofoam'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'styrofoam block'
+get_from_user (processed): 'styrofoam block'
+parse_and_ground_utterance: parsed 'styrofoam block' to and(styrofoam,block)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'richard rogue'
+get_from_user (processed): 'richard rogue'
+parse_and_ground_utterance: parsed 'richard rogue' to r
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	r 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'richard rogue' to r
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	r 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'blue' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 24
+parse_and_ground_utterance: parsed 'richard rogue' to r
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	r 1.0
+say_to_user_with_referents: Would you use the word 'column' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'richard rogue' to r
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	r 1.0
+say_to_user_with_referents: Would you use the word 'metallic' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'richard rogue' to r
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	r 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'richard rogue' to r
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	r 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_25', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_25', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3422', 'source': None}, {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_25', 'goal': None, 'source': None}], [{'all': ['go to dr nancy nagel in the office'], 'patient': [], 'goal': ['to the office'], 'source': [], 'action': [], 'recipient': []}, {'all': ['take richard rogue the styrofoam'], 'patient': ['styrofoam block'], 'goal': [], 'source': [], 'action': [], 'recipient': ['richard rogue']}], [('cylinder', 19, 0), ('tower', 19, 1), ('cylinder', 4, 1), ('column', 23, 1), ('metallic', 0, 1), ('rectangle', 21, 0), ('rectangle', 24, 0), ('rectangle', 19, 0), ('rectangle', 23, 0), ('rectangle', 16, 0), ('rectangle', 0, 0), ('rectangle', 4, 0), ('rectangle', 9, 0), ('blue', 24, 1), ('column', 19, 1), ('metallic', 19, 0), ('peach', 21, 0), ('peach', 24, 0), ('peach', 19, 0), ('peach', 23, 0), ('peach', 16, 0), ('peach', 0, 0), ('peach', 4, 0), ('peach', 9, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Get the can of peaches from the lounge and take to the office where you will find Dr. Nancy Nagel'
+get_from_user (processed): 'get the can of peaches from the lounge and take to the office where you will find dr nancy nagel'
+say_to_user: I haven't heard the word 'will' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to relocate an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the lounge'
+get_from_user (processed): 'the lounge'
+parse_and_ground_utterance: parsed 'the lounge' to a_l(lambda 1:l.(lounge(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3406 0.5
+	3514 0.5
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'the lounge' to a_l(lambda 1:l.(lounge(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3406 0.5
+	3514 0.5
+say_to_user_with_referents: Would you use the word 'styrofoam' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'the lounge' to a_l(lambda 1:l.(lounge(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3406 0.5
+	3514 0.5
+say_to_user_with_referents: Would you use the word 'yellow' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'the lounge' to a_l(lambda 1:l.(lounge(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3406 0.5
+	3514 0.5
+say_to_user_with_referents: Would you use the word 'long' when describing <p>this</p> object? {'patient': 'oidx_24'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'the lounge' to a_l(lambda 1:l.(lounge(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3406 0.5
+	3514 0.5
+say_to_user_with_referents: Would you use the word 'column' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'the lounge' to a_l(lambda 1:l.(lounge(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3406 0.5
+	3514 0.5
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'the lounge'
+get_from_user (processed): 'the lounge'
+parse_and_ground_utterance: parsed 'the lounge' to a_l(lambda 1:l.(lounge(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3406 0.5
+	3514 0.5
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'action': 'move', 'source': '3514', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'source': '3514', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'the office'
+get_from_user (processed): 'the office'
+parse_and_ground_utterance: parsed 'the office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3514', 'patient': 'oidx_11', 'goal': '3420'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3420', 'source': '3514'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3420', 'source': '3514'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3422', 'source': None}, {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_25', 'goal': None, 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3420', 'source': '3514'}], [{'all': ['go to dr nancy nagel in the office'], 'patient': [], 'goal': ['to the office'], 'source': [], 'action': [], 'recipient': []}, {'all': ['take richard rogue the styrofoam'], 'patient': ['styrofoam block'], 'goal': [], 'source': [], 'action': [], 'recipient': ['richard rogue']}, {'all': ['get the can of peaches from the lounge and take to the office where you will find dr nancy nagel'], 'patient': [], 'goal': ['the office'], 'source': ['the lounge', 'the lounge'], 'action': [], 'recipient': []}], [('cylinder', 19, 0), ('tower', 19, 1), ('cylinder', 4, 1), ('column', 23, 1), ('metallic', 0, 1), ('rectangle', 21, 0), ('rectangle', 24, 0), ('rectangle', 19, 0), ('rectangle', 23, 0), ('rectangle', 16, 0), ('rectangle', 0, 0), ('rectangle', 4, 0), ('rectangle', 9, 0), ('blue', 24, 1), ('column', 19, 1), ('metallic', 19, 0), ('peach', 21, 0), ('peach', 24, 0), ('peach', 19, 0), ('peach', 23, 0), ('peach', 16, 0), ('peach', 0, 0), ('peach', 4, 0), ('peach', 9, 0), ('clear', 21, 0), ('clear', 24, 0), ('clear', 19, 0), ('clear', 23, 0), ('clear', 16, 0), ('clear', 0, 0), ('clear', 4, 0), ('clear', 9, 0), ('styrofoam', 4, 0), ('yellow', 19, 1), ('long', 24, 0), ('column', 4, 0)], []]

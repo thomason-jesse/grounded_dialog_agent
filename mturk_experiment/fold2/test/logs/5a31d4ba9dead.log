@@ -1,0 +1,508 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'move'
+get_from_user (processed): 'move'
+parse_and_ground_utterance: parsed 'move' to lambda 1:i.(lambda 2:l.(lambda 3:l.(move(1,2,3))))
+parse_and_ground_utterance: grounding timeout for lambda 1:i.(lambda 2:l.(lambda 3:l.(move(1,2,3))))
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Pod to office'
+get_from_user (processed): 'pod to office'
+parse_and_ground_utterance: parsed 'pod to office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+parse_and_ground_utterance: parsed 'pod to office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'blue' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 24
+parse_and_ground_utterance: parsed 'pod to office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: Would you use the word 'metallic' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'pod to office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'coffee' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 0
+parse_and_ground_utterance: parsed 'pod to office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user_with_referents: Would you use the word 'container' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'pod to office' to a_l(lambda 1:l.(office(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0909090909091
+	3404 0.0909090909091
+	3418 0.0909090909091
+	3420 0.0909090909091
+	3422 0.0909090909091
+	3430 0.0909090909091
+	3432 0.0909090909091
+	3502 0.0909090909091
+	3508 0.0909090909091
+	3510 0.0909090909091
+	3512 0.0909090909091
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3414a', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3414a', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3414a', 'source': None}], [{'all': ['move'], 'patient': [], 'goal': ['pod to office'], 'source': [], 'action': [], 'recipient': []}], [('clear', 19, 1), ('blue', 24, 1), ('metallic', 4, 0), ('coffee', 0, 1), ('container', 19, 1)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'give product to B'
+get_from_user (processed): 'give product to b'
+say_to_user: I haven't heard the word 'product' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Does 'product' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'give product to b' to lambda 1:<i,t>.(and(can,1))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	can 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'clear' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'give product to b' to lambda 1:<i,t>.(and(can,1))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	can 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'red' when describing, or shake your head if you could use 'red' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 16
+parse_and_ground_utterance: parsed 'give product to b' to lambda 1:<i,t>.(and(can,1))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	can 1.0
+say_to_user_with_referents: Would you use the word 'yellow' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'give product to b' to lambda 1:<i,t>.(and(can,1))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	can 1.0
+say_to_user_with_referents: Would you use the word 'yellow' when describing <p>this</p> object? {'patient': 'oidx_9'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'give product to b' to lambda 1:<i,t>.(and(can,1))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	can 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 21
+parse_and_ground_utterance: parsed 'give product to b' to lambda 1:<i,t>.(and(can,1))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	can 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to relocate an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to relocate an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'pod to lab'
+get_from_user (processed): 'pod to lab'
+parse_and_ground_utterance: parsed 'pod to lab' to a_l(lambda 1:l.(lab(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3414 0.25
+	3414a 0.25
+	3414b 0.25
+	3436 0.25
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'ok'
+get_from_user (processed): 'ok'
+parse_and_ground_utterance: parsed 'ok' to lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_11 0.0138452506982
+	oidx_12 0.0138452506982
+	oidx_13 0.0138452506982
+	oidx_22 0.0138452506982
+	oidx_26 0.0138452506982
+	oidx_28 0.0138452506982
+	oidx_11 0.0138452506982
+	oidx_22 0.0137044515385
+	oidx_6 0.0135447336287
+	oidx_25 0.0135447336287
+	oidx_25 0.0131084017627
+	oidx_12 0.0129769892137
+	oidx_11 0.0128512326993
+	oidx_11 0.0128512326993
+	oidx_22 0.0124607256283
+	oidx_22 0.0124607256283
+	oidx_6 0.0120899545079
+	oidx_12 0.011182702487
+	oidx_12 0.011182702487
+	oidx_13 0.0111771066229
+	oidx_26 0.0105153505726
+	oidx_25 0.0100466819169
+	oidx_25 0.0100466819169
+	oidx_28 0.00894074663728
+	oidx_13 0.00880415941832
+	oidx_13 0.00880415941832
+	oidx_26 0.00820064849045
+	oidx_26 0.00820064849045
+	oidx_28 0.00770363949103
+	oidx_28 0.00770363949103
+	oidx_6 0.00699362663471
+	oidx_6 0.00699362663471
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_6 0.00692262534908
+	oidx_11 0.00692262534908
+	oidx_12 0.00692262534908
+	oidx_13 0.00692262534908
+	oidx_22 0.00692262534908
+	oidx_25 0.00692262534908
+	oidx_26 0.00692262534908
+	oidx_28 0.00692262534908
+	oidx_11 0.00463451549686
+	oidx_6 0.00435275250019
+	oidx_26 0.00407584748623
+	oidx_22 0.0039446819533
+	oidx_28 0.00366633816397
+	oidx_12 0.00318683665193
+	oidx_6 0.00311747366713
+	oidx_6 0.00311747366713
+	oidx_28 0.00308079750634
+	oidx_28 0.00308079750634
+	oidx_13 0.00271075434722
+	oidx_25 0.00267735973766
+	oidx_25 0.00267735973766
+	oidx_12 0.00265902165726
+	oidx_12 0.00265902165726
+	oidx_25 0.00231239976573
+	oidx_13 0.00207437554014
+	oidx_26 0.00171390805013
+	oidx_6 0.00147618352391
+	oidx_22 0.00122865138646
+	oidx_22 0.00122865138646
+	oidx_22 0.00121568054911
+	oidx_13 0.00104118518355
+	oidx_26 0.00102693250211
+	oidx_26 0.00102693250211
+	oidx_26 0.000965158901676
+	oidx_26 0.000945529315972
+	oidx_11 0.000854919249205
+	oidx_6 0.000823457450798
+	oidx_12 0.000820101957731
+	oidx_13 0.00081714731292
+	oidx_25 0.000815641167155
+	oidx_13 0.000808585337905
+	oidx_25 0.000740057943777
+	oidx_28 0.000740057943777
+	oidx_22 0.000714593584421
+	oidx_11 0.000684021314254
+	oidx_11 0.000669931485395
+	oidx_13 0.000660170894217
+	oidx_13 0.000660170894217
+	oidx_28 0.000658765960638
+	oidx_11 0.000656801425102
+	oidx_12 0.000646868270324
+	oidx_13 0.000643965148751
+	oidx_11 0.000607840274553
+	oidx_11 0.000605156653032
+	oidx_11 0.000605156653032
+	oidx_26 0.000489384700293
+	oidx_12 0.00045778651502
+	oidx_13 0.0002857636883
+	oidx_26 0.0002857636883
+	oidx_25 0.000241206458156
+	oidx_28 0.000240041498172
+	oidx_25 0.00016469149016
+	oidx_11 0.000161717067581
+	oidx_26 0.000161717067581
+	oidx_12 0.000157170028565
+	oidx_28 0.000145739481033
+	oidx_11 0.00014288184415
+	oidx_6 0.000120020749086
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'move to office'
+get_from_user (processed): 'move to office'
+parse_and_ground_utterance: parsed 'move to office' to walk(a_l(lambda 1:l.(office(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3402) 0.0909090909091
+	walk(3404) 0.0909090909091
+	walk(3418) 0.0909090909091
+	walk(3420) 0.0909090909091
+	walk(3422) 0.0909090909091
+	walk(3430) 0.0909090909091
+	walk(3432) 0.0909090909091
+	walk(3502) 0.0909090909091
+	walk(3508) 0.0909090909091
+	walk(3510) 0.0909090909091
+	walk(3512) 0.0909090909091
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'Pod to Lab'
+get_from_user (processed): 'pod to lab'
+parse_and_ground_utterance: parsed 'pod to lab' to a_l(lambda 1:l.(lab(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3414 0.25
+	3414a 0.25
+	3414b 0.25
+	3436 0.25
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'Office To Lab'
+get_from_user (processed): 'office to lab'
+parse_and_ground_utterance: parsed 'office to lab' to a_l(lambda 1:l.(lab(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3414 0.25
+	3414a 0.25
+	3414b 0.25
+	3436 0.25
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'action': 'move', 'source': '3436', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'action': 'move', 'source': '3414b', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'action': 'move', 'source': '3414a', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'action': 'move', 'source': '3414', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized
