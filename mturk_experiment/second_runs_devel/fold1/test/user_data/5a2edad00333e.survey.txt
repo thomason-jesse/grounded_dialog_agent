@@ -1,0 +1,9 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,4
+use_navigation,0
+use_delivery,0
+use_relocation,0
+could not communicate. seems we should have come much further by now- it was like a program I used when I was a kid maybe back in 1975..
+

@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,0
-frustrated,6
-object_qs,2
-use_navigation,0
-use_delivery,0
-use_relocation,0
-Why would the robot repeatedly ask if I wanted him to go to the same place. That seems like a pretty basic thing to program into him: once you are told no stop asking the same question

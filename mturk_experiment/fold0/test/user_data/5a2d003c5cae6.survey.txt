@@ -1,8 +1,0 @@
-tasks_easy,0
-understood,1
-frustrated,6
-object_qs,6
-use_navigation,2
-use_delivery,3
-use_relocation,0
-Horrible, different and difficult to handle the robot

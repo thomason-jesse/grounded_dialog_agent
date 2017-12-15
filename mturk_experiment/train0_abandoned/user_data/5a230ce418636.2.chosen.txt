@@ -1,1 +1,0 @@
-action:bring;recipient:p;patient:oidx_30;goal:None;source:None

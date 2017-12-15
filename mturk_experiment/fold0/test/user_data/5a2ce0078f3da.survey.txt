@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,3
-frustrated,2
-object_qs,2
-use_navigation,2
-use_delivery,2
-use_relocation,1
-It was kind of fun.  a lot like a game

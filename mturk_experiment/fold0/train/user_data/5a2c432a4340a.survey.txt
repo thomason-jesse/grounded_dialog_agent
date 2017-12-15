@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,3
-frustrated,3
-object_qs,5
-use_navigation,5
-use_delivery,1
-use_relocation,3
-I needs a lot more training, but heading in the right direction.

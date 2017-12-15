@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,4
+object_qs,4
+use_navigation,3
+use_delivery,3
+use_relocation,4
+Can feed in some more commands

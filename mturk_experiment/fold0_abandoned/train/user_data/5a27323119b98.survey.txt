@@ -1,8 +1,0 @@
-tasks_easy,2
-understood,0
-frustrated,6
-object_qs,4
-use_navigation,0
-use_delivery,0
-use_relocation,0
-I found this incredibly frustrating.  The robot didn't understand words like end, large, shape, size or the other offices in the map.  Not sure if that was the point, but I feel bad we didn't get to the right answer.

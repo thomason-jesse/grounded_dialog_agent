@@ -1,8 +1,0 @@
-tasks_easy,2
-understood,1
-frustrated,6
-object_qs,6
-use_navigation,0
-use_delivery,0
-use_relocation,0
-Extremely frustrating

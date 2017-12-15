@@ -29,7 +29,7 @@ class Agent:
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
         self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
-        self.budget_for_parsing = 10  # how many seconds we allow the parser before giving up on an utterance
+        self.budget_for_parsing = 15  # how many seconds we allow the parser before giving up on an utterance
         self.budget_for_grounding = 10  # how many seconds we allow the parser before giving up on an utterance
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
         self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
@@ -1471,7 +1471,7 @@ class Agent:
                 parses = []
                 cky_parse_generator = self.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam,
                                                                         debug=False)
-                cgtr = self.call_generator_with_timeout(cky_parse_generator, self.budget_for_parsing)
+                cgtr = self.call_generator_with_timeout(cky_parse_generator, None)  # self.budget_for_parsing)
                 parse = None
                 if cgtr is not None:
                     parse = cgtr[0]
@@ -1501,11 +1501,13 @@ class Agent:
                                        self.parser.print_parse(parse.node, True) +
                                        " with scores p " + str(score) + ", g " + str(g_score))
                                 break
-                        cgtr = self.call_generator_with_timeout(cky_parse_generator, None)  # a.budget_for_parsing)
-                        parse = None
-                        if cgtr is not None:
-                            parse = cgtr[0]
-                            score = cgtr[1]
+
+                    cgtr = self.call_generator_with_timeout(cky_parse_generator, None)  # a.budget_for_parsing)
+                    parse = None
+                    if cgtr is not None:
+                        parse = cgtr[0]
+                        score = cgtr[1]
+
                     latent_forms_considered += 1
 
                 if len(parses) > 0:

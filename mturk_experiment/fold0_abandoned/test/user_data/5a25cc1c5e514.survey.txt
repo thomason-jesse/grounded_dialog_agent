@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,1
-frustrated,6
-object_qs,6
-use_navigation,0
-use_delivery,0
-use_relocation,0
-This robot seems to know nothing.  I said tall white column.  After some questions about what tall was, it proceeded to show me round orange balls and squat red cans.  

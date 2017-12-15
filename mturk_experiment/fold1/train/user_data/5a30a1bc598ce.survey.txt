@@ -1,8 +1,0 @@
-tasks_easy,4
-understood,1
-frustrated,5
-object_qs,1
-use_navigation,0
-use_delivery,0
-use_relocation,0
-Interesting experiment.  I started to think this was about testing my patience.  :-)  

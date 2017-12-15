@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,3
-frustrated,1
-object_qs,1
-use_navigation,1
-use_delivery,1
-use_relocation,1
-One of the map images didn't fully load on the last task. So I couldn't see where the robot was moving the soda can.

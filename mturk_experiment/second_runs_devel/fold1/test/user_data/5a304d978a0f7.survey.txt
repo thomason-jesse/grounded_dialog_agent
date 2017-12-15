@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The robot hardly ever listened to anything I told it. It came up with it's own questions about things I never said. It was impossible to get it to move the items I wanted it to or to get it to go where I wanted it to go. I had to give up, it was taking way too long for 1 dollar. 

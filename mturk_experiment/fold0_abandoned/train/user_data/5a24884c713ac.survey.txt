@@ -1,8 +1,0 @@
-tasks_easy,1
-understood,1
-frustrated,5
-object_qs,6
-use_navigation,0
-use_delivery,1
-use_relocation,2
-The instructions were confusing because it said to give the robot complex sentences, but then the robot only wanted yes or no answers to everything after that point. And some of its questions did not make sense so answering yes or no didn't really apply. Cool though! Just needs lots of work.

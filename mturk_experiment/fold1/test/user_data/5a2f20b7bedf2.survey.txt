@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,1
-frustrated,3
-object_qs,3
-use_navigation,4
-use_delivery,1
-use_relocation,1
-I am disappointed that the robot crashed so early. I love trying to parse out how to get the robot to accomplish tasks. It's a highlight of my day. ^^ Thank you.

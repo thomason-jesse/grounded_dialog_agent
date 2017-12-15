@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,2
-frustrated,4
-object_qs,4
-use_navigation,2
-use_delivery,4
-use_relocation,4
-the robot freezed at the second task.

@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,1
-frustrated,3
-object_qs,2
-use_navigation,6
-use_delivery,6
-use_relocation,6
-Very interesting. Unfortunately bot became confused and shutdown. Would love to participate in these again!

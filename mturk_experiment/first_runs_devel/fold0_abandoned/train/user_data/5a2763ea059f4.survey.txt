@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,3
+use_navigation,0
+use_delivery,0
+use_relocation,0
+For the first task, the problem the robot was supposed to solve was not specified. For the third task, I think the item was supposed to be delivered to the Conference Room, but I couldn't get the robot to understand that.

@@ -1,0 +1,40 @@
+added adjective and noun entry for 'jar' with synonym container
+added adjective and noun entry for 'should' with synonym can
+added adjective and noun entry for 'd' with synonym None
+added adjective and noun entry for 'large' with synonym None
+added adjective and noun entry for 'small' with synonym d
+added adjective and noun entry for 'x' with synonym metallic
+added adjective and noun entry for 'p' with synonym small
+added adjective and noun entry for 'red' with synonym None
+added adjective and noun entry for 'box' with synonym container
+added adjective and noun entry for 'plastic' with synonym container
+added adjective and noun entry for 'b' with synonym can
+added adjective and noun entry for 'm' with synonym metallic
+added adjective and noun entry for 'want' with synonym can
+added adjective and noun entry for 'tin' with synonym container
+added adjective and noun entry for 'shall' with synonym can
+added adjective and noun entry for 'object' with synonym container
+added adjective and noun entry for 'bottle' with synonym container
+added adjective and noun entry for 'tall' with synonym long
+updated classifiers with 3152 new labels across 22 predicates...
+induced 264 utterance/grounding pairs
+epoch 0: got 149 utterance/semantic pairs
+epoch 0: parser trained on 140 examples and failed on 8 out of 149
+epoch 1: got 162 utterance/semantic pairs
+epoch 1: parser trained on 151 examples and failed on 9 out of 162
+epoch 2: got 153 utterance/semantic pairs
+epoch 2: parser trained on 143 examples and failed on 9 out of 153
+epoch 3: got 178 utterance/semantic pairs
+epoch 3: parser trained on 169 examples and failed on 9 out of 178
+epoch 4: got 137 utterance/semantic pairs
+epoch 4: parser trained on 135 examples and failed on 2 out of 137
+epoch 5: got 140 utterance/semantic pairs
+epoch 5: parser trained on 138 examples and failed on 2 out of 140
+epoch 6: got 135 utterance/semantic pairs
+epoch 6: parser trained on 133 examples and failed on 2 out of 135
+epoch 7: got 145 utterance/semantic pairs
+epoch 7: parser trained on 141 examples and failed on 4 out of 145
+epoch 8: got 147 utterance/semantic pairs
+epoch 8: parser trained on 144 examples and failed on 3 out of 147
+epoch 9: got 165 utterance/semantic pairs
+epoch 9: parser trained on 160 examples and failed on 5 out of 165

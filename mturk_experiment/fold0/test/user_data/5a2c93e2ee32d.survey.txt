@@ -1,8 +1,0 @@
-tasks_easy,2
-understood,4
-frustrated,1
-object_qs,2
-use_navigation,4
-use_delivery,5
-use_relocation,5
-It was interesting.  It took me a bit to figure out how to talk to the robot.  (Still not a pro!)  

@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,0
-frustrated,6
-object_qs,6
-use_navigation,0
-use_delivery,0
-use_relocation,0
-The task crashed several times and I had to restart the entire task each time. The final trial of the task I was able to complete took too long, the robot asked &quot;Is this the object&quot; Yes/No questions forever. I received a message instructing me I could skip to the survey, but chose to stick it out. This was a mistake, it was a huge waste of time.

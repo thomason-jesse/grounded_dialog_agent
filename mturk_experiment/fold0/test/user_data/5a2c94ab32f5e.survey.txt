@@ -1,8 +1,0 @@
-tasks_easy,1
-understood,1
-frustrated,5
-object_qs,4
-use_navigation,1
-use_delivery,1
-use_relocation,1
-A lot of the pictures of objects were taken from a perspective that made them difficult to identify.

@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,4
-frustrated,5
-object_qs,4
-use_navigation,1
-use_delivery,1
-use_relocation,1
-The robot mentioned is smart. But simple command like &quot;go to office&quot; cannot be executed. If I say &quot;Office near to Mr. David&quot;, the robot is dumb and again asking what to do. May be the algorithm is required to be fine tuned.

@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,5
+frustrated,1
+object_qs,1
+use_navigation,4
+use_delivery,4
+use_relocation,5
+This was interesting. The robot still needs to learn basic colors, as well as the names of various types of containers (including names/labels that can sometimes be interchangeable, such as &quot;can&quot; and &quot;cylinder&quot;).

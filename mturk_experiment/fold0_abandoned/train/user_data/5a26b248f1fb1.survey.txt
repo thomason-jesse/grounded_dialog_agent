@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,1
-frustrated,5
-object_qs,0
-use_navigation,5
-use_delivery,5
-use_relocation,5
-The very last task was a little difficult. I said yes when he asked if I wanted him to go to the lounge, but it didn't allow me to give further instructions. I would have then told him to get an object and take it to the other room. I enjoyed this task, however, and would love to do more like it to help develop the robot! I think it was fun!

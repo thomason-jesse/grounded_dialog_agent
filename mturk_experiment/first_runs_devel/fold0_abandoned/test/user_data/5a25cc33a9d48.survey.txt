@@ -1,0 +1,9 @@
+tasks_easy,5
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,1
+It was little frustrating as the robot was not exactly doing what I am asking him to perform and going on repeating the same thing again and again.
+

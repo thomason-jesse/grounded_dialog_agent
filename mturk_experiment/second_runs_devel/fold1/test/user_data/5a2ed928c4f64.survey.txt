@@ -1,0 +1,9 @@
+tasks_easy,5
+understood,1
+frustrated,4
+object_qs,6
+use_navigation,3
+use_delivery,0
+use_relocation,0
+That was interesting but rather annoying. The robot needs more intelligence and education.
+It could not understand anything and really doesn't understand objects or descriptions. It cannot identify colors or shapes. he is a unfinished robot and needs time and love. I feel bad for the robot even though he was very annoying. needs better AI...........................................................................................................................................................................

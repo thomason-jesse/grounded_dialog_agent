@@ -1,0 +1,10 @@
+tasks_easy,3
+understood,3
+frustrated,4
+object_qs,0
+use_navigation,3
+use_delivery,3
+use_relocation,3
+The robot never loaded a question for me! This is the message that popped up after 5 minutes of waiting. 
+&quot;It looks like the robot might have encountered a problem. If you'd like to end the task and advance to payment, you can do so by clicking the button below.&quot;
+I was really looking forward to trying this robot out! It gave me no other option but to end the task. 

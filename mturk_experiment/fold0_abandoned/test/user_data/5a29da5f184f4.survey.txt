@@ -1,8 +1,0 @@
-tasks_easy,0
-understood,0
-frustrated,6
-object_qs,6
-use_navigation,0
-use_delivery,0
-use_relocation,0
-These robot control tasks are way too long, the text input control is frustrating, and the robot doesn't advance to the proper stage and ends up in a loop. Even if the bonus is paid out, these tasks pay far too little for the time invested.

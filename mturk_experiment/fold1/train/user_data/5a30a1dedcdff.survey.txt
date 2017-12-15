@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,4
-frustrated,5
-object_qs,1
-use_navigation,2
-use_delivery,2
-use_relocation,2
-This was a really interesting HIT, even if it was kind of frustrating at times. If you have any further ones for people who fully completed this, my ID is A366TZDVJK02PN

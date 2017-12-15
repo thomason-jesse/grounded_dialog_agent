@@ -1,8 +1,0 @@
-tasks_easy,2
-understood,2
-frustrated,4
-object_qs,4
-use_navigation,1
-use_delivery,1
-use_relocation,1
-I liked the experience, but it was frustrating because the robot wasn't understanding what I was trying to say to it.

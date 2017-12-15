@@ -1,8 +1,0 @@
-tasks_easy,4
-understood,5
-frustrated,3
-object_qs,5
-use_navigation,6
-use_delivery,4
-use_relocation,5
-very good to do this servey

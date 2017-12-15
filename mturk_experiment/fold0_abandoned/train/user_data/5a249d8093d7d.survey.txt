@@ -1,8 +1,0 @@
-tasks_easy,0
-understood,0
-frustrated,0
-object_qs,0
-use_navigation,0
-use_delivery,0
-use_relocation,0
-I don't plan on submitting this because I did almost nothing, and your turkopticon is terrible, but I thought you might like to know that your hit is broken. It just sits on the screen waiting for the robot, and then nothing.

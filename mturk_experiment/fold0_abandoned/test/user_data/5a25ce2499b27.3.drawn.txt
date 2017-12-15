@@ -1,1 +1,0 @@
-action:move;source:3414b;patient:oidx_6;goal:3414

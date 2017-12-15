@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,1
-frustrated,4
-object_qs,5
-use_navigation,2
-use_delivery,4
-use_relocation,4
-That was fun even though I think I failed on every task. I would have liked the chance to get the robot to continue the task once he moved to the first location.

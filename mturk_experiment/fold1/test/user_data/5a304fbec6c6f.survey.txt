@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,5
-frustrated,4
-object_qs,1
-use_navigation,4
-use_delivery,4
-use_relocation,4
-Broke on task #3, never even got to engage

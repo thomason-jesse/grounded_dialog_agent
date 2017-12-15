@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,5
+frustrated,2
+object_qs,3
+use_navigation,3
+use_delivery,4
+use_relocation,4
+Its a good experience to chat with Robot. As the instructions mentioned that the Robot can understand all commands, I had some difficulty first. However, after that I understood how to give instructions. Its interesting to do this task.

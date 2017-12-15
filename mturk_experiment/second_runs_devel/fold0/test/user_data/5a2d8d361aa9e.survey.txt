@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,5
+object_qs,4
+use_navigation,1
+use_delivery,1
+use_relocation,2
+I enjoy the robot problems. I find them to be the most fun as I get to learn and maybe teach, I don't know for certain, at the same time. This AI appears to be just learning or it got stuck with me and I'm maybe not good at this. But I enjoy the challenge and really do like working with the robots.

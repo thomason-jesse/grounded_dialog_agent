@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,3
-frustrated,0
-object_qs,3
-use_navigation,6
-use_delivery,6
-use_relocation,6
-I really like this activity. It said that the robot was experiencing problems and asked me to advance to the survey.

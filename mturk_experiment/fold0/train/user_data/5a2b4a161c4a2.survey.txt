@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,0
-frustrated,6
-object_qs,5
-use_navigation,0
-use_delivery,0
-use_relocation,0
-the robot kept asking, Where should I move something from on its way somewhere else? and I couldn't make heads or tails of the question

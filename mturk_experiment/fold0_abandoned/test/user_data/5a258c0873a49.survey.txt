@@ -1,8 +1,0 @@
-tasks_easy,0
-understood,1
-frustrated,4
-object_qs,3
-use_navigation,2
-use_delivery,2
-use_relocation,2
-The instructions were very unclear in the first task as to what the robot was supposed to do, and I did not feel that any of the tasks were completed satisfactorily.

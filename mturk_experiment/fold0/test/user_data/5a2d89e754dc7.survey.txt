@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,4
-frustrated,5
-object_qs,4
-use_navigation,5
-use_delivery,4
-use_relocation,5
-i am little bit confused to do this task but at the end i understand..good to command robot

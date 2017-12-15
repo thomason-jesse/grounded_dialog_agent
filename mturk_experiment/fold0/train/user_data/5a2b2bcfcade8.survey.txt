@@ -1,8 +1,0 @@
-tasks_easy,1
-understood,1
-frustrated,4
-object_qs,4
-use_navigation,1
-use_delivery,1
-use_relocation,1
-It was hard trying to get the robot to understand what object you wanted it to deliver to a specific person. 

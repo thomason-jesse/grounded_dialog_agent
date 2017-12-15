@@ -1,0 +1,16 @@
+added adjective and noun entry for 'want' with synonym can
+added adjective and noun entry for 'should' with synonym can
+added adjective and noun entry for 'jar' with synonym container
+added adjective and noun entry for 'object' with synonym container
+added adjective and noun entry for 'b' with synonym can
+added adjective and noun entry for 'bottle' with synonym container
+added adjective and noun entry for 'small' with synonym None
+updated classifiers with 1859 new labels across 21 predicates...
+induced 144 utterance/grounding pairs
+epoch 0: got 74 utterance/semantic pairs
+epoch 0: parser trained on 68 examples and failed on 5 out of 74
+epoch 1: got 83 utterance/semantic pairs
+epoch 1: parser trained on 74 examples and failed on 7 out of 83
+epoch 2: got 85 utterance/semantic pairs
+epoch 2: parser trained on 76 examples and failed on 8 out of 85
+epoch 3: got 77 utterance/semantic pairs

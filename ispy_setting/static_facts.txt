@@ -39,6 +39,12 @@ possesses(w, 3422)
 unoccupied(3418)
 unoccupied(3432)
 
+# 'middle' predicate, applied when a room of a particular type exists between two of that same type
+middle(3410)
+middle(3510)
+middle(3420)
+middle(3414)
+
 # quadrant of the map occupied by room
 west(3416)
 north(3416)

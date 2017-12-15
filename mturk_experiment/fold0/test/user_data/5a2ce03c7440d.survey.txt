@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,3
-frustrated,5
-object_qs,1
-use_navigation,1
-use_delivery,1
-use_relocation,1
-Why does the robot not understand the word Pod? Or people's names? Come on robot, you can figure this out! You're smarter than this!

@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,0
+frustrated,6
+object_qs,0
+use_navigation,3
+use_delivery,3
+use_relocation,3
+I was extremely excited to get a chance at this hit. Unfortunately I waited for over 15 minutes staring at a blank screen with the robot &quot;thinking&quot;, and then it &quot;encountered a problem&quot;. I never even got to type a command. I really enjoy these tasks that involve robotics and I'm very disappointed this one didn't work out for me. I would very much like to try again in the future, though. Please email me if you would like - paopaoky1@gmail.com

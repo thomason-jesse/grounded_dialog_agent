@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,6
+object_qs,0
+use_navigation,5
+use_delivery,5
+use_relocation,5
+I couldn't get him to do the third task! He kept asking where I wanted him to go, but he didn't understand &quot;go get&quot; something.

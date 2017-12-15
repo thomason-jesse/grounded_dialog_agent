@@ -5,7 +5,7 @@ take the spices from the lab just east of the kitchen and bring it to the confer
 M : move(a_i(lambda x:i.(spice(x))), a_l(lambda y:l.(and(lab(y), eastof(y, a_l(lambda z:l.(kitchen(z))))))), a_l(lambda x:l.(and(conference(x), and(adjacent(x, a_l(lambda y:l.(lounge(y)))), adjacent(x, a_l(lambda z:l.(pod(z)))))))))
 
 take the yellow metallic cylinder from the middle pod on the west side to mallory mal maroon 's office
-M : move(a_i(lambda x:i.(and(yellow(x), and(metallic(x), cylinder(x))))), a_l(lambda y:l.(and(pod(y), west(y)))), a_l(lambda z:l.(and(office(z), possesses(m, z)))))
+M : move(a_i(lambda x:i.(and(yellow(x), and(metallic(x), cylinder(x))))), a_l(lambda y:l.(and(pod(y), and(middle(y), west(y))))), a_l(lambda z:l.(and(office(z), possesses(m, z)))))
 
 go to the conference room between the empty pod and the empty office
 M : walk(a_l(lambda x:l.(and(conference(x), and(adjacent(x, a_l(lambda y:l.(and(unoccupied(y), pod(y))))), adjacent(x, a_l(lambda z:l.(and(unoccupied(z), office(z))))))))))
@@ -92,7 +92,7 @@ give the styrofoam block to dr nancy nagel
 M : bring(a_i(lambda x:i.(and(styrofoam(x), block(x)))), n)
 
 move the yellow can from the west center pod to mal 's office
-M : move(a_i(lambda x:i.(and(yellow(x), can(x)))), a_l(lambda y:l.(and(west(y), pod(y)))), a_l(lambda z:l.(and(office(z), possesses(m, z)))))
+M : move(a_i(lambda x:i.(and(yellow(x), can(x)))), a_l(lambda y:l.(and(west(y), and(middle(y), pod(y))))), a_l(lambda z:l.(and(office(z), possesses(m, z)))))
 
 go to peggy 's office
 M : walk(a_l(lambda x:l.(and(office(x), possesses(p, x)))))

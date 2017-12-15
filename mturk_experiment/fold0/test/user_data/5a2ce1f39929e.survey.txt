@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,5
-frustrated,4
-object_qs,1
-use_navigation,5
-use_delivery,6
-use_relocation,6
-This was the most interesting task I've ever completed. I think the technology you're developing is fascinating. Thank you for putting this together.

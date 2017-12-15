@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,2
-frustrated,4
-object_qs,4
-use_navigation,2
-use_delivery,2
-use_relocation,4
-It would probably get easier to communicate with the computer because I would stat forming a consistent definition for words, like the computer's use of the word property I think I kept flip flopping on.

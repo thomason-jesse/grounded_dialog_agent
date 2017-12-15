@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,1
-frustrated,4
-object_qs,6
-use_navigation,0
-use_delivery,0
-use_relocation,0
-The robot's language skills are inadequate.

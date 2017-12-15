@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,5
+object_qs,6
+use_navigation,2
+use_delivery,2
+use_relocation,2
+In starting I couldn't understand how to convince or tell the robot where to go because it wasn't understanding names clearly, then in the second task, I did great but then in the last task, I wasn't clear enough to make the robot follow my directions.

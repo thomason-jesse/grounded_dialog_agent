@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,3
-frustrated,3
-object_qs,3
-use_navigation,3
-use_delivery,3
-use_relocation,3
-I was told by a prompt to advance to this page since the robot encountered a problem. I didn't get to test the robot at all. It was stuck on start up. From reading the instruction the task seemed reasonable and I understood what to do. If things went more smoothly I was moderately confident that I could finish the tasks successfully.

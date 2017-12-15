@@ -1,8 +1,0 @@
-tasks_easy,3
-understood,0
-frustrated,6
-object_qs,4
-use_navigation,0
-use_delivery,0
-use_relocation,0
-Infuriating! But I was keen to figure out how to properly communicate with the robot. The first was easy, the second I finally figured it out with the right words, but the third felt impossible!! Nice job!

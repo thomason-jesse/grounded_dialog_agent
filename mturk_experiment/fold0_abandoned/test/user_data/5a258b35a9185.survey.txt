@@ -1,8 +1,0 @@
-tasks_easy,4
-understood,2
-frustrated,5
-object_qs,5
-use_navigation,1
-use_delivery,1
-use_relocation,1
-Biggest frustration was asking unrelated questions and asking questions one by one instead of being able to pick from many pictures

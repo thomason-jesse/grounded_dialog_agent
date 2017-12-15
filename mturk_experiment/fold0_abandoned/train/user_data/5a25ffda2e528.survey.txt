@@ -1,8 +1,0 @@
-tasks_easy,6
-understood,0
-frustrated,0
-object_qs,0
-use_navigation,3
-use_delivery,3
-use_relocation,3
-The robot encountered a problem. I was unable to write any directions or solve the problem for the robot. I did try it a few times to see if it would work. But no luck.

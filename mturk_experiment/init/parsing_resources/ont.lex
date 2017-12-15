@@ -67,6 +67,7 @@ lounge:<l,t>
 kitchen:<l,t>
 pod:<l,t>
 unoccupied:<l,t>
+middle:<l,t>
 north:<l,t>
 east:<l,t>
 south:<l,t>

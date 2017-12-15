@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,4
+object_qs,1
+use_navigation,2
+use_delivery,0
+use_relocation,0
+Clear and concise, thank you. The robot is useful unless you need him to get something. Then he doesn't understand you.

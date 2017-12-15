@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,3
+use_delivery,2
+use_relocation,2
+Robot really had a difficult time understanding the second task. Overall, not too bad

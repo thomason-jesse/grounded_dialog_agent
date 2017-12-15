@@ -1,8 +1,0 @@
-tasks_easy,4
-understood,2
-frustrated,4
-object_qs,1
-use_navigation,3
-use_delivery,5
-use_relocation,4
-Advised me that the robot experienced a problem

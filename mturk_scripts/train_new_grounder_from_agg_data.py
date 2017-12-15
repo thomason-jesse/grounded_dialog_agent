@@ -26,6 +26,7 @@ def main():
     kb_perception_source_base_dir = FLAGS_kb_perception_source_base_dir
     kb_perception_source_target_dir = FLAGS_kb_perception_source_target_dir
     active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
+    only_bare_nouns = True if FLAGS_only_bare_nouns == 1 else False
     training_log_fn = FLAGS_training_log_fn
     full_pairs_log_fn = FLAGS_full_pairs_log_fn
     epochs = FLAGS_epochs
@@ -172,53 +173,68 @@ def main():
             if not pred_is_perc[pred] and len(utterances_with_pred[pred]) > 0:
                 syn = get_syn_from_candidates(a, pred, synonymy_candidates)
 
-                # Turkers tend to use malformed language, so add all new preds as both adjectives and nouns.
-                if True:
-                    pred_is_perc[pred] = True
-                    new_perceptual_adds = True
-                    ont_pred = a.add_new_perceptual_lexical_entries(pred, True, syn)
-                    a.add_new_perceptual_lexical_entries(pred, False, syn, ont_pred)
-                    print "main: added noun and adjective for '" + pred + "'"
+                if only_bare_nouns:
+
+                    # Add bare nouns, later type-raise.
+                    a.add_new_perceptual_lexical_entries(pred, False, syn)
+                    print "main: added noun for '" + pred + "'"
                     if syn is not None:
                         print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
-                    log_f.write("added adjective and noun entry for '" + pred + "' with synonym " +
+                    log_f.write("added noun entry for '" + pred + "' with synonym " +
                                 str(a.parser.lexicon.surface_forms[syn[0]] if syn is not None else None) + "\n")
 
-                # Determine whether each predicate is mostly behaving like a noun or adjective before adding.
                 else:
-                    # Just count how often a pred is 'acting' like an adjective or noun based on position.
-                    la = ln = 0
-                    for u in utterances_with_pred[pred]:
-                        tks = a.parser.tokenize(u)
-                        tkidx = tks.index(pred)
-                        if tkidx < len(tks) - 1 and (tks[tkidx + 1] in known_perc_preds or tks[tkidx + 1] in all_preds
-                                                     or tks[tkidx + 1] not in a.parser.lexicon.surface_forms):
-                            la += 1
-                        elif tkidx == len(tks) - 1 or tks[tkidx + 1] in a.parser.lexicon.surface_forms:
-                            ln += 1
-                    la /= float(len(utterances_with_pred[pred]))
-                    ln /= float(len(utterances_with_pred[pred]))
 
-                    if la > 0.5:
+                    # Turkers tend to use malformed language, so add all new preds as both adjectives and nouns.
+                    if True:
                         pred_is_perc[pred] = True
                         new_perceptual_adds = True
-                        a.add_new_perceptual_lexical_entries(pred, True, syn)
-
-                        print "main: added adjective '" + pred + "'"
+                        ont_pred = a.add_new_perceptual_lexical_entries(pred, True, syn)
+                        a.add_new_perceptual_lexical_entries(pred, False, syn, ont_pred)
+                        print "main: added noun and adjective for '" + pred + "'"
                         if syn is not None:
                             print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
-                        log_f.write("added adjective '" + pred + "' with synonym " + str(syn) + "\n")
+                        log_f.write("added adjective and noun entry for '" + pred + "' with synonym " +
+                                    str(a.parser.lexicon.surface_forms[syn[0]] if syn is not None else None) + "\n")
 
-                    elif ln > 0.5:
-                        pred_is_perc[pred] = True
-                        new_perceptual_adds = True
-                        a.add_new_perceptual_lexical_entries(pred, False, syn)
+                    # Determine whether each predicate is mostly behaving like a noun or adjective before adding.
+                    else:
+                        # Just count how often a pred is 'acting' like an adjective or noun based on position.
+                        la = ln = 0
+                        for u in utterances_with_pred[pred]:
+                            tks = a.parser.tokenize(u)
+                            tkidx = tks.index(pred)
+                            if tkidx < len(tks) - 1 and (tks[tkidx + 1] in known_perc_preds
+                                                         or tks[tkidx + 1] in all_preds
+                                                         or tks[tkidx + 1] not in a.parser.lexicon.surface_forms):
+                                la += 1
+                            elif tkidx == len(tks) - 1 or tks[tkidx + 1] in a.parser.lexicon.surface_forms:
+                                ln += 1
+                        la /= float(len(utterances_with_pred[pred]))
+                        ln /= float(len(utterances_with_pred[pred]))
 
-                        print "main: added noun '" + pred + "'"
-                        if syn is not None:
-                            print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
-                        log_f.write("added noun '" + pred + "' with synonym " + str(syn) + "\n")
+                        if la > 0.5:
+                            pred_is_perc[pred] = True
+                            new_perceptual_adds = True
+                            a.add_new_perceptual_lexical_entries(pred, True, syn)
 
+                            print "main: added adjective '" + pred + "'"
+                            if syn is not None:
+                                print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                            log_f.write("added adjective '" + pred + "' with synonym " + str(syn) + "\n")
+
+                        elif ln > 0.5:
+                            pred_is_perc[pred] = True
+                            new_perceptual_adds = True
+                            a.add_new_perceptual_lexical_entries(pred, False, syn)
+
+                            print "main: added noun '" + pred + "'"
+                            if syn is not None:
+                                print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                            log_f.write("added noun '" + pred + "' with synonym " + str(syn) + "\n")
+    if only_bare_nouns:
+        a.parser.type_raise_bare_nouns()  # should only affect new nouns
+        a.parser.theta.update_probabilities()  # because the above adds new entries
     print "main: ... done"
 
     # Retrain perceptual classifiers from aggregated labels.
@@ -253,32 +269,25 @@ def main():
     log_f.write("induced " + str(len(a.induced_utterance_grounding_pairs)) + " utterance/grounding pairs\n")
 
     # DEBUG - write the Agent out to file for use by other scripts
-    # with open("agent.temp.pickle", 'wb') as f:
-    #     pickle.dump(a, f)
+    with open("agent.temp.pickle", 'wb') as f:
+        pickle.dump(a, f)
     # END DEBUG
 
     # Iterate inducing new pairs using most up-to-date parser and training for single epoch.
     # Each of these stages can be distributed over the UT Condor system for more linear-time computation.
     print "main: training parser by alternative grounding->semantics and semantics->parser training steps..."
-    last_pairs = None
     fplfn = open(full_pairs_log_fn, 'w')
     for epoch in range(epochs):
 
         # Get grouding->semantics pairs
         print "main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs..."
-        utterance_semantic_grounding_triples = a.get_semantic_forms_for_induced_pairs(1, 10, verbose=1,
-                                                                          use_condor=use_condor,
-                                                                          condor_target_dir=condor_target_dir,
-                                                                          condor_script_dir=condor_grounder_script_dir)
+        utterance_semantic_grounding_triples = a.get_semantic_forms_for_induced_pairs(
+            1, 10, verbose=1, use_condor=use_condor, condor_target_dir=condor_target_dir,
+            condor_script_dir=condor_grounder_script_dir)
         print ("main: ...... got " + str(len(utterance_semantic_grounding_triples)) + " utterance/semantics " +
                "pairs from induced utterance/grounding pairs")
         log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_grounding_triples)) +
                     " utterance/semantic pairs\n")
-        # if last_pairs is not None and last_pairs >= len(utterance_semantic_grounding_triples):
-        #     print ("main: ........ no additional pairs on this pass, so previous parser was better. " +
-        #            "Stopping training early.")
-        #     break
-        # last_pairs = len(utterance_semantic_grounding_triples)
 
         # Write out induced pairs to logfile(s) for later inspection and qualitative analysis.
         fplfn.write("epoch " + str(epoch) + ":\n\n" +
@@ -347,7 +356,7 @@ if __name__ == '__main__':
     parser.add_argument('--parser_outfile', type=str, required=True,
                         help="where to store the newly-trained parser")
     parser.add_argument('--parser_base_pairs_fn', type=str, required=False,
-                        help="base training pairs, if any, to append to parser for training")
+                        help="base utterance/semantic training pairs, if any, to append to parser for training")
     parser.add_argument('--kb_static_facts_fn', type=str, required=True,
                         help="static facts file for the knowledge base")
     parser.add_argument('--kb_perception_feature_dir', type=str, required=True,
@@ -358,6 +367,8 @@ if __name__ == '__main__':
                         help="perception source directory for the target KB after retraining")
     parser.add_argument('--active_test_set', type=str, required=True,
                         help="objects to consider possibilities for grounding")
+    parser.add_argument('--only_bare_nouns', type=int, required=True,
+                        help="whether to use only bare nouns or nouns/adjectives")
     parser.add_argument('--training_log_fn', type=str, required=True,
                         help="logfile to write training epoch information out to")
     parser.add_argument('--full_pairs_log_fn', type=str, required=True,

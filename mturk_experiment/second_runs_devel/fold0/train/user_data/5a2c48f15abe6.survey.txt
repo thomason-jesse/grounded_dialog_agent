@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The robot did not seem to understand what I was telling it to do.  Also, the task wasn't entirely clear.  I didn't know what to tell the robot.  No instructions were given regarding that.  You simply stated, give the robot commands in complete sentences but did not state my overall object, such as go from this room to this room.

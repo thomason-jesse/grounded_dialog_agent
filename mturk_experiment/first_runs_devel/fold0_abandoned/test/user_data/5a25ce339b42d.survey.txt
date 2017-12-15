@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,6
+object_qs,5
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The last task was frustrating. I thought if I got the robot to go to the room where the object was that at least we could make some progress on getting the object, but it just went there and stopped.

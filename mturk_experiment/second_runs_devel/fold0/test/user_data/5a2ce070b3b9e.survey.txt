@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,5
+object_qs,3
+use_navigation,3
+use_delivery,3
+use_relocation,3
+Its a good experience. But, in the third task I struggled much as it seems like a pattern is repeating regardless of what instructions are given to follow.

@@ -1,0 +1,506 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Walk to the middle Pod next to the Printer.'
+get_from_user (processed): 'walk to the middle pod next to the printer'
+parse_and_ground_utterance: parsed 'walk to the middle pod next to the printer' to walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),pod(1)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3410) 0.5
+	walk(3504) 0.5
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 23
+parse_and_ground_utterance: parsed 'walk to the middle pod next to the printer' to walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),pod(1)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3410) 0.5
+	walk(3504) 0.5
+say_to_user_with_referents: Would you use the word 'styrofoam' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'walk to the middle pod next to the printer' to walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),pod(1)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3410) 0.5
+	walk(3504) 0.5
+say_to_user_with_referents: Would you use the word 'metallic' when describing <p>this</p> object? {'patient': 'oidx_21'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'walk to the middle pod next to the printer' to walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),pod(1)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3410) 0.5
+	walk(3504) 0.5
+say_to_user_with_referents: Would you use the word 'yellow' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'walk to the middle pod next to the printer' to walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),pod(1)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3410) 0.5
+	walk(3504) 0.5
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 24
+parse_and_ground_utterance: parsed 'walk to the middle pod next to the printer' to walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),pod(1)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3410) 0.5
+	walk(3504) 0.5
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Walk to the middle Pod next to the Printer.'
+get_from_user (processed): 'walk to the middle pod next to the printer'
+parse_and_ground_utterance: parsed 'walk to the middle pod next to the printer' to walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),pod(1)))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3410) 0.5
+	walk(3504) 0.5
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}], [{'all': ['walk to the middle pod next to the printer'], 'patient': [], 'goal': ['walk to the middle pod next to the printer'], 'source': [], 'action': [], 'recipient': []}], [('can', 23, 0), ('styrofoam', 19, 0), ('metallic', 21, 0), ('yellow', 4, 1), ('can', 24, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver something'
+get_from_user (processed): 'deliver something'
+say_to_user: I haven't heard the word 'something' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'deliver something' to lambda 1:i.(bring(1,d))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,d) 0.125
+	bring(oidx_11,d) 0.125
+	bring(oidx_12,d) 0.125
+	bring(oidx_13,d) 0.125
+	bring(oidx_22,d) 0.125
+	bring(oidx_25,d) 0.125
+	bring(oidx_26,d) 0.125
+	bring(oidx_28,d) 0.125
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'white' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 0
+parse_and_ground_utterance: parsed 'deliver something' to lambda 1:i.(bring(1,s))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,s) 0.125
+	bring(oidx_11,s) 0.125
+	bring(oidx_12,s) 0.125
+	bring(oidx_13,s) 0.125
+	bring(oidx_22,s) 0.125
+	bring(oidx_25,s) 0.125
+	bring(oidx_26,s) 0.125
+	bring(oidx_28,s) 0.125
+say_to_user_with_referents: Would you use the word 'container' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'deliver something' to lambda 1:i.(bring(1,d))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,d) 0.125
+	bring(oidx_11,d) 0.125
+	bring(oidx_12,d) 0.125
+	bring(oidx_13,d) 0.125
+	bring(oidx_22,d) 0.125
+	bring(oidx_25,d) 0.125
+	bring(oidx_26,d) 0.125
+	bring(oidx_28,d) 0.125
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'deliver something' to lambda 1:i.(bring(1,r))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,r) 0.125
+	bring(oidx_11,r) 0.125
+	bring(oidx_12,r) 0.125
+	bring(oidx_13,r) 0.125
+	bring(oidx_22,r) 0.125
+	bring(oidx_25,r) 0.125
+	bring(oidx_26,r) 0.125
+	bring(oidx_28,r) 0.125
+say_to_user_with_referents: Would you use the word 'yellow' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'deliver something' to lambda 1:i.(bring(1,w))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,w) 0.125
+	bring(oidx_11,w) 0.125
+	bring(oidx_12,w) 0.125
+	bring(oidx_13,w) 0.125
+	bring(oidx_22,w) 0.125
+	bring(oidx_25,w) 0.125
+	bring(oidx_26,w) 0.125
+	bring(oidx_28,w) 0.125
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'red' when describing, or shake your head if you could use 'red' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 23
+parse_and_ground_utterance: parsed 'deliver something' to lambda 1:i.(bring(1,n))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,n) 0.125
+	bring(oidx_11,n) 0.125
+	bring(oidx_12,n) 0.125
+	bring(oidx_13,n) 0.125
+	bring(oidx_22,n) 0.125
+	bring(oidx_25,n) 0.125
+	bring(oidx_26,n) 0.125
+	bring(oidx_28,n) 0.125
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver the tall styrofoam to Richard'
+get_from_user (processed): 'deliver the tall styrofoam to richard'
+parse_and_ground_utterance: parsed 'deliver the tall styrofoam to richard' to bring(a_i(lambda 1:i.(long(1))),r)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_28,r) 0.331877729258
+	bring(oidx_13,r) 0.187772925764
+	bring(oidx_6,r) 0.133624454148
+	bring(oidx_22,r) 0.110043668122
+	bring(oidx_26,r) 0.0855895196507
+	bring(oidx_12,r) 0.0742358078603
+	bring(oidx_11,r) 0.0550218340611
+	bring(oidx_25,r) 0.0218340611354
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver the tall styrofoam to Richard'
+get_from_user (processed): 'deliver the tall styrofoam to richard'
+parse_and_ground_utterance: parsed 'deliver the tall styrofoam to richard' to bring(a_i(lambda 1:i.(long(1))),r)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_28,r) 0.331877729258
+	bring(oidx_13,r) 0.187772925764
+	bring(oidx_6,r) 0.133624454148
+	bring(oidx_22,r) 0.110043668122
+	bring(oidx_26,r) 0.0855895196507
+	bring(oidx_12,r) 0.0742358078603
+	bring(oidx_11,r) 0.0550218340611
+	bring(oidx_25,r) 0.0218340611354
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard'
+get_from_user (processed): 'richard'
+parse_and_ground_utterance: parsed 'richard' to lambda 1:l.(1)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3402 0.0384615384615
+	3404 0.0384615384615
+	3406 0.0384615384615
+	3408 0.0384615384615
+	3410 0.0384615384615
+	3414 0.0384615384615
+	3414a 0.0384615384615
+	3414b 0.0384615384615
+	3416 0.0384615384615
+	3418 0.0384615384615
+	3420 0.0384615384615
+	3422 0.0384615384615
+	3424 0.0384615384615
+	3430 0.0384615384615
+	3432 0.0384615384615
+	3436 0.0384615384615
+	3502 0.0384615384615
+	3504 0.0384615384615
+	3506 0.0384615384615
+	3508 0.0384615384615
+	3510 0.0384615384615
+	3512 0.0384615384615
+	3514 0.0384615384615
+	3516 0.0384615384615
+	3518 0.0384615384615
+	3520 0.0384615384615
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'Secretary'
+get_from_user (processed): 'secretary'
+parse_and_ground_utterance: parsed 'secretary' to r
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	r 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_28', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_28', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}, {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_28', 'goal': None, 'source': None}], [{'all': ['walk to the middle pod next to the printer'], 'patient': [], 'goal': ['walk to the middle pod next to the printer'], 'source': [], 'action': [], 'recipient': []}, {'all': ['deliver something'], 'patient': ['deliver the tall styrofoam to richard', 'deliver the tall styrofoam to richard'], 'goal': [], 'source': [], 'action': [], 'recipient': ['richard', 'secretary']}], [('can', 23, 0), ('styrofoam', 19, 0), ('metallic', 21, 0), ('yellow', 4, 1), ('can', 24, 0), ('white', 0, 1), ('container', 19, 1), ('block', 21, 0), ('block', 24, 0), ('block', 19, 0), ('block', 23, 0), ('block', 16, 0), ('block', 0, 0), ('block', 4, 0), ('block', 9, 0), ('yellow', 19, 1), ('red', 23, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'move the red and white container from bottom pod next to the conference room to the middle lab next to the printer'
+get_from_user (processed): 'move the red and white container from bottom pod next to the conference room to the middle lab next to the printer'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to relocate an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'The bottom pod next to the conference room'
+get_from_user (processed): 'the bottom pod next to the conference room'
+parse_and_ground_utterance: parsed 'the bottom pod next to the conference room' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),pod(1),south(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3518 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'blue' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'the bottom pod next to the conference room' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),pod(1),south(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3518 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'd' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'the bottom pod next to the conference room' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),pod(1),south(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3518 1.0
+say_to_user_with_referents: Would you use the word 'large' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'the bottom pod next to the conference room' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),pod(1),south(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3518 1.0
+say_to_user_with_referents: Would you use the word 'styrofoam' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'the bottom pod next to the conference room' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),pod(1),south(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3518 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'the bottom pod next to the conference room' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),pod(1),south(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3518 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move the red and white container from the bottom pod next to the conference to the middle lab next to the printer.'
+get_from_user (processed): 'move the red and white container from the bottom pod next to the conference to the middle lab next to the printer'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3518'}
+get_from_user requested feedback
+get_from_user (raw): 'To the middle lab next to the printer'
+get_from_user (processed): 'to the middle lab next to the printer'
+parse_and_ground_utterance: parsed 'to the middle lab next to the printer' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3414a 1.0
+say_to_user_with_referents: What should I move to <g>there</g>? {'action': 'move', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'The red and white container'
+get_from_user (processed): 'the red and white container'
+parse_and_ground_utterance: parsed 'the red and white container' to a_i(lambda 1:i.(and(container(1),white(1),red(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_25 0.580915083338
+	oidx_26 0.253313257296
+	oidx_6 0.165771659366
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3518', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'The red and white container'
+get_from_user (processed): 'the red and white container'
+parse_and_ground_utterance: parsed 'the red and white container' to a_i(lambda 1:i.(and(container(1),white(1),red(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_25 0.580915083338
+	oidx_26 0.253313257296
+	oidx_6 0.165771659366
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to relocate <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'source': '3518', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'The red and white cylinder'
+get_from_user (processed): 'the red and white cylinder'
+parse_and_ground_utterance: parsed 'the red and white cylinder' to a_i(lambda 1:i.(and(cylinder(1),white(1),red(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_25 0.536178056404
+	oidx_26 0.2979275364
+	oidx_6 0.165894407195
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to <g>there</g> (not give it to someone)? {'action': 'move', 'patient': 'oidx_25', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'The red and white creamer'
+get_from_user (processed): 'the red and white creamer'
+parse_and_ground_utterance: parsed 'the red and white creamer' to a_i(lambda 1:i.(and(pringles(1),white(1),red(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_25 0.539667896679
+	oidx_26 0.293357933579
+	oidx_6 0.166974169742
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to relocate <p>this</p> from somewhere to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'The large red and white container'
+get_from_user (processed): 'the large red and white container'
+parse_and_ground_utterance: parsed 'the large red and white container' to a_i(lambda 1:i.(and(container(1),white(1),large(1),red(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_25 0.610349157812
+	oidx_26 0.240257259812
+	oidx_6 0.149393582376
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'To the middle lab next to the printer'
+get_from_user (processed): 'to the middle lab next to the printer'
+parse_and_ground_utterance: parsed 'to the middle lab next to the printer' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3414a 1.0
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'To the middle lab next to the printer'
+get_from_user (processed): 'to the middle lab next to the printer'
+parse_and_ground_utterance: parsed 'to the middle lab next to the printer' to a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3414a 1.0
+say_to_user_with_referents: You want me to relocate <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3414a', 'patient': 'oidx_25', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (pr

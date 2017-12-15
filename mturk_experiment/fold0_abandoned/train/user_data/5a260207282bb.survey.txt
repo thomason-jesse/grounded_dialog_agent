@@ -1,8 +1,0 @@
-tasks_easy,1
-understood,0
-frustrated,6
-object_qs,3
-use_navigation,2
-use_delivery,1
-use_relocation,3
-Neat exercise. Let's cut to the chase, the second task was never going to come to fruition, was it? Like Zandar, kids just keep pumping quarters into the machine but they never get to the next level?

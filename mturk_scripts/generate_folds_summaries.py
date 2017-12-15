@@ -11,30 +11,31 @@ def main():
     experiment_dir = FLAGS_experiment_dir
     num_folds = FLAGS_num_folds
 
-    # TODO: if we restart with type-raising, enable this and use during aggregation as well.
-    strip_repeat_workers = False
+    # TODO: use this filtering during aggregation as well, probably.
+    strip_repeat_workers = True
     seen_turk_ids = {}
     for cond in ["train", "test"]:
         for fold in range(num_folds):
             summary_csv_fn = os.path.join(experiment_dir, "fold" + str(fold), cond, "summary.csv")
-            with open(summary_csv_fn, 'r') as f:
-                lines = f.readlines()
-                headers = lines[0].strip().split(',')
-                for lidx in range(1, len(lines)):
-                    data = lines[lidx].strip().split(',')
-                    turk_id = data[headers.index('worker_id')]
-                    if turk_id in seen_turk_ids:
-                        e_cond, e_fold = seen_turk_ids[turk_id]
-                        if fold < e_fold:  # Record earlier sighting.
+            if os.path.isfile(summary_csv_fn):
+                with open(summary_csv_fn, 'r') as f:
+                    lines = f.readlines()
+                    headers = lines[0].strip().split(',')
+                    for lidx in range(1, len(lines)):
+                        data = lines[lidx].strip().split(',')
+                        turk_id = data[headers.index('worker_id')]
+                        if turk_id in seen_turk_ids:
+                            e_cond, e_fold = seen_turk_ids[turk_id]
+                            if fold < e_fold:  # Record earlier sighting.
+                                seen_turk_ids[turk_id] = (cond, fold)
+                            elif fold == e_fold and (fold == 0 and cond == "train") or (fold > 0 and cond == "test"):
+                                # fold 0 did train first, then test; all others test first
+                                seen_turk_ids[turk_id] = (cond, fold)
+                        else:
                             seen_turk_ids[turk_id] = (cond, fold)
-                        elif fold == e_fold and (fold == 0 and cond == "train") or (fold > 0 and cond == "test"):
-                            # fold 0 did train first, then test; all others test first
-                            seen_turk_ids[turk_id] = (cond, fold)
-                    else:
-                        seen_turk_ids[turk_id] = (cond, fold)
 
     cond_results = {}
-    for cond in ["train", "test"]:
+    for cond in ["test", "train"]:
         cond_results[cond] = []
 
         for fold in range(num_folds):

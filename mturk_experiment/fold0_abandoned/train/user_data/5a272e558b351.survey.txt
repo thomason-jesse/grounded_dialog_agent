@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,1
-frustrated,4
-object_qs,4
-use_navigation,2
-use_delivery,0
-use_relocation,1
-The robot acts like a 3-year old kid with all of the questions.  :-)

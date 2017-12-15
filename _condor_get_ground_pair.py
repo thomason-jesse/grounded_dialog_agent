@@ -70,11 +70,13 @@ def main():
                            a.parser.print_parse(parse.node, True) +
                            " with scores p " + str(score) + ", g " + str(g_score))
                     break  # break here since groundings below this, even if they match, will have lower score
-            cgtr = a.call_generator_with_timeout(cky_parse_generator, None)  # a.budget_for_parsing)
-            parse = None
-            if cgtr is not None:
-                parse = cgtr[0]
-                score = cgtr[1]
+
+        cgtr = a.call_generator_with_timeout(cky_parse_generator, None)  # a.budget_for_parsing)
+        parse = None
+        if cgtr is not None:
+            parse = cgtr[0]
+            score = cgtr[1]
+
         latent_forms_considered += 1
 
     if len(parses) > 0:

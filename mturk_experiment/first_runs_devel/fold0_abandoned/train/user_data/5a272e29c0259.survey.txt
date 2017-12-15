@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,4
+object_qs,1
+use_navigation,0
+use_delivery,1
+use_relocation,1
+I gave up on the second task because I couldn't identify the object myself. I could see that it was a white canister with a red top, but I couldn't tell what was in it. So once I realized the robot knew NO color words, I gave up. Also, it got sidetracked on the definition of &quot;maroon&quot;. I thought it would at least know the names of the people it worked with.

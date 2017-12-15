@@ -1,8 +1,0 @@
-tasks_easy,4
-understood,5
-frustrated,4
-object_qs,3
-use_navigation,4
-use_delivery,3
-use_relocation,4
-the robot cant understand my words
