@@ -1122,7 +1122,7 @@ class Agent:
                 q = "You want me to deliver <p>this</p> to <r>this person</r>?"
                 roles_in_q.extend(['action', 'patient', 'recipient'])
             else:  # eg. move
-                q = "You want me to relocate <p>this</p> from <s>here</s> to <g>there</g>?"
+                q = "You want me to move <p>this</p> from <s>here</s> to <g>there</g>?"
                 roles_in_q.extend(['action', 'patient', 'source', 'goal'])
 
         elif least_conf_role == 'action':  # ask for action confirmation
@@ -1171,10 +1171,10 @@ class Agent:
             else:  # eg. 'move'
                 roles_in_q.append('action')
                 if 'patient' in roles_to_include:
-                    q = "You want me to relocate <p>this</p>"
+                    q = "You want me to move <p>this</p>"
                     roles_in_q.append('patient')
                 else:
-                    q = "You want me to relocate an item"
+                    q = "You want me to move an item"
                 if 'source' in roles_to_include:
                     q += " from <s>here</s>"
                     roles_in_q.append('source')
@@ -1240,7 +1240,7 @@ class Agent:
                             q = "You want me to deliver <p>this</p> to someone?"
                             roles_in_q.extend(['action', 'patient'])
                     else:  # ie. 'move'
-                        q = "You want me to relocate <p>this</p>"
+                        q = "You want me to move <p>this</p>"
                         roles_in_q.extend(['action', 'patient'])
                         if 'source' in roles_to_include:
                             q += " from <s>here</s>"
