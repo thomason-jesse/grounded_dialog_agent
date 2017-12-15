@@ -1,0 +1,338 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'working'
+get_from_user (processed): 'working'
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'empty' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'coffee' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 7
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'home'
+get_from_user (processed): 'home'
+parse_and_ground_utterance: parsed 'home' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'house'
+get_from_user (processed): 'house'
+parse_and_ground_utterance: parsed 'house' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'work'
+get_from_user (processed): 'work'
+parse_and_ground_utterance: parsed 'work' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3502'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3502', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3502', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3502', 'source': None}], [{'all': ['working'], 'patient': [], 'goal': ['home', 'house', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'work'], 'source': [], 'action': [], 'recipient': []}], [('empty', 27, 1), ('coffee', 10, 1), ('can', 18, 1), ('peach', 7, 1), ('rectangle', 3, 1)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'working'
+get_from_user (processed): 'working'
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'white' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'long' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 7
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'long' when describing, or shake your head if you could use 'long' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'office'
+get_from_user (processed): 'office'
+parse_and_ground_utterance: parsed 'office' to office
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	office 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'action': 'move', 'goal': '3432'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'action': 'move', 'goal': '3432'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3506', 'goal': '3432'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3506', 'goal': '3432'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3506', 'patient': 'oidx_12', 'goal': '3432'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3506', 'goal': '3432'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3506', 'patient': 'oidx_11', 'goal': '3432'}
+get_from_user requested feedback
+get_from_user (raw): 'lab'
+get_from_user (processed): 'lab'
+parse_and_ground_utterance: parsed 'lab' to lab
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	lab 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3506', 'patient': 'oidx_11', 'goal': '3432'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3432', 'source': '3506'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3432', 'source': '3506'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3502', 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3432', 'source': '3506'}], [{'all': ['working'], 'patient': [], 'goal': ['home', 'house', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'work'], 'source': [], 'action': [], 'recipient': []}, {'all': ['working'], 'patient': ['yes', 'yes'], 'goal': [], 'source': ['yes', 'yes'], 'action': [], 'recipient': []}], [('empty', 27, 1), ('coffee', 10, 1), ('can', 18, 1), ('peach', 7, 1), ('rectangle', 3, 1), ('white', 3, 1), ('long', 27, 1), ('clear', 3, 1), ('can', 7, 0), ('long', 18, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'working'
+get_from_user (processed): 'working'
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'tower' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 17
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'rectangle' when describing, or shake your head if you could use 'rectangle' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'tower' when describing, or shake your head if you could use 'tower' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'beans' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 7
+parse_and_ground_utterance: parsed 'working' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'r'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'r'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_22', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_22', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3502', 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3432', 'source': '3506'}, {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_22', 'goal': None, 'source': None}], [{'all': ['working'], 'patient': [], 'goal': ['home', 'house', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'work'], 'source': [], 'action': [], 'recipient': []}, {'all': ['working'], 'patient': ['yes', 'yes'], 'goal': [], 'source': ['yes', 'yes'], 'action': [], 'recipient': []}, {'all': ['working'], 'patient': ['yes', 'yes'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('empty', 27, 1), ('coffee', 10, 1), ('can', 18, 1), ('peach', 7, 1), ('rectangle', 3, 1), ('white', 3, 1), ('long', 27, 1), ('clear', 3, 1), ('can', 7, 0), ('long', 18, 0), ('tower', 17, 1), ('rectangle', 27, 0), ('column', 2, 1), ('tower', 27, 0), ('bean', 7, 1)], []]

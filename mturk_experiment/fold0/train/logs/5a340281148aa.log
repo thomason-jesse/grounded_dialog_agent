@@ -1,0 +1,332 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'hi'
+get_from_user (processed): 'hi'
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'blue'
+get_from_user (processed): 'blue'
+parse_and_ground_utterance: parsed 'blue' to blue
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	blue 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Does 'hi' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'coffie'
+get_from_user (processed): 'coffie'
+parse_and_ground_utterance: parsed 'coffie' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'hi' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'hi' to hi
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	hi 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'styrofoam' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 17
+parse_and_ground_utterance: parsed 'hi' to hi
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	hi 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'hi' to hi
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	hi 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'spices' when describing, or shake your head if you could use 'spices' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 17
+parse_and_ground_utterance: parsed 'hi' to hi
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	hi 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'hi' to hi
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	hi 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'hi' to hi
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	hi 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'ok'
+get_from_user (processed): 'ok'
+say_to_user: I haven't heard the word 'ok' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Does 'ok' mean the same thing as 'coffie'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'ok' to ok
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	ok 1.0
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'color'
+get_from_user (processed): 'color'
+say_to_user: I haven't heard the word 'color' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Does 'color' mean the same thing as 'white'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'color' to white
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	white 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'w', 'patient': 'oidx_26', 'goal': None, 'source': None}], [{'all': ['hi'], 'patient': ['ok', 'color'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('styrofoam', 17, 1), ('spice', 27, 1), ('spice', 17, 0), ('column', 27, 1), ('spice', 27, 1)], [('hi', 'coffee', False), ('ok', 'coffie', False), ('color', 'white', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'spices' when describing, or shake your head if you could use 'spices' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'empty' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 7
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'metallic' when describing, or shake your head if you could use 'metallic' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 17
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'action': 'move', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'color'
+get_from_user (processed): 'color'
+parse_and_ground_utterance: parsed 'color' to white
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	white 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'action': 'move', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'action': 'move', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3506', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3506', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'color'
+get_from_user (processed): 'color'
+parse_and_ground_utterance: parsed 'color' to white
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	white 1.0
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3506', 'patient': 'oidx_11', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'ok'
+get_from_user (processed): 'ok'
+parse_and_ground_utterance: parsed 'ok' to ok
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	ok 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3506', 'patient': 'oidx_11', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3508', 'source': '3506'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3508', 'source': '3506'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'w', 'patient': 'oidx_26', 'goal': None, 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3508', 'source': '3506'}], [{'all': ['hi'], 'patient': ['ok', 'color'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['yes'], 'patient': ['color'], 'goal': [], 'source': ['yes', 'yes'], 'action': [], 'recipient': []}], [('styrofoam', 17, 1), ('spice', 27, 1), ('spice', 17, 0), ('column', 27, 1), ('spice', 27, 1), ('spice', 18, 0), ('empty', 2, 1), ('metallic', 7, 1), ('metallic', 27, 0), ('pringles', 17, 1)], [('hi', 'coffee', False), ('ok', 'coffie', False), ('color', 'white', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'column' when describing, or shake your head if you could use 'column' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 7
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'styrofoam' when describing, or shake your head if you could use 'styrofoam' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 17
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'long' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'p'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'p'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'w', 'patient': 'oidx_26', 'goal': None, 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_11', 'goal': '3508', 'source': '3506'}, {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_26', 'goal': None, 'source': None}], [{'all': ['hi'], 'patient': ['ok', 'color'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['yes'], 'patient': ['color'], 'goal': [], 'source': ['yes', 'yes'], 'action': [], 'recipient': []}, {'all': ['yes'], 'patient': ['yes', 'yes'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('styrofoam', 17, 1), ('spice', 27, 1), ('spice', 17, 0), ('column', 27, 1), ('spice', 27, 1), ('spice', 18, 0), ('empty', 2, 1), ('metallic', 7, 1), ('metallic', 27, 0), ('pringles', 17, 1), ('column', 27, 0), ('rectangle', 7, 1), ('styrofoam', 3, 0), ('spice', 17, 1), ('long', 10, 1)], [('hi', 'coffee', False), ('ok', 'coffie', False), ('color', 'white', True)]]

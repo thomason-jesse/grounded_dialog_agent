@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,2
+frustrated,5
+object_qs,2
+use_navigation,1
+use_delivery,1
+use_relocation,1
+Need to teach the robot more words, like plastic, metal, container, can, soda, wipes, simple words of the objects and do, is, to so it can understand what, and where and how to move and do things. 

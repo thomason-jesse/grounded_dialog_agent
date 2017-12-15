@@ -1,0 +1,544 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go to the printer room'
+get_from_user (processed): 'go to the printer room'
+parse_and_ground_utterance: parsed 'go to the printer room' to walk(a_l(lambda 1:l.(printer(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3506) 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'go to the printer room' to walk(a_l(lambda 1:l.(printer(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3506) 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+parse_and_ground_utterance: parsed 'go to the printer room' to walk(a_l(lambda 1:l.(printer(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3506) 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'yellow' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'go to the printer room' to walk(a_l(lambda 1:l.(printer(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3506) 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'coffee' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'go to the printer room' to walk(a_l(lambda 1:l.(printer(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3506) 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+parse_and_ground_utterance: parsed 'go to the printer room' to walk(a_l(lambda 1:l.(printer(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3506) 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go to the printer room'
+get_from_user (processed): 'go to the printer room'
+parse_and_ground_utterance: parsed 'go to the printer room' to walk(a_l(lambda 1:l.(printer(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3506) 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to the printer room'
+get_from_user (processed): 'to the printer room'
+parse_and_ground_utterance: parsed 'to the printer room' to a_l(lambda 1:l.(printer(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3506 1.0
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3506'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3506', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3506', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3506', 'source': None}], [{'all': ['go to the printer room'], 'patient': [], 'goal': ['to the printer room'], 'source': [], 'action': [], 'recipient': []}], [('peach', 10, 0), ('peach', 3, 0), ('peach', 27, 0), ('peach', 7, 0), ('peach', 18, 0), ('peach', 2, 0), ('peach', 20, 0), ('peach', 17, 0), ('column', 3, 1), ('yellow', 10, 0), ('yellow', 3, 0), ('yellow', 27, 0), ('yellow', 7, 0), ('yellow', 18, 0), ('yellow', 2, 0), ('yellow', 20, 0), ('yellow', 17, 0), ('coffee', 10, 0), ('coffee', 3, 0), ('coffee', 27, 0), ('coffee', 7, 0), ('coffee', 18, 0), ('coffee', 2, 0), ('coffee', 20, 0), ('coffee', 17, 0), ('can', 10, 1)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'give the can to bob'
+get_from_user (processed): 'give the can to bob'
+parse_and_ground_utterance: parsed 'give the can to bob' to bring(a_i(lambda 1:i.(can(1))),b)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,b) 0.125
+	bring(oidx_11,b) 0.125
+	bring(oidx_12,b) 0.125
+	bring(oidx_13,b) 0.125
+	bring(oidx_22,b) 0.125
+	bring(oidx_25,b) 0.125
+	bring(oidx_26,b) 0.125
+	bring(oidx_28,b) 0.125
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'give the can to bob' to bring(a_i(lambda 1:i.(can(1))),b)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_22,b) 0.23275862069
+	bring(oidx_12,b) 0.129310344828
+	bring(oidx_28,b) 0.129310344828
+	bring(oidx_25,b) 0.120689655172
+	bring(oidx_11,b) 0.116379310345
+	bring(oidx_26,b) 0.103448275862
+	bring(oidx_6,b) 0.0862068965517
+	bring(oidx_13,b) 0.0818965517241
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+parse_and_ground_utterance: parsed 'give the can to bob' to bring(a_i(lambda 1:i.(can(1))),b)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_22,b) 0.23275862069
+	bring(oidx_12,b) 0.129310344828
+	bring(oidx_28,b) 0.129310344828
+	bring(oidx_25,b) 0.120689655172
+	bring(oidx_11,b) 0.116379310345
+	bring(oidx_26,b) 0.103448275862
+	bring(oidx_6,b) 0.0862068965517
+	bring(oidx_13,b) 0.0818965517241
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'give the can to bob' to bring(a_i(lambda 1:i.(can(1))),b)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_22,b) 0.23275862069
+	bring(oidx_12,b) 0.129310344828
+	bring(oidx_28,b) 0.129310344828
+	bring(oidx_25,b) 0.120689655172
+	bring(oidx_11,b) 0.116379310345
+	bring(oidx_26,b) 0.103448275862
+	bring(oidx_6,b) 0.0862068965517
+	bring(oidx_13,b) 0.0818965517241
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+parse_and_ground_utterance: parsed 'give the can to bob' to bring(a_i(lambda 1:i.(can(1))),b)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_22,b) 0.23275862069
+	bring(oidx_12,b) 0.129310344828
+	bring(oidx_28,b) 0.129310344828
+	bring(oidx_25,b) 0.120689655172
+	bring(oidx_11,b) 0.116379310345
+	bring(oidx_26,b) 0.103448275862
+	bring(oidx_6,b) 0.0862068965517
+	bring(oidx_13,b) 0.0818965517241
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+parse_and_ground_utterance: parsed 'give the can to bob' to bring(a_i(lambda 1:i.(can(1))),b)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_22,b) 0.640883977901
+	bring(oidx_12,b) 0.149171270718
+	bring(oidx_25,b) 0.060773480663
+	bring(oidx_26,b) 0.0469613259669
+	bring(oidx_6,b) 0.0441988950276
+	bring(oidx_13,b) 0.0359116022099
+	bring(oidx_11,b) 0.0220994475138
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'the can'
+get_from_user (processed): 'the can'
+parse_and_ground_utterance: parsed 'the can' to a_i(lambda 1:i.(can(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_22 0.640883977901
+	oidx_12 0.149171270718
+	oidx_25 0.060773480663
+	oidx_26 0.0469613259669
+	oidx_6 0.0441988950276
+	oidx_13 0.0359116022099
+	oidx_11 0.0220994475138
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'the drink can'
+get_from_user (processed): 'the drink can'
+say_to_user: I haven't heard the word 'drink' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'the drink can' to a_i(lambda 1:i.(can(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_22 0.640883977901
+	oidx_12 0.149171270718
+	oidx_25 0.060773480663
+	oidx_26 0.0469613259669
+	oidx_6 0.0441988950276
+	oidx_13 0.0359116022099
+	oidx_11 0.0220994475138
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'the open aluminum can'
+get_from_user (processed): 'the open aluminum can'
+say_to_user: I haven't heard the word 'open' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user: I haven't heard the word 'aluminum' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Does 'aluminum' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user: Does 'aluminum' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user: Does 'aluminum' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: parsed 'the open aluminum can' to lambda 0:i.(and(can(0),bean(0),metallic(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	False 0.125
+	False 0.123148148148
+	False 0.121990740741
+	False 0.121296296296
+	False 0.121064814815
+	False 0.119907407407
+	False 0.1125
+	False 0.0712962962963
+	True 0.0537037037037
+	True 0.0125
+	True 0.00509259259259
+	True 0.00393518518519
+	True 0.0037037037037
+	True 0.00300925925926
+	True 0.00185185185185
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'deliver metallic container'
+get_from_user (processed): 'deliver metallic container'
+parse_and_ground_utterance: parsed 'deliver metallic container' to lambda 1:p.(bring(and(a_i(lambda 2:i.(metallic(2))),a_i(lambda 2:i.(container(2)))),1))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	bring(oidx_6,p) 0.0138888888889
+	bring(oidx_11,p) 0.0138888888889
+	bring(oidx_12,p) 0.0138888888889
+	bring(oidx_13,p) 0.0138888888889
+	bring(oidx_22,p) 0.0138888888889
+	bring(oidx_25,p) 0.0138888888889
+	bring(oidx_26,p) 0.0138888888889
+	bring(oidx_28,p) 0.0138888888889
+	bring(oidx_6,r) 0.0138888888889
+	bring(oidx_11,r) 0.0138888888889
+	bring(oidx_12,r) 0.0138888888889
+	bring(oidx_13,r) 0.0138888888889
+	bring(oidx_22,r) 0.0138888888889
+	bring(oidx_25,r) 0.0138888888889
+	bring(oidx_26,r) 0.0138888888889
+	bring(oidx_28,r) 0.0138888888889
+	bring(oidx_6,d) 0.0138888888889
+	bring(oidx_11,d) 0.0138888888889
+	bring(oidx_12,d) 0.0138888888889
+	bring(oidx_13,d) 0.0138888888889
+	bring(oidx_22,d) 0.0138888888889
+	bring(oidx_25,d) 0.0138888888889
+	bring(oidx_26,d) 0.0138888888889
+	bring(oidx_28,d) 0.0138888888889
+	bring(oidx_6,b) 0.0138888888889
+	bring(oidx_11,b) 0.0138888888889
+	bring(oidx_12,b) 0.0138888888889
+	bring(oidx_13,b) 0.0138888888889
+	bring(oidx_22,b) 0.0138888888889
+	bring(oidx_25,b) 0.0138888888889
+	bring(oidx_26,b) 0.0138888888889
+	bring(oidx_28,b) 0.0138888888889
+	bring(oidx_6,n) 0.0138888888889
+	bring(oidx_11,n) 0.0138888888889
+	bring(oidx_12,n) 0.0138888888889
+	bring(oidx_13,n) 0.0138888888889
+	bring(oidx_22,n) 0.0138888888889
+	bring(oidx_25,n) 0.0138888888889
+	bring(oidx_26,n) 0.0138888888889
+	bring(oidx_28,n) 0.0138888888889
+	bring(oidx_6,h) 0.0138888888889
+	bring(oidx_11,h) 0.0138888888889
+	bring(oidx_12,h) 0.0138888888889
+	bring(oidx_13,h) 0.0138888888889
+	bring(oidx_22,h) 0.0138888888889
+	bring(oidx_25,h) 0.0138888888889
+	bring(oidx_26,h) 0.0138888888889
+	bring(oidx_28,h) 0.0138888888889
+	bring(oidx_6,m) 0.0138888888889
+	bring(oidx_11,m) 0.0138888888889
+	bring(oidx_12,m) 0.0138888888889
+	bring(oidx_13,m) 0.0138888888889
+	bring(oidx_22,m) 0.0138888888889
+	bring(oidx_25,m) 0.0138888888889
+	bring(oidx_26,m) 0.0138888888889
+	bring(oidx_28,m) 0.0138888888889
+	bring(oidx_6,s) 0.0138888888889
+	bring(oidx_11,s) 0.0138888888889
+	bring(oidx_12,s) 0.0138888888889
+	bring(oidx_13,s) 0.0138888888889
+	bring(oidx_22,s) 0.0138888888889
+	bring(oidx_25,s) 0.0138888888889
+	bring(oidx_26,s) 0.0138888888889
+	bring(oidx_28,s) 0.0138888888889
+	bring(oidx_6,w) 0.0138888888889
+	bring(oidx_11,w) 0.0138888888889
+	bring(oidx_12,w) 0.0138888888889
+	bring(oidx_13,w) 0.0138888888889
+	bring(oidx_22,w) 0.0138888888889
+	bring(oidx_25,w) 0.0138888888889
+	bring(oidx_26,w) 0.0138888888889
+	bring(oidx_28,w) 0.0138888888889
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'is that container metallic?'
+get_from_user (processed): 'is that container metallic'
+parse_and_ground_utterance: parsed 'is that container metallic' to lambda 0:i.(and(container(0),container(0),metallic(0),metallic(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'YES!'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3506', 'source': None}, {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26', 'goal': None, 'source': None}], [{'all': ['go to the printer room'], 'patient': [], 'goal': ['to the printer room'], 'source': [], 'action': [], 'recipient': []}, {'all': ['give the can to bob'], 'patient': ['the can', 'the drink can', 'the open aluminum can', 'deliver metallic container'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('peach', 10, 0), ('peach', 3, 0), ('peach', 27, 0), ('peach', 7, 0), ('peach', 18, 0), ('peach', 2, 0), ('peach', 20, 0), ('peach', 17, 0), ('column', 3, 1), ('yellow', 10, 0), ('yellow', 3, 0), ('yellow', 27, 0), ('yellow', 7, 0), ('yellow', 18, 0), ('yellow', 2, 0), ('yellow', 20, 0), ('yellow', 17, 0), ('coffee', 10, 0), ('coffee', 3, 0), ('coffee', 27, 0), ('coffee', 7, 0), ('coffee', 18, 0), ('coffee', 2, 0), ('coffee', 20, 0), ('coffee', 17, 0), ('can', 10, 1), ('can', 27, 0), ('can', 10, 1), ('can', 27, 0), ('can', 10, 1), ('can', 20, 0)], [('aluminum', 'container', False), ('aluminum', 'cylinder', False), ('aluminum', 'metallic', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'find container in office between lab and sybil's office to nancy's office'
+get_from_user (processed): 'find container in office between lab and sybil 's office to nancy 's office'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'container located in office between lab and sybil's office'
+get_from_user (processed): 'container located in office between lab and sybil 's office'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'r'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'container in office'
+get_from_user (processed): 'container in office'
+parse_and_ground_utterance: parsed 'container in office' to office
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	office 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'container in office' to office
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	office 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'beans' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'container in office' to office
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	office 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+parse_and_ground_utterance: parsed 'container in office' to office
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	office 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+parse_and_ground_utterance: parsed 'container in office' to office
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	office 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'container in office' to office
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	office 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'nancy nagel'
+get_from_user (processed): 'nancy nagel'
+parse_and_ground_utterance: parsed 'nancy nagel' to n
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	n 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'black peppercorn container'
+get_from_user (processed): 'black peppercorn container'
+say_to_user: I haven't heard the word 'black' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Does 'black' mean the same thing as 'white'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user: Does 'black' mean the same thing as 'yellow'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user: Does 'black' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'black peppercorn container' to and(container,black)
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'dr. nancy nagel'
+get_from_user (processed): 'dr nancy nagel'
+parse_and_ground_utterance: parsed 'dr nancy nagel' to n
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	n 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'container of pepper'
+get_from_user (processed): 'container of pepper'
+say_to_user: I haven't heard the word 'pepper' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user reques

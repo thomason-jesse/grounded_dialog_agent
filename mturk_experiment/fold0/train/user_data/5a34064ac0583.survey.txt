@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,0
+frustrated,4
+object_qs,0
+use_navigation,0
+use_delivery,0
+use_relocation,0
+I don't think the robot knows enough about objects to discern one for another.  It doesn't know many words, and its hard to guide it to learning new words as it hardly has anything to reference.  In addition, the first task didn't have a &quot;problem&quot; listed like the second one so I was not sure what you wanted me to tell the robot to do.

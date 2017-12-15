@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,3
+frustrated,4
+object_qs,4
+use_navigation,0
+use_delivery,3
+use_relocation,0
+The robot had difficulty finding the object, despite the unique color of the blue pringles can.

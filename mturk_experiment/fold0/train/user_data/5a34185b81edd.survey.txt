@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,5
+object_qs,0
+use_navigation,1
+use_delivery,1
+use_relocation,1
+Somehow on the last task it got stuck thinking I wanted to deliver the object to a person not a place and there was no way to fix it

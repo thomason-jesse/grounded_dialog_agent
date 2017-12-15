@@ -1,0 +1,1077 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go to lab'
+get_from_user (processed): 'go to lab'
+parse_and_ground_utterance: parsed 'go to lab' to walk(a_l(lambda 1:l.(lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3414) 0.25
+	walk(3414a) 0.25
+	walk(3414b) 0.25
+	walk(3436) 0.25
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'coffee' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+parse_and_ground_utterance: parsed 'go to lab' to walk(a_l(lambda 1:l.(lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3414) 0.25
+	walk(3414a) 0.25
+	walk(3414b) 0.25
+	walk(3436) 0.25
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+parse_and_ground_utterance: parsed 'go to lab' to walk(a_l(lambda 1:l.(lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3414) 0.25
+	walk(3414a) 0.25
+	walk(3414b) 0.25
+	walk(3436) 0.25
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'go to lab' to walk(a_l(lambda 1:l.(lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3414) 0.25
+	walk(3414a) 0.25
+	walk(3414b) 0.25
+	walk(3436) 0.25
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'go to lab' to walk(a_l(lambda 1:l.(lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3414) 0.25
+	walk(3414a) 0.25
+	walk(3414b) 0.25
+	walk(3436) 0.25
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'go to lab' to walk(a_l(lambda 1:l.(lab(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	walk(3414) 0.25
+	walk(3414a) 0.25
+	walk(3414b) 0.25
+	walk(3436) 0.25
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go to lounge and make coffee'
+get_from_user (processed): 'go to lounge and make coffee'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'lounge'
+get_from_user (processed): 'lounge'
+parse_and_ground_utterance: parsed 'lounge' to lounge
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	lounge 1.0
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'bob's office'
+get_from_user (processed): 'bob 's office'
+parse_and_ground_utterance: parsed 'bob 's office' to a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	3510 1.0
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3510'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3510', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3510', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3510', 'source': None}], [{'all': ['go to lab'], 'patient': [], 'goal': ['lounge', "bob 's office"], 'source': [], 'action': [], 'recipient': []}], [('coffee', 2, 1), ('can', 10, 1), ('block', 10, 0), ('block', 3, 0), ('block', 27, 0), ('block', 7, 0), ('block', 18, 0), ('block', 2, 0), ('block', 20, 0), ('block', 17, 0), ('pringles', 10, 0), ('pringles', 3, 0), ('pringles', 27, 0), ('pringles', 7, 0), ('pringles', 18, 0), ('pringles', 2, 0), ('pringles', 20, 0), ('pringles', 17, 0), ('metallic', 10, 0), ('metallic', 3, 0), ('metallic', 27, 0), ('metallic', 7, 0), ('metallic', 18, 0), ('metallic', 2, 0), ('metallic', 20, 0), ('metallic', 17, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'get jar and take it to Dr Heidi Hughes office'
+get_from_user (processed): 'get jar and take it to dr heidi hughes office'
+say_to_user: I haven't heard the word 'jar' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'shape'
+get_from_user (processed): 'shape'
+parse_and_ground_utterance: parsed 'shape' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'jar' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user: Does 'jar' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'both'
+get_from_user (processed): 'both'
+parse_and_ground_utterance: parsed 'both' to south
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	south 1.0
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'get jar and take it to Dr Heidi Hughes office'
+get_from_user (processed): 'get jar and take it to dr heidi hughes office'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'get jar and take it to H'
+get_from_user (processed): 'get jar and take it to h'
+say_to_user: I haven't heard the word 'h' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Heidi Hughes'
+get_from_user (processed): 'dr heidi hughes'
+parse_and_ground_utterance: parsed 'dr heidi hughes' to h
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	h 1.0
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'tower' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'dr heidi hughes' to h
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	h 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'yellow' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'dr heidi hughes' to h
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	h 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'dr heidi hughes' to h
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	h 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'dr heidi hughes' to h
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	h 1.0
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+parse_and_ground_utterance: parsed 'dr heidi hughes' to h
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	h 1.0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'jar'
+get_from_user (processed): 'jar'
+parse_and_ground_utterance: parsed 'jar' to lambda 0:i.(container(0))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	container(oidx_6) 0.125
+	container(oidx_11) 0.125
+	container(oidx_12) 0.125
+	container(oidx_13) 0.125
+	container(oidx_22) 0.125
+	container(oidx_25) 0.125
+	container(oidx_26) 0.125
+	container(oidx_28) 0.125
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'r'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'jar'
+get_from_user (processed): 'jar'
+parse_and_ground_utterance: parsed 'jar' to lambda 0:i.(container(0))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	container(oidx_6) 0.125
+	container(oidx_11) 0.125
+	container(oidx_12) 0.125
+	container(oidx_13) 0.125
+	container(oidx_22) 0.125
+	container(oidx_25) 0.125
+	container(oidx_26) 0.125
+	container(oidx_28) 0.125
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'jar'
+get_from_user (processed): 'jar'
+parse_and_ground_utterance: parsed 'jar' to lambda 0:i.(container(0))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	container(oidx_6) 0.125
+	container(oidx_11) 0.125
+	container(oidx_12) 0.125
+	container(oidx_13) 0.125
+	container(oidx_22) 0.125
+	container(oidx_25) 0.125
+	container(oidx_26) 0.125
+	container(oidx_28) 0.125
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Heidi Hughes'
+get_from_user (processed): 'dr heidi hughes'
+parse_and_ground_utterance: parsed 'dr heidi hughes' to h
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	h 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3510', 'source': None}, {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22', 'goal': None, 'source': None}], [{'all': ['go to lab'], 'patient': [], 'goal': ['lounge', "bob 's office"], 'source': [], 'action': [], 'recipient': []}, {'all': ['get jar and take it to dr heidi hughes office'], 'patient': ['get jar and take it to dr heidi hughes office', 'get jar and take it to h', 'jar', 'jar', 'jar'], 'goal': [], 'source': [], 'action': [], 'recipient': ['dr heidi hughes', 'dr heidi hughes']}], [('coffee', 2, 1), ('can', 10, 1), ('block', 10, 0), ('block', 3, 0), ('block', 27, 0), ('block', 7, 0), ('block', 18, 0), ('block', 2, 0), ('block', 20, 0), ('block', 17, 0), ('pringles', 10, 0), ('pringles', 3, 0), ('pringles', 27, 0), ('pringles', 7, 0), ('pringles', 18, 0), ('pringles', 2, 0), ('pringles', 20, 0), ('pringles', 17, 0), ('metallic', 10, 0), ('metallic', 3, 0), ('metallic', 27, 0), ('metallic', 7, 0), ('metallic', 18, 0), ('metallic', 2, 0), ('metallic', 20, 0), ('metallic', 17, 0), ('tower', 10, 0), ('tower', 3, 0), ('tower', 27, 0), ('tower', 7, 0), ('tower', 18, 0), ('tower', 2, 0), ('tower', 20, 0), ('tower', 17, 0), ('yellow', 10, 0), ('yellow', 3, 0), ('yellow', 27, 0), ('yellow', 7, 0), ('yellow', 18, 0), ('yellow', 2, 0), ('yellow', 20, 0), ('yellow', 17, 0), ('spice', 10, 0), ('spice', 3, 0), ('spice', 27, 0), ('spice', 7, 0), ('spice', 18, 0), ('spice', 2, 0), ('spice', 20, 0), ('spice', 17, 0), ('rectangle', 10, 0), ('rectangle', 3, 0), ('rectangle', 27, 0), ('rectangle', 7, 0), ('rectangle', 18, 0), ('rectangle', 2, 0), ('rectangle', 20, 0), ('rectangle', 17, 0), ('can', 2, 0)], [('jar', 'container', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'take can to office next to Dr. Sybil Smalt office'
+get_from_user (processed): 'take can to office next to dr sybil smalt office'
+parse_and_ground_utterance: could not generate a parse for the utterance
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'soda can'
+get_from_user (processed): 'soda can'
+say_to_user: I haven't heard the word 'soda' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+parse_and_ground_utterance: parsed 'soda can' to lambda 0:i.(and(spice(0),can(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	False 0.0970588235294
+	False 0.0823529411765
+	False 0.0808823529412
+	False 0.075
+	False 0.075
+	False 0.0720588235294
+	False 0.0691176470588
+	False 0.0647058823529
+	True 0.0602941176471
+	True 0.0558823529412
+	True 0.0529411764706
+	True 0.05
+	True 0.05
+	True 0.0441176470588
+	True 0.0426470588235
+	True 0.0279411764706
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'soda can' to lambda 0:i.(and(spice(0),can(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'cylinder' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+parse_and_ground_utterance: parsed 'soda can' to lambda 0:i.(and(can(0),bean(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'h' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+parse_and_ground_utterance: parsed 'soda can' to lambda 0:i.(and(can(0),coffee(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'styrofoam' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+parse_and_ground_utterance: parsed 'soda can' to lambda 0:i.(and(can(0),cylinder(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'blue' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+parse_and_ground_utterance: parsed 'soda can' to lambda 0:i.(and(can(0),coffee(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'soda can'
+get_from_user (processed): 'soda can'
+parse_and_ground_utterance: parsed 'soda can' to lambda 0:i.(and(can(0),yellow(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'r'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'can'
+get_from_user (processed): 'can'
+parse_and_ground_utterance: parsed 'can' to can
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	can 1.0
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'can'
+get_from_user (processed): 'can'
+parse_and_ground_utterance: parsed 'can' to can
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	can 1.0
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a can of soda'
+get_from_user (processed): 'a can of soda'
+parse_and_ground_utterance: parsed 'a can of soda' to and(a_i(lambda 1:i.(can(1))),a_i(lambda 0:i.(spice(0))))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_6 0.125
+	oidx_11 0.125
+	oidx_12 0.125
+	oidx_13 0.125
+	oidx_22 0.125
+	oidx_25 0.125
+	oidx_26 0.125
+	oidx_28 0.125
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'move something somewhere'
+get_from_user (processed): 'move something somewhere'
+parse_and_ground_utterance: parsed 'move something somewhere' to lambda 1:i.(lambda 2:l.(lambda 3:l.(and(lambda 2:l.(lambda 3:l.(move(1,2,3))),lambda 2:l.(lambda 3:l.(move(1,2,3)))))))
+parse_and_ground_utterance: grounding timeout for lambda 1:i.(lambda 2:l.(lambda 3:l.(and(lambda 2:l.(lambda 3:l.(move(1,2,3))),lambda 2:l.(lambda 3:l.(move(1,2,3)))))))
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'm'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'take a soda can to an empty office'
+get_from_user (processed): 'take a soda can to an empty office'
+parse_and_ground_utterance: parsed 'take a soda can to an empty office' to lambda 1:l.(move(and(a_i(lambda 2:i.(can(2))),a_i(lambda 2:i.(can(2)))),and(a_l(lambda 2:l.(unoccupied(2))),a_l(lambda 2:l.(office(2)))),1))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	move(oidx_6,3418,3402) 0.00240384615385
+	move(oidx_11,3418,3402) 0.00240384615385
+	move(oidx_12,3418,3402) 0.00240384615385
+	move(oidx_13,3418,3402) 0.00240384615385
+	move(oidx_22,3418,3402) 0.00240384615385
+	move(oidx_25,3418,3402) 0.00240384615385
+	move(oidx_26,3418,3402) 0.00240384615385
+	move(oidx_28,3418,3402) 0.00240384615385
+	move(oidx_6,3432,3402) 0.00240384615385
+	move(oidx_11,3432,3402) 0.00240384615385
+	move(oidx_12,3432,3402) 0.00240384615385
+	move(oidx_13,3432,3402) 0.00240384615385
+	move(oidx_22,3432,3402) 0.00240384615385
+	move(oidx_25,3432,3402) 0.00240384615385
+	move(oidx_26,3432,3402) 0.00240384615385
+	move(oidx_28,3432,3402) 0.00240384615385
+	move(oidx_6,3418,3404) 0.00240384615385
+	move(oidx_11,3418,3404) 0.00240384615385
+	move(oidx_12,3418,3404) 0.00240384615385
+	move(oidx_13,3418,3404) 0.00240384615385
+	move(oidx_22,3418,3404) 0.00240384615385
+	move(oidx_25,3418,3404) 0.00240384615385
+	move(oidx_26,3418,3404) 0.00240384615385
+	move(oidx_28,3418,3404) 0.00240384615385
+	move(oidx_6,3432,3404) 0.00240384615385
+	move(oidx_11,3432,3404) 0.00240384615385
+	move(oidx_12,3432,3404) 0.00240384615385
+	move(oidx_13,3432,3404) 0.00240384615385
+	move(oidx_22,3432,3404) 0.00240384615385
+	move(oidx_25,3432,3404) 0.00240384615385
+	move(oidx_26,3432,3404) 0.00240384615385
+	move(oidx_28,3432,3404) 0.00240384615385
+	move(oidx_6,3418,3406) 0.00240384615385
+	move(oidx_11,3418,3406) 0.00240384615385
+	move(oidx_12,3418,3406) 0.00240384615385
+	move(oidx_13,3418,3406) 0.00240384615385
+	move(oidx_22,3418,3406) 0.00240384615385
+	move(oidx_25,3418,3406) 0.00240384615385
+	move(oidx_26,3418,3406) 0.00240384615385
+	move(oidx_28,3418,3406) 0.00240384615385
+	move(oidx_6,3432,3406) 0.00240384615385
+	move(oidx_11,3432,3406) 0.00240384615385
+	move(oidx_12,3432,3406) 0.00240384615385
+	move(oidx_13,3432,3406) 0.00240384615385
+	move(oidx_22,3432,3406) 0.00240384615385
+	move(oidx_25,3432,3406) 0.00240384615385
+	move(oidx_26,3432,3406) 0.00240384615385
+	move(oidx_28,3432,3406) 0.00240384615385
+	move(oidx_6,3418,3408) 0.00240384615385
+	move(oidx_11,3418,3408) 0.00240384615385
+	move(oidx_12,3418,3408) 0.00240384615385
+	move(oidx_13,3418,3408) 0.00240384615385
+	move(oidx_22,3418,3408) 0.00240384615385
+	move(oidx_25,3418,3408) 0.00240384615385
+	move(oidx_26,3418,3408) 0.00240384615385
+	move(oidx_28,3418,3408) 0.00240384615385
+	move(oidx_6,3432,3408) 0.00240384615385
+	move(oidx_11,3432,3408) 0.00240384615385
+	move(oidx_12,3432,3408) 0.00240384615385
+	move(oidx_13,3432,3408) 0.00240384615385
+	move(oidx_22,3432,3408) 0.00240384615385
+	move(oidx_25,3432,3408) 0.00240384615385
+	move(oidx_26,3432,3408) 0.00240384615385
+	move(oidx_28,3432,3408) 0.00240384615385
+	move(oidx_6,3418,3410) 0.00240384615385
+	move(oidx_11,3418,3410) 0.00240384615385
+	move(oidx_12,3418,3410) 0.00240384615385
+	move(oidx_13,3418,3410) 0.00240384615385
+	move(oidx_22,3418,3410) 0.00240384615385
+	move(oidx_25,3418,3410) 0.00240384615385
+	move(oidx_26,3418,3410) 0.00240384615385
+	move(oidx_28,3418,3410) 0.00240384615385
+	move(oidx_6,3432,3410) 0.00240384615385
+	move(oidx_11,3432,3410) 0.00240384615385
+	move(oidx_12,3432,3410) 0.00240384615385
+	move(oidx_13,3432,3410) 0.00240384615385
+	move(oidx_22,3432,3410) 0.00240384615385
+	move(oidx_25,3432,3410) 0.00240384615385
+	move(oidx_26,3432,3410) 0.00240384615385
+	move(oidx_28,3432,3410) 0.00240384615385
+	move(oidx_6,3418,3414) 0.00240384615385
+	move(oidx_11,3418,3414) 0.00240384615385
+	move(oidx_12,3418,3414) 0.00240384615385
+	move(oidx_13,3418,3414) 0.00240384615385
+	move(oidx_22,3418,3414) 0.00240384615385
+	move(oidx_25,3418,3414) 0.00240384615385
+	move(oidx_26,3418,3414) 0.00240384615385
+	move(oidx_28,3418,3414) 0.00240384615385
+	move(oidx_6,3432,3414) 0.00240384615385
+	move(oidx_11,3432,3414) 0.00240384615385
+	move(oidx_12,3432,3414) 0.00240384615385
+	move(oidx_13,3432,3414) 0.00240384615385
+	move(oidx_22,3432,3414) 0.00240384615385
+	move(oidx_25,3432,3414) 0.00240384615385
+	move(oidx_26,3432,3414) 0.00240384615385
+	move(oidx_28,3432,3414) 0.00240384615385
+	move(oidx_6,3418,3414a) 0.00240384615385
+	move(oidx_11,3418,3414a) 0.00240384615385
+	move(oidx_12,3418,3414a) 0.00240384615385
+	move(oidx_13,3418,3414a) 0.00240384615385
+	move(oidx_22,3418,3414a) 0.00240384615385
+	move(oidx_25,3418,3414a) 0.00240384615385
+	move(oidx_26,3418,3414a) 0.00240384615385
+	move(oidx_28,3418,3414a) 0.00240384615385
+	move(oidx_6,3432,3414a) 0.00240384615385
+	move(oidx_11,3432,3414a) 0.00240384615385
+	move(oidx_12,3432,3414a) 0.00240384615385
+	move(oidx_13,3432,3414a) 0.00240384615385
+	move(oidx_22,3432,3414a) 0.00240384615385
+	move(oidx_25,3432,3414a) 0.00240384615385
+	move(oidx_26,3432,3414a) 0.00240384615385
+	move(oidx_28,3432,3414a) 0.00240384615385
+	move(oidx_6,3418,3414b) 0.00240384615385
+	move(oidx_11,3418,3414b) 0.00240384615385
+	move(oidx_12,3418,3414b) 0.00240384615385
+	move(oidx_13,3418,3414b) 0.00240384615385
+	move(oidx_22,3418,3414b) 0.00240384615385
+	move(oidx_25,3418,3414b) 0.00240384615385
+	move(oidx_26,3418,3414b) 0.00240384615385
+	move(oidx_28,3418,3414b) 0.00240384615385
+	move(oidx_6,3432,3414b) 0.00240384615385
+	move(oidx_11,3432,3414b) 0.00240384615385
+	move(oidx_12,3432,3414b) 0.00240384615385
+	move(oidx_13,3432,3414b) 0.00240384615385
+	move(oidx_22,3432,3414b) 0.00240384615385
+	move(oidx_25,3432,3414b) 0.00240384615385
+	move(oidx_26,3432,3414b) 0.00240384615385
+	move(oidx_28,3432,3414b) 0.00240384615385
+	move(oidx_6,3418,3416) 0.00240384615385
+	move(oidx_11,3418,3416) 0.00240384615385
+	move(oidx_12,3418,3416) 0.00240384615385
+	move(oidx_13,3418,3416) 0.00240384615385
+	move(oidx_22,3418,3416) 0.00240384615385
+	move(oidx_25,3418,3416) 0.00240384615385
+	move(oidx_26,3418,3416) 0.00240384615385
+	move(oidx_28,3418,3416) 0.00240384615385
+	move(oidx_6,3432,3416) 0.00240384615385
+	move(oidx_11,3432,3416) 0.00240384615385
+	move(oidx_12,3432,3416) 0.00240384615385
+	move(oidx_13,3432,3416) 0.00240384615385
+	move(oidx_22,3432,3416) 0.00240384615385
+	move(oidx_25,3432,3416) 0.00240384615385
+	move(oidx_26,3432,3416) 0.00240384615385
+	move(oidx_28,3432,3416) 0.00240384615385
+	move(oidx_6,3418,3418) 0.00240384615385
+	move(oidx_11,3418,3418) 0.00240384615385
+	move(oidx_12,3418,3418) 0.00240384615385
+	move(oidx_13,3418,3418) 0.00240384615385
+	move(oidx_22,3418,3418) 0.00240384615385
+	move(oidx_25,3418,3418) 0.00240384615385
+	move(oidx_26,3418,3418) 0.00240384615385
+	move(oidx_28,3418,3418) 0.00240384615385
+	move(oidx_6,3432,3418) 0.00240384615385
+	move(oidx_11,3432,3418) 0.00240384615385
+	move(oidx_12,3432,3418) 0.00240384615385
+	move(oidx_13,3432,3418) 0.00240384615385
+	move(oidx_22,3432,3418) 0.00240384615385
+	move(oidx_25,3432,3418) 0.00240384615385
+	move(oidx_26,3432,3418) 0.00240384615385
+	move(oidx_28,3432,3418) 0.00240384615385
+	move(oidx_6,3418,3420) 0.00240384615385
+	move(oidx_11,3418,3420) 0.00240384615385
+	move(oidx_12,3418,3420) 0.00240384615385
+	move(oidx_13,3418,3420) 0.00240384615385
+	move(oidx_22,3418,3420) 0.00240384615385
+	move(oidx_25,3418,3420) 0.00240384615385
+	move(oidx_26,3418,3420) 0.00240384615385
+	move(oidx_28,3418,3420) 0.00240384615385
+	move(oidx_6,3432,3420) 0.00240384615385
+	move(oidx_11,3432,3420) 0.00240384615385
+	move(oidx_12,3432,3420) 0.00240384615385
+	move(oidx_13,3432,3420) 0.00240384615385
+	move(oidx_22,3432,3420) 0.00240384615385
+	move(oidx_25,3432,3420) 0.00240384615385
+	move(oidx_26,3432,3420) 0.00240384615385
+	move(oidx_28,3432,3420) 0.00240384615385
+	move(oidx_6,3418,3422) 0.00240384615385
+	move(oidx_11,3418,3422) 0.00240384615385
+	move(oidx_12,3418,3422) 0.00240384615385
+	move(oidx_13,3418,3422) 0.00240384615385
+	move(oidx_22,3418,3422) 0.00240384615385
+	move(oidx_25,3418,3422) 0.00240384615385
+	move(oidx_26,3418,3422) 0.00240384615385
+	move(oidx_28,3418,3422) 0.00240384615385
+	move(oidx_6,3432,3422) 0.00240384615385
+	move(oidx_11,3432,3422) 0.00240384615385
+	move(oidx_12,3432,3422) 0.00240384615385
+	move(oidx_13,3432,3422) 0.00240384615385
+	move(oidx_22,3432,3422) 0.00240384615385
+	move(oidx_25,3432,3422) 0.00240384615385
+	move(oidx_26,3432,3422) 0.00240384615385
+	move(oidx_28,3432,3422) 0.00240384615385
+	move(oidx_6,3418,3424) 0.00240384615385
+	move(oidx_11,3418,3424) 0.00240384615385
+	move(oidx_12,3418,3424) 0.00240384615385
+	move(oidx_13,3418,3424) 0.00240384615385
+	move(oidx_22,3418,3424) 0.00240384615385
+	move(oidx_25,3418,3424) 0.00240384615385
+	move(oidx_26,3418,3424) 0.00240384615385
+	move(oidx_28,3418,3424) 0.00240384615385
+	move(oidx_6,3432,3424) 0.00240384615385
+	move(oidx_11,3432,3424) 0.00240384615385
+	move(oidx_12,3432,3424) 0.00240384615385
+	move(oidx_13,3432,3424) 0.00240384615385
+	move(oidx_22,3432,3424) 0.00240384615385
+	move(oidx_25,3432,3424) 0.00240384615385
+	move(oidx_26,3432,3424) 0.00240384615385
+	move(oidx_28,3432,3424) 0.00240384615385
+	move(oidx_6,3418,3430) 0.00240384615385
+	move(oidx_11,3418,3430) 0.00240384615385
+	move(oidx_12,3418,3430) 0.00240384615385
+	move(oidx_13,3418,3430) 0.00240384615385
+	move(oidx_22,3418,3430) 0.00240384615385
+	move(oidx_25,3418,3430) 0.00240384615385
+	move(oidx_26,3418,3430) 0.00240384615385
+	move(oidx_28,3418,3430) 0.00240384615385
+	move(oidx_6,3432,3430) 0.00240384615385
+	move(oidx_11,3432,3430) 0.00240384615385
+	move(oidx_12,3432,3430) 0.00240384615385
+	move(oidx_13,3432,3430) 0.00240384615385
+	move(oidx_22,3432,3430) 0.00240384615385
+	move(oidx_25,3432,3430) 0.00240384615385
+	move(oidx_26,3432,3430) 0.00240384615385
+	move(oidx_28,3432,3430) 0.00240384615385
+	move(oidx_6,3418,3432) 0.00240384615385
+	move(oidx_11,3418,3432) 0.00240384615385
+	move(oidx_12,3418,3432) 0.00240384615385
+	move(oidx_13,3418,3432) 0.00240384615385
+	move(oidx_22,3418,3432) 0.00240384615385
+	move(oidx_25,3418,3432) 0.00240384615385
+	move(oidx_26,3418,3432) 0.00240384615385
+	move(oidx_28,3418,3432) 0.00240384615385
+	move(oidx_6,3432,3432) 0.00240384615385
+	move(oidx_11,3432,3432) 0.00240384615385
+	move(oidx_12,3432,3432) 0.00240384615385
+	move(oidx_13,3432,3432) 0.00240384615385
+	move(oidx_22,3432,3432) 0.00240384615385
+	move(oidx_25,3432,3432) 0.00240384615385
+	move(oidx_26,3432,3432) 0.00240384615385
+	move(oidx_28,3432,3432) 0.00240384615385
+	move(oidx_6,3418,3436) 0.00240384615385
+	move(oidx_11,3418,3436) 0.00240384615385
+	move(oidx_12,3418,3436) 0.00240384615385
+	move(oidx_13,3418,3436) 0.00240384615385
+	move(oidx_22,3418,3436) 0.00240384615385
+	move(oidx_25,3418,3436) 0.00240384615385
+	move(oidx_26,3418,3436) 0.00240384615385
+	move(oidx_28,3418,3436) 0.00240384615385
+	move(oidx_6,3432,3436) 0.00240384615385
+	move(oidx_11,3432,3436) 0.00240384615385
+	move(oidx_12,3432,3436) 0.00240384615385
+	move(oidx_13,3432,3436) 0.00240384615385
+	move(oidx_22,3432,3436) 0.00240384615385
+	move(oidx_25,3432,3436) 0.00240384615385
+	move(oidx_26,3432,3436) 0.00240384615385
+	move(oidx_28,3432,3436) 0.00240384615385
+	move(oidx_6,3418,3502) 0.00240384615385
+	move(oidx_11,3418,3502) 0.00240384615385
+	move(oidx_12,3418,3502) 0.00240384615385
+	move(oidx_13,3418,3502) 0.00240384615385
+	move(oidx_22,3418,3502) 0.00240384615385
+	move(oidx_25,3418,3502) 0.00240384615385
+	move(oidx_26,3418,3502) 0.00240384615385
+	move(oidx_28,3418,3502) 0.00240384615385
+	move(oidx_6,3432,3502) 0.00240384615385
+	move(oidx_11,3432,3502) 0.00240384615385
+	move(oidx_12,3432,3502) 0.00240384615385
+	move(oidx_13,3432,3502) 0.00240384615385
+	move(oidx_22,3432,3502) 0.00240384615385
+	move(oidx_25,3432,3502) 0.00240384615385
+	move(oidx_26,3432,3502) 0.00240384615385
+	move(oidx_28,3432,3502) 0.00240384615385
+	move(oidx_6,3418,3504) 0.00240384615385
+	move(oidx_11,3418,3504) 0.00240384615385
+	move(oidx_12,3418,3504) 0.00240384615385
+	move(oidx_13,3418,3504) 0.00240384615385
+	move(oidx_22,3418,3504) 0.00240384615385
+	move(oidx_25,3418,3504) 0.00240384615385
+	move(oidx_26,3418,3504) 0.00240384615385
+	move(oidx_28,3418,3504) 0.00240384615385
+	move(oidx_6,3432,3504) 0.00240384615385
+	move(oidx_11,3432,3504) 0.00240384615385
+	move(oidx_12,3432,3504) 0.00240384615385
+	move(oidx_13,3432,3504) 0.00240384615385
+	move(oidx_22,3432,3504) 0.00240384615385
+	move(oidx_25,3432,3504) 0.00240384615385
+	move(oidx_26,3432,3504) 0.00240384615385
+	move(oidx_28,3432,3504) 0.00240384615385
+	move(oidx_6,3418,3506) 0.00240384615385
+	move(oidx_11,3418,3506) 0.00240384615385
+	move(oidx_12,3418,3506) 0.00240384615385
+	move(oidx_13,3418,3506) 0.00240384615385
+	move(oidx_22,3418,3506) 0.00240384615385
+	move(oidx_25,3418,3506) 0.00240384615385
+	move(oidx_26,3418,3506) 0.00240384615385
+	move(oidx_28,3418,3506) 0.00240384615385
+	move(oidx_6,3432,3506) 0.00240384615385
+	move(oidx_11,3432,3506) 0.00240384615385
+	move(oidx_12,3432,3506) 0.00240384615385
+	move(oidx_13,3432,3506) 0.00240384615385
+	move(oidx_22,3432,3506) 0.00240384615385
+	move(oidx_25,3432,3506) 0.00240384615385
+	move(oidx_26,3432,3506) 0.00240384615385
+	move(oidx_28,3432,3506) 0.00240384615385
+	move(oidx_6,3418,3508) 0.00240384615385
+	move(oidx_11,3418,3508) 0.00240384615385
+	move(oidx_12,3418,3508) 0.00240384615385
+	move(oidx_13,3418,3508) 0.00240384615385
+	move(oidx_22,3418,3508) 0.00240384615385
+	move(oidx_25,3418,3508) 0.00240384615385
+	move(oidx_26,3418,3508) 0.00240384615385
+	move(oidx_28,3418,3508) 0.00240384615385
+	move(oidx_6,3432,3508) 0.00240384615385
+	move(oidx_11,3432,3508) 0.00240384615385
+	move(oidx_12,3432,3508) 0.00240384615385
+	move(oidx_13,3432,3508) 0.00240384615385
+	move(oidx_22,3432,3508) 0.00240384615385
+	move(oidx_25,3432,3508) 0.00240384615385
+	move(oidx_26,3432,3508) 0.00240384615385
+	move(oidx_28,3432,3508) 0.00240384615385
+	move(oidx_6,3418,3510) 0.00240384615385
+	move(oidx_11,3418,3510) 0.00240384615385
+	move(oidx_12,3418,3510) 0.00240384615385
+	move(oidx_13,3418,3510) 0.00240384615385
+	move(oidx_22,3418,3510) 0.00240384615385
+	move(oidx_25,3418,3510) 0.00240384615385
+	move(oidx_26,3418,3510) 0.00240384615385
+	move(oidx_28,3418,3510) 0.00240384615385
+	move(oidx_6,3432,3510) 0.00240384615385
+	move(oidx_11,3432,3510) 0.00240384615385
+	move(oidx_12,3432,3510) 0.00240384615385
+	move(oidx_13,3432,3510) 0.00240384615385
+	move(oidx_22,3432,3510) 0.00240384615385
+	move(oidx_25,3432,3510) 0.00240384615385
+	move(oidx_26,3432,3510) 0.00240384615385
+	move(oidx_28,3432,3510) 0.00240384615385
+	move(oidx_6,3418,3512) 0.00240384615385
+	move(oidx_11,3418,3512) 0.00240384615385
+	move(oidx_12,3418,3512) 0.00240384615385
+	move(oidx_13,3418,3512) 0.00240384615385
+	move(oidx_22,3418,3512) 0.00240384615385
+	move(oidx_25,3418,3512) 0.00240384615385
+	move(oidx_26,3418,3512) 0.00240384615385
+	move(oidx_28,3418,3512) 0.00240384615385
+	move(oidx_6,3432,3512) 0.00240384615385
+	move(oidx_11,3432,3512) 0.00240384615385
+	move(oidx_12,3432,3512) 0.00240384615385
+	move(oidx_13,3432,3512) 0.00240384615385
+	move(oidx_22,3432,3512) 0.00240384615385
+	move(oidx_25,3432,3512) 0.00240384615385
+	move(oidx_26,3432,3512) 0.00240384615385
+	move(oidx_28,3432,3512) 0.00240384615385
+	move(oidx_6,3418,3514) 0.00240384615385
+	move(oidx_11,3418,3514) 0.00240384615385
+	move(oidx_12,3418,3514) 0.00240384615385
+	move(oidx_13,3418,3514) 0.00240384615385
+	move(oidx_22,3418,3514) 0.00240384615385
+	move(oidx_25,3418,3514) 0.00240384615385
+	move(oidx_26,3418,3514) 0.00240384615385
+	move(oidx_28,3418,3514) 0.00240384615385
+	move(oidx_6,3432,3514) 0.00240384615385
+	move(oidx_11,3432,3514) 0.00240384615385
+	move(oidx_12,3432,3514) 0.00240384615385
+	move(oidx_13,3432,3514) 0.00240384615385
+	move(oidx_22,3432,3514) 0.00240384615385
+	move(oidx_25,3432,3514) 0.00240384615385
+	move(oidx_26,3432,3514) 0.00240384615385
+	move(oidx_28,3432,3514) 0.00240384615385
+	move(oidx_6,3418,3516) 0.00240384615385
+	move(oidx_11,3418,3516) 0.00240384615385
+	move(oidx_12,3418,3516) 0.00240384615385
+	move(oidx_13,3418,3516) 0.00240384615385
+	move(oidx_22,3418,3516) 0.00240384615385
+	move(oidx_25,3418,3516) 0.00240384615385
+	move(oidx_26,3418,3516) 0.00240384615385
+	move(oidx_28,3418,3516) 0.00240384615385
+	move(oidx_6,3432,3516) 0.00240384615385
+	move(oidx_11,3432,3516) 0.00240384615385
+	move(oidx_12,3432,3516) 0.00240384615385
+	move(oidx_13,3432,3516) 0.00240384615385
+	move(oidx_22,3432,3516) 0.00240384615385
+	move(oidx_25,3432,3516) 0.00240384615385
+	move(oidx_26,3432,3516) 0.00240384615385
+	move(oidx_28,3432,3516) 0.00240384615385
+	move(oidx_6,3418,3518) 0.00240384615385
+	move(oidx_11,3418,3518) 0.00240384615385
+	move(oidx_12,3418,3518) 0.00240384615385
+	move(oidx_13,3418,3518) 0.00240384615385
+	move(oidx_22,3418,3518) 0.00240384615385
+	move(oidx_25,3418,3518) 0.00240384615385
+	move(oidx_26,3418,3518) 0.00240384615385
+	move(oidx_28,3418,3518) 0.00240384615385
+	move(oidx_6,3432,3518) 0.00240384615385
+	move(oidx_11,3432,3518) 0.00240384615385
+	move(oidx_12,3432,3518) 0.00240384615385
+	move(oidx_13,3432,3518) 0.00240384615385
+	move(oidx_22,3432,3518) 0.00240384615385
+	move(oidx_25,3432,3518) 0.00240384615385
+	move(oidx_26,3432,3518) 0.00240384615385
+	move(oidx_28,3432,3518) 0.00240384615385
+	move(oidx_6,3418,3520) 0.00240384615385
+	move(oidx_11,3418,3520) 0.00240384615385
+	move(oidx_12,3418,3520) 0.00240384615385
+	move(oidx_13,3418,3520) 0.00240384615385
+	move(oidx_22,3418,3520) 0.00240384615385
+	move(oidx_25,3418,3520) 0.00240384615385
+	move(oidx_26,3418,3520) 0.00240384615385
+	move(oidx_28,3418,3520) 0.00240384615385
+	move(oidx_6,3432,3520) 0.00240384615385
+	move(oidx_11,3432,3520) 0.00240384615385
+	move(oidx_12,3432,3520) 0.00240384615385
+	move(oidx_13,3432,3520) 0.00240384615385
+	move(oidx_22,3432,3520) 0.00240384615385
+	move(oidx_25,3432,3520) 0.00240384615385
+	move(oidx_26,3432,3520) 0.00240384615385
+	move(oidx_28,3432,3520) 0.00240384615385
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'soda can'
+get_from_user (processed): 'soda can'
+parse_and_ground_utterance: parsed 'soda can' to lambda 0:i.(and(can(0),cylinder(0)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+	True 0.0625
+	False 0.0625
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'p'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a can'
+get_from_user (processed): 'a can'
+parse_and_ground_utterance: parsed 'a can' to a_i(lambda 1:i.(can(1)))
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	oidx_6 0.125
+	oidx_11 0.125
+	oidx_12 0.125
+	oidx_13 0.125
+	oidx_22 0.125
+	oidx_25 0.125
+	oidx_26 0.125
+	oidx_28 0.125
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+parse_and_ground_utterance: parsed 'no' to no
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	no 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Sybil Smalt'
+get_from_user (processed): 'dr sybil smalt'
+parse_and_ground_utterance: parsed 'dr sybil smalt' to s
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	s 1.0
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+parse_and_ground_utterance: parsed 'yes' to yes
+parse_and_ground_utterance: resulting groundings with normalized confidences: 
+	yes 1.0
+perform_action: {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3510', 'source': None}, {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26', 'goal': None, 'source': None}], [{'all': ['go to lab'], 'patient': [], 'goal': ['lounge', "bob 's office"], 'source': [], 'action': [], 'recipient': []}, {'all': ['get jar and take it to dr heidi hughes office'], 'patient': ['get jar and take it to dr heidi hughes office', 'get jar and take it to h', 'jar', 'jar', 'jar'], 'goal': [], 'source': [], 'action': [], 'recipient': ['dr heidi hughes', 'dr heidi hughes']}, {'all': ['take can to office next to dr sybil smalt office'], 'patient': ['soda can', 'soda can', 'can', 'can', 'a can of soda', 'move something somewhere', 'take a soda can to an empty office', 'soda can', 'a can'], 'goal': [], 'source': [], 'action': [], 'recipient': ['dr sybil smalt']}], [('coffee', 2, 1), ('can', 10, 1), ('block', 10, 0), ('block', 3, 0), ('block', 27, 0), ('block', 7, 0), ('block', 18, 0), ('block', 2, 0), ('block', 20, 0), ('block', 17, 0), ('pringles', 10, 0), ('pringles', 3, 0), ('pringles', 27, 0), ('pringles', 7, 0), ('pringles', 18, 0), ('pringles', 2, 0), ('pringles', 20, 0), ('pringles', 17, 0), ('metallic', 10, 0), ('metallic', 3, 0), ('metallic', 27, 0), ('metallic', 7, 0), ('metallic', 18, 0), ('metallic', 2, 0), ('metallic', 20, 0), ('metallic', 17, 0), ('tower', 10, 0), ('tower', 3, 0), ('tower', 27, 0), ('tower', 7, 0), ('tower', 18, 0), ('tower', 2, 0), ('tower', 20, 0), ('tower', 17, 0), ('yellow', 10, 0), ('yellow', 3, 0), ('yellow', 27, 0), ('yellow', 7, 0), ('yellow', 18, 0), ('yellow', 2, 0), ('yellow', 20, 0), ('yellow', 17, 0), ('spice', 10, 0), ('spice', 3, 0), ('spice', 27, 0), ('spice', 7, 0), ('spice', 18, 0), ('spice', 2, 0), ('spice', 20, 0), ('spice', 17, 0), ('rectangle', 10, 0), ('rectangle', 3, 0), ('rectangle', 27, 0), ('rectangle', 7, 0), ('rectangle', 18, 0), ('rectangle', 2, 0), ('rectangle', 20, 0), ('rectangle', 17, 0), ('can', 2, 0), ('can', 10, 0), ('can', 3, 0), ('can', 27, 0), ('can', 7, 0), ('can', 18, 0), ('can', 2, 0), ('can', 20, 0), ('can', 17, 0), ('cylinder', 3, 1), ('empty', 10, 0), ('empty', 3, 0), ('empty', 27, 0), ('empty', 7, 0), ('empty', 18, 0), ('empty', 2, 0), ('empty', 20, 0), ('empty', 17, 0), ('styrofoam', 20, 1), ('blue', 18, 1)], [('jar', 'container', True)]]

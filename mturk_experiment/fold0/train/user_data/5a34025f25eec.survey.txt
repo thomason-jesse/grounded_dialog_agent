@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,5
+object_qs,4
+use_navigation,1
+use_delivery,1
+use_relocation,0
+The robot wasn't getting my simple instructions of finding a white bottle with red cap, instead, it was showing me all the other variants constantly.
