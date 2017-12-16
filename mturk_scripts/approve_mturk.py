@@ -73,6 +73,7 @@ def main():
                                          "task_3_str_from_user": "0",
                                          "task_3_oidx_from_user": "0",
                                          "error_found_in_logfile": "0",
+                                         "warning_found_in_logfile": "0",
                                          "incomplete_logfile": "1"}
                             user_open_response = None
 
@@ -166,6 +167,8 @@ def main():
                                     # Check for errors.
                                     if "Error" in contents:
                                         user_data["error_found_in_logfile"] = "1"
+                                    if "WARNING" in contents:
+                                        user_data["warning_found_in_logfile"] = "1"
 
                             # Store.
                             user_data_to_write.append(user_data)
@@ -180,6 +183,11 @@ def main():
                             if user_data["error_found_in_logfile"] == "1":
                                 print ("WARNING: " + row[id_header] + " gen id " + gen_id +
                                        " logfile may contain runtime error report")
+
+                            # Alert warning.
+                            if user_data["warning_found_in_logfile"] == "1":
+                                print ("WARNING: " + row[id_header] + " gen id " + gen_id +
+                                       " logfile may contain runtime warning report")
 
                             # Alert no tasks drawn.
                             if user_data["task_1_correct"] == '-2':

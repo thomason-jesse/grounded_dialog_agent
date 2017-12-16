@@ -852,7 +852,7 @@ class Agent:
 
     # Parse and ground a given utterance.
     def parse_and_ground_utterance(self, u):
-        debug = True
+        debug = False
 
         # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
         # TODO: confidence could be propagated through the confidence values returned by the grounder, such that

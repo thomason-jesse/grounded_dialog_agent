@@ -68,15 +68,14 @@ class KBGrounder:
                             groundings.append((match, ci_la + cj_la, conf))
 
             elif self.is_logical(root.idx, 'and'):
+                if len(child_groundings) < 2:
+                    print ("WARNING: KBGrounder found 'and' with only one child: " +
+                           self.parser.print_parse(root, True))
                 # Return True bool if ground child trees' boolean values match.
                 child_combinations = []  # idxs of children for whom 'and' holds
                 for cidx in range(len(child_groundings[0])):
-                    ci_bool = child_groundings[0][cidx][0]
-                    for cjdx in range(len(child_groundings[1])):
-                        cj_bool = child_groundings[1][cjdx][0]
-                        if ci_bool == cj_bool:
-                            child_combinations.append([cidx, cjdx])
-                for cj in range(2, len(child_groundings)):
+                    child_combinations.append([cidx])
+                for cj in range(1, len(child_groundings)):
                     for comb in child_combinations:
                         ci_bool = child_groundings[0][comb[0]][0]
                         for cjdx in range(len(child_groundings[cj])):  # and takes arbitrarily many children
