@@ -11,7 +11,6 @@ def main():
     experiment_dir = FLAGS_experiment_dir
     num_folds = FLAGS_num_folds
 
-    # TODO: use this filtering during aggregation as well, probably.
     strip_repeat_workers = True
     seen_turk_ids = {}
     for cond in ["train", "test"]:
@@ -50,34 +49,36 @@ def main():
                            "task_3_str_from_user": []}
             summary_csv_fn = os.path.join(experiment_dir, "fold" + str(fold), cond, "summary.csv")
 
-            with open(summary_csv_fn, 'r') as f:
-                lines = f.readlines()
-                headers = lines[0].strip().split(',')
-                for lidx in range(1, len(lines)):
-                    data = lines[lidx].strip().split(',')
+            if os.path.isfile(summary_csv_fn):
+                with open(summary_csv_fn, 'r') as f:
+                    lines = f.readlines()
+                    headers = lines[0].strip().split(',')
+                    for lidx in range(1, len(lines)):
+                        data = lines[lidx].strip().split(',')
 
-                    # Aggregate over the same users we used for retraining.
-                    pickle_exists = data[headers.index("pickle_exists")]
-                    task_3_correct = data[headers.index("task_3_correct")]
-                    log_exists = data[headers.index("log_exists")]
-                    if (pickle_exists == "1" and log_exists == "1" and
-                            (task_3_correct == "0" or task_3_correct == "1")):
+                        # Aggregate over the same users we used for retraining.
+                        pickle_exists = data[headers.index("pickle_exists")]
+                        task_3_correct = data[headers.index("task_3_correct")]
+                        log_exists = data[headers.index("log_exists")]
+                        if (pickle_exists == "1" and log_exists == "1" and
+                                (task_3_correct == "0" or task_3_correct == "1")):
 
-                        # This is the condition and fold in which we first saw the worker.
-                        turk_id = data[headers.index('worker_id')]
-                        if (not strip_repeat_workers or
-                                (turk_id in seen_turk_ids and seen_turk_ids[turk_id] == (cond, fold))):
+                            # This is the condition and fold in which we first saw the worker.
+                            turk_id = data[headers.index('worker_id')]
+                            if (not strip_repeat_workers or
+                                    (turk_id in seen_turk_ids and seen_turk_ids[turk_id] == (cond, fold))):
 
-                            for task in range(1, 4):
-                                task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
-                                raw_results["task_" + str(task) + "_correct"].append(task_correct)
-                                if task_correct:
-                                    task_user_strs = int(data[headers.index("task_" + str(task) + "_str_from_user")])
-                                    raw_results["task_" + str(task) + "_str_from_user"].append(task_user_strs)
-                        else:
-                            print "WARNING: ignoring repeat worker " + turk_id
-                        if strip_repeat_workers and turk_id in seen_turk_ids:
-                            del seen_turk_ids[turk_id]  # In case of repeat users across batches in same fold/cond.
+                                for task in range(1, 4):
+                                    task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
+                                    raw_results["task_" + str(task) + "_correct"].append(task_correct)
+                                    if task_correct:
+                                        task_user_strs = int(data[headers.index("task_" + str(task) +
+                                                                                "_str_from_user")])
+                                        raw_results["task_" + str(task) + "_str_from_user"].append(task_user_strs)
+                            else:
+                                print "WARNING: ignoring repeat worker " + turk_id
+                            if strip_repeat_workers and turk_id in seen_turk_ids:
+                                del seen_turk_ids[turk_id]  # In case of repeat users across batches in same fold/cond.
 
             pr = {}
             for r in raw_results:
