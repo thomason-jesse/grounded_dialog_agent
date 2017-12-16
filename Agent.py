@@ -851,7 +851,7 @@ class Agent:
                 grounded_form = self.parser.lexicon.read_semantic_form_from_str(rs[r], cat_idx, None, [])
 
                 for u in us[r]:
-                    if [u, grounded_form] not in pairs:
+                    if len(u) > 0 and [u, grounded_form] not in pairs:
                         pairs.append([u, grounded_form])
                 if debug and len(us[r]) > 0:
                     print ("induce_utterance_grounding_pairs_from_conversation: adding '" + r + "' pairs for gr form " +

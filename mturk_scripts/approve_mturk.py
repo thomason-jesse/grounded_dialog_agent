@@ -57,6 +57,10 @@ def main():
                                          "task_1_correct": "-2",
                                          "task_2_correct": "-2",
                                          "task_3_correct": "-2",
+                                         "task_1_correct_action": "-2",
+                                         "task_2_correct_action": "-2",
+                                         "task_3_correct_action": "-2",
+                                         "always_chose_walk": "1",
                                          "pickle_exists": '0',
                                          "tasks_easy": "-1",
                                          "understood": "-1",
@@ -85,6 +89,7 @@ def main():
                                 drawn_fn = os.path.join(user_data_dir, gen_id + "." + str(task) + ".drawn.txt")
                                 if os.path.isfile(drawn_fn):
                                     user_data["task_" + str(task) + "_correct"] = '-1'
+                                    user_data["task_" + str(task) + "_correct_action"] = '-1'
                                     with open(drawn_fn, 'r') as drawn_f:
                                         drawn_roles = {}
                                         for rv_str in drawn_f.read().strip().split(';'):
@@ -102,6 +107,10 @@ def main():
                                                 if chosen_roles[r] != drawn_roles[r]:
                                                     task_correct = False
                                             user_data["task_" + str(task) + "_correct"] = '1' if task_correct else '0'
+                                            user_data["task_" + str(task) + "_correct_action"] = '1' if \
+                                                chosen_roles['action'] == drawn_roles['action'] else '0'
+                                            if chosen_roles['action'] != 'walk':
+                                                user_data["always_chose_walk"] = "0"
                                             if task_correct:
                                                 bonuses += 1
 

@@ -58,10 +58,15 @@ def main():
 
                         # Aggregate over the same users we used for retraining.
                         pickle_exists = data[headers.index("pickle_exists")]
+                        # task_1_correct_action = data[headers.index("task_1_correct_action")]
+                        # task_2_correct_action = data[headers.index("task_2_correct_action")]
+                        # task_3_correct_action = data[headers.index("task_3_correct_action")]
+                        always_chose_walk = data[headers.index("always_chose_walk")]
                         task_3_correct = data[headers.index("task_3_correct")]
                         log_exists = data[headers.index("log_exists")]
                         if (pickle_exists == "1" and log_exists == "1" and
-                                (task_3_correct == "0" or task_3_correct == "1")):
+                                (task_3_correct == "0" or task_3_correct == "1") and
+                                always_chose_walk == "0"):
 
                             # This is the condition and fold in which we first saw the worker.
                             turk_id = data[headers.index('worker_id')]
