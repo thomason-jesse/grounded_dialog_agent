@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,3
+frustrated,1
+object_qs,2
+use_navigation,3
+use_delivery,3
+use_relocation,4
+Thank you for the survey, it is fun.

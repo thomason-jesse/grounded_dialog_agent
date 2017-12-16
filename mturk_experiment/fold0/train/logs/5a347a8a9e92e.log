@@ -1,0 +1,201 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the kitchen'
+get_from_user (processed): 'go to the kitchen'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'blue' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'styrofoam' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the kitchen across from the lounge next to Richard Rogue'
+get_from_user (processed): 'go to the kitchen across from the lounge next to richard rogue'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the kitchen'
+get_from_user (processed): 'go to the kitchen'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}], [{'all': ['go to the kitchen'], 'patient': [], 'goal': ['go to the kitchen'], 'source': [], 'action': [], 'recipient': []}], [('column', 10, 0), ('column', 3, 0), ('column', 27, 0), ('column', 7, 0), ('column', 18, 0), ('column', 2, 0), ('column', 20, 0), ('column', 17, 0), ('blue', 18, 1), ('styrofoam', 10, 0), ('styrofoam', 3, 0), ('styrofoam', 27, 0), ('styrofoam', 7, 0), ('styrofoam', 18, 0), ('styrofoam', 2, 0), ('styrofoam', 20, 0), ('styrofoam', 17, 0), ('spice', 10, 0), ('spice', 3, 0), ('spice', 27, 0), ('spice', 7, 0), ('spice', 18, 0), ('spice', 2, 0), ('spice', 20, 0), ('spice', 17, 0), ('block', 10, 0), ('block', 3, 0), ('block', 27, 0), ('block', 7, 0), ('block', 18, 0), ('block', 2, 0), ('block', 20, 0), ('block', 17, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the pill bottle to walter ward'
+get_from_user (processed): 'take the pill bottle to walter ward'
+say_to_user: I haven't heard the word 'pill' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'bottle' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No a pill bottle is an object'
+get_from_user (processed): 'no a pill bottle is an object'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'bottle' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the pill bottle'
+get_from_user (processed): 'the pill bottle'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'coffee' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'beans' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'ward' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'tower' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'p'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'p'}
+get_from_user requested feedback
+get_from_user (raw): 'the pills'
+get_from_user (processed): 'the pills'
+say_to_user: I haven't heard the word 'pills' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_6', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_6', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}, {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_6', 'goal': None, 'source': None}], [{'all': ['go to the kitchen'], 'patient': [], 'goal': ['go to the kitchen'], 'source': [], 'action': [], 'recipient': []}, {'all': ['take the pill bottle to walter ward'], 'patient': ['the pill bottle', 'the pills'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('column', 10, 0), ('column', 3, 0), ('column', 27, 0), ('column', 7, 0), ('column', 18, 0), ('column', 2, 0), ('column', 20, 0), ('column', 17, 0), ('blue', 18, 1), ('styrofoam', 10, 0), ('styrofoam', 3, 0), ('styrofoam', 27, 0), ('styrofoam', 7, 0), ('styrofoam', 18, 0), ('styrofoam', 2, 0), ('styrofoam', 20, 0), ('styrofoam', 17, 0), ('spice', 10, 0), ('spice', 3, 0), ('spice', 27, 0), ('spice', 7, 0), ('spice', 18, 0), ('spice', 2, 0), ('spice', 20, 0), ('spice', 17, 0), ('block', 10, 0), ('block', 3, 0), ('block', 27, 0), ('block', 7, 0), ('block', 18, 0), ('block', 2, 0), ('block', 20, 0), ('block', 17, 0), ('coffee', 10, 0), ('coffee', 3, 0), ('coffee', 27, 0), ('coffee', 7, 0), ('coffee', 18, 0), ('coffee', 2, 0), ('coffee', 20, 0), ('coffee', 17, 0), ('bean', 10, 0), ('bean', 3, 0), ('bean', 27, 0), ('bean', 7, 0), ('bean', 18, 0), ('bean', 2, 0), ('bean', 20, 0), ('bean', 17, 0), ('empty', 10, 0), ('empty', 3, 0), ('empty', 27, 0), ('empty', 7, 0), ('empty', 18, 0), ('empty', 2, 0), ('empty', 20, 0), ('empty', 17, 0), ('tower', 10, 0), ('tower', 3, 0), ('tower', 27, 0), ('tower', 7, 0), ('tower', 18, 0), ('tower', 2, 0), ('tower', 20, 0), ('tower', 17, 0), ('pringles', 10, 0), ('pringles', 3, 0), ('pringles', 27, 0), ('pringles', 7, 0), ('pringles', 18, 0), ('pringles', 2, 0), ('pringles', 20, 0), ('pringles', 17, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'take the styrofoam from Mallory "Mal" Maroon to the pod'
+get_from_user (processed): 'take the styrofoam from mallory mal maroon to the pod'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'deliver the styrofoam'
+get_from_user (processed): 'deliver the styrofoam'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'long' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'No deliver the styrofoam to the pod'
+get_from_user (processed): 'no deliver the styrofoam to the pod'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'Nothing'
+get_from_user (processed): 'nothing'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'Nothing'
+get_from_user (processed): 'nothing'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'styrofoam'
+get_from_user (processed): 'styrofoam'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}, {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_6', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 's', 'patient': 'oidx_26', 'goal': None, 'source': None}], [{'all': ['go to the kitchen'], 'patient': [], 'goal': ['go to the kitchen'], 'source': [], 'action': [], 'recipient': []}, {'all': ['take the pill bottle to walter ward'], 'patient': ['the pill bottle', 'the pills'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['take the styrofoam from mallory mal maroon to the pod'], 'patient': ['deliver the styrofoam', 'no', 'no', 'nothing', 'styrofoam'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('column', 10, 0), ('column', 3, 0), ('column', 27, 0), ('column', 7, 0), ('column', 18, 0), ('column', 2, 0), ('column', 20, 0), ('column', 17, 0), ('blue', 18, 1), ('styrofoam', 10, 0), ('styrofoam', 3, 0), ('styrofoam', 27, 0), ('styrofoam', 7, 0), ('styrofoam', 18, 0), ('styrofoam', 2, 0), ('styrofoam', 20, 0), ('styrofoam', 17, 0), ('spice', 10, 0), ('spice', 3, 0), ('spice', 27, 0), ('spice', 7, 0), ('spice', 18, 0), ('spice', 2, 0), ('spice', 20, 0), ('spice', 17, 0), ('block', 10, 0), ('block', 3, 0), ('block', 27, 0), ('block', 7, 0), ('block', 18, 0), ('block', 2, 0), ('block', 20, 0), ('block', 17, 0), ('coffee', 10, 0), ('coffee', 3, 0), ('coffee', 27, 0), ('coffee', 7, 0), ('coffee', 18, 0), ('coffee', 2, 0), ('coffee', 20, 0), ('coffee', 17, 0), ('bean', 10, 0), ('bean', 3, 0), ('bean', 27, 0), ('bean', 7, 0), ('bean', 18, 0), ('bean', 2, 0), ('bean', 20, 0), ('bean', 17, 0), ('empty', 10, 0), ('empty', 3, 0), ('empty', 27, 0), ('empty', 7, 0), ('empty', 18, 0), ('empty', 2, 0), ('empty', 20, 0), ('empty', 17, 0), ('tower', 10, 0), ('tower', 3, 0), ('tower', 27, 0), ('tower', 7, 0), ('tower', 18, 0), ('tower', 2, 0), ('tower', 20, 0), ('tower', 17, 0), ('pringles', 10, 0), ('pringles', 3, 0), ('pringles', 27, 0), ('pringles', 7, 0), ('pringles', 18, 0), ('pringles', 2, 0), ('pringles', 20, 0), ('pringles', 17, 0), ('can', 2, 1), ('metallic', 10, 0), ('metallic', 3, 0), ('metallic', 27, 0), ('metallic', 7, 0), ('metallic', 18, 0), ('metallic', 2, 0), ('metallic', 20, 0), ('metallic', 17, 0), ('rectangle', 10, 0), ('rectangle', 3, 0), ('rectangle', 27, 0), ('rectangle', 7, 0), ('rectangle', 18, 0), ('rectangle', 2, 0), ('rectangle', 20, 0), ('rectangle', 17, 0), ('clear', 10, 0), ('clear', 3, 0), ('clear', 27, 0), ('clear', 7, 0), ('clear', 18, 0), ('clear', 2, 0), ('clear', 20, 0), ('clear', 17, 0), ('long', 3, 1)], []]

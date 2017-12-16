@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,4
+object_qs,1
+use_navigation,2
+use_delivery,5
+use_relocation,5
+While it couldn't understand that i wanted it to get the jar of peppercorns, i think it's really good at understanding the basics of what i was saying. After its learned a lot more I'd say it would be very useful.

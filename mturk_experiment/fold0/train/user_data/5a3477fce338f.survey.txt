@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,5
+object_qs,5
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The interface needs to be simplified. I didn't even realize there were pictures of what the robot was suggesting it would move until the last trial because seeing them required me to scroll up to the top of the page. 

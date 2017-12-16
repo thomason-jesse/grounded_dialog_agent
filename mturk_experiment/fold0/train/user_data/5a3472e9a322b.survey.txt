@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,0
+use_navigation,0
+use_delivery,0
+use_relocation,0
+I wasn't able to type anything into the box. It just froze for a few minutes and then said something about a technical issue and to move on to survey.

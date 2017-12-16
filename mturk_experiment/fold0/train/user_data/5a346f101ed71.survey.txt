@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,5
+frustrated,4
+object_qs,1
+use_navigation,3
+use_delivery,5
+use_relocation,5
+On the very first task, I was prompted to respond if any of the items were containers.  Since the images didn't load, I shook my head.  All other images seemed to load fine.

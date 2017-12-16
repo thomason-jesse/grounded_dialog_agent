@@ -1,0 +1,201 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go and get some files from Richard Rogue the Secretary'
+get_from_user (processed): 'go and get some files from richard rogue the secretary'
+say_to_user: I haven't heard the word 'files' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes a document'
+get_from_user (processed): 'yes a document'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'files' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'files' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a biro or a book'
+get_from_user (processed): 'a biro or a book'
+say_to_user: I haven't heard the word 'or' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'or' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'call me Richard Rogue, Secretary'
+get_from_user (processed): 'call me richard rogue secretary'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'or' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'book' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'book' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'book' mean the same thing as 'column'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'book' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+say_to_user_with_referents: Would you use the word 'can' when describing <p>this</p> object? {'patient': 'oidx_27'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue, Secretary'
+get_from_user (processed): 'richard rogue secretary'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_11', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_11', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'h', 'patient': 'oidx_11', 'goal': None, 'source': None}], [{'all': ['go and get some files from richard rogue the secretary'], 'patient': ['a biro or a book'], 'goal': [], 'source': [], 'action': [], 'recipient': ['richard rogue secretary']}], [('book', 10, 0), ('book', 3, 0), ('book', 27, 0), ('book', 7, 0), ('book', 18, 0), ('book', 2, 0), ('book', 20, 0), ('book', 17, 0), ('can', 10, 1), ('can', 20, 0), ('can', 3, 1), ('can', 27, 0)], [('files', 'container', False), ('or', 'can', True), ('book', 'coffee', False), ('book', 'column', False)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'give this to Dr. Sybil Smalt'
+get_from_user (processed): 'give this to dr sybil smalt'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'can'
+get_from_user (processed): 'can'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'biro' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'column' when describing, or shake your head if you could use 'column' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'blue' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'blue'
+get_from_user (processed): 'blue'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'h', 'patient': 'oidx_11', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28', 'goal': None, 'source': None}], [{'all': ['go and get some files from richard rogue the secretary'], 'patient': ['a biro or a book'], 'goal': [], 'source': [], 'action': [], 'recipient': ['richard rogue secretary']}, {'all': ['give this to dr sybil smalt'], 'patient': ['can', 'blue'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('book', 10, 0), ('book', 3, 0), ('book', 27, 0), ('book', 7, 0), ('book', 18, 0), ('book', 2, 0), ('book', 20, 0), ('book', 17, 0), ('can', 10, 1), ('can', 20, 0), ('can', 3, 1), ('can', 27, 0), ('column', 10, 1), ('spice', 10, 0), ('spice', 3, 0), ('spice', 27, 0), ('spice', 7, 0), ('spice', 18, 0), ('spice', 2, 0), ('spice', 20, 0), ('spice', 17, 0), ('column', 10, 1), ('column', 3, 1), ('column', 27, 1), ('column', 7, 1), ('column', 18, 1), ('column', 2, 1), ('column', 20, 1), ('column', 17, 1), ('blue', 10, 1), ('metallic', 3, 1)], [('files', 'container', False), ('or', 'can', True), ('book', 'coffee', False), ('book', 'column', False)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'x'
+get_from_user (processed): 'x'
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'shape'
+get_from_user (processed): 'shape'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'x' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'x' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'x' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'dr' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'blue' when describing, or shake your head if you could use 'blue' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'blue' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'blue'
+get_from_user (processed): 'blue'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Sybil Smalt'
+get_from_user (processed): 'dr sybil smalt'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 's', 'patient': 'oidx_12', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 's', 'patient': 'oidx_12', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'h', 'patient': 'oidx_11', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 's', 'patient': 'oidx_12', 'goal': None, 'source': None}], [{'all': ['go and get some files from richard rogue the secretary'], 'patient': ['a biro or a book'], 'goal': [], 'source': [], 'action': [], 'recipient': ['richard rogue secretary']}, {'all': ['give this to dr sybil smalt'], 'patient': ['can', 'blue'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['x'], 'patient': ['blue'], 'goal': [], 'source': [], 'action': [], 'recipient': ['dr sybil smalt']}], [('book', 10, 0), ('book', 3, 0), ('book', 27, 0), ('book', 7, 0), ('book', 18, 0), ('book', 2, 0), ('book', 20, 0), ('book', 17, 0), ('can', 10, 1), ('can', 20, 0), ('can', 3, 1), ('can', 27, 0), ('column', 10, 1), ('spice', 10, 0), ('spice', 3, 0), ('spice', 27, 0), ('spice', 7, 0), ('spice', 18, 0), ('spice', 2, 0), ('spice', 20, 0), ('spice', 17, 0), ('column', 10, 1), ('column', 3, 1), ('column', 27, 1), ('column', 7, 1), ('column', 18, 1), ('column', 2, 1), ('column', 20, 1), ('column', 17, 1), ('blue', 10, 1), ('metallic', 3, 1), ('x', 10, 0), ('x', 3, 0), ('x', 27, 0), ('x', 7, 0), ('x', 18, 0), ('x', 2, 0), ('x', 20, 0), ('x', 17, 0), ('container', 10, 0), ('container', 3, 0), ('container', 27, 0), ('container', 7, 0), ('container', 18, 0), ('container', 2, 0), ('container', 20, 0), ('container', 17, 0), ('blue', 18, 0), ('blue', 18, 1), ('pringles', 18, 1)], [('files', 'container', False), ('or', 'can', True), ('book', 'coffee', False), ('book', 'column', False), ('x', 'metallic', False), ('x', 'cylinder', False)]]

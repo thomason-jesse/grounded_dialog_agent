@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,2
+frustrated,1
+object_qs,2
+use_navigation,0
+use_delivery,1
+use_relocation,1
+I tried to get the robot to go to the room but failed. I tried to be as creative as possible with suggestions but still did not succeed, and this is why i would not use this robot. Maybe when he learns a bit more!

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,3
+object_qs,4
+use_navigation,3
+use_delivery,3
+use_relocation,3
+Its a good experience and interesting task.The first two tasks were completed successfully. However, the third task it has gotten long. Also, it seems like random appearance of locations and things regardless of given instructions.

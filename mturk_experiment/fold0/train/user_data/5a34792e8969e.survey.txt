@@ -1,0 +1,12 @@
+tasks_easy,4
+understood,0
+frustrated,6
+object_qs,4
+use_navigation,0
+use_delivery,0
+use_relocation,0
+I would be throwing shoes at this robot within an hour.
+ 
+There were a couple of things I noticed. He would ask if I wanted him to 'move something from somewhere to there' and be wrong on the object to be moved as well as where it was supposed to be moved. It was impossible to specify which was wrong (or explain that both were). 
+I also wasn't sure if I should tell him to 'move' something from one room to another or 'deliver' something from one place to another.
+He didn't understand full sentences either.
