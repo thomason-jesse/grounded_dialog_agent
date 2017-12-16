@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,4
+object_qs,2
+use_navigation,4
+use_delivery,2
+use_relocation,2
+It was fun although a bit frustrating. I like communicating with a robot.

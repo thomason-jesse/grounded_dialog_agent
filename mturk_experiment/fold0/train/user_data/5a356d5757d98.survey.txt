@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,6
+object_qs,4
+use_navigation,2
+use_delivery,2
+use_relocation,2
+One of us isn't very bright and I think it's me.

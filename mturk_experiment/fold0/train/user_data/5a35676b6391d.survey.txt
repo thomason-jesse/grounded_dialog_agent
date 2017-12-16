@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,2
+object_qs,0
+use_navigation,5
+use_delivery,5
+use_relocation,5
+I wanted to be descriptive in what should be moved and where but my descriptions were not understood by the robot yet.  I wanted to say &quot;plastic lid&quot;, blue container, cylinder, etc.  These descriptions didn't work.

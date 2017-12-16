@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,2
+object_qs,2
+use_navigation,3
+use_delivery,3
+use_relocation,3
+Some of the pictures don't give enough information to judge their qualities - I can't tell if a semi-transparent bottle is filled with water or is empty, but I might be able to with a bigger picture.

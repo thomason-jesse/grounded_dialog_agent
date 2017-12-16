@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,2
+object_qs,4
+use_navigation,4
+use_delivery,4
+use_relocation,4
+Well, it’s evident that the robot has quite a bit of a learning-curve to trudge. But once it makes that journey, it could well compete for the title of man’s best friend. Doing this task sure made me think how much I take humans for granted. Thank you! 

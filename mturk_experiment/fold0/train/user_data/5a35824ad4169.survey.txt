@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,1
+use_relocation,1
+the conversation box expanding was a bit annoying as it scrolled the page lower from my objectives and whatever item/person the robot was referring to.
