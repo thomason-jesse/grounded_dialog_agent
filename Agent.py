@@ -525,13 +525,22 @@ class Agent:
 
                         # Whether we identified a synonym or not, we need to determine whether this word is being
                         # Used as an adjective or a noun, which we can do based on its position in the utterance.
+                        # TODO: make checking for adjective a flag depending on whether we're using a bare noun-only
+                        # TODO: parser instead of the current hard fix to that.
                         tk_probably_adjective = self.is_token_adjective(tkidx, tks)
                         if debug:
+                            # print ("preprocess_utterance_for_new_predicates: examined following token and guessed " +
+                            #        " that '" + tk + "'s probably adjective value is " + str(tk_probably_adjective))
                             print ("preprocess_utterance_for_new_predicates: examined following token and guessed " +
-                                   " that '" + tk + "'s probably adjective value is " + str(tk_probably_adjective))
+                                   " that '" + tk + "'s probably adjective value is " + str(False))
 
                         # Add new lexical entries for this fresh perceptual token.
-                        self.add_new_perceptual_lexical_entries(tk, tk_probably_adjective, synonym_identified)
+                        # self.add_new_perceptual_lexical_entries(tk, tk_probably_adjective, synonym_identified)
+                        self.add_new_perceptual_lexical_entries(tk, False, synonym_identified)
+
+                        # TODO: these are also part of the bare-noun hard fix.
+                        self.parser.type_raise_bare_nouns()  # should only affect new nouns
+                        self.parser.theta.update_probabilities()  # because the above adds new entries
 
     # Add new lexical entries from a perceptual token.
     # tk - the string token to be added
