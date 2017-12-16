@@ -1,8 +1,0 @@
-tasks_easy,5
-understood,0
-frustrated,6
-object_qs,3
-use_navigation,2
-use_delivery,0
-use_relocation,0
-That was very frustrating! Even still, it was interesting. I like testing artificial intelligence.

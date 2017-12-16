@@ -1,8 +1,0 @@
-tasks_easy,1
-understood,5
-frustrated,4
-object_qs,4
-use_navigation,4
-use_delivery,4
-use_relocation,1
-Thank you for the opportunity to participate!
