@@ -1,0 +1,160 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Get out of the lab'
+get_from_user (processed): 'get out of the lab'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'cylinder' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'container' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'I want you to take the container and give it to Robert "Bob" Brown'
+get_from_user (processed): 'i want you to take the container and give it to robert bob brown'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'To Robert "Bob" Brown office'
+get_from_user (processed): 'to robert bob brown office'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3510'}
+get_from_user requested feedback
+get_from_user (raw): 'To Dr. Heidi Hughes'
+get_from_user (processed): 'to dr heidi hughes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move the container to to Dr. Heidi Hughes office'
+get_from_user (processed): 'move the container to to dr heidi hughes office'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3510', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3510'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Heidi Hughes office'
+get_from_user (processed): 'dr heidi hughes office'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3510'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3510'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Heidi Hughes office'
+get_from_user (processed): 'dr heidi hughes office'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3510', 'goal': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'Container'
+get_from_user (processed): 'container'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3510', 'patient': 'oidx_28', 'goal': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_28', 'goal': '3402', 'source': '3510'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_28', 'goal': '3402', 'source': '3510'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_28', 'goal': '3402', 'source': '3510'}], [{'all': ['get out of the lab'], 'patient': ['container'], 'goal': ['to dr heidi hughes', 'move the container to to dr heidi hughes office', 'dr heidi hughes office'], 'source': ['to robert bob brown office'], 'action': [], 'recipient': []}], [('cylinder', 2, 1), ('peach', 10, 0), ('peach', 3, 0), ('peach', 27, 0), ('peach', 7, 0), ('peach', 18, 0), ('peach', 2, 0), ('peach', 20, 0), ('peach', 17, 0), ('metallic', 10, 0), ('metallic', 3, 0), ('metallic', 27, 0), ('metallic', 7, 0), ('metallic', 18, 0), ('metallic', 2, 0), ('metallic', 20, 0), ('metallic', 17, 0), ('column', 3, 1), ('container', 2, 1)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give the white column to Robert "Bob" Brown'
+get_from_user (processed): 'give the white column to robert bob brown'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Robert "Bob" Brown office'
+get_from_user (processed): 'robert bob brown office'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'long' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'styrofoam' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'cylinder' when describing, or shake your head if you could use 'cylinder' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'white' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'container' when describing, or shake your head if you could use 'container' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3510'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3510', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3510', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_28', 'goal': '3402', 'source': '3510'}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3510', 'source': None}], [{'all': ['get out of the lab'], 'patient': ['container'], 'goal': ['to dr heidi hughes', 'move the container to to dr heidi hughes office', 'dr heidi hughes office'], 'source': ['to robert bob brown office'], 'action': [], 'recipient': []}, {'all': ['give the white column to robert bob brown'], 'patient': [], 'goal': ['robert bob brown office'], 'source': [], 'action': [], 'recipient': []}], [('cylinder', 2, 1), ('peach', 10, 0), ('peach', 3, 0), ('peach', 27, 0), ('peach', 7, 0), ('peach', 18, 0), ('peach', 2, 0), ('peach', 20, 0), ('peach', 17, 0), ('metallic', 10, 0), ('metallic', 3, 0), ('metallic', 27, 0), ('metallic', 7, 0), ('metallic', 18, 0), ('metallic', 2, 0), ('metallic', 20, 0), ('metallic', 17, 0), ('column', 3, 1), ('container', 2, 1), ('long', 3, 1), ('styrofoam', 20, 1), ('cylinder', 27, 0), ('white', 10, 0), ('white', 3, 0), ('white', 27, 0), ('white', 7, 0), ('white', 18, 0), ('white', 2, 0), ('white', 20, 0), ('white', 17, 0), ('container', 27, 0)], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move the white object to Dr. Sybil Smalt office'
+get_from_user (processed): 'move the white object to dr sybil smalt office'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'To Dr. Sybil Smalt's office'
+get_from_user (processed): 'to dr sybil smalt 's office'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'container' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'can' when describing, or shake your head if you could use 'can' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 27
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'To Mallory "Mal" Maroon's office'
+get_from_user (processed): 'to mallory mal maroon 's office'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move to <g>there</g>? {'

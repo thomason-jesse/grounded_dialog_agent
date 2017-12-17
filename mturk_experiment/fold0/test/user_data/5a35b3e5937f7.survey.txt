@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,5
+object_qs,5
+use_navigation,2
+use_delivery,2
+use_relocation,2
+Why does the robot have to ask the same question so many times? 

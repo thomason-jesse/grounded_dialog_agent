@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,6
+use_delivery,6
+use_relocation,6
+Besides the robot lack of understanding being frustrating, I found annoying issues with the task on my navigator, like some pictures I did not see at first because they were misplaced and the need to retype letters on my keyboard too many times.
