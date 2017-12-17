@@ -29,6 +29,7 @@ def main():
                                 seen_turk_ids[turk_id] = (cond, fold)
                             elif fold == e_fold and (fold == 0 and cond == "train") or (fold > 0 and cond == "test"):
                                 # fold 0 did train first, then test; all others test first
+                                # TODO: change this if procedure changes
                                 seen_turk_ids[turk_id] = (cond, fold)
                         else:
                             seen_turk_ids[turk_id] = (cond, fold)
