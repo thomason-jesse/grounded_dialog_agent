@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,3
+object_qs,2
+use_navigation,4
+use_delivery,5
+use_relocation,5
+It was a nice and interesting task. Makes us realize how simple things might not be so simple to others.

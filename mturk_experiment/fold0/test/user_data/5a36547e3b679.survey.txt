@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,3
+frustrated,3
+object_qs,6
+use_navigation,5
+use_delivery,5
+use_relocation,5
+thank for giving opportunity to work on your hit 

@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,3
+frustrated,3
+object_qs,2
+use_navigation,1
+use_delivery,3
+use_relocation,4
+Needs to understand more simple words specifically colors, large and small, and differentiate from containers, bottles, cans, etc,

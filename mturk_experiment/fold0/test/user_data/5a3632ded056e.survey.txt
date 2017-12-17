@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,3
+object_qs,2
+use_navigation,4
+use_delivery,4
+use_relocation,4
+Its pretty green and it took way too much time, i got 2 task wrong and i answered wrong too but i like that it learns, it need clear &quot;Stop&quot;, &quot;Clear&quot;, &quot;Restart&quot; commands so it becomes less frustrating and it should have &quot;Save&quot; commands that you can load previous successful attempts before they went wrong. If this item were to be on the market an official web were users can upload those saves would be needed.

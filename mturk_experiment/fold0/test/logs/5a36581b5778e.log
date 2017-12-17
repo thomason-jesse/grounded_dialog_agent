@@ -1,0 +1,77 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Hi'
+get_from_user (processed): 'hi'
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'm'
+get_from_user (processed): 'm'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'robert'
+get_from_user (processed): 'robert'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'blue'
+get_from_user (processed): 'blue'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'n'
+get_from_user (processed): 'n'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): '2 2'
+get_from_user (processed): '2 2'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'B'
+get_from_user (processed): 'b'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'H'
+get_from_user (processed): 'h'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'robot -t "Test Case Name" Test Suite Name'
+get_from_user (processed): 'robot t test case name test suite name'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'char type; while (true) {     cout << "Were you admitted? [y/n]" << endl;     cin >> type;      if ((type == 'y') || (type == 'n')) {         break;     } }'
+get_from_user (processed): 'char type; while true { cout << were you admitted [y/n] << endl; cin >> type; if type == 'y' || type == 'n' { break; } }'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'hi' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'hi' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'Hi means greeting'
+get_from_user (processed): 'hi means greeting'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'hi' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'woman means ladies'
+get_from_user (processed): 'woman means ladies'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'hi' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'there are 6 days in a week'
+get_from_user (processed): 'there are 6 days in a week'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'h

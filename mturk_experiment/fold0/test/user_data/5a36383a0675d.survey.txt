@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,5
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The robot didn't respond at all to what I was saying. At first when I was misspelling Dr. Smalt as &quot;Smart&quot; I understand it was my mistake. Even after I got the spelling right, the robot still didn't understand how to do a simple task even after I tried to explain it a dozen times.

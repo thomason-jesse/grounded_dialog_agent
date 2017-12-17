@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,1
+object_qs,5
+use_navigation,1
+use_delivery,4
+use_relocation,4
+I think the robot needs to learn more words. I think the robot has to understand words like office, conference rooms, correct, sorry etc. I think it is a very interesting project. Good luck!

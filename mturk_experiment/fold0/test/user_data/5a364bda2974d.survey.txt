@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,6
+object_qs,4
+use_navigation,1
+use_delivery,2
+use_relocation,1
+the robot doesnt understand major of the letters and words. no point wasting time behind such mechanism

@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,2
+frustrated,5
+object_qs,6
+use_navigation,1
+use_delivery,2
+use_relocation,1
+Robots are meant to be smart and efficient. This robot seemed more like dumb and time consuming. 
