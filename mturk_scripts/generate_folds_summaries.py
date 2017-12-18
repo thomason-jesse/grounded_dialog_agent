@@ -11,7 +11,7 @@ def main():
     experiment_dir = FLAGS_experiment_dir
     num_folds = FLAGS_num_folds
 
-    strip_repeat_workers = True
+    strip_repeat_workers = False
     seen_turk_ids = {}
     for cond in ["train", "test"]:
         for fold in range(num_folds):
