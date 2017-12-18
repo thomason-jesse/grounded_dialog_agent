@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,2
+frustrated,5
+object_qs,3
+use_navigation,2
+use_delivery,2
+use_relocation,2
+The robot does not have much knowledge of recently used &quot;language&quot; for particular items, such as the can of pop, or can of soda. It became very frustrating trying to find other ways to tell them what was needed. 

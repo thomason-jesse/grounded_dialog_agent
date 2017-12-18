@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,3
+frustrated,5
+object_qs,3
+use_navigation,4
+use_delivery,4
+use_relocation,4
+I really enjoyed the robot but once it thought I wanted an item even though it was wrong I didn't know how to make it find the other item.

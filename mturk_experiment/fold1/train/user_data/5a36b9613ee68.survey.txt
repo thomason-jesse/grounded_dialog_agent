@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,4
+object_qs,1
+use_navigation,1
+use_delivery,1
+use_relocation,1
+There seems to be no way to go back or correct the robot if its come to a conclusion about part of its task

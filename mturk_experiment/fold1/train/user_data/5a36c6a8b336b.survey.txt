@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,6
+object_qs,5
+use_navigation,4
+use_delivery,4
+use_relocation,4
+It was really hard to start a task over if you didn't quite understand the robot the first time. 
