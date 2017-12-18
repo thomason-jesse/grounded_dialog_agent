@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,4
+object_qs,2
+use_navigation,4
+use_delivery,4
+use_relocation,4
+i can see you updated something, i approve, seemed like it was a little more efficient.  keep it up, you're doing good, looking forward to interacting with your robot more.

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,4
+object_qs,4
+use_navigation,2
+use_delivery,2
+use_relocation,2
+nice experience and i had tried my level best to complete the task. i can't make the robot to change the object once selected. if we yes wrongly or unknowingly ,it is very difficult to reverse the selected option.
