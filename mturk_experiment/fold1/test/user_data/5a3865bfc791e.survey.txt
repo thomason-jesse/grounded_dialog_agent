@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,4
+object_qs,3
+use_navigation,2
+use_delivery,0
+use_relocation,1
+During the second task, the robot seemed to have gotten stuck in a chat loop about delivering to the wrong person. I wasn't able to relay the instructions as expected.

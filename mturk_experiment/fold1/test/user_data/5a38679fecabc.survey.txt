@@ -1,0 +1,9 @@
+tasks_easy,4
+understood,6
+frustrated,0
+object_qs,0
+use_navigation,4
+use_delivery,2
+use_relocation,6
+I didn't notice the objects for a few moments.  
+I hope I didn't ruin your robot.  

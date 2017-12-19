@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,5
+object_qs,1
+use_navigation,1
+use_delivery,1
+use_relocation,1
+Apparently it doesn't understand colors yet, because it constantly chose a yellow can even though I clearly stated I wanted a blue can.  Not sure outsourcing your training is a the greatest idea as people that don't care about the quality of the work will just click through anything to get to the end result in the shortest amount of time.

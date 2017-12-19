@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,2
+object_qs,3
+use_navigation,4
+use_delivery,4
+use_relocation,4
+While trying to type my responses to the robot, my keyboard randomly and periodically froze up for several seconds at a time, resulting in some garbled answers and frustration. I believe this was caused by whatever program was running at the time; I have not experienced this problem before, nor am I experiencing it now as I type.

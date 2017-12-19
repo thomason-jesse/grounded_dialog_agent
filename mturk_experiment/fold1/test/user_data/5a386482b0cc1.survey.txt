@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,6
+object_qs,1
+use_navigation,4
+use_delivery,5
+use_relocation,5
+Ugh. I can never figure out how to get it to understand that red and white container with the snap lid! It always goes for the soda can instead. Argh.  ^_^ Thank you very much for this task. It's a highlight of my day. 

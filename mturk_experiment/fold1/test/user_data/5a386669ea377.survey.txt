@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,5
+frustrated,2
+object_qs,0
+use_navigation,3
+use_delivery,4
+use_relocation,4
+Very, very awesome robot. This is going to be amazing for disabled people when it gets finished, thanks for letting us help!
