@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,3
+object_qs,6
+use_navigation,4
+use_delivery,5
+use_relocation,4
+It was somehow hard to talk with robots but I really enjoyed it! And also, bonuses are highly appreciated! Thank you!

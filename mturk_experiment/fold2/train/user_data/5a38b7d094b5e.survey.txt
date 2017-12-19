@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,4
+frustrated,3
+object_qs,4
+use_navigation,2
+use_delivery,2
+use_relocation,3
+nice task to even a chance to update myself too.

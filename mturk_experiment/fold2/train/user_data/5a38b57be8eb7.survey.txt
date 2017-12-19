@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,3
+use_delivery,4
+use_relocation,4
+I've done one of these tasks previously. Both times, it was hard to tell the robot to go to one of the offices that doesn't belong to a particular person. Is there any way to give these offices names and teach them to the robot? 

@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,2
+frustrated,5
+object_qs,3
+use_navigation,0
+use_delivery,0
+use_relocation,1
+The starting directions were unclear, but once I tried something it was more clear.  The most frustrating part is when I give an answer about a location and the follow up question is about an object.  This made me think I was wasting my time
