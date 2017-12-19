@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,5
+object_qs,6
+use_navigation,1
+use_delivery,4
+use_relocation,4
+Thank you! I enjoyed the task although it was somewhat challenging. The robot seemed to be confused sometimes, which confused me. Thanks again!! :-)

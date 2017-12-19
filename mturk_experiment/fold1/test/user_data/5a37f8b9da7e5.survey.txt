@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,5
+object_qs,0
+use_navigation,6
+use_delivery,6
+use_relocation,6
+The last task I said yes when the robot asked if I wanted to deliver something to someone when I really wanted him to take something from one place to another. Sorry, I think it needs to be more clear what the robot is asking. Also, once I say &quot;no&quot; to an object, the robot shouldn't ask again and again about that same object unless it's about identifying features.

@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,4
+object_qs,5
+use_navigation,1
+use_delivery,1
+use_relocation,1
+The first task was not successful but I didn't have a way to continue on with task. My intention was to get the robot to the office next door to where I needed it to go. I was planning on moving the robot along from there but it ended the conversation instead. I realized this error after this mistake and corrected my instructions accordingly for the next 2 tasks (which were successful). 
