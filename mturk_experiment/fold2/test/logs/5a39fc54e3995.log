@@ -1,0 +1,186 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'GO TO POD'
+get_from_user (processed): 'go to pod'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'brown' when describing <p>this</p> object? {'patient': 'oidx_16'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_21'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'styrofoam' when describing <p>this</p> object? {'patient': 'oidx_23'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'of' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'white' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 23
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'GO TO POD'
+get_from_user (processed): 'go to pod'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'GO N'
+get_from_user (processed): 'go n'
+say_to_user: I haven't heard the word 'n' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: Does 'n' mean the same thing as 'large'?
+get_from_user requested feedback
+get_from_user (raw): 'NOS'
+get_from_user (processed): 'nos'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'n' mean the same thing as 'large'?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'GO TO N'
+get_from_user (processed): 'go to n'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}], [{'all': ['go to pod'], 'patient': [], 'goal': ['go to pod', 'go n', 'go to n'], 'source': [], 'action': [], 'recipient': []}], [('brown', 16, 1), ('empty', 21, 1), ('styrofoam', 23, 1), ('can', 4, 1), ('white', 23, 1)], [('n', 'large', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'GO TO BLUE RECTANGLE'
+get_from_user (processed): 'go to blue rectangle'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'blue' when describing <p>this</p> object? {'patient': 'oidx_21'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'blue' when describing <p>this</p> object? {'patient': 'oidx_23'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'blue' when describing <p>this</p> object? {'patient': 'oidx_9'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'blue' when describing, or shake your head if you could use 'blue' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 23
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'GOTO D'
+get_from_user (processed): 'goto d'
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s>? {'action': 'move', 'source': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'POD'
+get_from_user (processed): 'pod'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3410', 'goal': '3422'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3410', 'goal': '3422'}
+get_from_user requested feedback
+get_from_user (raw): 'X'
+get_from_user (processed): 'x'
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3410', 'patient': 'oidx_6', 'goal': '3422'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3422', 'source': '3410'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3422', 'source': '3410'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3422', 'source': '3410'}], [{'all': ['go to pod'], 'patient': [], 'goal': ['go to pod', 'go n', 'go to n'], 'source': [], 'action': [], 'recipient': []}, {'all': ['go to blue rectangle'], 'patient': ['goto d', 'pod', 'x'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('brown', 16, 1), ('empty', 21, 1), ('styrofoam', 23, 1), ('can', 4, 1), ('white', 23, 1), ('blue', 21, 1), ('blue', 23, 1), ('blue', 9, 1), ('rectangle', 21, 0), ('rectangle', 24, 0), ('rectangle', 19, 0), ('rectangle', 23, 0), ('rectangle', 16, 0), ('rectangle', 0, 0), ('rectangle', 4, 0), ('rectangle', 9, 0), ('blue', 23, 0)], [('n', 'large', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'GO TO GREEN COLOR POD'
+get_from_user (processed): 'go to green color pod'
+say_to_user: I haven't heard the word 'green' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: Does 'green' mean the same thing as 'yellow'?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'container' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 9
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+say_to_user_with_referents: Would you use the word 'pringles' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'david' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 9
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'GO NEXT'
+get_from_user (processed): 'go next'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3408'}
+get_from_user requested feedback
+get_from_user (raw): 'GO NEXT'
+get_from_user (processed): 'go next'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3408'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3408', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3408', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_6', 'goal': '3422', 'source': '3410'}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3408', 'source': None}], [{'all': ['go to pod'], 'patient': [], 'goal': ['go to pod', 'go n', 'go to n'], 'source': [], 'action': [], 'recipient': []}, {'all': ['go to blue rectangle'], 'patient': ['goto d', 'pod', 'x'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['go to green color pod'], 'patient': [], 'goal': ['go next'], 'source': [], 'action': [], 'recipient': []}], [('brown', 16, 1), ('empty', 21, 1), ('styrofoam', 23, 1), ('can', 4, 1), ('white', 23, 1), ('blue', 21, 1), ('blue', 23, 1), ('blue', 9, 1), ('rectangle', 21, 0), ('rectangle', 24, 0), ('rectangle', 19, 0), ('rectangle', 23, 0), ('rectangle', 16, 0), ('rectangle', 0, 0), ('rectangle', 4, 0), ('rectangle', 9, 0), ('blue', 23, 0), ('container', 19, 1), ('peach', 9, 1), ('pringles', 19, 1), ('pringles', 4, 1), ('clear', 9, 1)], [('n', 'large', True), ('green', 'yellow', True)]]

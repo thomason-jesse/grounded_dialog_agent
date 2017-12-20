@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,2
+frustrated,6
+object_qs,5
+use_navigation,3
+use_delivery,4
+use_relocation,6
+I DONT LIKE IT MORE TASKS ARE COMMING PLEASE FORWARD IT TO MY COMMAND
