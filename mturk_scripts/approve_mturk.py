@@ -39,6 +39,11 @@ def main():
                 else:
                     code = row[survey_header]
                     if '_' in code:
+                        code_parts = code.split('_')
+                        if len(code_parts) > 2:
+                            print (row[id_header] + " survey code doesn't match form '" + code + "'")
+                            total += 1
+                            continue
                         gen_id, id_hash = code.split('_')
                         true_hash = hashlib.sha1("phm_salted_hash" + gen_id +
                                                  "rwhpidcwha_" + add_salt).hexdigest()[:13]

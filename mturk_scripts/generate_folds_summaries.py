@@ -11,7 +11,7 @@ def main():
     experiment_dir = FLAGS_experiment_dir
     num_folds = FLAGS_num_folds
 
-    strip_repeat_workers = False
+    strip_repeat_workers = True
     seen_turk_ids = {}
     for cond in ["train", "test"]:
         for fold in range(num_folds):
@@ -27,9 +27,7 @@ def main():
                             e_cond, e_fold = seen_turk_ids[turk_id]
                             if fold < e_fold:  # Record earlier sighting.
                                 seen_turk_ids[turk_id] = (cond, fold)
-                            elif fold == e_fold and (fold == 0 and cond == "train") or (fold > 0 and cond == "test"):
-                                # fold 0 did train first, then test; all others test first
-                                # TODO: change this if procedure changes
+                            elif fold == e_fold and cond == "train":
                                 seen_turk_ids[turk_id] = (cond, fold)
                         else:
                             seen_turk_ids[turk_id] = (cond, fold)
