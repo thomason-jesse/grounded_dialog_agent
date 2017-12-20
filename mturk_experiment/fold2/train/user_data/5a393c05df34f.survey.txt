@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,5
+object_qs,5
+use_navigation,2
+use_delivery,2
+use_relocation,2
+I couldn't get the robot to get any of the items but only move to a place on the map

@@ -1,0 +1,11 @@
+tasks_easy,4
+understood,4
+frustrated,3
+object_qs,1
+use_navigation,3
+use_delivery,3
+use_relocation,3
+The computer needs to learn more.
+
+
+

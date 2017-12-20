@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,4
+object_qs,2
+use_navigation,2
+use_delivery,2
+use_relocation,2
+I do not think the last task was completed correctly.  It seems the robot went to its destination without taking the bottle of tylenol.

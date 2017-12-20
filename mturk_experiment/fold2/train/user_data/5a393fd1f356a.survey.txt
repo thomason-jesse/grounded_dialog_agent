@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,6
+object_qs,6
+use_navigation,5
+use_delivery,5
+use_relocation,5
+The robot didn't see to understand a lot of the directions that were given. It took a lot of work to get the robot to move in the right direction.
