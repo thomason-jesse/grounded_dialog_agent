@@ -1,0 +1,194 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Come to the lab'
+get_from_user (processed): 'come to the lab'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'yellow' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Would you use the word 'styrofoam' when describing <p>this</p> object? {'patient': 'oidx_23'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_4'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Would you use the word 'blue' when describing <p>this</p> object? {'patient': 'oidx_19'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Would you use the word 'empty' when describing <p>this</p> object? {'patient': 'oidx_21'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Take the yellow bottle and deliver it to N'
+get_from_user (processed): 'take the yellow bottle and deliver it to n'
+say_to_user: I haven't heard the word 'n' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Nancy Nagel'
+get_from_user (processed): 'dr nancy nagel'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'n' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Can you bring yellow bottle'
+get_from_user (processed): 'can you bring yellow bottle'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'n' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'n' mean the same thing as 'large'?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'N'
+get_from_user (processed): 'n'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'To Bob'
+get_from_user (processed): 'to bob'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'b', 'patient': 'oidx_13', 'goal': None, 'source': None}], [{'all': ['come to the lab'], 'patient': ['take the yellow bottle and deliver it to n'], 'goal': [], 'source': [], 'action': [], 'recipient': ['n', 'to bob']}], [('yellow', 21, 0), ('yellow', 24, 0), ('yellow', 19, 0), ('yellow', 23, 0), ('yellow', 16, 0), ('yellow', 0, 0), ('yellow', 4, 0), ('yellow', 9, 0), ('styrofoam', 23, 0), ('empty', 4, 0), ('blue', 19, 0), ('empty', 21, 0)], [('n', 'large', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bob needs white bottle'
+get_from_user (processed): 'bob needs white bottle'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'container' when describing <p>this</p> object? {'patient': 'oidx_24'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Would you use the word 'container' when describing <p>this</p> object? {'patient': 'oidx_23'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'container' when describing, or shake your head if you could use 'container' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 21
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'container' when describing, or shake your head if you could use 'container' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'container' when describing, or shake your head if you could use 'container' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'White container'
+get_from_user (processed): 'white container'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'b', 'patient': 'oidx_13', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26', 'goal': None, 'source': None}], [{'all': ['come to the lab'], 'patient': ['take the yellow bottle and deliver it to n'], 'goal': [], 'source': [], 'action': [], 'recipient': ['n', 'to bob']}, {'all': ['bob needs white bottle'], 'patient': ['white container'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [('yellow', 21, 0), ('yellow', 24, 0), ('yellow', 19, 0), ('yellow', 23, 0), ('yellow', 16, 0), ('yellow', 0, 0), ('yellow', 4, 0), ('yellow', 9, 0), ('styrofoam', 23, 0), ('empty', 4, 0), ('blue', 19, 0), ('empty', 21, 0), ('container', 24, 0), ('container', 23, 0), ('container', 21, 0), ('container', 19, 0), ('container', 0, 0)], [('n', 'large', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'You should deliver one object'
+get_from_user (processed): 'you should deliver one object'
+say_to_user: I haven't heard the word 'should' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'should' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'one' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'container' when describing, or shake your head if you could use 'container' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+say_to_user_with_referents: Would you use the word 'of' when describing <p>this</p> object? {'patient': 'oidx_21'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'cylinder' when describing, or shake your head if you could use 'cylinder' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 24
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'should' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'container' when describing, or shake your head if you could use 'container' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 24
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Blue tin'
+get_from_user (processed): 'blue tin'
+say_to_user: I haven't heard the word 'tin' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'tin' mean the same thing as 'bean'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Does 'tin' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'Bob'
+get_from_user (processed): 'bob'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_25', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_25', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'b', 'patient': 'oidx_13', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_26', 'goal': None, 'source': None}, {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_25', 'goal': None, 'source': None}], [{'all': ['come to the lab'], 'patient': ['take the yellow bottle and deliver it to n'], 'goal': [], 'source': [], 'action': [], 'recipient': ['n', 'to bob']}, {'all': ['bob needs white bottle'], 'patient': ['white container'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['you should deliver one object'], 'patient': ['blue tin'], 'goal': [], 'source': [], 'action': [], 'recipient': ['bob']}], [('yellow', 21, 0), ('yellow', 24, 0), ('yellow', 19, 0), ('yellow', 23, 0), ('yellow', 16, 0), ('yellow', 0, 0), ('yellow', 4, 0), ('yellow', 9, 0), ('styrofoam', 23, 0), ('empty', 4, 0), ('blue', 19, 0), ('empty', 21, 0), ('container', 24, 0), ('container', 23, 0), ('container', 21, 0), ('container', 19, 0), ('container', 0, 0), ('container', 19, 0), ('can', 21, 0), ('cylinder', 24, 0), ('should', 21, 0), ('should', 24, 0), ('should', 19, 0), ('should', 23, 0), ('should', 16, 0), ('should', 0, 0), ('should', 4, 0), ('should', 9, 0), ('container', 24, 0)], [('n', 'large', True), ('should', 'can', False), ('tin', 'bean', False), ('tin', 'container', True)]]

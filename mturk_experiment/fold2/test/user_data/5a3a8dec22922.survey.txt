@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,6
+frustrated,0
+object_qs,1
+use_navigation,6
+use_delivery,6
+use_relocation,6
+Not very good at taking over the world. I have seen better.

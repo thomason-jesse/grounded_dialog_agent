@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+Absolutely ridiculously hard task for what you are paying. I ended up giving up on each because the robot did not understand a single thing I said. 

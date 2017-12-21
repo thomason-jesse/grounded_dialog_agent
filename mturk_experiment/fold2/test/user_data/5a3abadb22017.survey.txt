@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,1
+object_qs,1
+use_navigation,1
+use_delivery,1
+use_relocation,1
+Apparently, robots and I don't communicate well :)

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,3
+object_qs,4
+use_navigation,2
+use_delivery,2
+use_relocation,2
+It requires a bit training to be able to command the robot.

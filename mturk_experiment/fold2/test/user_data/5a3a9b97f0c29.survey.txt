@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,4
+object_qs,5
+use_navigation,3
+use_delivery,3
+use_relocation,3
+the rooms it asked me to deliver to was the pod rooms maybe explain how to get to them or a directory like the names with the letters
