@@ -11,7 +11,7 @@ def main():
     experiment_dir = FLAGS_experiment_dir
     num_folds = FLAGS_num_folds
 
-    strip_repeat_workers = True
+    strip_repeat_workers = False
     seen_turk_ids = {}
     for cond in ["train", "test"]:
         for fold in range(num_folds):
@@ -73,6 +73,7 @@ def main():
                                     (turk_id in seen_turk_ids and seen_turk_ids[turk_id] == (cond, fold))):
 
                                 for task in range(1, 4):
+                                    # if data[headers.index("task_" + str(task) + "_correct_action")] == "1":
                                     task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
                                     raw_results["task_" + str(task) + "_correct"].append(task_correct)
                                     if task_correct:
