@@ -40,6 +40,8 @@ function get_active_train_set($f) {
 		return array("oidx_5", "oidx_14", "oidx_8", "oidx_15", "oidx_1", "oidx_30", "oidx_29", "oidx_31");
 	} elseif ($f == 2) {
 		return array("oidx_21", "oidx_24", "oidx_19", "oidx_23", "oidx_16", "oidx_0", "oidx_4", "oidx_9");
+	} elseif ($f == 3) {
+		return array();
 	}
 }
 

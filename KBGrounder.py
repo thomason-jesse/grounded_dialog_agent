@@ -49,6 +49,9 @@ class KBGrounder:
             # Get forms of this tree with children grounded, then apply the predicate to those grounded
             # children to return appropriately.
             child_groundings = [self.ground_semantic_tree(c) for c in root.children]
+            if debug:
+                print ("for root " + self.parser.print_parse(root) + ", child_groundings: " +
+                       str(child_groundings))
 
             # Logical predicates.
             if self.is_logical(root.idx, 'equals'):
@@ -72,17 +75,21 @@ class KBGrounder:
                     print ("WARNING: KBGrounder found 'and' with only one child: " +
                            self.parser.print_parse(root, True))
                 # Return True bool if ground child trees' boolean values match.
-                child_combinations = []  # idxs of children for whom 'and' holds
+                cc_lc = []  # child combinations at length c for c the idx
+                lc_0 = []  # idxs of children for whom 'and' holds
                 for cidx in range(len(child_groundings[0])):
-                    child_combinations.append([cidx])
+                    lc_0.append([cidx])
+                cc_lc.append(lc_0)
                 for cj in range(1, len(child_groundings)):
-                    for comb in child_combinations:
+                    lc_j = []
+                    for comb in cc_lc[cj - 1]:
                         ci_bool = child_groundings[0][comb[0]][0]
                         for cjdx in range(len(child_groundings[cj])):  # and takes arbitrarily many children
                             cj_bool = child_groundings[cj][cjdx][0]
                             if ci_bool == cj_bool:
-                                comb.append(cjdx)  # this needs to happen to the original, not a reference
-                for comb in child_combinations:
+                                lc_j.append(comb + [cjdx])
+                    cc_lc.append(lc_j)
+                for comb in cc_lc[len(child_groundings) - 1]:
                     if len(comb) == len(child_groundings):
                         match = child_groundings[0][comb[0]][0]
                         la_ext = child_groundings[0][comb[0]][1][:]

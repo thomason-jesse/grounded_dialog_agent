@@ -61,14 +61,15 @@ class Server:
                                     cmd = ["python", "main.py",
                                            "--grounder_fn", self.grounder_fn,
                                            "--io_type", "server",
-                                           "--active_train_set", ','.join([str(oidx)
-                                                                           for oidx in self.active_train_set]),
                                            "--uid", uid,
                                            "--client_dir", self.client_dir,
                                            "--data_dir", self.data_dir,
                                            "--spin_time", str(self.spin_time),
                                            "--num_dialogs", str(self.num_dialogs),
                                            "--init_phase", str(self.init_phase)]
+                                    if self.active_train_set is not None:
+                                        cmd.append("--active_train_set", ','.join([str(oidx)
+                                                                                   for oidx in self.active_train_set]))
                                     print ("Server: ... executing subprocess " + str(cmd) +
                                            ", ie. '" + ' '.join(cmd) + "'")
                                     f = open(os.path.join(self.log_dir, uid + ".log"), 'w')
@@ -145,7 +146,7 @@ def main():
     kb_perception_source_dir = FLAGS_kb_perception_source_dir
     kb_perception_feature_dir = FLAGS_kb_perception_feature_dir
     active_test_set = [int(oidx) for oidx in FLAGS_active_test_set.split(',')]
-    active_train_set = [int(oidx) for oidx in FLAGS_active_train_set.split(',')]
+    active_train_set = [int(oidx) for oidx in FLAGS_active_train_set.split(',')] if FLAGS_active_train_set is not None else None
     server_spin_time = FLAGS_server_spin_time
     cycles_per_user = FLAGS_cycles_per_user
     client_dir = FLAGS_client_dir
@@ -172,7 +173,7 @@ def main():
         with open(os.path.join(kb_perception_source_dir, 'labels.pickle'), 'wb') as f:
             labels = []
             for oidx in fa:
-                if oidx not in active_train_set:
+                if active_train_set is None or oidx not in active_train_set:
                     for pidx in range(len(fa[oidx])):
                         labels.append((pidx, oidx, fa[oidx][pidx]))
             pickle.dump(labels, f)
@@ -218,7 +219,7 @@ if __name__ == '__main__':
     parser.add_argument('--active_test_set', type=str, required=True,
                         help="objects to consider possibilities for grounding; " +
                              "excluded from perception classifier training")
-    parser.add_argument('--active_train_set', type=str, required=True,
+    parser.add_argument('--active_train_set', type=str, required=False, default=None,
                         help="objects to consider 'local' and able to be queried by opportunistic active learning")
     parser.add_argument('--server_spin_time', type=int, required=True,
                         help="seconds to spin between disk scans")

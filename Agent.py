@@ -166,20 +166,21 @@ class Agent:
                 # If sub-dialog results in fewer than the maximum number of questions, allow asking off-topic
                 # questions in the style of CORL'17 paper to improve future interactions.
                 num_new_qs = 0
-                if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                    num_new_qs += self.conduct_perception_subdialog(ur, gprs, pr,
-                                                                    self.max_perception_subdialog_qs,
-                                                                    perception_labels_requested)
-                    perception_subdialog_qs += num_new_qs
-                if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                    preface_msg = True if perception_subdialog_qs == 0 else False
-                    num_new_qs += self.conduct_perception_subdialog(ur, gprs, pr,
-                                                                    self.max_perception_subdialog_qs -
-                                                                    perception_subdialog_qs,
-                                                                    perception_labels_requested,
-                                                                    allow_off_topic_preds=True,
-                                                                    preface_msg=preface_msg)
-                    perception_subdialog_qs += num_new_qs
+                if self.active_train_set is not None:
+                    if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                        num_new_qs += self.conduct_perception_subdialog(ur, gprs, pr,
+                                                                        self.max_perception_subdialog_qs,
+                                                                        perception_labels_requested)
+                        perception_subdialog_qs += num_new_qs
+                    if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                        preface_msg = True if perception_subdialog_qs == 0 else False
+                        num_new_qs += self.conduct_perception_subdialog(ur, gprs, pr,
+                                                                        self.max_perception_subdialog_qs -
+                                                                        perception_subdialog_qs,
+                                                                        perception_labels_requested,
+                                                                        allow_off_topic_preds=True,
+                                                                        preface_msg=preface_msg)
+                        perception_subdialog_qs += num_new_qs
                 if num_new_qs > 0:
                     self.io.say_to_user("Thanks. Now, back to business.")
 
@@ -819,6 +820,15 @@ class Agent:
     def induce_utterance_grounding_pairs_from_conversation(self, us, rs):
         debug = False
 
+        conf_surface_forms = set()
+        for sfidx in range(len(self.parser.lexicon.surface_forms)):
+            for sem_idx in self.parser.lexicon.entries[sfidx]:
+                if (len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx], ["yes"])) > 0 or
+                        len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx], ["no"])) > 0):
+                    conf_surface_forms.add(self.parser.lexicon.surface_forms[sfidx])
+        if debug:
+            print "conf_surface_forms: " + str(conf_surface_forms)
+
         pairs = []
         if 'all' in us:  # need to build SemanticNode representing all roles
             sem_str = rs['action']
@@ -831,7 +841,7 @@ class Agent:
             cat_idx = self.parser.lexicon.read_category_from_str('M')  # a command
             grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
             for u in us['all']:
-                if [u, grounded_form] not in pairs:
+                if [u, grounded_form] not in pairs and len(set(self.parser.tokenize(u)) & conf_surface_forms) == 0:
                     pairs.append([u, grounded_form])
             if debug:
                 print ("induce_utterance_grounding_pairs_from_conversation: adding 'all' pairs for gr form " +
@@ -851,7 +861,7 @@ class Agent:
                 grounded_form = self.parser.lexicon.read_semantic_form_from_str(rs[r], cat_idx, None, [])
 
                 for u in us[r]:
-                    if len(u) > 0 and [u, grounded_form] not in pairs:
+                    if len(u) > 0 and [u, grounded_form] not in pairs and len(set(self.parser.tokenize(u)) & conf_surface_forms) == 0:
                         pairs.append([u, grounded_form])
                 if debug and len(us[r]) > 0:
                     print ("induce_utterance_grounding_pairs_from_conversation: adding '" + r + "' pairs for gr form " +

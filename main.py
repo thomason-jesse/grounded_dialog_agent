@@ -19,7 +19,7 @@ def main():
     word_embeddings_fn = FLAGS_word_embeddings_fn
     io_type = FLAGS_io_type
     grounder_fn = FLAGS_grounder_fn
-    active_train_set = [int(oidx) for oidx in FLAGS_active_train_set.split(',')]
+    active_train_set = [int(oidx) for oidx in FLAGS_active_train_set.split(',')] if FLAGS_active_train_set is not None else None
     kb_static_facts_fn = None
     kb_perception_source_dir = None
     kb_perception_feature_dir = None
@@ -57,7 +57,7 @@ def main():
             with open(os.path.join(kb_perception_source_dir, 'labels.pickle'), 'wb') as f:
                 labels = []
                 for oidx in fa:
-                    if oidx not in active_train_set:
+                    if active_train_set is None or oidx not in active_train_set:
                         for pidx in range(len(fa[oidx])):
                             labels.append((pidx, oidx, fa[oidx][pidx]))
                 pickle.dump(labels, f)
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     parser.add_argument('--active_test_set', type=str, required=False,
                         help="objects to consider possibilities for grounding; " +
                              "excluded from perception classifier training")
-    parser.add_argument('--active_train_set', type=str, required=True,
+    parser.add_argument('--active_train_set', type=str, required=False, default=None,
                         help="objects to consider 'local' and able to be queried by opportunistic active learning")
     parser.add_argument('--uid', type=str, required=False,
                         help="for ServerIO")
