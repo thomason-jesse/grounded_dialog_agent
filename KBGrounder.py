@@ -45,12 +45,13 @@ class KBGrounder:
         # If the head of the tree is a predicate (e.g. has any children), we need to ground those children
         # and then apply the predicate's operation to them.
         elif root.children is not None:
+            root.set_return_type(self.parser.ontology)
 
             # Get forms of this tree with children grounded, then apply the predicate to those grounded
             # children to return appropriately.
             child_groundings = [self.ground_semantic_tree(c) for c in root.children]
             if debug:
-                print ("for root " + self.parser.print_parse(root) + ", child_groundings: " +
+                print ("ground_semantic_tree: for root " + self.parser.print_parse(root) + ", child_groundings: " +
                        str(child_groundings))
 
             # Logical predicates.
@@ -71,6 +72,8 @@ class KBGrounder:
                             groundings.append((match, ci_la + cj_la, conf))
 
             elif self.is_logical(root.idx, 'and'):
+                if debug:
+                    print ("ground_semantic_tree: processing 'and' root")
                 if len(child_groundings) < 2:
                     print ("WARNING: KBGrounder found 'and' with only one child: " +
                            self.parser.print_parse(root, True))
@@ -105,6 +108,8 @@ class KBGrounder:
                 pass
 
             elif self.is_logical(root.idx, 'the'):
+                if debug:
+                    print ("ground_semantic_tree: processing 'the' root")
                 # Return the lambda assignment of the child lambda instantiation below this node if it is a singleton,
                 # else return no groundings.
                 if len(child_groundings[0]) == 1:
@@ -117,6 +122,8 @@ class KBGrounder:
                         groundings.append((singleton, [], conf))  # ignore lambda assignments contained below this level
 
             elif self.is_logical(root.idx, 'a'):
+                if debug:
+                    print ("ground_semantic_tree: processing 'a' root")
                 # Return the lambda assignments of the child lambda instantiation below this node
                 for c, la, conf in child_groundings[0]:  # 'a' takes one argument which must be lambda-headed
                     if c:  # if the assignment created a True statement, the 'a' condition is satisfied
@@ -128,6 +135,8 @@ class KBGrounder:
 
             # KB predicates (any predicate whose eventual return type is 't')
             elif root.return_type == self.parser.ontology.types.index('t'):
+                if debug:
+                    print ("ground_semantic_tree: processing query root")
 
                 # Assemble queries from the predicate and its children.
                 queries = [[self.parser.ontology.preds[root.idx]]]  # every child combination will extend this query set
@@ -152,7 +161,7 @@ class KBGrounder:
                 # Ignore lambda assignments contained below this level.
                 for q in queries:
                     if debug:
-                        print "running kb query q=" + str(q)
+                        print "ground_semantic_tree: running kb query q=" + str(q)
                     pos_conf, neg_conf = self.kb.query(tuple(q))
                     if pos_conf > 0:
                         groundings.append((True, [], pos_conf))
@@ -161,6 +170,11 @@ class KBGrounder:
 
             # Else, root and grounded children can be passed up as they are (e.g. actions).
             else:
+                print root.return_type, self.parser.ontology.types[root.return_type]  # DEBUG
+                if debug:
+                        print ("ground_semantic_tree: no need to ground current root further; " +
+                               "forming groundings to return from " + self.parser.print_parse(root))
+
                 build_returns = [copy.deepcopy(root)]
                 build_conf = [1.0]
                 for cidx in range(len(child_groundings)):
