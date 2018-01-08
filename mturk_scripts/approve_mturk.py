@@ -77,10 +77,25 @@ def main():
                                          "log_exists": "0",
                                          "task_1_str_from_user": "0",
                                          "task_1_oidx_from_user": "0",
+                                         "task_1_clarification": "0",
+                                         "task_1_perception_q": "0",
+                                         "task_1_synonym": "0",
+                                         "task_1_perception_yn": "0",
+                                         "task_1_perception_ex": "0",
                                          "task_2_str_from_user": "0",
                                          "task_2_oidx_from_user": "0",
+                                         "task_2_clarification": "0",
+                                         "task_2_perception_q": "0",
+                                         "task_2_synonym": "0",
+                                         "task_2_perception_yn": "0",
+                                         "task_2_perception_ex": "0",
                                          "task_3_str_from_user": "0",
                                          "task_3_oidx_from_user": "0",
+                                         "task_3_clarification": "0",
+                                         "task_3_perception_q": "0",
+                                         "task_3_synonym": "0",
+                                         "task_3_perception_yn": "0",
+                                         "task_3_perception_ex": "0",
                                          "error_found_in_logfile": "0",
                                          "warning_found_in_logfile": "0",
                                          "incomplete_logfile": "1"}
@@ -146,6 +161,10 @@ def main():
                                     task = 0
                                     str_from_user_count = None
                                     oidx_from_user_count = None
+                                    perception_q_count = None
+                                    synonym_count = None
+                                    perception_yn_count = None
+                                    perception_ex_count = None
                                     for l in lines:
                                         ps = l.split(': ')
                                         if len(ps) > 1:
@@ -160,9 +179,28 @@ def main():
                                                         str(str_from_user_count)
                                                     user_data["task_" + str(task) + "_oidx_from_user"] = \
                                                         str(oidx_from_user_count)
+
+                                                    clarification_qs = (str_from_user_count -
+                                                                        perception_yn_count - perception_q_count -
+                                                                        synonym_count)
+                                                    user_data["task_" + str(task) + "_clarification"] = \
+                                                        str(clarification_qs)
+                                                    user_data["task_" + str(task) + "_perception_q"] = \
+                                                        str(perception_q_count)
+                                                    user_data["task_" + str(task) + "_synonym"] = \
+                                                        str(synonym_count)
+                                                    user_data["task_" + str(task) + "_perception_yn"] = \
+                                                        str(perception_yn_count)
+                                                    user_data["task_" + str(task) + "_perception_ex"] = \
+                                                        str(perception_ex_count)
+
                                                 task += 1
                                                 str_from_user_count = 0
                                                 oidx_from_user_count = 0
+                                                perception_q_count = 0
+                                                synonym_count = 0
+                                                perception_yn_count = 0
+                                                perception_ex_count = 0
 
                                             # Got string from user.
                                             elif msg_type == "get_from_user (processed)":
@@ -172,11 +210,45 @@ def main():
                                             elif msg_type == "get_oidx_from_user":
                                                 oidx_from_user_count += 1
 
+                                            # Record question types asked by system.
+                                            elif msg_type == "say_to_user_with_referents":
+
+                                                # Asked user for an example object.
+                                                if "Among these nearby objects," in msg:
+                                                    perception_ex_count += 1
+
+                                                # Asked user whether pred applied to object.
+                                                elif "Would you use the word" in msg:
+                                                    perception_yn_count += 1
+
+                                                # Asked the user a perception word question.
+                                                elif "I haven't heard the word" in msg:
+                                                    perception_q_count += 1
+
+                                                # Asked the user a synonym question.
+                                                elif "mean the same thing as" in msg:
+                                                    synonym_count += 1
+
                                     # Record for task 3.
-                                    user_data["task_" + str(task) + "_str_from_user"] = \
-                                        str(str_from_user_count)
-                                    user_data["task_" + str(task) + "_oidx_from_user"] = \
-                                        str(oidx_from_user_count)
+                                    if str_from_user_count is not None:
+                                        user_data["task_" + str(task) + "_str_from_user"] = \
+                                            str(str_from_user_count)
+                                        user_data["task_" + str(task) + "_oidx_from_user"] = \
+                                            str(oidx_from_user_count)
+
+                                        clarification_qs = (str_from_user_count -
+                                                            perception_yn_count - perception_q_count -
+                                                            synonym_count)
+                                        user_data["task_" + str(task) + "_clarification"] = \
+                                            str(clarification_qs)
+                                        user_data["task_" + str(task) + "_perception_q"] = \
+                                            str(perception_q_count)
+                                        user_data["task_" + str(task) + "_synonym"] = \
+                                            str(synonym_count)
+                                        user_data["task_" + str(task) + "_perception_yn"] = \
+                                            str(perception_yn_count)
+                                        user_data["task_" + str(task) + "_perception_ex"] = \
+                                            str(perception_ex_count)
 
                                     # Check for errors.
                                     if "Error" in contents:

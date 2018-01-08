@@ -41,11 +41,11 @@ def main():
 
             # This stores lists of the actual data values before averaging but after selecting for retrain-able users.
             raw_results = {"task_1_correct": [],
-                           "task_1_str_from_user": [],
+                           "task_1_clarification": [],
                            "task_2_correct": [],
-                           "task_2_str_from_user": [],
+                           "task_2_clarification": [],
                            "task_3_correct": [],
-                           "task_3_str_from_user": []}
+                           "task_3_clarification": []}
             summary_csv_fn = os.path.join(experiment_dir, "fold" + str(fold), cond, "summary.csv")
 
             if os.path.isfile(summary_csv_fn):
@@ -78,8 +78,8 @@ def main():
                                     raw_results["task_" + str(task) + "_correct"].append(task_correct)
                                     if task_correct:
                                         task_user_strs = int(data[headers.index("task_" + str(task) +
-                                                                                "_str_from_user")])
-                                        raw_results["task_" + str(task) + "_str_from_user"].append(task_user_strs)
+                                                                                "_clarification")])
+                                        raw_results["task_" + str(task) + "_clarification"].append(task_user_strs)
                             else:
                                 print "WARNING: ignoring repeat worker " + turk_id
                             if strip_repeat_workers and turk_id in seen_turk_ids:
