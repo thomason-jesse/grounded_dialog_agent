@@ -1,0 +1,72 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3408'
+p17
+sS'source'
+p18
+Nsaa(lp19
+(dp20
+S'all'
+p21
+(lp22
+S"walk to the pod to the right of dr nancy nagel 's office"
+p23
+asg15
+(lp24
+sg16
+(lp25
+S'the pod'
+p26
+aS'the other pod'
+p27
+aS'to the right of office n'
+p28
+aS"i want you to go to the pod next to dr nancy nagel 's office"
+p29
+aS'pod to the left of the conference room'
+p30
+aS"pod next to dr nancy nagel 's office"
+p31
+aS'the pod in the upper left'
+p32
+asg18
+(lp33
+sg3
+(lp34
+sg14
+(lp35
+saa(lp36
+a(lp37
+a.

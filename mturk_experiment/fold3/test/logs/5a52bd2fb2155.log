@@ -1,0 +1,69 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'You need to go to the lab.'
+get_from_user (processed): 'you need to go to the lab'
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no, need means that you have to do something. like, you have to go to the lab.'
+get_from_user (processed): 'no need means that you have to do something like you have to go to the lab'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes, move to the lab.'
+get_from_user (processed): 'yes move to the lab'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'where are you?'
+get_from_user (processed): 'where are you'
+say_to_user: I haven't heard the word 'are' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3436', 'goal': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3436', 'goal': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Heidi Hughes'
+get_from_user (processed): 'dr heidi hughes'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'source': '3436', 'patient': 'oidx_25', 'goal': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_25', 'goal': '3402', 'source': '3436'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_25', 'goal': '3402', 'source': '3436'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_25', 'goal': '3402', 'source': '3436'}], [{'all': ['you need to go to the lab'], 'patient': ['dr heidi hughes'], 'goal': [], 'source': ['where are you'], 'action': [], 'recipient': []}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'take the coke can from Dr heidi Hughes office to the lab.'
+get_from_user (processed): 'take the coke can from dr heidi hughes office to the lab'
+say_to_user: I haven't heard the word 'coke' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested

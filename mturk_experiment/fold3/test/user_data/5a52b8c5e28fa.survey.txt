@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,4
+object_qs,4
+use_navigation,2
+use_delivery,5
+use_relocation,5
+I think my attempts confused the robot, and from there I couldn't get back on track to the task, hard as I tried.  I don't think I'm very good at communicating with it.  

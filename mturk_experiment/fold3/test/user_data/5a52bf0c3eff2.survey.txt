@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,0
+frustrated,4
+object_qs,0
+use_navigation,3
+use_delivery,3
+use_relocation,3
+It seems the robot AI didn't properly load, despite my waiting for several minutes.

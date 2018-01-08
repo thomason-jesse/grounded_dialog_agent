@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,6
+object_qs,3
+use_navigation,1
+use_delivery,1
+use_relocation,1
+The robot couldn't tell the difference between the &quot;yellow can&quot; and a &quot;soda can&quot;, with no clear way to correct it.  It also couldn't comprehend delivering items to a room not assigned to a person.  This resulted in the third task being unfinished.

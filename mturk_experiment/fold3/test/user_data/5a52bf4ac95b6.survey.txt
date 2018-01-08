@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,5
+object_qs,5
+use_navigation,1
+use_delivery,1
+use_relocation,1
+This thing really needs to give more leeway in defining nouns and verbs. It needs a logic net that's able to parse descriptions, so that it can try to match those descriptions.

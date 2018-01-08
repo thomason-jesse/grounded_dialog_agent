@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,3
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The box wouldn't let me type about half of the time. This was very frustrating, it didn't understand basic things. 

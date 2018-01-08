@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,5
+object_qs,0
+use_navigation,2
+use_delivery,2
+use_relocation,2
+Robot asked too many similar questions even after confirming the answers.

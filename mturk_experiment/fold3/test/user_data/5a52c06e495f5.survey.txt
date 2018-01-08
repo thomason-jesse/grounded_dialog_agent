@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,6
+object_qs,3
+use_navigation,2
+use_delivery,2
+use_relocation,2
+The robot encountered a problem.  It was frustrating.

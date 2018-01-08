@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,3
+object_qs,3
+use_navigation,3
+use_delivery,3
+use_relocation,3
+there was an issue with the program and I was unable to connect with the robot. Not sure what happened. I was instructed to come here and submit for payment.

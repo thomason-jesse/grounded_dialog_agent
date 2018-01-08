@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,3
+object_qs,3
+use_navigation,5
+use_delivery,5
+use_relocation,5
+It was my mistake to gave a wrong order to the robot. It will be useful if I could cancel and do a re-order.
