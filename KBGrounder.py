@@ -170,7 +170,6 @@ class KBGrounder:
 
             # Else, root and grounded children can be passed up as they are (e.g. actions).
             else:
-                print root.return_type, self.parser.ontology.types[root.return_type]  # DEBUG
                 if debug:
                         print ("ground_semantic_tree: no need to ground current root further; " +
                                "forming groundings to return from " + self.parser.print_parse(root))
