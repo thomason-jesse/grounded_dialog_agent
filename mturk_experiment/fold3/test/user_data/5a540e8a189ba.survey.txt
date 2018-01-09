@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,5
+frustrated,6
+object_qs,0
+use_navigation,5
+use_delivery,5
+use_relocation,5
+OMG, once I say no to an object, the robot shouldn't ask again. He kept referring to the same object!!! UGH!!! 

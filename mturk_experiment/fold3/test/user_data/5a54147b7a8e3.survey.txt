@@ -1,0 +1,9 @@
+tasks_easy,5
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+death to the robot, it has the brain of a turnip
+my daughter can already make small robots that have the ability to 'learn' better than the POS I dealt with

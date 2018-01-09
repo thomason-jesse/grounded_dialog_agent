@@ -1,0 +1,143 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go to the large lab on the far end of the floor'
+get_from_user (processed): 'go to the large lab on the far end of the floor'
+say_to_user: I haven't heard the word 'far' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no, it's a distance reference'
+get_from_user (processed): 'no it 's a distance reference'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'far' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): ''
+get_from_user (processed): ''
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'far' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'end' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'a lab'
+get_from_user (processed): 'a lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'into a room'
+get_from_user (processed): 'into a room'
+say_to_user: I haven't heard the word 'into' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to a room'
+get_from_user (processed): 'to a room'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to a lab room'
+get_from_user (processed): 'to a lab room'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3436'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3436', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3436', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3436', 'source': None}], [{'all': ['go to the large lab on the far end of the floor'], 'patient': [], 'goal': ['a lab', 'into a room', 'to a room', 'to a lab room'], 'source': [], 'action': [], 'recipient': []}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'please pick up the object on the table and deliver it to Dave'
+get_from_user (processed): 'please pick up the object on the table and deliver it to dave'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a small, cylindrical, white object located on a white table'
+get_from_user (processed): 'a small cylindrical white object located on a white table'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a small, cylindrical, white object located on a white table'
+get_from_user (processed): 'a small cylindrical white object located on a white table'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'a small, cylindrical, white object located on a white table'
+get_from_user (processed): 'a small cylindrical white object located on a white table'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'a small, cylindrical, white object located on a white table'
+get_from_user (processed): 'a small cylindrical white object located on a white table'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'NO!'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'a small, cylindrical, white bottle of medicine located on a white table'
+get_from_user (processed): 'a small cylindrical white bottle of medicine located on a white table'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'NO!'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'MEDICINE!'
+get_from_user (processed): 'medicine'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'NO!'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'bottle'
+get_from_user (processed): 'bottle'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'no, that's a can!'
+get_from_user (processed): 'no that 's a can'
+say_to_user: I am expecting a simple 'y

@@ -1,0 +1,211 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the kitchen.'
+get_from_user (processed): 'go to the kitchen'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}], [{'all': ['go to the kitchen'], 'patient': [], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the object to peggy.'
+get_from_user (processed): 'take the object to peggy'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the object on the table.'
+get_from_user (processed): 'the object on the table'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The object.'
+get_from_user (processed): 'the object'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'person p'
+get_from_user (processed): 'person p'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'Person P'
+get_from_user (processed): 'person p'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker, Intern'
+get_from_user (processed): 'peggy parker intern'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'Person P Peggy Parker, Intern'
+get_from_user (processed): 'person p peggy parker intern'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'Person P'
+get_from_user (processed): 'person p'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_25', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_25', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3520', 'source': None}, {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_25', 'goal': None, 'source': None}], [{'all': ['go to the kitchen'], 'patient': [], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['take the object to peggy'], 'patient': ['the object on the table', 'the object'], 'goal': [], 'source': [], 'action': [], 'recipient': ['person p', 'person p', 'peggy parker intern', 'person p peggy parker intern', 'person p']}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the object to the office between office s and the lab.'
+get_from_user (processed): 'take the object to the office between office s and the lab'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the object'
+get_from_user (processed): 'the object'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'w'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the object on the table'
+get_from_user (processed): 'the object on the table'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the object'
+get_from_user (processed): 'the object'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'the empty office next to the lab'
+get_from_user (processed): 'the empty office next to the lab'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no one'
+get_from_user (processed): 'no one'
+say_to_user: I haven't heard the word 'one' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'w', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'empty office'
+get_from_user (processed): 'empty office'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'to the x'
+get_from_user (processed): 'to the x'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'n', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'to the red x on the pink map'
+get_from_user (processed): 'to the red x on the pink map'
+say_to_user: I haven't heard the word 'pink' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'map' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'to the red x on the green map'
+get_from_user (processed): 'to the red x on the green map'
+say_to_user: I haven't heard the word 'green' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'green' mean the same thing as 'brown'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'b', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'to the x marked on the green map'
+get_from_user (processed): 'to the x marked on the green map'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'the x'
+get_from_user (processed): 'the x'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 's', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'to the office with the red x'
+get_from_user (processed): 'to the office with the red x'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'h', 'patient'

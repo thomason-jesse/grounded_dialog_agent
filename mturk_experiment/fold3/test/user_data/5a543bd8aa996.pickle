@@ -1,0 +1,150 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3408'
+p17
+sS'source'
+p18
+Nsa(dp19
+g3
+g4
+(g5
+(S'S5'
+p20
+I0
+I1
+tp21
+Rp22
+(I3
+S'|'
+p23
+NNNI5
+I1
+I0
+tp24
+bS'bring'
+p25
+tp26
+Rp27
+sg14
+S'p'
+p28
+sg15
+S'oidx_12'
+p29
+sg16
+Nsg18
+Nsaa(lp30
+(dp31
+S'all'
+p32
+(lp33
+S'go to pod'
+p34
+asg15
+(lp35
+sg16
+(lp36
+S'pod beside lounge'
+p37
+aS'go to x marked room'
+p38
+aS'above the previous one'
+p39
+asg18
+(lp40
+sg3
+(lp41
+sg14
+(lp42
+sa(dp43
+g32
+(lp44
+S'bring the object to p'
+p45
+asg15
+(lp46
+S'object with red cap'
+p47
+aS'red color object'
+p48
+aS'red color object'
+p49
+aS'red color object'
+p50
+aS'red color object'
+p51
+aS'red color object'
+p52
+aS'red color object'
+p53
+aS'an object with red'
+p54
+asg16
+(lp55
+sg18
+(lp56
+sg3
+(lp57
+sg14
+(lp58
+S'an object'
+p59
+aS'p'
+p60
+asaa(lp61
+a(lp62
+(S'previous'
+p63
+S'is'
+p64
+I00
+tp65
+a(S'one'
+p66
+S'peanuts'
+p67
+I00
+tp68
+a(g66
+g64
+I00
+tp69
+a(S'cap'
+p70
+S'body'
+p71
+I01
+tp72
+aa.

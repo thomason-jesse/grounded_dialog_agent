@@ -1,0 +1,174 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3414'
+p17
+sS'source'
+p18
+Nsa(dp19
+g3
+g4
+(g5
+(S'S5'
+p20
+I0
+I1
+tp21
+Rp22
+(I3
+S'|'
+p23
+NNNI5
+I1
+I0
+tp24
+bS'bring'
+p25
+tp26
+Rp27
+sg14
+g4
+(g5
+(S'S1'
+p28
+I0
+I1
+tp29
+Rp30
+(I3
+S'|'
+p31
+NNNI1
+I1
+I0
+tp32
+bS's'
+p33
+tp34
+Rp35
+sg15
+g4
+(g5
+(S'S7'
+p36
+I0
+I1
+tp37
+Rp38
+(I3
+S'|'
+p39
+NNNI7
+I1
+I0
+tp40
+bS'oidx_25'
+p41
+tp42
+Rp43
+sg16
+Nsg18
+Nsaa(lp44
+(dp45
+S'all'
+p46
+(lp47
+S'go to the small lab'
+p48
+asg15
+(lp49
+sg16
+(lp50
+S'small lab'
+p51
+aS'the lab behind the kitchen'
+p52
+aS'third lab room from the right'
+p53
+aS"the lab opposite of walter 's office"
+p54
+aS'behind kitchen'
+p55
+aS'lab'
+p56
+aS"lab next to walter 's office"
+p57
+aS"go to walter ward 's office then turn right"
+p58
+aS'walk along the aisle then turn right to the second lab'
+p59
+aS'middle lab'
+p60
+asg18
+(lp61
+sg3
+(lp62
+sg14
+(lp63
+sa(dp64
+g46
+(lp65
+S'take the bottle and give it to dr sybil smalt'
+p66
+asg15
+(lp67
+S'a bottle'
+p68
+aS'a bottle'
+p69
+aS'dr sybil smalt'
+p70
+aS'a small bottle'
+p71
+aS'drug container'
+p72
+asg16
+(lp73
+sg18
+(lp74
+sg3
+(lp75
+sg14
+(lp76
+S'dr smalt'
+p77
+asaa(lp78
+a(lp79
+(S'it'
+p80
+S'is'
+p81
+I00
+tp82
+aa.

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,1
+object_qs,1
+use_navigation,3
+use_delivery,6
+use_relocation,5
+By the last question, I was just getting use to the actual language to command the robot. The questions that the robot asked back were perfect though, but the wrong items were selected... it was more my fault due to me not knowing the actual names of the items.
