@@ -1,0 +1,70 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3520'
+p17
+sS'source'
+p18
+Nsaa(lp19
+(dp20
+S'all'
+p21
+(lp22
+S'go to the pod next to the printer'
+p23
+asg15
+(lp24
+sg16
+(lp25
+S'go see peggy'
+p26
+aS'go to office p'
+p27
+aS'go to p'
+p28
+aS'go to office b'
+p29
+aS'go to the lab'
+p30
+aS'go to the kitchen'
+p31
+asg18
+(lp32
+sg3
+(lp33
+sg14
+(lp34
+saa(lp35
+a(lp36
+a.

@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,6
+object_qs,3
+use_navigation,0
+use_delivery,0
+use_relocation,0
+Without a clear way to start at the beginning with the robot, it was very frustrating to get anywhere with it.  I don't know how else I could've described the objects to get the robot to select the right thing.  

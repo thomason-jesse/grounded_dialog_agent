@@ -1,0 +1,94 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3414'
+p17
+sS'source'
+p18
+Nsaa(lp19
+(dp20
+S'all'
+p21
+(lp22
+S'go to the small lab behind the kitchen'
+p23
+asg15
+(lp24
+sg16
+(lp25
+S'go to the small lab'
+p26
+aS'go to the small lab behind the kitchen'
+p27
+aS'to the small lab behind the kitchen'
+p28
+aS'go to the small lab between the two large labs'
+p29
+aS'go to the smaller lab'
+p30
+aS'go to the short lab'
+p31
+aS'go to the short lab'
+p32
+asg18
+(lp33
+sg3
+(lp34
+sg14
+(lp35
+saa(lp36
+a(lp37
+(S'smaller'
+p38
+S'should'
+p39
+I00
+tp40
+a(g38
+S'going'
+p41
+I00
+tp42
+a(g38
+S'peanuts'
+p43
+I00
+tp44
+a(S'short'
+p45
+S'long'
+p46
+I00
+tp47
+aa.

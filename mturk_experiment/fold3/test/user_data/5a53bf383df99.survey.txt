@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,2
+object_qs,1
+use_navigation,1
+use_delivery,5
+use_relocation,5
+The tasks are easy for me to understand, and it states to give all of my step-by-step instructions at one time, but the robot never understood more than the first step in my instructions every single time.

@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+This robot does not understand commands, words, or really anything useful.  I don't understand the point of a robot that can't be redirected, or instructed simple words such as &quot;across the hallway&quot; or &quot;white bottle&quot;   Useless at the moment. 

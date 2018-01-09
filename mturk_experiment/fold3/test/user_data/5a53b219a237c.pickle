@@ -1,0 +1,157 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'move'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+S'oidx_13'
+p16
+sS'goal'
+p17
+S'3406'
+p18
+sS'source'
+p19
+S'3520'
+p20
+sa(dp21
+g3
+g4
+(g5
+(S'S4'
+p22
+I0
+I1
+tp23
+Rp24
+(I3
+S'|'
+p25
+NNNI4
+I1
+I0
+tp26
+bS'move'
+p27
+tp28
+Rp29
+sg14
+Nsg15
+g4
+(g5
+(S'S6'
+p30
+I0
+I1
+tp31
+Rp32
+(I3
+S'|'
+p33
+NNNI6
+I1
+I0
+tp34
+bS'oidx_6'
+p35
+tp36
+Rp37
+sg17
+S'3402'
+p38
+sg19
+S'3512'
+p39
+saa(lp40
+(dp41
+S'all'
+p42
+(lp43
+S'move to s'
+p44
+asg15
+(lp45
+S'something'
+p46
+aS'to s'
+p47
+aS's'
+p48
+aS'move to s'
+p49
+aS'to s'
+p50
+asg17
+(lp51
+S'move to left'
+p52
+asg19
+(lp53
+S'to s'
+p54
+aS'to s'
+p55
+aS'move to s'
+p56
+aS'to s'
+p57
+aS'to s'
+p58
+aS'to m'
+p59
+asg3
+(lp60
+sg14
+(lp61
+sa(dp62
+g42
+(lp63
+S'move the object to h'
+p64
+asg15
+(lp65
+S'object'
+p66
+aS'white object'
+p67
+aS'white container'
+p68
+asg17
+(lp69
+S'move to left'
+p70
+asg19
+(lp71
+sg3
+(lp72
+sg14
+(lp73
+saa(lp74
+a(lp75
+a.
