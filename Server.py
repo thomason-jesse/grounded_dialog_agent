@@ -68,8 +68,8 @@ class Server:
                                            "--num_dialogs", str(self.num_dialogs),
                                            "--init_phase", str(self.init_phase)]
                                     if self.active_train_set is not None:
-                                        cmd.extend("--active_train_set", ','.join([str(oidx)
-                                                                                   for oidx in self.active_train_set]))
+                                        cmd.extend(["--active_train_set", ','.join([str(oidx)
+                                                                                   for oidx in self.active_train_set])])
                                     print ("Server: ... executing subprocess " + str(cmd) +
                                            ", ie. '" + ' '.join(cmd) + "'")
                                     f = open(os.path.join(self.log_dir, uid + ".log"), 'w')
