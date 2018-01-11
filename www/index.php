@@ -457,7 +457,7 @@ require_once('functions.php');
 
 # Variables that control what tasks and objects will be shown.
 # These should be changed whenever a new Turk task is made.
-$fold = 1;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
+$fold = 2;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
 $setting = "test";  # either init, train, or test
 
 $d = 'client/';
