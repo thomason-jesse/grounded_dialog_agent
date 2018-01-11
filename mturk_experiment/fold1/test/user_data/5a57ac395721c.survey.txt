@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,3
+object_qs,5
+use_navigation,3
+use_delivery,3
+use_relocation,3
+This survey should have ha dbetter pay for the time involved (.10 per minute is the mTurk minimum, and this survey takes at least 15 minutes). Thanks and have a nice day :)

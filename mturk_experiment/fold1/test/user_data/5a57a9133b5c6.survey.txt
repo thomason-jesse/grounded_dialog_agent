@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,6
+object_qs,5
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The final task asked the robot to move an empty can from a conference room to a pod and not someone's office. I think this further confused the robot. 
