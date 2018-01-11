@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,4
+object_qs,2
+use_navigation,5
+use_delivery,5
+use_relocation,5
+Neat to be using a different version, or at least that's how it seemed today. Thank you. ^^

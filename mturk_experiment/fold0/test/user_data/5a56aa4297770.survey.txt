@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,5
+frustrated,2
+object_qs,5
+use_navigation,5
+use_delivery,5
+use_relocation,5
+Very interesting - thank you! 
