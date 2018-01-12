@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+I was just about to return the HIT before getting access to the survey button. Might want to have it show up a bit sooner.

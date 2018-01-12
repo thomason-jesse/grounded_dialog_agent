@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,4
+object_qs,1
+use_navigation,5
+use_delivery,5
+use_relocation,4
+Accidentally answer one of the questions wrong and the robot could not accept a separate task or allow me to take back what I said. Other than that, I thought the robot was pretty clever.

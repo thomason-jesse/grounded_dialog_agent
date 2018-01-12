@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+Robot could not understand anything other than yes or no. Would not stop asking if I would describe an object as something completely unrelated to the object in the picture.

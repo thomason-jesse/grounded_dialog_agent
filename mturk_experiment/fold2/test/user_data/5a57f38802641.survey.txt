@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,6
+object_qs,1
+use_navigation,0
+use_delivery,0
+use_relocation,0
+On the second task I finally said yes even though the robot had the wrong person (B not P) because it kept going in circles with questions and I just couldn't take it anymore.

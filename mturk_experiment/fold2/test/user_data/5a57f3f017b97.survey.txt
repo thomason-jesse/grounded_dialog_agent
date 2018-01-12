@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,5
+object_qs,4
+use_navigation,1
+use_delivery,0
+use_relocation,0
+it would be good if you could respond with more than yes or no, so that you could teach the robot.  For example, if the answer is 'no', you can provide a 'use this instead' type of answer.

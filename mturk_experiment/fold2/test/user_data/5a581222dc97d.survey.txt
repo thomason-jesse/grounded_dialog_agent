@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,1
+frustrated,6
+object_qs,4
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The task asking to help the robot navigate to a room on a map was worded such that I initially thought the robot was already located in that room. It took some time to understand the directions for that task.

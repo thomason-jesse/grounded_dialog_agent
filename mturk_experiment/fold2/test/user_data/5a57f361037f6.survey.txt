@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,6
+object_qs,6
+use_navigation,2
+use_delivery,2
+use_relocation,3
+The first two task took some time but the final one was difficult. There was no marking that the robot could understand on the placement of the can for the robot so I could not get the robot to understand where to place or deliver the item.

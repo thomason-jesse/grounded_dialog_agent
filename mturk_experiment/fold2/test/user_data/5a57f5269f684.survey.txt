@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,4
+object_qs,5
+use_navigation,0
+use_delivery,0
+use_relocation,0
+It clearly needs a bigger vocabulary.  I spent over 35 years developing software and I had a very hard time breaking things down to its level.  But this is a whole new area for me.
