@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,6
+object_qs,1
+use_navigation,1
+use_delivery,0
+use_relocation,1
+The robot showed me everything except the bottle I wanted it to show. Really frustrating.

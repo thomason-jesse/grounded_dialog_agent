@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,4
+object_qs,1
+use_navigation,1
+use_delivery,1
+use_relocation,1
+The robot moved the item to offices around P peggy parker but did not move the item to her office.

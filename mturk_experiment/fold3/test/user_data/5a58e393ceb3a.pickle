@@ -1,0 +1,128 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3408'
+p17
+sS'source'
+p18
+Nsa(dp19
+g3
+g4
+(g5
+(S'S5'
+p20
+I0
+I1
+tp21
+Rp22
+(I3
+S'|'
+p23
+NNNI5
+I1
+I0
+tp24
+bS'bring'
+p25
+tp26
+Rp27
+sg14
+S'r'
+p28
+sg15
+S'oidx_12'
+p29
+sg16
+Nsg18
+Nsaa(lp30
+(dp31
+S'all'
+p32
+(lp33
+S"go to the pod to the right of dr nancy nagel 's office"
+p34
+asg15
+(lp35
+sg16
+(lp36
+S"go to the pod to the right of dr nancy nagel 's office"
+p37
+aS'go to the pod to the right of office n'
+p38
+aS'go toa pod'
+p39
+aS'go to the pod next to room n'
+p40
+aS'go to the pod next to room n'
+p41
+aS'go to the pod next to room n'
+p42
+aS'go to the pod next to room n'
+p43
+aS'go to the pod next to room n'
+p44
+asg18
+(lp45
+sg3
+(lp46
+sg14
+(lp47
+sa(dp48
+g32
+(lp49
+S'take n object to room r'
+p50
+asg15
+(lp51
+S'cylinder with red lid'
+p52
+aS'cylinder with red lid'
+p53
+aS'cylinder with red lid'
+p54
+aS'cylinder with red lid'
+p55
+aS'cylinder with red lid'
+p56
+asg16
+(lp57
+sg18
+(lp58
+sg3
+(lp59
+sg14
+(lp60
+saa(lp61
+a(lp62
+a.

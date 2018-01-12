@@ -1,0 +1,87 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'move'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+S'oidx_25'
+p16
+sS'goal'
+p17
+S'3408'
+p18
+sS'source'
+p19
+g18
+saa(lp20
+(dp21
+S'all'
+p22
+(lp23
+S'go to the pod that is between an office and conference room'
+p24
+asg15
+(lp25
+S"move the robot to the pod next to dr nancy nagel 's office"
+p26
+aS'move yourself'
+p27
+aS'move the robot'
+p28
+aS'nothing'
+p29
+aS'nothing'
+p30
+asg17
+(lp31
+S"the pod next to dr nancy nagel 's office"
+p32
+aS'the pod that was described'
+p33
+aS"go to the pod next to dr nancy nagel 's office"
+p34
+asg19
+(lp35
+S'move yourself from your current location'
+p36
+aS'your current location'
+p37
+aS'where ever it is right now'
+p38
+aS'go to the pod'
+p39
+aS"go to the pod next to dr nancy nagel 's office"
+p40
+asg3
+(lp41
+sg14
+(lp42
+saa(lp43
+a(lp44
+a.

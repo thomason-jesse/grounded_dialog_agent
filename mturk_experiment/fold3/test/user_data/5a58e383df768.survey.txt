@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+your robot is fucking stupid. the instructions said it understands high level commands - that is a lie.

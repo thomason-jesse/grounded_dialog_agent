@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,4
+object_qs,2
+use_navigation,4
+use_delivery,4
+use_relocation,3
+The robot experience is one of my favorite hits on mturk. It is always enjoyable to see how much the progress has grown since our last encounter. The robot is beginning to understand tasks easier, which makes the interaction more enjoyable. 
