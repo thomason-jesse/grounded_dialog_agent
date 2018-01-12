@@ -21,6 +21,7 @@ def main():
     embeddings_fn = FLAGS_embeddings_fn
     parser_outfile = FLAGS_parser_outfile
     parser_base_pairs_fn = FLAGS_parser_base_pairs_fn
+    only_use_base_pairs = True if FLAGS_only_use_base_pairs == 1 else False
     kb_static_facts_fn = FLAGS_kb_static_facts_fn
     kb_perception_feature_dir = FLAGS_kb_perception_feature_dir
     kb_perception_source_base_dir = FLAGS_kb_perception_source_base_dir
@@ -280,21 +281,24 @@ def main():
     for epoch in range(epochs):
 
         # Get grouding->semantics pairs
-        print "main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs..."
-        utterance_semantic_grounding_triples = a.get_semantic_forms_for_induced_pairs(
-            1, 10, verbose=1, use_condor=use_condor, condor_target_dir=condor_target_dir,
-            condor_script_dir=condor_grounder_script_dir)
-        print ("main: ...... got " + str(len(utterance_semantic_grounding_triples)) + " utterance/semantics " +
-               "pairs from induced utterance/grounding pairs")
-        log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_grounding_triples)) +
-                    " utterance/semantic pairs\n")
+        if not only_use_base_pairs:
+            print "main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs..."
+            utterance_semantic_grounding_triples = a.get_semantic_forms_for_induced_pairs(
+                1, 10, verbose=1, use_condor=use_condor, condor_target_dir=condor_target_dir,
+                condor_script_dir=condor_grounder_script_dir)
+            print ("main: ...... got " + str(len(utterance_semantic_grounding_triples)) + " utterance/semantics " +
+                   "pairs from induced utterance/grounding pairs")
+            log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_grounding_triples)) +
+                        " utterance/semantic pairs\n")
 
-        # Write out induced pairs to logfile(s) for later inspection and qualitative analysis.
-        fplfn.write("epoch " + str(epoch) + ":\n\n" +
-                    '\n\n'.join(['\n'.join([x, a.parser.print_parse(y, True),
-                                            a.parser.print_parse(z, False)])
-                                 for x, y, z in utterance_semantic_grounding_triples])
-                    + '\n\n')
+            # Write out induced pairs to logfile(s) for later inspection and qualitative analysis.
+            fplfn.write("epoch " + str(epoch) + ":\n\n" +
+                        '\n\n'.join(['\n'.join([x, a.parser.print_parse(y, True),
+                                                a.parser.print_parse(z, False)])
+                                     for x, y, z in utterance_semantic_grounding_triples])
+                        + '\n\n')
+        else:
+            utterance_semantic_grounding_triples = []
 
         # Write the new parser to file.
         print "main: writing current re-trained parser to file..."
@@ -357,6 +361,8 @@ if __name__ == '__main__':
                         help="where to store the newly-trained parser")
     parser.add_argument('--parser_base_pairs_fn', type=str, required=False,
                         help="base utterance/semantic training pairs, if any, to append to parser for training")
+    parser.add_argument('--only_use_base_pairs', type=int, required=False, default=0,
+                        help="if 1, only consider base pairs and don't induce new data from aggregation")
     parser.add_argument('--kb_static_facts_fn', type=str, required=True,
                         help="static facts file for the knowledge base")
     parser.add_argument('--kb_perception_feature_dir', type=str, required=True,

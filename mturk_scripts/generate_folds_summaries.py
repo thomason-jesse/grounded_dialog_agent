@@ -15,6 +15,7 @@ def main():
     require_correct_action = True if FLAGS_require_correct_action == 1 else False
     require_all_correct_actions = True if FLAGS_require_all_correct_actions == 1 else False
     ignore_always_choose_walk = True if FLAGS_ignore_always_choose_walk == 1 else False
+    require_all_correct_survey = True if FLAGS_require_all_correct_survey == 1 else False
 
     seen_turk_ids = {}
     for cond in ["train", "test"]:
@@ -48,7 +49,14 @@ def main():
                            "task_2_correct": [],
                            "task_2_clarification": [],
                            "task_3_correct": [],
-                           "task_3_clarification": []}
+                           "task_3_clarification": [],
+                           "tasks_easy": [],
+                           "understood": [],
+                           "frustrated": [],
+                           "object_qs": [],
+                           "use_navigation": [],
+                           "use_delivery": [],
+                           "use_relocation": []}
             summary_csv_fn = os.path.join(experiment_dir, "fold" + str(fold), cond, "summary.csv")
 
             if os.path.isfile(summary_csv_fn):
@@ -88,6 +96,14 @@ def main():
                                             task_user_strs = int(data[headers.index("task_" + str(task) +
                                                                                     "_clarification")])
                                             raw_results["task_" + str(task) + "_clarification"].append(task_user_strs)
+
+                                if (not require_all_correct_survey or
+                                        (int(data[headers.index("task_1_correct")]) and
+                                         int(data[headers.index("task_2_correct")]) and
+                                         int(data[headers.index("task_2_correct")]))):
+                                    for sq in ["tasks_easy", "understood", "frustrated", "object_qs",
+                                               "use_navigation", "use_delivery", "use_relocation"]:
+                                        raw_results[sq].append(int(data[headers.index(sq)]))
                             else:
                                 # print "WARNING: ignoring repeat worker " + turk_id
                                 pass
@@ -109,7 +125,7 @@ def main():
         print "condition '" + cond + "' results:"
         for r in cond_results[cond][0].keys():
             print "----------"
-            print "\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)\t(p)"
+            print "\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)"  # \t(p)"
             for fold in range(num_folds):
                 if cond_results[cond][fold][r]["n"] > 0:
 
@@ -120,7 +136,9 @@ def main():
                                          equal_var=False)
                         if p < 0.05:
                             sig = '*'
-                        sig += "\t" + str(p)
+                        elif p < 0.1:
+                            sig = '+'
+                        # sig += "\t" + str(p)
 
                     print ("\t" + str(fold) + "\t" + str(cond_results[cond][fold][r]["mu"]) +
                            "\t+/-" + str(cond_results[cond][fold][r]["s"]) + "\t" +
@@ -141,6 +159,8 @@ if __name__ == '__main__':
                         help="whether to count correctness only when users selected all correct actions")
     parser.add_argument('--ignore_always_choose_walk', type=int, required=False, default=0,
                         help="remove users who always chose the 'walk' action")
+    parser.add_argument('--require_all_correct_survey', type=int, required=False, default=0,
+                        help="only consider survey responses from users who get all tasks correct")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v
