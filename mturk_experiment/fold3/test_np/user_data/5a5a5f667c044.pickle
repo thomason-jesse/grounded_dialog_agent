@@ -1,0 +1,72 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3410'
+p17
+sS'source'
+p18
+Nsaa(lp19
+(dp20
+S'all'
+p21
+(lp22
+S"go one room down from peggy parker 's office into the long pod in the middle of the room"
+p23
+asg15
+(lp24
+sg16
+(lp25
+S"go one room down from peggy parker 's office into the long pod in the middle of the room"
+p26
+aS'the pod right next to the lounge'
+p27
+aS'the pod right next to the printer'
+p28
+aS'the pod in the middle of the room'
+p29
+aS'the pod in the middle of mallory mal maroon and peggy parker right next to the printer room'
+p30
+aS'the pod'
+p31
+aS'the pod'
+p32
+asg18
+(lp33
+sg3
+(lp34
+sg14
+(lp35
+saa(lp36
+a(lp37
+a.

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,6
+object_qs,2
+use_navigation,1
+use_delivery,0
+use_relocation,0
+There was a significant delay in typing response on the task screen, which made it more difficult to complete the task and caused some inaccuracies on my end (typos mainly). As far as the robot is concerned, it kept repeating questions, which led me to believe it wasn't learning very well. Further, it seemed to have limited information in its base programming (color, shape, etc) which made it difficult to describe things for it.

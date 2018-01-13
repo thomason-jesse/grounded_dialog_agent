@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,5
+object_qs,0
+use_navigation,1
+use_delivery,1
+use_relocation,1
+The robot isn't good at using commands involving relational directions.  Like, 'between' or 'near' or 'next to', in terms of referencing the offices.
