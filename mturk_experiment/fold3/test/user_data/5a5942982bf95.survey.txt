@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,2
+object_qs,0
+use_navigation,5
+use_delivery,5
+use_relocation,5
+The robot kept asking about the same object (the coke can) when I said container, not can. When I say no to one object, the robot should not return to that object.

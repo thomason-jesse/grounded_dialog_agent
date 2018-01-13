@@ -1,0 +1,122 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3430'
+p17
+sS'source'
+p18
+Nsa(dp19
+g3
+g4
+(g5
+(S'S4'
+p20
+I0
+I1
+tp21
+Rp22
+(I3
+S'|'
+p23
+NNNI4
+I1
+I0
+tp24
+bS'walk'
+p25
+tp26
+Rp27
+sg14
+Nsg15
+Nsg16
+S'3514'
+p28
+sg18
+Nsaa(lp29
+(dp30
+S'all'
+p31
+(lp32
+S'go to the pod'
+p33
+asg15
+(lp34
+sg16
+(lp35
+S'to sybils office'
+p36
+aS'to the office of dr sybil smart'
+p37
+asg18
+(lp38
+sg3
+(lp39
+sg14
+(lp40
+sa(dp41
+g31
+(lp42
+S'bring the bottle to david'
+p43
+asg15
+(lp44
+sg16
+(lp45
+S'take the bottle to robert brown'
+p46
+aS'to robert brown'
+p47
+aS'to deliver the bottle to robert brown'
+p48
+aS'to the table to get the bottle then take it to robert brown'
+p49
+aS'to the table to get the bottle take the bottle to robert brown'
+p50
+aS'to robert brown'
+p51
+aS'to robert brown'
+p52
+aS'to the table'
+p53
+aS'to the table for the bottle'
+p54
+asg18
+(lp55
+sg3
+(lp56
+sg14
+(lp57
+saa(lp58
+a(lp59
+a.

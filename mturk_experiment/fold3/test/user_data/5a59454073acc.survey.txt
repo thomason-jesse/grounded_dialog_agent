@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,6
+object_qs,3
+use_navigation,0
+use_delivery,0
+use_relocation,0
+The robot didn't understanding. It was very frustrating. He needs to know what the items are called and the people's names for this to be effective at all.

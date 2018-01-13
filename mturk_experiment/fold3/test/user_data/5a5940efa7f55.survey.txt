@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,2
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+There was no way to reset the robot if it went down the wrong path of logic, or if I misunderstood what it was saying.

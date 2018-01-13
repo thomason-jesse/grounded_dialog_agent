@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,4
+object_qs,1
+use_navigation,2
+use_delivery,2
+use_relocation,2
+The robot has gone soda crazy. Run for the hills. ^_^ Oh dear. Every answer ends in 'Orange Soda Can' today.  Thank you.

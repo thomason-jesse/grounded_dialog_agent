@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,6
+frustrated,1
+object_qs,3
+use_navigation,3
+use_delivery,6
+use_relocation,6
+Nice robot system. I really like it.

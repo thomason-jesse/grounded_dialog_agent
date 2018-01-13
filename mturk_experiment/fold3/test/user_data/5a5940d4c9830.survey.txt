@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,6
+object_qs,4
+use_navigation,5
+use_delivery,1
+use_relocation,1
+If the robot asks me if a picture is the object I'm looking for and I say no, it should remember that and not ask me again. Same with rooms and people.
