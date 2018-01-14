@@ -60,10 +60,13 @@ def main():
                 print "aggregating over cond '" + cond + "' fold " + fold + abl
 
                 raw_results = {"task_1_correct": [],
+                               "task_1_f1": [],
                                "task_1_clarification": [],
                                "task_2_correct": [],
+                               "task_2_f1": [],
                                "task_2_clarification": [],
                                "task_3_correct": [],
+                               "task_3_f1": [],
                                "task_3_clarification": [],
                                "tasks_easy": [],
                                "understood": [],
@@ -107,7 +110,9 @@ def main():
                                         if (not require_correct_action or
                                                 data[headers.index("task_" + str(task) + "_correct_action")] == "1"):
                                             task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
+                                            task_f1 = float(data[headers.index("task_" + str(task) + "_f1")])
                                             raw_results["task_" + str(task) + "_correct"].append(task_correct)
+                                            raw_results["task_" + str(task) + "_f1"].append(task_f1)
                                             if task_correct:
                                                 task_user_strs = int(data[headers.index("task_" + str(task) +
                                                                                         "_clarification")])
@@ -210,11 +215,12 @@ if __name__ == '__main__':
     parser.add_argument('--allow_repeat', type=int, required=False, default=1,
                         help="whether to count repeat users")
     parser.add_argument('--require_correct_action', type=int, required=False, default=0,
-                        help="whether to count correctness only when users selected correct action")
+                        help="whether to count correctness/f1 only when users selected correct action")
     parser.add_argument('--require_all_correct_actions', type=int, required=False, default=0,
-                        help="whether to count correctness only when users selected all correct actions")
+                        help=("whether to count correctness/f1 only when users selected all " +
+                              "correct actions (affects survey)"))
     parser.add_argument('--ignore_always_choose_walk', type=int, required=False, default=0,
-                        help="remove users who always chose the 'walk' action")
+                        help="remove users who always chose the 'walk' action (affects survey)")
     parser.add_argument('--require_all_correct_survey', type=int, required=False, default=0,
                         help="only consider survey responses from users who get all tasks correct")
     args = parser.parse_args()
