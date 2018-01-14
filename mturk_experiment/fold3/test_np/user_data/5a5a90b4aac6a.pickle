@@ -1,0 +1,222 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+g4
+(g5
+(S'S4'
+p17
+I0
+I1
+tp18
+Rp19
+(I3
+S'|'
+p20
+NNNI4
+I1
+I0
+tp21
+bS'3436'
+p22
+tp23
+Rp24
+sS'source'
+p25
+Nsa(dp26
+g3
+g4
+(g5
+(S'S5'
+p27
+I0
+I1
+tp28
+Rp29
+(I3
+S'|'
+p30
+NNNI5
+I1
+I0
+tp31
+bS'bring'
+p32
+tp33
+Rp34
+sg14
+S'w'
+p35
+sg15
+g4
+(g5
+(S'S7'
+p36
+I0
+I1
+tp37
+Rp38
+(I3
+S'|'
+p39
+NNNI7
+I1
+I0
+tp40
+bS'oidx_11'
+p41
+tp42
+Rp43
+sg16
+Nsg25
+Nsa(dp44
+g3
+g4
+(g5
+(S'S5'
+p45
+I0
+I1
+tp46
+Rp47
+(I3
+S'|'
+p48
+NNNI5
+I1
+I0
+tp49
+bS'bring'
+p50
+tp51
+Rp52
+sg14
+S's'
+p53
+sg15
+S'oidx_22'
+p54
+sg16
+Nsg25
+Nsaa(lp55
+(dp56
+S'all'
+p57
+(lp58
+S'go to the lab'
+p59
+asg15
+(lp60
+sg16
+(lp61
+S'go to the lab that is long'
+p62
+aS"you should go to the lab that is closest to dr sybil smalt 's office"
+p63
+aS'go to the lab on the far right side of the building'
+p64
+aS'you should go to the lab'
+p65
+aS'you should go to the lab on the right'
+p66
+asg25
+(lp67
+sg3
+(lp68
+sg14
+(lp69
+sa(dp70
+g57
+(lp71
+S'take the yellow can to walter ward'
+p72
+asg15
+(lp73
+S'please find the yellow can and take it to location w'
+p74
+aS'deliver the yellow can'
+p75
+aS'deliver the can that is yellow'
+p76
+aS'deliver the can'
+p77
+aS'deliver the tomato can'
+p78
+asg16
+(lp79
+sg25
+(lp80
+sg3
+(lp81
+sg14
+(lp82
+S'walter ward'
+p83
+aS'walter ward supervisor'
+p84
+asa(dp85
+g57
+(lp86
+S'deliver the bottle of peanuts in the pod by the lounge to the pod by the conference room across from the lab'
+p87
+asg15
+(lp88
+S'the pod next to the printer room'
+p89
+asg16
+(lp90
+sg25
+(lp91
+sg3
+(lp92
+sg14
+(lp93
+S'the pod by the conference room'
+p94
+aS'nobody'
+p95
+aS'deliver to the pod by the conference room'
+p96
+aS'deliver to the room called pod'
+p97
+aS'do not deliver to a person deliver to the pod'
+p98
+aS'deliver to a place'
+p99
+aS'deliver to pod by conference room'
+p100
+aS'not whom deliver to a pod'
+p101
+asaa(lp102
+a(lp103
+a.

@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,6
+object_qs,4
+use_navigation,0
+use_delivery,0
+use_relocation,0
+I got the robot to every objective except the last one. I finally gave up because the robot would only understand to deliver the object to a person, not a pod.  It was frustrating.  I did try and I did get the robot to find the object at least. 

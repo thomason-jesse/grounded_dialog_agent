@@ -1,0 +1,146 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'GO TO POD'
+get_from_user (processed): 'go to pod'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'POD'
+get_from_user (processed): 'pod'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}], [{'all': ['go to pod'], 'patient': [], 'goal': ['pod'], 'source': [], 'action': [], 'recipient': []}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'TO DELIVER BLUE BOTTLE TO RICHARD ROGUE'
+get_from_user (processed): 'to deliver blue bottle to richard rogue'
+say_to_user: I haven't heard the word 'rogue' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: Does 'rogue' mean the same thing as 'going'?
+get_from_user requested feedback
+get_from_user (raw): 'NO NAME OF R IS RICHARD ROGUE'
+get_from_user (processed): 'no name of r is richard rogue'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'rogue' mean the same thing as 'going'?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'TAKE BLUE BOTTLE TO DELIVER RICHARD ROGUE'
+get_from_user (processed): 'take blue bottle to deliver richard rogue'
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'MOVE TO OFFICE R'
+get_from_user (processed): 'move to office r'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'source': '3430', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'NO OFFICE OFFICE R IN LAST COLUMN'
+get_from_user (processed): 'no office office r in last column'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'source': '3430', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'source': '3430', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'OFFICE R IS INBETWEEN OFFICE B AND LOUNGE'
+get_from_user (processed): 'office r is inbetween office b and lounge'
+say_to_user: I haven't heard the word 'b' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'NO OFFICE'
+get_from_user (processed): 'no office'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'b' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: Does 'b' mean the same thing as 'p'?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3430', 'patient': 'oidx_12', 'goal': '3418'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3418', 'source': '3430'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3418', 'source': '3430'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3418', 'source': '3430'}], [{'all': ['go to pod'], 'patient': [], 'goal': ['pod'], 'source': [], 'action': [], 'recipient': []}, {'all': ['to deliver blue bottle to richard rogue'], 'patient': [], 'goal': ['move to office r', 'office r is inbetween office b and lounge'], 'source': ['take blue bottle to deliver richard rogue'], 'action': [], 'recipient': []}], [], [('rogue', 'going', True), ('b', 'p', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'DELIVER WHITE RUBBER FROM LAB TO OFFICE D'
+get_from_user (processed): 'deliver white rubber from lab to office d'
+say_to_user: I haven't heard the word 'rubber' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: Does 'rubber' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'd' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'D MEANS PERSON NAME DAVID'
+get_from_user (processed): 'd means person name david'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'd' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'S'
+get_from_user (processed): 's'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'DAVID'
+get_from_user (processed): 'david'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'WHITE RUBBER CAN'
+get_from_user (processed): 'white rubber can'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3410', 'source': None}, {'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3418', 'source': '3430'}, {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28', 'goal': None, 'source': None}], [{'all': ['go to pod'], 'patient': [], 'goal': ['pod'], 'source': [], 'action': [], 'recipient': []}, {'all': ['to deliver blue bottle to richard rogue'], 'patient': [], 'goal': ['move to office r', 'office r is inbetween office b and lounge'], 'source': ['take blue bottle to deliver richard rogue'], 'action': [], 'recipient': []}, {'all': ['deliver white rubber from lab to office d'], 'patient': ['s', 'white rubber can'], 'goal': [], 'source': [], 'action': [], 'recipient': ['david']}], [], [('rogue', 'going', True), ('b', 'p', True), ('rubber', 'cylinder', True)]]

@@ -1,0 +1,76 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3436'
+p17
+sS'source'
+p18
+Nsaa(lp19
+(dp20
+S'all'
+p21
+(lp22
+S"go to dr sybil smalt 's office"
+p23
+asg15
+(lp24
+sg16
+(lp25
+S"to the lab two doors down from dr sybil smalt 's office"
+p26
+aS'go to the largest lab in the building'
+p27
+aS'the lab past this office'
+p28
+aS'to the lab next to the empty office'
+p29
+aS'go to the lab closest to the room that you are in'
+p30
+aS'to the lab at the end of the hall'
+p31
+aS'to the lab'
+p32
+aS'to the other lab'
+p33
+aS'go to the lab next door'
+p34
+asg18
+(lp35
+sg3
+(lp36
+sg14
+(lp37
+saa(lp38
+a(lp39
+a.
