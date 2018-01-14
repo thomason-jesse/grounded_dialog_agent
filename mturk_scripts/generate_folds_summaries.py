@@ -11,6 +11,7 @@ def main():
 
     experiment_dir = FLAGS_experiment_dir
     num_folds = FLAGS_num_folds
+    open_response_out = FLAGS_open_response_out
     strip_repeat_workers = False if FLAGS_allow_repeat == 1 else True
     require_correct_action = True if FLAGS_require_correct_action == 1 else False
     require_all_correct_actions = True if FLAGS_require_all_correct_actions == 1 else False
@@ -18,25 +19,35 @@ def main():
     require_all_correct_survey = True if FLAGS_require_all_correct_survey == 1 else False
 
     seen_turk_ids = {}
+    aid_to_uids = {}
     for cond in ["train", "test"]:
         for fold in range(num_folds):
-            summary_csv_fn = os.path.join(experiment_dir, "fold" + str(fold), cond, "summary.csv")
-            if os.path.isfile(summary_csv_fn):
-                with open(summary_csv_fn, 'r') as f:
-                    lines = f.readlines()
-                    headers = lines[0].strip().split(',')
-                    for lidx in range(1, len(lines)):
-                        data = lines[lidx].strip().split(',')
-                        turk_id = data[headers.index('worker_id')]
-                        uid = int(data[headers.index('uid')], 16)
-                        if turk_id in seen_turk_ids:
-                            seen_uid = seen_turk_ids[turk_id]
-                            if uid < seen_uid:  # Record earlier sighting.
+            ablations = ['']
+            if fold == 3:
+                ablations.append('_np')
+            fold = str(fold)
+            for abl in ablations:
+                summary_csv_fn = os.path.join(experiment_dir, "fold" + fold, cond + abl, "summary.csv")
+                if os.path.isfile(summary_csv_fn):
+                    with open(summary_csv_fn, 'r') as f:
+                        lines = f.readlines()
+                        headers = lines[0].strip().split(',')
+                        for lidx in range(1, len(lines)):
+                            data = lines[lidx].strip().split(',')
+                            turk_id = data[headers.index('worker_id')]
+                            uid = int(data[headers.index('uid')], 16)
+                            if turk_id not in aid_to_uids:
+                                aid_to_uids[turk_id] = []
+                            aid_to_uids[turk_id].append(data[headers.index('uid')])
+                            if turk_id in seen_turk_ids:
+                                seen_uid = seen_turk_ids[turk_id]
+                                if uid < seen_uid:  # Record earlier sighting.
+                                    seen_turk_ids[turk_id] = uid
+                            else:
                                 seen_turk_ids[turk_id] = uid
-                        else:
-                            seen_turk_ids[turk_id] = uid
 
     cond_results = {}
+    open_responses = {}  # keys are turk ids, values lists of paired ((cond, fold), response)
     for cond in ["test", "train"]:
         cond_results[cond] = {}
 
@@ -62,6 +73,7 @@ def main():
                                "use_delivery": [],
                                "use_relocation": []}
                 summary_csv_fn = os.path.join(experiment_dir, "fold" + fold, cond + abl, "summary.csv")
+                response_csv_fn = os.path.join(experiment_dir, "fold" + fold, cond + abl, "open_response.csv")
 
                 if os.path.isfile(summary_csv_fn):
                     with open(summary_csv_fn, 'r') as f:
@@ -113,6 +125,27 @@ def main():
                                     # print "WARNING: ignoring repeat worker " + turk_id
                                     pass
 
+                if os.path.isfile(response_csv_fn):
+                    with open(response_csv_fn, 'r') as f:
+                        for line in f.readlines():
+                            line = line.strip()
+                            if len(line) > 0:
+                                try:
+                                    uid, r = line.split(": ")
+                                    found_aid = None
+                                    for aid in aid_to_uids:
+                                        if uid in aid_to_uids[aid]:
+                                            found_aid = aid
+                                            break
+                                    if found_aid is not None:
+                                        if aid not in open_responses:
+                                            open_responses[aid] = {}
+                                        open_responses[aid][int(uid, 16)] = (cond, fold + abl, r)
+                                    else:
+                                        print "WARNING: no aid found for uid " + uid + " in open response files"
+                                except ValueError:  # response submitted was just blank space
+                                    pass
+
                 pr = {}
                 for r in raw_results:
                     n = len(raw_results[r])
@@ -155,6 +188,16 @@ def main():
                                "\t+/-" + str(cond_results[cond][fold + abl][r]["s"]) + "\t" +
                                str(cond_results[cond][fold + abl][r]["n"]) + "\t" + sig)
 
+        # Write open response outfile
+        open_response_count = {aid: len(open_responses[aid]) for aid in open_responses.keys()}
+        with open(open_response_out, 'w') as f:
+            for aid, _ in sorted(open_response_count.iteritems(), key=lambda (_k, _v): (_v, _k), reverse=True):
+                f.write(aid + "\n")
+                for uid16, __ in sorted(open_responses[aid].iteritems()):
+                    cond, fold, r = open_responses[aid][uid16]
+                    f.write("(" + cond + ", " + fold + ")\t" + r + "\n")
+                f.write("\n")
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -162,6 +205,8 @@ if __name__ == '__main__':
                         help="directory to crawl to find fold directories")
     parser.add_argument('--num_folds', type=int, required=True,
                         help="how many folds to iterate over")
+    parser.add_argument('--open_response_out', type=str, required=True,
+                        help="where to dump the collated open responses")
     parser.add_argument('--allow_repeat', type=int, required=False, default=1,
                         help="whether to count repeat users")
     parser.add_argument('--require_correct_action', type=int, required=False, default=0,
