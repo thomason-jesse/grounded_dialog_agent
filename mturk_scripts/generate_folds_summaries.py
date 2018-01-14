@@ -48,7 +48,7 @@ def main():
 
     cond_results = {}
     open_responses = {}  # keys are turk ids, values lists of paired ((cond, fold), response)
-    for cond in ["test", "train"]:
+    for cond in ["train", "test"]:
         cond_results[cond] = {}
 
         for fold in range(num_folds):
