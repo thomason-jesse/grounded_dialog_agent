@@ -1,0 +1,243 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Dr. Nancy Nagel's office.'
+get_from_user (processed): 'go to dr nancy nagel 's office'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the room that is second from the left on the top row of rooms'
+get_from_user (processed): 'go to the room that is second from the left on the top row of rooms'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the office'
+get_from_user (processed): 'go to the office'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3404'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3404', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3404', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3404', 'source': None}], [{'all': ["go to dr nancy nagel 's office"], 'patient': [], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give the intern, Peggy Parker a jar full of brown material with a red lid'
+get_from_user (processed): 'give the intern peggy parker a jar full of brown material with a red lid'
+say_to_user: I haven't heard the word 'material' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'The jar with a red lid has brown disc shaped objects inside. It is about half full.'
+get_from_user (processed): 'the jar with a red lid has brown disc shaped objects inside it is about half full'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'material' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no, you need to give an object to Peggy Parker'
+get_from_user (processed): 'no you need to give an object to peggy parker'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'It is jar with a red lid that is half full of small brown disks.'
+get_from_user (processed): 'it is jar with a red lid that is half full of small brown disks'
+say_to_user: I haven't heard the word 'disks' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'disks' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'disks' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'h'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Plastic jar with red lid that has brown pellets inside.'
+get_from_user (processed): 'plastic jar with red lid that has brown pellets inside'
+say_to_user: I haven't heard the word 'plastic' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'pellets' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'n'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Jar with red lid that has something brown in it.'
+get_from_user (processed): 'jar with red lid that has something brown in it'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver jar with red lid to Peggy Parker,'
+get_from_user (processed): 'deliver jar with red lid to peggy parker'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver clear jar with red lid to Peggy Parker intern'
+get_from_user (processed): 'deliver clear jar with red lid to peggy parker intern'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker, intern'
+get_from_user (processed): 'peggy parker intern'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'r', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker, intern'
+get_from_user (processed): 'peggy parker intern'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'm', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'The intern peggy parker'
+get_from_user (processed): 'the intern peggy parker'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'm', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker'
+get_from_user (processed): 'peggy parker'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_22', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_22', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3404', 'source': None}, {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_22', 'goal': None, 'source': None}], [{'all': ["go to dr nancy nagel 's office"], 'patient': [], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['give the intern peggy parker a jar full of brown material with a red lid'], 'patient': ['it is jar with a red lid that is half full of small brown disks', 'plastic jar with red lid that has brown pellets inside', 'jar with red lid that has something brown in it', 'deliver jar with red lid to peggy parker', 'deliver clear jar with red lid to peggy parker intern'], 'goal': [], 'source': [], 'action': [], 'recipient': ['peggy parker intern', 'peggy parker intern', 'the intern peggy parker', 'peggy parker']}], [], [('disks', 'metallic', False), ('disks', 'cylinder', False)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bring the blue tube of pringles from the pod room which is the 2nd to last room from the left on the last row on the pink map to the biggest lab room on the green map.'
+get_from_user (processed): 'bring the blue tube of pringles from the pod room which is the 2nd to last room from the left on the last row on the pink map to the biggest lab room on the green map'
+say_to_user: I haven't heard the word 'tube' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'tube' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'tube' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'pink' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'pink' mean the same thing as 'brown'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'pink' mean the same thing as 'yellow'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'pink' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'map' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'biggest' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'green' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'green' mean the same thing as 'brown'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'green' mean the same thing as 'yellow'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'green' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'map' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the pod room which is the second room from the right in the last row of rooms'
+get_from_user (processed): 'go to the pod room which is the second room from the right in the last row of rooms'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the pod room next to Mallory "Mal" Maroon's office'
+get_from_user (processed): 'go to the pod room next to mallory mal maroon 's office'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3504'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3504', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3504', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3404', 'source': None}, {'action': 'bring', 'recipient': 'p', 'patient': 'oidx_22', 'goal': None, 'source': None}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3504', 'source': None}], [{'all': ["go to dr nancy nagel 's office"], 'patient': [], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['give the intern peggy parker a jar full of brown material with a red lid'], 'patient': ['it is jar with a red lid that is half full of small brown disks', 'plastic jar with red lid that has brown pellets inside', 'jar with red lid that has something brown in it', 'deliver jar with red lid to peggy parker', 'deliver clear jar with red lid to peggy parker intern'], 'goal': [], 'source': [], 'action': [], 'recipient': ['peggy parker intern', 'peggy parker intern', 'the intern peggy parker', 'peggy parker']}, {'all': ['bring the blue tube of pringles from the pod room which is the 2nd to last room from the left on the last row on the pink map to the biggest lab room on the green map'], 'patient': [], 'goal': ['go to the pod room which is the second room from the right in the last row of rooms', "go to the pod room next to mallory mal maroon 's office"], 'source': [], 'action': [], 'recipient': []}], [], [('disks', 'metallic', False), ('disks', 'cylinder', False), ('tube', 'metallic', False), ('tube', 'cylinder', True), ('pink', 'brown', False), ('pink', 'yellow', False), ('pink', 'blue', False), ('green', 'brown', False), ('green', 'yellow', False), ('green', 'blue', False)]]

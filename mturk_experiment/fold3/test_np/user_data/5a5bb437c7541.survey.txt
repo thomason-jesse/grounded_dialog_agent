@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,5
+object_qs,3
+use_navigation,2
+use_delivery,0
+use_relocation,3
+Robot had trouble understanding the properties of objects and also couldn't understand that I wanted to deliver an object to a different person. Kind of frustrating and wished I could answer more than yes or no to certain questions.

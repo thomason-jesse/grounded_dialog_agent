@@ -1,0 +1,145 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Richard Rogue's office'
+get_from_user (processed): 'go to richard rogue 's office'
+say_to_user: I haven't heard the word 'rogue' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No, it is a name'
+get_from_user (processed): 'no it is a name'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'rogue' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3512', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3512', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3512', 'source': None}], [{'all': ["go to richard rogue 's office"], 'patient': [], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'take the bottle to dave'
+get_from_user (processed): 'take the bottle to dave'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the bottle with a red label'
+get_from_user (processed): 'the bottle with a red label'
+say_to_user: I haven't heard the word 'label' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'label' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'the red bottle'
+get_from_user (processed): 'the red bottle'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'red bottle'
+get_from_user (processed): 'red bottle'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'white bottle with a red label'
+get_from_user (processed): 'white bottle with a red label'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'aspirin'
+get_from_user (processed): 'aspirin'
+say_to_user: I haven't heard the word 'aspirin' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'white medicine bottle'
+get_from_user (processed): 'white medicine bottle'
+say_to_user: I haven't heard the word 'medicine' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'the little white bottle on the table.'
+get_from_user (processed): 'the little white bottle on the table'
+say_to_user: I haven't heard the word 'little' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'little' mean the same thing as 'going'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'no. that's fruit. he doesn't want fruit. he wants a small white bottle that has aspirin in it.'
+get_from_user (processed): 'no that 's fruit he doesn' 's want fruit he wants a small white bottle that has aspirin in it'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'medicine bottle'
+get_from_user (processed): 'medicine bottle'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_12'}
+get_fro

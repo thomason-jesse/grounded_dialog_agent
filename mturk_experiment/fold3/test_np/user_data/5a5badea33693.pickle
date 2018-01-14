@@ -1,0 +1,297 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+g4
+(g5
+(S'S4'
+p17
+I0
+I1
+tp18
+Rp19
+(I3
+S'|'
+p20
+NNNI4
+I1
+I0
+tp21
+bS'3436'
+p22
+tp23
+Rp24
+sS'source'
+p25
+Nsa(dp26
+g3
+g4
+(g5
+(S'S5'
+p27
+I0
+I1
+tp28
+Rp29
+(I3
+S'|'
+p30
+NNNI5
+I1
+I0
+tp31
+bS'bring'
+p32
+tp33
+Rp34
+sg14
+g4
+(g5
+(S'S1'
+p35
+I0
+I1
+tp36
+Rp37
+(I3
+S'|'
+p38
+NNNI1
+I1
+I0
+tp39
+bS'r'
+p40
+tp41
+Rp42
+sg15
+S'oidx_12'
+p43
+sg16
+Nsg25
+Nsa(dp44
+g3
+g4
+(g5
+(S'S4'
+p45
+I0
+I1
+tp46
+Rp47
+(I3
+S'|'
+p48
+NNNI4
+I1
+I0
+tp49
+bS'move'
+p50
+tp51
+Rp52
+sg14
+Nsg15
+g4
+(g5
+(S'S7'
+p53
+I0
+I1
+tp54
+Rp55
+(I3
+S'|'
+p56
+NNNI7
+I1
+I0
+tp57
+bS'oidx_26'
+p58
+tp59
+Rp60
+sg16
+g4
+(g5
+(S'S4'
+p61
+I0
+I1
+tp62
+Rp63
+(I3
+S'|'
+p64
+NNNI4
+I1
+I0
+tp65
+bS'3410'
+p66
+tp67
+Rp68
+sg25
+g4
+(g5
+(S'S4'
+p69
+I0
+I1
+tp70
+Rp71
+(I3
+S'|'
+p72
+NNNI4
+I1
+I0
+tp73
+bS'3430'
+p74
+tp75
+Rp76
+saa(lp77
+(dp78
+S'all'
+p79
+(lp80
+S'go to the lab on the right of office'
+p81
+asg15
+(lp82
+sg16
+(lp83
+S'go to the lab on the right office'
+p84
+aS'go to the lab towards the right corner'
+p85
+aS'go to the lab'
+p86
+aS'go to the lab on the right'
+p87
+aS'go to the lab on the right'
+p88
+asg25
+(lp89
+sg3
+(lp90
+sg14
+(lp91
+sa(dp92
+g79
+(lp93
+S'give long white bottle to richard rogue'
+p94
+asg15
+(lp95
+S'long white bottle'
+p96
+aS'yes'
+p97
+aS'long white bottle with red cap'
+p98
+aS'long white bottle'
+p99
+aS'long white bottle with red cap'
+p100
+aS'long white bottle'
+p101
+aS'long white bottle'
+p102
+aS'long white bottle with red cap'
+p103
+asg16
+(lp104
+sg25
+(lp105
+sg3
+(lp106
+sg14
+(lp107
+S'richard rogue secretary'
+p108
+aS'richard'
+p109
+asa(dp110
+g79
+(lp111
+S"move red can from dr sybil smalt 's office to the pod between lounge and printer"
+p112
+asg15
+(lp113
+S'red can'
+p114
+aS'a red can'
+p115
+aS'red cola can'
+p116
+aS'red cola can'
+p117
+aS'red can'
+p118
+aS'a red canister of coldrink'
+p119
+aS'red can'
+p120
+aS'a red can'
+p121
+asg16
+(lp122
+S'yes'
+p123
+aS'to the pod between lounge and printer'
+p124
+aS'to the pod between lounge and printer'
+p125
+aS'to the pod'
+p126
+aS'to the pod'
+p127
+aS'pod'
+p128
+aS'to pod'
+p129
+asg25
+(lp130
+S"dr sybil smalt 's office"
+p131
+aS"dr sybil smalt 's office"
+p132
+asg3
+(lp133
+sg14
+(lp134
+saa(lp135
+a(lp136
+a.

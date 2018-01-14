@@ -1,0 +1,101 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'to move'
+get_from_user (processed): 'to move'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to pod'
+get_from_user (processed): 'to pod'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go to POD'
+get_from_user (processed): 'go to pod'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3518'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3518', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3518', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3518', 'source': None}], [{'all': ['to move'], 'patient': [], 'goal': ['to pod', 'go to pod'], 'source': [], 'action': [], 'recipient': []}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'deliver object'
+get_from_user (processed): 'deliver object'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'red'
+get_from_user (processed): 'red'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'red'
+get_from_user (processed): 'red'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3518', 'source': None}, {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13', 'goal': None, 'source': None}], [{'all': ['to move'], 'patient': [], 'goal': ['to pod', 'go to pod'], 'source': [], 'action': [], 'recipient': []}, {'all': ['deliver object'], 'patient': ['red', 'red'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [], []]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'move object'
+get_from_user (processed): 'move object'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go to office'
+get_from_user (processed): 'go to office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to office'
+get_from_user (processed): 'to office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'POD to Office'
+get_from_user (processed): 'pod to office'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3418'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3418', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3418', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3518', 'source': None}, {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_13', 'goal': None, 'source': None}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3418', 'source': None}], [{'all': ['to move'], 'patient': [], 'goal': ['to pod', 'go to pod'], 'source': [], 'action': [], 'recipient': []}, {'all': ['deliver object'], 'patient': ['red', 'red'], 'goal': [], 'source': [], 'action': [], 'recipient': []}, {'all': ['move object'], 'patient': [], 'goal': ['go to office', 'to office', 'pod to office'], 'source': [], 'action': [], 'recipient': []}], [], []]

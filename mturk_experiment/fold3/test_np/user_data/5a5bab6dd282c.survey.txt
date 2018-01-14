@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,0
+frustrated,6
+object_qs,4
+use_navigation,0
+use_delivery,0
+use_relocation,0
+Honestly, that was terrible. Shouldn't the robot be programed to know the offices of the people listed with their full names and titles? How does it know brown, yellow, blue, but not orange (I actually don't think it knows the color of objects but it's encountered those words before but not orange)? Why doesn't it know words that it used? Needs a lot more tweaking.

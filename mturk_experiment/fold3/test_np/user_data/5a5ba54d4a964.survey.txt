@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,2
+frustrated,1
+object_qs,1
+use_navigation,4
+use_delivery,5
+use_relocation,5
+I thought the Robot is supposed to know the names of all the people places and things in the environment it is to be used.  That's the part I was wondering about, b/c when I entered the name of the person the Robot didn't seem to have all that info built in.  
