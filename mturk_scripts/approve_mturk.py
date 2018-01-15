@@ -65,6 +65,9 @@ def main():
                                          "task_1_correct_action": "-2",
                                          "task_2_correct_action": "-2",
                                          "task_3_correct_action": "-2",
+                                         "task_1_f1": "-1",
+                                         "task_2_f1": "-1",
+                                         "task_3_f1": "-1",
                                          "always_chose_walk": "1",
                                          "pickle_exists": '0',
                                          "tasks_easy": "-1",
@@ -133,6 +136,14 @@ def main():
                                                 user_data["always_chose_walk"] = "0"
                                             if task_correct:
                                                 bonuses += 1
+                                            overlap_n = 0
+                                            for r in drawn_roles:
+                                                if r in chosen_roles and chosen_roles[r] == drawn_roles[r]:
+                                                    overlap_n += 1
+                                            prec = float(overlap_n) / len(chosen_roles)
+                                            rec = float(overlap_n) / len(drawn_roles)
+                                            f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else 0
+                                            user_data["task_" + str(task) + "_f1"] = str(f1)
 
                             # Check whether output pickle exists (user completed all three tasks).
                             pickle_fn = os.path.join(user_data_dir, gen_id + ".pickle")
