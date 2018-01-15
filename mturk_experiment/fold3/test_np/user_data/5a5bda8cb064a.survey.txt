@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,0
+use_relocation,0
+As AI's go, this one feels about as rudimentary as it gets, so if felt a bit frustrating but  glad I had a chance to work on this one - hope it was a help. Good luck with your research, thx!

@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,6
+use_delivery,6
+use_relocation,6
+The first task was not well explained. The user should know the robots base vocabulary in order to train it.

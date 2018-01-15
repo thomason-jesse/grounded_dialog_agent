@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,4
+object_qs,1
+use_navigation,4
+use_delivery,2
+use_relocation,2
+I hope that I do not get a rejection. I believe in one of the tasks, I mistook the robot not needing to &quot;manipulate any items.&quot; It was a piece of what I believed to be styrofoam. I was not sure if that was and it was my first time trying to direct the robot, when in fact it did need to manipulate the item. I'd be willing to repeat my work but would very much appreciate not receiving a rejection as if it was a failed task. Please consider it. Thank you.

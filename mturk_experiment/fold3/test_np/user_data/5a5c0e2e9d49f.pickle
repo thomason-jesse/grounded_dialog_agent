@@ -1,0 +1,171 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3414'
+p17
+sS'source'
+p18
+Nsa(dp19
+g3
+g4
+(g5
+(S'S5'
+p20
+I0
+I1
+tp21
+Rp22
+(I3
+S'|'
+p23
+NNNI5
+I1
+I0
+tp24
+bS'bring'
+p25
+tp26
+Rp27
+sg14
+S'p'
+p28
+sg15
+S'oidx_22'
+p29
+sg16
+Nsg18
+Nsaa(lp30
+(dp31
+S'all'
+p32
+(lp33
+S'go to the lab on the green map it is marked with an red x'
+p34
+asg15
+(lp35
+sg16
+(lp36
+S'go to the lab on the green map it is marked with an red x'
+p37
+aS'go the the lab the one in the middle'
+p38
+aS'go to one of the labs the one in the middle'
+p39
+aS'you should be at the x marked on the green map'
+p40
+aS'you should be at a lab it is marked x on the green map'
+p41
+aS'go to the lab'
+p42
+aS'go to the green map and locate the place'
+p43
+asg18
+(lp44
+sg3
+(lp45
+sg14
+(lp46
+sa(dp47
+g32
+(lp48
+S'locate a clear jar with a red top bring it to peggy parker at office p'
+p49
+asg15
+(lp50
+S'find the clear jar with a red top'
+p51
+aS'the jar with a red cover'
+p52
+aS'a container with red top there is a picture of it with blue border'
+p53
+aS'find a clear jar with red top there is a picture of it with blue border'
+p54
+aS'there is a picture of it with blue border'
+p55
+aS'there is a picture of it with blue border'
+p56
+aS'a clear jar with red top there is a picture of it with blue border'
+p57
+aS'a container with a red cover'
+p58
+aS'http://gandalf.nmtechgroup.com/images/objects/oidx_22.jpg'
+p59
+asg16
+(lp60
+sg18
+(lp61
+sg3
+(lp62
+sg14
+(lp63
+S'peggy parker at office p'
+p64
+aS'you should deliver it to peggy parker'
+p65
+asaa(lp66
+a(lp67
+(S'green'
+p68
+g4
+(g5
+(S'S5'
+p69
+I0
+I1
+tp70
+Rp71
+(I3
+S'|'
+p72
+NNNI5
+I1
+I0
+tp73
+bS'brown'
+p74
+tp75
+Rp76
+I00
+tp77
+a(g68
+S'yellow'
+p78
+I00
+tp79
+a(g68
+S'blue'
+p80
+I00
+tp81
+aa.

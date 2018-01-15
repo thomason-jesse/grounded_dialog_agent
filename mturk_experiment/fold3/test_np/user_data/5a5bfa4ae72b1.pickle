@@ -1,0 +1,170 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+g4
+(g5
+(S'S4'
+p17
+I0
+I1
+tp18
+Rp19
+(I3
+S'|'
+p20
+NNNI4
+I1
+I0
+tp21
+bS'3506'
+p22
+tp23
+Rp24
+sS'source'
+p25
+Nsa(dp26
+g3
+g4
+(g5
+(S'S5'
+p27
+I0
+I1
+tp28
+Rp29
+(I3
+S'|'
+p30
+NNNI5
+I1
+I0
+tp31
+bS'bring'
+p32
+tp33
+Rp34
+sg14
+g4
+(g5
+(S'S1'
+p35
+I0
+I1
+tp36
+Rp37
+(I3
+S'|'
+p38
+NNNI1
+I1
+I0
+tp39
+bS'w'
+p40
+tp41
+Rp42
+sg15
+S'oidx_11'
+p43
+sg16
+Nsg25
+Nsaa(lp44
+(dp45
+S'all'
+p46
+(lp47
+S'go to printer'
+p48
+asg15
+(lp49
+sg16
+(lp50
+sg25
+(lp51
+sg3
+(lp52
+sg14
+(lp53
+sa(dp54
+g46
+(lp55
+S'take fruit can to person w'
+p56
+asg15
+(lp57
+S'fruit can'
+p58
+aS'fruit can'
+p59
+aS'fruit can'
+p60
+aS'fruit can'
+p61
+aS'fruit can'
+p62
+aS'fruit can'
+p63
+aS'fruit can'
+p64
+aS'fruit can'
+p65
+aS'fruit can'
+p66
+aS'fruit can'
+p67
+aS'fruit can'
+p68
+aS'blue fruit can'
+p69
+aS'blue can'
+p70
+aS'blue can'
+p71
+aS'blue fruit can'
+p72
+aS'blue object'
+p73
+asg16
+(lp74
+sg25
+(lp75
+sg3
+(lp76
+sg14
+(lp77
+S'walter'
+p78
+asaa(lp79
+a(lp80
+a.
