@@ -459,6 +459,7 @@ require_once('functions.php');
 # These should be changed whenever a new Turk task is made.
 $fold = 3;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
 $setting = "test";  # either init, train, or test
+$run_forever = true;  # if false, still running MTurk experiments, if true, show additional info
 
 $d = 'client/';
 $active_train_set = get_active_train_set($fold);
@@ -467,6 +468,15 @@ shuffle($active_train_set);
 # This is a new landing, so we need to set up the task and call the Server to make an instance.
 if (!isset($_POST['uid'])) {
   $uid = uniqid();
+
+  $pre_inst = "";
+  if ($run_forever) {
+    $pre_inst = "<p>This is the interface used to gather data from Mechanical Turk for ";
+    $pre_inst .= "Jointly Improving Parsing and Perception for Natural Language Commands ";
+    $pre_inst .= "through Human-Robot Dialog. Aside from this block of text, the interface is ";
+    $pre_inst .= "unchanged. At the end of the three tasks, the survey code for MTurk generated ";
+    $pre_inst .= "for you is based on a hash corresponding to no real HITs.</p><br/><hr>";
+  }
 
   # Show instructions.
   $inst = "<p>In this HIT, you will command a robot to perform several tasks. ";
@@ -481,7 +491,7 @@ if (!isset($_POST['uid'])) {
   ?>
   <div class="row" id="inst_div">
     <div class="col-md-12">
-      <?php echo $inst;?>
+      <?php echo $pre_inst . $inst;?>
       <form action="index.php" method="POST">
         <input type="hidden" name="uid" value="<?php echo $uid;?>">
         <input type="hidden" name="task_num" value="1">
