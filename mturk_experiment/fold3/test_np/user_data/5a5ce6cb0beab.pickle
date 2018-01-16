@@ -1,0 +1,145 @@
+(lp0
+(lp1
+(dp2
+S'action'
+p3
+cnumpy.core.multiarray
+scalar
+p4
+(cnumpy
+dtype
+p5
+(S'S4'
+p6
+I0
+I1
+tp7
+Rp8
+(I3
+S'|'
+p9
+NNNI4
+I1
+I0
+tp10
+bS'walk'
+p11
+tp12
+Rp13
+sS'recipient'
+p14
+NsS'patient'
+p15
+NsS'goal'
+p16
+S'3436'
+p17
+sS'source'
+p18
+Nsa(dp19
+g3
+g4
+(g5
+(S'S5'
+p20
+I0
+I1
+tp21
+Rp22
+(I3
+S'|'
+p23
+NNNI5
+I1
+I0
+tp24
+bS'bring'
+p25
+tp26
+Rp27
+sg14
+g4
+(g5
+(S'S1'
+p28
+I0
+I1
+tp29
+Rp30
+(I3
+S'|'
+p31
+NNNI1
+I1
+I0
+tp32
+bS's'
+p33
+tp34
+Rp35
+sg15
+S'oidx_25'
+p36
+sg16
+Nsg18
+Nsaa(lp37
+(dp38
+S'all'
+p39
+(lp40
+S'go to lab'
+p41
+asg15
+(lp42
+sg16
+(lp43
+S'go to lab next to office'
+p44
+aS'go to lab on the right'
+p45
+aS'go to lab after office s'
+p46
+asg18
+(lp47
+sg3
+(lp48
+sg14
+(lp49
+sa(dp50
+g39
+(lp51
+S'give the object to s'
+p52
+asg15
+(lp53
+S'a brown container'
+p54
+asg16
+(lp55
+sg18
+(lp56
+sg3
+(lp57
+sg14
+(lp58
+S'no'
+p59
+aS's'
+p60
+aS'to s'
+p61
+aS'to s'
+p62
+aS'to s'
+p63
+aS'to s'
+p64
+aS'to s'
+p65
+aS'to s'
+p66
+aS'to s'
+p67
+asaa(lp68
+a(lp69
+a.

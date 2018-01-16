@@ -1,0 +1,229 @@
+No handlers could be found for logger "gensim.models.doc2vec"
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go your office room'
+get_from_user (processed): 'go your office room'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Meet Dr.Heidi Hughes'
+get_from_user (processed): 'meet dr.heidi hughes'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Do it now'
+get_from_user (processed): 'do it now'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'go to pod room'
+get_from_user (processed): 'go to pod room'
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'Office room'
+get_from_user (processed): 'office room'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'lap room'
+get_from_user (processed): 'lap room'
+say_to_user: I haven't heard the word 'lap' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'white'
+get_from_user (processed): 'white'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'lap' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3402', 'goal': '3510'}
+get_from_user requested feedback
+get_from_user (raw): 'R room will go'
+get_from_user (processed): 'r room will go'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3402', 'goal': '3510'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move from <s>here</s>? {'action': 'move', 'source': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'simply sit'
+get_from_user (processed): 'simply sit'
+say_to_user: I haven't heard the word 'simply' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'green color'
+get_from_user (processed): 'green color'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'simply' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'simply' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'can'
+get_from_user (processed): 'can'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'simply' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'sit' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Meet Dr. Sybil Smalt'
+get_from_user (processed): 'meet dr sybil smalt'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'sit' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'sit' mean the same thing as 'small'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'source': '3402', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'red color'
+get_from_user (processed): 'red color'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'source': '3402', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Nancy Nagel'
+get_from_user (processed): 'dr nancy nagel'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'source': '3402', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'source': '3402', 'patient': 'oidx_12'}
+get_from_user requested feedback
+get_from_user (raw): 'office room'
+get_from_user (processed): 'office room'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3402', 'patient': 'oidx_12', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'office'
+get_from_user (processed): 'office'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3402', 'patient': 'oidx_12', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'lab'
+get_from_user (processed): 'lab'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3402', 'patient': 'oidx_12', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3414a', 'source': '3402'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3414a', 'source': '3402'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3414a', 'source': '3402'}], [{'all': ['go your office room'], 'patient': ['simply sit'], 'goal': ['lap room', 'office room'], 'source': ['go to pod room'], 'action': [], 'recipient': []}], [], [('simply', 'can', False), ('sit', 'small', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue, Secretary'
+get_from_user (processed): 'richard rogue secretary'
+say_to_user: I haven't heard the word 'rogue' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'red'
+get_from_user (processed): 'red'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'rogue' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'rogue' mean the same thing as 'body'?
+get_from_user requested feedback
+get_from_user (raw): 'body'
+get_from_user (processed): 'body'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: Does 'rogue' mean the same thing as 'body'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'secretary' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'sqaure'
+get_from_user (processed): 'sqaure'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user: I haven't heard the word 'secretary' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Mallory "Mal" Maroon'
+get_from_user (processed): 'mallory mal maroon'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker, Intern'
+get_from_user (processed): 'peggy parker intern'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'office'
+get_from_user (processed): 'office'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3508', 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3508', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3414a', 'source': '3402'}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3508', 'source': None}], [{'all': ['go your office room'], 'patient': ['simply sit'], 'goal': ['lap room', 'office room'], 'source': ['go to pod room'], 'action': [], 'recipient': []}, {'all': ['richard rogue secretary'], 'patient': [], 'goal': ['peggy parker intern'], 'source': [], 'action': [], 'recipient': []}], [], [('simply', 'can', False), ('sit', 'small', True), ('rogue', 'body', True)]]
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'pod'
+get_from_user (processed): 'pod'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'office'
+get_from_user (processed): 'office'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'h'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Heidi Hughes'
+get_from_user (processed): 'dr heidi hughes'
+say_to_user: I am expecting a simple 'yes' or 'no' response.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'h'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'h'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Heidi Hughes'
+get_from_user (processed): 'dr heidi hughes'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22', 'goal': None, 'source': None}
+main: ... done; got action {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_12', 'goal': '3414a', 'source': '3402'}, {'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3508', 'source': None}, {'action': 'bring', 'recipient': 'h', 'patient': 'oidx_22', 'goal': None, 'source': None}], [{'all': ['go your office room'], 'patient': ['simply sit'], 'goal': ['lap room', 'office room'], 'source': ['go to pod room'], 'action': [], 'recipient': []}, {'all': ['richard rogue secretary'], 'patient': [], 'goal': ['peggy parker intern'], 'source': [], 'action': [], 'recipient': []}, {'all': ['pod'], 'patient': ['office', 'dr heidi hughes'], 'goal': [], 'source': [], 'action': [], 'recipient': []}], [], [('simply', 'can', False), ('sit', 'small', True), ('rogue', 'body', True)]]
