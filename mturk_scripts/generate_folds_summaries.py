@@ -2,6 +2,7 @@
 __author__ = 'jesse'
 
 import argparse
+import matplotlib.pyplot as plt
 import numpy as np
 import os
 from scipy.stats import ttest_ind
@@ -12,6 +13,7 @@ def main():
     experiment_dir = FLAGS_experiment_dir
     num_folds = FLAGS_num_folds
     open_response_out = FLAGS_open_response_out
+    metrics_to_graph = FLAGS_metrics_to_graph.split(',') if FLAGS_metrics_to_graph is not None else []
     strip_repeat_workers = False if FLAGS_allow_repeat == 1 else True
     require_correct_action = True if FLAGS_require_correct_action == 1 else False
     require_all_correct_actions = True if FLAGS_require_all_correct_actions == 1 else False
@@ -193,15 +195,48 @@ def main():
                                "\t+/-" + str(cond_results[cond][fold + abl][r]["s"]) + "\t" +
                                str(cond_results[cond][fold + abl][r]["n"]) + "\t" + sig)
 
-        # Write open response outfile
-        open_response_count = {aid: len(open_responses[aid]) for aid in open_responses.keys()}
-        with open(open_response_out, 'w') as f:
-            for aid, _ in sorted(open_response_count.iteritems(), key=lambda (_k, _v): (_v, _k), reverse=True):
-                f.write(aid + "\n")
-                for uid16, __ in sorted(open_responses[aid].iteritems()):
-                    cond, fold, r = open_responses[aid][uid16]
-                    f.write("(" + cond + ", " + fold + ")\t" + r + "\n")
-                f.write("\n")
+    # Write open response outfile
+    print "writing open response collation..."
+    open_response_count = {aid: len(open_responses[aid]) for aid in open_responses.keys()}
+    with open(open_response_out, 'w') as f:
+        for aid, _ in sorted(open_response_count.iteritems(), key=lambda (_k, _v): (_v, _k), reverse=True):
+            f.write(aid + "\n")
+            for uid16, __ in sorted(open_responses[aid].iteritems()):
+                cond, fold, r = open_responses[aid][uid16]
+                f.write("(" + cond + ", " + fold + ")\t" + r + "\n")
+            f.write("\n")
+    print "... done"
+
+    # Create and show plot for specified metric(s).
+    for metric in metrics_to_graph:
+        mus = []
+        for cond in ["train", "test", "test_np"]:
+            cond_mus = []
+            for fold in range(num_folds):
+                if cond == "test_np":
+                    if fold == 3:
+                        cond_mus.append(cond_results["test"]["3_np"][metric]["mu"])
+                    else:
+                        cond_mus.append(0)
+                elif cond in cond_results:
+                    if str(fold) in cond_results[cond]:
+                        cond_mus.append(cond_results[cond][str(fold)][metric]["mu"])
+                    else:
+                        cond_mus.append(0)
+                else:
+                    cond_mus.append(0)
+            cond_mus = [cond_mus[idx] if cond_mus[idx] is not None else 0
+                        for idx in range(len(cond_mus))]
+            mus.append(cond_mus)
+
+        x = np.arange(4)
+        h = ["Train", "Test", "Test Ablation"]
+        print mus  # DEBUG
+        plt.bar(x, mus[0], color='b', width=0.25)
+        plt.bar(x + 0.25, mus[1], color='g', width=0.25)
+        plt.bar(x + 0.5, mus[2], color='r', width=0.25)
+
+        plt.show()
 
 
 if __name__ == '__main__':
@@ -212,6 +247,8 @@ if __name__ == '__main__':
                         help="how many folds to iterate over")
     parser.add_argument('--open_response_out', type=str, required=True,
                         help="where to dump the collated open responses")
+    parser.add_argument('--metrics_to_graph', type=str, required=False,
+                        help="which metrics to produce plots for")
     parser.add_argument('--allow_repeat', type=int, required=False, default=1,
                         help="whether to count repeat users")
     parser.add_argument('--require_correct_action', type=int, required=False, default=0,
