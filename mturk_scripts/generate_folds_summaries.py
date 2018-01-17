@@ -14,11 +14,14 @@ def main():
     num_folds = FLAGS_num_folds
     open_response_out = FLAGS_open_response_out
     metrics_to_graph = FLAGS_metrics_to_graph.split(',') if FLAGS_metrics_to_graph is not None else []
+    graph_dir = FLAGS_graph_dir
+    show_graphs = FLAGS_show_graphs
     strip_repeat_workers = False if FLAGS_allow_repeat == 1 else True
     require_correct_action = True if FLAGS_require_correct_action == 1 else False
     require_all_correct_actions = True if FLAGS_require_all_correct_actions == 1 else False
     ignore_always_choose_walk = True if FLAGS_ignore_always_choose_walk == 1 else False
     require_all_correct_survey = True if FLAGS_require_all_correct_survey == 1 else False
+    assert graph_dir is not None or len(metrics_to_graph) == 0
 
     seen_turk_ids = {}
     aid_to_uids = {}
@@ -208,35 +211,112 @@ def main():
     print "... done"
 
     # Create and show plot for specified metric(s).
+    metrics_to_titles = {"task_1_correct": "Navigation Correctness",
+                         "task_1_f1": "Navigation Semantic Slot F1",
+                         "task_1_clarification": "Navigation Clarification Questions",
+                         "task_2_correct": "Delivery Correctness",
+                         "task_2_f1": "Delivery Semantic Slot F1",
+                         "task_2_clarification": "Delivery Clarification Questions",
+                         "task_3_correct": "Relocation Correctness",
+                         "task_3_f1": "Relocation Semantic Slot F1",
+                         "task_3_clarification": "Relocation Clarification Questions",
+                         "tasks_easy": "\"The tasks were easy to understand.\"",
+                         "understood": "\"The robot understood me.\"",
+                         "frustrated": "\"The robot frustrated me.\"",
+                         "object_qs": "\"The robot asked too many questions about objects.\"",
+                         "use_navigation": "\"I would use a robot like this to help navigate a new building.\"",
+                         "use_delivery": "\"I would use a robot like this to get items for myself or others.\"",
+                         "use_relocation": "\"I would use a robot like this to move items from place to place.\""}
+    survey_metrics = ["tasks_easy", "understood", "frustrated", "object_qs",
+                      "use_navigation", "use_delivery", "use_relocation"]
+    error_bar_format = dict(ecolor='black', lw=2, capsize=5, capthick=2)
+    fs = 'medium'
+    if 'all' in metrics_to_graph:
+        metrics_to_graph = metrics_to_titles.keys()
     for metric in metrics_to_graph:
         mus = []
+        stds = []
+        ns = []
         for cond in ["train", "test", "test_np"]:
             cond_mus = []
+            cond_stds = []
+            cond_ns = []
             for fold in range(num_folds):
                 if cond == "test_np":
                     if fold == 3:
                         cond_mus.append(cond_results["test"]["3_np"][metric]["mu"])
+                        cond_stds.append(cond_results["test"]["3_np"][metric]["s"])
+                        cond_ns.append(cond_results["test"]["3_np"][metric]["n"])
                     else:
                         cond_mus.append(0)
+                        cond_stds.append(0)
+                        cond_ns.append(0)
                 elif cond in cond_results:
                     if str(fold) in cond_results[cond]:
                         cond_mus.append(cond_results[cond][str(fold)][metric]["mu"])
+                        cond_stds.append(cond_results[cond][str(fold)][metric]["s"])
+                        cond_ns.append(cond_results[cond][str(fold)][metric]["n"])
                     else:
                         cond_mus.append(0)
+                        cond_stds.append(0)
+                        cond_ns.append(0)
                 else:
                     cond_mus.append(0)
+                    cond_stds.append(0)
+                    cond_ns.append(0)
             cond_mus = [cond_mus[idx] if cond_mus[idx] is not None else 0
                         for idx in range(len(cond_mus))]
+            cond_stds = [cond_stds[idx] if cond_stds[idx] is not None else 0
+                         for idx in range(len(cond_stds))]
             mus.append(cond_mus)
+            stds.append(cond_stds)
+            ns.append(cond_ns)
 
         x = np.arange(4)
-        h = ["Train", "Test", "Test Ablation"]
-        print mus  # DEBUG
-        plt.bar(x, mus[0], color='b', width=0.25)
-        plt.bar(x + 0.25, mus[1], color='g', width=0.25)
-        plt.bar(x + 0.5, mus[2], color='r', width=0.25)
+        _, ax = plt.subplots()
+        p1 = plt.bar(x - 0.25, mus[0], yerr=stds[0],
+                     color='#9FD7E9', width=0.25, error_kw=error_bar_format)
+        p2 = plt.bar(x, mus[1], yerr=stds[1],
+                     color='#8A250F', width=0.25, error_kw=error_bar_format)
+        p3 = plt.bar(x - 0.25, mus[2], yerr=stds[2],
+                     color='#B8BA53', width=0.25, error_kw=error_bar_format)
 
-        plt.show()
+        # plt.title(metrics_to_titles[metric])
+        plt.xticks(x, ('Fold 0', 'Fold 1', 'Fold 2', 'Final'), fontsize=fs)
+        if metric in survey_metrics:
+            plt.ylabel('Likert Scale', fontsize=fs)
+            plt.yticks([0, 1, 2, 3, 4, 5, 6, 7], fontsize=fs)
+        elif 'f1' in metric:
+            plt.ylabel('Command Slot F1', fontsize=fs)
+            plt.yticks([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], fontsize=fs)
+        elif 'clarification' in metric:
+            plt.ylabel('Number of User Clarification Turns', fontsize=fs)
+            if '1' in metric:
+                plt.yticks(np.arange(0, 24, 3), fontsize=fs)
+            elif '2' in metric:
+                plt.yticks(np.arange(0, 40, 5), fontsize=fs)
+            else:
+                plt.yticks([0, 10, 20, 30, 40, 50, 60, 70], fontsize=fs)
+        plt.ylim(ymin=0)
+        lgd = plt.legend((p1[0], p2[0], p3[0]), ("Train", "Test", "Test w/ Init Parser"), fontsize=fs,
+                         loc=9, bbox_to_anchor=(0.5, -0.05), ncol=3)
+
+        for rect, label in zip(ax.patches, [n for cond_ns in ns for n in cond_ns]):
+            if label > 0:
+                height = rect.get_height()
+                l = str(label)
+                if len(l) < 2:
+                    l = '0' + l
+                ax.text(rect.get_x() + rect.get_width()/2, 0, '(' + l + ')',
+                        ha='center', va='bottom', color='black',
+                        bbox={'facecolor':'white', 'alpha':0.75, 'pad':0})
+
+        if show_graphs:
+            plt.show()
+        fn = os.path.join(graph_dir, metric + ".png")
+        plt.savefig(fn, additional_artists=[lgd], bbox_inches="tight")
+        print "saved as '" + fn + "'"
+        plt.close()
 
 
 if __name__ == '__main__':
@@ -249,6 +329,10 @@ if __name__ == '__main__':
                         help="where to dump the collated open responses")
     parser.add_argument('--metrics_to_graph', type=str, required=False,
                         help="which metrics to produce plots for")
+    parser.add_argument('--graph_dir', type=str, required=False,
+                        help="where to write graph files")
+    parser.add_argument('--show_graphs', type=int, required=False, default=0,
+                        help="whether to display the graphs as they're created")
     parser.add_argument('--allow_repeat', type=int, required=False, default=1,
                         help="whether to count repeat users")
     parser.add_argument('--require_correct_action', type=int, required=False, default=0,
