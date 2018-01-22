@@ -1,0 +1,1167 @@
+A2X3QCJK0H18T8
+(train, 0)	good
+(test, 1)	GOOD
+(train, 2)	GOOD
+(test, 2)	GOODS
+(test, 3)	GOOD
+(test, 3)	GOOD
+(test, 0)	ITS GOOD
+(test, 2)	ITS GOOD
+(test, 3)	GOOD
+(test, 3_np)	GOOD
+
+A2ZB24AEN6N7Y3
+(train, 2)	GOOD
+(train, 2)	GOOD
+(test, 2)	GOOD
+(test, 2)	Its very nice.
+(test, 3)	GOOD
+(test, 2)	GOOD
+(test, 3)	GOOD
+(test, 3_np)	GOOD
+
+A1ICXZVLIZM6IF
+(test, 1)	Ugh. I can never figure out how to get it to understand that red and white container with the snap lid! It always goes for the soda can instead. Argh.  ^_^ Thank you very much for this task. It's a highlight of my day.
+(test, 2)	A good day for Mr.Robot. It's nice to have progress. Thank you. ^^
+(test, 3)	Wow. It's made some progress. It was a lot easier to parse this time. Thank you. ^^
+(test, 0)	Neat to be using a different version, or at least that's how it seemed today. Thank you. ^^
+(test, 1)	Whoo. That was nasty. I couldn't figure out even the first task. I've got to think how to phase things better. Thanks for the opportunity.
+(test, 3)	Thank you. ^^
+(test, 3)	The robot has gone soda crazy. Run for the hills. ^_^ Oh dear. Every answer ends in 'Orange Soda Can' today.  Thank you.
+(test, 3_np)	Thank you very much.
+
+A34SLWTNACPBMO
+(train, 0)	Well, it’s evident that the robot has quite a bit of a learning-curve to trudge. But once it makes that journey, it could well compete for the title of man’s best friend. Doing this task sure made me think how much I take humans for granted. Thank you!
+(test, 1)	Well, the first time around the cursor was stuck at the start of Task 3 and the robot was unresponsive. So, I had to restart and ended up doing 5 tasks in all. It was slightly frustrating, but fun all the same. Thank you!
+(test, 2)	Thank you!
+(test, 0)	Very interesting - thank you!
+(test, 1)	Thank you!
+(test, 2)	Thank you!
+(test, 3)	Thank you!
+
+A1GIH4IOKEK12L
+(test, 1)	GOOD
+(test, 2)	GOOD
+(test, 2)	VERY USEFULL
+(test, 3)	good
+(test, 3)	GOOD
+(test, 2)	GOOD
+(test, 3)	GOOD
+
+AP26BNVW9C4FQ
+(test, 1)	GOOD
+(train, 2)	GOOD
+(test, 2)	GOOD
+(test, 3)	GOOD
+(test, 2)	GOOD
+(test, 3)	GOOD
+
+A3PT15XRN1X8VE
+(test, 1)	GOOD
+(train, 2)	GOOD
+(test, 2)	GOOD
+(test, 2)	good
+(test, 3)	GOOD
+(test, 3_np)	good
+
+A32Y9JC775LYLV
+(train, 0)	interesting to talk to robot
+(test, 0)	thank you robot
+(train, 1)	GOOD
+(test, 1)	thank you robot for my responsibility
+(train, 2)	thank you robot
+(test, 2)	thank you robot
+
+A2KH9SC6A8VQXZ
+(train, 0)	thank you
+(test, 0)	THANK YOU
+(train, 1)	GOOD
+(test, 1)	THANKYOU
+(test, 1)	NICE
+(train, 2)	THANK YOU
+
+A1EY7WONSYGBVY
+(train, 1)	good
+(train, 2)	good
+(test, 2)	good
+(test, 3)	good
+(test, 3)	good
+(test, 3)	good
+
+AYLAJHJXMPIBM
+(train, 0)	its good
+(train, 1)	it is very good
+(test, 2)	very good to do.
+(test, 0)	very good
+(test, 1)	very good
+
+A3QI1RV4HQ9MOC
+(train, 0)	THANK YOU
+(test, 0)	THANK YOU
+(test, 1)	thank you
+(test, 1)	GOOD
+(train, 2)	THANK YOU NICE
+
+A3O8NBM8GZ0QHW
+(train, 0)	THAnk u
+(test, 0)	THANK U
+(train, 1)	WOW SO NICE
+(test, 1)	THANK U
+(train, 2)	THANK U
+
+A2Y2RVQO2UVFV1
+(test, 1)	nice
+(test, 1)	good
+(train, 2)	NICE
+(test, 2)	good
+(test, 3)	nice
+
+A2AMYX1J96G2JG
+(train, 0)	GOOD
+(test, 0)	NICE
+(train, 1)	NICE
+(test, 1)	NICE
+(train, 2)	NICE
+
+A243X2Y9HP7630
+(test, 2)	n/a
+(test, 2)	na
+(test, 3)	na
+(test, 3)	The robot did not respond for the second task.
+(test, 3_np)	na
+
+A21B78D7E5N17N
+(test, 3)	Robot asked too many similar questions even after confirming the answers.
+(test, 3)	Sometimes the robot asks too many questions.
+(test, 1)	Robot showed me same things again and again while asking too many questions.
+(test, 3)	The robot showed me everything except the bottle I wanted it to show. Really frustrating.
+(test, 3_np)	The robot sometimes asked something which was irrelevant.
+
+AHRUMV5C1O0TD
+(train, 0)	GOOD
+(train, 1)	NICE
+(test, 1)	GOOD
+(test, 2)	GOOD
+
+AGK30V341UN88
+(train, 0)	Its a good experience and interesting task.The first two tasks were completed successfully. However, the third task it has gotten long. Also, it seems like random appearance of locations and things regardless of given instructions.
+(test, 0)	Its a good experience. However, I felt somewhat random and repeating questions appears regardless of instructions that we provide.
+(test, 0)	Its a good experience.
+(test, 2)	Its a good experience. Interesting task.
+
+A3GERFIF45QJSD
+(train, 0)	VERY NICE
+(test, 0)	VERY NICE
+(test, 1)	VERY NICE
+(train, 2)	VERY NICE
+
+A2SBISQJE2ZPJQ
+(train, 1)	VERY INTERESTING TASK
+(test, 3)	GOOD TASK
+(test, 1)	good task
+(test, 3_np)	good and interesting task
+
+A2M5YIOR0MJUSA
+(train, 0)	nice
+(test, 0)	nice
+(test, 1)	nice
+(train, 2)	nice
+
+A2HNLS4SMGX6UB
+(train, 1)	GOOD WORK
+(test, 1)	good work
+(train, 2)	GOOD WORK
+(test, 2)	good work
+
+A264EBGUV70XK9
+(train, 1)	GOOD
+(test, 1)	nice
+(test, 1)	GOOD
+(train, 2)	nice
+
+A214HWAW1PYWO8
+(test, 0)	I simply couldn't get it to figure out the pringles can
+(train, 1)	There seems to be no way to go back or correct the robot if its come to a conclusion about part of its task
+(test, 3)	The robot somehow decided that I wanted to deliver something to SOMEONE instead of TO someplace and there was no way to fix that
+(test, 3_np)	The robot isn't good at using commands involving relational directions.  Like, 'between' or 'near' or 'next to', in terms of referencing the offices.
+
+A20SMUCY0FQA7Z
+(train, 0)	ITS NICE
+(test, 0)	its easy
+(test, 1)	ITS NICE
+(train, 2)	ITS NICE
+
+A1Y2N49VMVJ7C6
+(train, 0)	nice
+(test, 1)	nice
+(test, 1)	NO
+(train, 2)	nice
+
+A1TQ7UQSSQP7BD
+(train, 0)	NOTHING
+(train, 1)	NOTHING
+(test, 1)	GOOD
+(train, 2)	GOOD
+
+A1JTWL9C01VHVS
+(test, 1)	The last task I said yes when the robot asked if I wanted to deliver something to someone when I really wanted him to take something from one place to another. Sorry, I think it needs to be more clear what the robot is asking. Also, once I say &quot;no&quot; to an object, the robot shouldn't ask again and again about that same object unless it's about identifying features.
+(test, 3)	OMG, once I say no to an object, the robot shouldn't ask again. He kept referring to the same object!!! UGH!!!
+(test, 0)	Much better this time! Definitely improving!
+(test, 3)	The robot kept asking about the same object (the coke can) when I said container, not can. When I say no to one object, the robot should not return to that object.
+
+AOZ5HHRV4LTJF
+(train, 0)	GOOD
+(test, 1)	GOOD
+(test, 2)	GOOD
+
+AK5AFB4VLBCGK
+(test, 3)	Nice robot system. I really like it.
+(test, 3_np)	Amazing.
+(test, 3_np)	Good robot.
+
+AK3DF1BXS8DSM
+(train, 0)	yes
+(test, 0)	yes
+(train, 2)	this task is best of one ,  thanking you.......................
+
+AHLS6AZ1VTNH7
+(train, 0)	good
+(train, 1)	good
+(test, 1)	good
+
+AFUUPNBIKHRFZ
+(test, 1)	good survey
+(test, 2)	good survey
+(test, 2)	good survey
+
+AF09UGIC6B81Y
+(test, 2)	I DONT LIKE IT MORE TASKS ARE COMMING PLEASE FORWARD IT TO MY COMMAND
+(test, 2)	the survey is too good
+(test, 2)	the survey is too good
+
+A3HKZTDVORNEZ
+(train, 0)	nice
+(test, 0)	good
+(train, 2)	good
+
+A31UVMRUFGGJ12
+(train, 0)	REALLY NICE STUDY .NICE ROBOT GOOD JOB NOT BAD
+(train, 1)	YES,NICE EXPERIENCE.GOOD ROBOT,GOOD JOB NOT BAD
+(test, 1)	YES,REALLY NICE EXPERIENCE.I LIKE THIS ROBOT.GOOD JOB,NOT BAD
+
+A2VF6506WDNXKS
+(test, 3)	It says the robot understands complex tasks, but does understand words like plastic or end or hallway.  It would take longer to tell the robot what to do, and have it systematically ask questions instead of actually understanding the inputs.  Siri is more useful.
+(test, 3)	This robot does not understand commands, words, or really anything useful.  I don't understand the point of a robot that can't be redirected, or instructed simple words such as &quot;across the hallway&quot; or &quot;white bottle&quot;   Useless at the moment.
+(test, 2)	I do not understand why the robot can't comprehend simple instructions or words.  It's completely useless in this format.  I'd have more luck training my 2 week old puppy to deliver the can of pringles.
+
+A2UVS1PDM9QM4Z
+(train, 1)	GOOD
+(test, 1)	GOOD
+(test, 2)	GOOD
+
+A2OD4LJKPZDL2J
+(train, 0)	NO COMMENTS
+(train, 1)	NO COMMENTS
+(test, 1)	NO COMMENTS
+
+A2NPUPP06POEJ0
+(test, 0)	NO COMMENTS
+(train, 1)	NICE
+(test, 1)	NICE
+
+A283BCKHLF447S
+(train, 0)	NICE STUDY WITH BOT.
+(test, 1)	This is nice study
+(test, 3_np)	NICE STUDY
+
+A1IM8G6UNAGQ7S
+(test, 1)	GOOD
+(train, 2)	good
+(test, 2)	GOOD
+
+A1EK8YNHZHTW1J
+(train, 0)	good
+(train, 1)	nice
+(test, 1)	good
+
+A1BANTV8HONS2C
+(train, 1)	NICE
+(train, 2)	NICE
+(test, 2)	NICE
+
+AZB7FTHK3OEYB
+(train, 0)	Whoever programmed that robot needs help.
+(train, 1)	The robot phrased questions poorly.
+
+AMGGLXGMFWEN2
+(train, 0)	its good
+(train, 2)	Good
+
+AM2KK02JXXW48
+(test, 3_np)	Good Luck!!
+(test, 3_np)	Good Luck!!
+
+AHFGWXN0A2PJM
+(train, 0)	Good robot tasks.
+(test, 3)	Good Task.
+
+A3THR2UWGQNVX4
+(test, 3)	This thing really needs to give more leeway in defining nouns and verbs. It needs a logic net that's able to parse descriptions, so that it can try to match those descriptions.
+(test, 1)	the robot seems to have no reasoning logic, or memory of things I said even a moment ago.
+
+A3SNSWMNXQEHAO
+(train, 1)	GOOD
+(test, 1)	GOOD
+
+A3QE9MZPHN87ZI
+(test, 2)	Need to more clearance to interact with him.
+(test, 3_np)	Nice task
+
+A3JT2I4GGKDYPE
+(test, 0)	Very bad robot doesn't understand anything
+(train, 2)	Doesn't work. It frustrates. I would bring it myself instead of giving so many instructions
+
+A3GSIZ2GX4L1Z3
+(train, 0)	First its taking time to feed in and also get the response
+(test, 0)	I was unable to enter the instructions by typing the letters once. I was required to type each letter twice or thrice to get it displayed. But here I don't face any issue
+
+A3DMLZASIE8BN6
+(train, 1)	i can see you updated something, i approve, seemed like it was a little more efficient.  keep it up, you're doing good, looking forward to interacting with your robot more.
+(train, 2)	amazing changes over the last few days, my dude, much props given. seems like an entire different ai at this point. very excited for more interactions.
+
+A3D8HC93F1AVW6
+(train, 1)	it is very good experience
+(train, 2)	good experience
+
+A37AJI03M37NPJ
+(test, 0)	Robots are meant to be smart and efficient. This robot seemed more like dumb and time consuming.
+(test, 1)	Payment is very very low compared to the effort needed and this robot is a dumb. You can do the job faster thn the robot. Just to make the robot understand the first task and second task it took me approximately 10 minutes each, I can do that job myself and save lot more time. Interesting task, but payment is way too low for the amount of effort.
+
+A32DRYN7M7HIZT
+(test, 1)	VERY USEFUL SURVEY, LITTLE BIT CONFUSE TO TALK WITH ROBOT
+(test, 3_np)	good survey
+
+A2YSSM96QE9A4T
+(test, 0)	unable to understand
+(test, 3_np)	not ready yet
+
+A2TI9570VNOR8V
+(test, 2)	No comments. survey is good.
+(test, 3_np)	No comments
+
+A2QKM3JUFWBSMO
+(train, 2)	The computer needs to learn more.
+(test, 1)	No comments
+
+A2QIZ31TMHU0GD
+(train, 2)	nice
+(test, 3)	Survey is very nice
+
+A2Q4ILF5IEPAE3
+(train, 1)	NICE
+(train, 2)	THANKYOU
+
+A2LVCS009DMEAT
+(test, 3)	None
+(test, 0)	none
+
+A2DW47AFPJWXAM
+(train, 0)	good
+(train, 1)	GOOD
+
+A2BACJE00ZUDXS
+(train, 2)	NICE
+(test, 2)	NICE
+
+A1WUZOLVPEXOLE
+(train, 1)	GOOD
+(test, 1)	GOOD
+
+A1VOFYYXKZWG7W
+(train, 1)	VERY NICE
+(train, 2)	GOOD
+
+A1VAGO1PMX7DS3
+(train, 0)	it's a good survey
+(train, 1)	very good
+
+A1SLM4JRDIM430
+(train, 1)	The robot does not have much knowledge of recently used &quot;language&quot; for particular items, such as the can of pop, or can of soda. It became very frustrating trying to find other ways to tell them what was needed.
+(test, 3)	The robot experience is one of my favorite hits on mturk. It is always enjoyable to see how much the progress has grown since our last encounter. The robot is beginning to understand tasks easier, which makes the interaction more enjoyable.
+
+A1ANQNM1UC1PFQ
+(test, 2)	good task
+(test, 0)	good task
+
+A18EWG6CNKAO2J
+(train, 2)	GOOD
+(test, 2)	GOOD
+
+AZPVVGFGJBKRC
+(train, 0)	robot seemed way too limited and was unable to assimilate information that was correct and verified after one answer with information that was learned and assimilated in a second area. How we got from Walter Ward to person &quot;B&quot; is incomprehensible.
+
+AYP9RLXO12KOP
+(test, 1)	The robot thinks I want to move objects to a person, when I just want to move it to a different location.
+
+AYKQ1UN34V8KL
+(test, 3_np)	Great! Thanks for the opportunity
+
+AXQWKUJF7SQXP
+(test, 2)	GOOD
+
+AWAW665TQQP2F
+(train, 1)	You don't realize how vague your instructions are until you get a task like this. I was determined to get the robot to understand me. Thank you for the challenge!
+
+AVPCUQOQEPTCI
+(train, 0)	none
+
+AVMIXXCHPD291
+(test, 0)	Argh!
+
+AUBB8KU9XV2R8
+(test, 1)	i like this work.
+
+AT3C00TKZK13L
+(test, 3)	Too long for the pay.
+
+ASRDI6RY1LGNL
+(train, 2)	NO COMMENTS
+
+ASI2B6A3Y556Z
+(test, 1)	The second task was extremely frustrating and way too long and the third task did not work.
+
+ART2B51OIA2V3
+(test, 3_np)	This robot needs a lot more training.
+
+AQ8RA7U6KBDV2
+(test, 1)	While trying to type my responses to the robot, my keyboard randomly and periodically froze up for several seconds at a time, resulting in some garbled answers and frustration. I believe this was caused by whatever program was running at the time; I have not experienced this problem before, nor am I experiencing it now as I type.
+
+APITQRRX2PADB
+(test, 0)	This robot was terrible!
+
+AOHQSD0GH8HTE
+(test, 3)	Very interesting task! Thank you!
+
+AOAZMLP27GD81
+(test, 3)	The robot was infuriating to use
+
+AO33H4GL9KZX9
+(test, 3)	robot's not really up to the task being asked to perform. it's not trained very well.
+
+ANEWGC5Y2V8GG
+(test, 3_np)	I thought the Robot is supposed to know the names of all the people places and things in the environment it is to be used.  That's the part I was wondering about, b/c when I entered the name of the person the Robot didn't seem to have all that info built in.
+
+ANEM435BSW3XU
+(train, 1)	The robot frustrated me so i just agreed
+
+AMYD8PNSBQ7C2
+(test, 0)	What should I call the container-object-jar specified in the picture?  &quot;The cylinder with the silver top&quot;
+
+AM8OWAW9TUVLN
+(train, 2)	I couldn't get the robot to get any of the items but only move to a place on the map
+
+ALU79S27U05N
+(test, 3_np)	It was hard to figure out the exact word used for the item you wanted the robot to move.
+
+AL5HBAJ3ZCNSD
+(test, 0)	None.
+
+AKP3UXJ0TDPVO
+(test, 3_np)	Where did I go wrong?
+
+AJ92HAKEZ0RXB
+(train, 0)	Some of the pictures don't give enough information to judge their qualities - I can't tell if a semi-transparent bottle is filled with water or is empty, but I might be able to with a bigger picture.
+
+AISNLDPD2DFEG
+(test, 2)	It requires a bit training to be able to command the robot.
+
+AIG8MW1EU9XDT
+(test, 2)	That was fun
+
+AHZ7C7ETHYX3N
+(train, 2)	Thank  you
+
+AHIJACUG7ZL9B
+(test, 3_np)	Provided sufficient coding the robot could prove useful, it came across as still being in fairly early stages and had an unfamiliarity with many common words.
+
+AHEN0PZKOKE3S
+(test, 0)	I really love this task. I am very interested in whatever it is you are creating, thank you for your work.
+
+AGYU1N4MKSK04
+(train, 0)	it was good
+
+AGU0V3LOM72VL
+(test, 1)	n/a
+
+AG9UWQWIO076
+(test, 3_np)	I hope that I do not get a rejection. I believe in one of the tasks, I mistook the robot not needing to &quot;manipulate any items.&quot; It was a piece of what I believed to be styrofoam. I was not sure if that was and it was my first time trying to direct the robot, when in fact it did need to manipulate the item. I'd be willing to repeat my work but would very much appreciate not receiving a rejection as if it was a failed task. Please consider it. Thank you.
+
+AEIIVFPRTDGMK
+(test, 1)	Lord. This task was a little bit challenging. But at the end of the day I enjoyed it. Thank you
+
+AE3830OQLJ6Q4
+(test, 3_np)	The first task with no defined task was confusing and then the second task where the object was what he showed me in the first was over complicated.
+
+ADKBTSKPX195Q
+(test, 1)	This got long very quickly. The $1 compensation is not enough if it takes this long.
+
+ABUXM7VAW5SKJ
+(test, 1)	Thank you! I enjoyed the task although it was somewhat challenging. The robot seemed to be confused sometimes, which confused me. Thanks again!! :-)
+
+ABUF5EN8YNJQO
+(test, 3)	Thanks for the HIT! Have a nice day!
+
+AB8FEGGUOZXXA
+(test, 0)	Unless the robot is able to learn objects and locations faster, I do not recommend a robot like this to get items or move them. It's too frustrating trying to teach them something, it'd be easier to get up yourself.
+
+AAJ1ZQECDZBEE
+(test, 3)	It seems to be getting better
+
+A8HADRH59XIB4
+(test, 2)	It is good if the robot learns more words
+
+A8F6JFG0WSELT
+(test, 2)	GOOD
+
+A88IDP4W0BJ7P
+(test, 2)	It clearly needs a bigger vocabulary.  I spent over 35 years developing software and I had a very hard time breaking things down to its level.  But this is a whole new area for me.
+
+A86GVZDTI15V0
+(test, 3)	The robot seemed to not understand any of the contextual cues for who or what to take.
+
+A82QOYCGT0AVA
+(test, 1)	I didn't notice the objects for a few moments.
+
+A7YPR0X7H4GPZ
+(test, 0)	The robot was frustrating and I wasn't certain how to phrase commands.
+
+A6KU7KG3WP5SW
+(test, 0)	It was a nice and interesting task. Makes us realize how simple things might not be so simple to others.
+
+A5X1KZ9CCHREK
+(test, 3_np)	fun
+
+A5DSYVNGYLCA5
+(train, 2)	good
+
+A55CXM7QR7R0N
+(test, 3)	This took me awhile to finish.  Thank you!
+
+A4LIJVRU6DG61
+(test, 3)	I did not get the robot to understand a single command. It just ran all over the place guessing where I wanted it to be.
+
+A4CHLWPHZIP7Y
+(test, 1)	That was weirdly fun. Thanks for the opportunity!
+
+A4806MFWRDL42
+(test, 0)	i was not successful in the conversation but it was nice to have  the chat
+
+A3W4MAKNDI1SXM
+(test, 3)	This was interesting
+
+A3V7PZKF0VJS4R
+(test, 0)	Good robot
+
+A3UYHP1IKCNN7K
+(test, 0)	no
+
+A3SUHO064258EB
+(test, 3_np)	I think that the robot could benefit from a larger vocabulary but overall it is an incredible programme
+
+A3S9QK5UCJFLUE
+(train, 1)	it was a good experience
+
+A3S7GCREQTM8N0
+(test, 2)	Absolutely ridiculously hard task for what you are paying. I ended up giving up on each because the robot did not understand a single thing I said.
+
+A3S1TLYMH9WWUG
+(test, 1)	This survey should have ha dbetter pay for the time involved (.10 per minute is the mTurk minimum, and this survey takes at least 15 minutes). Thanks and have a nice day :)
+
+A3QPVH0DRW0ZQV
+(test, 1)	Why wasn't there a command to cancel a command?
+
+A3PLRMX7LGFL0A
+(test, 3_np)	NICE STUDY
+
+A3OV1ESLXA963N
+(test, 3)	If the robot asks me if a picture is the object I'm looking for and I say no, it should remember that and not ask me again. Same with rooms and people.
+
+A3NMQ3019X6YE0
+(test, 3)	It was fun
+
+A3NANJ6W9NG2IV
+(test, 1)	The first task was not successful but I didn't have a way to continue on with task. My intention was to get the robot to the office next door to where I needed it to go. I was planning on moving the robot along from there but it ended the conversation instead. I realized this error after this mistake and corrected my instructions accordingly for the next 2 tasks (which were successful).
+
+A3M4WC3KDVGXRD
+(test, 0)	This was interesting and pretty cool. The robot needs help recognizing words to identify objects and people.
+
+A3LPZVG62RNVL8
+(test, 3)	Good Task.
+
+A3LM9JHGX8JWO0
+(test, 2)	it would be good if you could respond with more than yes or no, so that you could teach the robot.  For example, if the answer is 'no', you can provide a 'use this instead' type of answer.
+
+A3L459M9ME6WKI
+(test, 1)	The final task asked the robot to move an empty can from a conference room to a pod and not someone's office. I think this further confused the robot.
+
+A3KYEJPW3JVVVV
+(train, 1)	No comments.
+
+A3KVW46MTHGOZS
+(test, 3_np)	There was a significant delay in typing response on the task screen, which made it more difficult to complete the task and caused some inaccuracies on my end (typos mainly). As far as the robot is concerned, it kept repeating questions, which led me to believe it wasn't learning very well. Further, it seemed to have limited information in its base programming (color, shape, etc) which made it difficult to describe things for it.
+
+A3KOXHH84OKZ9G
+(test, 1)	The robot doesn't seem to have any sense of direction and I found the conversation extremely frustrating.
+
+A3JDA7VYL1W1DC
+(test, 0)	Its pretty green and it took way too much time, i got 2 task wrong and i answered wrong too but i like that it learns, it need clear &quot;Stop&quot;, &quot;Clear&quot;, &quot;Restart&quot; commands so it becomes less frustrating and it should have &quot;Save&quot; commands that you can load previous successful attempts before they went wrong. If this item were to be on the market an official web were users can upload those saves would be needed.
+
+A3G55NZ2MOUOQK
+(train, 2)	Robot was an idiot.
+
+A3FH0KF9VYJCYI
+(train, 1)	Was this supposed to be frustrating? Is there some skill I'm supposed to have that only robot nerds know?
+
+A3F8G26PENQ6EO
+(test, 3)	I loved how he showed me everything except the pill bottle &lt;/3
+
+A3EVXSWHYA1PTT
+(test, 3_np)	Honestly, that was terrible. Shouldn't the robot be programed to know the offices of the people listed with their full names and titles? How does it know brown, yellow, blue, but not orange (I actually don't think it knows the color of objects but it's encountered those words before but not orange)? Why doesn't it know words that it used? Needs a lot more tweaking.
+
+A3EM49IJLS9JT0
+(test, 1)	It was very frustrating. I didn't know if you wanted me to phrase answers to the robot's questions in a full sentence.
+
+A3EAUAU8V3B5S7
+(test, 3)	I was awful at that! That was incredibly frustrating, though not entirely the robots fault.
+
+A3DIRN48SZVNRE
+(test, 0)	The robot didn't respond at all to what I was saying. At first when I was misspelling Dr. Smalt as &quot;Smart&quot; I understand it was my mistake. Even after I got the spelling right, the robot still didn't understand how to do a simple task even after I tried to explain it a dozen times.
+
+A3D5BMOC6B7XNQ
+(test, 0)	the rooms should have numbers, would be better. maybe a template of what the robot understands.
+
+A3CRYPGY8OH1P1
+(test, 3_np)	The first task was not well explained. The user should know the robots base vocabulary in order to train it.
+
+A3CL3Q1FZZUMRH
+(test, 3)	This robot had no understanding of anything I was describing.
+
+A3CGF3CWKTCGGR
+(test, 3_np)	Robot had trouble understanding the properties of objects and also couldn't understand that I wanted to deliver an object to a different person. Kind of frustrating and wished I could answer more than yes or no to certain questions.
+
+A3C2PSZEKN8OWD
+(test, 0)	GOOD
+
+A3BJTYGNU3K82A
+(test, 0)	Good
+
+A3ACX99H78WTEK
+(test, 2)	In the time spent teaching the robot, I could have delivered the coffee to Peggy Parker myself!
+
+A3A9NHZWTB5EKH
+(test, 0)	the robot doesnt understand major of the letters and words. no point wasting time behind such mechanism
+
+A39ZYRK3XFFUBJ
+(test, 2)	The task asking to help the robot navigate to a room on a map was worded such that I initially thought the robot was already located in that room. It took some time to understand the directions for that task.
+
+A39GADIK8RLMVC
+(test, 1)	The last task was far too frustrating and long.
+
+A3811HP7ZXQOEE
+(test, 3_np)	The robot did not understand my commands and it was not easy to know which commands the robot would understand.
+
+A36PRTZFECB76C
+(train, 0)	the poor robot isn't quite ready for production as yet.
+
+A3696JXTRKL2FI
+(test, 1)	The bot was not able to understand full sentences at all.
+
+A366TZDVJK02PN
+(test, 0)	This is always a fun task.
+
+A360G5G0DVWU7X
+(train, 2)	The robot didn't see to understand a lot of the directions that were given. It took a lot of work to get the robot to move in the right direction.
+
+A35ZRGM4AQ6FF5
+(train, 1)	N/A
+
+A359Z1PUM7U6F0
+(test, 2)	On the second task I finally said yes even though the robot had the wrong person (B not P) because it kept going in circles with questions and I just couldn't take it anymore.
+
+A356W64SEGGSW1
+(train, 0)	Thank you for the survey, it is fun.
+
+A33M7EZ72P8TWF
+(test, 2)	fun study
+
+A32TKDOP38BLTM
+(train, 0)	While it couldn't understand that i wanted it to get the jar of peppercorns, i think it's really good at understanding the basics of what i was saying. After its learned a lot more I'd say it would be very useful.
+
+A32IRN8APZMCQ2
+(test, 3)	Thank-you
+
+A320QA9HJFUOZO
+(test, 1)	Extremely frustrating. Way too long. Horribly underpaid.
+
+A31YTICDM7ZMP6
+(test, 3)	your robot is fucking stupid. the instructions said it understands high level commands - that is a lie.
+
+A31C75PL4FJIO
+(test, 3_np)	VERY INTERESTING OF TASK.
+
+A317RA15E0SZ4P
+(test, 0)	After the first task, the robot encountered some problem and I was asked t proceed to the survey. The first task was interesting and the fact that the robot understood my instructions with just high level instruction is quite good. I believe the robot already knows all the rooms and their relative positions without which it would have been difficult to accomplish the task.
+
+A316NPK57UTIRF
+(test, 3)	It was my mistake to gave a wrong order to the robot. It will be useful if I could cancel and do a re-order.
+
+A30QJ6OLAICVI7
+(test, 0)	It was frustrating trying to communicate with the robot.
+
+A30J4IZCMCR31F
+(test, 3)	The box wouldn't let me type about half of the time. This was very frustrating, it didn't understand basic things.
+
+A309E9ZYRIL8X2
+(test, 3)	There was no way to reset the robot if it went down the wrong path of logic, or if I misunderstood what it was saying.
+
+A3023MDFGEIKKU
+(test, 3_np)	Even though interacting with the robot was frustrating this was a fun experience.
+
+A2ZNN99UEJA2EU
+(train, 2)	This robot was obviously not ready for &quot;training&quot;, this survey was underpaid and I am personally offended at you all for wasting my time. I completed it literally only to be able to tell you this. Please consider higher payment for HITS like these, we are real people, NOT like your robot.
+
+A2YJFCTJPPX66
+(test, 3)	death to the robot, it has the brain of a turnip
+
+A2XOP6WJGR59QR
+(test, 3)	It just stopped responding after a while and sat around while (thinking). Was unable to do anything about it.
+
+A2XFBUPU9EMQG2
+(test, 0)	Robots are now becoming part of human life now in this world.
+
+A2XEDQ8Z1AWUD4
+(test, 3)	I think my attempts confused the robot, and from there I couldn't get back on track to the task, hard as I tried.  I don't think I'm very good at communicating with it.
+
+A2X3O8OGDVDPD6
+(test, 3)	It seems the robot AI didn't properly load, despite my waiting for several minutes.
+
+A2WWKCWR04ZO1B
+(test, 1)	NICE
+
+A2VNBZ7P595W77
+(train, 1)	nice experience and i had tried my level best to complete the task. i can't make the robot to change the object once selected. if we yes wrongly or unknowingly ,it is very difficult to reverse the selected option.
+
+A2VK3O6PUGN370
+(test, 2)	GOOD
+
+A2VI55LKT5L4KB
+(test, 0)	very interesting task I enjoyed doing this thanks
+
+A2V8LLZRTOP79S
+(test, 2)	Some task should quit complex.
+
+A2UQ98FHANPPLW
+(test, 3_np)	The robot didn't understand when I wanted to send an object to a room that didn't have a person in.
+
+A2UODQ3AUFVCTZ
+(test, 2)	It was frustrating trying to get the robot to understand, but I guess over time it would get easier. I was still glad to be a part of the experiement, It was cool talking to the robot.
+
+A2UMB419R9QW8L
+(train, 2)	nice task to even a chance to update myself too.
+
+A2UKNS67YRI4NM
+(test, 2)	very frustrating getting the robot to perform tasks
+
+A2UF73T5FVZKMM
+(test, 0)	NOTHING
+
+A2TZKV4CB8K6XF
+(test, 3)	I wish the robot could return to prior commands, I got hung up on the last task because he was determined to go somewhere.
+
+A2TKHUHOPMSQYH
+(test, 2)	Really cool idea. Just took forever to get it to even understand 1 thing.
+
+A2TJ7OHN9V4ZI8
+(test, 1)	Very, very awesome robot. This is going to be amazing for disabled people when it gets finished, thanks for letting us help!
+
+A2SIJ1GKLZ37RD
+(train, 0)	It was fun although a bit frustrating. I like communicating with a robot.
+
+A2RSHLXIX517VG
+(test, 0)	no comments
+
+A2R0DIZIT0E9ET
+(test, 3_np)	No comment.
+
+A2QCHFSNUU7Y1F
+(train, 0)	While I wouldn't care to use this particular robot to get or move items, I wouldn't mind using a robot I had more faith in. I found myself wishing I could teach it key words we needed to function instead of looping through the guessing game without learning anything.
+
+A2ORPKVJKI0EIO
+(test, 0)	This was an infuriating task. The robot doesn't understand most of the time.
+
+A2OP8SRBERI1GC
+(test, 3_np)	no comments
+
+A2OH4HSBUHQCLS
+(test, 3)	Sooo glad I'm done! So frustrating :)
+
+A2O762LZEZN3JC
+(test, 3)	na
+
+A2MKUZ0K3S7NQU
+(test, 3)	n/a
+
+A2LXPQS44US390
+(test, 3_np)	frustrating task. Why have multiple locations with the same name [i.e. 'lab']. The task would be simple if I was able to positively identify exactly where to go without ambiguous terms like 'office'
+
+A2LS3TW31IRA9U
+(test, 3)	The robot task was somewhat difficult but became a bit easier to understand as I advanced through the tasks.
+
+A2LJRJUH5XEPT9
+(test, 2)	Interesting HIT, thanks!
+
+A2LCOTUKCDULAA
+(test, 2)	thanks
+
+A2KBZ75HMJ7KVX
+(test, 3)	the robot does not understand anything and is useless as it is
+
+A2K3MUBO2FWKRD
+(train, 0)	The robot needs ALOT of work.
+
+A2JQ7V9EWJ51T2
+(train, 1)	I really enjoyed the robot but once it thought I wanted an item even though it was wrong I didn't know how to make it find the other item.
+
+A2JHF7CU91EVXW
+(test, 3)	that was fun!
+
+A2IFMHXWL5GOWD
+(test, 3_np)	Interesting survey that was pretty fun trying to think of ways to get the robot to understand.
+
+A2HEP2U556AI0Y
+(test, 0)	task ended early because robot encountered a problem.
+
+A2GYBSWW22DPQG
+(test, 0)	I think the robot needs to learn more words. I think the robot has to understand words like office, conference rooms, correct, sorry etc. I think it is a very interesting project. Good luck!
+
+A2GTY8GLAYN9BU
+(test, 2)	GOOD
+
+A2FWJOSAHFW8P5
+(train, 0)	The robot needs to have more knowledge of meanings of words. It was very confused.
+
+A2FI77833XNV3T
+(test, 3)	There was a problem with the robot that did not allow the task to preform
+
+A2F79GFUWU5O96
+(test, 0)	It was too hard to talk to the robot.
+
+A2F2DDH12YU4AK
+(test, 1)	No further comment, at this time.
+
+A2ELYTGQYWVGBG
+(test, 3)	The robot didn't understanding. It was very frustrating. He needs to know what the items are called and the people's names for this to be effective at all.
+
+A2E8FEGQV8FHR0
+(test, 1)	n/a
+
+A2E6G3YGPG97B6
+(test, 3_np)	Very Nice task
+
+A2E5PZUD6W4OA1
+(test, 3)	Robot didn't work.
+
+A2DSGT2WC9XV54
+(train, 2)	This is a fun activity. I hope it helps!
+
+A2CYD8QD1JO0O5
+(train, 0)	the conversation box expanding was a bit annoying as it scrolled the page lower from my objectives and whatever item/person the robot was referring to.
+
+A2CW38L6UOM77U
+(test, 3)	It was fun! Thank you for the opportunity to take your survey!
+
+A2BT0LQYMBL7LV
+(test, 3_np)	It was unique experience.
+
+A2BP8SSKYDZZ64
+(train, 1)	It was really hard to start a task over if you didn't quite understand the robot the first time.
+
+A2BBDH8DZD77AU
+(test, 2)	Robot could not understand anything other than yes or no. Would not stop asking if I would describe an object as something completely unrelated to the object in the picture.
+
+A2B153AHPWHLH1
+(test, 3_np)	The webpage responded poorly.
+
+A2AY6EZF3P3T6A
+(train, 0)	I wasn't able to type anything into the box. It just froze for a few minutes and then said something about a technical issue and to move on to survey.
+
+A2AWNIQ10EO1K
+(test, 2)	Accidentally answer one of the questions wrong and the robot could not accept a separate task or allow me to take back what I said. Other than that, I thought the robot was pretty clever.
+
+A2APVPVSZRKPEG
+(test, 2)	I was just about to return the HIT before getting access to the survey button. Might want to have it show up a bit sooner.
+
+A2ANXVI5UXQHGT
+(test, 2)	For the last take I attempted to move the robot into the lounge where the pringles were. Then I was going to tell it to pick it up and move it to the correct office. I was only able to move the robot into the lounge and it assumed that the task was completely finished.
+
+A2ANP4POGYTNWD
+(train, 0)	I tried to get the robot to go to the room but failed. I tried to be as creative as possible with suggestions but still did not succeed, and this is why i would not use this robot. Maybe when he learns a bit more!
+
+A2A2PCKG5Q3U2G
+(test, 0)	I'm sure the robot could be useful and is definitely better than some primitive robots, but it was very difficult to communicate with. It wouldn't be as bad if the robot responded more quickly. But, it just didn't seem to understand more complex sentences, so that would be something to improve on as well.
+
+A2A0MSLKF3ERF4
+(test, 3_np)	INTERESTING INTERACTION TASK
+
+A29TV2MF4893DA
+(train, 0)	I wanted to be descriptive in what should be moved and where but my descriptions were not understood by the robot yet.  I wanted to say &quot;plastic lid&quot;, blue container, cylinder, etc.  These descriptions didn't work.
+
+A2929S7JLLYFSW
+(test, 2)	Robot is not at all working can't even understand the simple command
+
+A27F76XB3KS0W2
+(train, 2)	I've done one of these tasks previously. Both times, it was hard to tell the robot to go to one of the offices that doesn't belong to a particular person. Is there any way to give these offices names and teach them to the robot?
+
+A277U3NSBWRQ2G
+(test, 1)	Apparently it doesn't understand colors yet, because it constantly chose a yellow can even though I clearly stated I wanted a blue can.  Not sure outsourcing your training is a the greatest idea as people that don't care about the quality of the work will just click through anything to get to the end result in the shortest amount of time.
+
+A26NGLGGFTATVN
+(train, 2)	Interesting tests, thank you.
+
+A25QYDN0FFJXPG
+(train, 2)	The starting directions were unclear, but once I tried something it was more clear.  The most frustrating part is when I give an answer about a location and the follow up question is about an object.  This made me think I was wasting my time
+
+A25EGRCD2LG0KK
+(test, 2)	no
+
+A258DUZQTRIEK0
+(test, 3_np)	No further comments.
+
+A23DQV3KHW7XXW
+(train, 1)	Interesting!
+
+A2248WCN03P98C
+(test, 3)	The robot encountered a problem.  It was frustrating.
+
+A20MYUKGSXUKM7
+(test, 0)	n/a
+
+A20DA3UPHPQSST
+(test, 3_np)	I had no way of knowing what to call the pills, and the robot couldn't find them. It might be helpful to give a set of item descriptions the robot might understand, also I had no idea how to tell him to go to the empty office next to David &quot;Dave&quot; Daniel room, and how to specifically describe the specific lab he needed to deliver the pills too. Overall, I found commanding the robot to be a bit confusing without a set of more concrete instructions.
+
+A20CPK8PYD2V28
+(test, 3)	there was an issue with the program and I was unable to connect with the robot. Not sure what happened. I was instructed to come here and submit for payment.
+
+A204O2CH22KQR
+(train, 2)	It was somehow hard to talk with robots but I really enjoyed it! And also, bonuses are highly appreciated! Thank you!
+
+A201M82ZQU8DME
+(train, 1)	Interesting task - it was fun!
+
+A200H4TX468LE
+(train, 2)	n/a
+
+A1ZWFFGNM0ON
+(test, 3_np)	No comments
+
+A1Z6F6EIUJFC6T
+(test, 1)	This is nice study
+
+A1YIGXBU6FQQ6C
+(test, 0)	Besides the robot lack of understanding being frustrating, I found annoying issues with the task on my navigator, like some pictures I did not see at first because they were misplaced and the need to retype letters on my keyboard too many times.
+
+A1YE1SX5XE3SOG
+(train, 0)	The interface needs to be simplified. I didn't even realize there were pictures of what the robot was suggesting it would move until the last trial because seeing them required me to scroll up to the top of the page.
+
+A1XC5W5WFRCMD1
+(test, 0)	The third task was not loading
+
+A1X1IRFYQZ40LD
+(test, 3)	The robot moved the item to offices around P peggy parker but did not move the item to her office.
+
+A1WGAGT5ZN4A3X
+(train, 2)	It seems that the robot is better than before
+
+A1UCB0D27PY623
+(test, 3)	I gave up using sentences when it failed to understand the meanings of words it was using.
+
+A1T3ROSW2LC4FG
+(train, 2)	frustratingly inaccurate.
+
+A1SYINVMVM1AJA
+(test, 1)	This task was extremely frustrating
+
+A1SVMRA5E2S552
+(test, 2)	The robot didn't understand basic colors. It was frustrating trying to get it to do the assigned tasks.
+
+A1S9EY8YUIGDYV
+(test, 1)	During the second task, the robot seemed to have gotten stuck in a chat loop about delivering to the wrong person. I wasn't able to relay the instructions as expected.
+
+A1S8QSM1T86H8I
+(test, 3)	What the heck was that last object? A styrofoam block?
+
+A1RVMADIZE3BXK
+(train, 2)	I do not think the last task was completed correctly.  It seems the robot went to its destination without taking the bottle of tylenol.
+
+A1RH11VAT52YFH
+(test, 3)	By the last question, I was just getting use to the actual language to command the robot. The questions that the robot asked back were perfect though, but the wrong items were selected... it was more my fault due to me not knowing the actual names of the items.
+
+A1PFE8T2LNWFLV
+(test, 3_np)	I liked this.
+
+A1PE5GCMNEFIT4
+(test, 1)	It was semi difficult to understand what the task was asking.
+
+A1O299EPNHZ5O4
+(train, 1)	cheers!
+
+A1NJZH7D5RLEBH
+(test, 1)	It might help if it knew what beside meant.
+
+A1NJ0J3SCP668A
+(test, 1)	n/a
+
+A1NFBKUYYVUYWF
+(train, 0)	I would be throwing shoes at this robot within an hour.
+
+A1ND9FU7OO5NQA
+(test, 2)	very good and interesting task to do, looking forward to more robotic tasks.
+
+A1N4P4XGQM7NXE
+(train, 0)	pretty awful overall
+
+A1N1WY7UCRBQQ9
+(test, 3)	The robot couldn't tell the difference between the &quot;yellow can&quot; and a &quot;soda can&quot;, with no clear way to correct it.  It also couldn't comprehend delivering items to a room not assigned to a person.  This resulted in the third task being unfinished.
+
+A1N1EF0MIRSEZZ
+(test, 0)	The survey is really long and the robot thinks sometimes slowly, so I think the pay is low in comparison.
+
+A1MTRZDRKNB9GV
+(test, 3)	I think this was really interesting, I really enjoyed this and see who it could work
+
+A1MRBBA2OLM223
+(test, 1)	The robot could not understand the last task where I was asking it to move something from an office to the lounge.
+
+A1MDMWZH08R3TI
+(test, 3_np)	The robot does not work well.  Interesting task.
+
+A1KEM2M1XFP594
+(test, 3)	Very frustrating. It needs some work knowing what things are. I had no idea what to tell it
+
+A1JW11G1QUNMGN
+(train, 1)	Too many unnecessary questions
+
+A1JRP3B1LNXJRP
+(test, 3)	The instructions were kind of vague. I wasn't clear on how to give exact commands.
+
+A1JP9WQD22FUJN
+(test, 2)	Apparently, robots and I don't communicate well :)
+
+A1JN5U8GXPURYU
+(test, 0)	I had some difficulty telling the robot to move from Office to Office.  I couldn't simply type Office N.  It wouldn't recognize that.  This made it difficult to navigate.
+
+A1JFQYGO8M6EWX
+(train, 2)	Thank you, I did my best.
+
+A1J4INYRDDX84W
+(test, 0)	This robot understood  nothing overall.
+
+A1IOI0WSL8SK8T
+(test, 3_np)	That was kind of fun.
+
+A1HSGWFVXK2MYZ
+(test, 0)	It wasn't understanding basic words.
+
+A1HKCTDOTL6C9I
+(test, 2)	The first two task took some time but the final one was difficult. There was no marking that the robot could understand on the placement of the can for the robot so I could not get the robot to understand where to place or deliver the item.
+
+A1HF8F8FQLNCSG
+(test, 3)	Thanks for the work.
+
+A1GLN678RKRKUJ
+(test, 0)	This robot was not very smart!
+
+A1F8ZAE0P2RA8O
+(train, 2)	good
+
+A1F6NOYLVNUA9A
+(train, 0)	One of us isn't very bright and I think it's me.
+
+A1E54D02AM64JB
+(train, 0)	send pizza
+
+A1DZMZTXWOM9MR
+(test, 2)	n/a
+
+A1C5THJX1VVGO4
+(train, 0)	NO
+
+A1AFC9HM625RQR
+(test, 0)	Needs to understand more simple words specifically colors, large and small, and differentiate from containers, bottles, cans, etc,
+
+A1AF6EW9YUMER9
+(test, 0)	Best of luck in your research!
+
+A19KF02ULCISTQ
+(train, 1)	Organization of the task is bad. Better, &quot;The robot is at the X. On the right will be the objects for this task. The robot will ask yes or no questions to be answered by you&quot;.
+
+A194ZN1R8H5YWJ
+(train, 2)	none
+
+A18J7H2QA7UQIR
+(train, 0)	it's good.
+
+A175PJR0W3LO8I
+(train, 0)	it's a very unintuitive robot that has poor memory and learning skills!
+
+A16SJ5D3DKUEXJ
+(test, 3)	Without a clear way to start at the beginning with the robot, it was very frustrating to get anywhere with it.  I don't know how else I could've described the objects to get the robot to select the right thing.
+
+A16SAB417Y96G4
+(test, 0)	Why does the robot have to ask the same question so many times?
+
+A16LZUEQ6JGHWA
+(train, 0)	This was extremely interesting to participate in. Thank you for this opportunity.
+
+A16G6PPH1INQL8
+(test, 3_np)	I got the robot to every objective except the last one. I finally gave up because the robot would only understand to deliver the object to a person, not a pod.  It was frustrating.  I did try and I did get the robot to find the object at least.
+
+A15YUZ5RUNA6FI
+(test, 0)	Good.
+
+A15K0L6NGQXOM0
+(train, 1)	N/A
+
+A1561P9VVA3C1C
+(train, 2)	This was very difficult to complete the task.
+
+A14ZZHR5MXBT3C
+(test, 1)	this robot is hard
+
+A14X9MMC9P7XI8
+(test, 3)	The tasks are easy for me to understand, and it states to give all of my step-by-step instructions at one time, but the robot never understood more than the first step in my instructions every single time.
+
+A143J3H0S644SM
+(test, 3_np)	As AI's go, this one feels about as rudimentary as it gets, so if felt a bit frustrating but  glad I had a chance to work on this one - hope it was a help. Good luck with your research, thx!
+
+A13V13Y2DJGFT4
+(train, 0)	its good
+
+A13STUE0VL42FA
+(test, 2)	Good survey thanks
+
+A13B56UPRDS9HH
+(test, 0)	The very first task was almost right. The next two not so much.
+
+A12L49XOTAS4H8
+(test, 2)	none
+
+A11TCJMOZD2JMK
+(test, 3)	Either there needs to be a specific syntax/format for the questions to be asked, or the &quot;robot&quot; needs a more sophisticated understanding of language.
+
+A11CMD4XAPS2Y4
+(test, 2)	the first task was not hard but the other two were frustrating
+
+A10VV1SPM63I94
+(test, 3_np)	Seems like the robot doesn't understand basic commands, but instead tries to randomly ask for things to do or places to go. Interesting topic but this robot definitely needs a major upgrade. :)
+
