@@ -1,0 +1,38 @@
+added noun entry for 'p' with synonym column
+added noun entry for 'color' with synonym blue
+added noun entry for 'is' with synonym can
+added noun entry for 'silver' with synonym blue
+added noun entry for 'your' with synonym can
+added noun entry for 'red' with synonym None
+added noun entry for 'jar' with synonym container
+added noun entry for 'body' with synonym container
+added noun entry for 'brown' with synonym None
+added noun entry for 'object' with synonym container
+added noun entry for 'you' with synonym can
+added noun entry for 'canister' with synonym container
+added noun entry for 'large' with synonym None
+added noun entry for 'bottle' with synonym container
+added noun entry for 'small' with synonym None
+added noun entry for 'tall' with synonym long
+updated classifiers with 4350 new labels across 24 predicates...
+induced 305 utterance/grounding pairs
+epoch 0: got 240 utterance/semantic pairs
+epoch 0: parser trained on 265 examples and failed on 9 out of 284
+epoch 1: got 247 utterance/semantic pairs
+epoch 1: parser trained on 269 examples and failed on 12 out of 291
+epoch 2: got 246 utterance/semantic pairs
+epoch 2: parser trained on 269 examples and failed on 13 out of 290
+epoch 3: got 246 utterance/semantic pairs
+epoch 3: parser trained on 269 examples and failed on 11 out of 290
+epoch 4: got 245 utterance/semantic pairs
+epoch 4: parser trained on 268 examples and failed on 12 out of 289
+epoch 5: got 246 utterance/semantic pairs
+epoch 5: parser trained on 270 examples and failed on 12 out of 290
+epoch 6: got 246 utterance/semantic pairs
+epoch 6: parser trained on 270 examples and failed on 14 out of 290
+epoch 7: got 247 utterance/semantic pairs
+epoch 7: parser trained on 271 examples and failed on 13 out of 291
+epoch 8: got 247 utterance/semantic pairs
+epoch 8: parser trained on 271 examples and failed on 13 out of 291
+epoch 9: got 247 utterance/semantic pairs
+epoch 9: parser trained on 271 examples and failed on 13 out of 291

@@ -1,0 +1,9848 @@
+epoch 0:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),cylinder(1))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),container(1))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+go to the office of dr sybil smalt
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+from walter ward 's office to heidi hughes office
+PP : a_l(lambda 1:l.(and(possesses(w,1),and(office(1),office(1)))))
+3422
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+w
+NP : w
+w
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),south(1))))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the middle left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the upper left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+from the printer to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+dr heidi hughes
+NP : h
+h
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+walter ward
+NP : w
+w
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+bring container to walter
+M/NP : lambda 1:i.(bring(1,w))
+bring(oidx_26,w)
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+bring the red can to robert brown
+M : bring(a_i(lambda 1:i.(and(can(1),red(1)))),b)
+bring(oidx_12,b)
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+deliver to robert brown
+PP : b
+b
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+dr heidi hughes
+NP : h
+h
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mal
+NP : m
+m
+
+m
+NP : m
+m
+
+mallory mal maroon
+NP : m
+m
+
+mallory
+NP : m
+m
+
+dr smalt 's office
+PP : a_l(lambda 1:l.(office(1)))
+3430
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(empty(1),and(can(1),yellow(1)))))
+oidx_11
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+epoch 1:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+go to the office of dr sybil smalt
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+w
+NP : w
+w
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),south(1))))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the upper left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+dr heidi hughes
+NP : h
+h
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+walter ward
+NP : w
+w
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+deliver to robert brown
+PP : b
+b
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+dr heidi hughes
+NP : h
+h
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mal
+NP : m
+m
+
+m
+NP : m
+m
+
+mallory mal maroon
+NP : m
+m
+
+mallory
+NP : m
+m
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+dr sybil smalt
+NP : s
+s
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+epoch 2:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+w
+NP : w
+w
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),and(pod(1),south(1)))))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the upper left
+NP : a_l(lambda 1:l.(and(office(1),west(1))))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3430)
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+dr heidi hughes
+NP : h
+h
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+walter ward
+NP : w
+w
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+deliver to robert brown
+PP : b
+b
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+dr heidi hughes
+NP : h
+h
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mal
+NP : m
+m
+
+m
+NP : m
+m
+
+mallory mal maroon
+NP : m
+m
+
+mallory
+NP : m
+m
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+epoch 3:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+w
+NP : w
+w
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3430)
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+dr heidi hughes
+NP : h
+h
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+walter ward
+NP : w
+w
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+deliver to robert brown
+PP : b
+b
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+dr heidi hughes
+NP : h
+h
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mal
+NP : m
+m
+
+m
+NP : m
+m
+
+mallory
+NP : m
+m
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+mallory mal maroon
+NP : m
+m
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),and(pod(1),south(1)))))
+3518
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+office in the upper left
+NP : a_l(lambda 1:l.(and(office(1),west(1))))
+3418
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+epoch 4:
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),and(pod(1),south(1)))))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the upper left
+NP : a_l(lambda 1:l.(and(office(1),west(1))))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3430)
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+dr heidi hughes
+NP : h
+h
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+walter ward
+NP : w
+w
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+s
+NP : s
+s
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+deliver to robert brown
+PP : b
+b
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+mal
+NP : m
+m
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+dr heidi hughes
+NP : h
+h
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+m
+NP : m
+m
+
+mallory mal maroon
+NP : m
+m
+
+mallory
+NP : m
+m
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+w
+NP : w
+w
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+epoch 5:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+w
+NP : w
+w
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),and(pod(1),south(1)))))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the upper left
+NP : a_l(lambda 1:l.(and(office(1),west(1))))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3430)
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+dr heidi hughes
+NP : h
+h
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+walter ward
+NP : w
+w
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+deliver to robert brown
+PP : b
+b
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+dr heidi hughes
+NP : h
+h
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mal
+NP : m
+m
+
+m
+NP : m
+m
+
+mallory mal maroon
+NP : m
+m
+
+mallory
+NP : m
+m
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+epoch 6:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),and(pod(1),south(1)))))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the upper left
+NP : a_l(lambda 1:l.(and(office(1),west(1))))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3430)
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+david daniel
+NP : d
+d
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+dr heidi hughes
+NP : h
+h
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+dave daniel
+NP : d
+d
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+walter ward
+NP : w
+w
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+deliver to robert brown
+PP : b
+b
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+dr heidi hughes
+NP : h
+h
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mal
+NP : m
+m
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+m
+NP : m
+m
+
+mallory
+NP : m
+m
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+mallory mal maroon
+NP : m
+m
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+w
+NP : w
+w
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+epoch 7:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+w
+NP : w
+w
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),and(pod(1),south(1)))))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3430)
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to the office of dr sybil smalt
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+dr heidi hughes
+NP : h
+h
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+office in the upper left
+NP : a_l(lambda 1:l.(and(office(1),west(1))))
+3418
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+walter ward
+NP : w
+w
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+deliver to robert brown
+PP : b
+b
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mal
+NP : m
+m
+
+m
+NP : m
+m
+
+mallory mal maroon
+NP : m
+m
+
+mallory
+NP : m
+m
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+dr heidi hughes
+NP : h
+h
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+epoch 8:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+go to the office of dr sybil smalt
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),and(pod(1),south(1)))))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the upper left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+w
+NP : w
+w
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+doctor sybil smalt
+NP : s
+s
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3430)
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+walter ward
+NP : w
+w
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+dr heidi hughes
+NP : h
+h
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver to robert brown
+PP : b
+b
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+dr heidi hughes
+NP : h
+h
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+mal
+NP : m
+m
+
+m
+NP : m
+m
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mallory mal maroon
+NP : m
+m
+
+mallory
+NP : m
+m
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+epoch 9:
+
+go to office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3418)
+
+go to office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office
+PP : a_l(lambda 1:l.(office(1)))
+3418
+
+go to the office next to the conference
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1))))
+3418
+
+bring the can to sybil smalt
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the north conference room
+M : walk(a_l(lambda 1:l.(conference(1))))
+walk(3516)
+
+go to the south conference room
+PP : a_l(lambda 1:l.(and(conference(1),south(1))))
+3516
+
+give the blue cylinder to nancy
+M : bring(a_i(lambda 1:i.(and(blue(1),cylinder(1)))),n)
+bring(oidx_13,n)
+
+blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+blue cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+blue canister
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+blue container
+NP : a_i(lambda 1:i.(and(container(1),blue(1))))
+oidx_13
+
+tall can
+NP : a_i(lambda 1:i.(and(can(1),long(1))))
+oidx_13
+
+long container
+NP : a_i(lambda 1:i.(and(container(1),long(1))))
+oidx_13
+
+food container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+blue chip cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_13
+
+spice can
+NP : a_i(lambda 1:i.(and(spice(1),can(1))))
+oidx_25
+
+cylinder of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(can(1),cylinder(1)))))
+oidx_25
+
+small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_25
+
+container of spices
+NP : a_i(lambda 1:i.(and(spice(1),and(container(1),can(1)))))
+oidx_25
+
+silver cylinder
+NP : a_i(lambda 1:i.(and(blue(1),cylinder(1))))
+oidx_25
+
+the office of nancy
+NP : a_l(lambda 1:l.(and(possesses(n,1),office(1))))
+3404
+
+the office of david
+NP : a_l(lambda 1:l.(and(possesses(d,1),office(1))))
+3420
+
+go to the office of dr sybil smalt
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+go to dr heidi hughes 's office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+go to the pod next to mallory maroon 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(m,2),office(2))))),pod(1)))))
+walk(3504)
+
+bring the empty can to heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+the empty can of peaches
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),and(can(1),can(1))))))
+oidx_11
+
+doctor heidi hughes
+NP : h
+h
+
+the pringles can
+NP : a_i(lambda 1:i.(and(can(1),pringles(1))))
+oidx_13
+
+the pringles
+NP : a_i(lambda 1:i.(pringles(1)))
+oidx_13
+
+walter ward supervisor 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+doctor heidi hughes office
+NP : a_l(lambda 1:l.(and(possesses(h,1),office(1))))
+3402
+
+go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the long white object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the tall white rectangular object
+NP : a_i(lambda 1:i.(and(container(1),and(long(1),white(1)))))
+oidx_28
+
+the white thing
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+w
+NP : w
+w
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+go to the kitchen
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+give this can of soda to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_26,h)
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+a soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+acan
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_11
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+bob 's office
+NP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+office w
+NP : a_l(lambda 1:l.(office(1)))
+3422
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+give robert bob brown the plastic container
+M : bring(a_i(lambda 1:i.(container(1))),b)
+bring(oidx_22,b)
+
+a plastic container with a red lid
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a white plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a white medical plastic container
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a small white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+the small plastic container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+to another conference
+PP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(1(2))))
+3418
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3418
+
+empty office
+NP : a_l(lambda 1:l.(and(office(1),unoccupied(1))))
+3418
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3418
+
+next door
+NP/NP : lambda 1:l.(1)
+3418
+
+office in the left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+office in the upper left
+PP : a_l(lambda 1:l.(west(1)))
+3418
+
+to conference
+PP : a_l(lambda 1:l.(conference(1)))
+3416
+
+from office to conference
+PP/NP : lambda 1:l.(1)
+3416
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3406)
+
+lounge
+NP : a_l(lambda 1:l.(lounge(1)))
+3406
+
+bring the clear container with red top to bob
+M : bring(a_i(lambda 1:i.(and(container(1),and(clear(1),red(1))))),b)
+bring(oidx_22,b)
+
+the container with red top
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+white srofoam
+NP : a_i(lambda 1:i.(white(1)))
+oidx_28
+
+white styrofoam
+NP : a_i(lambda 1:i.(and(styrofoam(1),white(1))))
+oidx_28
+
+styrofoam
+NP : a_i(lambda 1:i.(styrofoam(1)))
+oidx_28
+
+from the kitchen to walter
+PP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+kitchen
+NP : a_l(lambda 1:l.(kitchen(1)))
+3520
+
+walter 's office
+NP : a_l(lambda 1:l.(and(possesses(w,1),office(1))))
+3422
+
+go to the office next to doctor sybil smalt 's office
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(s,2),office(2))))),office(1)))))
+walk(3432)
+
+the styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),block(1))))
+oidx_28
+
+the white styrofoam block
+NP : a_i(lambda 1:i.(and(styrofoam(1),and(white(1),block(1)))))
+oidx_28
+
+doctor sybil smalt
+NP : s
+s
+
+the empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+richard rogue secretary 's office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+the printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walter ward
+NP : w
+w
+
+walter
+NP : w
+w
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+small bottle
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+from the printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+to the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the handiwipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+the wipes
+NP/N : lambda 1:<i,t>.(a_i(lambda 2:i.(1(2))))
+oidx_12
+
+clear canister
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+clear canister with peanuts
+NP : a_i(lambda 1:i.(and(container(1),and(bean(1),clear(1)))))
+oidx_22
+
+clear canister with red lid
+NP : a_i(lambda 1:i.(and(container(1),and(clear(1),red(1)))))
+oidx_22
+
+clear container
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+canister
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+peanuts
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+next door on the left
+NP : a_l(lambda 1:l.(west(1)))
+3418
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+clear jar
+NP : a_i(lambda 1:i.(and(container(1),clear(1))))
+oidx_22
+
+red lid container
+NP : a_i(lambda 1:i.(and(container(1),red(1))))
+oidx_22
+
+clear
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+to the pod
+PP/NP : lambda 1:l.(1)
+3436
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+the lab
+NP : a_l(lambda 1:l.(lab(1)))
+3436
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+this blue can
+NP : a_i(lambda 1:i.(and(can(1),blue(1))))
+oidx_13
+
+david daniel
+NP : d
+d
+
+the long white rectangle
+NP : a_i(lambda 1:i.(and(long(1),and(white(1),rectangle(1)))))
+oidx_28
+
+pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+go to dr smalt 's office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3430)
+
+a white object
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_28
+
+a white pill bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+a metallic can
+NP : a_i(lambda 1:i.(and(can(1),metallic(1))))
+oidx_11
+
+from the pod in the corner
+PP : a_l(lambda 1:l.(and(pod(1),and(pod(1),south(1)))))
+3518
+
+to robert brown 's office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+a yellow can
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+go to the kitchen
+M : walk(a_l(lambda 1:l.(kitchen(1))))
+walk(3520)
+
+a plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+first pod
+NP : a_l(lambda 1:l.(pod(1)))
+3424
+
+the pod next to walter ward 's office
+NP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(and(possesses(w,2),office(2))))),pod(1))))
+3424
+
+dr smalt 's office
+(NP/N)\NP : lambda 1:p.(lambda 2:<l,t>.(a_l(lambda 3:l.(and(2(3),possesses(1,3))))))
+3430
+
+dr sybil smalt
+NP/N : lambda 1:<l,t>.(a_l(lambda 2:l.(and(1(2),possesses(s,2)))))
+3430
+
+the office of dr sybil smalt
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+dr heidi hughes
+NP : h
+h
+
+lab
+NP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+go to lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+mallory needs the white bottle
+M : bring(a_i(lambda 1:i.(and(container(1),white(1)))),m)
+bring(oidx_6,m)
+
+deliver aspirin to mallory
+M/NP : lambda 1:i.(bring(1,m))
+bring(oidx_6,m)
+
+white cylinder
+NP : a_i(lambda 1:i.(and(cylinder(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+go to dr sybil smalt office
+M : walk(a_l(lambda 1:l.(and(possesses(s,1),office(1)))))
+walk(3430)
+
+d
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+david dave daniel
+NP : a_i(lambda 1:i.(clear(1)))
+oidx_22
+
+other
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+deliver the pill bottle to nancy nagel
+M : bring(a_i(lambda 1:i.(container(1))),n)
+bring(oidx_6,n)
+
+a small container
+NP : a_i(lambda 1:i.(and(container(1),small(1))))
+oidx_6
+
+a small white bottle
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),small(1)))))
+oidx_6
+
+a small red and white plastic container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),and(red(1),small(1))))))
+oidx_6
+
+a pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+a can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+a can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+from the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+from the pod in the lower right corner
+PP : a_l(lambda 1:l.(and(pod(1),east(1))))
+3518
+
+go give richard the can
+M : bring(a_i(lambda 1:i.(can(1))),r)
+bring(oidx_11,r)
+
+give richard the can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),can(1))))
+oidx_11
+
+sybil needs the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+go to robert browns office
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+go to robert browns office
+PP : a_l(lambda 1:l.(and(possesses(b,1),office(1))))
+3510
+
+give dave the container
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_22,d)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+food
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_22
+
+dave
+NP : d
+d
+
+pill bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+medicine
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+richard rogue secretary office
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+mallory mal maroon office
+NP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+s
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+drugs
+NP : a_i(lambda 1:i.(bean(1)))
+oidx_6
+
+office r
+NP : a_l(lambda 1:l.(office(1)))
+3502
+
+give the object to this person
+M/PP : lambda 1:p.(bring(a_i(lambda 2:i.(container(2))),1))
+bring(oidx_6,s)
+
+the other can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+find a can with a yellow label
+NP : a_i(lambda 1:i.(and(can(1),yellow(1))))
+oidx_11
+
+david dave daniel
+NP : d
+d
+
+dave daniel
+NP : d
+d
+
+robot go to walter ward 's office
+M : walk(a_l(lambda 1:l.(and(possesses(w,1),office(1)))))
+walk(3422)
+
+the container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_12
+
+the red and white container
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+dr sybil
+NP : s
+s
+
+go to dr heidi hughes office
+M : walk(a_l(lambda 1:l.(and(possesses(h,1),office(1)))))
+walk(3402)
+
+give styrofoam to dr heidi hughes
+M : bring(a_i(lambda 1:i.(styrofoam(1))),h)
+bring(oidx_28,h)
+
+container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+from peggy parker intern office
+PP : a_l(lambda 1:l.(and(possesses(p,1),office(1))))
+3508
+
+the white container with the red lid
+NP : a_i(lambda 1:i.(and(container(1),and(white(1),red(1)))))
+oidx_12
+
+walter ward
+NP : w
+w
+
+printer
+NP : a_l(lambda 1:l.(printer(1)))
+3506
+
+go to printer
+PP : a_l(lambda 1:l.(printer(1)))
+3506
+
+from the lab
+PP : a_l(lambda 1:l.(lab(1)))
+3414a
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+walk to the iffice
+M : walk(a_l(lambda 1:l.(east(1))))
+walk(3432)
+
+the office
+NP : a_l(lambda 1:l.(office(1)))
+3432
+
+give the soda can to person s
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_26,s)
+
+a drink can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+person s
+NP : s
+s
+
+s
+NP : s
+s
+
+go to mallory 's office
+M : walk(a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+walk(3502)
+
+find a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+a medium red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_26
+
+to mallory mal maroon office
+PP : a_l(lambda 1:l.(and(possesses(m,1),office(1))))
+3502
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver the red can
+NP : a_i(lambda 1:i.(and(can(1),red(1))))
+oidx_12
+
+deliver to robert brown
+PP : b
+b
+
+please go to dave 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+white bottle
+NP : a_i(lambda 1:i.(and(container(1),white(1))))
+oidx_6
+
+bottle
+NP : a_i(lambda 1:i.(container(1)))
+oidx_6
+
+dr sybil smalt
+NP : s
+s
+
+deliver this item to dr heidi hughes
+M : bring(a_i(lambda 1:i.(bean(1))),h)
+bring(oidx_12,h)
+
+go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to the printer in between the pod and lab
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(pod(2)))),and(adjacent(1,a_l(lambda 2:l.(lab(2)))),printer(1))))))
+walk(3506)
+
+move red can from lab to mallory 's office
+M : move(a_i(lambda 1:i.(can(1))),a_l(lambda 1:l.(lab(1))),a_l(lambda 1:l.(and(possesses(m,1),office(1)))))
+move(oidx_26,3414a,3502)
+
+dr heidi hughes
+NP : h
+h
+
+go to the lounge
+PP : a_l(lambda 1:l.(lounge(1)))
+3514
+
+give dr sybil smalt the can
+M : bring(a_i(lambda 1:i.(can(1))),s)
+bring(oidx_11,s)
+
+deliver an empty peach can
+NP : a_i(lambda 1:i.(and(empty(1),and(peach(1),can(1)))))
+oidx_11
+
+deliver an empty can
+NP : a_i(lambda 1:i.(and(empty(1),can(1))))
+oidx_11
+
+go to the pod
+M : walk(a_l(lambda 1:l.(pod(1))))
+walk(3518)
+
+go to the pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+go to pod
+PP : a_l(lambda 1:l.(pod(1)))
+3518
+
+deliver can to dr heidi hughes
+M : bring(a_i(lambda 1:i.(can(1))),h)
+bring(oidx_11,h)
+
+can of peaches
+NP : a_i(lambda 1:i.(and(peach(1),and(can(1),can(1)))))
+oidx_11
+
+can of fruit
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+go to the office directly next to the conference room
+M : walk(a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),office(1)))))
+walk(3418)
+
+bring the plastic jar to mal
+M : bring(a_i(lambda 1:i.(container(1))),m)
+bring(oidx_22,m)
+
+a container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+mal
+NP : m
+m
+
+m
+NP : m
+m
+
+mallory mal maroon
+NP : m
+m
+
+mallory
+NP : m
+m
+
+something white
+NP : a_i(lambda 1:i.(white(1)))
+oidx_6
+
+from the lab between printer and kitchen
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(printer(2)))),and(adjacent(1,a_l(lambda 2:l.(printer(2)))),lab(1)))))
+3414a
+
+to the office between a conference room and dave 's office
+PP : a_l(lambda 1:l.(and(adjacent(1,a_l(lambda 2:l.(conference(2)))),and(adjacent(1,a_l(lambda 2:l.(and(possesses(d,2),office(2))))),office(1)))))
+3418
+
+move pill bottle from office to another office
+M/PP : lambda 1:l.(move(a_i(lambda 2:i.(container(2))),a_l(lambda 2:l.(office(2))),1))
+move(oidx_6,3512,3502)
+
+plastic container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_22
+
+this potato chip can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_13
+
+chip container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_13
+
+bring container to walter
+M : bring(a_i(lambda 1:i.(container(1))),w)
+bring(oidx_26,w)
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
+snack cylinder
+NP : a_i(lambda 1:i.(cylinder(1)))
+oidx_13
+
+short container
+NP : a_i(lambda 1:i.(container(1)))
+oidx_25
+
+soda can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_26
+
+find the can
+NP : a_i(lambda 1:i.(can(1)))
+oidx_11
+
