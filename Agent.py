@@ -16,11 +16,15 @@ class Agent:
 
     # Takes an instantiated, trained parser, a knowledge base grounder, an input/output instance, and
     # a (possibly empty) list of oidxs to be considered active for perceptual dialog questions.
-    def __init__(self, parser, grounder, io, active_train_set):
+    # The optional no_clarify argument can be a list of roles which the agent does not use clarification
+    # dialog questions to confirm, but rather takes the current maximum belief as the correct argument
+    # when sampling from the belief state.
+    def __init__(self, parser, grounder, io, active_train_set, no_clarify=None):
         self.parser = parser
         self.grounder = grounder
         self.io = io
         self.active_train_set = active_train_set
+        self.no_clarify = [] if no_clarify is None else no_clarify
 
         # hyperparameters
         self.parse_beam = 1
@@ -196,6 +200,19 @@ class Agent:
                     for gpr, conf in gprs:
                         if type(gpr) is not bool:
                             self.update_action_belief_from_grounding(gpr, [role_asked], count=conf)
+
+            # Fill current_confirmed with any no_clarify roles by taking the current max.
+            # As in other max operations, considers all tied values and chooses one at random.
+            # These role slots are re-filled after every confidence update, so they are the only clarification
+            # slots that can be changed.
+            for r in self.no_clarify:
+                valid_entries = [entry for entry in self.action_belief_state[r]]
+                dist = [self.action_belief_state[r][entry] for entry in valid_entries]
+                s = sum(dist)
+                dist = [dist[idx] / s for idx in range(len(dist))]
+                max_idxs = [idx for idx in range(len(dist)) if dist[idx] == max(dist)]
+                c = np.random.choice([valid_entries[idx] for idx in max_idxs], 1)
+                action_confirmed[r] = c[0]
 
             if debug:
                 print "start_action_dialog: updated action belief state: " + str(self.action_belief_state)
@@ -1109,7 +1126,8 @@ class Agent:
                                                        ['patient', 'recipient', 'source', 'goal'])]
         else:
             relevant_roles = self.roles[:]
-        roles_to_include = [r for r in roles_to_include if r in relevant_roles]  # strip recipient from 'bring' etc.
+        roles_to_include = [r for r in roles_to_include
+                            if r in relevant_roles and r not in self.no_clarify]  # strip recipient from 'bring' etc.
         confidences = {r: sampled_action[r][1] for r in relevant_roles}
         s_conf = sorted(confidences.items(), key=operator.itemgetter(1))
         if debug:

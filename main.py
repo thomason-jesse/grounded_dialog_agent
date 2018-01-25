@@ -36,7 +36,7 @@ def main():
     spin_time = FLAGS_spin_time
     num_dialogs = FLAGS_num_dialogs
     init_phase = FLAGS_init_phase
-    assert io_type == 'keyboard' or io_type == 'server'
+    assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
 
     if grounder_fn is None:
@@ -84,10 +84,16 @@ def main():
 
     # Instantiate an input/output
     print "main: instantiating IO..."
+    no_clarify = None
     if io_type == 'keyboard':
         io = IO.KeyboardIO()
     elif io_type == 'server':
         io = IO.SeverIO(uid, client_dir, spin_time=spin_time)
+    elif io_type == 'robot':  # includes some hard-coded expectations like 2 tables, 8 training objects
+        table_oidxs = {1: active_train_set[0:4], 2: active_train_set[4:8], 3: None}
+        starting_table = 2
+        io = IO.RobotIO(uid, table_oidxs, starting_table)
+        no_clarify = ['patient']  # don't allow the patient role to participate in commands
     else:
         io = None  # won't be executed due to asserts
     print "main: ... done"
@@ -96,7 +102,7 @@ def main():
     if init_phase == 0:
         # Instantiate an Agent.
         print "main: instantiating Agent..."
-        a = Agent.Agent(p, g, io, active_train_set)
+        a = Agent.Agent(p, g, io, active_train_set, no_clarify=no_clarify)
         print "main: ... done"
 
         # Start a dialog.
