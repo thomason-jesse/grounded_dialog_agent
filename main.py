@@ -3,6 +3,7 @@ __author__ = 'jesse'
 
 import sys
 sys.path.append('../tsp/')  # necessary to import CKYParser from above directory
+sys.path.append('/home/users/jthomason/catkin_ws/src/perception_classifiers/src/phm/tsp/')
 
 import argparse
 import pickle
@@ -10,6 +11,7 @@ import Agent
 import KBGrounder
 import IO
 import os
+import rospy
 
 
 def main():
@@ -92,7 +94,8 @@ def main():
     elif io_type == 'robot':  # includes some hard-coded expectations like 2 tables, 8 training objects
         table_oidxs = {1: active_train_set[0:4], 2: active_train_set[4:8], 3: None}
         starting_table = 2
-        io = IO.RobotIO(uid, table_oidxs, starting_table)
+        rospy.init_node('phm_node')
+        io = IO.RobotIO(table_oidxs, starting_table)
         no_clarify = ['patient']  # don't allow the patient role to participate in commands
     else:
         io = None  # won't be executed due to asserts
