@@ -2,7 +2,6 @@
 __author__ = 'jesse'
 
 import os
-import string
 import time
 import rospy
 from bwi_speech_services.srv import *
@@ -215,6 +214,7 @@ class RobotIO:
         self.table = starting_table  # 1, 2, or 3. missing tables should have None as their table_oidxs
         self.voice = voice
         self.last_say = None
+        self.arm_pos = -1
 
         # initialize a sound client instance for TTS
         print "RobotIO: initializing SoundClient..."
@@ -234,7 +234,14 @@ class RobotIO:
     def get_from_user(self):
         print "RobotIO: get_from_user called"
         self.listening_mode_toggle_client()
-        uin = self.sound_transcript_client()
+
+        # DEBUG - until justin gets speech services working, just get from keyboard
+        if True:
+            uin = raw_input()
+        else:
+            uin = self.sound_transcript_client()
+        # END DEBUG
+
         uin = process_raw_utterance(uin)
         self.listening_mode_toggle_client()
         print "RobotIO: get_from_user returning '" + uin + "'"
@@ -248,6 +255,7 @@ class RobotIO:
     def get_oidx_from_user(self, oidxs):
         print "RobotIO: get_oidx_from_user called"
 
+        self.point(-1)  # retract the arm, if it's out
         oidx = -1
         while oidx == -1:
             u = self.get_from_user()
@@ -256,14 +264,17 @@ class RobotIO:
 
             # The user asked the robot to face a different table.
             if "face" in ws:
-                for ns, n in [("two", 2), ("three", 3)]:
+                for ns, n in [("one", 1), ("1", 1), ("two", 2), ("2", 2)]:
                     if ns in ws:
-                        self.face_table(n, report=True)
+                        if self.table != n:
+                            self.face_table(n)
+                        else:
+                            self.say_to_user("I am already facing table " + str(n))
             elif "turn" in ws:
                 if "left" in ws and self.table == 2:
-                    self.face_table(1, report=True)
+                    self.face_table(1)
                 elif "right" in ws and self.table == 1:
-                    self.face_table(2, report=True)
+                    self.face_table(2)
 
             # The user told the robot to watch for a touch.
             elif "watch" in ws or "look" in ws or "this" in ws:
@@ -292,7 +303,9 @@ class RobotIO:
 
         self.sound_client.say(str(s), voice=self.voice)
         print "say_to_user: " + s
-        rospy.sleep(int(secs_per_vowel*len([v for v in s if v in vowels]) + 0.5 + speech_sec_buffer))
+
+        # DEBUG - until festival is working, don't pause for this since there's not actually speech
+        # rospy.sleep(int(secs_per_vowel*len([v for v in s if v in vowels]) + 0.5 + speech_sec_buffer))
 
     # Say a string with words aligned to ontological values.
     # u - a string utterance, possibly tagged with role-fill words like <p>this</p>
@@ -341,25 +354,21 @@ class RobotIO:
                 sidx = u.find("<" + r0 + ">")
                 eidx = u.find("</" + r0 + ">") + 4
                 while sidx > -1:
-                    arg = u[sidx:eidx]
-                    u = u[:sidx] + ' '.join(arg) + u[eidx:]
+                    u = u[:sidx] + ' '.join(rvs[r]) + u[eidx:]
                     sidx = u.find("<" + r0 + ">")
                     eidx = u.find("</" + r0 + ">") + 4
 
         # Handle patient, which involves first turning to face the right table and pointing (blocking) before
         # releasing to speak.
         if 'patient' in rvs and rvs['patient'] is not None:
-            oidx = rvs['patient']
+            oidx = int(rvs['patient'].split('_')[1])  # e.g. 'oidx_1' -> 1
             ttid = None
             for tid in self.table_oidxs:
-                if oidx in self.table_oidxs[tid]:
+                if self.table_oidxs[tid] is not None and oidx in self.table_oidxs[tid]:
                     ttid = tid
             if ttid is not None:
-                self.face_table(ttid, report=True)
+                self.face_table(ttid)
                 self.point(self.table_oidxs[ttid].index(oidx))
-                sidx = u.find("<p>")
-                eidx = u.find("</p>") + 4
-                u = u[:sidx] + u[eidx:]
             else:
                 raise IndexError("oidx " + str(oidx) + " not found on tables")
 
@@ -387,33 +396,41 @@ class RobotIO:
     # get touches by detecting human touches on top of objects
     def get_touch(self):
         print "RobotIO support: get_touch called"
+        if self.pointCloud2_plane is None:
+            self.say_to_user("I am getting the objects on the table into focus.")
+            self.pointCloud2_plane, self.cloud_plane_coef, self.pointCloud2_objects = self.obtain_table_objects()
+            self.say_to_user("Okay, I see them.")
+        self.watching_mode_toggle_client()
         idx = self.detect_touch_client()
+        self.watching_mode_toggle_client()
         print "RobotIO support: get_touch returning " + str(idx)
         return int(idx)
 
     # point using the robot arm
     def point(self, idx):
         print "RobotIO support: point called with " + str(idx)
-        self.touch_client(idx)
+        if self.arm_pos != idx:
+            if self.pointCloud2_plane is None and idx != -1:
+                self.say_to_user("I am getting the objects on the table into focus.")
+                self.pointCloud2_plane, self.cloud_plane_coef, self.pointCloud2_objects = self.obtain_table_objects()
+                self.say_to_user("Okay, I see them.")
+            self.touch_client(idx)
+        self.arm_pos = idx
 
     # Rotate the chassis and establish new objects in line of sight.
-    def face_table(self, tid, report=False):
-        print "RobotIO support: face_table called with " + str(tid) + ", " + str(report)
-        if report:
+    def face_table(self, tid):
+        print "RobotIO support: face_table called with " + str(tid)
+        self.point(-1)  # retract the arm, if it's out
+        if tid != self.table:
             self.say_to_user("I am turning to face table " + str(tid) + ".")
-        s = self.face_table_client(tid)
-        self.table = tid
-        if self.table_oidxs[tid] is not None:
-            if report:
-                self.say_to_user("I am getting the objects on the table into focus.")
-            self.pointCloud2_plane, self.cloud_plane_coef, self.pointCloud2_objects = self.obtain_table_objects()
-            if report:
-                self.say_to_user("Okay, I see them.")
-        else:
+            s = self.face_table_client(tid)
+            self.table = tid
             self.pointCloud2_plane = None
             self.cloud_plane_coef = None
             self.pointCloud2_objects = None
-        print "RobotIO support: face_table returning " + str(s)
+            print "RobotIO support: face_table returning " + str(s)
+        else:
+            s = True
         return s
 
     # get the point cloud objects on the table for pointing / recognizing touches
@@ -454,7 +471,8 @@ class RobotIO:
             # re-index clusters so order matches left-to-right indexing expected
             ordered_cloud_clusters = self.reorder_client("x", True)
 
-            print "RobotIO support: get_pointCloud2_objects returning res"
+            print ("RobotIO support: get_pointCloud2_objects returning res with " +
+                   str(len(ordered_cloud_clusters)) + " clusters")
             return res.cloud_plane, res.cloud_plane_coef, ordered_cloud_clusters
         except rospy.ServiceException, e:
             sys.exit("Service call failed: %s " % e)
@@ -468,6 +486,16 @@ class RobotIO:
         try:
             listen_toggle = rospy.ServiceProxy('ispy/listening_mode_toggle', Empty)
             listen_toggle()
+        except rospy.ServiceException, e:
+            sys.exit("Service call failed: %s " % e)
+
+    # Turn on or off the indicator behavior for watching for touch.
+    def watching_mode_toggle_client(self):
+        print "RobotIO client: watching_mode_toggle_client called"
+        rospy.wait_for_service('ispy/touch_waiting_mode_toggle')
+        try:
+            watch_toggle = rospy.ServiceProxy('ispy/touch_waiting_mode_toggle', Empty)
+            watch_toggle()
         except rospy.ServiceException, e:
             sys.exit("Service call failed: %s " % e)
 

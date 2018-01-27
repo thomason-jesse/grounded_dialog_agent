@@ -1,0 +1,6 @@
+
+- watching mode toggle isn't working and code isn't in original repo which is weird too
+
+- get speech synthesis node working
+
+- get google speech node working (emailed Justin Jan 26 with this issue)
