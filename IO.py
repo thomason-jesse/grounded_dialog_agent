@@ -12,10 +12,6 @@ import roslib
 roslib.load_manifest('sound_play')
 from sound_play.libsoundplay import SoundClient
 
-vowels = ['a', 'e', 'i', 'o', 'u']
-secs_per_vowel = 0.4
-speech_sec_buffer = 1
-
 
 # Checks tokenization, adds possessive markers as own tokens, strips bad symbols
 def process_raw_utterance(u):
@@ -208,7 +204,7 @@ class SeverIO:
 class RobotIO:
 
     def __init__(self, table_oidxs, starting_table,
-                 voice="voice_cmu_us_slt_arctic_clunits"):
+                 voice="voice_cmu_us_slt_cg"):
         print "RobotIO: __init__ with " + str(table_oidxs) + ", " + str(starting_table) + ", " + voice
         self.table_oidxs = table_oidxs  # dictionary from table ids to lists of objects or None if there are None
         self.table = starting_table  # 1, 2, or 3. missing tables should have None as their table_oidxs
@@ -218,7 +214,7 @@ class RobotIO:
 
         # initialize a sound client instance for TTS
         print "RobotIO: initializing SoundClient..."
-        self.sound_client = SoundClient()
+        self.sound_client = SoundClient(blocking=True)
         rospy.sleep(1)
         self.sound_client.stopAll()
         print "RobotIO: ... done"
@@ -280,6 +276,7 @@ class RobotIO:
             elif "watch" in ws or "look" in ws or "this" in ws:
                 idx = self.get_touch()
                 oidx = self.table_oidxs[self.table][idx]
+                self.say_to_user("I see.")
 
             # The user said "all" or "none"
             elif "all" in ws or "none" in ws:
@@ -303,9 +300,6 @@ class RobotIO:
 
         self.sound_client.say(str(s), voice=self.voice)
         print "say_to_user: " + s
-
-        # DEBUG - until festival is working, don't pause for this since there's not actually speech
-        # rospy.sleep(int(secs_per_vowel*len([v for v in s if v in vowels]) + 0.5 + speech_sec_buffer))
 
     # Say a string with words aligned to ontological values.
     # u - a string utterance, possibly tagged with role-fill words like <p>this</p>

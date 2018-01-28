@@ -1,6 +1,4 @@
 
-- watching mode toggle isn't working and code isn't in original repo which is weird too
-
-- get speech synthesis node working
+- need to update 'shake your head' dialog to be speaking "None" or "All" in RobotIO
 
 - get google speech node working (emailed Justin Jan 26 with this issue)
