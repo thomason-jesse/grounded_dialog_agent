@@ -3,14 +3,19 @@ __author__ = 'jesse'
 
 import os
 import time
-import rospy
-from bwi_speech_services.srv import *
-from bwi_perception.srv import *
-from segbot_arm_manipulation.srv import *
-from std_srvs.srv import *
-import roslib
-roslib.load_manifest('sound_play')
-from sound_play.libsoundplay import SoundClient
+try:
+    import rospy
+    from bwi_speech_services.srv import *
+    from bwi_perception.srv import *
+    from segbot_arm_manipulation.srv import *
+    from std_srvs.srv import *
+    import roslib
+    roslib.load_manifest('sound_play')
+    from sound_play.libsoundplay import SoundClient
+except ImportError:
+    print "WARNING: cannot import ros-related libraries"
+    rospy = None
+    roslib = None
 
 
 # Checks tokenization, adds possessive markers as own tokens, strips bad symbols

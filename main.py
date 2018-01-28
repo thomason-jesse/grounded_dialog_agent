@@ -11,7 +11,11 @@ import Agent
 import KBGrounder
 import IO
 import os
-import rospy
+try:
+    import rospy
+except ImportError:
+    print "WARNING: cannot import ros-related libraries"
+    rospy = None
 
 
 def main():
