@@ -235,15 +235,10 @@ class RobotIO:
     def get_from_user(self):
         print "RobotIO: get_from_user called"
         self.listening_mode_toggle_client()
-
-        # DEBUG - until justin gets speech services working, just get from keyboard
-        if True:
-            uin = raw_input()
-        else:
+        uin = ''
+        while len(uin) == 0:
             uin = self.sound_transcript_client()
-        # END DEBUG
-
-        uin = process_raw_utterance(uin)
+            uin = process_raw_utterance(uin)
         self.listening_mode_toggle_client()
         print "RobotIO: get_from_user returning '" + uin + "'"
         return uin
@@ -297,6 +292,24 @@ class RobotIO:
     # use built-in ROS sound client to do TTS
     def say_to_user(self, s):
         print "RobotIO: say_to_user called with '" + s + "'"
+
+        # Replace 'shake your head' lines for robot interface.
+        shake_str = "shake your head"
+        if shake_str in s:
+            sidx = s.find(shake_str)
+            if "could you show me one you would use the word":  # pos example
+                new_str = "say 'none of them'"
+            else:  # neg example
+                new_str = "say 'all of them'"
+            s = s[:sidx] + new_str + s[sidx + len(shake_str):]
+
+        # Remove extra information in parens that was used during MTurk for robot interaface.
+        sidx = s.find("(")
+        eidx = s.find(")") + 1
+        while sidx > -1:
+            s = s[:sidx] + s[eidx:]
+            sidx = s.find("(")
+            eidx = s.find(")") + 1
 
         if self.last_say is None:
             self.last_say = s
@@ -371,6 +384,14 @@ class RobotIO:
             else:
                 raise IndexError("oidx " + str(oidx) + " not found on tables")
 
+            # Strip <p> </p> from utterance, but speak words between.
+            sidx = u.find("<p>")
+            eidx = u.find("</p>")
+            while sidx > -1:
+                u = u[:sidx] + u[sidx + 3:eidx] + u[eidx + 4:]
+                sidx = u.find("<p>")
+                eidx = u.find("</p>")
+
         # Speak the utterance with all roles instantiated, and possible pointing initiated.
         self.say_to_user(u)
 
@@ -387,6 +408,8 @@ class RobotIO:
         else:
             raise ValueError("unrecognized action type to perform '" + rvs['action'] + "'")
         self.say_to_user_with_referents(a_str, rvs)
+        self.point(-1)  # retract arm
+        self.face_table(3, verbose=False)
 
         # TODO: execute the action on the physical robot platform
 
@@ -417,11 +440,12 @@ class RobotIO:
         self.arm_pos = idx
 
     # Rotate the chassis and establish new objects in line of sight.
-    def face_table(self, tid):
+    def face_table(self, tid, verbose=True):
         print "RobotIO support: face_table called with " + str(tid)
         self.point(-1)  # retract the arm, if it's out
         if tid != self.table:
-            self.say_to_user("I am turning to face table " + str(tid) + ".")
+            if verbose:
+                self.say_to_user("I am turning to face table " + str(tid) + ".")
             s = self.face_table_client(tid)
             self.table = tid
             self.pointCloud2_plane = None

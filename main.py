@@ -42,8 +42,10 @@ def main():
     spin_time = FLAGS_spin_time
     num_dialogs = FLAGS_num_dialogs
     init_phase = FLAGS_init_phase
+    starting_table = FLAGS_starting_table
     assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
+    assert io_type != 'robot' or starting_table is not None
 
     if grounder_fn is None:
 
@@ -97,7 +99,6 @@ def main():
         io = IO.SeverIO(uid, client_dir, spin_time=spin_time)
     elif io_type == 'robot':  # includes some hard-coded expectations like 2 tables, 8 training objects
         table_oidxs = {1: active_train_set[0:4], 2: active_train_set[4:8], 3: None}
-        starting_table = 2
         rospy.init_node('phm_node')
         io = IO.RobotIO(table_oidxs, starting_table)
         no_clarify = ['patient']  # don't allow the patient role to participate in commands
@@ -182,6 +183,8 @@ if __name__ == '__main__':
                         help="number of times to call start_action_dialog")
     parser.add_argument('--init_phase', type=int, required=False, default=0,
                         help="don't actually launch an agent; just ask for the specified number of responses")
+    parser.add_argument('--starting_table', type=int, required=False,
+                        help="the table the robot starts off facing (1 or 2)")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

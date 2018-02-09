@@ -1,4 +1,10 @@
 
-- need to update 'shake your head' dialog to be speaking "None" or "All" in RobotIO
+- remove the <p>this</p> object in would you use the word utterances
 
-- get google speech node working (emailed Justin Jan 26 with this issue)
+- get speakers for demonstration to have better sound quality
+
+- for BBC demo and possibly film demo, want to set question hyperparams at command line
+    - number of synonym questions
+    - number of object/predicate questions
+
+- sometimes sound_play locks; probably need to time it out? not sure how to handle that
