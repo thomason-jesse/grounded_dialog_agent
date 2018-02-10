@@ -43,6 +43,8 @@ def main():
     num_dialogs = FLAGS_num_dialogs
     init_phase = FLAGS_init_phase
     starting_table = FLAGS_starting_table
+    max_syn_qs = FLAGS_max_syn_qs
+    max_opp_qs = FLAGS_max_opp_qs
     assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
     assert io_type != 'robot' or starting_table is not None
@@ -93,6 +95,7 @@ def main():
     # Instantiate an input/output
     print "main: instantiating IO..."
     no_clarify = None
+    use_shorter_utterances = False
     if io_type == 'keyboard':
         io = IO.KeyboardIO()
     elif io_type == 'server':
@@ -102,6 +105,7 @@ def main():
         rospy.init_node('phm_node')
         io = IO.RobotIO(table_oidxs, starting_table)
         no_clarify = ['patient']  # don't allow the patient role to participate in commands
+        use_shorter_utterances = True
     else:
         io = None  # won't be executed due to asserts
     print "main: ... done"
@@ -110,7 +114,10 @@ def main():
     if init_phase == 0:
         # Instantiate an Agent.
         print "main: instantiating Agent..."
-        a = Agent.Agent(p, g, io, active_train_set, no_clarify=no_clarify)
+        a = Agent.Agent(p, g, io, active_train_set, no_clarify=no_clarify,
+                        use_shorter_utterances=use_shorter_utterances,
+                        word_neighbors_to_consider_as_synonyms=max_syn_qs,
+                        max_perception_subdialog_qs=max_opp_qs)
         print "main: ... done"
 
         # Start a dialog.
@@ -185,6 +192,10 @@ if __name__ == '__main__':
                         help="don't actually launch an agent; just ask for the specified number of responses")
     parser.add_argument('--starting_table', type=int, required=False,
                         help="the table the robot starts off facing (1 or 2)")
+    parser.add_argument('--max_syn_qs', type=int, required=False, default=3,
+                        help="the maximum number of synonym neighbors to ask about")
+    parser.add_argument('--max_opp_qs', type=int, required=False, default=5,
+                        help="the maximum number of perception questions to ask")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

@@ -373,20 +373,22 @@ class RobotIO:
         # Handle patient, which involves first turning to face the right table and pointing (blocking) before
         # releasing to speak.
         if 'patient' in rvs and rvs['patient'] is not None:
-            oidx = int(rvs['patient'].split('_')[1])  # e.g. 'oidx_1' -> 1
-            ttid = None
-            for tid in self.table_oidxs:
-                if self.table_oidxs[tid] is not None and oidx in self.table_oidxs[tid]:
-                    ttid = tid
-            if ttid is not None:
-                self.face_table(ttid)
-                self.point(self.table_oidxs[ttid].index(oidx))
-            else:
-                raise IndexError("oidx " + str(oidx) + " not found on tables")
-
-            # Strip <p> </p> from utterance, but speak words between.
             sidx = u.find("<p>")
             eidx = u.find("</p>")
+
+            if sidx > -1:  # if the robot actually said anything about the patient, point
+                oidx = int(rvs['patient'].split('_')[1])  # e.g. 'oidx_1' -> 1
+                ttid = None
+                for tid in self.table_oidxs:
+                    if self.table_oidxs[tid] is not None and oidx in self.table_oidxs[tid]:
+                        ttid = tid
+                if ttid is not None:
+                    self.face_table(ttid)
+                    self.point(self.table_oidxs[ttid].index(oidx))
+                else:
+                    raise IndexError("oidx " + str(oidx) + " not found on tables")
+
+            # Strip <p> </p> from utterance, but speak words between.
             while sidx > -1:
                 u = u[:sidx] + u[sidx + 3:eidx] + u[eidx + 4:]
                 sidx = u.find("<p>")

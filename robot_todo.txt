@@ -1,10 +1,7 @@
 
-- remove the <p>this</p> object in would you use the word utterances
-
 - get speakers for demonstration to have better sound quality
 
-- for BBC demo and possibly film demo, want to set question hyperparams at command line
-    - number of synonym questions
-    - number of object/predicate questions
+- send back multiple hypotheses from speech and do basic beaming
+  for commands like face/watch/etc.
 
-- sometimes sound_play locks; probably need to time it out? not sure how to handle that
+- find a reliable conversation to have that demonstrates key points

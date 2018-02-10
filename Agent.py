@@ -19,11 +19,15 @@ class Agent:
     # The optional no_clarify argument can be a list of roles which the agent does not use clarification
     # dialog questions to confirm, but rather takes the current maximum belief as the correct argument
     # when sampling from the belief state.
-    def __init__(self, parser, grounder, io, active_train_set, no_clarify=None):
+    def __init__(self, parser, grounder, io, active_train_set, no_clarify=None,
+                 use_shorter_utterances=False,  # useful for rendering speech on robot
+                 word_neighbors_to_consider_as_synonyms=3,  # how many lexicon items to beam through for new pred
+                 max_perception_subdialog_qs=5):  # based on CORL17 experimental condition
         self.parser = parser
         self.grounder = grounder
         self.io = io
         self.active_train_set = active_train_set
+        self.use_shorter_utterances = use_shorter_utterances
         self.no_clarify = [] if no_clarify is None else no_clarify
 
         # hyperparameters
@@ -31,8 +35,8 @@ class Agent:
         self.threshold_to_accept_role = 1.0  # include role filler in questions above this threshold
         self.update_mass = 0.5  # prob mass to move to args that appear in positive groundings
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
-        self.max_perception_subdialog_qs = 5  # based on CORL17 experimental condition
-        self.word_neighbors_to_consider_as_synonyms = 3  # how many lexicon items to beam through for new pred subdialog
+        self.max_perception_subdialog_qs = max_perception_subdialog_qs
+        self.word_neighbors_to_consider_as_synonyms = word_neighbors_to_consider_as_synonyms
         self.budget_for_parsing = 15  # how many seconds we allow the parser before giving up on an utterance
         self.budget_for_grounding = 10  # how many seconds we allow the parser before giving up on an utterance
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
@@ -359,15 +363,23 @@ class Agent:
                                 ls = [l for _p, _o, l in self.grounder.kb.pc.labels if _p == perception_pidx
                                       and _o not in self.grounder.active_test_set]
                                 if ls.count(1) <= ls.count(0):  # more negative labels or labels are equal
-                                    q = ("Among these nearby objects, could you show me one you would use the word '"
-                                         + pred_to_surface[pred] + "' when describing, or shake your head if there " +
-                                         "are none?")
+                                    if self.use_shorter_utterances:
+                                        q = ("Show me an object you could use the word '" + pred_to_surface[pred] +
+                                             "' when describing, or shake your head.")
+                                    else:
+                                        q = ("Among these nearby objects, could you show me one you would use the " +
+                                             "word '" + pred_to_surface[pred] + "' when describing, or shake your " +
+                                             "head if there are none?")
                                     q_type = 'pos'
                                 else:  # more positive labels
-                                    q = ("Among these nearby objects, could you show me one you could not use the " +
-                                         "word '" + pred_to_surface[pred] + "' when describing, or shake your head " +
-                                         "if you could use " + "'" + pred_to_surface[pred] + "' when describing all " +
-                                         "of them?")
+                                    if self.use_shorter_utterances:
+                                        q = ("Show me an object you could not use the word '" + pred_to_surface[pred] +
+                                             "' when describing, or shake your head.")
+                                    else:
+                                        q = ("Among these nearby objects, could you show me one you could not use " +
+                                             "the word '" + pred_to_surface[pred] + "' when describing, or shake " +
+                                             "your head if you could use " + "'" + pred_to_surface[pred] +
+                                             "' when describing all of them?")
                                     q_type = 'neg'
 
                             # Else, ask for the label of the (sampled) least-confident object.
@@ -403,8 +415,11 @@ class Agent:
 
                     # If q is not None, we're going to engage in the sub-dialog.
                     if num_qs == 0 and preface_msg:
-                        self.io.say_to_user("I'm still learning the meanings of some words. I'm going to ask you a " +
-                                            "few questions about these nearby objects before we continue.")
+                        if self.use_shorter_utterances:
+                            self.io.say_to_user("I'm still learning the meanings of some words.")
+                        else:
+                            self.io.say_to_user("I'm still learning the meanings of some words. I'm going to ask you " +
+                                                "a few questions about these nearby objects before we continue.")
 
                     # Ask the question and get a user response.
                     if q_type == 'pos' or q_type == 'neg':
@@ -517,8 +532,11 @@ class Agent:
                 # If there were no neighbors at all, the word isn't in the embedding space and might be a brand name
                 # (e.g. pringles) that we could consider perceptual by adding an "or len(nn) == 0".
                 if len(perceptual_neighbors.keys()) > 0:
-                    q = ("I haven't heard the word '" + tk + "' before. Does it refer to properties of " +
-                         "things, like a color, shape, or weight?")
+                    if self.use_shorter_utterances:
+                        q = "Does '" + tk + "' refer to a property of an object?"
+                    else:
+                        q = ("I haven't heard the word '" + tk + "' before. Does it refer to properties of " +
+                             "things, like a color, shape, or weight?")
                     c = self.get_yes_no_from_user(q)
                     if c == 'yes':
 
