@@ -45,9 +45,10 @@ def main():
     starting_table = FLAGS_starting_table
     max_syn_qs = FLAGS_max_syn_qs
     max_opp_qs = FLAGS_max_opp_qs
+    image_path = FLAGS_image_path
     assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
-    assert io_type != 'robot' or starting_table is not None
+    assert io_type != 'robot' or (starting_table is not None and image_path is not None)
 
     if grounder_fn is None:
 
@@ -98,12 +99,13 @@ def main():
     use_shorter_utterances = False
     if io_type == 'keyboard':
         io = IO.KeyboardIO()
+        no_clarify = ['patient']  # don't allow the patient role to participate in commands
     elif io_type == 'server':
         io = IO.SeverIO(uid, client_dir, spin_time=spin_time)
     elif io_type == 'robot':  # includes some hard-coded expectations like 2 tables, 8 training objects
         table_oidxs = {1: active_train_set[0:4], 2: active_train_set[4:8], 3: None}
         rospy.init_node('phm_node')
-        io = IO.RobotIO(table_oidxs, starting_table)
+        io = IO.RobotIO(table_oidxs, starting_table, image_path)
         no_clarify = ['patient']  # don't allow the patient role to participate in commands
         use_shorter_utterances = True
     else:
@@ -196,6 +198,8 @@ if __name__ == '__main__':
                         help="the maximum number of synonym neighbors to ask about")
     parser.add_argument('--max_opp_qs', type=int, required=False, default=5,
                         help="the maximum number of perception questions to ask")
+    parser.add_argument('--image_path', type=str, required=False,
+                        help="filepath to the directory where object images live")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

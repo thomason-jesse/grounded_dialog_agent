@@ -33,12 +33,12 @@ class Agent:
         # hyperparameters
         self.parse_beam = 1
         self.threshold_to_accept_role = 1.0  # include role filler in questions above this threshold
-        self.update_mass = 0.5  # prob mass to move to args that appear in positive groundings
+        self.belief_update_rate = 0.9  # 0.5 (adj for demo)  # interpolation between belief state and grounding state
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.max_perception_subdialog_qs = max_perception_subdialog_qs
         self.word_neighbors_to_consider_as_synonyms = word_neighbors_to_consider_as_synonyms
-        self.budget_for_parsing = 15  # how many seconds we allow the parser before giving up on an utterance
-        self.budget_for_grounding = 10  # how many seconds we allow the parser before giving up on an utterance
+        self.budget_for_parsing = 600  # 15 (adj for demo)  # how many seconds we allow the parser
+        self.budget_for_grounding = 600  # 10 (adj for demo)  # how many seconds we allow the grounder
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
         self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
 
@@ -173,37 +173,37 @@ class Agent:
                 # Start a sub-dialog to ask clarifying perceptual questions before continuing with slot-filling.
                 # If sub-dialog results in fewer than the maximum number of questions, allow asking off-topic
                 # questions in the style of CORL'17 paper to improve future interactions.
-                num_new_qs = 0
-                if self.active_train_set is not None:
-                    if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                        num_new_qs += self.conduct_perception_subdialog(ur, gprs, pr,
-                                                                        self.max_perception_subdialog_qs,
-                                                                        perception_labels_requested)
-                        perception_subdialog_qs += num_new_qs
-                    if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                        preface_msg = True if perception_subdialog_qs == 0 else False
-                        num_new_qs += self.conduct_perception_subdialog(ur, gprs, pr,
-                                                                        self.max_perception_subdialog_qs -
-                                                                        perception_subdialog_qs,
-                                                                        perception_labels_requested,
-                                                                        allow_off_topic_preds=True,
-                                                                        preface_msg=preface_msg)
-                        perception_subdialog_qs += num_new_qs
-                if num_new_qs > 0:
-                    self.io.say_to_user("Thanks. Now, back to business.")
+                if role_asked == 'patient' or role_asked is None:
+                    num_new_qs = 0
+                    if self.active_train_set is not None:
+                        if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                            num_new_qs += self.conduct_perception_subdialog(gprs, pr,
+                                                                            self.max_perception_subdialog_qs,
+                                                                            perception_labels_requested)
+                            perception_subdialog_qs += num_new_qs
+                        if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                            preface_msg = True if perception_subdialog_qs == 0 else False
+                            num_new_qs += self.conduct_perception_subdialog(gprs, pr,
+                                                                            self.max_perception_subdialog_qs -
+                                                                            perception_subdialog_qs,
+                                                                            perception_labels_requested,
+                                                                            allow_off_topic_preds=True,
+                                                                            preface_msg=preface_msg)
+                            perception_subdialog_qs += num_new_qs
+                    if num_new_qs > 0:
+                        self.io.say_to_user("Thanks. Now, back to business.")
+
+                        # Reground utterance from fresh classifier information.
+                        if pr is not None:
+                            gprs = self.ground_semantic_form(pr.node)
 
                 if role_asked is None:  # asked to repeat whole thing
                     user_utterances_by_role['all'].append(ur)
-                    for gpr, conf in gprs:
-                        if type(gpr) is not bool:
-                            # conf scores across gprs will sum to 1 based on parse_and_ground_utterance behavior.
-                            self.update_action_belief_from_grounding(gpr, self.roles, count=conf)
+                    self.update_action_belief_from_groundings(gprs, self.roles)
                 # asked an open-ended question for a particular role (e.g. "where should i go?")
                 elif action_chosen[role_asked][0] is None or role_asked not in roles_in_q:
                     user_utterances_by_role[role_asked].append(ur)
-                    for gpr, conf in gprs:
-                        if type(gpr) is not bool:
-                            self.update_action_belief_from_grounding(gpr, [role_asked], count=conf)
+                    self.update_action_belief_from_groundings(gprs, [role_asked])
 
             # Fill current_confirmed with any no_clarify roles by taking the current max.
             # As in other max operations, considers all tied values and chooses one at random.
@@ -256,7 +256,7 @@ class Agent:
     # labeled_tuples - a list of (pidx, oidx) tuples labeled by the user; modified in-place with new entries
     # allow_off_topic_preds - if flipped to true, considers all predicates, not just those in parse of utterance
     # returns - an integer, the number of questions asked
-    def conduct_perception_subdialog(self, ur, gprs, pr, max_questions, labeled_tuples,
+    def conduct_perception_subdialog(self, gprs, pr, max_questions, labeled_tuples,
                                      allow_off_topic_preds=False, preface_msg=True):
         debug = False
 
@@ -299,15 +299,16 @@ class Agent:
                         pidx = self.grounder.kb.pc.predicates.index(pred)
 
                         # Calculate the surface form to use with this pred.
+                        # We look at the raw count score for the sem | sf since the parameter vector is normalized
+                        # given the surface form, but we're looking for the max across surface forms.
                         sems_with_pred = [sem_idx for sem_idx in range(len(self.parser.lexicon.semantic_forms))
                                           if len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx],
                                                                          [pred])) > 0]
                         sfs_with_sems = [(sf_idx, sem_idx) for sf_idx in range(len(self.parser.lexicon.surface_forms))
                                          for sem_idx in self.parser.lexicon.entries[sf_idx]
                                          if sem_idx in sems_with_pred]
-                        sf_sem_scores = [self.parser.theta.lexicon_entry_given_token[(sem_idx, sf_idx)] if
-                                         (sem_idx, sf_idx) in self.parser.theta.lexicon_entry_given_token else
-                                         -sys.maxint
+                        sf_sem_scores = [self.parser.theta._lexicon_entry_given_token_counts[(sem_idx, sf_idx)] if
+                                         (sem_idx, sf_idx) in self.parser.theta._lexicon_entry_given_token_counts else 0
                                          for sem_idx, sf_idx in sfs_with_sems]
                         best_sf_sem_score = max(sf_sem_scores)
                         pred_to_surface[pred] = self.parser.lexicon.surface_forms[
@@ -317,7 +318,7 @@ class Agent:
                         for oidx in self.grounder.active_test_set:
                             pos_conf, neg_conf = self.grounder.kb.query((pred, 'oidx_' + str(oidx)))
                             test_conf += max(pos_conf, neg_conf)
-                        pred_test_conf[pred] = test_conf
+                        pred_test_conf[pred] = test_conf / len(self.grounder.active_test_set)
 
                         pred_train_conf[pred] = []
                         for oidx in self.active_train_set:
@@ -346,9 +347,9 @@ class Agent:
                     pred = None
                     # Order predicates weighted by their negative test confidence as a probability.
                     sum_inv_test_conf = sum([1 - pred_test_conf[pred] for pred in preds_to_consider])
+                    pred_probs = [(1 - pred_test_conf[pred]) / sum_inv_test_conf for pred in preds_to_consider]
                     sampled_preds_to_ask = np.random.choice(preds_to_consider, len(preds_to_consider), replace=False,
-                                                            p=[(1 - pred_test_conf[pred]) / sum_inv_test_conf
-                                                               for pred in preds_to_consider])
+                                                            p=pred_probs)
                     for pred in sampled_preds_to_ask:
                         if debug:
                             print ("conduct_perception_subdialog: sampled pred '" + pred +
@@ -479,11 +480,10 @@ class Agent:
                                ", uoidxs " + str(uoidxs) + ", ulabels " + str(ulabels))
                     self.grounder.kb.pc.update_classifiers([], upidxs, uoidxs, ulabels)
 
-                    # Re-ground original utterance with updated classifiers.
-                    gprs, pr = self.parse_and_ground_utterance(ur)
+                    # Re-ground with updated classifiers.
+                    gprs = self.ground_semantic_form(pr.node)
                     if len(gprs) > 0:
                         top_conf = gprs[0][1]
-                        perceptual_pred_trees = self.get_parse_subtrees(pr.node, self.grounder.kb.perceptual_preds)
 
                 else:
                     perception_above_threshold = True
@@ -704,7 +704,7 @@ class Agent:
             sfidx = self.parser.lexicon.surface_forms.index(tk)
             if sfidx not in self.parser.theta._skipwords_given_surface_form:
                 self.parser.theta._skipwords_given_surface_form[sfidx] =\
-                    - self.parser.theta.lexicon_weight
+                    - (self.parser.theta.lexicon_weight * 2)  # * 2 new for demonstration
             if sem not in self.parser.lexicon.semantic_forms:
                 self.parser.lexicon.semantic_forms.append(sem)
             sem_idx = self.parser.lexicon.semantic_forms.index(sem)
@@ -920,26 +920,35 @@ class Agent:
                 print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
 
             # Get semantic trees with hanging lambdas instantiated.
-            gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": p.node},
-                                                 self.budget_for_grounding)
-            if gs is not None:
-                # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
-                gn = self.sort_groundings_by_conf(gs)
-                if debug:
-                    print ("parse_and_ground_utterance: resulting groundings with normalized confidences: " +
-                           "\n\t" + "\n\t".join([" ".join([str(t) if type(t) is bool else self.parser.print_parse(t),
-                                                           str(c)])
-                                                for t, c in gn]))
-            else:
-                gn = []
-                if debug:
-                    print "parse_and_ground_utterance: grounding timeout for " + self.parser.print_parse(p.node)
+            gn = self.ground_semantic_form(p.node)
+
         else:
             if debug:
                 print "parse_and_ground_utterance: could not generate a parse for the utterance"
             gn = []
 
         return gn, p
+
+    # Ground semantic form.
+    def ground_semantic_form(self, s):
+        debug = False
+
+        gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": s},
+                                                 self.budget_for_grounding)
+        if gs is not None:
+            # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
+            gn = self.sort_groundings_by_conf(gs)
+            if debug:
+                print ("ground_semantic_form: resulting groundings with normalized confidences: " +
+                       "\n\t" + "\n\t".join([" ".join([str(t) if type(t) is bool else self.parser.print_parse(t),
+                                                       str(c)])
+                                            for t, c in gn]))
+        else:
+            gn = []
+            if debug:
+                print "ground_semantic_form: grounding timeout for " + self.parser.print_parse(s)
+
+        return gn
 
     # Given a set of groundings, return them and their confidences in sorted order.
     def sort_groundings_by_conf(self, gs):
@@ -949,114 +958,97 @@ class Agent:
 
     # Given a parse and a list of the roles felicitous in the dialog to update, update those roles' distributions
     # Distribute portion of mass from everything not in confirmations to everything that is evenly.
-    def update_action_belief_from_grounding(self, g, roles, count=1.0):
+    def update_action_belief_from_groundings(self, gs, roles):
         debug = False
         if debug:
-            print ("update_action_belief_from_grounding called with g " + self.parser.print_parse(g) +
+            print ("update_action_belief_from_groundings called with gs\n" +
+                   '\n'.join([str((self.parser.print_parse(g), conf)) for g, conf in gs]) +
                    " and roles " + str(roles))
 
-        # Track which slot-fills appear for each role so we can decay everything but then after updating counts
-        # positively.
-        role_candidates_seen = {r: set() for r in roles}
+        # Form belief distribution based only on the incoming groundings.
+        gd = {r: {a: 0.0 for a in self.action_belief_state[r]} for r in roles}
+        for g, conf in gs:
+            if type(g) is bool:
+                continue
 
-        # Crawl parse for recognized actions.
-        updated_based_on_action_trees = False
-        mass_added = {r: 0.0 for r in roles}
-        if 'action' in roles:
-            action_trees = self.get_parse_subtrees(g, self.actions)
-            if len(action_trees) > 0:
-                updated_based_on_action_trees = True
-                inc = count / float(len(action_trees))
-                for at in action_trees:
-                    a = self.parser.ontology.preds[at.idx]
-                    mass = (1 - self.action_belief_state['action'][a]) * self.update_mass * inc
-                    self.action_belief_state['action'][a] += mass
-                    mass_added['action'] += mass
-                    role_candidates_seen['action'].add(a)
-                    if debug:
-                        print ("update_action_belief_from_grounding: adding mass to action " + a + ": " +
-                               str(self.update_mass * inc))
+            # Crawl parse for recognized actions.
+            based_on_action_trees = False
+            if 'action' in roles:
+                action_trees = self.get_parse_subtrees(g, self.actions)
+                if len(action_trees) > 0:
+                    based_on_action_trees = True
+                    portion = conf / float(len(action_trees))
+                    for at in action_trees:
+                        a = self.parser.ontology.preds[at.idx]
+                        gd['action'][a] += portion
 
-                    # Update patient and recipient, if present, with action tree args.
-                    # These disregard argument order in favor of finding matching argument types.
-                    # This gives us more robustness to bad parses with incorrectly ordered args or incomplete args.
-                    if self.parser.ontology.preds[at.idx] != 'move':
-                        for r in ['goal', 'patient', 'recipient']:
-                            if r in roles and at.children is not None:
-                                for cn in at.children:
-                                    if (r in self.action_args[a] and
-                                            self.parser.ontology.types[cn.type] in self.action_args[a][r]):
+                        # Update patient and recipient, if present, with action tree args.
+                        # These disregard argument order in favor of finding matching argument types.
+                        # This gives us more robustness to bad parses with incorrectly ordered args or incomplete args.
+                        if self.parser.ontology.preds[at.idx] != 'move':
+                            for r in ['goal', 'patient', 'recipient']:
+                                if r in roles and at.children is not None:
+                                    for cn in at.children:
+                                        if (r in self.action_args[a] and
+                                                self.parser.ontology.types[cn.type] in self.action_args[a][r]):
+                                            c = self.parser.ontology.preds[cn.idx]
+                                            if c not in self.action_belief_state[r]:
+                                                continue
+                                            gd[r][c] += portion
+
+                        # For 'move', order matters (source versus goal), so handle this separately
+                        else:
+                            role_order = ['patient', 'source', 'goal']
+                            for idx in range(len(at.children)):
+                                cn = at.children[idx]
+                                r = role_order[idx]
+                                if r in roles:  # we might not have asked about each arg
+                                    if self.parser.ontology.types[cn.type] in self.action_args[a][r]:
                                         c = self.parser.ontology.preds[cn.idx]
                                         if c not in self.action_belief_state[r]:
                                             continue
-                                        mass = (1 - self.action_belief_state[r][c]) * self.update_mass * inc
-                                        self.action_belief_state[r][c] += mass
-                                        mass_added[r] += mass
-                                        role_candidates_seen[r].add(c)
-                                        if debug:
-                                            print ("update_action_belief_from_grounding: adding mass to " + r +
-                                                   " " + c + ": " + str(self.update_mass * inc))
+                                        gd[r][c] += portion
 
-                    # For 'move', order matters, so handle this separately
-                    else:
-                        role_order = ['patient', 'source', 'goal']
-                        for idx in range(len(at.children)):
-                            cn = at.children[idx]
-                            r = role_order[idx]
-                            if r in roles:  # we might not have asked about each arg
-                                if self.parser.ontology.types[cn.type] in self.action_args[a][r]:
-                                    c = self.parser.ontology.preds[cn.idx]
-                                    if c not in self.action_belief_state[r]:
-                                        continue
-                                    mass = (1 - self.action_belief_state[r][c]) * self.update_mass * inc
-                                    self.action_belief_state[r][c] += mass
-                                    mass_added[r] += mass
-                                    role_candidates_seen[r].add(c)
-                                    if debug:
-                                        print ("update_action_belief_from_grounding: adding mass to " + r +
-                                               " " + c + ": " + str(self.update_mass * inc))
+            # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
+            # If we were trying to update an action but didn't find any trees, also take this route.
+            if not based_on_action_trees:
+                for r in roles:
+                    to_traverse = [g]
+                    to_increment = []
+                    while len(to_traverse) > 0:
+                        cn = to_traverse.pop()
+                        if self.parser.ontology.types[cn.type] in [t for a in self.actions
+                                                                   if r in self.action_args[a]
+                                                                   for t in self.action_args[a][r]]:
+                            if not cn.is_lambda:  # otherwise utterance isn't grounded
+                                c = self.parser.ontology.preds[cn.idx]
+                                if c not in self.action_belief_state[r]:
+                                    continue
+                                to_increment.append(c)
+                        if cn.children is not None:
+                            to_traverse.extend(cn.children)
+                    if len(to_increment) > 0:
+                        portion = conf / float(len(to_increment))
+                        for c in to_increment:
+                            gd[r][c] += portion
 
-        # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
-        # If we were trying to update an action but didn't find any trees, also take this route.
-        if not updated_based_on_action_trees:
-            for r in roles:
-                to_traverse = [g]
-                to_increment = []
-                while len(to_traverse) > 0:
-                    cn = to_traverse.pop()
-                    if self.parser.ontology.types[cn.type] in [t for a in self.actions
-                                                               if r in self.action_args[a]
-                                                               for t in self.action_args[a][r]]:
-                        if not cn.is_lambda:  # otherwise utterance isn't grounded
-                            c = self.parser.ontology.preds[cn.idx]
-                            if c not in self.action_belief_state[r]:
-                                continue
-                            to_increment.append(c)
-                    if cn.children is not None:
-                        to_traverse.extend(cn.children)
-                if len(to_increment) > 0:
-                    inc = count / float(len(to_increment))
-                    for c in to_increment:
-                        mass = (1 - self.action_belief_state[r][c]) * self.update_mass * inc
-                        self.action_belief_state[r][c] += mass
-                        mass_added[r] += mass
-                        role_candidates_seen[r].add(c)
-                        if debug:
-                            print ("update_action_belief_from_grounding: adding mass to " + r + " " + c +
-                                   ": " + str(self.update_mass * inc))
+            # For roles where no atom received probability mass, put all the mass on 'None'.
+            for r in gd:
+                if None in gd[r] and sum([gd[r][a] for a in gd[r]]) == 0:
+                    gd[r][None] = 1.0
 
-        # Decay counts of everything not seen per role (except None, which is a special filler for question asking).
-        for r in roles:
-            if mass_added[r] > 0:
-                to_decrement = [fill for fill in self.action_belief_state[r] if fill not in role_candidates_seen[r]]
-                if len(to_decrement) > 0:
-                    sum_dec_mass = sum([self.action_belief_state[r][td] for td in to_decrement])
-                    to_decrement_dist = {td: self.action_belief_state[r][td] / sum_dec_mass for td in to_decrement}
-                    for td in to_decrement:
-                        self.action_belief_state[r][td] -= mass_added[r] * to_decrement_dist[td]
-                        if debug and mass_added[r] > 0:
-                            print ("update_action_belief_from_grounding: subtracting mass from " + r + " " + str(td) +
-                                   ": " + str(mass_added[r] * to_decrement_dist[td]))
+        if debug:
+            print ("update_action_belief_from_groundings: groundings distribution: " + str(gd))
+
+        # Update the primary belief distribution by interpolating it with the grounding distribution.
+        for r in gd:
+            for a in gd[r]:
+                self.action_belief_state[r][a] = (self.action_belief_state[r][a] * (1 - self.belief_update_rate) +
+                                                  gd[r][a] * self.belief_update_rate)
+
+        if debug:
+            print ("update_action_belief_from_groundings: interpolated, new belief distribution: " +
+                   str(self.action_belief_state))
 
     # Given a parse and a list of predicates, return the subtrees in the parse rooted at those predicates.
     # If a subtree is rooted beneath one of the specified predicates, it will not be returned (top-level only).

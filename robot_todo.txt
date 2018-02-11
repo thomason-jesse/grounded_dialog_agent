@@ -4,4 +4,10 @@
 - send back multiple hypotheses from speech and do basic beaming
   for commands like face/watch/etc.
 
-- find a reliable conversation to have that demonstrates key points
+- for BBC demo, use this command:
+  - "move a rattling container from the conference room by the lab to richard's office"
+  - positive examples: pill jar, butter container, spraycan
+  - reliable negative: silver can
+
+- flash up the image of the patient on the robot io interface (hard-code path to www/images/objects/)
+  for the BBC demonstration

@@ -51,7 +51,7 @@ class KeyboardIO:
         u = None
         while u is None or len(u) == 0:
             u = raw_input()
-            u = u.strip()
+            u = process_raw_utterance(u)
         return u
 
     # Get an integer oidx from those provided or None.
@@ -208,11 +208,12 @@ class SeverIO:
 # Perform input/output with the agent through the arm segbot.
 class RobotIO:
 
-    def __init__(self, table_oidxs, starting_table,
+    def __init__(self, table_oidxs, starting_table, image_path,
                  voice="voice_cmu_us_slt_cg"):
         print "RobotIO: __init__ with " + str(table_oidxs) + ", " + str(starting_table) + ", " + voice
         self.table_oidxs = table_oidxs  # dictionary from table ids to lists of objects or None if there are None
         self.table = starting_table  # 1, 2, or 3. missing tables should have None as their table_oidxs
+        self.image_path = image_path
         self.voice = voice
         self.last_say = None
         self.arm_pos = -1
@@ -401,18 +402,26 @@ class RobotIO:
     # TODO: this needs to next be tied to actual robot performing behavior
     def perform_action(self, rvs):
         print "RobotIO: perform_action called with " + str(rvs)
+        cmd = None
         if rvs['action'] == 'walk':
             a_str = "I will navigate to <g>here</g>."
         elif rvs['action'] == 'bring':
             a_str = "I will find the object and deliver it to <r>this person</r>."
+            cmd = "eog " + os.path.join(self.image_path, rvs['patient'] + ".jpg")
         elif rvs['action'] == 'move':
             a_str = "I will relocate the object from <s>here</s> to <g>there</g>."
+            cmd = "eog " + os.path.join(self.image_path, rvs['patient'] + ".jpg")
         else:
             raise ValueError("unrecognized action type to perform '" + rvs['action'] + "'")
+
+        # Speak, retract arm, show image of target object (if relevant)
         self.say_to_user_with_referents(a_str, rvs)
         self.point(-1)  # retract arm
-        self.face_table(3, verbose=False)
+        if cmd is not None:
+            os.system(cmd)
 
+        # Turn to face 'table 3' (empty space) to facilitate navigation
+        self.face_table(3, verbose=False)
         # TODO: execute the action on the physical robot platform
 
     # Support functions:
