@@ -258,8 +258,8 @@ class RobotIO:
         print "RobotIO: get_oidx_from_user called"
 
         self.point(-1)  # retract the arm, if it's out
-        oidx = -1
-        while oidx == -1:
+        idx = -1
+        while idx == -1:
             u = self.get_from_user()
             u = process_raw_utterance(u)
             ws = u.split()
@@ -281,16 +281,19 @@ class RobotIO:
             # The user told the robot to watch for a touch.
             elif "watch" in ws or "look" in ws or "this" in ws:
                 idx = self.get_touch()
-                oidx = self.table_oidxs[self.table][idx]
-                self.say_to_user("I see.")
 
             # The user said "all" or "none"
             elif "all" in ws or "none" in ws:
-                oidx = None
+                idx = None
 
             # The command couldn't be shallow parsed.
             else:
                 self.say_to_user("Sorry, I didn't catch that.")
+        self.say_to_user("I see.")
+        if idx is not None:
+            oidx = self.table_oidxs[self.table][idx]
+        else:
+            oidx = None
 
         print "RobotIO: get_oidx_from_user returning " + str(oidx)
         return oidx
