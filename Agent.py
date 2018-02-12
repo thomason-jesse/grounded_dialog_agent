@@ -9,7 +9,6 @@ import os
 import pickle
 import random
 import signal
-import sys
 
 
 class Agent:
@@ -23,6 +22,8 @@ class Agent:
                  use_shorter_utterances=False,  # useful for rendering speech on robot
                  word_neighbors_to_consider_as_synonyms=3,  # how many lexicon items to beam through for new pred
                  max_perception_subdialog_qs=5):  # based on CORL17 experimental condition
+        random.seed(27)  # (adj for demo)
+        np.random.seed(seed=27)  # (adj for demo)
         self.parser = parser
         self.grounder = grounder
         self.io = io

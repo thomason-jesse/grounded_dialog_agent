@@ -241,6 +241,11 @@ class RobotIO:
             uin = self.sound_transcript_client()
             uin = process_raw_utterance(uin)
         self.listening_mode_toggle_client()
+
+        if uin == "frozen fish":
+            print "RobotIO: got shutdown keyphrase from user"
+            raise rospy.ROSInterruptException
+
         print "RobotIO: get_from_user returning '" + uin + "'"
         return uin
 
@@ -298,13 +303,13 @@ class RobotIO:
         shake_str = "shake your head"
         if shake_str in s:
             sidx = s.find(shake_str)
-            if "could you show me one you would use the word":  # pos example
+            if "you could use the word" in s:  # pos example
                 new_str = "say 'none of them'"
             else:  # neg example
                 new_str = "say 'all of them'"
             s = s[:sidx] + new_str + s[sidx + len(shake_str):]
 
-        # Remove extra information in parens that was used during MTurk for robot interaface.
+        # Remove extra information in parens that was used during MTurk for robot interface.
         sidx = s.find("(")
         eidx = s.find(")") + 1
         while sidx > -1:
@@ -482,7 +487,7 @@ class RobotIO:
                 tries -= 1
                 rospy.sleep(1)
             if tries == 0 and not focus:
-                self.say_to_user("I am having trouble focusing on the objects. The operator will adjust them.")
+                self.say_to_user("I am having trouble focusing on the objects.")
                 rospy.sleep(10)
         print "RobotIO support: obtain_table_objects returning plane/coef/objects"
         return plane, plane_coef, cloud_objects
