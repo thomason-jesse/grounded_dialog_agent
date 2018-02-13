@@ -828,9 +828,13 @@ class Agent:
         elif g == 'no':
             if len(roles_in_q) > 0:
 
+                # TODO: replace this update with a distribution interpolation like
+                # TODO: for positive updates; dist is just 0 prob on the negative confirmation
+                # TODO: and uniform remaining prob on everything else
+
                 roles_to_dec = [r for r in roles_in_q if action_confirmed[r] is None]
                 for r in roles_to_dec:
-                    mass = self.action_belief_state[r][action_chosen[r][0]] * self.update_mass * count
+                    mass = self.action_belief_state[r][action_chosen[r][0]] * self.belief_update_rate * count
                     self.action_belief_state[r][action_chosen[r][0]] -= mass
 
                     if debug:
@@ -907,7 +911,7 @@ class Agent:
 
     # Parse and ground a given utterance.
     def parse_and_ground_utterance(self, u):
-        debug = False
+        debug = True
 
         # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
         # TODO: confidence could be propagated through the confidence values returned by the grounder, such that

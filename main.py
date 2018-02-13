@@ -45,6 +45,7 @@ def main():
     max_syn_qs = FLAGS_max_syn_qs
     max_opp_qs = FLAGS_max_opp_qs
     image_path = FLAGS_image_path
+    bbc_demo = FLAGS_bbc_demo
     assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
     assert io_type != 'robot' or image_path is not None
@@ -113,7 +114,7 @@ def main():
     print "main: ... done"
 
     # Normal operation.
-    if init_phase == 0:
+    if init_phase == 0 and bbc_demo != 1:
         # Instantiate an Agent.
         print "main: instantiating Agent..."
         a = Agent.Agent(p, g, io, active_train_set, no_clarify=no_clarify,
@@ -143,6 +144,55 @@ def main():
                 with open(fn, 'wb') as f:
                     pickle.dump(d, f)
                 print "main: ... done; wrote data d = " + str(d)
+
+    # Ask for pointing commands.
+    elif bbc_demo == 1:
+        print "main: instantiating Agent..."
+        a = Agent.Agent(p, g, io, active_train_set, no_clarify=no_clarify,
+                        use_shorter_utterances=use_shorter_utterances,
+                        word_neighbors_to_consider_as_synonyms=max_syn_qs,
+                        max_perception_subdialog_qs=max_opp_qs)
+        print "main: ... done"
+
+        print "main: updating lexicon with 'rattling'"
+        a.add_new_perceptual_lexical_entries('rattling', False, None)
+        a.parser.type_raise_bare_nouns()
+        a.parser.theta.update_probabilities()
+        print "main: ... done"
+
+        print "main: training 'rattling' classifier"
+        g.kb.pc.update_classifiers(['rattling'], [], [], [])
+        perception_pidx = g.kb.pc.predicates.index('rattling')
+        upidxs = [perception_pidx] * 8
+        uoidxs = [5, 14, 4, 27, 0, 30, 1, 31]
+        ulabels = [0, 1, 0, 0, 0, 0, 1, 1]
+        g.kb.pc.update_classifiers([], upidxs, uoidxs, ulabels)
+        print "main: ... done"
+
+        print "main: starting bbc phase dialog..."
+        io.say_to_user("What should I do?")
+        cmd = io.get_from_user()
+        p = cmd.split()
+        if (p[0] == 'point' or p[1] == 'points') and (p[1] == 'to' or p[1] == '2'):
+            gps, _ = a.parse_and_ground_utterance(' '.join(p[2:]))
+            for g, conf in gps:
+                selected_oidx = a.parser.ontology.preds[g.idx]
+                print selected_oidx, conf  # DEBUG
+            g, top_conf = gps[0]
+            for g, conf in gps:
+                if conf == top_conf:
+                    selected_oidx = a.parser.ontology.preds[g.idx]
+                    oidx = int(selected_oidx.split('_')[1])  # e.g. 'oidx_1' -> 1
+                    ttid = None
+                    for tid in a.io.table_oidxs:
+                        if a.io.table_oidxs[tid] is not None and oidx in a.io.table_oidxs[tid]:
+                            ttid = tid
+                    if ttid is not None:
+                        a.io.face_table(ttid)
+                        a.io.point(a.io.table_oidxs[ttid].index(oidx))
+                    a.io.point(-1)
+
+        print "main: ... done"
 
     # Just ask the user for a few rephrases of the command.
     else:
@@ -200,6 +250,8 @@ if __name__ == '__main__':
                         help="the maximum number of perception questions to ask")
     parser.add_argument('--image_path', type=str, required=False,
                         help="filepath to the directory where object images live")
+    parser.add_argument('--bbc_demo', type=int, required=False,
+                        help="whether to do special bbc script")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v
