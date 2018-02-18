@@ -156,8 +156,8 @@ class Agent:
             # Confirmation yes/no question.
             if conf_q:
                 ur = self.get_yes_no_from_user(q, rvs)
-                self.update_action_belief_from_confirmation(ur, action_confirmed, action_chosen,
-                                                            roles_in_q, count=1.0)
+                action_confirmed = self.update_action_belief_from_confirmation(ur, action_confirmed,
+                                                                               action_chosen, roles_in_q)
 
             # Open-ended response question.
             else:
@@ -206,12 +206,13 @@ class Agent:
                     user_utterances_by_role[role_asked].append(ur)
                     self.update_action_belief_from_groundings(gprs, [role_asked])
 
-            # Fill current_confirmed with any no_clarify roles by taking the current max.
+            # Fill current_confirmed with any no_clarify roles by taking the current non-None max.
             # As in other max operations, considers all tied values and chooses one at random.
             # These role slots are re-filled after every confidence update, so they are the only clarification
             # slots that can be changed.
             for r in self.no_clarify:
-                valid_entries = [entry for entry in self.action_belief_state[r]]
+                valid_entries = [entry for entry in self.action_belief_state[r]
+                                 if entry is not None]
                 dist = [self.action_belief_state[r][entry] for entry in valid_entries]
                 s = sum(dist)
                 dist = [dist[idx] / s for idx in range(len(dist))]
@@ -274,7 +275,7 @@ class Agent:
             while (allow_off_topic_preds or not perception_above_threshold) and num_qs < max_questions:
                 if (allow_off_topic_preds or
                         top_conf < math.pow(self.threshold_to_accept_perceptual_conf,
-                                                len(perceptual_pred_trees))):
+                                            len(perceptual_pred_trees))):
                     if debug:
                         print ("conduct_perception_subdialog: perceptual confidence " + str(top_conf) +
                                " below threshold or we are allowing off-topic predicates; " +
@@ -349,8 +350,18 @@ class Agent:
                     # Order predicates weighted by their negative test confidence as a probability.
                     sum_inv_test_conf = sum([1 - pred_test_conf[pred] for pred in preds_to_consider])
                     pred_probs = [(1 - pred_test_conf[pred]) / sum_inv_test_conf for pred in preds_to_consider]
-                    sampled_preds_to_ask = np.random.choice(preds_to_consider, len(preds_to_consider), replace=False,
-                                                            p=pred_probs)
+                    # Clamp the probabilities to [0, 1] by hand since the floating point ops sometimes drift outside.
+                    pred_probs = [prob if 0. < prob < 1. else (0. if prob < 0. else 1.)
+                                  for prob in pred_probs]
+                    if debug:
+                        print ("conduct_perception_subdialog: resulting pred probs " + str(pred_probs) +
+                               " for predicates " + str(preds_to_consider))
+                    nonzero_to_consider = [preds_to_consider[idx] for idx in range(len(pred_probs))
+                                           if pred_probs[idx] > 0]
+                    nonzero_probs = [pred_probs[idx] for idx in range(len(pred_probs))
+                                     if pred_probs[idx] > 0]
+                    sampled_preds_to_ask = np.random.choice(nonzero_to_consider, len(nonzero_to_consider),
+                                                            replace=False, p=nonzero_probs)
                     for pred in sampled_preds_to_ask:
                         if debug:
                             print ("conduct_perception_subdialog: sampled pred '" + pred +
@@ -449,7 +460,11 @@ class Agent:
                             uoidxs = [sub_ur]
                             ulabels = [1]
                             labeled_tuples.append((perception_pidx, sub_ur))
-                            self.new_perceptual_labels.append((pred, sub_ur, 1))
+                            e = (pred, sub_ur, 1)
+                            if e not in self.new_perceptual_labels:
+                                self.new_perceptual_labels.append(e)
+                            else:  # if the user gives the same answer twice, just move on.
+                                num_qs += self.max_perception_subdialog_qs
                     elif q_type == 'neg':  # response is expected to be an oidx or 'all' (e.g. None)
                         if sub_ur is None:  # None, so every object in active train set is a positive example
                             upidxs = [perception_pidx] * len(self.active_train_set)
@@ -462,7 +477,11 @@ class Agent:
                             uoidxs = [sub_ur]
                             ulabels = [0]
                             labeled_tuples.append((perception_pidx, sub_ur))
-                            self.new_perceptual_labels.append((pred, sub_ur, 0))
+                            e = (pred, sub_ur, 0)
+                            if e not in self.new_perceptual_labels:
+                                self.new_perceptual_labels.append(e)
+                            else:  # if the user gives the same answer twice, just move on.
+                                num_qs += self.max_perception_subdialog_qs
                     else:  # response is expected to be a confirmation yes/no
                         if sub_ur == 'yes':
                             upidxs = [perception_pidx]
@@ -795,25 +814,8 @@ class Agent:
             else:
                 self.io.say_to_user_with_referents(q, rvs)
 
-    def update_action_belief_from_confirmation_grounding(self, g, action_confirmed, action_chosen, roles_in_q,
-                                                         count=1.0):
-        debug = False
-
-        if debug:
-            print ("update_action_belief_from_confirmation_grounding: confirmation response parse " +
-                   self.parser.print_parse(g) + " with roles_in_q " + str(roles_in_q))
-        if g.type == self.parser.ontology.types.index('c'):
-            if g.idx == self.parser.ontology.preds.index('yes'):
-                self.update_action_belief_from_confirmation('yes', action_confirmed, action_chosen, roles_in_q,
-                                                            count=count)
-            elif g == 'no' or g.idx == self.parser.ontology.preds.index('no'):
-                self.update_action_belief_from_confirmation('no', action_confirmed, action_chosen, roles_in_q,
-                                                            count=count)
-        else:
-            print "WARNING: grounding for confirmation did not produce yes/no"
-
     # g is a string of values 'yes'|'no'
-    def update_action_belief_from_confirmation(self, g, action_confirmed, action_chosen, roles_in_q, count=1.0):
+    def update_action_belief_from_confirmation(self, g, action_confirmed, action_chosen, roles_in_q):
         debug = False
 
         if debug:
@@ -828,138 +830,35 @@ class Agent:
         elif g == 'no':
             if len(roles_in_q) > 0:
 
-                # TODO: replace this update with a distribution interpolation like
-                # TODO: for positive updates; dist is just 0 prob on the negative confirmation
-                # TODO: and uniform remaining prob on everything else
+                # Create a distribution from this negative confirmation with zero confidence in all
+                # members of mentioned roles, and uniform confidence in un-mentioned, to be interpolated
+                # with the existing belief state.
+                gd = {r: {a: 0.0 for a in self.action_belief_state[r]} for r in roles_in_q}
 
                 roles_to_dec = [r for r in roles_in_q if action_confirmed[r] is None]
                 for r in roles_to_dec:
-                    mass = self.action_belief_state[r][action_chosen[r][0]] * self.belief_update_rate * count
-                    self.action_belief_state[r][action_chosen[r][0]] -= mass
-
-                    if debug:
-                        print ("update_action_belief_from_confirmation: subtracted mass " + r + " " +
-                               action_chosen[r][0] + ": " + str(mass))
 
                     to_inc = [arg for arg in self.action_belief_state[r] if arg != action_chosen[r][0]]
-                    to_inc_mass_sum = sum([self.action_belief_state[r][arg] for arg in to_inc])
-                    to_inc_dist = {arg: self.action_belief_state[r][arg] / to_inc_mass_sum for arg in to_inc}
                     for arg in to_inc:
-                        self.action_belief_state[r][arg] += mass * to_inc_dist[arg]
-                        if debug:
-                            print ("update_action_belief_from_confirmation: added mass " + r + " " +
-                                   str(arg) + ": " + str(mass * to_inc_dist[arg]))
+                        gd[r][arg] = 1.0 / len(to_inc)
+
+                if debug:
+                    print ("update_action_belief_from_confirmation: neg conf distribution: " + str(gd))
+
+                # Update the primary belief distribution by interpolating it with this negative conf distribution.
+                for r in gd:
+                    for a in gd[r]:
+                        self.action_belief_state[r][a] = (self.action_belief_state[r][a] *
+                                                          (1 - self.belief_update_rate) +
+                                                          gd[r][a] * self.belief_update_rate)
         else:
             print "WARNING: confirmation update string was not yes/no; '" + str(g) + "'"
 
-    # Given a dictionary of roles to utterances and another of roles to confirmed predicates, build
-    # SemanticNodes corresponding to those predicates and to the whole command to match up with entries
-    # in the utterance dictionary.
-    # us - dictionary mapping roles to utterances
-    # rs - dictionary mapping roles to ontological predicates (groundings)
-    def induce_utterance_grounding_pairs_from_conversation(self, us, rs):
-        debug = False
-
-        conf_surface_forms = set()
-        for sfidx in range(len(self.parser.lexicon.surface_forms)):
-            for sem_idx in self.parser.lexicon.entries[sfidx]:
-                if (len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx], ["yes"])) > 0 or
-                        len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx], ["no"])) > 0):
-                    conf_surface_forms.add(self.parser.lexicon.surface_forms[sfidx])
         if debug:
-            print "conf_surface_forms: " + str(conf_surface_forms)
+            print ("update_action_belief_from_groundings: interpolated, new belief distribution: " +
+                   str(self.action_belief_state))
 
-        pairs = []
-        if 'all' in us:  # need to build SemanticNode representing all roles
-            sem_str = rs['action']
-            if rs['action'] == 'walk':
-                sem_str += '(' + rs['goal'] + ')'
-            elif rs['action'] == 'bring':
-                sem_str += '(' + rs['patient'] + ',' + rs['recipient'] + ')'
-            else:  # ie. 'move'
-                sem_str += '(' + rs['patient'] + ',' + rs['source'] + ',' + rs['goal'] + ')'
-            cat_idx = self.parser.lexicon.read_category_from_str('M')  # a command
-            grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
-            for u in us['all']:
-                if [u, grounded_form] not in pairs and len(set(self.parser.tokenize(u)) & conf_surface_forms) == 0:
-                    pairs.append([u, grounded_form])
-            if debug:
-                print ("induce_utterance_grounding_pairs_from_conversation: adding 'all' pairs for gr form " +
-                       self.parser.print_parse(grounded_form) + " for utterances: " + ' ; '.join(us['all']))
-
-        for r in [_r for _r in self.roles if _r in us and rs[_r] is not None]:
-            if r == 'action':
-                # TODO: Seems like we should do something here but it's actually not clear to me what a grounding
-                # TODO: for an action word by itself looks like. The syntax around them, like, matters.
-                # TODO: These might have to be learned primarily through the overall restatement, in which case
-                # TODO: we should disallow it as the role_asked and default to full restate when the least
-                # TODO: confident role comes out as 'action'.
-                pass
-
-            else:
-                cat_idx = self.parser.lexicon.read_category_from_str('NP')  # patients and recipients always NP alone
-                grounded_form = self.parser.lexicon.read_semantic_form_from_str(rs[r], cat_idx, None, [])
-
-                for u in us[r]:
-                    if len(u) > 0 and [u, grounded_form] not in pairs and len(set(self.parser.tokenize(u)) & conf_surface_forms) == 0:
-                        pairs.append([u, grounded_form])
-                if debug and len(us[r]) > 0:
-                    print ("induce_utterance_grounding_pairs_from_conversation: adding '" + r + "' pairs for gr form " +
-                           self.parser.print_parse(grounded_form) + " for utterances: " + ' ; '.join(us[r]))
-
-        return pairs
-
-    # Parse and ground a given utterance.
-    def parse_and_ground_utterance(self, u):
-        debug = True
-
-        # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
-        # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
-        # TODO: this function returns tuples of (grounded parse, parser conf * grounder conf)
-        parse_generator = self.parser.most_likely_cky_parse(u, reranker_beam=self.parse_beam)
-        cgtr = self.call_generator_with_timeout(parse_generator, self.budget_for_parsing)
-        p = None
-        if cgtr is not None and cgtr[0] is not None:
-            p = cgtr[0]  # most_likely_cky_parse returns a 4-tuple, the first of which is the parsenode
-            if debug:
-                print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
-
-            # Get semantic trees with hanging lambdas instantiated.
-            gn = self.ground_semantic_form(p.node)
-
-        else:
-            if debug:
-                print "parse_and_ground_utterance: could not generate a parse for the utterance"
-            gn = []
-
-        return gn, p
-
-    # Ground semantic form.
-    def ground_semantic_form(self, s):
-        debug = False
-
-        gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": s},
-                                                 self.budget_for_grounding)
-        if gs is not None:
-            # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
-            gn = self.sort_groundings_by_conf(gs)
-            if debug:
-                print ("ground_semantic_form: resulting groundings with normalized confidences: " +
-                       "\n\t" + "\n\t".join([" ".join([str(t) if type(t) is bool else self.parser.print_parse(t),
-                                                       str(c)])
-                                            for t, c in gn]))
-        else:
-            gn = []
-            if debug:
-                print "ground_semantic_form: grounding timeout for " + self.parser.print_parse(s)
-
-        return gn
-
-    # Given a set of groundings, return them and their confidences in sorted order.
-    def sort_groundings_by_conf(self, gs):
-        s = sum([c for _, _, c in gs])
-        gn = [(t, c / s if s > 0 else c / float(len(gs))) for t, _, c in gs]
-        return sorted(gn, key=lambda x: x[1], reverse=True)
+        return action_confirmed
 
     # Given a parse and a list of the roles felicitous in the dialog to update, update those roles' distributions
     # Distribute portion of mass from everything not in confirmations to everything that is evenly.
@@ -1054,6 +953,115 @@ class Agent:
         if debug:
             print ("update_action_belief_from_groundings: interpolated, new belief distribution: " +
                    str(self.action_belief_state))
+
+    # Given a dictionary of roles to utterances and another of roles to confirmed predicates, build
+    # SemanticNodes corresponding to those predicates and to the whole command to match up with entries
+    # in the utterance dictionary.
+    # us - dictionary mapping roles to utterances
+    # rs - dictionary mapping roles to ontological predicates (groundings)
+    def induce_utterance_grounding_pairs_from_conversation(self, us, rs):
+        debug = False
+
+        conf_surface_forms = set()
+        for sfidx in range(len(self.parser.lexicon.surface_forms)):
+            for sem_idx in self.parser.lexicon.entries[sfidx]:
+                if (len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx], ["yes"])) > 0 or
+                        len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx], ["no"])) > 0):
+                    conf_surface_forms.add(self.parser.lexicon.surface_forms[sfidx])
+        if debug:
+            print "conf_surface_forms: " + str(conf_surface_forms)
+
+        pairs = []
+        if 'all' in us:  # need to build SemanticNode representing all roles
+            sem_str = rs['action']
+            if rs['action'] == 'walk':
+                sem_str += '(' + rs['goal'] + ')'
+            elif rs['action'] == 'bring':
+                sem_str += '(' + rs['patient'] + ',' + rs['recipient'] + ')'
+            else:  # ie. 'move'
+                sem_str += '(' + rs['patient'] + ',' + rs['source'] + ',' + rs['goal'] + ')'
+            cat_idx = self.parser.lexicon.read_category_from_str('M')  # a command
+            grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
+            for u in us['all']:
+                if [u, grounded_form] not in pairs and len(set(self.parser.tokenize(u)) & conf_surface_forms) == 0:
+                    pairs.append([u, grounded_form])
+            if debug:
+                print ("induce_utterance_grounding_pairs_from_conversation: adding 'all' pairs for gr form " +
+                       self.parser.print_parse(grounded_form) + " for utterances: " + ' ; '.join(us['all']))
+
+        for r in [_r for _r in self.roles if _r in us and rs[_r] is not None]:
+            if r == 'action':
+                # TODO: Seems like we should do something here but it's actually not clear to me what a grounding
+                # TODO: for an action word by itself looks like. The syntax around them, like, matters.
+                # TODO: These might have to be learned primarily through the overall restatement, in which case
+                # TODO: we should disallow it as the role_asked and default to full restate when the least
+                # TODO: confident role comes out as 'action'.
+                pass
+
+            else:
+                cat_idx = self.parser.lexicon.read_category_from_str('NP')  # patients and recipients always NP alone
+                grounded_form = self.parser.lexicon.read_semantic_form_from_str(rs[r], cat_idx, None, [])
+
+                for u in us[r]:
+                    if len(u) > 0 and [u, grounded_form] not in pairs and len(set(self.parser.tokenize(u)) & conf_surface_forms) == 0:
+                        pairs.append([u, grounded_form])
+                if debug and len(us[r]) > 0:
+                    print ("induce_utterance_grounding_pairs_from_conversation: adding '" + r + "' pairs for gr form " +
+                           self.parser.print_parse(grounded_form) + " for utterances: " + ' ; '.join(us[r]))
+
+        return pairs
+
+    # Parse and ground a given utterance.
+    def parse_and_ground_utterance(self, u):
+        debug = False
+
+        # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
+        # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
+        # TODO: this function returns tuples of (grounded parse, parser conf * grounder conf)
+        parse_generator = self.parser.most_likely_cky_parse(u, reranker_beam=self.parse_beam)
+        cgtr = self.call_generator_with_timeout(parse_generator, self.budget_for_parsing)
+        p = None
+        if cgtr is not None and cgtr[0] is not None:
+            p = cgtr[0]  # most_likely_cky_parse returns a 4-tuple, the first of which is the parsenode
+            if debug:
+                print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
+
+            # Get semantic trees with hanging lambdas instantiated.
+            gn = self.ground_semantic_form(p.node)
+
+        else:
+            if debug:
+                print "parse_and_ground_utterance: could not generate a parse for the utterance"
+            gn = []
+
+        return gn, p
+
+    # Ground semantic form.
+    def ground_semantic_form(self, s):
+        debug = False
+
+        gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": s},
+                                                 self.budget_for_grounding)
+        if gs is not None:
+            # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
+            gn = self.sort_groundings_by_conf(gs)
+            if debug:
+                print ("ground_semantic_form: resulting groundings with normalized confidences: " +
+                       "\n\t" + "\n\t".join([" ".join([str(t) if type(t) is bool else self.parser.print_parse(t),
+                                                       str(c)])
+                                            for t, c in gn]))
+        else:
+            gn = []
+            if debug:
+                print "ground_semantic_form: grounding timeout for " + self.parser.print_parse(s)
+
+        return gn
+
+    # Given a set of groundings, return them and their confidences in sorted order.
+    def sort_groundings_by_conf(self, gs):
+        s = sum([c for _, _, c in gs])
+        gn = [(t, c / s if s > 0 else c / float(len(gs))) for t, _, c in gs]
+        return sorted(gn, key=lambda x: x[1], reverse=True)
 
     # Given a parse and a list of predicates, return the subtrees in the parse rooted at those predicates.
     # If a subtree is rooted beneath one of the specified predicates, it will not be returned (top-level only).

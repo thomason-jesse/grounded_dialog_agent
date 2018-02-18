@@ -1,8 +1,5 @@
 
-- rewrite negative updates to use new distributional fusion approach
-
-- send back multiple hypotheses from speech and do basic beaming
-  for commands like face/watch/etc.
+- make 'delivery' grab a local object (for train/test split based on tables)
 
 - run dialog agent on remote node to enable faster parsing computation
 

@@ -414,7 +414,7 @@ class RobotIO:
         if rvs['action'] == 'walk':
             a_str = "I will navigate to <g>here</g>."
         elif rvs['action'] == 'bring':
-            a_str = "I will find the object and deliver it to <r>this person</r>."
+            a_str = "I will grab the object and deliver it to <r>this person</r>."
             cmd = "eog " + os.path.join(self.image_path, rvs['patient'] + ".jpg")
         elif rvs['action'] == 'move':
             a_str = "I will relocate the object from <s>here</s> to <g>there</g>."

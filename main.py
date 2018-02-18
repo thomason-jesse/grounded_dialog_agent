@@ -46,6 +46,7 @@ def main():
     max_opp_qs = FLAGS_max_opp_qs
     image_path = FLAGS_image_path
     bbc_demo = FLAGS_bbc_demo
+    no_clarify = FLAGS_no_clarify.split(',')
     assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
     assert io_type != 'robot' or image_path is not None
@@ -95,11 +96,9 @@ def main():
 
     # Instantiate an input/output
     print "main: instantiating IO..."
-    no_clarify = None
     use_shorter_utterances = False
     if io_type == 'keyboard':
         io = IO.KeyboardIO()
-        no_clarify = ['patient']  # don't allow the patient role to participate in commands
     elif io_type == 'server':
         io = IO.SeverIO(uid, client_dir, spin_time=spin_time)
     elif io_type == 'robot':  # includes some hard-coded expectations like 2 tables, 8 training objects
@@ -107,7 +106,6 @@ def main():
         rospy.init_node('phm_node')
         print "WARNING: ensure robot is facing Table 2 on startup!"
         io = IO.RobotIO(table_oidxs, 2, image_path)
-        no_clarify = ['patient']  # don't allow the patient role to participate in commands
         use_shorter_utterances = True
     else:
         io = None  # won't be executed due to asserts
@@ -242,8 +240,6 @@ if __name__ == '__main__':
                         help="number of times to call start_action_dialog")
     parser.add_argument('--init_phase', type=int, required=False, default=0,
                         help="don't actually launch an agent; just ask for the specified number of responses")
-    parser.add_argument('--starting_table', type=int, required=False,
-                        help="the table the robot starts off facing (1 or 2)")
     parser.add_argument('--max_syn_qs', type=int, required=False, default=3,
                         help="the maximum number of synonym neighbors to ask about")
     parser.add_argument('--max_opp_qs', type=int, required=False, default=5,
@@ -252,6 +248,8 @@ if __name__ == '__main__':
                         help="filepath to the directory where object images live")
     parser.add_argument('--bbc_demo', type=int, required=False,
                         help="whether to do special bbc script")
+    parser.add_argument('--no_clarify', type=str, required=False,
+                        help="comma-separated list of roles not to clarify during dialog")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v
