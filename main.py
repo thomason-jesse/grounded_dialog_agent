@@ -46,7 +46,7 @@ def main():
     max_opp_qs = FLAGS_max_opp_qs
     image_path = FLAGS_image_path
     bbc_demo = FLAGS_bbc_demo
-    no_clarify = FLAGS_no_clarify.split(',')
+    no_clarify = FLAGS_no_clarify.split(',') if FLAGS_no_clarify is not None else None
     assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
     assert io_type != 'robot' or image_path is not None
@@ -102,7 +102,10 @@ def main():
     elif io_type == 'server':
         io = IO.SeverIO(uid, client_dir, spin_time=spin_time)
     elif io_type == 'robot':  # includes some hard-coded expectations like 2 tables, 8 training objects
-        table_oidxs = {1: active_train_set[0:4], 2: active_train_set[4:8], 3: None}
+        if len(active_train_set) == 8:  # All are train objects
+            table_oidxs = {1: active_train_set[0:4], 2: active_train_set[4:8], 3: None}
+        else:  # Table 1 test objects, Table 2 train objects
+            table_oidxs = {1: active_test_set[:], 2: active_train_set[:]}
         rospy.init_node('phm_node')
         print "WARNING: ensure robot is facing Table 2 on startup!"
         io = IO.RobotIO(table_oidxs, 2, image_path)

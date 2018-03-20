@@ -38,8 +38,8 @@ class Agent:
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.max_perception_subdialog_qs = max_perception_subdialog_qs
         self.word_neighbors_to_consider_as_synonyms = word_neighbors_to_consider_as_synonyms
-        self.budget_for_parsing = 600  # 15 (adj for demo)  # how many seconds we allow the parser
-        self.budget_for_grounding = 600  # 10 (adj for demo)  # how many seconds we allow the grounder
+        self.budget_for_parsing = 30  # 15 (adj for   # how many seconds we allow the parser
+        self.budget_for_grounding = 20  # 10 (adj for demo)  # how many seconds we allow the grounder
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
         self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
 
