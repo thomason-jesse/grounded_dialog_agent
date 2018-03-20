@@ -64,8 +64,10 @@ class Agent:
 
     # Start a new action dialog from utterance u given by a user.
     # Clarifies the arguments of u until the action is confirmed by the user.
-    # perception_labels_requested - pairs of (pidx, oidx) labels already requested from user; modified in-place
-    def start_action_dialog(self, perception_labels_requested):
+    # perception_labels_requested - pairs of (pidx, oidx) labels already requested from user; modified in-place.
+    # perform_action - whether to execute the action through IO or just return it.
+    def start_action_dialog(self, perception_labels_requested,
+                            perform_action=True):
         debug = False
 
         # Start with a count of 1.0 on each role being empty (of which only recipient can remain empty in the end).
@@ -235,7 +237,8 @@ class Agent:
         # TODO: which can be noisy and should be overwritten later on by explicit human conversation.
 
         # Perform the chosen action.
-        self.io.perform_action(action_confirmed)
+        if perform_action:
+            self.io.perform_action(action_confirmed)
 
         # Return the chosen action and the user utterances by role from this dialog.
         return action_confirmed, user_utterances_by_role

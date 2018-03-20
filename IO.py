@@ -208,7 +208,7 @@ class SeverIO:
 # Perform input/output with the agent through the arm segbot.
 class RobotIO:
 
-    def __init__(self, table_oidxs, starting_table, image_path,
+    def __init__(self, table_oidxs, starting_table, image_path=None,
                  voice="voice_cmu_us_slt_cg"):
         print "RobotIO: __init__ with " + str(table_oidxs) + ", " + str(starting_table) + ", " + voice
         self.table_oidxs = table_oidxs  # dictionary from table ids to lists of objects or None if there are None
@@ -415,10 +415,12 @@ class RobotIO:
             a_str = "I will navigate to <g>here</g>."
         elif rvs['action'] == 'bring':
             a_str = "I will grab the object and deliver it to <r>this person</r>."
-            cmd = "eog " + os.path.join(self.image_path, rvs['patient'] + ".jpg")
+            if self.image_path is not None:
+                cmd = "eog " + os.path.join(self.image_path, rvs['patient'] + ".jpg")
         elif rvs['action'] == 'move':
             a_str = "I will relocate the object from <s>here</s> to <g>there</g>."
-            cmd = "eog " + os.path.join(self.image_path, rvs['patient'] + ".jpg")
+            if self.image_path is not None:
+                cmd = "eog " + os.path.join(self.image_path, rvs['patient'] + ".jpg")
         else:
             raise ValueError("unrecognized action type to perform '" + rvs['action'] + "'")
 
