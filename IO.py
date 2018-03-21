@@ -225,9 +225,9 @@ class RobotIO:
         self.sound_client.stopAll()
         print "RobotIO: ... done"
 
-        rospy.wait_for_service('tabletop_object_detection_service')
-        self.tabletop_object_detection_service = rospy.ServiceProxy('tabletop_object_detection_service',
-                                                                    TabletopPerception, persistent=True)
+        rospy.wait_for_service('perceive_tabletop_scene')
+        self.tabletop_object_detection_service = rospy.ServiceProxy('perceive_tabletop_scene',
+                                                                    PerceiveTabletopScene, persistent=True)
         self.pointCloud2_plane = None
         self.cloud_plane_coef = None
         self.pointCloud2_objects = None
@@ -502,7 +502,7 @@ class RobotIO:
         print "RobotIO support: get_pointCloud2_objects called"
 
         # query to get the blobs on the table
-        req = TabletopPerceptionRequest()
+        req = PerceiveTabletopSceneRequest()
         req.apply_x_box_filter = True  # limit field of view to table in front of robot
         req.x_min = -0.25
         req.x_max = 0.8
@@ -513,7 +513,7 @@ class RobotIO:
                 return [], [], []
 
             # re-index clusters so order matches left-to-right indexing expected
-            ordered_cloud_clusters = self.reorder_client("x", True)
+            ordered_cloud_clusters = self.reorder_client(res.cloud_clusters, "x", True)
 
             print ("RobotIO support: get_pointCloud2_objects returning res with " +
                    str(len(ordered_cloud_clusters)) + " clusters")
@@ -572,16 +572,18 @@ class RobotIO:
             sys.exit("Service call failed: %s" % e)
 
     # reorder PointCloud2 objects returned in arbitrary order from table detection
-    def reorder_client(self, coord, forward):
-        print "RobotIO client: reorder_client called with " + str(coord) + ", " + str(forward)
-        req = TabletopReorderRequest()
-        req.coord = coord
+    def reorder_client(self, clouds, axis, forward):
+        print "RobotIO client: reorder_client called with " + str(axis) + ", " + str(forward)
+        req = iSpyReorderCloudsRequest()
+        req.axis = axis
         req.forward = forward
-        rospy.wait_for_service('tabletop_object_reorder_service')
+        req.clouds = clouds
+        req.frame_id = "arm_link"
+        rospy.wait_for_service('ispy/reorder_clouds')
         try:
-            reorder = rospy.ServiceProxy('tabletop_object_reorder_service', TabletopReorder)
+            reorder = rospy.ServiceProxy('ispy/reorder_clouds', iSpyReorderClouds)
             res = reorder(req)
-            return res.ordered_cloud_clusters
+            return res.ordered_clouds
         except rospy.ServiceException, e:
             sys.exit("Service call failed: %s " % e)
 

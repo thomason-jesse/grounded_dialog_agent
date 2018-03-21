@@ -38,8 +38,8 @@ class Agent:
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.max_perception_subdialog_qs = max_perception_subdialog_qs
         self.word_neighbors_to_consider_as_synonyms = word_neighbors_to_consider_as_synonyms
-        self.budget_for_parsing = 30  # 15 (adj for   # how many seconds we allow the parser
-        self.budget_for_grounding = 20  # 10 (adj for demo)  # how many seconds we allow the grounder
+        self.budget_for_parsing = 300  # 15 (adj for   # how many seconds we allow the parser
+        self.budget_for_grounding = 300  # 10 (adj for demo)  # how many seconds we allow the grounder
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
         self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
 
@@ -1016,13 +1016,17 @@ class Agent:
 
     # Parse and ground a given utterance.
     def parse_and_ground_utterance(self, u):
-        debug = False
+        debug = True
 
         # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
         # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
         # TODO: this function returns tuples of (grounded parse, parser conf * grounder conf)
-        parse_generator = self.parser.most_likely_cky_parse(u, reranker_beam=self.parse_beam)
-        cgtr = self.call_generator_with_timeout(parse_generator, self.budget_for_parsing)
+        parse_generator = self.parser.most_likely_cky_parse(u, reranker_beam=self.parse_beam, timeout=self.budget_for_parsing)
+        try:
+            cgtr = next(parse_generator)
+        except StopIteration:
+            print "parse_and_ground_utterance timed out"
+            cgtr = None
         p = None
         if cgtr is not None and cgtr[0] is not None:
             p = cgtr[0]  # most_likely_cky_parse returns a 4-tuple, the first of which is the parsenode
@@ -1043,8 +1047,8 @@ class Agent:
     def ground_semantic_form(self, s):
         debug = False
 
-        gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": s},
-                                                 self.budget_for_grounding)
+        gs = self.grounder.ground_semantic_tree(root=s, timeout=self.budget_for_parsing)
+
         if gs is not None:
             # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
             gn = self.sort_groundings_by_conf(gs)
@@ -1125,7 +1129,7 @@ class Agent:
                 c = np.random.choice([valid_entries[idx]
                                       for idx in range(len(valid_entries))],
                                      1, p=dist)
-            chosen[r] = (c[0], dist[valid_entries.index(c)])
+            chosen[r] = (c[0], dist[valid_entries.index(c[0])])
 
         if debug:
             print ("sample_action_from_belief: sampled chosen=" + str(chosen))
@@ -1612,27 +1616,29 @@ class Agent:
     # t - the timeout (in seconds); if None, just calls next on the generator
     # returns - the result of calling next(g) or None
     def call_generator_with_timeout(self, g, t):
+        print("WARNING: call_generator_with_timeout was called, but the timeout functionality is not working")
         if t is not None:
-            signal.signal(signal.SIGALRM, self.timeout_signal_handler)
-            signal.alarm(t)
+            #signal.signal(signal.SIGALRM, self.timeout_signal_handler)
+            #signal.alarm(t)
             try:
                 r = next(g)
             except AssertionError:
                 r = None
-            signal.alarm(0)
+            #signal.alarm(0)
         else:
             r = next(g)
         return r
 
     def call_function_with_timeout(self, f, args, t):
+        print("WARNING: call_generator_with_timeout was called, but the timeout functionality is not working")
         if t is not None:
-            signal.signal(signal.SIGALRM, self.timeout_signal_handler)
-            signal.alarm(t)
+            #signal.signal(signal.SIGALRM, self.timeout_signal_handler)
+            #signal.alarm(t)
             try:
                 r = f(**args)
             except AssertionError:
                 r = None
-            signal.alarm(0)
+            #signal.alarm(0)
         else:
             r = f(**args)
         return r
