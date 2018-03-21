@@ -877,12 +877,17 @@ class Agent:
         for g, conf in gs:
             if type(g) is bool:
                 continue
+            if debug:
+                print ("update_action_belief_from_groundings processing g:\n" +
+                       str((self.parser.print_parse(g), conf)))
 
             # Crawl parse for recognized actions.
             based_on_action_trees = False
             if 'action' in roles:
                 action_trees = self.get_parse_subtrees(g, self.actions)
                 if len(action_trees) > 0:
+                    if debug:
+                        print ("\tupdate_action_belief_from_groundings: action tree update")
                     based_on_action_trees = True
                     portion = conf / float(len(action_trees))
                     for at in action_trees:
@@ -919,6 +924,8 @@ class Agent:
             # Else, just add counts as appropriate based on roles asked based on a trace of the whole tree.
             # If we were trying to update an action but didn't find any trees, also take this route.
             if not based_on_action_trees:
+                if debug:
+                        print ("\tupdate_action_belief_from_groundings: crawling update")
                 for r in roles:
                     to_traverse = [g]
                     to_increment = []
