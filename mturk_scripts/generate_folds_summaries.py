@@ -23,7 +23,6 @@ def main():
     require_all_correct_survey = True if FLAGS_require_all_correct_survey == 1 else False
     ignore_zero_f1_tasks = True if FLAGS_ignore_zero_f1_tasks == 1 else False
     required_all_f1_above_zero_survey = True if FLAGS_required_all_f1_above_zero_survey == 1 else False
-    assert graph_dir is not None or len(metrics_to_graph) == 0
 
     seen_turk_ids = {}
     aid_to_uids = {}
@@ -339,18 +338,21 @@ def main():
             elif 'clarification' in metric:
                 plt.ylabel('Number of User Clarification Turns', fontsize=fs)
                 if '1' in metric:
-                    plt.yticks(np.arange(0, 24, 3), fontsize=fs)
+                    plt.yticks(np.arange(0, 13, 2), fontsize=fs)  # 7 ticks
                 elif '2' in metric:
-                    plt.yticks(np.arange(0, 40, 5), fontsize=fs)
+                    plt.yticks(np.arange(0, 31, 5), fontsize=fs)  # 7 ticks
+                elif '3' in metric:
+                    plt.yticks(np.arange(0, 37, 6), fontsize=fs)  # 7 ticks
                 else:
                     plt.yticks([0, 10, 20, 30, 40, 50, 60, 70], fontsize=fs)
             plt.ylim(ymin=0)
 
             if show_graphs:
                 plt.show()
-            fn = os.path.join(graph_dir, graph_type + "_" + metric + ".png")
-            plt.savefig(fn, additional_artists=[lgd], bbox_inches="tight")
-            print "saved as '" + fn + "'"
+            if graph_dir is not None:
+                fn = os.path.join(graph_dir, graph_type + "_" + metric + ".png")
+                plt.savefig(fn, additional_artists=[lgd], bbox_inches="tight")
+                print "saved as '" + fn + "'"
             plt.close()
 
 
