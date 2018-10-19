@@ -54,6 +54,20 @@ class KeyboardIO:
             u = process_raw_utterance(u)
         return u
 
+    # Get an enumeration choice from the user.
+    def get_from_user_enum(self, opts):
+        print("OPTS:\n\t" + '\n\t'.join([str(idx) + ": " + opts[idx] for idx in range(len(opts))]))
+        u = None
+        # TODO: indexing is buggy (e.g., -1)
+        while u is None or u < 0 or u > len(opts):
+            u = raw_input()
+            u = process_raw_utterance(u)
+            try:
+                u = int(u)
+            except (TypeError, ValueError):
+                u = None
+        return opts[u]
+
     # Get an integer oidx from those provided or None.
     def get_oidx_from_user(self, oidxs):
         print "YOU POINT TO OIDX:"

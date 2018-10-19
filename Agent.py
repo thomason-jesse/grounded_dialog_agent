@@ -21,7 +21,8 @@ class Agent:
     def __init__(self, parser, grounder, io, active_train_set, no_clarify=None,
                  use_shorter_utterances=False,  # useful for rendering speech on robot
                  word_neighbors_to_consider_as_synonyms=3,  # how many lexicon items to beam through for new pred
-                 max_perception_subdialog_qs=5):  # based on CORL17 experimental condition
+                 max_perception_subdialog_qs=5,  # based on CORL17 experimental condition
+                 max_ask_before_enumeration=2):  # max times to ask the same question before using an enumeration backoff
         random.seed(27)  # (adj for demo)
         np.random.seed(seed=27)  # (adj for demo)
         self.parser = parser
@@ -37,6 +38,7 @@ class Agent:
         self.belief_update_rate = 0.9  # 0.5 (adj for demo)  # interpolation between belief state and grounding state
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.max_perception_subdialog_qs = max_perception_subdialog_qs
+        self.max_ask_before_enumeration = max_ask_before_enumeration
         self.word_neighbors_to_consider_as_synonyms = word_neighbors_to_consider_as_synonyms
         self.budget_for_parsing = 300  # 15 (adj for   # how many seconds we allow the parser
         self.budget_for_grounding = 300  # 10 (adj for demo)  # how many seconds we allow the grounder
@@ -118,6 +120,7 @@ class Agent:
         first_utterance = True
         perception_subdialog_qs = 0  # track how many have been asked so far to disallow more of them after
         last_q = None
+        asked_qs = {}  # count the number of times we've asked an identical question to facilitate an enumeration backoff
         last_rvs = None
         while (action_confirmed['action'] is None or
                None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
@@ -127,6 +130,9 @@ class Agent:
                 q = last_q
                 rvs = last_rvs
                 times_sampled = 0
+                # TODO: can probably remove this get_novel_question_beam sampling once enumeration works,
+                # TODO: since asking duplicate optimal question becomes fine once enuemeration backoff is
+                # TODO: an option to bail out of shitty dialogs...
                 while (q == last_q and last_rvs == rvs and (q is None or "rephrase" not in q) and
                        times_sampled < self.get_novel_question_beam):
                     action_chosen = self.sample_action_from_belief(action_confirmed,
@@ -147,6 +153,9 @@ class Agent:
                 role_asked = None
                 roles_in_q = []
                 rvs = {}
+            if q not in asked_qs:
+                asked_qs[q] = 0
+            asked_qs[q] += 1
             first_utterance = False
 
             # Ask question and get user response.
@@ -163,50 +172,83 @@ class Agent:
 
             # Open-ended response question.
             else:
-                self.io.say_to_user_with_referents(q, rvs)
-                ur = self.io.get_from_user()
+                # Back off to an enumeration strategy if we're about to ask an open-ended question for the Nth time.
+                print(q, asked_qs[q])  # DEBUG
+                if q != "Please rephrase your original request." and asked_qs[q] == self.max_ask_before_enumeration + 1:
+                    print("TODO: Enumeration backoff")
+                    # DEBUG: current command
+                    # DEBUG: python main.py --io_type keyboard --active_test_set 0,1,2,3 --parser_fn /scratch/cluster/jesse/phm/trained_parsers/mturk_fold2_retrained.pickle.final --kb_perception_feature_dir ispy_setting/perception_resources/features/ --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir /scratch/cluster/jesse/phm/grounded_dialog_agent/ispy_setting/perception_resources/
+                    # TODO: enumeration backoff interface for keyboard
+                    # TODO: enumeration backoff interface to interface with server/filesystem
 
-                # Possible sub-dialog to clarify whether new words are perceptual and, possibly synonyms of existing
-                # neighbor words.
-                self.preprocess_utterance_for_new_predicates(ur)
+                    # Build list of possible options to ask user about, then list them for selection.
+                    possible_types = []
+                    enum_candidates = []
+                    for a in self.actions:
+                        if role_asked in self.action_args[a]:
+                            possible_types.extend(self.action_args[a][role_asked])
+                    for cidx in range(len(self.parser.ontology.preds)):
+                        if self.parser.ontology.types[self.parser.ontology.entries[cidx]] in possible_types:
+                            cat_idx = self.parser.lexicon.read_category_from_str('NP')  # a goal, source, or patient
+                            sem_str = self.parser.ontology.preds[cidx]
+                            grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
+                            enum_candidates.append(grounded_form)
+                    enum_candidates_strs = [self.parser.print_parse(ec) for ec in enum_candidates]  # str conversion of SemanticNodes for printing
 
-                # Get groundings and latent parse from utterance.
-                gprs, pr = self.parse_and_ground_utterance(ur)
+                    # Present these as options to user.
+                    self.io.say_to_user_with_referents(q, rvs)  # Ask same open-ended question but show enumeration instead of open-ended text resp.
+                    enum_ur = self.io.get_from_user_enum(enum_candidates_strs)  # Show enumeration to user and have them select exactly one.
+                    gprs = [enum_candidates[enum_candidates_strs.index(enum_ur)], 1]  # Full confidence to the selected choice.
 
-                # Start a sub-dialog to ask clarifying perceptual questions before continuing with slot-filling.
-                # If sub-dialog results in fewer than the maximum number of questions, allow asking off-topic
-                # questions in the style of CORL'17 paper to improve future interactions.
-                if role_asked == 'patient' or role_asked is None:
-                    num_new_qs = 0
-                    if self.active_train_set is not None:
-                        if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                            num_new_qs += self.conduct_perception_subdialog(gprs, pr,
-                                                                            self.max_perception_subdialog_qs,
-                                                                            perception_labels_requested)
-                            perception_subdialog_qs += num_new_qs
-                        if perception_subdialog_qs < self.max_perception_subdialog_qs:
-                            preface_msg = True if perception_subdialog_qs == 0 else False
-                            num_new_qs += self.conduct_perception_subdialog(gprs, pr,
-                                                                            self.max_perception_subdialog_qs -
-                                                                            perception_subdialog_qs,
-                                                                            perception_labels_requested,
-                                                                            allow_off_topic_preds=True,
-                                                                            preface_msg=preface_msg)
-                            perception_subdialog_qs += num_new_qs
-                    if num_new_qs > 0:
-                        self.io.say_to_user("Thanks. Now, back to business.")
-
-                        # Reground utterance from fresh classifier information.
-                        if pr is not None:
-                            gprs = self.ground_semantic_form(pr.node)
-
-                if role_asked is None:  # asked to repeat whole thing
-                    user_utterances_by_role['all'].append(ur)
-                    self.update_action_belief_from_groundings(gprs, self.roles)
-                # asked an open-ended question for a particular role (e.g. "where should i go?")
-                elif action_chosen[role_asked][0] is None or role_asked not in roles_in_q:
-                    user_utterances_by_role[role_asked].append(ur)
+                    # Need to give the user a selection of all the SemanticNodes available in the role_asked
                     self.update_action_belief_from_groundings(gprs, [role_asked])
+
+                else:
+                    self.io.say_to_user_with_referents(q, rvs)
+                    ur = self.io.get_from_user()
+
+                    # Possible sub-dialog to clarify whether new words are perceptual and, possibly synonyms of existing
+                    # neighbor words.
+                    self.preprocess_utterance_for_new_predicates(ur)
+
+                    # Get groundings and latent parse from utterance.
+                    gprs, pr = self.parse_and_ground_utterance(ur)
+                    print(gprs, pr)  # DEBUG
+
+                    # Start a sub-dialog to ask clarifying perceptual questions before continuing with slot-filling.
+                    # If sub-dialog results in fewer than the maximum number of questions, allow asking off-topic
+                    # questions in the style of CORL'17 paper to improve future interactions.
+                    if role_asked == 'patient' or role_asked is None:
+                        num_new_qs = 0
+                        if self.active_train_set is not None:
+                            if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                                num_new_qs += self.conduct_perception_subdialog(gprs, pr,
+                                                                                self.max_perception_subdialog_qs,
+                                                                                perception_labels_requested)
+                                perception_subdialog_qs += num_new_qs
+                            if perception_subdialog_qs < self.max_perception_subdialog_qs:
+                                preface_msg = True if perception_subdialog_qs == 0 else False
+                                num_new_qs += self.conduct_perception_subdialog(gprs, pr,
+                                                                                self.max_perception_subdialog_qs -
+                                                                                perception_subdialog_qs,
+                                                                                perception_labels_requested,
+                                                                                allow_off_topic_preds=True,
+                                                                                preface_msg=preface_msg)
+                                perception_subdialog_qs += num_new_qs
+                        if num_new_qs > 0:
+                            self.io.say_to_user("Thanks. Now, back to business.")
+
+                            # Reground utterance from fresh classifier information.
+                            if pr is not None:
+                                gprs = self.ground_semantic_form(pr.node)
+
+                    if role_asked is None:  # asked to repeat whole thing
+                        user_utterances_by_role['all'].append(ur)
+                        self.update_action_belief_from_groundings(gprs, self.roles)
+                    # asked an open-ended question for a particular role (e.g. "where should i go?")
+                    elif action_chosen[role_asked][0] is None or role_asked not in roles_in_q:
+                        user_utterances_by_role[role_asked].append(ur)
+                        self.update_action_belief_from_groundings(gprs, [role_asked])
 
             # Fill current_confirmed with any no_clarify roles by taking the current non-None max.
             # As in other max operations, considers all tied values and chooses one at random.
