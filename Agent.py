@@ -118,9 +118,9 @@ class Agent:
         user_utterances_by_role = {r: [] for r in self.roles + ['all']}  # to later induce grounding matches
         action_confirmed = {r: None for r in self.roles}
         first_utterance = True
-        perception_subdialog_qs = 0  # track how many have been asked so far to disallow more of them after
+        perception_subdialog_qs = 0  # track how many have been asked so far to disallow more.
         last_q = None
-        asked_qs = {}  # count the number of times we've asked an identical question to facilitate an enumeration backoff
+        asked_role_repeat = {}  # count the number of times we've requested a role in an open-ended question.
         last_rvs = None
         while (action_confirmed['action'] is None or
                None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
@@ -153,14 +153,19 @@ class Agent:
                 role_asked = None
                 roles_in_q = []
                 rvs = {}
-            if q not in asked_qs:
-                asked_qs[q] = 0
-            asked_qs[q] += 1
             first_utterance = False
 
             # Ask question and get user response.
             if role_asked is None or (action_chosen[role_asked][0] is None or role_asked not in roles_in_q):
                 conf_q = False
+
+                # If this is not a confirmation question, note that we're asking an open-ended one since
+                # we only allow up to a max number of open-ended repeats for a role before backing off to
+                # an enumeration strategy to avoid annoying the user too much.
+                if role_asked is not None:
+                    if role_asked not in asked_role_repeat:
+                        asked_role_repeat[role_asked] = 0
+                    asked_role_repeat[role_asked] += 1
             else:
                 conf_q = True
 
@@ -173,35 +178,21 @@ class Agent:
             # Open-ended response question.
             else:
                 # Back off to an enumeration strategy if we're about to ask an open-ended question for the Nth time.
-                print(q, asked_qs[q])  # DEBUG
-                if q != "Please rephrase your original request." and asked_qs[q] == self.max_ask_before_enumeration + 1:
-                    print("TODO: Enumeration backoff")
-                    # DEBUG: current command
+                if role_asked is not None and asked_role_repeat[role_asked] == self.max_ask_before_enumeration + 1:
+                    # DEBUG: current command:
                     # DEBUG: python main.py --io_type keyboard --active_test_set 0,1,2,3 --parser_fn /scratch/cluster/jesse/phm/trained_parsers/mturk_fold2_retrained.pickle.final --kb_perception_feature_dir ispy_setting/perception_resources/features/ --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir /scratch/cluster/jesse/phm/grounded_dialog_agent/ispy_setting/perception_resources/
-                    # TODO: enumeration backoff interface for keyboard
-                    # TODO: enumeration backoff interface to interface with server/filesystem
 
-                    # Build list of possible options to ask user about, then list them for selection.
-                    possible_types = []
-                    enum_candidates = []
-                    for a in self.actions:
-                        if role_asked in self.action_args[a]:
-                            possible_types.extend(self.action_args[a][role_asked])
-                    for cidx in range(len(self.parser.ontology.preds)):
-                        if self.parser.ontology.types[self.parser.ontology.entries[cidx]] in possible_types:
-                            cat_idx = self.parser.lexicon.read_category_from_str('NP')  # a goal, source, or patient
-                            sem_str = self.parser.ontology.preds[cidx]
-                            grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
-                            enum_candidates.append(grounded_form)
-                    enum_candidates_strs = [self.parser.print_parse(ec) for ec in enum_candidates]  # str conversion of SemanticNodes for printing
+                    # We actually only need the strings of the belief state to do a confirmation update, which is nice!
+                    enum_candidates_strs = [k for k, _ in sorted(self.action_belief_state[role_asked].items(), key=operator.itemgetter(1))
+                                            if k is not None]  # Enumerate possible choices in current order of belief.
 
                     # Present these as options to user.
                     self.io.say_to_user_with_referents(q, rvs)  # Ask same open-ended question but show enumeration instead of open-ended text resp.
                     enum_ur = self.io.get_from_user_enum(enum_candidates_strs)  # Show enumeration to user and have them select exactly one.
-                    gprs = [enum_candidates[enum_candidates_strs.index(enum_ur)], 1]  # Full confidence to the selected choice.
+                    enum_chosen = {role_asked: [enum_ur, 1.]} # Full confidence to the selected choice.
 
                     # Need to give the user a selection of all the SemanticNodes available in the role_asked
-                    self.update_action_belief_from_groundings(gprs, [role_asked])
+                    action_confirmed = self.update_action_belief_from_confirmation('yes', action_confirmed, enum_chosen, [role_asked])
 
                 else:
                     self.io.say_to_user_with_referents(q, rvs)
@@ -213,7 +204,6 @@ class Agent:
 
                     # Get groundings and latent parse from utterance.
                     gprs, pr = self.parse_and_ground_utterance(ur)
-                    print(gprs, pr)  # DEBUG
 
                     # Start a sub-dialog to ask clarifying perceptual questions before continuing with slot-filling.
                     # If sub-dialog results in fewer than the maximum number of questions, allow asking off-topic
@@ -1065,7 +1055,7 @@ class Agent:
 
     # Parse and ground a given utterance.
     def parse_and_ground_utterance(self, u):
-        debug = True
+        debug = False
 
         # TODO: do probabilistic updates by normalizing the parser outputs in a beam instead of only considering top-1
         # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
@@ -1135,7 +1125,7 @@ class Agent:
             for c in root.children:
                 trees_found.extend(self.get_parse_subtrees(c, preds))
         if debug:
-            print "get_parse_subtrees: found trees " + str(trees_found)  # DEBUG
+            print "get_parse_subtrees: found trees " + str(trees_found)
         return trees_found
 
     # Returns a list of all the ontological predicates/atoms in the given tree, stripping structure.

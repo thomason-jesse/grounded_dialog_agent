@@ -57,11 +57,10 @@ class KeyboardIO:
     # Get an enumeration choice from the user.
     def get_from_user_enum(self, opts):
         print("OPTS:\n\t" + '\n\t'.join([str(idx) + ": " + opts[idx] for idx in range(len(opts))]))
+        print "YOU SELECT IDX FROM MENU:"
         u = None
-        # TODO: indexing is buggy (e.g., -1)
-        while u is None or u < 0 or u > len(opts):
+        while u is None or not (0 <= u < len(opts)):
             u = raw_input()
-            u = process_raw_utterance(u)
             try:
                 u = int(u)
             except (TypeError, ValueError):
@@ -70,7 +69,7 @@ class KeyboardIO:
 
     # Get an integer oidx from those provided or None.
     def get_oidx_from_user(self, oidxs):
-        print "YOU POINT TO OIDX:"
+        print "YOU POINT TO OIDX (or say 'none' or 'all'):"
         while True:  # until return happens
             u = raw_input()
             try:
@@ -141,6 +140,11 @@ class SeverIO:
 
         print "get_from_user (processed): '" + u + "'"
         return u
+
+    # Get an enumeration choice from the user.
+    # TODO: implement for ServerIO
+    def get_from_user_enum(self, opts):
+        return None
 
     # Get an integer oidx from those provided or None.
     # Polls the disk until an oidx message from the user appears.
