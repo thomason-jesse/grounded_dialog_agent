@@ -43,7 +43,7 @@ class Agent:
         self.budget_for_parsing = 300  # 15 (adj for   # how many seconds we allow the parser
         self.budget_for_grounding = 300  # 10 (adj for demo)  # how many seconds we allow the grounder
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
-        self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
+        # self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
 
         # static information about expected actions and their arguments
         self.roles = ['action', 'patient', 'recipient', 'source', 'goal']
@@ -119,34 +119,38 @@ class Agent:
         action_confirmed = {r: None for r in self.roles}
         first_utterance = True
         perception_subdialog_qs = 0  # track how many have been asked so far to disallow more.
-        last_q = None
         asked_role_repeat = {}  # count the number of times we've requested a role in an open-ended question.
-        last_rvs = None
+        # last_q = None
+        # last_rvs = None
         while (action_confirmed['action'] is None or
                None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
 
             # Determine what question to ask based on missing arguments in chosen action.
             if not first_utterance:
-                q = last_q
-                rvs = last_rvs
-                times_sampled = 0
-                # TODO: can probably remove this get_novel_question_beam sampling once enumeration works,
-                # TODO: since asking duplicate optimal question becomes fine once enuemeration backoff is
-                # TODO: an option to bail out of shitty dialogs...
-                while (q == last_q and last_rvs == rvs and (q is None or "rephrase" not in q) and
-                       times_sampled < self.get_novel_question_beam):
-                    action_chosen = self.sample_action_from_belief(action_confirmed,
-                                                                   arg_max=True if times_sampled == 0 else False)
-                    q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
+                # q = last_q
+                # rvs = last_rvs
+                action_chosen = self.sample_action_from_belief(action_confirmed, arg_max=True)
+                q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
                         action_chosen, self.threshold_to_accept_role)
-                    rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
-                    times_sampled += 1
-                    if debug:
-                        print "sampled q " + str(q)
-                last_q = q
-                last_rvs = rvs
-                if times_sampled == self.get_novel_question_beam:
-                    self.io.say_to_user("Sorry, I didn't understand that.")
+                rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
+                
+                # Implementation to get a novel question to avoid asking annoying repeats.
+                # With enumeration backoff, allowing annoying repeats speeds up convergence, so it's fine.
+                # times_sampled = 0
+                # while (q == last_q and last_rvs == rvs and (q is None or "rephrase" not in q) and
+                #        times_sampled < self.get_novel_question_beam):
+                #     action_chosen = self.sample_action_from_belief(action_confirmed,
+                #                                                    arg_max=True if times_sampled == 0 else False)
+                #     q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
+                #         action_chosen, self.threshold_to_accept_role)
+                #     rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
+                #     times_sampled += 1
+                #     if debug:
+                #         print "sampled q " + str(q)
+                # last_q = q
+                # last_rvs = rvs
+                # if times_sampled == self.get_novel_question_beam:
+                #     self.io.say_to_user("Sorry, I didn't understand that.")
             else:
                 action_chosen = self.sample_action_from_belief(action_confirmed, arg_max=True)
                 q = "What should I do?"
@@ -178,20 +182,18 @@ class Agent:
             # Open-ended response question.
             else:
                 # Back off to an enumeration strategy if we're about to ask an open-ended question for the Nth time.
-                if role_asked is not None and asked_role_repeat[role_asked] == self.max_ask_before_enumeration + 1:
-                    # DEBUG: current command:
-                    # DEBUG: python main.py --io_type keyboard --active_test_set 0,1,2,3 --parser_fn /scratch/cluster/jesse/phm/trained_parsers/mturk_fold2_retrained.pickle.final --kb_perception_feature_dir ispy_setting/perception_resources/features/ --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir /scratch/cluster/jesse/phm/grounded_dialog_agent/ispy_setting/perception_resources/
-
+                if role_asked is not None and asked_role_repeat[role_asked] >= self.max_ask_before_enumeration + 1:
                     # We actually only need the strings of the belief state to do a confirmation update, which is nice!
-                    enum_candidates_strs = [k for k, _ in sorted(self.action_belief_state[role_asked].items(), key=operator.itemgetter(1))
+                    enum_candidates_strs = [k for k, _ in sorted(self.action_belief_state[role_asked].items(), key=operator.itemgetter(1),
+                                                                 reverse=True)
                                             if k is not None]  # Enumerate possible choices in current order of belief.
 
                     # Present these as options to user.
                     self.io.say_to_user_with_referents(q, rvs)  # Ask same open-ended question but show enumeration instead of open-ended text resp.
-                    enum_ur = self.io.get_from_user_enum(enum_candidates_strs)  # Show enumeration to user and have them select exactly one.
+                    enum_ur = self.io.get_from_user_enum(enum_candidates_strs, role_asked)  # Show enumeration to user and have them select exactly one.
                     enum_chosen = {role_asked: [enum_ur, 1.]} # Full confidence to the selected choice.
 
-                    # Need to give the user a selection of all the SemanticNodes available in the role_asked
+                    # Do a confirmation update based on the user selection to solidify their choice in the action belief space.
                     action_confirmed = self.update_action_belief_from_confirmation('yes', action_confirmed, enum_chosen, [role_asked])
 
                 else:

@@ -55,7 +55,9 @@ class KeyboardIO:
         return u
 
     # Get an enumeration choice from the user.
-    def get_from_user_enum(self, opts):
+    # opts - options to be enumerated
+    # role - not used in this implementation; needed by IO to find image files
+    def get_from_user_enum(self, opts, role):
         print("OPTS:\n\t" + '\n\t'.join([str(idx) + ": " + opts[idx] for idx in range(len(opts))]))
         print "YOU SELECT IDX FROM MENU:"
         u = None
@@ -142,9 +144,22 @@ class SeverIO:
         return u
 
     # Get an enumeration choice from the user.
-    # TODO: implement for ServerIO
-    def get_from_user_enum(self, opts):
-        return None
+    # Polls the disk until an enum message from the user appears.
+    # Assumes that the file equals an integer.
+    # opts - the valid options to enumerate and in what order as strings;
+    #        these will have to be translated server side into images
+    # role - the role the options are enumerating
+    def get_from_user_enum(self, opts, role):
+        path = os.path.join(self.client_dir, self.uid + '.emsgur.txt')  # request
+        self._poll_for_file_write_contents(path, ','.join([role] + opts))
+        print "get_from_user_enum requested feedback"
+
+        path = os.path.join(self.client_dir, self.uid + '.emsgu.txt')
+        u = self._poll_for_file_get_contents_delete(path)
+        u = int(u)
+
+        print "get_from_user_enum: " + str(u)
+        return opts[u]
 
     # Get an integer oidx from those provided or None.
     # Polls the disk until an oidx message from the user appears.

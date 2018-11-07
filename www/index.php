@@ -25,6 +25,11 @@ var rmsgs_url;
 var amsgs_url;
 var smsgur_url;
 var omsgur_url;
+var emsgur_url;
+// enumeration show data
+var enum_opts;
+var enum_role;
+var enum_idx = 0;
 
 // Functions that don't access the server or the client-side display.
 
@@ -102,6 +107,37 @@ function disable_user_text() {
 // Enable the user to see and interact with the nearby object buttons.
 function enable_user_train_object_answer() {
   $('#nearby_objects_div').prop("hidden", false);
+}
+
+// Enable the user to see and scroll through enumeration options.
+// role_opts_str - a string of comma-separated role followed by options
+function enable_user_enum_answer(role_opts_str) {
+  // Preprocess contents communicated from Agent.
+  enum_opts = role_opts_str.split(',');
+  enum_role = enum_opts[0];
+  enum_opts.splice(0, 1);  // remove 'role' element from lead position
+
+  // Use fill_panel to populate initial state.
+  fill_panel('interface', enum_role, enum_opts[enum_idx]);
+
+  // Show enum interface; use fill_panel to populate.
+  $('#enum_opts_div').prop("hidden", false);
+}
+
+// Disable the user from the nearby object buttons.
+function disable_user_enum_answer() {
+  $('#enum_opts_div').prop("hidden", true);
+}
+
+// Chance the enum_idx by specified shift.
+function scroll_enum(idx_shift) {
+  enum_idx += idx_shift;
+  if (enum_idx >= enum_opts.length) {
+    enum_idx = enum_idx % enum_opts.length
+  } else if (enum_idx < 0) {
+    enum_idx += enum_opts.length
+  }
+  fill_panel('interface', enum_role, enum_opts[enum_idx]);
 }
 
 // Disable the user from the nearby object buttons.
@@ -217,7 +253,7 @@ function send_agent_user_text_input(d, uid) {
   var m = $('#user_input').val();  // read the value
   $('#user_input').val('');  // clear user text
   add_row_to_dialog_table(m, true, 0);  // add the user text to the dialog table history
-  send_agent_string_message(d, uid, m, false);  // send user string message to the agent
+  send_agent_string_message(d, uid, m, 's');  // send user string message to the agent
   show_agent_thinking();
   increment_user_turns();
 }
@@ -233,7 +269,18 @@ function send_agent_user_oidx_input(point, d, uid) {
   } else {
     add_row_to_dialog_table("*you point*", true, 0);
   }
-  send_agent_string_message(d, uid, point, true);  // send user string message to the agent
+  send_agent_string_message(d, uid, point, 'o');  // send user string message to the agent
+  show_agent_thinking();
+  increment_user_turns();
+}
+
+// Send currend enum_idx back to the agent.
+// d - the directory
+// uid - user id
+function send_agent_user_enum_input(d, uid) {
+  disable_user_enum_answer();
+  add_row_to_dialog_table("*you select an answer*", true, 0);
+  send_agent_string_message(d, uid, enum_idx, 'e');  // send user string message to the agent
   show_agent_thinking();
   increment_user_turns();
 }
@@ -253,13 +300,9 @@ function increment_user_turns() {
 // d - the directory where messages live
 // uid - the user id
 // m - the string message to write to file
-// om - whether this is an object message (true/false)
-function send_agent_string_message(d, uid, m, om) {
-  if (!om) {
-    var fn = d + uid + ".smsgu.txt";
-  } else {
-    var fn = d + uid + ".omsgu.txt";
-  }
+// mt - whether this is a string message 's', object message 'o', or enum message 'e'
+function send_agent_string_message(d, uid, m, mt) {
+  var fn = d + uid + "." + mt + "msgu.txt";
   var url = "manage_files.php?opt=write&fn=" + fn + "&m=" + encodeURIComponent(m);
   var success = http_get(url);
   if (success == "0") {
@@ -317,6 +360,12 @@ function poll_for_agent_messages() {
   if (contents) {  // oidx message request
     delete_row_from_dialog_table(-2);  // delete 'thinking'
     enable_user_train_object_answer();
+    num_polls_since_last_message = 0;
+  }
+  contents = get_and_delete_file(emsgur_url);
+  if (contents) {  // enum message request
+    delete_row_from_dialog_table(-2);  // delete 'thinking'
+    enable_user_enum_answer(contents);
     num_polls_since_last_message = 0;
   }
 
@@ -389,6 +438,7 @@ function show_task(d, uid, action, patient, recipient, source, goal) {
   amsgs_url = d + uid + ".amsgs.txt";
   smsgur_url = d + uid + ".smsgur.txt";
   omsgur_url = d + uid + ".omsgur.txt";
+  emsgur_url = d + uid + ".emsgur.txt";
   iv = setInterval(poll_for_agent_messages, 5000);
 }
 
@@ -662,6 +712,12 @@ else {
                 echo "</div>";
               }
             ?>
+          </div>
+          <div id="enum_opts_div" hidden>
+            <i>Select your answer by scrolling through the options using the arrow buttons.</i>
+            <button class="btn" onclick="scroll_enum(-1)">&larr;</button>
+            <button class="btn" onclick="send_agent_user_enum_input('<?php echo $d;?>', '<?php echo $uid;?>')">Choose</button>
+            <button class="btn" onclick="scroll_enum(1)">&rarr;</button>
           </div>
           <div>
             <div class="row">

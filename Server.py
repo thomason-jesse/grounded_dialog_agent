@@ -13,7 +13,7 @@ import time
 
 
 # DEBUG: current command,
-# DEBUG: python Server.py --parser_fn ../trained_parsers/mturk_base_parser_noembeddings_typeraising.pickle --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/init/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features/ --active_test_set 6,11,12,13,22,25,27,29 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold0/train/
+# DEBUG: python Server.py --parser_fn ../trained_parsers/mturk_base_parser_noembeddings_typeraising.pickle --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/init/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features/ --active_test_set 6,11,12,13,22,25,27,29 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold0/train/ --num_dialogs 3
 class Server:
 
     devnull = open(os.devnull, 'w')
