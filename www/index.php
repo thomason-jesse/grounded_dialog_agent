@@ -107,6 +107,7 @@ function disable_user_text() {
 // Enable the user to see and interact with the nearby object buttons.
 function enable_user_train_object_answer() {
   $('#nearby_objects_div').prop("hidden", false);
+  $('#user_input').attr("placeholder", "select an answer using the menu...");
 }
 
 // Enable the user to see and scroll through enumeration options.
@@ -122,11 +123,13 @@ function enable_user_enum_answer(role_opts_str) {
 
   // Show enum interface; use fill_panel to populate.
   $('#enum_opts_div').prop("hidden", false);
+  $('#user_input').attr("placeholder", "select an answer using the menu...");
 }
 
 // Disable the user from the nearby object buttons.
 function disable_user_enum_answer() {
   $('#enum_opts_div').prop("hidden", true);
+  $('#user_input').attr("placeholder", "type your response here...");
 }
 
 // Chance the enum_idx by specified shift.
@@ -143,6 +146,7 @@ function scroll_enum(idx_shift) {
 // Disable the user from the nearby object buttons.
 function disable_user_train_object_answer() {
   $('#nearby_objects_div').prop("hidden", true);
+  $('#user_input').attr("placeholder", "type your response here...");
 }
 
 // Hide all the panels.
@@ -508,8 +512,8 @@ require_once('functions.php');
 # Variables that control what tasks and objects will be shown.
 # These should be changed whenever a new Turk task is made.
 $fold = 0;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
-$setting = "test";  # either init, train, or test
-$run_forever = true;  # if false, still running MTurk experiments, if true, show additional info
+$setting = "train";  # either init, train, or test
+$run_forever = false;  # if false, still running MTurk experiments, if true, show additional info
 
 $d = 'client/';
 $active_train_set = get_active_train_set($fold);

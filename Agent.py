@@ -37,6 +37,7 @@ class Agent:
         self.threshold_to_accept_role = 1.0  # include role filler in questions above this threshold
         self.belief_update_rate = 0.9  # 0.5 (adj for demo)  # interpolation between belief state and grounding state
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
+        self.none_start_mass_factor = 1  # how much None mass per role versus all else; if 1, 50/50, if 9, 9 None to 1 else
         self.max_perception_subdialog_qs = max_perception_subdialog_qs
         self.max_ask_before_enumeration = max_ask_before_enumeration
         self.word_neighbors_to_consider_as_synonyms = word_neighbors_to_consider_as_synonyms
@@ -105,8 +106,8 @@ class Agent:
                                                  self.action_args['move']['goal'])}}
         # question generation supports None action, but I think it's weird maybe so I removed it here
         for r in ['patient', 'recipient', 'source', 'goal']:
-            # None starts with half the probability mass to encourage clarification over instance checks.
-            self.action_belief_state[r][None] = len(self.action_belief_state[r])
+            # None starts with chunk of the probability mass to encourage clarification over instance checks.
+            self.action_belief_state[r][None] = self.none_start_mass_factor * len(self.action_belief_state[r])
         for r in self.roles:
             self.action_belief_state[r] = self.make_distribution_from_positive_counts(self.action_belief_state[r])
         if debug:
@@ -120,7 +121,7 @@ class Agent:
         first_utterance = True
         perception_subdialog_qs = 0  # track how many have been asked so far to disallow more.
         asked_role_repeat = {}  # count the number of times we've requested a role in an open-ended question.
-        # last_q = None
+        last_q = None
         # last_rvs = None
         while (action_confirmed['action'] is None or
                None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
@@ -133,6 +134,19 @@ class Agent:
                 q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
                         action_chosen, self.threshold_to_accept_role)
                 rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
+
+                # If we are about to ask a second instance confirmation, sample a new question
+                # that asks for an open-ended clarification instead.
+                if role_asked is not None and q == last_q:
+                    action_chosen_open = {r: action_chosen[r] for r in self.roles}
+                    action_chosen_open[role_asked] = (None, 0)
+                    q, role_asked, _, roles_in_q = self.get_question_from_sampled_action(
+                        action_chosen_open, self.threshold_to_accept_role)
+                    rvs = {r: action_chosen[r][0] for r in self.roles if r in roles_in_q}
+
+                # If our question is identidcal to the last, apologize to encourage rewording.
+                if q == last_q:
+                    self.io.say_to_user("Sorry, I didn't understand that.")
                 
                 # Implementation to get a novel question to avoid asking annoying repeats.
                 # With enumeration backoff, allowing annoying repeats speeds up convergence, so it's fine.
@@ -158,6 +172,7 @@ class Agent:
                 roles_in_q = []
                 rvs = {}
             first_utterance = False
+            last_q = q
 
             # Ask question and get user response.
             if role_asked is None or (action_chosen[role_asked][0] is None or role_asked not in roles_in_q):
