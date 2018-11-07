@@ -30,6 +30,7 @@ var emsgur_url;
 var enum_opts;
 var enum_role;
 var enum_idx = 0;
+var enum_curr_panel = '#interface_goal_panel';
 
 // Functions that don't access the server or the client-side display.
 
@@ -116,10 +117,13 @@ function enable_user_enum_answer(role_opts_str) {
   // Preprocess contents communicated from Agent.
   enum_opts = role_opts_str.split(',');
   enum_role = enum_opts[0];
+  enum_curr_panel = '#interface_' + enum_role + '_panel';
   enum_opts.splice(0, 1);  // remove 'role' element from lead position
+  enum_idx = 0;  // start at most confident guess (and in range!)
 
   // Use fill_panel to populate initial state.
   fill_panel('interface', enum_role, enum_opts[enum_idx]);
+  $('#enum_opts_div').prependTo(enum_curr_panel);
 
   // Show enum interface; use fill_panel to populate.
   $('#enum_opts_div').prop("hidden", false);
@@ -128,6 +132,7 @@ function enable_user_enum_answer(role_opts_str) {
 
 // Disable the user from the nearby object buttons.
 function disable_user_enum_answer() {
+  $('#enum_opts_div').prependTo('#enum_perm_loc');
   $('#enum_opts_div').prop("hidden", true);
   $('#user_input').attr("placeholder", "type your response here...");
 }
@@ -140,7 +145,9 @@ function scroll_enum(idx_shift) {
   } else if (enum_idx < 0) {
     enum_idx += enum_opts.length
   }
+  $('#enum_opts_div').prependTo('#enum_perm_loc');
   fill_panel('interface', enum_role, enum_opts[enum_idx]);
+  $('#enum_opts_div').prependTo(enum_curr_panel);
 }
 
 // Disable the user from the nearby object buttons.
@@ -717,11 +724,13 @@ else {
               }
             ?>
           </div>
-          <div id="enum_opts_div" hidden>
-            <i>Select your answer by scrolling through the options using the arrow buttons.</i>
-            <button class="btn" onclick="scroll_enum(-1)">&larr;</button>
-            <button class="btn" onclick="send_agent_user_enum_input('<?php echo $d;?>', '<?php echo $uid;?>')">Choose</button>
-            <button class="btn" onclick="scroll_enum(1)">&rarr;</button>
+          <div id="enum_perm_loc">
+            <div id="enum_opts_div" hidden>
+              <i>Select your answer by scrolling through the options using the arrow buttons.</i>
+              <button class="btn" onclick="scroll_enum(-1)">&larr;</button>
+              <button class="btn" onclick="send_agent_user_enum_input('<?php echo $d;?>', '<?php echo $uid;?>')">Choose</button>
+              <button class="btn" onclick="scroll_enum(1)">&rarr;</button>
+            </div>
           </div>
           <div>
             <div class="row">
