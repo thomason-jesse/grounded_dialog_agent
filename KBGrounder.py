@@ -3,6 +3,7 @@ __author__ = 'jesse'
 
 import copy
 import KnowledgeBase
+import signal
 import time
 
 class KBGrounder:
@@ -22,20 +23,12 @@ class KBGrounder:
 
     # Given a semantic tree, return a list of trees with the lambdas of the original tree filled by every possible
     # grounding that satisfies those lambdas.
-    def ground_semantic_tree(self, root, timeout=None):
+    def ground_semantic_tree(self, root):
         debug = False
         if debug:
             print "ground_semantic_tree: grounding at root " + self.parser.print_parse(root)
 
         start_time = time.time()
-
-        def should_timeout():
-            return timeout is not None and time.time() - start_time > timeout
-
-        def timeout_for_recursive_call():
-            if timeout is None:
-                return None
-            return timeout - (time.time() - start_time)
 
         # If the head of the tree is a lambda instantiation, add candidates for all its possible fills.
         # Every grounding entry is a tuple of a tree (or bool), the lambda values instantiated at and below root,
@@ -43,14 +36,13 @@ class KBGrounder:
         groundings = []
         if root.is_lambda_instantiation:
             for assignment in self.assignments_for_type(root.type):  # assignments are ont pred idxs
-                if should_timeout():
-                    return
+
                 # Form candidate sub-tree with this assignment instantiated.
                 candidate = copy.deepcopy(root.children[0])
                 self.instantiate_lambda(candidate, root.lambda_name, assignment)
 
                 # Call this grounding routine on the candidate to get finished products.
-                candidate_groundings = self.ground_semantic_tree(candidate, timeout=timeout_for_recursive_call())
+                candidate_groundings = self.ground_semantic_tree(candidate)
                 if candidate_groundings is None:
                     return None
                 groundings.extend([(cg, [assignment] + la, conf) for cg, la, conf in candidate_groundings])
@@ -65,7 +57,7 @@ class KBGrounder:
             # children to return appropriately.
             child_groundings = []
             for c in root.children:
-                result = self.ground_semantic_tree(c, timeout=timeout_for_recursive_call())
+                result = self.ground_semantic_tree(c)
                 if result is None:
                     return None
                 child_groundings.append(result)
@@ -82,8 +74,6 @@ class KBGrounder:
                     ci_la = child_groundings[0][cidx][1]
                     conf = child_groundings[0][cidx][2]
                     for cjdx in range(len(child_groundings[1])):  # equals takes two children
-                        if should_timeout():
-                            return
                         cj_tree = child_groundings[1][cjdx][0]
                         cj_la = child_groundings[1][cjdx][1]
                         conf *= child_groundings[1][cjdx][2]
@@ -163,8 +153,6 @@ class KBGrounder:
                 # Assemble queries from the predicate and its children.
                 queries = [[self.parser.ontology.preds[root.idx]]]  # every child combination will extend this query set
                 for cidx in range(len(child_groundings)):
-                    if should_timeout():
-                        return
                     queries_ext = []
                     for gidx in range(len(child_groundings[cidx])):
                         args = [self.parser.ontology.preds[child_groundings[cidx][gidx][0].idx]]
@@ -184,8 +172,6 @@ class KBGrounder:
                 # Run queries to get groundings.
                 # Ignore lambda assignments contained below this level.
                 for q in queries:
-                    if should_timeout():
-                        return
                     if debug:
                         print "ground_semantic_tree: running kb query q=" + str(q)
                     pos_conf, neg_conf = self.kb.query(tuple(q))
@@ -207,8 +193,6 @@ class KBGrounder:
                     inst_conf = []
                     for gidx in range(len(child_groundings[cidx])):
                         for br_idx in range(len(build_returns)):
-                            if should_timeout():
-                                return
                             inst_c = copy.deepcopy(build_returns[br_idx])
                             inst_c.children[cidx] = child_groundings[cidx][gidx][0]
                             inst_children.append(inst_c)

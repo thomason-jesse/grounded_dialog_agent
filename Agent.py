@@ -23,8 +23,8 @@ class Agent:
                  word_neighbors_to_consider_as_synonyms=3,  # how many lexicon items to beam through for new pred
                  max_perception_subdialog_qs=5,  # based on CORL17 experimental condition
                  max_ask_before_enumeration=2):  # max times to ask the same question before using an enumeration backoff
-        random.seed(27)  # (adj for demo)
-        np.random.seed(seed=27)  # (adj for demo)
+        # random.seed(27)  # (adj for demo)
+        # np.random.seed(seed=27)  # (adj for demo)
         self.parser = parser
         self.grounder = grounder
         self.io = io
@@ -35,14 +35,14 @@ class Agent:
         # hyperparameters
         self.parse_beam = 1
         self.threshold_to_accept_role = 1.0  # include role filler in questions above this threshold
-        self.belief_update_rate = 0.9  # 0.5 (adj for demo)  # interpolation between belief state and grounding state
+        self.belief_update_rate = 0.5  # interpolation between belief state and grounding state
         self.threshold_to_accept_perceptual_conf = 0.7  # per perceptual predicate, e.g. 0.7*0.7 for two
         self.none_start_mass_factor = 1  # how much None mass per role versus all else; if 1, 50/50, if 9, 9 None to 1 else
         self.max_perception_subdialog_qs = max_perception_subdialog_qs
         self.max_ask_before_enumeration = max_ask_before_enumeration
         self.word_neighbors_to_consider_as_synonyms = word_neighbors_to_consider_as_synonyms
-        self.budget_for_parsing = 300  # 15 (adj for   # how many seconds we allow the parser
-        self.budget_for_grounding = 300  # 10 (adj for demo)  # how many seconds we allow the grounder
+        self.budget_for_parsing = 15  # how many seconds we allow the parser
+        self.budget_for_grounding = 10  # how many seconds we allow the grounder
         self.latent_forms_to_consider_for_induction = 32  # maximum parses to consider for grounding during induction
         # self.get_novel_question_beam = 10  # how many times to sample for a new question before giving up if identical
 
@@ -64,6 +64,10 @@ class Agent:
         self.new_perceptual_labels = []
         # pairs of (pred, pred, syn) for syn bool gathered during perceptual sub-dialogs
         self.perceptual_pred_synonymy = []
+
+        # track parsing and grounding timeouts.
+        self.parser_timeouts = 0
+        self.grounder_timeouts = 0
 
     # Start a new action dialog from utterance u given by a user.
     # Clarifies the arguments of u until the action is confirmed by the user.
@@ -122,6 +126,8 @@ class Agent:
         perception_subdialog_qs = 0  # track how many have been asked so far to disallow more.
         asked_role_repeat = {}  # count the number of times we've requested a role in an open-ended question.
         last_q = None
+        self.parser_timeouts = 0
+        self.grounder_timeouts = 0
         # last_rvs = None
         while (action_confirmed['action'] is None or
                None in [action_confirmed[r] for r in self.action_args[action_confirmed['action']].keys()]):
@@ -290,7 +296,7 @@ class Agent:
             self.io.perform_action(action_confirmed)
 
         # Return the chosen action and the user utterances by role from this dialog.
-        return action_confirmed, user_utterances_by_role
+        return action_confirmed, user_utterances_by_role, self.parser_timeouts, self.grounder_timeouts
 
     # Given a dictionary of key -> value for positive values, return a dictionary over the same keys
     # with the value ssumming to 1.
@@ -776,7 +782,7 @@ class Agent:
             sfidx = self.parser.lexicon.surface_forms.index(tk)
             if sfidx not in self.parser.theta._skipwords_given_surface_form:
                 self.parser.theta._skipwords_given_surface_form[sfidx] =\
-                    - (self.parser.theta.lexicon_weight * 2)  # * 2 new for demonstration
+                    - (self.parser.theta.lexicon_weight)  # * 2 new for demonstration
             if sem not in self.parser.lexicon.semantic_forms:
                 self.parser.lexicon.semantic_forms.append(sem)
             sem_idx = self.parser.lexicon.semantic_forms.index(sem)
@@ -1078,11 +1084,9 @@ class Agent:
         # TODO: confidence could be propagated through the confidence values returned by the grounder, such that
         # TODO: this function returns tuples of (grounded parse, parser conf * grounder conf)
         parse_generator = self.parser.most_likely_cky_parse(u, reranker_beam=self.parse_beam, timeout=self.budget_for_parsing)
-        try:
-            cgtr = next(parse_generator)
-        except StopIteration:
-            print "parse_and_ground_utterance timed out"
-            cgtr = None
+        cgtr = next(parse_generator)
+        if self.parser.parsing_timeout_on_last_parse:
+            self.parser_timeouts += 1
         p = None
         if cgtr is not None and cgtr[0] is not None:
             p = cgtr[0]  # most_likely_cky_parse returns a 4-tuple, the first of which is the parsenode
@@ -1103,8 +1107,8 @@ class Agent:
     def ground_semantic_form(self, s):
         debug = False
 
-        gs = self.grounder.ground_semantic_tree(root=s, timeout=self.budget_for_parsing)
-
+        gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": s},
+                                             self.budget_for_parsing)
         if gs is not None:
             # normalize grounding confidences such that they sum to one and return pairs of grounding, conf
             gn = self.sort_groundings_by_conf(gs)
@@ -1117,6 +1121,7 @@ class Agent:
             gn = []
             if debug:
                 print "ground_semantic_form: grounding timeout for " + self.parser.print_parse(s)
+            self.grounder_timeouts += 1
 
         return gn
 
@@ -1592,9 +1597,10 @@ class Agent:
                            "' with grounding " + self.parser.print_parse(g))
 
                 parses = []
+                # no timeouts during induction/training; allow parser to wear itself out looking for solutions
                 cky_parse_generator = self.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam,
-                                                                        debug=False)
-                cgtr = self.call_generator_with_timeout(cky_parse_generator, None)  # self.budget_for_parsing)
+                                                                        debug=False, timeout=None)
+                cgtr = next(cky_parse_generator)
                 parse = None
                 if cgtr is not None:
                     parse = cgtr[0]
@@ -1606,8 +1612,8 @@ class Agent:
                     if verbose > 2:
                         print ("get_semantic_forms_for_induced_pairs: ... grounding semantic form " +
                                self.parser.print_parse(parse.node, True) + " with scores p " + str(score))
-                    gs = self.call_function_with_timeout(self.grounder.ground_semantic_tree, {"root": parse.node},
-                                                         self.budget_for_grounding)
+                    # Allow grounder to run indefinitely at training time.
+                    gs = self.grounder.ground_semantic_tree(parse.node, timeout=None)
                     if gs is not None:
                         gn = self.sort_groundings_by_conf(gs)
                     else:
@@ -1625,7 +1631,7 @@ class Agent:
                                        " with scores p " + str(score) + ", g " + str(g_score))
                                 break
 
-                    cgtr = self.call_generator_with_timeout(cky_parse_generator, None)  # a.budget_for_parsing)
+                    cgtr = next(cky_parse_generator)
                     parse = None
                     if cgtr is not None:
                         parse = cgtr[0]
@@ -1666,38 +1672,19 @@ class Agent:
 
         return utterance_semantic_pairs
 
-    # Call the given generator with the given time limit and return None if there is a timeout.
-    # https://stackoverflow.com/questions/366682/how-to-limit-execution-time-of-a-function-call-in-python
-    # g - the generator
-    # t - the timeout (in seconds); if None, just calls next on the generator
-    # returns - the result of calling next(g) or None
-    def call_generator_with_timeout(self, g, t):
-        print("WARNING: call_generator_with_timeout was called, but the timeout functionality is not working")
-        if t is not None:
-            #signal.signal(signal.SIGALRM, self.timeout_signal_handler)
-            #signal.alarm(t)
-            try:
-                r = next(g)
-            except AssertionError:
-                r = None
-            #signal.alarm(0)
-        else:
-            r = next(g)
-        return r
-
     def call_function_with_timeout(self, f, args, t):
-        print("WARNING: call_generator_with_timeout was called, but the timeout functionality is not working")
         if t is not None:
-            #signal.signal(signal.SIGALRM, self.timeout_signal_handler)
-            #signal.alarm(t)
+            signal.signal(signal.SIGALRM, self.timeout_signal_handler)
+            signal.alarm(t)
             try:
                 r = f(**args)
-            except AssertionError:
+            except RuntimeError:
                 r = None
-            #signal.alarm(0)
+            signal.alarm(0)
         else:
             r = f(**args)
         return r
 
     def timeout_signal_handler(self, signum, frame):
-        raise AssertionError()
+        raise RuntimeError()
+

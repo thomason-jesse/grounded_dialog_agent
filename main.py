@@ -128,12 +128,16 @@ def main():
         perception_labels_requested = []
         action_confirmed_per_dialog = []
         utterances_by_role_per_dialog = []
+        parser_timeouts_per_dialog = []
+        grounder_timeouts_per_dialog = []
         for _ in range(num_dialogs):
             print "main: running command dialog..."
-            action_confirmed, user_utterances_by_role = a.start_action_dialog(perception_labels_requested=
-                                                                              perception_labels_requested)
+            action_confirmed, user_utterances_by_role, parser_timeouts, grounder_timeouts = \
+                a.start_action_dialog(perception_labels_requested=perception_labels_requested)
             action_confirmed_per_dialog.append(action_confirmed)
             utterances_by_role_per_dialog.append(user_utterances_by_role)
+            parser_timeouts_per_dialog.append(parser_timeouts)
+            grounder_timeouts_per_dialog.append(grounder_timeouts)
             print "main: ... done; got action " + str(action_confirmed)
 
             # Write out new information gleaned from this user after every dialog.
@@ -141,7 +145,8 @@ def main():
                 print "main: writing new information from dialog(s) to file..."
                 fn = os.path.join(data_dir, uid + ".pickle")
                 d = [action_confirmed_per_dialog, utterances_by_role_per_dialog,
-                     a.new_perceptual_labels, a.perceptual_pred_synonymy]
+                     a.new_perceptual_labels, a.perceptual_pred_synonymy,
+                     parser_timeouts_per_dialog, grounder_timeouts_per_dialog]
                 with open(fn, 'wb') as f:
                     pickle.dump(d, f)
                 print "main: ... done; wrote data d = " + str(d)
