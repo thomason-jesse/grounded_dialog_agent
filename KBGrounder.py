@@ -26,7 +26,7 @@ class KBGrounder:
     def ground_semantic_tree(self, root):
         debug = False
         if debug:
-            print "ground_semantic_tree: grounding at root " + self.parser.print_parse(root)
+            print("ground_semantic_tree: grounding at root " + self.parser.print_parse(root))
 
         start_time = time.time()
 
@@ -63,8 +63,8 @@ class KBGrounder:
                 child_groundings.append(result)
             child_groundings = [self.ground_semantic_tree(c) for c in root.children]
             if debug:
-                print ("ground_semantic_tree: for root " + self.parser.print_parse(root) + ", child_groundings: " +
-                       str(child_groundings))
+                print("ground_semantic_tree: for root " + self.parser.print_parse(root) + ", child_groundings: " +
+                      str(child_groundings))
 
             # Logical predicates.
             if self.is_logical(root.idx, 'equals'):
@@ -116,7 +116,7 @@ class KBGrounder:
 
             elif self.is_logical(root.idx, 'or'):
                 # TODO: implement 'or' similar to 'and' but returning all matches with at least one true child
-                print "WARNING: KBGrounder: logical 'or' not yet implemented"
+                print("WARNING: KBGrounder: logical 'or' not yet implemented")
                 pass
 
             elif self.is_logical(root.idx, 'the'):
@@ -173,7 +173,7 @@ class KBGrounder:
                 # Ignore lambda assignments contained below this level.
                 for q in queries:
                     if debug:
-                        print "ground_semantic_tree: running kb query q=" + str(q)
+                        print("ground_semantic_tree: running kb query q=" + str(q))
                     pos_conf, neg_conf = self.kb.query(tuple(q))
                     if pos_conf > 0:
                         groundings.append((True, [], pos_conf))
@@ -231,7 +231,7 @@ class KBGrounder:
                 to_process.extend(n.children)
 
         if debug:
-            print "instantiate_lambda: produced " + self.parser.print_parse(root)
+            print("instantiate_lambda: produced " + self.parser.print_parse(root))
 
     # returns all possible ontological assignments to lambdas of a given type
     def assignments_for_type(self, t):

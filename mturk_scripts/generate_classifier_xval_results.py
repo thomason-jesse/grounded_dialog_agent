@@ -33,6 +33,7 @@ def main():
     sum_nomv_pk = 0
     sum_nomv_no = 0
     sum_nomv_p = 0
+    print("PRED:\tKAPPA\t(#OBJS)\t[[TN, FP], [FN, TP]]")
     for p in g.kb.perceptual_preds:
         pidx = g.kb.perceptual_preds.index(p)
         cm = [[0, 0], [0, 0]]
@@ -63,7 +64,7 @@ def main():
         # Get predicate signed kappa.
         if num_labeled_objs > 1:
             pk = PerceptionClassifiers.get_signed_kappa(cm)
-            print p + ":\t" + str(pk) + "\t(" + str(num_labeled_objs) + ")\t" + str(cm)
+            print(str(p) + ":\t" + str(pk) + "\t(" + str(num_labeled_objs) + ")\t" + str(cm))
 
             # Track.
             sum_pk += pk
@@ -76,11 +77,11 @@ def main():
 
     # Averages.
     if sum_p > 0:
-        print ("average:\t" + str(sum_pk / sum_p) + "\t(" + str(float(sum_no) / sum_p) +
-               " objs)\t(" + str(sum_p) + " preds)")
+        print("average:\t" + str(sum_pk / sum_p) + "\t(" + str(float(sum_no) / sum_p) +
+              " objs)\t(" + str(sum_p) + " preds)")
     if sum_nomv_p > 0:
-        print ("average (non-majority vote):\t" + str(sum_nomv_pk / sum_nomv_p) +
-               "\t(" + str(float(sum_nomv_no) / sum_nomv_p) + " objs)\t(" + str(sum_nomv_p) + " preds)")
+        print("average (non-majority vote):\t" + str(sum_nomv_pk / sum_nomv_p) +
+              "\t(" + str(float(sum_nomv_no) / sum_nomv_p) + " objs)\t(" + str(sum_nomv_p) + " preds)")
 
 
 if __name__ == '__main__':

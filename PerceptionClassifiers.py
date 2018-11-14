@@ -30,11 +30,11 @@ class PerceptionClassifiers:
 
         self.classifiers_fn = "classifiers_" + '_'.join([str(oidx) for oidx in active_test_set]) + ".pickle"
         if debug:
-            print "classifiers_fn = " + self.classifiers_fn
+            print("classifiers_fn = " + self.classifiers_fn)
 
         # Read in source information.
         if debug:
-            print "reading in source information..."
+            print("reading in source information...")
         predicate_fn = os.path.join(self.source_dir, "predicates.pickle")
         if os.path.isfile(predicate_fn):
             with open(predicate_fn, 'rb') as f:
@@ -62,19 +62,19 @@ class PerceptionClassifiers:
             self.contexts.extend([(b, m) for m in self.modalities
                                   if m in self.features[self.oidxs[0]][b].keys()])
         if debug:
-            print "... done"
+            print("... done")
 
         # Read in cashed classifiers or train fresh ones.
         classifier_fn = os.path.join(source_dir, self.classifiers_fn)
         if os.path.isfile(classifier_fn):
             if debug:
-                print "reading cached classifiers from file..."
+                print("reading cached classifiers from file...")
             with open(classifier_fn, 'rb') as f:
                 self.classifiers, self.kappas = pickle.load(f)
                 self.weights = [self.get_weight_from_kappa(pidx) for pidx in range(len(self.predicates))]
         else:
             if debug:
-                print "training classifiers from source information..."
+                print("training classifiers from source information...")
             self.classifiers = [None for _ in range(len(self.predicates))]  # pidx, b, m
             self.kappas = [{b: {m: 0 for _b, m in self.contexts if b == _b}
                             for b in self.behaviors}
@@ -82,10 +82,10 @@ class PerceptionClassifiers:
             self.weights = [self.get_weight_from_kappa(pidx) for pidx in range(len(self.predicates))]
             self.train_classifiers(range(len(self.predicates)))
         if debug:
-            print "... done;"
+            print("... done;")
             for pidx in range(len(self.predicates)):
-                print ("... " + self.predicates[pidx] + ": " +
-                       ("trained" if self.classifiers[pidx] is not None else "untrained"))
+                print ("... " + str(self.predicates[pidx]) + ":\t" +
+                       ("trained" if self.classifiers[pidx] is not None else "-"))
 
     # Given a predicate idx, get the normalized weights based on kappas for that predicate
     def get_weight_from_kappa(self, pidx):
@@ -114,7 +114,7 @@ class PerceptionClassifiers:
             # Run classifiers if trained.
             if self.classifiers[pidx] is not None:
                 if debug:
-                    print "running classifier '" + self.predicates[pidx] + "' on object " + str(oidx)
+                    print("running classifier '" + self.predicates[pidx] + "' on object " + str(oidx))
                 pos_conf = 0
                 neg_conf = 0
                 for b, m in self.contexts:
@@ -127,13 +127,13 @@ class PerceptionClassifiers:
                             neg_conf += self.weights[pidx][b][m] / float(len(z))
             else:
                 if debug:
-                    print "classifier '" + self.predicates[pidx] + "' is untrained"
+                    print("classifier '" + self.predicates[pidx] + "' is untrained")
                 pos_conf = 0.5  # confidences are equally uncertain
                 neg_conf = 0.5
 
         # Prepare and send response.
         if debug:
-            print "... returning pos_conf " + str(pos_conf) + " and neg_conf " + str(neg_conf)
+            print("... returning pos_conf " + str(pos_conf) + " and neg_conf " + str(neg_conf))
         return pos_conf, neg_conf
 
     # Updates the in-memory classifiers given new labels in the request.
@@ -166,7 +166,7 @@ class PerceptionClassifiers:
         debug = False
 
         if debug:
-            print "committing new predicates, labels, and classifiers to disk"
+            print("committing new predicates, labels, and classifiers to disk")
         with open(os.path.join(self.source_dir, "predicates.pickle"), 'wb') as f:
             pickle.dump(self.predicates, f)
         with open(os.path.join(self.source_dir, "labels.pickle"), 'wb') as f:
@@ -180,7 +180,7 @@ class PerceptionClassifiers:
     def get_pairs_from_labels(self, pidx):
         debug = False
         if debug:
-            print "get_pairs_from_labels: called for pred '" + self.predicates[pidx] + "'"
+            print("get_pairs_from_labels: called for pred '" + self.predicates[pidx] + "'")
 
         pairs = []
         oidx_votes = {}
@@ -192,7 +192,7 @@ class PerceptionClassifiers:
         for oidx in oidx_votes:
             s = sum(oidx_votes[oidx])
             if debug:
-                print "get_pairs_from_labels: ... oidx " + str(oidx) + " vote sum " + str(s)
+                print("get_pairs_from_labels: ... oidx " + str(oidx) + " vote sum " + str(s))
             if s > 0:
                 pairs.append((oidx, 1))
             elif s < 0:
@@ -204,12 +204,12 @@ class PerceptionClassifiers:
         debug = False
 
         if debug:
-            print "training classifiers " + ','.join([self.predicates[pidx] for pidx in pidxs])
+            print("training classifiers " + ','.join([self.predicates[pidx] for pidx in pidxs]))
         for pidx in pidxs:
             train_pairs = self.get_pairs_from_labels(pidx)
             if -1 in [l for _, l in train_pairs] and 1 in [l for _, l in train_pairs]:
                 if debug:
-                    print "... '" + self.predicates[pidx] + "' fitting with pairs " + str(train_pairs)
+                    print("... '" + self.predicates[pidx] + "' fitting with pairs " + str(train_pairs))
                 pc = {}
                 pk = {}
                 for b, m in self.contexts:
@@ -233,7 +233,7 @@ class PerceptionClassifiers:
                                         for idx in range(len(self.contexts))]))
             else:
                 if debug:
-                    print "... '" + self.predicates[pidx] + "' lacks a +/- pair to fit"
+                    print("... '" + self.predicates[pidx] + "' lacks a +/- pair to fit")
                 self.classifiers[pidx] = None
                 self.kappas[pidx] = {b: {m: 0 for _b, m in self.contexts if b == _b}
                                      for b in self.behaviors}
