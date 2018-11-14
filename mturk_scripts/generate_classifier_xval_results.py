@@ -27,12 +27,9 @@ def main():
                               active_test_set)
 
     # For every predicate, calculate the cross-validation performance.
-    sum_pk = 0
-    sum_no = 0
-    sum_p = 0
-    sum_nomv_pk = 0
-    sum_nomv_no = 0
-    sum_nomv_p = 0
+    sum_pk = sum_no = sum_p = 0
+    sum_nomv_pk = sum_nomv_no = sum_nomv_p = 0
+    sum_trained_pk = sum_trained_no = sum_trained_p = 0
     print("PRED:\tKAPPA\t(#OBJS)\t[[TN, FP], [FN, TP]]")
     for p in g.kb.perceptual_preds:
         pidx = g.kb.perceptual_preds.index(p)
@@ -61,6 +58,12 @@ def main():
             cm[vote][predicted] += 1
             num_labeled_objs += 1
 
+            # Re-assign old labels.
+            g.kb.pc.labels = old_labels
+
+        # Retrain original classifier.
+        g.kb.pc.train_classifiers([pidx])
+
         # Get predicate signed kappa.
         if num_labeled_objs > 1:
             pk = PerceptionClassifiers.get_signed_kappa(cm)
@@ -74,6 +77,10 @@ def main():
                 sum_nomv_pk += pk
                 sum_nomv_no += num_labeled_objs
                 sum_nomv_p += 1
+            if g.kb.pc.classifiers[g.kb.pc.predicates.index(p)] is not None:
+                sum_trained_pk += pk
+                sum_trained_no += num_labeled_objs
+                sum_trained_p += 1
 
     # Averages.
     if sum_p > 0:
@@ -82,6 +89,9 @@ def main():
     if sum_nomv_p > 0:
         print("average (non-majority vote):\t" + str(sum_nomv_pk / sum_nomv_p) +
               "\t(" + str(float(sum_nomv_no) / sum_nomv_p) + " objs)\t(" + str(sum_nomv_p) + " preds)")
+    if sum_trained_p > 0:
+        print("average (trained):\t" + str(sum_trained_pk / sum_trained_p) +
+              "\t(" + str(float(sum_trained_no) / sum_trained_p) + " objs)\t(" + str(sum_trained_p) + " preds)")
 
 
 if __name__ == '__main__':

@@ -55,6 +55,8 @@ class PerceptionClassifiers:
             self.oidxs = pickle.load(f)
         with open(os.path.join(self.feature_dir, "features.pickle"), 'rb') as f:
             self.features = pickle.load(f)
+        # TODO: update these lists to vary different conditions and test whether they help agreement scores.
+        # TODO: add new features to features.pickle after extracting from ResNet.
         self.behaviors = ["drop", "grasp", "hold", "lift", "look", "lower", "press", "push"]
         self.modalities = ["audio", "color", "fpfh", "haptics", "fc7"]
         self.contexts = []
