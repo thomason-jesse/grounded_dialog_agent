@@ -14,19 +14,21 @@ class KnowledgeBase:
 
     # Initialize given a facts filename.
     def __init__(self, static_facts_fn, perception_source_dir, perception_feature_dir, active_test_set,
-                 ontology):
+                 ontology, behaviors=None, modalities=None):
         self.static_facts = None
         self.static_preds = None
         self.perceptual_preds = None
         self.ontology = ontology
 
         # Initialize static_facts and static_preds from facts file.
-        self.extract_facts_from_file(static_facts_fn)
+        if self.ontology is not None:  # Ontology can be None if we're just running PC using a KB.
+            self.extract_facts_from_file(static_facts_fn)
 
         # Initialize perception classifiers from source directories.
         self.active_test_set = active_test_set
         self.pc = PerceptionClassifiers.PerceptionClassifiers(perception_source_dir, perception_feature_dir,
-                                                              active_test_set, kernel='linear')
+                                                              active_test_set, kernel='linear',
+                                                              behaviors=behaviors, modalities=modalities)
         self.perceptual_preds = self.pc.predicates  # Should make perceptual_preds a reference for pc preds.
 
     # Read in facts from file.

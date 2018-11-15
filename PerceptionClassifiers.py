@@ -9,8 +9,11 @@ from sklearn.svm import SVC
 
 class PerceptionClassifiers:
 
-    def __init__(self, source_dir, feature_dir, active_test_set, kernel='linear'):
-        debug = True
+    def __init__(self, source_dir, feature_dir, active_test_set,
+                 kernel='linear',
+                 behaviors=None,
+                 modalities=None,
+                 debug=False):
 
         # Initialization parameters.
         self.source_dir = source_dir  # str; expects predicates.pickle, labels.pickle for object/pred relationships
@@ -55,10 +58,14 @@ class PerceptionClassifiers:
             self.oidxs = pickle.load(f)
         with open(os.path.join(self.feature_dir, "features.pickle"), 'rb') as f:
             self.features = pickle.load(f)
-        # TODO: update these lists to vary different conditions and test whether they help agreement scores.
-        # TODO: add new features to features.pickle after extracting from ResNet.
-        self.behaviors = ["drop", "grasp", "hold", "lift", "look", "lower", "press", "push"]
-        self.modalities = ["audio", "color", "fpfh", "haptics", "fc7"]
+        if behaviors is None:
+            self.behaviors = ["drop", "grasp", "hold", "lift", "look", "lower", "press", "push"]
+        else:
+            self.behaviors = behaviors
+        if modalities is None:
+            self.modalities = ["audio", "color", "fpfh", "haptics", "fc7"]
+        else:
+            self.modalities = modalities
         self.contexts = []
         for b in self.behaviors:
             self.contexts.extend([(b, m) for m in self.modalities

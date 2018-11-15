@@ -6,31 +6,22 @@ sys.path.append('../')  # necessary to import KBGrounder from above directory
 sys.path.append('../../tsp')
 
 import argparse
-import pickle
 import KBGrounder
 import PerceptionClassifiers
 
 
-def main():
-
-    # Load parameters from command line.
-    parser_fn = FLAGS_parser_fn
-    kb_static_facts_fn = FLAGS_kb_static_facts_fn
-    kb_perception_source_dir = FLAGS_kb_perception_source_dir
-    kb_perception_feature_dir = FLAGS_kb_perception_feature_dir
-    active_test_set = [str(oidx) for oidx in FLAGS_active_test_set.split(',')]
-
+def get_results_for_behaviors_and_modalities(kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
+                                             active_test_set, behaviors, modalities, debug=False):
     # Instantiate a grounder.
-    with open(parser_fn, 'rb') as f:
-        p = pickle.load(f)
-    g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
-                              active_test_set)
+    g = KBGrounder.KBGrounder(None, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
+                              active_test_set, behaviors=behaviors, modalities=modalities)
 
     # For every predicate, calculate the cross-validation performance.
     sum_pk = sum_no = sum_p = 0
     sum_nomv_pk = sum_nomv_no = sum_nomv_p = 0
     sum_trained_pk = sum_trained_no = sum_trained_p = 0
-    print("PRED:\tKAPPA\t(#OBJS)\t[[TN, FP], [FN, TP]]")
+    if debug:
+        print("PRED:\tKAPPA\t(#OBJS)\t[[TN, FP], [FN, TP]]")
     for p in g.kb.perceptual_preds:
         pidx = g.kb.perceptual_preds.index(p)
         cm = [[0, 0], [0, 0]]
@@ -67,7 +58,8 @@ def main():
         # Get predicate signed kappa.
         if num_labeled_objs > 1:
             pk = PerceptionClassifiers.get_signed_kappa(cm)
-            print(str(p) + ":\t" + str(pk) + "\t(" + str(num_labeled_objs) + ")\t" + str(cm))
+            if debug:
+                print(str(p) + ":\t" + str(pk) + "\t(" + str(num_labeled_objs) + ")\t" + str(cm))
 
             # Track.
             sum_pk += pk
@@ -82,22 +74,68 @@ def main():
                 sum_trained_no += num_labeled_objs
                 sum_trained_p += 1
 
-    # Averages.
-    if sum_p > 0:
-        print("average:\t" + str(sum_pk / sum_p) + "\t(" + str(float(sum_no) / sum_p) +
-              " objs)\t(" + str(sum_p) + " preds)")
-    if sum_nomv_p > 0:
-        print("average (non-majority vote):\t" + str(sum_nomv_pk / sum_nomv_p) +
-              "\t(" + str(float(sum_nomv_no) / sum_nomv_p) + " objs)\t(" + str(sum_nomv_p) + " preds)")
-    if sum_trained_p > 0:
-        print("average (trained):\t" + str(sum_trained_pk / sum_trained_p) +
-              "\t(" + str(float(sum_trained_no) / sum_trained_p) + " objs)\t(" + str(sum_trained_p) + " preds)")
+    return sum_pk, sum_no, sum_p, sum_nomv_pk, sum_nomv_no, sum_nomv_p, sum_trained_pk, sum_trained_no, sum_trained_p
+
+
+def main(args):
+
+    # Load parameters from command line.
+    active_test_set = [str(oidx) for oidx in args.active_test_set.split(',')]
+
+    if args.sweep is None:
+        behaviors = args.behaviors.split(',') if args.behaviors is not None else None
+        modalities = args.modalities.split(',') if args.modalities is not None else None
+
+        sum_pk, sum_no, sum_p, sum_nomv_pk, sum_nomv_no, sum_nomv_p, sum_trained_pk, sum_trained_no, sum_trained_p = \
+            get_results_for_behaviors_and_modalities(args.kb_static_facts_fn, args.kb_perception_source_dir,
+                                                     args.kb_perception_feature_dir, active_test_set,
+                                                     behaviors, modalities)
+
+        # Averages.
+        if sum_p > 0:
+            print("average:\t" + str(sum_pk / sum_p) + "\t(" + str(float(sum_no) / sum_p) +
+                  " objs)\t(" + str(sum_p) + " preds)")
+        if sum_nomv_p > 0:
+            print("average (non-majority pred):\t" + str(sum_nomv_pk / sum_nomv_p) +
+                  "\t(" + str(float(sum_nomv_no) / sum_nomv_p) + " objs)\t(" + str(sum_nomv_p) + " preds)")
+        if sum_trained_p > 0:
+            print("average (trained):\t" + str(sum_trained_pk / sum_trained_p) +
+                  "\t(" + str(float(sum_trained_no) / sum_trained_p) + " objs)\t(" + str(sum_trained_p) + " preds)")
+
+    # Perform behavior and modality sweeps to search for best performance.
+    else:
+        conditions = ["look-color-fpfh",
+                      "look-fc7", "look-resnet-pul", "look-resnet",
+                      "look-fc7-color-fpfh", "look-resnet-pul-color-fpfh", "look-resnet-color-fpfh",
+                      "allb-fc7", "allb-resnet-pul", "allb-resnet",
+                      "allb-fc7-color-fpfh", "allb-resnet-pul-color-fpfh", "allb-resnet-color-fpfh"]
+        print("COND\t\t\t\tK_ALL\tK_NON_MAJ_PRED\tK_TRAINED")
+        for c in conditions:
+            ps = c.split('-')
+            behaviors = ['look'] if 'look' in ps else None
+            modalities = ["audio", "haptics"]
+            modalities.extend([m for m in ps if m not in ['allb', 'look', 'resnet', 'pul']])
+            if 'resnet' in ps:
+                if 'pul' in ps:
+                    modalities.append('resnet152-pul')
+                else:
+                    modalities.extend(['resnet152-pul', 'resnet152-fl'])
+
+            sum_pk, sum_no, sum_p, sum_nomv_pk, sum_nomv_no, sum_nomv_p, \
+                sum_trained_pk, sum_trained_no, sum_trained_p = \
+                get_results_for_behaviors_and_modalities(args.kb_static_facts_fn, args.kb_perception_source_dir,
+                                                         args.kb_perception_feature_dir, active_test_set,
+                                                         behaviors, modalities)
+
+            sp = '\t\t'
+            if len(c) < 20:
+                sp += '\t'
+            print(c + sp + '%.2f' % (sum_pk / sum_p) + '\t%.2f' % (sum_nomv_pk / sum_nomv_p) +
+                  '\t\t%.2f' % (sum_trained_pk / sum_trained_p))
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--parser_fn', type=str, required=True,
-                        help="parser infile")
     parser.add_argument('--kb_static_facts_fn', type=str, required=True,
                         help="static facts file for the knowledge base")
     parser.add_argument('--kb_perception_source_dir', type=str, required=True,
@@ -107,7 +145,10 @@ if __name__ == '__main__':
     parser.add_argument('--active_test_set', type=str, required=True,
                         help="objects to consider possibilities for grounding; " +
                              "excluded from perception classifier training")
-    args = parser.parse_args()
-    for k, v in vars(args).items():
-        globals()['FLAGS_%s' % k] = v
-    main()
+    parser.add_argument('--behaviors', type=str, required=False,
+                        help="specify behaviors to consider")
+    parser.add_argument('--modalities', type=str, required=False,
+                        help="specify modalities to consider")
+    parser.add_argument('--sweep', type=int, required=False,
+                        help="if 1, sweep range of behaviors and modalities and report performance diffs")
+    main(parser.parse_args())

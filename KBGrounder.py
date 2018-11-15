@@ -8,17 +8,19 @@ import time
 
 class KBGrounder:
 
-    # parser - an instance of CKYParser
+    # parser - an instance of CKYParser; can be None only if intstantiating a KBG just to get a PC instance.
     # static_facts_fn - a filename for a static facts plain text file
     # perception_source_dir - the directory for perception source containing predicates, labels, and trained classifiers
     # perception_feature_dir - the directory for perception containing oidxs and object features
     # active_test_set - a list of oidxs to consider as test objects (labels ignored during SVM training/testing)
     def __init__(self, parser, static_facts_fn,
                  perception_source_dir, perception_feature_dir,
-                 active_test_set):
+                 active_test_set,
+                 behaviors=None, modalities=None):
         self.parser = parser
         self.kb = KnowledgeBase.KnowledgeBase(static_facts_fn, perception_source_dir, perception_feature_dir,
-                                              active_test_set, parser.ontology)
+                                              active_test_set, parser.ontology if parser is not None else None,
+                                              behaviors=behaviors, modalities=modalities)
         self.active_test_set = active_test_set
 
     # Given a semantic tree, return a list of trees with the lambdas of the original tree filled by every possible
