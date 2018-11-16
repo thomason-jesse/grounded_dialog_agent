@@ -11,7 +11,7 @@ import PerceptionClassifiers
 
 
 def get_results_for_behaviors_and_modalities(kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
-                                             active_test_set, behaviors, modalities, debug=False):
+                                             active_test_set, fold_size, behaviors, modalities, debug=False):
     # Instantiate a grounder.
     g = KBGrounder.KBGrounder(None, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
                               active_test_set, behaviors=behaviors, modalities=modalities)
@@ -22,32 +22,37 @@ def get_results_for_behaviors_and_modalities(kb_static_facts_fn, kb_perception_s
     sum_trained_pk = sum_trained_no = sum_trained_p = 0
     if debug:
         print("PRED:\tKAPPA\t(#OBJS)\t[[TN, FP], [FN, TP]]")
+    num_folds = (32 - len(active_test_set)) // fold_size
+    available_oidxs = [oidx for oidx in range(32) if oidx not in active_test_set]
+    train_folds = [[available_oidxs[idx + jdx] for jdx in range(fold_size)]
+                   for idx in range(num_folds)]
     for p in g.kb.perceptual_preds:
         pidx = g.kb.perceptual_preds.index(p)
         cm = [[0, 0], [0, 0]]
         num_labeled_objs = 0
-        for oidx in range(32):
-            if oidx in active_test_set:
-                continue
+        for train_fold in train_folds:
 
-            # Blind the perception classifier to this oidx, get annotator label, and retrain classifier.
+            # Blind the perception classifier to these oidxs, get annotator label, and retrain classifier.
             old_labels = g.kb.pc.labels[:]
-            g.kb.pc.labels = [lt for lt in g.kb.pc.labels if lt[0] != pidx or lt[1] != oidx]
-            vote_sum = sum([1 if lt[2] else -1
-                            for lt in old_labels if lt[0] == pidx and lt[1] == oidx])
-            if vote_sum == 0:  # annotators do not agree on label
-                continue
-            vote = 1 if vote_sum > 0 else 0
+            g.kb.pc.labels = [lt for lt in g.kb.pc.labels if lt[0] != pidx or lt[1] in train_fold]
             g.kb.pc.train_classifiers([pidx])
 
             # Get held-out result nad update the appropriate cell in the confusion matrix.
-            pos_conf, neg_conf = g.kb.pc.run_classifier(pidx, oidx)
-            if pos_conf > neg_conf:
-                predicted = 1
-            else:
-                predicted = 0
-            cm[vote][predicted] += 1
-            num_labeled_objs += 1
+            for oidx in available_oidxs:  # e.g., not in the active_test_set
+                if oidx not in train_fold:  # not something we trained on just now
+                    vote_sum = sum([1 if lt[2] else -1
+                                    for lt in old_labels if lt[0] == pidx and lt[1] == oidx])
+                    if vote_sum == 0:  # annotators do not agree on label for this oidx, so don't count it in the cm
+                        continue
+                    vote = 1 if vote_sum > 0 else 0
+
+                    pos_conf, neg_conf = g.kb.pc.run_classifier(pidx, oidx)
+                    if pos_conf > neg_conf:
+                        predicted = 1
+                    else:
+                        predicted = 0
+                    cm[vote][predicted] += 1
+                    num_labeled_objs += 1
 
             # Re-assign old labels.
             g.kb.pc.labels = old_labels
@@ -80,7 +85,9 @@ def get_results_for_behaviors_and_modalities(kb_static_facts_fn, kb_perception_s
 def main(args):
 
     # Load parameters from command line.
-    active_test_set = [str(oidx) for oidx in args.active_test_set.split(',')]
+    active_test_set = [int(oidx) for oidx in args.active_test_set.split(',')]
+    fold_size = args.fold_size if args.fold_size is not None else 1
+    assert ((32 - len(active_test_set)) / fold_size) % 1 == 0
 
     if args.sweep is None:
         behaviors = args.behaviors.split(',') if args.behaviors is not None else None
@@ -88,7 +95,7 @@ def main(args):
 
         sum_pk, sum_no, sum_p, sum_nomv_pk, sum_nomv_no, sum_nomv_p, sum_trained_pk, sum_trained_no, sum_trained_p = \
             get_results_for_behaviors_and_modalities(args.kb_static_facts_fn, args.kb_perception_source_dir,
-                                                     args.kb_perception_feature_dir, active_test_set,
+                                                     args.kb_perception_feature_dir, active_test_set, 24,
                                                      behaviors, modalities)
 
         # Averages.
@@ -124,14 +131,15 @@ def main(args):
             sum_pk, sum_no, sum_p, sum_nomv_pk, sum_nomv_no, sum_nomv_p, \
                 sum_trained_pk, sum_trained_no, sum_trained_p = \
                 get_results_for_behaviors_and_modalities(args.kb_static_facts_fn, args.kb_perception_source_dir,
-                                                         args.kb_perception_feature_dir, active_test_set,
+                                                         args.kb_perception_feature_dir, active_test_set, fold_size,
                                                          behaviors, modalities)
 
             sp = '\t\t'
             if len(c) < 20:
                 sp += '\t'
-            print(c + sp + '%.2f' % (sum_pk / sum_p) + '\t%.2f' % (sum_nomv_pk / sum_nomv_p) +
-                  '\t\t%.2f' % (sum_trained_pk / sum_trained_p))
+            print(c + sp + '%.2f' % (sum_pk / sum_p if sum_p > 0 else 0) +
+                  '\t%.2f' % (sum_nomv_pk / sum_nomv_p if sum_nomv_p > 0 else 0) +
+                  '\t\t%.2f' % (sum_trained_pk / sum_trained_p if sum_trained_p > 0 else 0))
             print(' ' * len(c) + sp + '(' + str(sum_p) + ')\t(' + str(sum_nomv_p) +
                   ')\t\t(' + str(sum_trained_p) + ")")
 
@@ -153,4 +161,6 @@ if __name__ == '__main__':
                         help="specify modalities to consider")
     parser.add_argument('--sweep', type=int, required=False,
                         help="if 1, sweep range of behaviors and modalities and report performance diffs")
+    parser.add_argument('--fold_size', type=int, required=False,
+                        help="number of folds to train; always generalizes from small train -> large test")
     main(parser.parse_args())
