@@ -81,7 +81,6 @@ def main(args):
                 if avg_plm_v is not None:
                     avg_plm_v /= num_imgs
                     avg_fl_v /= num_imgs
-                    print(oidx, t, num_imgs)  # DEBUG
 
                     if 'resnet152-pul' not in feats[oidx]['look']:
                         feats[oidx]['look']['resnet152-pul'] = []
@@ -90,8 +89,10 @@ def main(args):
                         feats[oidx]['look']['resnet152-fl'] = []
                     feats[oidx]['look']['resnet152-fl'].append(avg_fl_v)
 
-                    print('resnet152-pul', min(avg_plm_v), np.average(avg_plm_v), max(avg_plm_v), len(avg_plm_v))  # DEBUG
-                    print('resnet152-fl', min(avg_fl_v), np.average(avg_fl_v), max(avg_fl_v), len(avg_fl_v))  # DEBUG
+                    # print('resnet152-pul', min(avg_plm_v), np.average(avg_plm_v),
+                    #       max(avg_plm_v), len(avg_plm_v))  # DEBUG
+                    # print('resnet152-fl', min(avg_fl_v), np.average(avg_fl_v),
+                    #       max(avg_fl_v), len(avg_fl_v))  # DEBUG
                 else:
                     print('WARNING: no features extracted for trial ' + str(t) + ', oidx ' + str(oidx))
                 print("......... done")

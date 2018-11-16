@@ -14,6 +14,8 @@ def main():
     outfile = FLAGS_outfile
 
     agg_all_utterances = []
+    agg_all_parser_timeouts = 0
+    agg_all_grounder_timeouts = 0
     agg_role_utterances_role_chosen_pairs = []
     agg_perceptual_labels = []
     agg_perceptual_synonymy = []
@@ -48,8 +50,8 @@ def main():
                 # Load user data from log pickle.
                 pickle_fn = os.path.join(user_data_dir, uid + ".pickle")
                 with open(pickle_fn, 'rb') as pickle_f:
-                    actions_confirmed, utterances_by_role, new_perceptual_labels, perceptual_pred_synonymy = \
-                        pickle.load(pickle_f)
+                    actions_confirmed, utterances_by_role, new_perceptual_labels, perceptual_pred_synonymy, \
+                        parser_timeouts_per_dialog, grounder_timeouts_per_dialog = pickle.load(pickle_f)
 
                     tasks_correct = [True if data[headers.index("task_" + str(task) + "_correct")] == "1" else False
                                      for task in range(1, 4)]
@@ -66,6 +68,12 @@ def main():
                     # Regardless of correctness, record perceptual labels gathered from this user.
                     agg_perceptual_labels.extend(new_perceptual_labels)
                     agg_perceptual_synonymy.extend(perceptual_pred_synonymy)
+
+                    # Count the number of parsing and grounding timeouts from this user's dialogs.
+                    for tidx in range(len(parser_timeouts_per_dialog)):
+                        agg_all_parser_timeouts += parser_timeouts_per_dialog[tidx]
+                        agg_all_grounder_timeouts += grounder_timeouts_per_dialog[tidx]
+
                     num_users += 1
 
     if num_users == 0:
@@ -75,7 +83,9 @@ def main():
     # Report.
     print ("main: aggregated data from " + str(num_users) + " users and " + str(num_correct_tasks) + " correct " +
            "tasks for an average correct tasks per user of " + str(num_correct_tasks / float(num_users)))
-    print ("main: got a total of " + str(len(agg_all_utterances)) + " string utterances over all those users")
+    print ("main: got a total of " + str(len(agg_all_utterances)) + " string utterances over all those users, with " +
+           str(agg_all_parser_timeouts) + " of those leading to parser timeouts and " +
+           str(agg_all_grounder_timeouts) + " leading to grounder timeouts")
     print ("main: this resulted in " + str(len(agg_role_utterances_role_chosen_pairs)) +
            " pairs of confirmed actions with dialog utterances per role")
     print ("main: for perception, this gives " + str(len(agg_perceptual_labels)) + " new perceptual labels over " +
@@ -85,7 +95,8 @@ def main():
     # Record.
     with open(outfile, 'wb') as f:
         d = [agg_all_utterances, agg_role_utterances_role_chosen_pairs,
-             agg_perceptual_labels, agg_perceptual_synonymy]
+             agg_perceptual_labels, agg_perceptual_synonymy,
+             agg_all_parser_timeouts, agg_all_grounder_timeouts]
         pickle.dump(d, f)
 
 
