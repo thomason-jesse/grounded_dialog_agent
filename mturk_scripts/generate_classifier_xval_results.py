@@ -132,6 +132,8 @@ def main(args):
                 sp += '\t'
             print(c + sp + '%.2f' % (sum_pk / sum_p) + '\t%.2f' % (sum_nomv_pk / sum_nomv_p) +
                   '\t\t%.2f' % (sum_trained_pk / sum_trained_p))
+            print(' ' * len(c) + sp + '(' + str(sum_p) + ')\t(' + str(sum_nomv_p) +
+                  ')\t\t(' + str(sum_trained_p) + ")")
 
 
 if __name__ == '__main__':
