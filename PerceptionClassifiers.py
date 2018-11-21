@@ -63,7 +63,9 @@ class PerceptionClassifiers:
         else:
             self.behaviors = behaviors
         if modalities is None:
-            self.modalities = ["audio", "color", "fpfh", "haptics", "fc7"]
+            # self.modalities = ["audio", "color", "fpfh", "haptics", "fc7"]
+            # Switch to ResNet from VGG for second round of JAIR experiments.
+            self.modalities = ["audio", "color", "fpfh", "haptics", "resnet152-pul", "resnet152-fl"]
         else:
             self.modalities = modalities
         self.contexts = []
