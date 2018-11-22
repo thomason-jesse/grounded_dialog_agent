@@ -41,7 +41,7 @@ class Server:
     def spin(self):
 
         # Spin.
-        print "Server: spinning forever..."
+        print("Server: spinning forever...")
         try:
             while True:
 
@@ -57,7 +57,7 @@ class Server:
                             if fnp[1] == 'newu':
                                 uid = fnp[0]
                                 if uid not in self.users:
-                                    print "Server: found new user " + uid
+                                    print("Server: found new user " + uid)
 
                                     # Spawn a process that instantiates an Agent and starts a ServerIO dialog.
                                     cmd = ["python", "main.py",
@@ -83,7 +83,7 @@ class Server:
                                     self.time_remaining[uid] = self.cycles_per_user
                                     user_just_launched.append(uid)
 
-                                    print "Server: ... launched Agent for user " + uid
+                                    print("Server: ... launched Agent for user " + uid)
 
                                 # Even if we already have this user, the file should be removed.
                                 files_to_remove.append(fn)
@@ -92,16 +92,16 @@ class Server:
                 for fn in files_to_remove:
                     path = os.path.join(self.client_dir, fn)
                     cmd = "rm -f " + path
-                    print "Server executing: " + cmd  # DEBUG
+                    print("Server executing: " + cmd)  # DEBUG
                     os.system(cmd)
 
                 # Check for finished users.
                 for uid in self.users:
                     if uid not in user_just_launched:
                         if self.agents[uid].poll() is not None:  # None means process hans't terminated yet.
-                            print "Server: detected finished user " + uid
+                            print("Server: detected finished user " + uid)
                             self.remove_user(uid)
-                            print "Server: ... removed user."
+                            print("Server: ... removed user.")
 
                 time.sleep(self.spin_time)
 
@@ -109,25 +109,25 @@ class Server:
                 for uid in self.time_remaining:
                     self.time_remaining[uid] -= 1
                     if self.time_remaining[uid] <= 0:
-                        print "Server: user " + uid + " timed out and will be removed"
+                        print("Server: user " + uid + " timed out and will be removed")
                         users_for_removal.append(uid)
                 for uid in users_for_removal:
                     self.remove_user(uid)
-                    print "Server: ... removed user " + uid
+                    print("Server: ... removed user " + uid)
 
         # Clean up upon sigterm.
         except KeyboardInterrupt:
-            print "Server: caught interrupt signal; removing all remaining users"
+            print("Server: caught interrupt signal; removing all remaining users")
             users_for_removal = self.users[:]
             for uid in users_for_removal:
                 self.remove_user(uid)
-                print "Server: ... removed user " + uid
+                print("Server: ... removed user " + uid)
 
     def remove_user(self, uid):
         self.users.remove(uid)
         if self.agents[uid].poll() is None:  # process hasn't terminated yet.
             self.agents[uid].terminate()
-            print "Server: ... forcibly terminating process for user " + uid
+            print("Server: ... forcibly terminating process for user " + uid)
         del self.agents[uid]
         self.logs[uid].close()
         del self.logs[uid]
@@ -160,16 +160,16 @@ def main():
     init_phase = FLAGS_init_phase
 
     # Load the parser from file.
-    print "main: loading parser from file..."
+    print("main: loading parser from file...")
     with open(parser_fn, 'rb') as f:
         p = pickle.load(f)
     p.lexicon.wv = p.lexicon.load_word_embeddings(word_embeddings_fn)
-    print "main: ... done"
+    print("main: ... done")
 
     # Create a new labels.pickle that erases the labels of the active training set for test purposes.
     full_annotation_fn = os.path.join(kb_perception_source_dir, 'full_annotations.pickle')
     if os.path.isfile(full_annotation_fn):
-        print "main: creating new labels.pickle that blinds the active training set for this test..."
+        print("main: creating new labels.pickle that blinds the active training set for this test...")
         with open(full_annotation_fn, 'rb') as f:
             fa = pickle.load(f)
         with open(os.path.join(kb_perception_source_dir, 'labels.pickle'), 'wb') as f:
@@ -179,30 +179,30 @@ def main():
                     for pidx in range(len(fa[oidx])):
                         labels.append((pidx, oidx, fa[oidx][pidx]))
             pickle.dump(labels, f)
-        print "main: ... done"
+        print("main: ... done")
 
     # Instantiate a grounder.
     grounder_fn = os.path.join(client_dir, 'grounder.pickle')
     if load_grounder != 1:
-        print "main: instantiating grounder..."
+        print("main: instantiating grounder...")
         g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
                                   active_test_set)
         if write_classifiers:
-            print "main: and writing grounder perception classifiers to file..."
+            print("main: and writing grounder perception classifiers to file...")
             g.kb.pc.commit_changes()  # save classifiers to disk
-        print "main: writing grounder to pickle..."
+        print("main: writing grounder to pickle...")
         with open(grounder_fn, 'wb') as f:
             pickle.dump(g, f)
-        print "main: ... done"
+        print("main: ... done")
 
     # Start the Server.
-    print "main: instantiated server..."
+    print("main: instantiated server...")
     s = Server(active_train_set, grounder_fn, server_spin_time, cycles_per_user,
                client_dir, log_dir, data_dir,
                num_dialogs, init_phase)
-    print "main: ... done"
+    print("main: ... done")
 
-    print "main: spinning server..."
+    print("main: spinning server...")
     s.spin()
 
 
