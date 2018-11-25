@@ -35,12 +35,13 @@ var enum_curr_panel = '#interface_goal_panel';
 // Functions that don't access the server or the client-side display.
 
 // Enable the survey submit button if all radio buttons have been checked.
-function enable_survey_submit() {
+function enable_survey_submit(task_num) {
   var names = ["tasks_easy", "understood", "frustrated", "object_qs", "use_navigation", "use_delivery", "use_relocation"];
+  var num_non_task_qs = 4;
   var all_checked = true;
   var idx;
   for (idx = 0; idx < names.length; idx++) {
-    if (!$("input[name='" + names[idx] + "']:checked").val()) {
+    if (!$("input[name='" + names[idx] + "']:checked").val() && (idx < num_non_task_qs || (num_non_task_qs + task_num - 1) == idx)) {
       all_checked = false;
       break;
     }
@@ -520,7 +521,7 @@ require_once('functions.php');
 # These should be changed whenever a new Turk task is made.
 $fold = 0;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
 $setting = "train";  # either init, train, or test
-$run_forever = false;  # if false, still running MTurk experiments, if true, show additional info
+# $run_forever = false;  # if false, still running MTurk experiments, if true, show additional info
 
 $d = 'client/';
 $active_train_set = get_active_train_set($fold);
@@ -529,24 +530,22 @@ shuffle($active_train_set);
 # This is a new landing, so we need to set up the task and call the Server to make an instance.
 if (!isset($_POST['uid'])) {
   $uid = uniqid();
+  $curr_task_num = 1;  # Edit this to change task number for experiments.
 
-  $pre_inst = "";
-  if ($run_forever) {
-    $pre_inst = "<p>This is the interface used to gather data from Mechanical Turk for ";
-    $pre_inst .= "Jointly Improving Parsing and Perception for Natural Language Commands ";
-    $pre_inst .= "through Human-Robot Dialog. Aside from this block of text, the interface is ";
-    $pre_inst .= "unchanged. At the end of the three tasks, the survey code for MTurk generated ";
-    $pre_inst .= "for you is based on a hash corresponding to no real HITs.</p><br/><hr>";
-  }
+  # $pre_inst = "";
+  # if ($run_forever) {
+  #   $pre_inst = "<p>This is the interface used to gather data from Mechanical Turk for ";
+  #   $pre_inst .= "Jointly Improving Parsing and Perception for Natural Language Commands ";
+  #   $pre_inst .= "through Human-Robot Dialog. Aside from this block of text, the interface is ";
+  #   $pre_inst .= "unchanged. At the end of the three tasks, the survey code for MTurk generated ";
+  #   $pre_inst .= "for you is based on a hash corresponding to no real HITs.</p><br/><hr>";
+  # }
 
   # Show instructions.
-  $inst = "<p>In this HIT, you will command a robot to perform several tasks. ";
-  $inst .= "The robot is learning, and will ask you to reword your commands ";
+  $inst = "<p>In this HIT, you will command a robot to perform a task. ";
+  $inst .= "The robot is learning, and will ask you to reword your command ";
   $inst .= "and help it better understand which words apply to physical objects. ";
-  $inst .= "After three tasks, you will complete a short survey about your experience.</p>";
-  # $inst .= "<p>You will receive a <b>payment bonus</b> for <b>each correctly completed</b> ";
-  # $inst .= "task out of the three. If the robot completes all three tasks correctly, your ";
-  # $inst .= "payment will be <b>doubled</b> (This bonus may take a few days to come through.)</p>";
+  $inst .= "After answering the robot's questions, you will complete a short survey about your experience.</p>";
   $inst .= "<p>Once you start the HIT, <b>do not refresh or navigate away from this page</b> ";
   $inst .= "until you reach the end and claim your payment code for Mechanical Turk.</p><br/>";
   ?>
@@ -555,7 +554,7 @@ if (!isset($_POST['uid'])) {
       <?php echo $pre_inst . $inst;?>
       <form action="index.php" method="POST">
         <input type="hidden" name="uid" value="<?php echo $uid;?>">
-        <input type="hidden" name="task_num" value="1">
+        <input type="hidden" name="task_num" value="<?php echo $curr_task_num;?>">
         <input type="submit" class="btn" value="Okay">
       </form>
     </div>
@@ -568,24 +567,23 @@ else {
 
   $uid = $_POST['uid'];
   $task_num = $_POST['task_num'];
+  $finished = $_POST['finished'];
   $action_chosen = $_POST['action_chosen'];
   $too_long = $_POST['too_long'];
 
   # Write a new user file so the Server creates an Agent assigned to this uid.
-  if ($task_num == 1) {
-    $fn = $d . $uid . '.newu.txt';
-    write_file($fn, ' ', 'Could not create file to request new dialog agent.');
-  }
+  $fn = $d . $uid . '.newu.txt';
+  write_file($fn, ' ', 'Could not create file to request new dialog agent.');
 
-  # If this is a subseqent task, write out the completed action to appropriate logfile.
-  if ($task_num > 1 && $too_long != 1) {
-    $fn = 'user_data/' . $uid . '.' . ($task_num - 1) . '.chosen.txt';
+  # Write out the completed action to appropriate logfile if the task wasn't abandoned from a too_long error.
+  if ($too_long != 1) {
+    $fn = 'user_data/' . $uid . '.' . $task_num . '.chosen.txt';
     $err_msg = "Failed to write action chosen " . $action_chosen . " to file " . $fn;
     write_file($fn, $action_chosen, $err_msg);
   }
 
   # If this is the end, advance to the survey instead.
-  if ($task_num == 4) {
+  if ($finished == 1) {
     ?>
     <div id="survey_div">
       <div class="row">
@@ -599,13 +597,16 @@ else {
               <?php
                 $qs = array("The tasks were easy to understand.", "The robot understood me.", "The robot frustrated me.", "The robot asked too many questions about objects.", "I would use a robot like this to help navigate a new building.", "I would use a robot like this to get items for myself or others.", "I would use a robot like this to move items from place to place.");
                 $names = array("tasks_easy", "understood", "frustrated", "object_qs", "use_navigation", "use_delivery", "use_relocation");
+                $num_non_task_qs = 4;
                 for ($idx = 0; $idx < count($qs); $idx ++) {
-                  $tr_class = ($idx % 2 == 0) ? "robot_row" : "user_row";
-                  echo "<tr class=\"" . $tr_class . "\"><td>" . $qs[$idx] . "</td>";
-                  for ($l = 0; $l < 7; $l ++) {
-                    echo "<td style=\"text-align:center\"><input type=\"radio\" name=\"" . $names[$idx] . "\" value=\"" . $l . "\" onclick=\"enable_survey_submit()\"></td>";
+                  if ($idx < $num_non_task_qs or ($num_non_task_qs + $task_num - 1) == $idx) {
+                    $tr_class = ($idx % 2 == 0) ? "robot_row" : "user_row";
+                    echo "<tr class=\"" . $tr_class . "\"><td>" . $qs[$idx] . "</td>";
+                    for ($l = 0; $l < 7; $l ++) {
+                      echo "<td style=\"text-align:center\"><input type=\"radio\" name=\"" . $names[$idx] . "\" value=\"" . $l . "\" onclick=\"enable_survey_submit(" . $task_num . ")\"></td>";
+                    }
+                    echo "</tr>";
                   }
-                  echo "</tr>";
                 }
               ?>
             </table>
@@ -686,10 +687,11 @@ else {
           </div>
           <div id="finished_task_div" hidden>
             <div id="action_text"></div>
-            To advance to the next task, click the button below.
+            To take the survey, click the button below.
               <form action="index.php" method="POST">
                 <input type="hidden" name="uid" value="<?php echo $uid;?>">
-                <input type="hidden" name="task_num" value="<?php echo $task_num + 1;?>">
+                <input type="hidden" name="task_num" value="<?php echo $task_num;?>">
+                <input type="hidden" name="finished" value="1">
                 <input type="hidden" name="too_long" value="0">
                 <input type="hidden" id="action_chosen_post" name="action_chosen" value="">
                 <input type="submit" class="btn" value="Okay">

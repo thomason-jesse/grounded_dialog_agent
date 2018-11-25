@@ -278,7 +278,7 @@ class Agent:
                 action_confirmed[r] = c[0]
 
             if debug:
-                print "start_action_dialog: updated action belief state: " + str(self.action_belief_state)
+                print("start_action_dialog: updated action belief state: " + str(self.action_belief_state))
 
         # Induce utterance/grounding pairs from this conversation.
         # new_i_pairs = self.induce_utterance_grounding_pairs_from_conversation(user_utterances_by_role,
@@ -910,7 +910,7 @@ class Agent:
                                                           (1 - self.belief_update_rate) +
                                                           gd[r][a] * self.belief_update_rate)
         else:
-            print "WARNING: confirmation update string was not yes/no; '" + str(g) + "'"
+            print("WARNING: confirmation update string was not yes/no; '" + str(g) + "'")
 
         if debug:
             print ("update_action_belief_from_groundings: interpolated, new belief distribution: " +
@@ -1034,7 +1034,7 @@ class Agent:
                         len(self.get_parse_subtrees(self.parser.lexicon.semantic_forms[sem_idx], ["no"])) > 0):
                     conf_surface_forms.add(self.parser.lexicon.surface_forms[sfidx])
         if debug:
-            print "conf_surface_forms: " + str(conf_surface_forms)
+            print("conf_surface_forms: " + str(conf_surface_forms))
 
         pairs = []
         if 'all' in us:  # need to build SemanticNode representing all roles
@@ -1091,14 +1091,14 @@ class Agent:
         if cgtr is not None and cgtr[0] is not None:
             p = cgtr[0]  # most_likely_cky_parse returns a 4-tuple, the first of which is the parsenode
             if debug:
-                print "parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node)
+                print("parse_and_ground_utterance: parsed '" + u + "' to " + self.parser.print_parse(p.node))
 
             # Get semantic trees with hanging lambdas instantiated.
             gn = self.ground_semantic_form(p.node)
 
         else:
             if debug:
-                print "parse_and_ground_utterance: could not generate a parse for the utterance"
+                print("parse_and_ground_utterance: could not generate a parse for the utterance")
             gn = []
 
         return gn, p
@@ -1120,7 +1120,7 @@ class Agent:
         else:
             gn = []
             if debug:
-                print "ground_semantic_form: grounding timeout for " + self.parser.print_parse(s)
+                print("ground_semantic_form: grounding timeout for " + self.parser.print_parse(s))
             self.grounder_timeouts += 1
 
         return gn
@@ -1147,7 +1147,7 @@ class Agent:
             for c in root.children:
                 trees_found.extend(self.get_parse_subtrees(c, preds))
         if debug:
-            print "get_parse_subtrees: found trees " + str(trees_found)
+            print("get_parse_subtrees: found trees " + str(trees_found))
         return trees_found
 
     # Returns a list of all the ontological predicates/atoms in the given tree, stripping structure.
@@ -1201,7 +1201,7 @@ class Agent:
     def get_question_from_sampled_action(self, sampled_action, include_threshold):
         debug = False
         if debug:
-            print "get_question_from_sampled_action called with " + str(sampled_action) + ", " + str(include_threshold)
+            print("get_question_from_sampled_action called with " + str(sampled_action) + ", " + str(include_threshold))
 
         # Include roles in the question if they exceed the specified confidence threshold or a
         # uniform sample drawn in [0, 1] is less than the confidence in the role (which is also in [0, 1])
@@ -1222,7 +1222,7 @@ class Agent:
         confidences = {r: sampled_action[r][1] for r in relevant_roles}
         s_conf = sorted(confidences.items(), key=operator.itemgetter(1))
         if debug:
-            print "get_question_from_sampled_action: s_conf " + str(s_conf)
+            print("get_question_from_sampled_action: s_conf " + str(s_conf))
 
         # Determine which args to include as already understood in question and which arg to focus on.
         if 'action' in roles_to_include:
@@ -1569,7 +1569,7 @@ class Agent:
                    " --pairs_infile " + pairs_in_fn +
                    " --outfile " + pairs_out_fn)
             err = os.system(cmd)  # blocking call to script that launches jobs and collects them map-reduce style
-            print "_condor_get_training_pairs output: " + str(err)
+            print("_condor_get_training_pairs output: " + str(err))
             with open(pairs_out_fn, 'rb') as f:
                 raw_pairs = pickle.load(f)
             os.system("rm " + agent_fn)
@@ -1645,9 +1645,9 @@ class Agent:
                                                 if np.isclose(score, sorted_interpolation[0][1])]
                     best_interpolated_parse = random.choice(best_interpolated_parses)[0][0]
                     utterance_semantic_pairs.append([x, best_interpolated_parse.node, g])
-                    print "... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node)
+                    print("... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node))
                     best_interpolated_parse.node.commutative_lower_node(self.parser.ontology)
-                    print "... commutative lowered to " + self.parser.print_parse(best_interpolated_parse.node)
+                    print("... commutative lowered to " + self.parser.print_parse(best_interpolated_parse.node))
                 elif len(self.parser.tokenize(x)) <= self.parser.max_multiword_expression:
                     # Find the categories of entries in lexicon, if any, matching g.
                     matching_categories = []

@@ -14,7 +14,7 @@ import os
 try:
     import rospy
 except ImportError:
-    print "WARNING: cannot import ros-related libraries"
+    print("WARNING: cannot import ros-related libraries")
     rospy = None
 
 
@@ -45,7 +45,6 @@ def main():
     max_syn_qs = FLAGS_max_syn_qs
     max_opp_qs = FLAGS_max_opp_qs
     image_path = FLAGS_image_path
-    bbc_demo = FLAGS_bbc_demo
     no_clarify = FLAGS_no_clarify.split(',') if FLAGS_no_clarify is not None else None
     assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
@@ -54,16 +53,16 @@ def main():
     if grounder_fn is None:
 
         # Load the parser from file.
-        print "main: loading parser from file..."
+        print("main: loading parser from file...")
         with open(parser_fn, 'rb') as f:
             p = pickle.load(f)
         p.lexicon.wv = p.lexicon.load_word_embeddings(word_embeddings_fn)
-        print "main: ... done"
+        print("main: ... done")
 
         # Create a new labels.pickle that erases the labels of the active training set for test purposes.
         full_annotation_fn = os.path.join(kb_perception_source_dir, 'full_annotations.pickle')
         if os.path.isfile(full_annotation_fn):
-            print "main: creating new labels.pickle that blinds the active training set for this test..."
+            print("main: creating new labels.pickle that blinds the active training set for this test...")
             with open(full_annotation_fn, 'rb') as f:
                 fa = pickle.load(f)
             with open(os.path.join(kb_perception_source_dir, 'labels.pickle'), 'wb') as f:
@@ -73,29 +72,29 @@ def main():
                         for pidx in range(len(fa[oidx])):
                             labels.append((pidx, oidx, fa[oidx][pidx]))
                 pickle.dump(labels, f)
-            print "main: ... done"
+            print("main: ... done")
 
         # Instantiate a grounder.
-        print "main: instantiating grounder..."
+        print("main: instantiating grounder...")
         g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
                                   active_test_set)
         if write_classifiers:
-            print "main: and writing grounder perception classifiers to file..."
+            print("main: and writing grounder perception classifiers to file...")
             g.kb.pc.commit_changes()  # save classifiers to disk
-        print "main: ... done"
+        print("main: ... done")
 
     else:
         # Load a grounder from file
-        print "main: loading grounder from file..."
+        print("main: loading grounder from file...")
         with open(grounder_fn, 'rb') as f:
             g = pickle.load(f)
-        print "main: ... done"
+        print("main: ... done")
 
         # Grab a reference to the parser from the loaded grounder.
         p = g.parser
 
     # Instantiate an input/output
-    print "main: instantiating IO..."
+    print("main: instantiating IO...")
     use_shorter_utterances = False
     if io_type == 'keyboard':
         io = IO.KeyboardIO()
@@ -107,22 +106,22 @@ def main():
         else:  # Table 1 test objects, Table 2 train objects
             table_oidxs = {1: active_test_set[:], 2: active_train_set[:]}
         rospy.init_node('phm_node')
-        print "WARNING: ensure robot is facing Table 2 on startup!"
+        print("WARNING: ensure robot is facing Table 2 on startup!")
         io = IO.RobotIO(table_oidxs, 2, image_path)
         use_shorter_utterances = True
     else:
         io = None  # won't be executed due to asserts
-    print "main: ... done"
+    print("main: ... done")
 
     # Normal operation.
-    if init_phase == 0 and bbc_demo != 1:
+    if init_phase == 0:
         # Instantiate an Agent.
-        print "main: instantiating Agent..."
+        print("main: instantiating Agent...")
         a = Agent.Agent(p, g, io, active_train_set, no_clarify=no_clarify,
                         use_shorter_utterances=use_shorter_utterances,
                         word_neighbors_to_consider_as_synonyms=max_syn_qs,
                         max_perception_subdialog_qs=max_opp_qs)
-        print "main: ... done"
+        print("main: ... done")
 
         # Start a dialog.
         perception_labels_requested = []
@@ -131,78 +130,29 @@ def main():
         parser_timeouts_per_dialog = []
         grounder_timeouts_per_dialog = []
         for _ in range(num_dialogs):
-            print "main: running command dialog..."
+            print("main: running command dialog...")
             action_confirmed, user_utterances_by_role, parser_timeouts, grounder_timeouts = \
                 a.start_action_dialog(perception_labels_requested=perception_labels_requested)
             action_confirmed_per_dialog.append(action_confirmed)
             utterances_by_role_per_dialog.append(user_utterances_by_role)
             parser_timeouts_per_dialog.append(parser_timeouts)
             grounder_timeouts_per_dialog.append(grounder_timeouts)
-            print "main: ... done; got action " + str(action_confirmed)
+            print("main: ... done; got action " + str(action_confirmed))
 
             # Write out new information gleaned from this user after every dialog.
             if uid is not None:  # DEBUG
-                print "main: writing new information from dialog(s) to file..."
+                print("main: writing new information from dialog(s) to file...")
                 fn = os.path.join(data_dir, uid + ".pickle")
                 d = [action_confirmed_per_dialog, utterances_by_role_per_dialog,
                      a.new_perceptual_labels, a.perceptual_pred_synonymy,
                      parser_timeouts_per_dialog, grounder_timeouts_per_dialog]
                 with open(fn, 'wb') as f:
                     pickle.dump(d, f)
-                print "main: ... done; wrote data d = " + str(d)
-
-    # Ask for pointing commands.
-    elif bbc_demo == 1:
-        print "main: instantiating Agent..."
-        a = Agent.Agent(p, g, io, active_train_set, no_clarify=no_clarify,
-                        use_shorter_utterances=use_shorter_utterances,
-                        word_neighbors_to_consider_as_synonyms=max_syn_qs,
-                        max_perception_subdialog_qs=max_opp_qs)
-        print "main: ... done"
-
-        print "main: updating lexicon with 'rattling'"
-        a.add_new_perceptual_lexical_entries('rattling', False, None)
-        a.parser.type_raise_bare_nouns()
-        a.parser.theta.update_probabilities()
-        print "main: ... done"
-
-        print "main: training 'rattling' classifier"
-        g.kb.pc.update_classifiers(['rattling'], [], [], [])
-        perception_pidx = g.kb.pc.predicates.index('rattling')
-        upidxs = [perception_pidx] * 8
-        uoidxs = [5, 14, 4, 27, 0, 30, 1, 31]
-        ulabels = [0, 1, 0, 0, 0, 0, 1, 1]
-        g.kb.pc.update_classifiers([], upidxs, uoidxs, ulabels)
-        print "main: ... done"
-
-        print "main: starting bbc phase dialog..."
-        io.say_to_user("What should I do?")
-        cmd = io.get_from_user()
-        p = cmd.split()
-        if (p[0] == 'point' or p[1] == 'points') and (p[1] == 'to' or p[1] == '2'):
-            gps, _ = a.parse_and_ground_utterance(' '.join(p[2:]))
-            for g, conf in gps:
-                selected_oidx = a.parser.ontology.preds[g.idx]
-                print selected_oidx, conf  # DEBUG
-            g, top_conf = gps[0]
-            for g, conf in gps:
-                if conf == top_conf:
-                    selected_oidx = a.parser.ontology.preds[g.idx]
-                    oidx = int(selected_oidx.split('_')[1])  # e.g. 'oidx_1' -> 1
-                    ttid = None
-                    for tid in a.io.table_oidxs:
-                        if a.io.table_oidxs[tid] is not None and oidx in a.io.table_oidxs[tid]:
-                            ttid = tid
-                    if ttid is not None:
-                        a.io.face_table(ttid)
-                        a.io.point(a.io.table_oidxs[ttid].index(oidx))
-                    a.io.point(-1)
-
-        print "main: ... done"
+                print("main: ... done; wrote data d = " + str(d))
 
     # Just ask the user for a few rephrases of the command.
     else:
-        print "main: starting init phase dialog..."
+        print("main: starting init phase dialog...")
         for nd in range(num_dialogs):
             io.say_to_user("What should I do?")
             _ = io.get_from_user()
@@ -210,7 +160,7 @@ def main():
                 io.say_to_user("What's another way you could phrase that command?")
                 _ = io.get_from_user()
             io.perform_action({'action': 'init_phase'})
-        print "main: ... done"
+        print("main: ... done")
 
 
 if __name__ == '__main__':
@@ -254,8 +204,6 @@ if __name__ == '__main__':
                         help="the maximum number of perception questions to ask")
     parser.add_argument('--image_path', type=str, required=False,
                         help="filepath to the directory where object images live")
-    parser.add_argument('--bbc_demo', type=int, required=False,
-                        help="whether to do special bbc script")
     parser.add_argument('--no_clarify', type=str, required=False,
                         help="comma-separated list of roles not to clarify during dialog")
     args = parser.parse_args()

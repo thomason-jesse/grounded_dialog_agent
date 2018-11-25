@@ -13,7 +13,7 @@ try:
     roslib.load_manifest('sound_play')
     from sound_play.libsoundplay import SoundClient
 except ImportError:
-    print "WARNING: cannot import ros-related libraries"
+    print("WARNING: cannot import ros-related libraries")
     rospy = None
     roslib = None
 
@@ -47,7 +47,7 @@ class KeyboardIO:
 
     # Get a string from the user.
     def get_from_user(self):
-        print "YOU: "
+        print("YOU: ")
         u = None
         while u is None or len(u) == 0:
             u = raw_input()
@@ -59,7 +59,7 @@ class KeyboardIO:
     # role - not used in this implementation; needed by IO to find image files
     def get_from_user_enum(self, opts, role):
         print("OPTS:\n\t" + '\n\t'.join([str(idx) + ": " + opts[idx] for idx in range(len(opts))]))
-        print "YOU SELECT IDX FROM MENU:"
+        print("YOU SELECT IDX FROM MENU:")
         u = None
         while u is None or not (0 <= u < len(opts)):
             u = raw_input()
@@ -71,7 +71,7 @@ class KeyboardIO:
 
     # Get an integer oidx from those provided or None.
     def get_oidx_from_user(self, oidxs):
-        print "YOU POINT TO OIDX (or say 'none' or 'all'):"
+        print("YOU POINT TO OIDX (or say 'none' or 'all'):")
         while True:  # until return happens
             u = raw_input()
             try:
@@ -84,7 +84,7 @@ class KeyboardIO:
 
     # Say a string to the user.
     def say_to_user(self, u):
-        print "AGENT: " + u
+        print("AGENT: " + u)
 
     # Say a string with words aligned to ontological values.
     # u - a string utterance, possibly tagged with role-fill words like <p>this</p>
@@ -98,16 +98,16 @@ class KeyboardIO:
                 pre_tag = u.split(ts)[0]
                 post_tag = u.split(te)[1]
                 u = pre_tag + rvs[r] + post_tag
-        print "AGENT: " + u
+        print("AGENT: " + u)
 
     # Write out what action is taken given an action, patient, and recipient as strings.
     def perform_action(self, rvs):
         if rvs['action'] == 'walk':
-            print "ROBOT ACTION: Navigate to location " + rvs['goal']
+            print("ROBOT ACTION: Navigate to location " + rvs['goal'])
         elif rvs['action'] == 'bring':
-            print "ROBOT ACTION: Pick up item " + rvs['patient'] + " and deliver it to person " + rvs['recipient']
+            print("ROBOT ACTION: Pick up item " + rvs['patient'] + " and deliver it to person " + rvs['recipient'])
         elif rvs['action'] == 'move':
-            print "ROBOT ACTION: Move item " + rvs['patient'] + " from " + rvs['source'] + " to " + rvs['goal']
+            print("ROBOT ACTION: Move item " + rvs['patient'] + " from " + rvs['source'] + " to " + rvs['goal'])
         else:
             raise ValueError("perform_action: unrecognized action '" + rvs['action'] + "'")
 
@@ -131,16 +131,16 @@ class SeverIO:
     def get_from_user(self):
         path = os.path.join(self.client_dir, self.uid + '.smsgur.txt')  # request
         self._poll_for_file_write_contents(path, ' ')
-        print "get_from_user requested feedback"
+        print("get_from_user requested feedback")
 
         path = os.path.join(self.client_dir, self.uid + '.smsgu.txt')
         u = self._poll_for_file_get_contents_delete(path)
 
         # Preprocess user utterance from the web.
-        print "get_from_user (raw): '" + u + "'"
+        print("get_from_user (raw): '" + u + "'")
         u = process_raw_utterance(u)
 
-        print "get_from_user (processed): '" + u + "'"
+        print("get_from_user (processed): '" + u + "'")
         return u
 
     # Get an enumeration choice from the user.
@@ -152,13 +152,13 @@ class SeverIO:
     def get_from_user_enum(self, opts, role):
         path = os.path.join(self.client_dir, self.uid + '.emsgur.txt')  # request
         self._poll_for_file_write_contents(path, ','.join([role] + opts))
-        print "get_from_user_enum requested feedback"
+        print("get_from_user_enum requested feedback")
 
         path = os.path.join(self.client_dir, self.uid + '.emsgu.txt')
         u = self._poll_for_file_get_contents_delete(path)
         u = int(u)
 
-        print "get_from_user_enum: " + str(u)
+        print("get_from_user_enum: " + str(u))
         return opts[u]
 
     # Get an integer oidx from those provided or None.
@@ -168,7 +168,7 @@ class SeverIO:
     def get_oidx_from_user(self, oidxs):
         path = os.path.join(self.client_dir, self.uid + '.omsgur.txt')  # request
         self._poll_for_file_write_contents(path, ' ')
-        print "get_oidx_from_user requested feedback"
+        print("get_oidx_from_user requested feedback")
 
         path = os.path.join(self.client_dir, self.uid + '.omsgu.txt')
         u = self._poll_for_file_get_contents_delete(path)
@@ -177,7 +177,7 @@ class SeverIO:
         else:
             u = int(u)
 
-        print "get_oidx_from_user: " + str(u)
+        print("get_oidx_from_user: " + str(u))
         return u
 
     # Poll the disk for the specified file (blocking), get its contents and delete it from the disk.
@@ -195,7 +195,7 @@ class SeverIO:
     def say_to_user(self, u):
         path = os.path.join(self.client_dir, self.uid + '.smsgs.txt')
         self._poll_for_file_write_contents(path, u)
-        print "say_to_user: " + str(u)
+        print("say_to_user: " + str(u))
 
     # Say a string with words aligned to ontological values.
     # u - a string utterance, possibly tagged with role-fill words like <p>this</p>
@@ -205,7 +205,7 @@ class SeverIO:
         path = os.path.join(self.client_dir, self.uid + '.rmsgs.txt')
         s = u + '\n' + ';'.join([str(r) + ':' + str(rvs[r]) for r in rvs])
         self._poll_for_file_write_contents(path, s)
-        print "say_to_user_with_referents: " + str(u) + " " + str(rvs)
+        print("say_to_user_with_referents: " + str(u) + " " + str(rvs))
 
     # Write out what action is taken given an action, patient, and recipient as strings.
     # If the server already has a waiting one of these (which would be weird), poll until it clears.
@@ -223,7 +223,7 @@ class SeverIO:
         path = os.path.join(self.client_dir, self.uid + '.amsgs.txt')
         s = a_str + '\n' + ';'.join([str(r) + ':' + str(rvs[r]) for r in rvs])
         self._poll_for_file_write_contents(path, s)
-        print "perform_action: " + str(rvs)
+        print("perform_action: " + str(rvs))
 
     # Support functions:
 
@@ -243,7 +243,7 @@ class RobotIO:
 
     def __init__(self, table_oidxs, starting_table, image_path=None,
                  voice="voice_cmu_us_slt_cg"):
-        print "RobotIO: __init__ with " + str(table_oidxs) + ", " + str(starting_table) + ", " + voice
+        print("RobotIO: __init__ with " + str(table_oidxs) + ", " + str(starting_table) + ", " + voice)
         self.table_oidxs = table_oidxs  # dictionary from table ids to lists of objects or None if there are None
         self.table = starting_table  # 1, 2, or 3. missing tables should have None as their table_oidxs
         self.image_path = image_path
@@ -252,11 +252,11 @@ class RobotIO:
         self.arm_pos = -1
 
         # initialize a sound client instance for TTS
-        print "RobotIO: initializing SoundClient..."
+        print("RobotIO: initializing SoundClient...")
         self.sound_client = SoundClient(blocking=True)
         rospy.sleep(1)
         self.sound_client.stopAll()
-        print "RobotIO: ... done"
+        print("RobotIO: ... done")
 
         rospy.wait_for_service('perceive_tabletop_scene')
         self.tabletop_object_detection_service = rospy.ServiceProxy('perceive_tabletop_scene',
@@ -267,7 +267,7 @@ class RobotIO:
 
     # Listen for speech from user.
     def get_from_user(self):
-        print "RobotIO: get_from_user called"
+        print("RobotIO: get_from_user called")
         self.listening_mode_toggle_client()
         uin = ''
         while len(uin) == 0:
@@ -276,10 +276,10 @@ class RobotIO:
         self.listening_mode_toggle_client()
 
         if uin == "frozen fish":
-            print "RobotIO: got shutdown keyphrase from user"
+            print("RobotIO: got shutdown keyphrase from user")
             raise rospy.ROSInterruptException
 
-        print "RobotIO: get_from_user returning '" + uin + "'"
+        print("RobotIO: get_from_user returning '" + uin + "'")
         return uin
 
     # Get an object touch or hear 'all' or 'none'
@@ -288,7 +288,7 @@ class RobotIO:
     # oidxs - not used in this implementation; oidxs drawn from table oidxs and current table face value
     # returns - an oidx in those provided or 'None'
     def get_oidx_from_user(self, oidxs):
-        print "RobotIO: get_oidx_from_user called"
+        print("RobotIO: get_oidx_from_user called")
 
         self.point(-1)  # retract the arm, if it's out
         idx = -1
@@ -328,12 +328,12 @@ class RobotIO:
         else:
             oidx = None
 
-        print "RobotIO: get_oidx_from_user returning " + str(oidx)
+        print("RobotIO: get_oidx_from_user returning " + str(oidx))
         return oidx
 
     # use built-in ROS sound client to do TTS
     def say_to_user(self, s):
-        print "RobotIO: say_to_user called with '" + s + "'"
+        print("RobotIO: say_to_user called with '" + s + "'")
 
         # Replace 'shake your head' lines for robot interface.
         shake_str = "shake your head"
@@ -359,7 +359,7 @@ class RobotIO:
             self.last_say += " " + s
 
         self.sound_client.say(str(s), voice=self.voice)
-        print "say_to_user: " + s
+        print("say_to_user: " + s)
 
     # Say a string with words aligned to ontological values.
     # u - a string utterance, possibly tagged with role-fill words like <p>this</p>
@@ -368,7 +368,7 @@ class RobotIO:
     # If a patient argument is present, points to that patient object
     # If the patient is not in the active training set (table_oidxs), throws an exception
     def say_to_user_with_referents(self, u, rvs):
-        print "RobotIO: say_to_user_with_referents called with '" + u + "', " + str(rvs)
+        print("RobotIO: say_to_user_with_referents called with '" + u + "', " + str(rvs))
 
         # Replace recipients; we here hard-code the patients from the ispy setting, but, in general,
         # this should be a more interesting procedure.
@@ -442,7 +442,7 @@ class RobotIO:
     # Take in an action as a role-value-slot dictionary and produce robot behavior.
     # TODO: this needs to next be tied to actual robot performing behavior
     def perform_action(self, rvs):
-        print "RobotIO: perform_action called with " + str(rvs)
+        print("RobotIO: perform_action called with " + str(rvs))
         cmd = None
         if rvs['action'] == 'walk':
             a_str = "I will navigate to <g>here</g>."
@@ -471,7 +471,7 @@ class RobotIO:
 
     # get touches by detecting human touches on top of objects
     def get_touch(self):
-        print "RobotIO support: get_touch called"
+        print("RobotIO support: get_touch called")
         if self.pointCloud2_plane is None:
             self.say_to_user("I am getting the objects on the table into focus.")
             self.pointCloud2_plane, self.cloud_plane_coef, self.pointCloud2_objects = self.obtain_table_objects()
@@ -479,12 +479,12 @@ class RobotIO:
         self.watching_mode_toggle_client()
         idx = self.detect_touch_client()
         self.watching_mode_toggle_client()
-        print "RobotIO support: get_touch returning " + str(idx)
+        print("RobotIO support: get_touch returning " + str(idx))
         return int(idx)
 
     # point using the robot arm
     def point(self, idx):
-        print "RobotIO support: point called with " + str(idx)
+        print("RobotIO support: point called with " + str(idx))
         if self.arm_pos != idx:
             if self.pointCloud2_plane is None and idx != -1:
                 self.say_to_user("I am getting the objects on the table into focus.")
@@ -495,7 +495,7 @@ class RobotIO:
 
     # Rotate the chassis and establish new objects in line of sight.
     def face_table(self, tid, verbose=True):
-        print "RobotIO support: face_table called with " + str(tid)
+        print("RobotIO support: face_table called with " + str(tid))
         self.point(-1)  # retract the arm, if it's out
         if tid != self.table:
             if verbose:
@@ -505,14 +505,14 @@ class RobotIO:
             self.pointCloud2_plane = None
             self.cloud_plane_coef = None
             self.pointCloud2_objects = None
-            print "RobotIO support: face_table returning " + str(s)
+            print("RobotIO support: face_table returning " + str(s))
         else:
             s = True
         return s
 
     # get the point cloud objects on the table for pointing / recognizing touches
     def obtain_table_objects(self):
-        print "RobotIO support: obtain_table_objects called"
+        print("RobotIO support: obtain_table_objects called")
         plane = plane_coef = cloud_objects = None
         focus = False
         while not focus:
@@ -527,12 +527,12 @@ class RobotIO:
             if tries == 0 and not focus:
                 self.say_to_user("I am having trouble focusing on the objects.")
                 rospy.sleep(10)
-        print "RobotIO support: obtain_table_objects returning plane/coef/objects"
+        print("RobotIO support: obtain_table_objects returning plane/coef/objects")
         return plane, plane_coef, cloud_objects
 
     # get PointCloud2 objects from service
     def get_pointCloud2_objects(self):
-        print "RobotIO support: get_pointCloud2_objects called"
+        print("RobotIO support: get_pointCloud2_objects called")
 
         # query to get the blobs on the table
         req = PerceiveTabletopSceneRequest()
@@ -548,37 +548,37 @@ class RobotIO:
             # re-index clusters so order matches left-to-right indexing expected
             ordered_cloud_clusters = self.reorder_client(res.cloud_clusters, "x", True)
 
-            print ("RobotIO support: get_pointCloud2_objects returning res with " +
-                   str(len(ordered_cloud_clusters)) + " clusters")
+            print("RobotIO support: get_pointCloud2_objects returning res with " +
+                  str(len(ordered_cloud_clusters)) + " clusters")
             return res.cloud_plane, res.cloud_plane_coef, ordered_cloud_clusters
-        except rospy.ServiceException, e:
+        except rospy.ServiceException as e:
             sys.exit("Service call failed: %s " % e)
 
     # ROS client functions:
 
     # Turn on or off the indicator behavior for listening for speech.
     def listening_mode_toggle_client(self):
-        print "RobotIO client: listening_mode_toggle_client called"
+        print("RobotIO client: listening_mode_toggle_client called")
         rospy.wait_for_service('ispy/listening_mode_toggle')
         try:
             listen_toggle = rospy.ServiceProxy('ispy/listening_mode_toggle', Empty)
             listen_toggle()
-        except rospy.ServiceException, e:
+        except rospy.ServiceException as e:
             sys.exit("Service call failed: %s " % e)
 
     # Turn on or off the indicator behavior for watching for touch.
     def watching_mode_toggle_client(self):
-        print "RobotIO client: watching_mode_toggle_client called"
+        print("RobotIO client: watching_mode_toggle_client called")
         rospy.wait_for_service('ispy/touch_waiting_mode_toggle')
         try:
             watch_toggle = rospy.ServiceProxy('ispy/touch_waiting_mode_toggle', Empty)
             watch_toggle()
-        except rospy.ServiceException, e:
+        except rospy.ServiceException as e:
             sys.exit("Service call failed: %s " % e)
 
     # Listen for speech, transcribe it, and return it.
     def sound_transcript_client(self):
-        print "RobotIO client: sound_transcript_client called"
+        print("RobotIO client: sound_transcript_client called")
 
         rospy.wait_for_service('sound_transcript_server')
         try:
@@ -587,13 +587,13 @@ class RobotIO:
             if not resp.isGood:
                 return ''
             return resp.utterance
-        except rospy.ServiceException, e:
-            print "Service call failed: %s " % e
+        except rospy.ServiceException as e:
+            print("Service call failed: %s " % e)
             return ''
 
     # Turn in place to face a new table.
     def face_table_client(self, tid):
-        print "RobotIO client: face_table_client called with " + str(tid)
+        print("RobotIO client: face_table_client called with " + str(tid))
         req = iSpyFaceTableRequest()
         req.table_index = tid
         rospy.wait_for_service('ispy/face_table')
@@ -601,12 +601,12 @@ class RobotIO:
             face = rospy.ServiceProxy('ispy/face_table', iSpyFaceTable)
             res = face(req)
             return res.success
-        except rospy.ServiceException, e:
+        except rospy.ServiceException as e:
             sys.exit("Service call failed: %s" % e)
 
     # reorder PointCloud2 objects returned in arbitrary order from table detection
     def reorder_client(self, clouds, axis, forward):
-        print "RobotIO client: reorder_client called with " + str(axis) + ", " + str(forward)
+        print("RobotIO client: reorder_client called with " + str(axis) + ", " + str(forward))
         req = iSpyReorderCloudsRequest()
         req.axis = axis
         req.forward = forward
@@ -617,12 +617,12 @@ class RobotIO:
             reorder = rospy.ServiceProxy('ispy/reorder_clouds', iSpyReorderClouds)
             res = reorder(req)
             return res.ordered_clouds
-        except rospy.ServiceException, e:
+        except rospy.ServiceException as e:
             sys.exit("Service call failed: %s " % e)
 
     # use the arm to touch an object
     def touch_client(self, idx):
-        print "RobotIO client: touch_client called with " + str(idx)
+        print("RobotIO client: touch_client called with " + str(idx))
         req = iSpyTouchRequest()
         req.cloud_plane = self.pointCloud2_plane
         req.cloud_plane_coef = self.cloud_plane_coef
@@ -633,12 +633,12 @@ class RobotIO:
             touch = rospy.ServiceProxy('ispy/touch_object_service', iSpyTouch)
             res = touch(req)
             return res.success
-        except rospy.ServiceException, e:
-            print "Service call failed: %s" % e
+        except rospy.ServiceException as e:
+            print("Service call failed: %s" % e)
 
     # detect a touch above an object
     def detect_touch_client(self):
-        print "RobotIO client: detect_touch_client called"
+        print("RobotIO client: detect_touch_client called")
         req = iSpyDetectTouchRequest()
         req.cloud_plane = self.pointCloud2_plane
         req.cloud_plane_coef = self.cloud_plane_coef
@@ -648,5 +648,5 @@ class RobotIO:
             detect_touch = rospy.ServiceProxy('ispy/human_detect_touch_object_service', iSpyDetectTouch)
             res = detect_touch(req)
             return res.detected_touch_index
-        except rospy.ServiceException, e:
-            print "Service call failed: %s" % e
+        except rospy.ServiceException as e:
+            print("Service call failed: %s" % e)
