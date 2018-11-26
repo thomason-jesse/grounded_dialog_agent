@@ -39,71 +39,75 @@ def main():
                               and condor_grounder_script_dir is not None)
 
     # Load the aggregate information from file
-    print "main: loading aggregate conversation files..."
+    print("main: loading aggregate conversation files...")
     agg_all_utterances = []
     agg_role_utterances_role_chosen_pairs = []
     agg_perceptual_labels = []
     agg_perceptual_synonymy = []
+    agg_all_parser_timeouts = []  # Don't currently do anythin with this timeout data in this script.
+    agg_all_grounder_timeouts = []
     for agg_fn in agg_fns:
-        print "main: ... loading from '" + agg_fn + "'"
+        print("main: ... loading from '" + agg_fn + "'")
         with open(agg_fn, 'rb') as f:
             _agg_all_utterances, _agg_role_utterances_role_chosen_pairs, _agg_perceptual_labels,\
-                _agg_perceptual_synonymy = pickle.load(f)
+                _agg_perceptual_synonymy, _agg_all_parser_timeouts, _agg_all_grounder_timeouts = pickle.load(f)
             agg_all_utterances.extend(_agg_all_utterances)
             agg_role_utterances_role_chosen_pairs.extend(_agg_role_utterances_role_chosen_pairs)
             agg_perceptual_labels.extend(_agg_perceptual_labels)
             agg_perceptual_synonymy.extend(_agg_perceptual_synonymy)
-    print "... done"
+            agg_all_parser_timeouts.append(_agg_all_parser_timeouts)
+            agg_all_grounder_timeouts.append(_agg_all_grounder_timeouts)
+    print("... done")
 
     # Load a grounder from file
-    print "main: loading base parser from file..."
+    print("main: loading base parser from file...")
     with open(parser_fn, 'rb') as f:
         p = pickle.load(f)
         p.lexicon.wv = None
         if embeddings_fn is not None:
-            print "main: ... adding embeddings"
+            print("main: ... adding embeddings")
             p.lexicon.wv = p.lexicon.load_word_embeddings(embeddings_fn)
-    print "main: ... done"
+    print("main: ... done")
 
     # Load parser base pairs, if any.
-    print "main: loading base parser pairs from file..."
+    print("main: loading base parser pairs from file...")
     if parser_base_pairs_fn is not None:
         parser_base_pairs = p.read_in_paired_utterance_semantics(parser_base_pairs_fn)
     else:
         parser_base_pairs = []
-    print "main: ... done"
+    print("main: ... done")
 
     # Copy the base grounder labels.pickle and predicates.pickle into the target directory.
-    print "main: copying base KB perception labels and pickles to target dir..."
+    print("main: copying base KB perception labels and pickles to target dir...")
     base_labels_fn = os.path.join(kb_perception_source_base_dir, "labels.pickle")
     base_pickles_fn = os.path.join(kb_perception_source_base_dir, "predicates.pickle")
     if os.path.isfile(base_labels_fn):
         os.system("cp " + base_labels_fn + " " + os.path.join(kb_perception_source_target_dir, "labels.pickle"))
     else:
-        print "ERROR: file not found '" + base_labels_fn + "'"
+        print("ERROR: file not found '" + base_labels_fn + "'")
         return 1
     if os.path.isfile(base_pickles_fn):
         os.system("cp " + base_pickles_fn + " " + os.path.join(kb_perception_source_target_dir, "predicates.pickle"))
     else:
-        print "ERROR: file not found '" + base_pickles_fn + "'"
+        print("ERROR: file not found '" + base_pickles_fn + "'")
         return 1
-    print "main: ... done"
+    print("main: ... done")
 
     # Instantiate a new grounder with the base parser and with perception source at the target dir.
-    print "main: instantiating grounder..."
+    print("main: instantiating grounder...")
     g = KBGrounder.KBGrounder(p, kb_static_facts_fn, kb_perception_source_target_dir,
                               kb_perception_feature_dir, active_test_set)
-    print "main: ... done"
+    print("main: ... done")
 
     # Instantiate vestigial input/output
-    print "main: instantiating basic IO..."
+    print("main: instantiating basic IO...")
     io = IO.KeyboardIO()
-    print "main: ... done"
+    print("main: ... done")
 
     # Instantiate an Agent.
-    print "main: instantiating Agent..."
+    print("main: instantiating Agent...")
     a = Agent.Agent(p, g, io, None)
-    print "main: ... done"
+    print("main: ... done")
 
     # Open logfile.
     log_f = open(training_log_fn, 'w')
@@ -127,7 +131,7 @@ def main():
                 preds_by_oidx_label[pred][False].append(oidx)
     # print "main: preds_by_oidx_label: " + str(preds_by_oidx_label)
     preds_w_pos = [pred for pred in preds_by_oidx_label if len(preds_by_oidx_label[pred][True]) > 0]
-    print "main: preds_w_pos: " + str(preds_w_pos)
+    print("main: preds_w_pos: " + str(preds_w_pos))
 
     # Analyze synonymy votes and decide which pairs to treat as synonymous.
     synonymy_votes = {}  # maps from tuples of preds to the sum of votes for and against their being synonymous
@@ -140,9 +144,9 @@ def main():
             key = (predi, predj)
             synonymy_votes[key] = 0
         synonymy_votes[key] += 1 if v else -1
-    print "main: synonymy votes: " + str(synonymy_votes)
+    print("main: synonymy votes: " + str(synonymy_votes))
     synonymy_candidates = {key: synonymy_votes[key] for key in synonymy_votes.keys() if synonymy_votes[key] > 0}
-    print "main: synonymy candidates: " + str(synonymy_candidates)
+    print("main: synonymy candidates: " + str(synonymy_candidates))
 
     # Decide based on synonymy and pred labels which lexicon entries to add (similar to procedure in Agent.py,
     # but based on voting instead of single-user feedback.)
@@ -152,7 +156,7 @@ def main():
     preds = [pred for pred in all_preds if pred not in a.parser.lexicon.surface_forms and
              (pred in preds_w_pos or len([synp for synp in preds_w_pos if (pred, synp) in synonymy_candidates
                                          or (synp, pred) in synonymy_candidates])) > 0]
-    print "main: preds to consider: " + str(preds)
+    print("main: preds to consider: " + str(preds))
     utterances_with_pred = {}
     for pred in all_preds:
         utterances_with_pred[pred] = []
@@ -169,7 +173,7 @@ def main():
     known_perc_preds = [tk for tk in a.parser.lexicon.surface_forms if a.is_token_perceptual(tk)]
     while new_perceptual_adds:
         new_perceptual_adds = False
-        print "main: checking for new adjectives and nouns..."
+        print("main: checking for new adjectives and nouns...")
         for pred in preds:
             if not pred_is_perc[pred] and len(utterances_with_pred[pred]) > 0:
                 syn = get_syn_from_candidates(a, pred, synonymy_candidates)
@@ -178,9 +182,9 @@ def main():
 
                     # Add bare nouns, later type-raise.
                     a.add_new_perceptual_lexical_entries(pred, False, syn)
-                    print "main: added noun for '" + pred + "'"
+                    print("main: added noun for '" + pred + "'")
                     if syn is not None:
-                        print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                        print("main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'")
                     log_f.write("added noun entry for '" + pred + "' with synonym " +
                                 str(a.parser.lexicon.surface_forms[syn[0]] if syn is not None else None) + "\n")
 
@@ -192,9 +196,9 @@ def main():
                         new_perceptual_adds = True
                         ont_pred = a.add_new_perceptual_lexical_entries(pred, True, syn)
                         a.add_new_perceptual_lexical_entries(pred, False, syn, ont_pred)
-                        print "main: added noun and adjective for '" + pred + "'"
+                        print("main: added noun and adjective for '" + pred + "'")
                         if syn is not None:
-                            print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                            print("main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'")
                         log_f.write("added adjective and noun entry for '" + pred + "' with synonym " +
                                     str(a.parser.lexicon.surface_forms[syn[0]] if syn is not None else None) + "\n")
 
@@ -219,9 +223,9 @@ def main():
                             new_perceptual_adds = True
                             a.add_new_perceptual_lexical_entries(pred, True, syn)
 
-                            print "main: added adjective '" + pred + "'"
+                            print("main: added adjective '" + pred + "'")
                             if syn is not None:
-                                print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                                print("main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'")
                             log_f.write("added adjective '" + pred + "' with synonym " + str(syn) + "\n")
 
                         elif ln > 0.5:
@@ -229,14 +233,14 @@ def main():
                             new_perceptual_adds = True
                             a.add_new_perceptual_lexical_entries(pred, False, syn)
 
-                            print "main: added noun '" + pred + "'"
+                            print("main: added noun '" + pred + "'")
                             if syn is not None:
-                                print "main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'"
+                                print("main: ... with known synonym '" + a.parser.lexicon.surface_forms[syn[0]] + "'")
                             log_f.write("added noun '" + pred + "' with synonym " + str(syn) + "\n")
     if only_bare_nouns:
         a.parser.type_raise_bare_nouns()  # should only affect new nouns
         a.parser.theta.update_probabilities()  # because the above adds new entries
-    print "main: ... done"
+    print("main: ... done")
 
     # Retrain perceptual classifiers from aggregated labels.
     upidxs = []
@@ -253,20 +257,20 @@ def main():
     a.grounder.kb.pc.update_classifiers([], upidxs, uoidxs, ulabels)
     log_f.write("updated classifiers with " + str(len(upidxs)) + " new labels across " +
                 str(len(set(upidxs))) + " predicates...\n")
-    print "main: ... done"
+    print("main: ... done")
 
     # Write new classifiers to file.
-    print "main: committing grouder classifiers to file..."
+    print("main: committing grouder classifiers to file...")
     g.kb.pc.commit_changes()  # save classifiers to disk
-    print "main: ... done"
+    print("main: ... done")
 
     # Induce pairs from agg data.
-    print "main: ... creating induced pairs from aggregated conversations..."
+    print("main: ... creating induced pairs from aggregated conversations...")
     for action_confirmed, user_utterances_by_role in agg_role_utterances_role_chosen_pairs:
         new_i_pairs = a.induce_utterance_grounding_pairs_from_conversation(user_utterances_by_role,
                                                                            action_confirmed)
         a.induced_utterance_grounding_pairs.extend(new_i_pairs)
-    print "main: ...... done; induced " + str(len(a.induced_utterance_grounding_pairs)) + " pairs"
+    print("main: ...... done; induced " + str(len(a.induced_utterance_grounding_pairs)) + " pairs")
     log_f.write("induced " + str(len(a.induced_utterance_grounding_pairs)) + " utterance/grounding pairs\n")
 
     # DEBUG - write the Agent out to file for use by other scripts
@@ -276,13 +280,13 @@ def main():
 
     # Iterate inducing new pairs using most up-to-date parser and training for single epoch.
     # Each of these stages can be distributed over the UT Condor system for more linear-time computation.
-    print "main: training parser by alternative grounding->semantics and semantics->parser training steps..."
+    print("main: training parser by alternative grounding->semantics and semantics->parser training steps...")
     fplfn = open(full_pairs_log_fn, 'w')
     for epoch in range(epochs):
 
         # Get grouding->semantics pairs
         if not only_use_base_pairs:
-            print "main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs..."
+            print("main: ... getting utterance/semantic form pairs from induced utterance/grounding pairs...")
             utterance_semantic_grounding_triples = a.get_semantic_forms_for_induced_pairs(
                 1, 10, verbose=1, use_condor=use_condor, condor_target_dir=condor_target_dir,
                 condor_script_dir=condor_grounder_script_dir)
@@ -301,13 +305,13 @@ def main():
             utterance_semantic_grounding_triples = []
 
         # Write the new parser to file.
-        print "main: writing current re-trained parser to file..."
+        print("main: writing current re-trained parser to file...")
         with open(parser_outfile + "." + str(epoch), 'wb') as f:
             pickle.dump(p, f)
-        print "main: ... done"
+        print("main: ... done")
 
         # Train parser on utterances->semantics pairs
-        print "main: ... re-training parser on pairs induced from aggregated conversations..."
+        print("main: ... re-training parser on pairs induced from aggregated conversations...")
         utterance_semantic_pairs = [[x, y] for x, y, _ in utterance_semantic_grounding_triples]
         perf = []
         a.parser.train_learner_on_semantic_forms(parser_base_pairs + utterance_semantic_pairs,
@@ -320,13 +324,13 @@ def main():
                     str(len(parser_base_pairs) + len(utterance_semantic_pairs)) + "\n")
 
     # Write the final parser to file.
-    print "main: writing current re-trained parser to file..."
+    print("main: writing current re-trained parser to file...")
     with open(parser_outfile + ".final", 'wb') as f:
         pickle.dump(p, f)
-    print "main: ... done"
+    print("main: ... done")
 
     fplfn.close()
-    print "main: ... done"
+    print("main: ... done")
 
     # Close logfile.
     log_f.close()

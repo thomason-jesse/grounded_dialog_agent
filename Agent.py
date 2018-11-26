@@ -1613,7 +1613,7 @@ class Agent:
                         print ("get_semantic_forms_for_induced_pairs: ... grounding semantic form " +
                                self.parser.print_parse(parse.node, True) + " with scores p " + str(score))
                     # Allow grounder to run indefinitely at training time.
-                    gs = self.grounder.ground_semantic_tree(parse.node, timeout=None)
+                    gs = self.grounder.ground_semantic_tree(parse.node)
                     if gs is not None:
                         gn = self.sort_groundings_by_conf(gs)
                     else:
