@@ -1560,7 +1560,7 @@ class Agent:
                 pickle.dump(self.induced_utterance_grounding_pairs, f)
             pairs_out_fn = os.path.join(condor_target_dir, "temp.gpairs.out.pickle")
             script_fn = os.path.join(condor_script_dir, "_condor_get_utt_sem_pairs.py")
-            cmd = ("python " + script_fn +
+            cmd = ("python3 " + script_fn +
                    " --target_dir " + condor_target_dir +
                    " --script_dir " + condor_script_dir +
                    " --agent_infile " + agent_fn +
