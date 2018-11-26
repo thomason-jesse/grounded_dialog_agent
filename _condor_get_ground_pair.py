@@ -39,7 +39,9 @@ def main():
 
     utterance_semantic_pairs = None
     parses = []
-    cgtr = a.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam, debug=False)
+    cky_parse_generator = a.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam,
+                                                         debug=False)
+    cgtr = cky_parse_generator.next()
     parse = None
     if cgtr is not None:
         parse = cgtr[0]
@@ -69,7 +71,7 @@ def main():
                            " with scores p " + str(score) + ", g " + str(g_score))
                     break  # break here since groundings below this, even if they match, will have lower score
 
-        cgtr = a.call_generator_with_timeout(cky_parse_generator, None)  # a.budget_for_parsing)
+        cgtr = cky_parse_generator.next()
         parse = None
         if cgtr is not None:
             parse = cgtr[0]
