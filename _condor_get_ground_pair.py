@@ -41,7 +41,7 @@ def main():
     parses = []
     cky_parse_generator = a.parser.most_likely_cky_parse(x, reranker_beam=parse_reranker_beam,
                                                          debug=False)
-    cgtr = cky_parse_generator.next()
+    cgtr = next(cky_parse_generator)
     parse = None
     if cgtr is not None:
         parse = cgtr[0]
@@ -71,7 +71,7 @@ def main():
                            " with scores p " + str(score) + ", g " + str(g_score))
                     break  # break here since groundings below this, even if they match, will have lower score
 
-        cgtr = cky_parse_generator.next()
+        cgtr = next(cky_parse_generator)
         parse = None
         if cgtr is not None:
             parse = cgtr[0]
