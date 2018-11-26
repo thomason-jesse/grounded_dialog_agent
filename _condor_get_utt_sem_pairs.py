@@ -39,7 +39,7 @@ def main():
         out_fn = os.path.join(target_dir, "temp.gpair." + str(idx) + ".pickle")
         log_fn = os.path.join(target_dir, "temp.gpair." + str(idx) + ".log")
         cmd = (condorify_fn + " " +
-               "python " + script_fn +
+               "python3 " + script_fn +
                " --agent_infile " + agent_infile +
                " --parse_reranker_beam " + str(parse_reranker_beam) +
                " --interpolation_reranker_beam " + str(interpolation_reranker_beam) +
