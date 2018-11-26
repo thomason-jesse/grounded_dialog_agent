@@ -63,7 +63,7 @@ def main():
                 ablations.append('_np')
             fold = str(fold)
             for abl in ablations:
-                print "aggregating over cond '" + cond + "' fold " + fold + abl
+                print("aggregating over cond '" + cond + "' fold " + fold + abl)
 
                 raw_results = {"task_1_correct": [],
                                "task_1_f1": [],
@@ -159,7 +159,7 @@ def main():
                                             open_responses[aid] = {}
                                         open_responses[aid][int(uid, 16)] = (cond, fold + abl, r)
                                     else:
-                                        print "WARNING: no aid found for uid " + uid + " in open response files"
+                                        print("WARNING: no aid found for uid " + uid + " in open response files")
                                 except ValueError:  # response submitted was just blank space
                                     pass
 
@@ -176,11 +176,11 @@ def main():
                 cond_results[cond][fold + abl] = pr
 
         # Print results over condition.
-        print "=========="
-        print "condition '" + cond + "' results:"
+        print("==========")
+        print("condition '" + cond + "' results:")
         for r in cond_results[cond]["0"].keys():
-            print "----------"
-            print "\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)"  # \t(p)"
+            print("----------")
+            print("\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)")  # \t(p)"
             for fold in range(num_folds):
                 ablations = ['']
                 if fold == 3:
@@ -206,16 +206,16 @@ def main():
                                str(cond_results[cond][fold + abl][r]["n"]) + "\t" + sig)
 
     # Write open response outfile
-    print "writing open response collation..."
+    print("writing open response collation...")
     open_response_count = {aid: len(open_responses[aid]) for aid in open_responses.keys()}
     with open(open_response_out, 'w') as f:
-        for aid, _ in sorted(open_response_count.iteritems(), key=lambda (_k, _v): (_v, _k), reverse=True):
+        for aid, _ in [(k, open_response_count[k]) for k in sorted(open_response_count, key=open_response_count.get, reverse=True)]:
             f.write(aid + "\n")
             for uid16, __ in sorted(open_responses[aid].iteritems()):
                 cond, fold, r = open_responses[aid][uid16]
                 f.write("(" + cond + ", " + fold + ")\t" + r + "\n")
             f.write("\n")
-    print "... done"
+    print("... done")
 
     # Create and show plot for specified metric(s).
     metrics_to_titles = {"task_1_correct": "Navigation Correctness",
@@ -352,7 +352,7 @@ def main():
             if graph_dir is not None:
                 fn = os.path.join(graph_dir, graph_type + "_" + metric + ".png")
                 plt.savefig(fn, additional_artists=[lgd], bbox_inches="tight")
-                print "saved as '" + fn + "'"
+                print("saved as '" + fn + "'")
             plt.close()
 
 

@@ -45,6 +45,11 @@ function get_active_train_set($f) {
 	}
 }
 
+// returns 1, 2, or 3 uniformly at random
+function draw_task_num() {
+	return rand(1, 3);
+}
+
 // Draw a task given a task number and a setting.
 // task_num - either 1, 2, or 3
 // setting - either init, train, or test
