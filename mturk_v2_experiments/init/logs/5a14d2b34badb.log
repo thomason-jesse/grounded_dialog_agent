@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Go to"; os.exit(0);'
+get_from_user (processed): 'go to"; os.exit(0);'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): '🦄🦁🐮🐮🎍🎎🎟️'
+get_from_user (processed): '🦄🦁🐮🐮🎍🎎🎟️'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): '🎟️🎟️🎊🎏🎊🎉🎊🎑🎊'
+get_from_user (processed): '🎟️🎟️🎊🎏🎊🎉🎊🎑🎊'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Give the yellow can to Nancy'
+get_from_user (processed): 'give the yellow can to nancy'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Move the spice from the conference room to the lab.'
+get_from_user (processed): 'move the spice from the conference room to the lab'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Move the cylinder from the conference room to the lab'
+get_from_user (processed): 'move the cylinder from the conference room to the lab'
+perform_action: {'action': 'init_phase'}
+main: ... done

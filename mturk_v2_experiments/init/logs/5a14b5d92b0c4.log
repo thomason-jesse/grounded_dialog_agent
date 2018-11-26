@@ -1,0 +1,33 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: starting init phase dialog...
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Go to the pod between Walter and Sybil.'
+get_from_user (processed): 'go to the pod between walter and sybil'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Go to the pod between Walter Ward's office and Sybil Smalt's office.'
+get_from_user (processed): 'go to the pod between walter ward 's office and sybil smalt 's office'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Bring the styrofoam tower to Nancy.'
+get_from_user (processed): 'bring the styrofoam tower to nancy'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Bring the long white rectangle to Nancy Nagel.'
+get_from_user (processed): 'bring the long white rectangle to nancy nagel'
+perform_action: {'action': 'init_phase'}
+say_to_user: What should I do?
+get_from_user requested feedback
+get_from_user (raw): 'Take the small container from the pod between Mal and Peggy to the kitchen.'
+get_from_user (processed): 'take the small container from the pod between mal and peggy to the kitchen'
+say_to_user: What's another way you could phrase that command?
+get_from_user requested feedback
+get_from_user (raw): 'Move the small container with a gray cap from the pod between Mal and Peggy to the kitchen.'
+get_from_user (processed): 'move the small container with a gray cap from the pod between mal and peggy to the kitchen'
+perform_action: {'action': 'init_phase'}
+main: ... done

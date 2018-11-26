@@ -14,7 +14,6 @@ import os
 try:
     import rospy
 except ImportError:
-    print("WARNING: cannot import ros-related libraries")
     rospy = None
 
 
@@ -47,6 +46,7 @@ def main():
     image_path = FLAGS_image_path
     no_clarify = FLAGS_no_clarify.split(',') if FLAGS_no_clarify is not None else None
     assert io_type == 'keyboard' or io_type == 'server' or io_type == 'robot'
+    assert io_type != 'robot' or rospy is not None
     assert io_type != 'server' or (uid is not None and client_dir is not None and data_dir is not None)
     assert io_type != 'robot' or image_path is not None
 

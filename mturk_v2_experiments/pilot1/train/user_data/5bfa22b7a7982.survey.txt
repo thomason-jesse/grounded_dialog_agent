@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,1
+object_qs,1
+use_navigation,0
+use_delivery,
+use_relocation,
+This is just a minor technical issue I noticed: Typing into the fields was very slow and was sometimes missing letters, a bit like the real time searching on some apps that goes letter by letter and is a bit slowed down that way. That made typing my communications a bit cumbersome.

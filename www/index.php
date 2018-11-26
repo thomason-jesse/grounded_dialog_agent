@@ -571,9 +571,11 @@ else {
   $action_chosen = $_POST['action_chosen'];
   $too_long = $_POST['too_long'];
 
-  # Write a new user file so the Server creates an Agent assigned to this uid.
-  $fn = $d . $uid . '.newu.txt';
-  write_file($fn, ' ', 'Could not create file to request new dialog agent.');
+  # Write a new user file so the Server creates an Agent assigned to this uid (if not finished).
+  if (!$finished) {
+    $fn = $d . $uid . '.newu.txt';
+    write_file($fn, ' ', 'Could not create file to request new dialog agent.');
+  }
 
   # Write out the completed action to appropriate logfile if the task wasn't abandoned from a too_long error.
   if ($too_long != 1) {

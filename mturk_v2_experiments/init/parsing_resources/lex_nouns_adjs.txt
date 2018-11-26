@@ -1,0 +1,137 @@
+# confirmations
+yes :- C : yes
+yep :- C : yes
+sure :- C : yes
+no :- C : no
+nope :- C : no
+wrong :- C : no
+
+# imperative
+bring :- M/NP/NP : lambda y:p.(lambda x:i.(bring(x, y)))
+bring :- M/PP/NP : lambda x:i.(lambda y:p.(bring(x, y)))
+give :- M/NP/NP : lambda y:p.(lambda x:i.(bring(x, y)))
+give :- M/PP/NP : lambda x:i.(lambda y:p.(bring(x, y)))
+deliver :- M/NP/NP : lambda y:p.(lambda x:i.(bring(x, y)))
+deliver :- M/PP/NP : lambda x:i.(lambda y:p.(bring(x, y)))
+needs :- M/NP\NP : lambda y:p.(lambda x:i.(bring(x, y)))
+walk :- M/PP : lambda x:l.(walk(x))
+go :- M/PP : lambda x:l.(walk(x))
+move :- M/PP : lambda x:l.(walk(x))
+visit :- M/NP : lambda x:l.(walk(x))
+enter :- M/NP : lambda x:l.(walk(x))
+move :- M/PP/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
+take :- M/PP/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
+
+# imperatives forming 'move', eg. ``get the X from Y and bring it to Z''
+get :- M/M/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
+collect :- M/M/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
+bring :- M/M/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
+take :- M/M/PP/NP : lambda x:i.(lambda y:l.(lambda z:l.(move(x, y, z))))
+bring :- M/PP : lambda x:l.(x)
+take :- M/PP : lambda x:l.(x)
+deliver :- M/PP : lambda x:l.(x)
+
+# 'to' as recipient argument of a command (eg. ``give coffee to peter'', ``go to the conference room'', ``go to pod'')
+to :- PP/NP : lambda x:p.(x)
+for :- PP/NP : lambda x:p.(x)
+to :- PP/NP : lambda x:l.(x)
+to :- PP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
+from :- PP/NP : lambda x:l.(x)
+in :- PP/NP : lambda x:l.(x)
+of :- PP/NP : lambda x:l.(x)
+
+# for "bob 's office"; "the office of the chair"
+'s :- NP/N\NP : lambda x:p.(lambda P:<l,t>.(a_l(lambda y:l.(and(P(y), possesses(x, y))))))
+of :- N\N/NP : lambda x:p.(lambda P:<l,t>.(lambda y:l.(and(P(y), possesses(x, y)))))
+
+# "adjacent to", e.g. "the office adjacent to the kitchen"
+adjacent :- N/PP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
+next :- N/PP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
+by :- N/NP\N : lambda P:<l,t>.(lambda x:l.(lambda y:l.(and(P(y), adjacent(x, y)))))
+between :- N/NP/NP\N : lambda P:<l,t>.(lambda y:l.(lambda z:l.(lambda x:l.(and(P(x), and(adjacent(y, x), adjacent(z, x)))))))
+
+# determiners (e.g. "the spice container", "the intern")
+the :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
+the :- NP/N : lambda P:<i,t>.(a_i(lambda x:i.(P(x))))
+the :- NP/NP : lambda x:p.(x)
+a :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
+a :- NP/N : lambda P:<i,t>.(a_i(lambda x:i.(P(x))))
+an :- NP/N : lambda P:<l,t>.(a_l(lambda x:l.(P(x))))
+an :- NP/N : lambda P:<i,t>.(a_i(lambda x:i.(P(x))))
+
+# person atoms
+peggy :- NP : p
+richard :- NP : r
+david :- NP : d
+robert :- NP : b
+nancy :- NP : n
+heidi :- NP : h
+mallory :- NP : m
+walter :- NP : w
+sybil :- NP : s
+
+# Attach a N description to another (e.g. "clear container with beans", "the middle pod on the west", "can of peaches")
+with :- N\N/N : lambda P:<i,t>.(lambda Q:<i,t>.(and(P, Q)))
+of :- N\N/N : lambda P:<i,t>.(lambda Q:<i,t>.(and(P, Q)))
+on :- NP\NP/NP : lambda x:l.(lambda P:<l,t>.(lambda Q:<l,t>.(and(P(x), Q(x)))))
+
+# KB bare nouns
+office :- N : office
+conference :- N : conference
+lab :- N : lab
+printer :- N : printer
+lounge :- N : lounge
+kitchen :- N : kitchen
+pod :- N : pod
+
+# Vacuous KB-looking words (e.g. "conference room")
+room :- N\N : lambda P:<l,t>.(P)
+
+# KB adjectives
+empty :- N/N : lambda P:<l,t>.(and(unoccupied, P))
+middle :- N/N : lambda P:<l,t>.(and(middle, P))
+center :- N/N : lambda P:<l,t>.(and(middle, P))
+north :- N/N : lambda P:<l,t>.(and(north, P))
+top :- N/N : lambda P:<l,t>.(and(north, P))
+east :- N/N : lambda P:<l,t>.(and(east, P))
+right :- N/N : lambda P:<l,t>.(and(east, P))
+south :- N/N : lambda P:<l,t>.(and(south, P))
+bottom :- N/N : lambda P:<l,t>.(and(south, P))
+west :- N/N : lambda P:<l,t>.(and(west, P))
+left :- N/N : lambda P:<l,t>.(and(west, P))
+northeast :- N/N : lambda P:<l,t>.(and(north, and(east, P)))
+northwest :- N/N : lambda P:<l,t>.(and(north, and(west, P)))
+southeast :- N/N : lambda P:<l,t>.(and(south, and(east, P)))
+southwest :- N/N : lambda P:<l,t>.(and(south, and(west, P)))
+north :- N\NP/PP : lambda y:l.(lambda P:<l,t>.(a_l(lambda x:l.(and(P(x), northof(x, y))))))
+east :- N\NP/PP : lambda y:l.(lambda P:<l,t>.(a_l(lambda x:l.(and(P(x), eastof(x, y))))))
+south :- N\NP/PP : lambda y:l.(lambda P:<l,t>.(a_l(lambda x:l.(and(P(x), southof(x, y))))))
+west :- N\NP/PP : lambda y:l.(lambda P:<l,t>.(a_l(lambda x:l.(and(P(x), westof(x, y))))))
+
+# perception bare nouns from MTurk init
+spices :- N : spice
+spice :- N : spice
+container :- N : container
+can :- N : can
+pringles :- N : pringles
+cylinder :- N : cylinder
+beans :- N : bean
+tower :- N : tower
+rectangle :- N : rectangle
+column :- N : column
+block :- N : block
+peaches :- N : peach
+
+# perception adjectives from MTurk init
+spice :- N/N : lambda P:<i,t>.(and(spice, P))
+empty :- N/N : lambda P:<i,t>.(and(empty, P))
+peach :- N/N : lambda P:<i,t>.(and(peach, P))
+blue :- N/N : lambda P:<i,t>.(and(blue, P))
+long :- N/N : lambda P:<i,t>.(and(long, P))
+bean :- N/N : lambda P:<i,t>.(and(bean, P))
+coffee :- N/N : lambda P:<i,t>.(and(coffee, P))
+clear :- N/N : lambda P:<i,t>.(and(clear, P))
+styrofoam :- N/N : lambda P:<i,t>.(and(styrofoam, P))
+white :- N/N : lambda P:<i,t>.(and(white, P))
+yellow :- N/N : lambda P:<i,t>.(and(yellow, P))
+metallic :- N/N : lambda P:<i,t>.(and(metallic, P))

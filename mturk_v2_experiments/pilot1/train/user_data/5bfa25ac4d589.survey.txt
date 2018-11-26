@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,5
+object_qs,4
+use_navigation,1
+use_delivery,
+use_relocation,
+The robot asked weird things I can't really answer. Also, the things he replied were sometimes random.

@@ -1,0 +1,25 @@
+WARNING: cannot import ros-related libraries
+WARNING: cannot import ros-related libraries
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): ''
+get_from_user (processed): ''
+Traceback (most recent call last):
+  File "main.py", line 212, in <module>
+    main()
+  File "main.py", line 135, in main
+    a.start_action_dialog(perception_labels_requested=perception_labels_requested)
+  File "/var/www/mturk/phm/grounded_dialog_agent/Agent.py", line 229, in start_action_dialog
+    gprs, pr = self.parse_and_ground_utterance(ur)
+  File "/var/www/mturk/phm/grounded_dialog_agent/Agent.py", line 1087, in parse_and_ground_utterance
+    cgtr = next(parse_generator)
+  File "../tsp/CKYParser.py", line 797, in most_likely_cky_parse
+    raise AssertionError("Cannot parse provided string of length zero")
+AssertionError: Cannot parse provided string of length zero

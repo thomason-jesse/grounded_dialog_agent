@@ -13,7 +13,6 @@ try:
     roslib.load_manifest('sound_play')
     from sound_play.libsoundplay import SoundClient
 except ImportError:
-    print("WARNING: cannot import ros-related libraries")
     rospy = None
     roslib = None
 

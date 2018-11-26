@@ -33,8 +33,7 @@ def main():
             pickle_exists = data[headers.index("pickle_exists")]
             task_3_correct = data[headers.index("task_3_correct")]
             log_exists = data[headers.index("log_exists")]
-            if (pickle_exists == "1" and log_exists == "1" and
-                    (task_3_correct == "0" or task_3_correct == "1")):
+            if (pickle_exists == "1" and log_exists == "1"):
 
                 # Load user utterances from logfile.
                 log_fn = os.path.join(log_dir, uid + ".log")
@@ -77,7 +76,7 @@ def main():
                     num_users += 1
 
     if num_users == 0:
-        print "ERROR: found no users"
+        print("ERROR: found no users")
         return 1
 
     # Report.

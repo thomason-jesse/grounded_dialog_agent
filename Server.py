@@ -209,7 +209,7 @@ if __name__ == '__main__':
     parser.add_argument('--parser_fn', type=str, required=True,
                         help="a parser pickle to load")
     parser.add_argument('--word_embeddings_fn', type=str, required=True,
-                        help="fresh word embeddings to deal with gensim version differences")
+                        help="fresh word embeddings to deal with gensim version differences / add embeddings to parser post-hoc")
     parser.add_argument('--kb_static_facts_fn', type=str, required=True,
                         help="static facts file for the knowledge base")
     parser.add_argument('--kb_perception_source_dir', type=str, required=True,

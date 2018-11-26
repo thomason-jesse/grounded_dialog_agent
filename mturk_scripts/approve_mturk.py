@@ -51,7 +51,7 @@ def main():
                             print (row[id_header] + " gen id " + gen_id +
                                    " gave hash " + id_hash + " != " + true_hash)
                         elif id_hash in ids_seen:
-                            print row[id_header] + " gen id " + gen_id + " already seen"
+                            print(row[id_header] + " gen id " + gen_id + " already seen")
                         else:
                             valid += 1
 
@@ -145,7 +145,7 @@ def main():
                                             f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else 0
                                             user_data["task_" + str(task) + "_f1"] = str(f1)
 
-                            # Check whether output pickle exists (user completed all three tasks).
+                            # Check whether output pickle exists (user finished dialog agent script in main.py)
                             pickle_fn = os.path.join(user_data_dir, gen_id + ".pickle")
                             if os.path.isfile(pickle_fn):
                                 user_data["pickle_exists"] = '1'
@@ -273,8 +273,8 @@ def main():
                                 user_open_responses_to_write.append(gen_id + ": " + user_open_response)
 
                             # Alert bonuses.
-                            if bonuses > 0:
-                                print row[id_header] + " gen id " + gen_id + " bonuses: " + str(bonuses)
+                            # if bonuses > 0:
+                            #     print(row[id_header] + " gen id " + gen_id + " bonuses: " + str(bonuses))
 
                             # Alert error.
                             if user_data["error_found_in_logfile"] == "1":
@@ -288,13 +288,13 @@ def main():
 
                             # Alert no tasks drawn.
                             if user_data["task_1_correct"] == '-2':
-                                print "WARNING: " + row[id_header] + " gen id " + gen_id + " task 1 never drawn"
+                                print("WARNING: " + row[id_header] + " gen id " + gen_id + " task 1 never drawn")
 
                     else:
-                        print row[id_header] + " gen id " + gen_id + " invalid code " + code
+                        print(row[id_header] + " gen id " + gen_id + " invalid code " + code)
                     total += 1
                     ids_seen.append(gen_id)
-            print str(valid) + " workers of " + str(total) + " were valid ('" + csv_fn + "')"
+            print(str(valid) + " workers of " + str(total) + " were valid ('" + csv_fn + "')")
 
     # Write CSV output data.
     with open(outfile, 'w') as f:

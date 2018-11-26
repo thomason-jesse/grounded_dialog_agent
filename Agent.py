@@ -866,7 +866,7 @@ class Agent:
                         return 'yes'
                     elif g.idx == self.parser.ontology.preds.index('no'):
                         return 'no'
-            self.io.say_to_user("I am expecting a simple 'yes' or 'no' response.")
+            self.io.say_to_user("Sorry, I am confused and just need a 'yes' or 'no' response for now.")
             if rvs is None:
                 self.io.say_to_user(q)
             else:
