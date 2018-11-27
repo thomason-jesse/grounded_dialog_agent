@@ -28,7 +28,7 @@ def main():
             valid = 0
             total = 0
             ids_seen = []
-            survey_header = None
+            survey_header = id_header = None
             for row in inreader:
 
                 if first:
@@ -45,7 +45,7 @@ def main():
                             total += 1
                             continue
                         gen_id, rot_mid, id_hash = code.split('_')
-                        mid = rot_mid[-3:] + rot_mid[3:-3]
+                        mid = rot_mid[-3:] + rot_mid[:-3]
                         true_hash = hashlib.sha1("phm_salted_hash" + gen_id + mid +
                                                  "rwhpidcwha_" + add_salt).hexdigest()[:13]
                         if id_hash != true_hash:
@@ -289,12 +289,8 @@ def main():
                                 print ("WARNING: " + row[id_header] + " gen id " + gen_id +
                                        " logfile may contain runtime warning report")
 
-                            # Alert no tasks drawn.
-                            if user_data["task_1_correct"] == '-2':
-                                print("WARNING: " + row[id_header] + " gen id " + gen_id + " task 1 never drawn")
-
                     else:
-                        print(row[id_header] + " gen id " + gen_id + " invalid code " + code)
+                        print(row[id_header] + " gen id " + gen_id + " invalid survey code " + code)
                     total += 1
                     ids_seen.append(gen_id)
             print(str(valid) + " workers of " + str(total) + " were valid ('" + csv_fn + "')")

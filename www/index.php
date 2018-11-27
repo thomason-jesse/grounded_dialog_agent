@@ -557,7 +557,7 @@ if (!isset($_POST['uid'])) {
       <form action="index.php" method="POST">
         <input type="hidden" name="uid" value="<?php echo $uid;?>">
         <input type="hidden" name="task_num" value="<?php echo $curr_task_num;?>">
-        Enter your MTurk ID (required for payment after the HIT):<br/>
+        Enter your MTurk ID (must match your ID in MTurk for payment after the HIT):<br/>
         <input type="text" name="mturk_id" placeholder="Your MTurk ID"><br/>
         <input type="submit" class="btn" value="Okay">
       </form>

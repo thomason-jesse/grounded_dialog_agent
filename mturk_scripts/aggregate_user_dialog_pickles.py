@@ -19,8 +19,8 @@ def main():
     agg_role_utterances_role_chosen_pairs = []
     agg_perceptual_labels = []
     agg_perceptual_synonymy = []
-    num_users = 0
-    num_correct_tasks = 0
+    num_users = [0, 0, 0]
+    num_correct_tasks = [0, 0, 0]
     with open(summary_csv_fn, 'r') as f:
         lines = f.readlines()
         headers = lines[0].strip().split(',')
@@ -31,7 +31,6 @@ def main():
             # We could conceivably draw data from users who did not complete all tasks as well.
             uid = data[headers.index("uid")]
             pickle_exists = data[headers.index("pickle_exists")]
-            task_3_correct = data[headers.index("task_3_correct")]
             log_exists = data[headers.index("log_exists")]
             if (pickle_exists == "1" and log_exists == "1"):
 
@@ -54,15 +53,19 @@ def main():
 
                     tasks_correct = [True if data[headers.index("task_" + str(task) + "_correct")] == "1" else False
                                      for task in range(1, 4)]
+                    tasks_taken = [False if data[headers.index("task_" + str(task) + "_correct")] == "-2" else True
+                                   for task in range(1, 4)]
                     for task in range(1, 4):
                         idx = task - 1
                         # If task was correct, note this user's data for inclusion in aggregated pickle.
                         if tasks_correct[idx]:
-                            pair = (actions_confirmed[idx], utterances_by_role[idx])
+                            pair = (actions_confirmed[0], utterances_by_role[0])
                             if pair not in agg_role_utterances_role_chosen_pairs:
-                                agg_role_utterances_role_chosen_pairs.append((actions_confirmed[idx],
-                                                                              utterances_by_role[idx]))
-                            num_correct_tasks += 1
+                                agg_role_utterances_role_chosen_pairs.append((actions_confirmed[0],
+                                                                              utterances_by_role[0]))
+                            num_correct_tasks[idx] += 1
+                        if tasks_taken[idx]:
+                            num_users[idx] += 1
 
                     # Regardless of correctness, record perceptual labels gathered from this user.
                     agg_perceptual_labels.extend(new_perceptual_labels)
@@ -73,15 +76,14 @@ def main():
                         agg_all_parser_timeouts += parser_timeouts_per_dialog[tidx]
                         agg_all_grounder_timeouts += grounder_timeouts_per_dialog[tidx]
 
-                    num_users += 1
-
     if num_users == 0:
         print("ERROR: found no users")
         return 1
 
     # Report.
     print ("main: aggregated data from " + str(num_users) + " users and " + str(num_correct_tasks) + " correct " +
-           "tasks for an average correct tasks per user of " + str(num_correct_tasks / float(num_users)))
+           "tasks for an average correct tasks per user of " +
+           ', '.join(['%.2f' % (num_correct_tasks[idx] / float(num_users[idx])) for idx in range(3)]))
     print ("main: got a total of " + str(len(agg_all_utterances)) + " string utterances over all those users, with " +
            str(agg_all_parser_timeouts) + " of those leading to parser timeouts and " +
            str(agg_all_grounder_timeouts) + " leading to grounder timeouts")
