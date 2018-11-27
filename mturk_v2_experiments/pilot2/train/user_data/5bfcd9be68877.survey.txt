@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,2
+While I find this very interesting, if I had to give that many commands to get something accomplished like moving a can of chips, I would just do it myself because I would spend more time redirecting and teaching than if I did it myself.  Now if this robot did  this quickly without much redirection then I would use it!

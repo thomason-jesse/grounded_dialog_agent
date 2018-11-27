@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,6
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,0
+You showed an object to be moved without telling me what kind of object it is and the robot was not smart enough to understand descriptions. Also, this task was especially frustrating because the text input boxes are very buggy. They can't keep up with a reasonable typing speed.

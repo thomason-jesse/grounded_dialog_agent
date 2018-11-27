@@ -79,4 +79,22 @@ function draw_task($task_num, $setting) {
 	return $d[$key];
 }
 
+// Write array to json.
+function write_array_to_json($a, $fn, $err_msg) {
+	$f = fopen($fn, 'w') or die($err_msg);
+	$d = json_encode($a);
+	fwrite($f, $d);
+	fclose($f);
+}
+
+// Read array from json.
+function read_array_from_json($fn) {
+	$s = read_file($fn);
+	if (!$s) {
+		return false;
+	}
+	$d = json_decode($s, true);
+	return $d;
+}
+
 ?>

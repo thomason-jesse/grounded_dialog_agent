@@ -40,18 +40,21 @@ def main():
                     code = row[survey_header]
                     if '_' in code:
                         code_parts = code.split('_')
-                        if len(code_parts) > 2:
+                        if len(code_parts) > 3:
                             print (row[id_header] + " survey code doesn't match form '" + code + "'")
                             total += 1
                             continue
-                        gen_id, id_hash = code.split('_')
-                        true_hash = hashlib.sha1("phm_salted_hash" + gen_id +
+                        gen_id, rot_mid, id_hash = code.split('_')
+                        mid = rot_mid[-3:] + rot_mid[3:-3]
+                        true_hash = hashlib.sha1("phm_salted_hash" + gen_id + mid +
                                                  "rwhpidcwha_" + add_salt).hexdigest()[:13]
                         if id_hash != true_hash:
                             print (row[id_header] + " gen id " + gen_id +
                                    " gave hash " + id_hash + " != " + true_hash)
                         elif id_hash in ids_seen:
                             print(row[id_header] + " gen id " + gen_id + " already seen")
+                        elif mid != row[id_header]:
+                            print(row[id_header] + " provided non-matching worker id '" + mid + "'")
                         else:
                             valid += 1
 

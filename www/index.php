@@ -197,7 +197,7 @@ function fill_panel(type, role, atom) {
   $('#' + type + '_' + role + '_panel').prop("hidden", false);
   if (!va && type == 'task' && role == "goal") {  // maps are present (walk and move tasks)
     var task_text = $('#task_text').html();
-    task_text += "<br/>Letters in offices indicate that the corresponding person owns that office.";
+    task_text += "<br/>Letters in offices show which person owns the office, not that the office is named that letter.";
     $('#task_text').html(task_text);
   }
 }
@@ -519,11 +519,12 @@ require_once('functions.php');
 
 # Variables that control what tasks and objects will be shown.
 # These should be changed whenever a new Turk task is made.
-$fold = 0;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
+$fold = 1;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
 $setting = "train";  # either init, train, or test
 # $run_forever = false;  # if false, still running MTurk experiments, if true, show additional info
 
 $d = 'client/';
+$mturk_ids_fn = "participant_mturk_ids.txt";
 $active_train_set = get_active_train_set($fold);
 shuffle($active_train_set);
 
@@ -548,6 +549,7 @@ if (!isset($_POST['uid'])) {
   $inst .= "After answering the robot's questions, you will complete a short survey about your experience.</p>";
   $inst .= "<p>Once you start the HIT, <b>do not refresh or navigate away from this page</b> ";
   $inst .= "until you reach the end and claim your payment code for Mechanical Turk.</p><br/>";
+  $inst .= "<p><b>If you have already completed a HIT like this, please return it now; you will not be allowed to complete it again.</b></p><br/>";
   ?>
   <div class="row" id="inst_div">
     <div class="col-md-12">
@@ -555,6 +557,8 @@ if (!isset($_POST['uid'])) {
       <form action="index.php" method="POST">
         <input type="hidden" name="uid" value="<?php echo $uid;?>">
         <input type="hidden" name="task_num" value="<?php echo $curr_task_num;?>">
+        Enter your MTurk ID (required for payment after the HIT):<br/>
+        <input type="text" name="mturk_id" placeholder="Your MTurk ID"><br/>
         <input type="submit" class="btn" value="Okay">
       </form>
     </div>
@@ -567,14 +571,27 @@ else {
 
   $uid = $_POST['uid'];
   $task_num = $_POST['task_num'];
+  $mturk_id = $_POST['mturk_id'];
   $finished = $_POST['finished'];
   $action_chosen = $_POST['action_chosen'];
   $too_long = $_POST['too_long'];
+  $past_turk_ids = read_array_from_json($mturk_ids_fn);
 
   # Write a new user file so the Server creates an Agent assigned to this uid (if not finished).
   if (!$finished) {
-    $fn = $d . $uid . '.newu.txt';
-    write_file($fn, ' ', 'Could not create file to request new dialog agent.');
+
+    # Check whether the mturk ID is unique, creating a new Agent if it is, and ending the session otherwise.
+    if (in_array($mturk_id, $past_turk_ids)) {
+      die("It looks like you have completed this task in a similar HIT before; please return this one! Sorry for the inconvenience.");
+    }
+    else {
+        $fn = $d . $uid . '.newu.txt';
+        write_file($fn, ' ', 'Could not create file to request new dialog agent.');
+
+        # Add mturk ID to list.
+        $past_turk_ids[] = $mturk_id;
+        write_array_to_json($past_turk_ids, $mturk_ids_fn, 'Could not write mturk ids back to json file.');
+    }
   }
 
   # Write out the completed action to appropriate logfile if the task wasn't abandoned from a too_long error.
@@ -592,6 +609,7 @@ else {
         <div class="col-md-12">
           <form action="generate_code.php" method="POST">
             <input type="hidden" name="uid" value="<?php echo $uid;?>">
+            <input type="hidden" name="mturk_id" value="<?php echo $mturk_id;?>">
             <table class="dialog_table">
               <tr>
                 <td>&nbsp;</td><td style="text-align:center">Strongly Disagree</td><td style="text-align:center">Disagree</td><td style="text-align:center">Slightly Disagree</td><td style="text-align:center">Neutral</td><td style="text-align:center">Slightly Agree</td><td style="text-align:center">Agree</td><td style="text-align:center">Strongly Agree</td>
@@ -692,6 +710,7 @@ else {
             To take the survey, click the button below.
               <form action="index.php" method="POST">
                 <input type="hidden" name="uid" value="<?php echo $uid;?>">
+                <input type="hidden" name="mturk_id" value="<?php echo $mturk_id;?>">
                 <input type="hidden" name="task_num" value="<?php echo $task_num;?>">
                 <input type="hidden" name="finished" value="1">
                 <input type="hidden" name="too_long" value="0">
@@ -752,8 +771,9 @@ else {
 
     <div class="row" id="next_task_div">
       <div class="col-md-12">
-        <p>Give your commands all at once, as opposed to in individual steps.</p>
-        <p>The robot can take a while to think of its response, so be patient on startup and when waiting for a reply.</p>
+        <p>Give your first, high-level command all at once, as opposed to as individual steps.</p>
+        <p>The robot can take a while to think of its response.</p>
+        <p><b>Remember, from here on, do not use the <b>back</b> button until you have completed the task!</b></p>
         <button class="btn" name="user_say" onclick="show_task('<?php echo $d;?>', '<?php echo $uid;?>', '<?php echo $action;?>', '<?php echo $patient;?>', '<?php echo $recipient;?>', '<?php echo $source;?>', '<?php echo $goal;?>')">Show next task</button>
       </div>
     </div>

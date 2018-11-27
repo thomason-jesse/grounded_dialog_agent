@@ -19,36 +19,28 @@ Fold 1 train set: 5,14,8,15,1,30,29,31
 Fold 2 train set: 21,24,19,23,16,0,4,9
 
 Launch server (generic):
-	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/[PD]/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold[F]/train/ --num_dialogs 1 --active_train_set [X] --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin
+	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/[PD]/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold[F]/train/ --num_dialogs 1 --active_train_set [X]
 
 Server fold 0:
-	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/init/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold0/train/ --num_dialogs 1 --active_train_set 10,3,27,7,18,2,20,17 --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin
+	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/init/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold0/train/ --num_dialogs 1 --active_train_set 10,3,27,7,18,2,20,17
 
 Todo:
-	- Pilot 1:
+	[x] Pilot 1:
 		- Costs: .3 cents per HIT, 20 HITs, $6 plus $2.40 in fees, $8.40 total
 		- Fold 0 task 1
 		- Retrain
 		- Vet personally 
 	- Pilot 2:
-		- Fold 1 task 1
-		- Fold 1 task 2
-		- Fold 1 task 3
+		- Costs: .7 cents per HIT, 30 HITs, $21 plus $8.40 in fees, $29.40 total
+		- Fold 1 task * (uniform random assignment)
 		- Retrain
 		- Vet personally
 	- Experiment
-		- Fold 0 task 1
-		- Fold 0 task 2
-		- Fold 0 task 3
+		- Fold 0 task *
 		- Retrain
-		- Fold 1 task 1
-		- Fold 1 task 2
-		- Fold 1 task 3
+		- Fold 1 task *
 		- Retrain
-		- Fold 2 task 1
-		- Fold 2 task 2
-		- Fold 2 task 3
+		- Fold 2 task *
 		- Retrain
-		- Test Fold 3 task 1
-		- Test Fold 3 task 2
-		- Test Fold 3 task 3
+		- Test Fold 3 task *
+		- Test Fold 0 task *

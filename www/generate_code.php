@@ -21,7 +21,7 @@
 <?php
 require_once('functions.php');
 
-if (!isset($_POST['uid'])) {
+if (!isset($_POST['uid']) or !isset($_POST['mturk_id'])) {
   die("You must have found this page by accident.");
 }
 
@@ -29,6 +29,9 @@ if (!isset($_POST['uid'])) {
 else {
 
   $uid = $_POST['uid'];
+  $mturk_id = $_POST['mturk_id'];
+
+  $rotated_id = substr($mturk_id, 3) . substr($mturk_id, 0, 3);
 
   # Write survey responses to file.
   $fn = 'user_data/' . $uid . '.survey.txt';
@@ -44,7 +47,7 @@ else {
 
   # Show exit instructions.
   $uid = $_POST['uid'];
-  $mturk_code = $uid."_".substr(sha1("phm_salted_hash".$uid."rwhpidcwha_v2train0f"),0,13);
+  $mturk_code = $uid."_".$rotated_id."_".substr(sha1("phm_salted_hash".$uid.$mturk_id."rwhpidcwha_v2train1f"),0,13);
   ?>
   <div class="row">
     <div class="col-md-12">
