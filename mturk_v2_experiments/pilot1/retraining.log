@@ -1,2 +1,22 @@
 updated classifiers with 283 new labels across 20 predicates...
 induced 19 utterance/grounding pairs
+epoch 0: got 9 utterance/semantic pairs
+epoch 0: parser trained on 39 examples and failed on 12 out of 53
+epoch 1: got 9 utterance/semantic pairs
+epoch 1: parser trained on 39 examples and failed on 12 out of 53
+epoch 2: got 9 utterance/semantic pairs
+epoch 2: parser trained on 38 examples and failed on 13 out of 53
+epoch 3: got 9 utterance/semantic pairs
+epoch 3: parser trained on 39 examples and failed on 12 out of 53
+epoch 4: got 8 utterance/semantic pairs
+epoch 4: parser trained on 38 examples and failed on 12 out of 52
+epoch 5: got 9 utterance/semantic pairs
+epoch 5: parser trained on 39 examples and failed on 12 out of 53
+epoch 6: got 9 utterance/semantic pairs
+epoch 6: parser trained on 39 examples and failed on 13 out of 53
+epoch 7: got 9 utterance/semantic pairs
+epoch 7: parser trained on 39 examples and failed on 13 out of 53
+epoch 8: got 8 utterance/semantic pairs
+epoch 8: parser trained on 38 examples and failed on 13 out of 52
+epoch 9: got 9 utterance/semantic pairs
+epoch 9: parser trained on 39 examples and failed on 13 out of 53
