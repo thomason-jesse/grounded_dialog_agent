@@ -1,0 +1,372 @@
+epoch 0:
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),office(1)))))
+walk(3512)
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),and(office(1),office(1)))))
+3512
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),and(office(1),office(1)))))
+3512
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+epoch 1:
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),office(1)))))
+walk(3512)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),and(office(1),office(1)))))
+3512
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),and(office(1),office(1)))))
+3512
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+epoch 2:
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+epoch 3:
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),office(1)))))
+walk(3512)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+epoch 4:
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),office(1)))))
+walk(3512)
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+epoch 5:
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),office(1)))))
+walk(3512)
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+epoch 6:
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),office(1)))))
+walk(3512)
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+epoch 7:
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),office(1)))))
+walk(3512)
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+epoch 8:
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),and(office(1),office(1))))))
+walk(3512)
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+epoch 9:
+
+the office of richard rogue
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
+go to david daniel 's office
+M : walk(a_l(lambda 1:l.(and(possesses(d,1),office(1)))))
+walk(3420)
+
+go to office r of richard rogue secretary
+M : walk(a_l(lambda 1:l.(and(possesses(r,1),and(office(1),office(1))))))
+walk(3512)
+
+go to the office of robert bob brown
+M : walk(a_l(lambda 1:l.(and(possesses(b,1),office(1)))))
+walk(3510)
+
+office
+NP : a_l(lambda 1:l.(office(1)))
+3510
+
+please go to the lounge
+M : walk(a_l(lambda 1:l.(lounge(1))))
+walk(3514)
+
+go to richard rogues office
+M : walk(a_l(lambda 1:l.(office(1))))
+walk(3512)
+
+dr sybil smalt 's office
+NP : a_l(lambda 1:l.(and(possesses(s,1),office(1))))
+3430
+
+the office of richard rogue secretary
+NP : a_l(lambda 1:l.(and(possesses(r,1),office(1))))
+3512
+
