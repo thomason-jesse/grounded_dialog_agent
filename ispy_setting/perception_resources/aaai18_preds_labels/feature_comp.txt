@@ -1,0 +1,69 @@
+
+AAAI PREDS
+COND                            K_ALL   K_NON_MAJ_PRED  K_TRAINED
+
+look-color-fpfh                 0.72    0.56            0.71
+                                (81)    (35)            (76)
+
+look-fc7                        0.71    0.65            0.71
+                                (81)    (57)            (76)
+
+look-resnet-pul                 0.72    0.66            0.71
+                                (81)    (58)            (76)
+
+look-resnet-pul-color-fpfh      0.72    0.57            0.72
+                                (81)    (35)            (76)
+
+look-resnet-color-fpfh          0.73    0.58            0.72
+                                (81)    (35)            (76)
+
+look-resnet                     0.73    0.59            0.72
+                                (81)    (36)            (76)
+
+allb-resnet-pul                 0.73    0.59            0.73
+allb-resnet                     (81)    (35)            (76)
+allb-resnet-pul-color-fpfh
+allb-resnet-color-fpfh
+look-fc7-color-fpfh
+
+allb-fc7                        0.73    0.60            0.73
+allb-fc7-color-fpfh             (81)    (35)            (76)
+
+===
+
+ICRA SUB PREDS
+COND                            K_ALL   K_NON_MAJ_PRED  K_TRAINED
+
+look-color-fpfh                 0.76    0.51            0.60
+                                (25)    (7)             (15)
+
+look-resnet-pul-color-fpfh      0.78    0.57            0.63
+                                (25)    (7)             (15)
+
+look-fc7-color-fpfh             0.78    0.58            0.63
+allb-resnet-pul                 (25)    (7)             (15)
+allb-resnet
+allb-resnet-color-fpfh
+
+look-fc7                        0.78    0.67            0.63
+                                (25)    (10)            (15)
+
+look-resnet-pul                 0.78    0.68            0.63
+                                (25)    (10)            (15)
+
+allb-fc7                        0.78    0.59            0.64
+allb-resnet-pul-color-fpfh      (25)    (7)             (15)
+
+look-resnet                     0.78    0.60            0.64
+look-resnet-color-fpfh          (25)    (7)             (15)
+allb-fc7-color-fpfh
+
+===
+
+Based on these and community concensus, seems reasonable to go with *look-resnet-color-fpfh* which achieves top
+performance on ICRA SUB and barely less on AAAI PREDS. If we decide to pull in all behaviors, *all-b-resnet-color-fpfh*
+is similarly basically equivalent for ICRA SUB and performs slihgtly better for AAAI PREDS.
+
+In reality, the numbers in general are super small differences, and as soon as we introduce any ResNet layer, FC7 layer, or
+all behaviors, performance jumps. Only using color and fpfh leads to weaker models, but adding any of the other three creates
+something competitive with everything else, so we can choose the sensible thing for our story + current research climate.
