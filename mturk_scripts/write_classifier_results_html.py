@@ -105,8 +105,8 @@ def main():
                 oidx_d = {oidx: oidx_pos[oidx] / s for oidx in oidx_pos.keys()}
                 for oidx, pos in sorted(oidx_pos.items(), key=operator.itemgetter(1), reverse=True):
                     f.write("<td><img width=\"200px\" height=\"200px\" " +
-                            "src=\"../www/images/objects/oidx_" + str(oidx) + ".jpg\"><br/>" + str(pos) +
-                            "<br/>" + str(oidx_d[oidx]) + "</td>")
+                            "src=\"../www/images/objects/oidx_" + str(oidx) + ".jpg\"><br/>conf %.2f" % pos +
+                            "<br/>prob %.2f" + oidx_d[oidx] + "</td>")
             else:
                 for _ in range(len(active_test_set)):
                     f.write("<td>&nbsp;</td>")
