@@ -26,19 +26,24 @@ Server fold 0:
 
 Todo:
 	[x] Pilot 1:
-		- Costs: .3 cents per HIT, 20 HITs, $6 plus $2.40 in fees, $8.40 total
+		- Costs: 3 cents per HIT, 20 HITs, $6 plus $2.40 in fees, $8.40 total
 		- Fold 0 task 1
 		- Retrain
 		- Vet personally 
 	[x] Pilot 2:
-		- Costs: .7 cents per HIT, 30 HITs, $21 plus $8.40 in fees, $29.40 total
+		- Costs: 7 cents per HIT, 30 HITs, $21 plus $8.40 in fees, $29.40 total
 		- Fold 1 task * (uniform random assignment)
 		- Retrain
 		- Vet personally
-	- Experiment
-		- Fold 0 task *
-		    - Batch 1
+	- Experiment ($315 per fold, 3 training folds + 2 testing folds = $1575 at current pay w no bonuses)
+	    (at .25 bonus, $75 max bonus per fold, for max bonus payout of $375; should probably do that)
+		- Fold 0 task * (estimate $315 per fold)
+		    - Batch 1 - $0.75 per HIT, 50 HITs, $37.50 plus $15 in fees, $52.50 total (per batch estimate)
 		    - Batch 2
+		    - Batch 3
+		    - Batch 4
+		    - Batch 5
+		    - Batch 6
 		    - Estimate whether we need to increase number of batches before proceeding (retrain parser+perc and viz).
 		    - Estimate whether we need to bonus workers based on completion rates.
 		- Retrain
