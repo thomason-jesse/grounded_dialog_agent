@@ -730,6 +730,7 @@ else {
               <input type="hidden" name="uid" value="<?php echo $uid;?>">
               <input type="hidden" name="mturk_id" value="<?php echo $mturk_id;?>">
               <input type="hidden" name="task_num" value="<?php echo $task_num;?>">
+              <input type="hidden" name="finished" value="1">
               <input type="hidden" name="too_long" value="1">
               <input type="hidden" id="action_chosen_post" name="action_chosen" value="">
               <input type="submit" class="btn" value="End task and take survey">
