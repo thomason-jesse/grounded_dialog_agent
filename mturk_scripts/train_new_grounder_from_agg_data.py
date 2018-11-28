@@ -171,10 +171,13 @@ def main():
     pred_is_perc = {pred: False for pred in preds}
     new_perceptual_adds = True
     known_perc_preds = [tk for tk in a.parser.lexicon.surface_forms if a.is_token_perceptual(tk)]
+    print("main: known perceptual preds: " + str(known_perc_preds))
     while new_perceptual_adds:
         new_perceptual_adds = False
         print("main: checking for new adjectives and nouns...")
         for pred in preds:
+            print("main: considering '" + pred + "' with pred_is_perc=" +
+                  str(pred_is_perc[pred]) + " and num utt " + str(len(utterances_with_pred[pred])))
             if not pred_is_perc[pred] and len(utterances_with_pred[pred]) > 0:
                 syn = get_syn_from_candidates(a, pred, synonymy_candidates)
 
