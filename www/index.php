@@ -414,9 +414,9 @@ function show_task(d, uid, action, patient, recipient, source, goal) {
 
   // Sample a task of the matching number.
   var prob_form = "Command the robot with a complete sentence. ";
-  prob_form += "The robot does not understand questions, but it may ask you questions of its own. ";
+  prob_form += "The robot does not understand questions, but will ask you questions of its own. ";
   prob_form += "The robot understands high-level commands, so it doesn't need step-by-step instructions, and it doesn't matter what location it starts in. "
-  prob_form += "<br/><br/>Give the robot a command to solve this problem:";
+  prob_form += "<br/><br/>Give the robot a command to solve this problem; if you succeed, you'll receive a pay <b>bonus</b>:";
   if (action == 'move') {
     var task_text = "<p><b>" + prob_form + "<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">pink map</span>. The object belongs at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
   } else if (action == 'bring') {
@@ -546,10 +546,11 @@ if (!isset($_POST['uid'])) {
   $inst = "<p>In this HIT, you will command a robot to perform a task. ";
   $inst .= "The robot is learning, and will ask you to reword your command ";
   $inst .= "and help it better understand which words apply to physical objects. ";
-  $inst .= "After answering the robot's questions, you will complete a short survey about your experience.</p>";
+  $inst .= "After answering the robot's questions, you will complete a short survey about your experience. ";
+  $inst .= "Help the robot to perform the correct task, and you will receive a payment <b>bonus</b>! ($0.25 on top of the HIT payout)</p>";
   $inst .= "<p>Once you start the HIT, <b>do not refresh or navigate away from this page</b> ";
   $inst .= "until you reach the end and claim your payment code for Mechanical Turk.</p><br/>";
-  $inst .= "<p><b>If you have already completed a HIT like this, please return it now; you will not be allowed to complete it again.</b></p><br/>";
+  $inst .= "<p><b>If you have already completed a HIT like this, please return it now; you will not be allowed to complete it again.</b></p>";
   ?>
   <div class="row" id="inst_div">
     <div class="col-md-12">
@@ -775,8 +776,9 @@ else {
       <div class="col-md-12">
         <p>Give your first, high-level command all at once, as opposed to as individual steps.</p>
         <p>The robot can take a while to think of its response.</p>
+        <p>Help the robot perform the correct task to receive a payment <b>bonus</b>.</p>
         <p><b>Remember, from here on, do not use the <b>back</b> button until you have completed the task!</b></p>
-        <button class="btn" name="user_say" onclick="show_task('<?php echo $d;?>', '<?php echo $uid;?>', '<?php echo $action;?>', '<?php echo $patient;?>', '<?php echo $recipient;?>', '<?php echo $source;?>', '<?php echo $goal;?>')">Show next task</button>
+        <button class="btn" name="user_say" onclick="show_task('<?php echo $d;?>', '<?php echo $uid;?>', '<?php echo $action;?>', '<?php echo $patient;?>', '<?php echo $recipient;?>', '<?php echo $source;?>', '<?php echo $goal;?>')">Start task</button>
       </div>
     </div>
 

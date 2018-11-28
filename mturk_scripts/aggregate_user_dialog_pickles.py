@@ -83,7 +83,7 @@ def main():
     # Report.
     print ("main: aggregated data from " + str(num_users) + " users and " + str(num_correct_tasks) + " correct " +
            "tasks for an average correct tasks per user of " +
-           ', '.join(['%.2f' % (num_correct_tasks[idx] / float(num_users[idx])) for idx in range(3)]))
+           ', '.join(['%.2f' % (num_correct_tasks[idx] / float(num_users[idx]) if num_users[idx] > 0 else 0) for idx in range(3)]))
     print ("main: got a total of " + str(len(agg_all_utterances)) + " string utterances over all those users, with " +
            str(agg_all_parser_timeouts) + " of those leading to parser timeouts and " +
            str(agg_all_grounder_timeouts) + " leading to grounder timeouts")

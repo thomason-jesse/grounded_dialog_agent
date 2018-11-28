@@ -18,6 +18,8 @@ def main():
 
     user_data_to_write = []
     user_open_responses_to_write = []
+    mturk_ids_to_bonus = []
+    mturk_ids_not_to_bonus = []
     for csv_idx in range(len(csv_fns)):
         csv_fn = csv_fns[csv_idx]
         add_salt = add_salts[csv_idx]
@@ -126,30 +128,32 @@ def main():
                                             drawn_roles[rv[0]] = rv[1]
                                     chosen_fn = os.path.join(user_data_dir, gen_id + "." + str(task) + ".chosen.txt")
                                     if os.path.isfile(chosen_fn):
-                                        completed_task = task
                                         with open(chosen_fn, 'r') as chosen_f:
                                             chosen_roles = {}
-                                            for rv_str in chosen_f.read().strip().split(';'):
-                                                rv = rv_str.split(':')
-                                                if rv[1] != 'None':
-                                                    chosen_roles[rv[0]] = rv[1]
-                                            task_correct = True
-                                            for r in drawn_roles:
-                                                if r not in chosen_roles or chosen_roles[r] != drawn_roles[r]:
-                                                    task_correct = False
-                                            user_data["task_" + str(task) + "_correct"] = '1' if task_correct else '0'
-                                            user_data["task_" + str(task) + "_correct_action"] = '1' if \
-                                                chosen_roles['action'] == drawn_roles['action'] else '0'
-                                            if task_correct:
-                                                bonuses += 1
-                                            overlap_n = 0
-                                            for r in drawn_roles:
-                                                if r in chosen_roles and chosen_roles[r] == drawn_roles[r]:
-                                                    overlap_n += 1
-                                            prec = float(overlap_n) / len(chosen_roles)
-                                            rec = float(overlap_n) / len(drawn_roles)
-                                            f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else 0
-                                            user_data["task_" + str(task) + "_f1"] = str(f1)
+                                            chosen_str = chosen_f.read().strip()
+                                            if len(chosen_str) > 0:
+                                                completed_task = task
+                                                for rv_str in chosen_str.split(';'):
+                                                    rv = rv_str.split(':')
+                                                    if rv[1] != 'None':
+                                                        chosen_roles[rv[0]] = rv[1]
+                                                task_correct = True
+                                                for r in drawn_roles:
+                                                    if r not in chosen_roles or chosen_roles[r] != drawn_roles[r]:
+                                                        task_correct = False
+                                                user_data["task_" + str(task) + "_correct"] = '1' if task_correct else '0'
+                                                user_data["task_" + str(task) + "_correct_action"] = '1' if \
+                                                    chosen_roles['action'] == drawn_roles['action'] else '0'
+                                                if task_correct:
+                                                    bonuses += 1
+                                                overlap_n = 0
+                                                for r in drawn_roles:
+                                                    if r in chosen_roles and chosen_roles[r] == drawn_roles[r]:
+                                                        overlap_n += 1
+                                                prec = float(overlap_n) / len(chosen_roles)
+                                                rec = float(overlap_n) / len(drawn_roles)
+                                                f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else 0
+                                                user_data["task_" + str(task) + "_f1"] = str(f1)
 
                             # Check whether output pickle exists (user finished dialog agent script in main.py)
                             pickle_fn = os.path.join(user_data_dir, gen_id + ".pickle")
@@ -264,9 +268,12 @@ def main():
                             if user_open_response is not None:
                                 user_open_responses_to_write.append(gen_id + ": " + user_open_response)
 
-                            # Alert bonuses.
-                            # if bonuses > 0:
-                            #     print(row[id_header] + " gen id " + gen_id + " bonuses: " + str(bonuses))
+                            # Bonuses.
+                            if bonuses > 0:
+                                # print(row[id_header] + " gen id " + gen_id + " bonuses: " + str(bonuses))
+                                mturk_ids_to_bonus.append(mid)
+                            else:
+                                mturk_ids_not_to_bonus.append(mid)
 
                             # Alert error.
                             if user_data["error_found_in_logfile"] == "1":
@@ -294,6 +301,12 @@ def main():
     with open(open_response_outfile, 'w') as f:
         for open_response in user_open_responses_to_write:
             f.write(open_response + '\n\n')
+
+    # Print bonus information.
+    if len(mturk_ids_to_bonus) < len(mturk_ids_not_to_bonus):
+        print("Bonus these workers, approve else:\n" + '\n'.join(mturk_ids_to_bonus))
+    else:
+        print("Approve (do not bonus) these workers; bonus else:\n" + '\n'.join(mturk_ids_to_bonus))
 
 
 if __name__ == '__main__':
