@@ -30,17 +30,29 @@ Todo:
 		- Fold 0 task 1
 		- Retrain
 		- Vet personally 
-	- Pilot 2:
+	[x] Pilot 2:
 		- Costs: .7 cents per HIT, 30 HITs, $21 plus $8.40 in fees, $29.40 total
 		- Fold 1 task * (uniform random assignment)
 		- Retrain
 		- Vet personally
 	- Experiment
 		- Fold 0 task *
+		    - Batch 1
+		    - Batch 2
+		    - Estimate whether we need to increase number of batches before proceeding (retrain parser+perc and viz).
+		    - Estimate whether we need to bonus workers based on completion rates.
 		- Retrain
 		- Fold 1 task *
+		    - Batch 1
+		    - Batch 2
 		- Retrain
 		- Fold 2 task *
+		    - Batch 1
+		    - Batch 2
 		- Retrain
 		- Test Fold 3 task *
+		    - Batch 1
+		    - Batch 2
 		- Test Fold 0 task *
+		    - Batch 1
+		    - Batch 2

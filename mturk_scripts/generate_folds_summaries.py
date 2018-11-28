@@ -18,7 +18,7 @@ def main():
     graph_dir = FLAGS_graph_dir
     show_graphs = FLAGS_show_graphs
     strip_repeat_workers = False if FLAGS_allow_repeat == 1 else True
-    require_correct_action = True if FLAGS_require_correct_action == 1 else False
+    require_correct = True if FLAGS_require_correct == 1 else False
 
     seen_turk_ids = {}
     aid_to_uids = {}
@@ -103,9 +103,9 @@ def main():
                                         (turk_id in seen_turk_ids and seen_turk_ids[turk_id] == uid)):
 
                                     for task in range(1, 4):
-                                        if (data[headers.index("task_" + str(task) + "_correct_action")] == "1" or
-                                                (data[headers.index("task_" + str(task) + "_correct_action")] == "0"
-                                                 and not require_correct_action)):
+                                        if (data[headers.index("task_" + str(task) + "_correct")] == "1" or
+                                                (data[headers.index("task_" + str(task) + "_correct")] == "0"
+                                                 and not require_correct)):
                                             task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
                                             task_f1 = float(data[headers.index("task_" + str(task) + "_f1")])
                                             raw_results["task_" + str(task) + "_correct"].append(task_correct)
@@ -371,8 +371,8 @@ if __name__ == '__main__':
                         help="whether to display the graphs as they're created")
     parser.add_argument('--allow_repeat', type=int, required=False, default=1,
                         help="whether to count repeat users")
-    parser.add_argument('--require_correct_action', type=int, required=False, default=0,
-                        help="whether to count correctness/f1 only when users selected correct action")
+    parser.add_argument('--require_correct', type=int, required=False, default=0,
+                        help="whether to select only for users who correctly completed the task")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v
