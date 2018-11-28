@@ -71,7 +71,6 @@ def main():
                                          "task_1_f1": "-1",
                                          "task_2_f1": "-1",
                                          "task_3_f1": "-1",
-                                         "always_chose_walk": "1",
                                          "pickle_exists": '0',
                                          "tasks_easy": "-1",
                                          "understood": "-1",
@@ -82,6 +81,7 @@ def main():
                                          "use_relocation": "-1",
                                          "log_exists": "0",
                                          "task_1_str_from_user": "0",
+                                         "task_1_enum_from_user": "0",
                                          "task_1_oidx_from_user": "0",
                                          "task_1_clarification": "0",
                                          "task_1_perception_q": "0",
@@ -89,6 +89,7 @@ def main():
                                          "task_1_perception_yn": "0",
                                          "task_1_perception_ex": "0",
                                          "task_2_str_from_user": "0",
+                                         "task_2_enum_from_user": "0",
                                          "task_2_oidx_from_user": "0",
                                          "task_2_clarification": "0",
                                          "task_2_perception_q": "0",
@@ -96,6 +97,7 @@ def main():
                                          "task_2_perception_yn": "0",
                                          "task_2_perception_ex": "0",
                                          "task_3_str_from_user": "0",
+                                         "task_3_enum_from_user": "0",
                                          "task_3_oidx_from_user": "0",
                                          "task_3_clarification": "0",
                                          "task_3_perception_q": "0",
@@ -111,6 +113,7 @@ def main():
                             # task_N_correct vars will remain -2 if task was never drawn.
                             # task_N_correct vars will become -1 if task was drawn but not completed.
                             bonuses = 0
+                            completed_task = None
                             for task in range(1, 4):
                                 drawn_fn = os.path.join(user_data_dir, gen_id + "." + str(task) + ".drawn.txt")
                                 if os.path.isfile(drawn_fn):
@@ -123,20 +126,20 @@ def main():
                                             drawn_roles[rv[0]] = rv[1]
                                     chosen_fn = os.path.join(user_data_dir, gen_id + "." + str(task) + ".chosen.txt")
                                     if os.path.isfile(chosen_fn):
+                                        completed_task = task
                                         with open(chosen_fn, 'r') as chosen_f:
                                             chosen_roles = {}
                                             for rv_str in chosen_f.read().strip().split(';'):
                                                 rv = rv_str.split(':')
-                                                chosen_roles[rv[0]] = rv[1]
+                                                if rv[1] != 'None':
+                                                    chosen_roles[rv[0]] = rv[1]
                                             task_correct = True
                                             for r in drawn_roles:
-                                                if chosen_roles[r] != drawn_roles[r]:
+                                                if r not in chosen_roles or chosen_roles[r] != drawn_roles[r]:
                                                     task_correct = False
                                             user_data["task_" + str(task) + "_correct"] = '1' if task_correct else '0'
                                             user_data["task_" + str(task) + "_correct_action"] = '1' if \
                                                 chosen_roles['action'] == drawn_roles['action'] else '0'
-                                            if chosen_roles['action'] != 'walk':
-                                                user_data["always_chose_walk"] = "0"
                                             if task_correct:
                                                 bonuses += 1
                                             overlap_n = 0
@@ -172,8 +175,8 @@ def main():
                                     contents = log_f.read().strip()
 
                                     lines = contents.split('\n')
-                                    task = 0
                                     str_from_user_count = None
+                                    enum_from_user_count = None
                                     oidx_from_user_count = None
                                     perception_q_count = None
                                     synonym_count = None
@@ -185,31 +188,12 @@ def main():
                                             msg_type = ps[0]
                                             msg = ': '.join(ps[1:])
 
-                                            # New task started.
+                                            # First line of log.
                                             if (msg_type == "say_to_user_with_referents" and
                                                     msg == "What should I do? {}"):
-                                                if str_from_user_count is not None:
-                                                    user_data["task_" + str(task) + "_str_from_user"] = \
-                                                        str(str_from_user_count)
-                                                    user_data["task_" + str(task) + "_oidx_from_user"] = \
-                                                        str(oidx_from_user_count)
 
-                                                    clarification_qs = (str_from_user_count -
-                                                                        perception_yn_count - perception_q_count -
-                                                                        synonym_count)
-                                                    user_data["task_" + str(task) + "_clarification"] = \
-                                                        str(clarification_qs)
-                                                    user_data["task_" + str(task) + "_perception_q"] = \
-                                                        str(perception_q_count)
-                                                    user_data["task_" + str(task) + "_synonym"] = \
-                                                        str(synonym_count)
-                                                    user_data["task_" + str(task) + "_perception_yn"] = \
-                                                        str(perception_yn_count)
-                                                    user_data["task_" + str(task) + "_perception_ex"] = \
-                                                        str(perception_ex_count)
-
-                                                task += 1
                                                 str_from_user_count = 0
+                                                enum_from_user_count = 0
                                                 oidx_from_user_count = 0
                                                 perception_q_count = 0
                                                 synonym_count = 0
@@ -219,6 +203,9 @@ def main():
                                             # Got string from user.
                                             elif msg_type == "get_from_user (processed)":
                                                 str_from_user_count += 1
+
+                                            elif msg_type == "get_from_user_enum":
+                                                enum_from_user_count += 1
 
                                             # Got oidx from user.
                                             elif msg_type == "get_oidx_from_user":
@@ -243,25 +230,27 @@ def main():
                                                 elif "mean the same thing as" in msg:
                                                     synonym_count += 1
 
-                                    # Record for task 3.
+                                    # Finished reading log.
                                     if str_from_user_count is not None:
-                                        user_data["task_" + str(task) + "_str_from_user"] = \
+                                        user_data["task_" + str(completed_task) + "_str_from_user"] = \
                                             str(str_from_user_count)
-                                        user_data["task_" + str(task) + "_oidx_from_user"] = \
+                                        user_data["task_" + str(completed_task) + "_enum_from_user"] = \
+                                            str(enum_from_user_count)
+                                        user_data["task_" + str(completed_task) + "_oidx_from_user"] = \
                                             str(oidx_from_user_count)
 
-                                        clarification_qs = (str_from_user_count -
+                                        clarification_qs = ((str_from_user_count + enum_from_user_count) -
                                                             perception_yn_count - perception_q_count -
                                                             synonym_count)
-                                        user_data["task_" + str(task) + "_clarification"] = \
+                                        user_data["task_" + str(completed_task) + "_clarification"] = \
                                             str(clarification_qs)
-                                        user_data["task_" + str(task) + "_perception_q"] = \
+                                        user_data["task_" + str(completed_task) + "_perception_q"] = \
                                             str(perception_q_count)
-                                        user_data["task_" + str(task) + "_synonym"] = \
+                                        user_data["task_" + str(completed_task) + "_synonym"] = \
                                             str(synonym_count)
-                                        user_data["task_" + str(task) + "_perception_yn"] = \
+                                        user_data["task_" + str(completed_task) + "_perception_yn"] = \
                                             str(perception_yn_count)
-                                        user_data["task_" + str(task) + "_perception_ex"] = \
+                                        user_data["task_" + str(completed_task) + "_perception_ex"] = \
                                             str(perception_ex_count)
 
                                     # Check for errors.

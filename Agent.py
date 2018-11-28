@@ -21,7 +21,7 @@ class Agent:
     def __init__(self, parser, grounder, io, active_train_set, no_clarify=None,
                  use_shorter_utterances=False,  # useful for rendering speech on robot
                  word_neighbors_to_consider_as_synonyms=3,  # how many lexicon items to beam through for new pred
-                 max_perception_subdialog_qs=5,  # based on CORL17 experimental condition
+                 max_perception_subdialog_qs=3,  # based on CORL17 control condition; vetted down from 5
                  max_ask_before_enumeration=2):  # max times to ask the same question before using an enumeration backoff
         # random.seed(27)  # (adj for demo)
         # np.random.seed(seed=27)  # (adj for demo)

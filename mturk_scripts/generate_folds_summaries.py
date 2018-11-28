@@ -11,29 +11,25 @@ from scipy.stats import ttest_ind
 def main():
 
     experiment_dir = FLAGS_experiment_dir
-    num_folds = FLAGS_num_folds
+    experiment_prefix = FLAGS_experiment_prefix
+    folds = [int(f) for f in FLAGS_folds.split(',')]
     open_response_out = FLAGS_open_response_out
     metrics_to_graph = FLAGS_metrics_to_graph.split(',') if FLAGS_metrics_to_graph is not None else []
     graph_dir = FLAGS_graph_dir
     show_graphs = FLAGS_show_graphs
     strip_repeat_workers = False if FLAGS_allow_repeat == 1 else True
     require_correct_action = True if FLAGS_require_correct_action == 1 else False
-    require_all_correct_actions = True if FLAGS_require_all_correct_actions == 1 else False
-    ignore_always_choose_walk = True if FLAGS_ignore_always_choose_walk == 1 else False
-    require_all_correct_survey = True if FLAGS_require_all_correct_survey == 1 else False
-    ignore_zero_f1_tasks = True if FLAGS_ignore_zero_f1_tasks == 1 else False
-    required_all_f1_above_zero_survey = True if FLAGS_required_all_f1_above_zero_survey == 1 else False
 
     seen_turk_ids = {}
     aid_to_uids = {}
     for cond in ["train", "test"]:
-        for fold in range(num_folds):
+        for fold in folds:
             ablations = ['']
             if fold == 3:
                 ablations.append('_np')
             fold = str(fold)
             for abl in ablations:
-                summary_csv_fn = os.path.join(experiment_dir, "fold" + fold, cond + abl, "summary.csv")
+                summary_csv_fn = os.path.join(experiment_dir, experiment_prefix + fold, cond + abl, "summary.csv")
                 if os.path.isfile(summary_csv_fn):
                     with open(summary_csv_fn, 'r') as f:
                         lines = f.readlines()
@@ -57,34 +53,38 @@ def main():
     for cond in ["train", "test"]:
         cond_results[cond] = {}
 
-        for fold in range(num_folds):
+        for fold in folds:
             ablations = ['']
             if fold == 3:
                 ablations.append('_np')
             fold = str(fold)
             for abl in ablations:
-                print("aggregating over cond '" + cond + "' fold " + fold + abl)
-
-                raw_results = {"task_1_correct": [],
-                               "task_1_f1": [],
-                               "task_1_clarification": [],
-                               "task_2_correct": [],
-                               "task_2_f1": [],
-                               "task_2_clarification": [],
-                               "task_3_correct": [],
-                               "task_3_f1": [],
-                               "task_3_clarification": [],
-                               "tasks_easy": [],
-                               "understood": [],
-                               "frustrated": [],
-                               "object_qs": [],
-                               "use_navigation": [],
-                               "use_delivery": [],
-                               "use_relocation": []}
-                summary_csv_fn = os.path.join(experiment_dir, "fold" + fold, cond + abl, "summary.csv")
-                response_csv_fn = os.path.join(experiment_dir, "fold" + fold, cond + abl, "open_response.csv")
+                summary_csv_fn = os.path.join(experiment_dir, experiment_prefix + fold, cond + abl,
+                                              "summary.csv")
 
                 if os.path.isfile(summary_csv_fn):
+                    print("aggregating over cond '" + cond + "' fold " + fold + abl)
+
+                    raw_results = {"task_1_correct": [],
+                                   "task_1_f1": [],
+                                   "task_1_clarification": [],
+                                   "task_1_enum": [],
+                                   "task_2_correct": [],
+                                   "task_2_f1": [],
+                                   "task_2_clarification": [],
+                                   "task_2_enum": [],
+                                   "task_3_correct": [],
+                                   "task_3_f1": [],
+                                   "task_3_clarification": [],
+                                   "task_3_enum": [],
+                                   "tasks_easy": [],
+                                   "understood": [],
+                                   "frustrated": [],
+                                   "object_qs": [],
+                                   "use_navigation": [],
+                                   "use_delivery": [],
+                                   "use_relocation": []}
+
                     with open(summary_csv_fn, 'r') as f:
                         lines = f.readlines()
                         headers = lines[0].strip().split(',')
@@ -93,18 +93,8 @@ def main():
 
                             # Aggregate over the same users we used for retraining.
                             pickle_exists = data[headers.index("pickle_exists")]
-                            task_1_correct_action = data[headers.index("task_1_correct_action")]
-                            task_2_correct_action = data[headers.index("task_2_correct_action")]
-                            task_3_correct_action = data[headers.index("task_3_correct_action")]
-                            always_chose_walk = data[headers.index("always_chose_walk")]
-                            task_3_correct = data[headers.index("task_3_correct")]
                             log_exists = data[headers.index("log_exists")]
-                            if (pickle_exists == "1" and log_exists == "1" and
-                                    (task_3_correct == "0" or task_3_correct == "1") and
-                                    (not ignore_always_choose_walk or always_chose_walk == "0") and
-                                    (not require_all_correct_actions or (task_1_correct_action == "1" and
-                                                                         task_2_correct_action == "1" and
-                                                                         task_3_correct_action == "1"))):
+                            if pickle_exists == "1" and log_exists == "1":
 
                                 # This is the condition and fold in which we first saw the worker.
                                 turk_id = data[headers.index('worker_id')]
@@ -113,10 +103,9 @@ def main():
                                         (turk_id in seen_turk_ids and seen_turk_ids[turk_id] == uid)):
 
                                     for task in range(1, 4):
-                                        if ((not require_correct_action or
-                                                data[headers.index("task_" + str(task) + "_correct_action")] == "1") and
-                                                (not ignore_zero_f1_tasks or
-                                                 float(data[headers.index("task_" + str(task) + "_f1")]) > 0)):
+                                        if (data[headers.index("task_" + str(task) + "_correct_action")] == "1" or
+                                                (data[headers.index("task_" + str(task) + "_correct_action")] == "0"
+                                                 and not require_correct_action)):
                                             task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
                                             task_f1 = float(data[headers.index("task_" + str(task) + "_f1")])
                                             raw_results["task_" + str(task) + "_correct"].append(task_correct)
@@ -126,84 +115,92 @@ def main():
                                                                                         "_clarification")])
                                                 raw_results["task_" + str(task) + "_clarification"].append(
                                                     task_user_strs)
+                                                task_user_enum = int(data[headers.index("task_" + str(task) +
+                                                                                        "_enum_from_user")])
+                                                raw_results["task_" + str(task) + "_enum"].append(task_user_enum)
 
-                                    if ((not require_all_correct_survey or
-                                            (int(data[headers.index("task_1_correct")]) and
-                                             int(data[headers.index("task_2_correct")]) and
-                                             int(data[headers.index("task_2_correct")]))) and
-                                            (not required_all_f1_above_zero_survey or
-                                             (float(data[headers.index("task_1_f1")]) > 0 and
-                                              float(data[headers.index("task_2_f1")]) > 0 and
-                                              float(data[headers.index("task_3_f1")]) > 0))):
-                                        for sq in ["tasks_easy", "understood", "frustrated", "object_qs",
-                                                   "use_navigation", "use_delivery", "use_relocation"]:
-                                            raw_results[sq].append(int(data[headers.index(sq)]))
+                                            # Allow this to be included only if the task was correct, in the event
+                                            # that we're flagging only correct tasks.
+                                            for sq in ["tasks_easy", "understood", "frustrated", "object_qs",
+                                                       "use_navigation", "use_delivery", "use_relocation"]:
+                                                if len(data[headers.index(sq)]) > 0:
+                                                    raw_results[sq].append(int(data[headers.index(sq)]))
                                 else:
-                                    # print "WARNING: ignoring repeat worker " + turk_id
+                                    print("WARNING: ignoring repeat worker " + turk_id)
                                     pass
 
-                if os.path.isfile(response_csv_fn):
-                    with open(response_csv_fn, 'r') as f:
-                        for line in f.readlines():
-                            line = line.strip()
-                            if len(line) > 0:
-                                try:
-                                    uid, r = line.split(": ")
-                                    found_aid = None
-                                    for aid in aid_to_uids:
-                                        if uid in aid_to_uids[aid]:
-                                            found_aid = aid
-                                            break
-                                    if found_aid is not None:
-                                        if aid not in open_responses:
-                                            open_responses[aid] = {}
-                                        open_responses[aid][int(uid, 16)] = (cond, fold + abl, r)
-                                    else:
-                                        print("WARNING: no aid found for uid " + uid + " in open response files")
-                                except ValueError:  # response submitted was just blank space
-                                    pass
+                    response_csv_fn = os.path.join(experiment_dir, experiment_prefix + fold, cond + abl,
+                                                   "open_response.csv")
+                    if os.path.isfile(response_csv_fn):
+                        with open(response_csv_fn, 'r') as f:
+                            for line in f.readlines():
+                                line = line.strip()
+                                if len(line) > 0:
+                                    try:
+                                        uid, r = line.split(": ")
+                                        found_aid = None
+                                        for aid in aid_to_uids:
+                                            if uid in aid_to_uids[aid]:
+                                                found_aid = aid
+                                                break
+                                        if found_aid is not None:
+                                            if found_aid not in open_responses:
+                                                open_responses[found_aid] = {}
+                                            open_responses[found_aid][int(uid, 16)] = (cond, fold + abl, r)
+                                        else:
+                                            print("WARNING: no aid found for uid " + uid + " in open response files")
+                                    except ValueError:  # response submitted was just blank space
+                                        pass
 
-                pr = {}
-                for r in raw_results:
-                    n = len(raw_results[r])
-                    if n > 0:
-                        mu = np.mean(raw_results[r])
-                        var = np.var(raw_results[r])
-                        s = np.sqrt(var)
-                    else:
-                        mu = s = None
-                    pr[r] = {"n": n, "mu": mu, "s": s, "d": raw_results[r]}
-                cond_results[cond][fold + abl] = pr
+                    pr = {}
+                    for r in raw_results:
+                        print(r, raw_results[r])  # DEBUG
+                        n = len(raw_results[r])
+                        if n > 0:
+                            mu = np.mean(raw_results[r])
+                            var = np.var(raw_results[r])
+                            s = np.sqrt(var)
+                        else:
+                            mu = s = None
+                        pr[r] = {"n": n, "mu": mu, "s": s, "d": raw_results[r]}
+                    cond_results[cond][fold + abl] = pr
+
+                else:
+                    print("WARNING: no summary found for cond '" + cond + "' fold "
+                          + fold + abl + "; '" + summary_csv_fn + "'")
 
         # Print results over condition.
-        print("==========")
-        print("condition '" + cond + "' results:")
-        for r in cond_results[cond]["0"].keys():
-            print("----------")
-            print("\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)")  # \t(p)"
-            for fold in range(num_folds):
-                ablations = ['']
-                if fold == 3:
-                    ablations.append('_np')
-                fold = str(fold)
-                for abl in ablations:
-                    if cond_results[cond][fold + abl][r]["n"] > 0:
+        krkl = list(cond_results[cond].keys())
+        if len(krkl) > 0:
+            print("==========")
+            print("condition '" + cond + "' results:")
+            krk = krkl[0]
+            for r in cond_results[cond][krk].keys():
+                print("----------")
+                print("\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)")  # \t(p)"
+                for fold in folds:
+                    ablations = ['']
+                    if fold == 3:
+                        ablations.append('_np')
+                    fold = str(fold)
+                    for abl in ablations:
+                        if cond_results[cond][fold + abl][r]["n"] > 0:
 
-                        # Perform t-test against fold 0.
-                        sig = ''
-                        if fold > 0:
-                            t, p = ttest_ind(cond_results[cond]["0"][r]["d"],
-                                             cond_results[cond][fold + abl][r]["d"],
-                                             equal_var=False)
-                            if p < 0.05:
-                                sig = '*'
-                            elif p < 0.1:
-                                sig = '+'
-                            # sig += "\t" + str(p)
+                            # Perform t-test against fold 0.
+                            sig = ''
+                            if fold > 0:
+                                t, p = ttest_ind(cond_results[cond][krk][r]["d"],
+                                                 cond_results[cond][fold + abl][r]["d"],
+                                                 equal_var=False)
+                                if p < 0.05:
+                                    sig = '*'
+                                elif p < 0.1:
+                                    sig = '+'
+                                # sig += "\t" + str(p)
 
-                        print ("\t" + fold + abl + "\t" + str(cond_results[cond][fold + abl][r]["mu"]) +
-                               "\t+/-" + str(cond_results[cond][fold + abl][r]["s"]) + "\t" +
-                               str(cond_results[cond][fold + abl][r]["n"]) + "\t" + sig)
+                            print ("\t" + fold + abl + "\t%.2f" % cond_results[cond][fold + abl][r]["mu"] +
+                                   "\t\t+/-%.2f" % cond_results[cond][fold + abl][r]["s"] + "\t\t" +
+                                   str(cond_results[cond][fold + abl][r]["n"]) + "\t" + sig)
 
     # Write open response outfile
     print("writing open response collation...")
@@ -252,7 +249,7 @@ def main():
                     cond_mus = []
                     cond_stds = []
                     cond_ns = []
-                    for fold in range(num_folds):
+                    for fold in folds:
                         if cond == "test_np":
                             if fold == 3:
                                 cond_mus.append(cond_results["test"]["3_np"][metric]["mu"])
@@ -360,8 +357,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--experiment_dir', type=str, required=True,
                         help="directory to crawl to find fold directories")
-    parser.add_argument('--num_folds', type=int, required=True,
-                        help="how many folds to iterate over")
+    parser.add_argument('--experiment_prefix', type=str, required=True,
+                        help="prefix to the directory names for the experiment to be analyzed")
+    parser.add_argument('--folds', type=str, required=True,
+                        help="integer folds to iterate over")
     parser.add_argument('--open_response_out', type=str, required=True,
                         help="where to dump the collated open responses")
     parser.add_argument('--metrics_to_graph', type=str, required=False,
@@ -374,17 +373,6 @@ if __name__ == '__main__':
                         help="whether to count repeat users")
     parser.add_argument('--require_correct_action', type=int, required=False, default=0,
                         help="whether to count correctness/f1 only when users selected correct action")
-    parser.add_argument('--require_all_correct_actions', type=int, required=False, default=0,
-                        help=("whether to count correctness/f1 only when users selected all " +
-                              "correct actions (affects survey)"))
-    parser.add_argument('--ignore_always_choose_walk', type=int, required=False, default=0,
-                        help="remove users who always chose the 'walk' action (affects survey)")
-    parser.add_argument('--require_all_correct_survey', type=int, required=False, default=0,
-                        help="only consider survey responses from users who get all tasks correct")
-    parser.add_argument('--ignore_zero_f1_tasks', type=int, required=False, default=0,
-                        help="don't consider tasks where users scored zero f1 (does not affect survey)")
-    parser.add_argument('--required_all_f1_above_zero_survey', type=int, required=False, default=0,
-                        help="don't consider users who scored zero f1 on all their tasks (affects survey)")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

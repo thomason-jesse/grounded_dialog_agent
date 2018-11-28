@@ -27,7 +27,7 @@ def main():
     # Create a new labels.pickle that erases the labels of the active training set for test purposes.
     full_annotation_fn = os.path.join(kb_perception_source_dir, 'full_annotations.pickle')
     if os.path.isfile(full_annotation_fn):
-        print "main: creating new labels.pickle that blinds the active training set for this test..."
+        print("main: creating new labels.pickle that blinds the active training set for this test...")
         with open(full_annotation_fn, 'rb') as f:
             fa = pickle.load(f)
         with open(os.path.join(kb_perception_source_dir, 'labels.pickle'), 'wb') as f:
@@ -44,7 +44,7 @@ def main():
 
     # Start dumping HTML.
     table_format = "<table border=1px cellspacing=1px cellpadding=1px>"
-    with open(outfile, 'wb') as f:
+    with open(outfile, 'w') as f:
 
         f.write("<p><b>Train object data</b>")
         f.write(table_format + "<tr><th>predicate</th><th>positive</th><th>negative</th></tr>")
