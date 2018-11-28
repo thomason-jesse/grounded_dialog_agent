@@ -200,7 +200,7 @@ if __name__ == '__main__':
                         help="don't actually launch an agent; just ask for the specified number of responses")
     parser.add_argument('--max_syn_qs', type=int, required=False, default=3,
                         help="the maximum number of synonym neighbors to ask about")
-    parser.add_argument('--max_opp_qs', type=int, required=False, default=5,
+    parser.add_argument('--max_opp_qs', type=int, required=False, default=3,
                         help="the maximum number of perception questions to ask")
     parser.add_argument('--image_path', type=str, required=False,
                         help="filepath to the directory where object images live")
