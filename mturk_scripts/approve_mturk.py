@@ -15,6 +15,7 @@ def main():
     log_dir = FLAGS_log_dir
     outfile = FLAGS_outfile
     open_response_outfile = FLAGS_open_response_outfile
+    show_bonus = True if FLAGS_show_bonus == 1 else False
 
     user_data_to_write = []
     user_open_responses_to_write = []
@@ -306,10 +307,11 @@ def main():
             f.write(open_response + '\n\n')
 
     # Print bonus information.
-    if len(mturk_ids_to_bonus) < len(mturk_ids_not_to_bonus):
-        print("Bonus these workers, approve else:\n" + '\n'.join(mturk_ids_to_bonus))
-    else:
-        print("Approve (do not bonus) these workers; bonus else:\n" + '\n'.join(mturk_ids_to_bonus))
+    if show_bonus:
+        if len(mturk_ids_to_bonus) < len(mturk_ids_not_to_bonus):
+            print("Bonus these workers, approve else:\n" + '\n'.join(mturk_ids_to_bonus))
+        else:
+            print("Approve (do not bonus) these workers; bonus else:\n" + '\n'.join(mturk_ids_to_bonus))
 
 
 if __name__ == '__main__':
@@ -326,6 +328,8 @@ if __name__ == '__main__':
                         help="output CSV summarizing user information currently across many files")
     parser.add_argument('--open_response_outfile', type=str, required=True,
                         help="output containing just open responses")
+    parser.add_argument('--show_bonus', type=int, required=True,
+                        help="whether to show bonuses")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v
