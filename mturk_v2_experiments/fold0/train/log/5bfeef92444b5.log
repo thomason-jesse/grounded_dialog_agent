@@ -1,0 +1,94 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Robot go to Dr. Heidi Hughes office and then toDr. Nancy Nagel and proceed the pod and place the x in the3rd lab'
+get_from_user (processed): 'robot go to dr heidi hughes office and then todr nancy nagel and proceed the pod and place the x in the3rd lab'
+say_to_user: I haven't heard the word 'robot' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'go to Dr. Heidi Hughes office and then toDr. Nancy Nagel and proceed the pod and place the x in the3rd lab'
+get_from_user (processed): 'go to dr heidi hughes office and then todr nancy nagel and proceed the pod and place the x in the3rd lab'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'robot' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'robot' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'i have a new command'
+get_from_user (processed): 'i have a new command'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'robot' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'yes it does i have a job for you'
+get_from_user (processed): 'yes it does i have a job for you'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'robot' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'go to green map take x off of green map and place in the third lab'
+get_from_user (processed): 'go to green map take x off of green map and place in the third lab'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'robot' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'find the green map remove the x from the green map and place it in lab 3'
+get_from_user (processed): 'find the green map remove the x from the green map and place it in lab 3'
+say_to_user: I haven't heard the word 'remove' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'remove' mean the same thing as 'block'?
+get_from_user requested feedback
+get_from_user (raw): 'no it means take away'
+get_from_user (processed): 'no it means take away'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'remove' mean the same thing as 'block'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the x'
+get_from_user (processed): 'the x'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'new' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 17
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'coffee' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 17
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'remove' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the third lab'
+get_from_user (processed): 'the third lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the lab that is #3 on the green map'
+get_from_user (processed): 'the lab that is 3 on the green map'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user_enum requested feedback

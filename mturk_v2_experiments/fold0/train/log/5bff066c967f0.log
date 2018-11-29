@@ -1,0 +1,83 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick up the blue Pringles can and hand it to Dave.'
+get_from_user (processed): 'pick up the blue pringles can and hand it to dave'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'No, move the blue can from the table and give it to David "Dave" Daniel.'
+get_from_user (processed): 'no move the blue can from the table and give it to david dave daniel'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move it to David "Dave" Daniel.'
+get_from_user (processed): 'move it to david dave daniel'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'David "Dave" Daniel'
+get_from_user (processed): 'david dave daniel'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Dave'
+get_from_user (processed): 'dave'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move the blue can.'
+get_from_user (processed): 'move the blue can'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'The blue can'
+get_from_user (processed): 'the blue can'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'blue' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'blue' when describing, or shake your head if you could use 'blue' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move <p>this</p> from somewhere to somewhere (not give it to someone)? {'patient': 'oidx_13', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+say_to_user_with_referents: To where should I move <p>this</p> from somewhere? {'patient': 'oidx_13', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Person David "Dave" Daniel'
+get_from_user (processed): 'person david dave daniel'
+say_to_user: I haven't heard the word 'person' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move <p>this</p> from somewhere? {'patient': 'oidx_13', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 16
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'patient': 'oidx_13', 'goal': '3420', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'source': '3424', 'patient': 'oidx_13', 'recipient': None, 'goal': '3420', 'action': 'move'}
+main: ... done; got action {'source': '3424', 'patient': 'oidx_13', 'recipient': None, 'goal': '3420', 'action': 'move'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3424', 'patient': 'oidx_13', 'recipient': None, 'goal': '3420', 'action': 'move'}], [{'all': ['pick up the blue pringles can and hand it to dave'], 'goal': ['dave', 'person david dave daniel'], 'recipient': [], 'source': ['move it to david dave daniel', 'david dave daniel'], 'action': [], 'patient': ['move the blue can', 'the blue can']}], [('can', 10, 1), ('blue', 18, 1), ('blue', 10, 0)], [], [3], [1]]

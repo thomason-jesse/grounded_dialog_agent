@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,1
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,5
+I did not understand the commands to give the robot.  I would not have mind spending more time to accomplish the task. 

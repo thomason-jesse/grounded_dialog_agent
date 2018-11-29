@@ -572,7 +572,7 @@ else {
 
   $uid = $_POST['uid'];
   $task_num = $_POST['task_num'];
-  $mturk_id = $_POST['mturk_id'];
+  $mturk_id = trim($_POST['mturk_id']);
   $finished = $_POST['finished'];
   $action_chosen = $_POST['action_chosen'];
   $too_long = $_POST['too_long'];

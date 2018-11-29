@@ -1,0 +1,97 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'I didn't have time to read the scenario'
+get_from_user (processed): 'i didn' 's have time to read the scenario'
+say_to_user: I haven't heard the word 'have' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No not at all.  The page turned before I could read the insructions'
+get_from_user (processed): 'no not at all the page turned before i could read the insructions'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'have' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'time' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'move container from office to the lounge'
+get_from_user (processed): 'move container from office to the lounge'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'office to lounge'
+get_from_user (processed): 'office to lounge'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3406', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yers'
+get_from_user (processed): 'yers'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3406', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3406', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'move white container from office to lounge'
+get_from_user (processed): 'move white container from office to lounge'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3406', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'from office to lounge'
+get_from_user (processed): 'from office to lounge'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'goal': '3406', 'source': '3406', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3406', 'source': '3406', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'wipes'
+get_from_user (processed): 'wipes'
+say_to_user: I haven't heard the word 'wipes' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'rectangle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'long' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 3
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'cylinder' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3406', 'source': '3406', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'cylinder object from office to lounge'
+get_from_user (processed): 'cylinder object from office to lounge'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3406', 'source': '3406', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 4
+perform_action: {'recipient': None, 'goal': '3406', 'patient': 'oidx_12', 'source': '3406', 'action': 'move'}
+main: ... done; got action {'recipient': None, 'goal': '3406', 'patient': 'oidx_12', 'source': '3406', 'action': 'move'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': None, 'goal': '3406', 'patient': 'oidx_12', 'source': '3406', 'action': 'move'}], [{'recipient': [], 'source': ['move white container from office to lounge', 'from office to lounge'], 'all': ["i didn' 's have time to read the scenario"], 'goal': ['office to lounge'], 'patient': ['wipes', 'cylinder object from office to lounge'], 'action': []}], [('rectangle', 10, 0), ('rectangle', 3, 0), ('rectangle', 27, 0), ('rectangle', 7, 0), ('rectangle', 18, 0), ('rectangle', 2, 0), ('rectangle', 20, 0), ('rectangle', 17, 0), ('long', 3, 1), ('cylinder', 2, 1)], [], [2], [0]]

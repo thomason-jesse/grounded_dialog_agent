@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,6
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,1
+It needs to start asking about nouns way earlier if the goal isn't to make people scream.

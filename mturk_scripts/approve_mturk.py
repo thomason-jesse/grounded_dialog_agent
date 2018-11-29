@@ -48,6 +48,7 @@ def main():
                             continue
                         gen_id, rot_mid, id_hash = code.split('_')
                         mid = rot_mid[-3:] + rot_mid[:-3]
+                        stripped_mid = mid.strip()
                         true_hash = hashlib.sha1("phm_salted_hash" + gen_id + mid +
                                                  "rwhpidcwha_" + add_salt).hexdigest()[:13]
                         if id_hash != true_hash:
@@ -55,7 +56,7 @@ def main():
                                    " gave hash " + id_hash + " != " + true_hash)
                         elif id_hash in ids_seen:
                             print(row[id_header] + " gen id " + gen_id + " already seen")
-                        elif mid != row[id_header]:
+                        elif stripped_mid != row[id_header]:
                             print(row[id_header] + " provided non-matching worker id '" + mid + "'")
                         else:
                             valid += 1
@@ -234,8 +235,8 @@ def main():
                                                 elif "mean the same thing as" in msg:
                                                     synonym_count += 1
 
-                                    # Finished reading log.
-                                    if str_from_user_count is not None:
+                                    # Finished reading log and found a completed task.
+                                    if str_from_user_count is not None and completed_task is not None:
                                         user_data["task_" + str(completed_task) + "_str_from_user"] = \
                                             str(str_from_user_count)
                                         user_data["task_" + str(completed_task) + "_enum_from_user"] = \
@@ -293,7 +294,9 @@ def main():
 
     # Write CSV output data.
     with open(outfile, 'w') as f:
-        headers = user_data_to_write[0].keys()
+        headers = set()
+        for user_data in user_data_to_write:
+            headers = headers.union(set(user_data.keys()))
         f.write(','.join(headers) + '\n')
         for user_data in user_data_to_write:
             f.write(','.join([user_data[h] for h in headers]) + '\n')

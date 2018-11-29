@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,4
+frustrated,1
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,3
+It wasn't clear in the directions if the robot needed to bring the object in another room to the room that was highlighted on the map. After going to the room with the object, the task was done. 

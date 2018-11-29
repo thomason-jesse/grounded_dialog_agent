@@ -39,7 +39,7 @@ Todo:
 	    (at .25 bonus, $75 max bonus per fold, for max bonus payout of $375; should probably do that)
 		- Fold 0 task * (estimate $315 per fold)
 		    - Batch 1 - $0.75 per HIT, 50 HITs, $37.50 plus $15 in fees, $52.50 total (per batch estimate) [task comp rates 0.42, 0.69, 0.40]
-		    - Batch 2 - $0.75 per HIT, 50 HITs, $37.50 plus $15 in fees, $52.50 init + testing $0.25 bonus for correct [rates x, x, x]
+		    - Batch 2 - $0.75 per HIT, 50 HITs, $37.50 plus $15 in fees, $52.50 init + testing $0.25 bonus for right [rates 0.40, 0.68, 0.08]
 		    - Batch 3
 		    - Batch 4
 		    - Batch 5

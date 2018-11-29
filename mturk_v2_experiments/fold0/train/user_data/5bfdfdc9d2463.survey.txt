@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,2
+object_qs,6
+use_navigation,
+use_delivery,
+use_relocation,5
+The concept was overwhelming at first glance but came pretty clear after taking time to read and study the layout. The robot had trouble understanding some words but compared my words to others to get an idea what I was asking. Eventually it did what I told. Overall I thought it was a fun and interesting study. 

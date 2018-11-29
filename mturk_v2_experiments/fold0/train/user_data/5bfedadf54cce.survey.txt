@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,3
+use_relocation,
+waited and waited then it told me the robot experienced an issue and to continue on for payment. no interaction occurred. 

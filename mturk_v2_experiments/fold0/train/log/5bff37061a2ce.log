@@ -1,0 +1,112 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Please take the object from the pod room between Walter Ward and Sybil Smalt's office and take it to the pod room on the bottom right of the map next to the conference room.'
+get_from_user (processed): 'please take the object from the pod room between walter ward and sybil smalt 's office and take it to the pod room on the bottom right of the map next to the conference room'
+say_to_user: I haven't heard the word 'please' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'It is a polite way to request something.'
+get_from_user (processed): 'it is a polite way to request something'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'please' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'object' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'in this case yes'
+get_from_user (processed): 'in this case yes'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'object' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'map' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the object'
+get_from_user (processed): 'the object'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'smalt' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 2
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'styrofoam' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'can'
+get_from_user (processed): 'can'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'pod room between the offices of W and S'
+get_from_user (processed): 'pod room between the offices of w and s'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'pod room on the top right of the map'
+get_from_user (processed): 'pod room on the top right of the map'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 4
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'pod room in the corner next to a conference room'
+get_from_user (processed): 'pod room in the corner next to a conference room'
+say_to_user: I haven't heard the word 'corner' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'corner' mean the same thing as 'block'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'pod room on the bottom right block'
+get_from_user (processed): 'pod room on the bottom right block'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3424'}
+get_from_user_enum requested feedback
+get_from_user_enum: 23
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'source': '3424', 'goal': '3518'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'action': 'move', 'patient': 'oidx_11', 'goal': '3518', 'source': '3424', 'recipient': None}
+main: ... done; got action {'action': 'move', 'patient': 'oidx_11', 'goal': '3518', 'source': '3424', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'patient': 'oidx_11', 'goal': '3518', 'source': '3424', 'recipient': None}], [{'patient': ['the object', 'can'], 'recipient': [], 'action': [], 'all': ["please take the object from the pod room between walter ward and sybil smalt 's office and take it to the pod room on the bottom right of the map next to the conference room"], 'source': ['pod room between the offices of w and s', 'pod room on the top right of the map'], 'goal': ['pod room in the corner next to a conference room', 'pod room on the bottom right block']}], [('container', 10, 0), ('container', 3, 0), ('container', 27, 0), ('container', 7, 0), ('container', 18, 0), ('container', 2, 0), ('container', 20, 0), ('container', 17, 0), ('can', 2, 1), ('styrofoam', 20, 1)], [('object', 'container', True), ('corner', 'block', False)], [2], [1]]

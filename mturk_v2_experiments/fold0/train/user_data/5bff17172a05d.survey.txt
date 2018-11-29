@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,4
+object_qs,1
+use_navigation,
+use_delivery,2
+use_relocation,
+This was a fun survey. It was challenging to try to make the robot understand what it was supposed to do.

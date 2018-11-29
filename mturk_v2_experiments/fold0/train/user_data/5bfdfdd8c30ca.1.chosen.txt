@@ -1,0 +1,1 @@
+patient:None;action:walk;goal:3414a;source:None;recipient:None

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,4
+object_qs,1
+use_navigation,
+use_delivery,4
+use_relocation,
+It felt like we were starting from scratch in the training process for the bot which I guess is part of the purpose of this survey. I did not expect color and some basics of language to be initial blind spots for the AI.

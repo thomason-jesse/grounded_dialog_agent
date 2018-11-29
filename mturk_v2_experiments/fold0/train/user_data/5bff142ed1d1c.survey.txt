@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,6
+frustrated,1
+object_qs,2
+use_navigation,
+use_delivery,5
+use_relocation,
+That was a pretty fun HIT. The robot definitely was going in the right direction immediately and narrowed down what I needed with it's questions.
