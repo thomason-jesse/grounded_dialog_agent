@@ -51,6 +51,7 @@ def main():
         preds = g.kb.perceptual_preds
         w = 3
         for pidx in range(len(preds)):
+            print("calculating info for pred '" + preds[pidx] + "'...")
             f.write("<tr><td>" + preds[pidx] + "</td>")
 
             pairs = []
@@ -106,7 +107,7 @@ def main():
                 for oidx, pos in sorted(oidx_pos.items(), key=operator.itemgetter(1), reverse=True):
                     f.write("<td><img width=\"200px\" height=\"200px\" " +
                             "src=\"../www/images/objects/oidx_" + str(oidx) + ".jpg\"><br/>conf %.2f" % pos +
-                            "<br/>prob %.2f" + oidx_d[oidx] + "</td>")
+                            "<br/>prob %.2f" % oidx_d[oidx] + "</td>")
             else:
                 for _ in range(len(active_test_set)):
                     f.write("<td>&nbsp;</td>")

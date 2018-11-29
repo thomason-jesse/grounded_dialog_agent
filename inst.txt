@@ -40,24 +40,24 @@ Todo:
 		- Fold 0 task * (estimate $315 per fold)
 		    - Batch 1 - $0.75 per HIT, 50 HITs, $37.50 plus $15 in fees, $52.50 total (per batch estimate) [task comp rates 0.42, 0.69, 0.40]
 		    - Batch 2 - $0.75 per HIT, 50 HITs, $37.50 plus $15 in fees, $52.50 init + testing $0.25 bonus for right [rates 0.40, 0.68, 0.08]
+		    - Batch 1+2, 100 HITs, got 34 task 1, 32 task 2, 27 task 3, at average completion 0.41, 0.69, 0.26
+		    	- Extrapolating, to obtain 100 completed users per task, would need 244, 145, 385
+		    	- If we average across tasks, 31 tasks in 100 HITs, average completion 45.33, would need 221, let's say 250, or 50*5 batches.
+		    	- 250 HITS per batch, five batches per fold, 3 training folds, 2 testing folds, minus two completed batches
+		    		- $52.50 per batch, (5 * 3 * 2) - 2 = 30 remaining batches, $1575 estimated cost.
 		    - Batch 3
 		    - Batch 4
 		    - Batch 5
-		    - Batch 6
 		    - Estimate whether we need to increase number of batches before proceeding (retrain parser+perc and viz).
 		    - Estimate whether we need to bonus workers based on completion rates.
 		- Retrain
 		- Fold 1 task *
-		    - Batch 1
-		    - Batch 2
+		    - Batch 1, 2, 3, 4, 5
 		- Retrain
 		- Fold 2 task *
-		    - Batch 1
-		    - Batch 2
+		    - Batch 1, 2, 3, 4, 5
 		- Retrain
-		- Test Fold 3 task *
-		    - Batch 1
-		    - Batch 2
-		- Test Fold 0 task *
-		    - Batch 1
-		    - Batch 2
+		- Test Fold 3 task * [NO REPEAT USERS, intersperse batches]
+		    - Batch 1, 2, 3, 4, 5
+		- Test Fold 0 task * [NO REPEAT USERS, intersperse batches]
+		    - Batch 1, 2, 3, 4, 5

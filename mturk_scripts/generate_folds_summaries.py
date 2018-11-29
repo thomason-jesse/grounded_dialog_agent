@@ -188,7 +188,7 @@ def main():
 
                             # Perform t-test against fold 0.
                             sig = ''
-                            if fold > 0:
+                            if int(fold) > 0:
                                 t, p = ttest_ind(cond_results[cond][krk][r]["d"],
                                                  cond_results[cond][fold + abl][r]["d"],
                                                  equal_var=False)
