@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,6
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,1
+I couldn't figure out how to get the robot to take the bottle to the printer; the closest I got it to was to Peggy.

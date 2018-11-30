@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,5
+frustrated,3
+object_qs,3
+use_navigation,5
+use_delivery,
+use_relocation,
+The objects were hard to see from the start. they should show up higher.

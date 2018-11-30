@@ -43,8 +43,8 @@ Todo:
 		    - Batch 1+2, 100 HITs, got 34 task 1, 32 task 2, 27 task 3, at average completion 0.41, 0.69, 0.26
 		    	- Extrapolating, to obtain 100 completed users per task, would need 244, 145, 385
 		    	- If we average across tasks, 31 tasks in 100 HITs, average completion 45.33, would need 221, let's say 250, or 50*5 batches.
-		    	- 250 HITS per batch, five batches per fold, 3 training folds, 2 testing folds, minus two completed batches
-		    		- $52.50 per batch, (5 * 3 * 2) - 2 = 30 remaining batches, $1575 estimated cost.
+		    	- 250 HITS per batch, five batches per fold, 3 training folds, 3 testing folds, minus two completed batches
+		    		- $52.50 per batch, (5 * (3 + 3)) - 2 = 28 remaining batches, $1470 estimated cost.
 		    - Batch 3
 		    - Batch 4
 		    - Batch 5

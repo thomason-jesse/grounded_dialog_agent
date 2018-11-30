@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,3
+frustrated,2
+object_qs,3
+use_navigation,0
+use_delivery,
+use_relocation,
+I wasn't sure what commands to give so it made it hard at first. 

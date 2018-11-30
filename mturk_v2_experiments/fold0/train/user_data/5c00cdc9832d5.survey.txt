@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,4
+frustrated,4
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,0
+almost felt like the robot was smarter than me haha

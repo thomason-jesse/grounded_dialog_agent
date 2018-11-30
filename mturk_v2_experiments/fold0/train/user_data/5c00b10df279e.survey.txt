@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,5
+frustrated,3
+object_qs,2
+use_navigation,3
+use_delivery,
+use_relocation,
+Little Confused, Explain step by step instruction with picture, Its easy to come up with new idea's

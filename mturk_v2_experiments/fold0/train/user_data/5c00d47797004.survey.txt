@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,1
+object_qs,1
+use_navigation,
+use_delivery,2
+use_relocation,
+I messed up! I accidentally clicked the M thinking it was a W. A way to correct to bot after user mistake would be great :)
