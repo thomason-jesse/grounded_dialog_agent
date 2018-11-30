@@ -413,10 +413,10 @@ function show_task(d, uid, action, patient, recipient, source, goal) {
   clear_dialog_table();  // Clear the dialog history.
 
   // Sample a task of the matching number.
-  var prob_form = "Command the robot with a complete sentence. ";
+  var prob_form = "Command the robot with one complete sentence to solve the problem below. ";
   prob_form += "The robot does not understand questions, but will ask you questions of its own. ";
-  prob_form += "The robot understands high-level commands, so it doesn't need step-by-step instructions, and it doesn't matter what location it starts in. "
-  prob_form += "<br/><br/>Give the robot a command to solve this problem";
+  prob_form += "The robot will show you pictures of what it thinks you want; match those to the goal pictures below. ";
+  prob_form += "<br/><br/>Give the robot a command to solve this problem:";
   // prob_form += "; if you succeed, you'll receive a pay <b>bonus</b>:";
   if (action == 'move') {
     var task_text = "<p><b>" + prob_form + "<br><span class=\"patient_text\">The object</span> shown below is at the X marked on the <span class=\"source_text\">pink map</span>. The object belongs at the X marked on the <span class=\"goal_text\">green map</span>.</b></p>";
