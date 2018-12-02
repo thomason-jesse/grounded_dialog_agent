@@ -1,0 +1,89 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go right out of Richards office go left twice and leave it at the second lab on the left'
+get_from_user (processed): 'go right out of richards office go left twice and leave it at the second lab on the left'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Remove the white foam object from Richards office and go left out of richards office'
+get_from_user (processed): 'remove the white foam object from richards office and go left out of richards office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the white foam object'
+get_from_user (processed): 'the white foam object'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'column' when describing, or shake your head if you could use 'column' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 18
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'object' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'The white foam column'
+get_from_user (processed): 'the white foam column'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'Richards office'
+get_from_user (processed): 'richards office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'The office'
+get_from_user (processed): 'the office'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'action': 'move', 'patient': 'oidx_28', 'source': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'patient': 'oidx_28', 'source': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'The lab'
+get_from_user (processed): 'the lab'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'patient': 'oidx_28', 'source': '3430', 'goal': '3414b'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'patient': 'oidx_28', 'source': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'The second lab'
+get_from_user (processed): 'the second lab'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'patient': 'oidx_28', 'source': '3430', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'No the other lab'
+get_from_user (processed): 'no the other lab'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'patient': 'oidx_28', 'source': '3430', 'goal': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'patient': 'oidx_28', 'source': '3430'}
+get_from_user_enum requested feedback
+get_from_user_enum: 1
+perform_action: {'action': 'move', 'patient': 'oidx_28', 'goal': '3414', 'source': '3430', 'recipient': None}
+main: ... done; got action {'action': 'move', 'patient': 'oidx_28', 'goal': '3414', 'source': '3430', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'patient': 'oidx_28', 'goal': '3414', 'source': '3430', 'recipient': None}], [{'source': ['richards office', 'the office'], 'recipient': [], 'action': [], 'patient': ['the white foam object', 'the white foam column'], 'all': ['go right out of richards office go left twice and leave it at the second lab on the left'], 'goal': ['the lab', 'the second lab']}], [('column', 20, 1), ('column', 18, 0), ('spice', 20, 1)], [], [2], [0]]

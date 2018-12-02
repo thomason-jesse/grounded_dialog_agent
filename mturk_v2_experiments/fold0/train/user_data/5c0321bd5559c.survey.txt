@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,
+use_delivery,0
+use_relocation,
+HIT froze and won't move forward: https://postimg.cc/gallery/1vco4yyfm/

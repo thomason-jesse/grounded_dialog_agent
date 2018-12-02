@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,5
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,4
+It's somewhat difficult to change tasks. It asked if I wanted to deliver something to someone and I figured I could get it to go to the printer room. When it became clear that wasn't the case I couldn't tell it that I wanted to change what I was doing.

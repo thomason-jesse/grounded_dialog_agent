@@ -1,3 +1,61 @@
+5bfe04501aae2: the instructions were clear and easy to follow.
+
+5bfe02c9ace6a: It felt like we were starting from scratch in the training process for the bot which I guess is part of the purpose of this survey. I did not expect color and some basics of language to be initial blind spots for the AI.
+
+5bfdfe6534ef8: This was a very fun survey.
+
+5bfe00b7888fc: Very nice study! Keep up the good work!
+
+5bfdfff32a344: It needs to start asking about nouns way earlier if the goal isn't to make people scream.
+
+5bfdff39d3a0e: I am considerably less worried about AI taking over the world than I was a few minutes ago.
+
+5bfe0a519ca5a: No comments at the current time.
+
+5bfdfe1be753d: It wasn't clear in the directions if the robot needed to bring the object in another room to the room that was highlighted on the map. After going to the room with the object, the task was done.
+
+5bfdfdc9d2463: The concept was overwhelming at first glance but came pretty clear after taking time to read and study the layout. The robot had trouble understanding some words but compared my words to others to get an idea what I was asking. Eventually it did what I told. Overall I thought it was a fun and interesting study.
+
+5bfe0c30f1a91: n/a
+
+5bfe667cc7b0d: The robot was a little annoying, but survey was OK. Thank you!
+
+5bff0cff09807: Where was the robot supposed to go? I thought it was at the red x but there was no goal listed that I could find. What the heck were those pringles, beans questions? Really strange, had no idea what I was trying to do.
+
+5bff066c967f0: Interesting task. It would have been easier if I knew the robot's limitations, specifically, it's vocabulary.
+
+5bff17db8917b: Thanks for the opportunity to participate!
+
+5bfef910a304a: Wasn't sure what the task was about??
+
+5bfef8815892a: he was supposed to go to S for some TEA.
+
+5bff37061a2ce: n/a
+
+5bff3385d1251: I didn't understand where I had to get the robot!
+
+5bff32edc858d: n/a
+
+5bfefd9160e61: I feel the robot's vocabulary and object identification strategy should be improved.
+
+5bff14f617b77: I was confused as to what to do
+
+5bff3d966ce59: It was a bit frustrating trying to navigate it until I gave it something simple. this was a pretty good none the less.
+
+5bff17172a05d: This was a fun survey. It was challenging to try to make the robot understand what it was supposed to do.
+
+5bff10af44b45: Thanks so much.
+
+5bff0a6c3ea37: I should have said Office M instead of the generic office.
+
+5bff3542149ff: No thanks.
+
+5bff5d6389987: no comments
+
+5bfeeeef528a5: none
+
+5bff2270e285e: No problems, thank you!
+
 5c00af8b0c2bd: The objects were hard to see from the start. they should show up higher.
 
 5c00ce5e48f7d: Really interesting!
@@ -33,4 +91,62 @@
 5c00b10df279e: Little Confused, Explain step by step instruction with picture, Its easy to come up with new idea's
 
 5c00cc446cd12: it was interesting to try this out
+
+5c01a25d39638: The robot didn't really understand my commands
+
+5c01a7e175d0c: It was fun to try something new.
+
+5c01a387eca6d: It was a little frustraiting. I wish it would understand a few more words or sentances
+
+5c019864c2531: The robot seemed to get really sidetracked and I felt like they went on a tangent and hung up on the name of the person instead of actually going to where it's supposed to be going, which was frustrating. I thought it asked too many questions about objects.
+
+5c01af774c121: i think all was good. i enjoy this hit.
+
+5c019f78ae499: I made a type in the begging which made it hard to get to the correct task
+
+5c0191a341e80: no comments
+
+5c01af3b9d8be: I feel like the instructions were telling me to move the robot to where he was, or maybe didn't explain where he started or what exactly I was supposed to ask of it. I hope I did this correctly.
+
+5c01bd648fee4: It was a very interesting experiment to take part in. I think that it is a great way to learn about ai and how we may interact with it someday.
+
+5c01888baab23: I didn't mean to click on the pool noodle when it asked about objects I'd label as a &quot;block,&quot; the page moved as I went to click &quot;Shake head&quot; and it clicked the noodle instead.  Sorry!
+
+5c01875d2cace: No issues.
+
+5c01a35338423: It isn't specified who the object is supposed to be delivered to. The room that it is &quot;supposed&quot; to be in doesn't have a person attached to it so it doesn't seem that there is a way to get it into that room.
+
+5c01c206d4aca: Instructions weren't very clear. I have no idea what I was doing.
+
+5c01c1de46f89: i almost got mad at a.i lol
+
+5c019c1679b89: I was a bit confused were we supposed to have the robot pick up the object and move it or just move it to the printer room?
+
+5c02e054f1d17: I would use a robot like this if it could learn from prior experiences. It would be an immensely useful thing to have.
+
+5c02fb1e661f8: AI has a very long way to go still.
+
+5c031de54996d: no issues
+
+5c03321295001: Interesting, thanks!
+
+5c0321bd5559c: HIT froze and won't move forward: https://postimg.cc/gallery/1vco4yyfm/
+
+5c02de6ce85cf: Thank you!
+
+5c02e0e45bd3f: It's somewhat difficult to change tasks. It asked if I wanted to deliver something to someone and I figured I could get it to go to the printer room. When it became clear that wasn't the case I couldn't tell it that I wanted to change what I was doing.
+
+5c02f7d0aff70: Thank you
+
+5c02de6d4d71a: It was not clear to me that I was only supposed to answer questions with &quot;yes&quot; or &quot;no.&quot; I also wasn't sure how to label the item I was supposed to have moved.
+
+5c02de7b83465: I didn't understand how to select the image of the object in question from the selection and accidentally chose the wrong one.  (And I couldn't undo it when I figured it out.)  I couldn't type anything in the last text box either.  The program prevented me from entering anything.  This was interesting, but I tell you, if I had a robot that was this &quot;stupid,&quot; I'd send it back to the factory. One interaction like this with a robot is enough for me. Thanks for posting this online. Good luck with your research!
+
+5c02f9ce06b38: Thanks!
+
+5c03505d2102d: that was kind of fun
+
+5c02def71903d: No issues.
+
+5c0345e1d377e: The robot still needed a few questions answered and a bit of explanation, but in the end, it definitely got the job done.
 

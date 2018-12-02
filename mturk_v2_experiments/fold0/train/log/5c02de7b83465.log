@@ -1,0 +1,78 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Get the thing on the table and take it to Dave.'
+get_from_user (processed): 'get the thing on the table and take it to dave'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'That's almost right.  I want you to deliver something to Dave.'
+get_from_user (processed): 'that 's almost right i want you to deliver something to dave'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'there is something on the table.  It's small and cylindrical.  Please get it and take it to Dave.'
+get_from_user (processed): 'there is something on the table it 's small and cylindrical please get it and take it to dave'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.  It's a form of the verb "to be."'
+get_from_user (processed): 'no it 's a form of the verb to be'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'small' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes.  It's another word for "little."'
+get_from_user (processed): 'yes it 's another word for little'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'small' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user: Does 'small' mean the same thing as 'white'?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'please' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The little thing on the table.'
+get_from_user (processed): 'the little thing on the table'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_22', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver it to Dave.'
+get_from_user (processed): 'deliver it to dave'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_22', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Dave.'
+get_from_user (processed): 'dave'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_22', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+perform_action: {'source': None, 'patient': 'oidx_22', 'goal': None, 'recipient': 'd', 'action': 'bring'}
+main: ... done; got action {'source': None, 'patient': 'oidx_22', 'goal': None, 'recipient': 'd', 'action': 'bring'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'patient': 'oidx_22', 'goal': None, 'recipient': 'd', 'action': 'bring'}], [{'all': ['get the thing on the table and take it to dave'], 'recipient': ['deliver it to dave', 'dave'], 'source': [], 'patient': ["there is something on the table it 's small and cylindrical please get it and take it to dave", 'the little thing on the table'], 'goal': [], 'action': []}], [], [('small', 'white', False)], [5], [0]]

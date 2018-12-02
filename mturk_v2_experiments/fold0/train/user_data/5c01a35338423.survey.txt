@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,5
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,1
+It isn't specified who the object is supposed to be delivered to. The room that it is &quot;supposed&quot; to be in doesn't have a person attached to it so it doesn't seem that there is a way to get it into that room. 

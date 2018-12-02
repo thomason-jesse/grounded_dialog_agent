@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,2
+object_qs,4
+use_navigation,3
+use_delivery,
+use_relocation,
+I feel like the instructions were telling me to move the robot to where he was, or maybe didn't explain where he started or what exactly I was supposed to ask of it. I hope I did this correctly.

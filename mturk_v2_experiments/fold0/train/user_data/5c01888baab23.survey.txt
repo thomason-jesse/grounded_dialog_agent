@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,6
+object_qs,6
+use_navigation,0
+use_delivery,
+use_relocation,
+I didn't mean to click on the pool noodle when it asked about objects I'd label as a &quot;block,&quot; the page moved as I went to click &quot;Shake head&quot; and it clicked the noodle instead.  Sorry!

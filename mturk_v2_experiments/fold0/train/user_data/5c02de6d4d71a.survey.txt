@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,4
+frustrated,2
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,1
+It was not clear to me that I was only supposed to answer questions with &quot;yes&quot; or &quot;no.&quot; I also wasn't sure how to label the item I was supposed to have moved.

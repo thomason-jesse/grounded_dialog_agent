@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,6
+object_qs,6
+use_navigation,1
+use_delivery,
+use_relocation,
+The robot seemed to get really sidetracked and I felt like they went on a tangent and hung up on the name of the person instead of actually going to where it's supposed to be going, which was frustrating. I thought it asked too many questions about objects.

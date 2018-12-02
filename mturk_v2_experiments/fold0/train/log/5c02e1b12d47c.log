@@ -1,0 +1,97 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bring the pringles can from the conference room to the lab'
+get_from_user (processed): 'bring the pringles can from the conference room to the lab'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the lab'
+get_from_user (processed): 'the lab'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3414a', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the lab'
+get_from_user (processed): 'the lab'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3436', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3414b', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the conference room'
+get_from_user (processed): 'the conference room'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'goal': '3414b', 'source': '3416', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3414b', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the conference room'
+get_from_user (processed): 'the conference room'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'goal': '3414b', 'source': '3516', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3414b', 'source': '3516', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'a pringles can'
+get_from_user (processed): 'a pringles can'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 20
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'pringles' when describing, or shake your head if you could use 'pringles' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 10
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3414b', 'source': '3516', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the long tube'
+get_from_user (processed): 'the long tube'
+say_to_user: I haven't heard the word 'tube' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'shape'
+get_from_user (processed): 'shape'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'tube' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'tube' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'tube' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'source': '3516', 'goal': '3414b', 'patient': 'oidx_13', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'source': '3516', 'recipient': None, 'goal': '3414b', 'patient': 'oidx_13', 'action': 'move'}
+main: ... done; got action {'source': '3516', 'recipient': None, 'goal': '3414b', 'patient': 'oidx_13', 'action': 'move'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3516', 'recipient': None, 'goal': '3414b', 'patient': 'oidx_13', 'action': 'move'}], [{'goal': ['the lab', 'the lab'], 'action': [], 'patient': ['a pringles can', 'the long tube'], 'source': ['the conference room', 'the conference room'], 'recipient': [], 'all': ['bring the pringles can from the conference room to the lab']}], [('pringles', 20, 1), ('can', 20, 1), ('pringles', 10, 0)], [('tube', 'metallic', False), ('tube', 'cylinder', True)], [0], [0]]

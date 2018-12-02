@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,2
+frustrated,2
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,1
+I was a bit confused were we supposed to have the robot pick up the object and move it or just move it to the printer room?

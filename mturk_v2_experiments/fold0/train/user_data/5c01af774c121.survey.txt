@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,6
+frustrated,1
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,0
+i think all was good. i enjoy this hit.

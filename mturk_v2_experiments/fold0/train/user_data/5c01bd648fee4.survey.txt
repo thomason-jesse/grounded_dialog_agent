@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,4
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,3
+It was a very interesting experiment to take part in. I think that it is a great way to learn about ai and how we may interact with it someday.
