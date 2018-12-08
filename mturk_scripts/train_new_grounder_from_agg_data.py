@@ -44,7 +44,7 @@ def main():
     agg_role_utterances_role_chosen_pairs = []
     agg_perceptual_labels = []
     agg_perceptual_synonymy = []
-    agg_all_parser_timeouts = []  # Don't currently do anythin with this timeout data in this script.
+    agg_all_parser_timeouts = []  # Don't currently do anything with this timeout data in this script.
     agg_all_grounder_timeouts = []
     for agg_fn in agg_fns:
         print("main: ... loading from '" + agg_fn + "'")

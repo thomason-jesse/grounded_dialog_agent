@@ -17,22 +17,26 @@ def main():
     agg_all_parser_timeouts = 0
     agg_all_grounder_timeouts = 0
     agg_role_utterances_role_chosen_pairs = []
+    agg_action_role_utterance_pairs = {}
     agg_perceptual_labels = []
     agg_perceptual_synonymy = []
     num_users = [0, 0, 0]
     num_correct_tasks = [0, 0, 0]
+    # TODO: we could filter users by f score; if they get f zero, we drop all their data (not paying attention at all)
+    # TODO: for retraining because we don't trust them, otherwise we keep synonymy, etc. data. Either way keep parsing/
+    # TODO: grounding timeout data. Get retraining pairs per-role from all users, not just from f1=1.
     with open(summary_csv_fn, 'r') as f:
         lines = f.readlines()
         headers = lines[0].strip().split(',')
         for lidx in range(1, len(lines)):
             data = lines[lidx].strip().split(',')
 
-            # Aggregate users if they completed task 3 (correctly or not).
+            # Aggregate users if they completed the task (correctly or not)
             # We could conceivably draw data from users who did not complete all tasks as well.
             uid = data[headers.index("uid")]
             pickle_exists = data[headers.index("pickle_exists")]
             log_exists = data[headers.index("log_exists")]
-            if (pickle_exists == "1" and log_exists == "1"):
+            if pickle_exists == "1" and log_exists == "1":
 
                 # Load user utterances from logfile.
                 log_fn = os.path.join(log_dir, uid + ".log")
@@ -59,10 +63,36 @@ def main():
                         idx = task - 1
                         # If task was correct, note this user's data for inclusion in aggregated pickle.
                         if tasks_correct[idx]:
+                            # TODO: find 'all' role that should come one per conversation from confirming whole thing.
+                            # TODO: add partial pairs from users who got task wrong but individual parts correct.
                             pair = (actions_confirmed[0], utterances_by_role[0])
                             if pair not in agg_role_utterances_role_chosen_pairs:
                                 agg_role_utterances_role_chosen_pairs.append((actions_confirmed[0],
                                                                               utterances_by_role[0]))
+                            for role in actions_confirmed[0]:
+                                if role not in agg_action_role_utterance_pairs:
+                                    agg_action_role_utterance_pairs[role] = {}
+                                if actions_confirmed[0][role] is not None:
+                                    acr = actions_confirmed[0][role]
+                                    if acr not in agg_action_role_utterance_pairs[role]:
+                                        agg_action_role_utterance_pairs[role][acr] = []
+                                    agg_action_role_utterance_pairs[role][acr].extend(utterances_by_role[0][role])
+                            # build full action command for original phrase and rephrasings
+                            if 'all' in utterances_by_role[0]:
+                                if 'all' not in agg_action_role_utterance_pairs:
+                                    agg_action_role_utterance_pairs['all'] = {}
+                                if actions_confirmed[0]['action'] == 'walk':
+                                    acr = "walk" + "(" + actions_confirmed[0]['goal'] + ")"
+                                elif actions_confirmed[0]['action'] == 'bring':
+                                    acr = ("bring" + "(" + actions_confirmed[0]['patient'] + "," +
+                                           actions_confirmed[0]['recipient'] + ")")
+                                else:
+                                    acr = ("move" + "(" + actions_confirmed[0]['patient'] + "," +
+                                           actions_confirmed[0]['source'] + "," + actions_confirmed[0]['goal'] + ")")
+                                if acr not in agg_action_role_utterance_pairs['all']:
+                                    agg_action_role_utterance_pairs['all'][acr] = []
+                                agg_action_role_utterance_pairs['all'][acr].extend(utterances_by_role[0]['all'])
+
                             num_correct_tasks[idx] += 1
                         if tasks_taken[idx]:
                             num_users[idx] += 1
@@ -79,6 +109,15 @@ def main():
     if num_users == 0:
         print("ERROR: found no users")
         return 1
+
+    # DEBUG
+    for r in agg_action_role_utterance_pairs:
+        print(r + " (" + str(sum([len(agg_action_role_utterance_pairs[r][t])
+                                  for t in agg_action_role_utterance_pairs[r]])) + ")")
+        for t in agg_action_role_utterance_pairs[r]:
+            print('\t' + t + " (" + str(len(agg_action_role_utterance_pairs[r][t])) + ")")
+            for u in agg_action_role_utterance_pairs[r][t]:
+                print('\t\t' + u)
 
     # Report.
     print ("main: aggregated data from " + str(num_users) + " users and " + str(num_correct_tasks) + " correct " +

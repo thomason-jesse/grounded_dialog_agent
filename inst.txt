@@ -45,9 +45,10 @@ Todo:
 		    	- If we average across tasks, 31 tasks in 100 HITs, average completion 45.33, would need 221, let's say 250, or 50*5 batches.
 		    	- 250 HITS per batch, five batches per fold, 3 training folds, 3 testing folds, minus two completed batches
 		    		- $52.50 per batch, (5 * (3 + 3)) - 2 = 28 remaining batches, $1470 estimated cost.
-		    - Batch 3
-		    - Batch 4
-		    - Batch 5
+		    - Batch 3 users [16, 19, 10] completion [5, 14, 0] rates [.31, .74, .0]
+		    - Batch 4 [total so far] users [66, 66, 56] completion [29, 46, 11] average rates [0.44, 0.70, 0.20]
+		    - Batch 5; average times so far 28m, 22m, 41m, 14m
+		        - [total so far] users [80, 80, 73] completion [39, 57, 16] average rates [0.49, 0.71, 0.22]
 		    - Estimate whether we need to increase number of batches before proceeding (retrain parser+perc and viz).
 		    - Estimate whether we need to bonus workers based on completion rates.
 		- Retrain

@@ -5,6 +5,7 @@ import argparse
 import csv
 import hashlib
 import os
+import pickle
 
 
 def main():
@@ -50,8 +51,8 @@ def main():
                         gen_id, rot_mid, id_hash = code.split('_')
                         mid = rot_mid[-3:] + rot_mid[:-3]
                         stripped_mid = mid.strip()
-                        true_hash = hashlib.sha1("phm_salted_hash" + gen_id + mid +
-                                                 "rwhpidcwha_" + add_salt).hexdigest()[:13]
+                        true_hash = hashlib.sha1(("phm_salted_hash" + gen_id + mid +
+                                                 "rwhpidcwha_" + add_salt).encode('ascii', 'ignore')).hexdigest()[:13]
                         if id_hash != true_hash:
                             print (row[id_header] + " gen id " + gen_id +
                                    " gave hash " + id_hash + " != " + true_hash)
@@ -72,6 +73,18 @@ def main():
                                          "task_1_correct_action": "-2",
                                          "task_2_correct_action": "-2",
                                          "task_3_correct_action": "-2",
+                                         "task_1_correct_goal": "-2",
+                                         "task_2_correct_goal": "-2",
+                                         "task_3_correct_goal": "-2",
+                                         "task_1_correct_patient": "-2",
+                                         "task_2_correct_patient": "-2",
+                                         "task_3_correct_patient": "-2",
+                                         "task_1_correct_recipient": "-2",
+                                         "task_2_correct_recipient": "-2",
+                                         "task_3_correct_recipient": "-2",
+                                         "task_1_correct_source": "-2",
+                                         "task_2_correct_source": "-2",
+                                         "task_3_correct_source": "-2",
                                          "task_1_f1": "-1",
                                          "task_2_f1": "-1",
                                          "task_3_f1": "-1",
@@ -123,6 +136,10 @@ def main():
                                 if os.path.isfile(drawn_fn):
                                     user_data["task_" + str(task) + "_correct"] = '-1'
                                     user_data["task_" + str(task) + "_correct_action"] = '-1'
+                                    user_data["task_" + str(task) + "_correct_goal"] = '-1'
+                                    user_data["task_" + str(task) + "_correct_patient"] = '-1'
+                                    user_data["task_" + str(task) + "_correct_recipient"] = '-1'
+                                    user_data["task_" + str(task) + "_correct_source"] = '-1'
                                     with open(drawn_fn, 'r') as drawn_f:
                                         drawn_roles = {}
                                         for rv_str in drawn_f.read().strip().split(';'):
@@ -143,9 +160,12 @@ def main():
                                                 for r in drawn_roles:
                                                     if r not in chosen_roles or chosen_roles[r] != drawn_roles[r]:
                                                         task_correct = False
-                                                user_data["task_" + str(task) + "_correct"] = '1' if task_correct else '0'
-                                                user_data["task_" + str(task) + "_correct_action"] = '1' if \
-                                                    chosen_roles['action'] == drawn_roles['action'] else '0'
+                                                user_data["task_" + str(task) + "_correct"] = '1'\
+                                                    if task_correct else '0'
+                                                for r in ["action", "goal", "patient", "recipient", "source"]:
+                                                    user_data["task_" + str(task) + "_correct_" + r] = '1' if \
+                                                        (r in chosen_roles and r in drawn_roles
+                                                         and chosen_roles[r] == drawn_roles[r]) else '0'
                                                 if task_correct:
                                                     bonuses += 1
                                                 overlap_n = 0
