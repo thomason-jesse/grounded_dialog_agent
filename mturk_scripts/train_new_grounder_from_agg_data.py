@@ -297,7 +297,8 @@ def main():
                 1, 10, verbose=1, use_condor=use_condor, condor_target_dir=condor_target_dir,
                 condor_script_dir=condor_grounder_script_dir)
             print ("main: ...... got " + str(len(utterance_semantic_grounding_triples)) + " utterance/semantics " +
-                   "pairs from induced utterance/grounding pairs")
+                   "pairs from induced utterance/grounding pairs" +
+                   "(%.2f" % (len(utterance_semantic_grounding_triples) / float(len(a.induced_utterance_grounding_pairs))) + ")")
             log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_grounding_triples)) +
                         " utterance/semantic pairs\n")
 
