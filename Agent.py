@@ -1038,13 +1038,16 @@ class Agent:
 
         pairs = []
         if 'all' in us:  # need to build SemanticNode representing all roles
-            sem_str = rs['action']
-            if rs['action'] == 'walk':
-                sem_str += '(' + rs['goal'] + ')'
-            elif rs['action'] == 'bring':
-                sem_str += '(' + rs['patient'] + ',' + rs['recipient'] + ')'
-            else:  # ie. 'move'
-                sem_str += '(' + rs['patient'] + ',' + rs['source'] + ',' + rs['goal'] + ')'
+            if 'all' not in rs:  # build string from rs entries
+                sem_str = rs['action']
+                if rs['action'] == 'walk':
+                    sem_str += '(' + rs['goal'] + ')'
+                elif rs['action'] == 'bring':
+                    sem_str += '(' + rs['patient'] + ',' + rs['recipient'] + ')'
+                else:  # ie. 'move'
+                    sem_str += '(' + rs['patient'] + ',' + rs['source'] + ',' + rs['goal'] + ')'
+            else:  # else, string is being provided but entries aren't, probably
+                sem_str = rs['all']
             cat_idx = self.parser.lexicon.read_category_from_str('M')  # a command
             grounded_form = self.parser.lexicon.read_semantic_form_from_str(sem_str, cat_idx, None, [])
             for u in us['all']:
@@ -1643,7 +1646,7 @@ class Agent:
                     sorted_interpolation = sorted(parses, key=lambda t: t[1], reverse=True)
                     best_interpolated_parses = [parse for parse, score in sorted_interpolation
                                                 if np.isclose(score, sorted_interpolation[0][1])]
-                    best_interpolated_parse = random.choice(best_interpolated_parses)[0][0]
+                    best_interpolated_parse = random.choice(best_interpolated_parses)
                     utterance_semantic_pairs.append([x, best_interpolated_parse.node, g])
                     print("... re-ranked to choose " + self.parser.print_parse(best_interpolated_parse.node))
                     best_interpolated_parse.node.commutative_lower_node(self.parser.ontology)

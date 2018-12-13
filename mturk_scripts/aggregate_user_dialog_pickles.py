@@ -95,7 +95,7 @@ def main():
                                     agg_action_role_utterance_pairs['all'][acr] = []
                                 agg_action_role_utterance_pairs['all'][acr].extend(utterances_by_role[0]['all'])
 
-                            num_correct_tasks[idx] += 1
+                                num_correct_tasks[idx] += 1
                         if tasks_taken[idx]:
                             num_users[idx] += 1
                             f1 = float(data[headers.index("task_" + str(task) + "_f1")])

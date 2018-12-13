@@ -41,7 +41,7 @@ def main():
     # Load the aggregate information from file
     print("main: loading aggregate conversation files...")
     agg_all_utterances = []
-    agg_role_utterances_role_chosen_pairs = []
+    agg_action_role_utterance_pairs = []
     agg_perceptual_labels = []
     agg_perceptual_synonymy = []
     agg_all_parser_timeouts = []  # Don't currently do anything with this timeout data in this script.
@@ -49,10 +49,10 @@ def main():
     for agg_fn in agg_fns:
         print("main: ... loading from '" + agg_fn + "'")
         with open(agg_fn, 'rb') as f:
-            _agg_all_utterances, _agg_role_utterances_role_chosen_pairs, _agg_perceptual_labels,\
+            _agg_all_utterances, _agg_action_role_utterance_pairs, _agg_perceptual_labels,\
                 _agg_perceptual_synonymy, _agg_all_parser_timeouts, _agg_all_grounder_timeouts = pickle.load(f)
             agg_all_utterances.extend(_agg_all_utterances)
-            agg_role_utterances_role_chosen_pairs.extend(_agg_role_utterances_role_chosen_pairs)
+            agg_action_role_utterance_pairs.append(_agg_action_role_utterance_pairs)
             agg_perceptual_labels.extend(_agg_perceptual_labels)
             agg_perceptual_synonymy.extend(_agg_perceptual_synonymy)
             agg_all_parser_timeouts.append(_agg_all_parser_timeouts)
@@ -269,10 +269,13 @@ def main():
 
     # Induce pairs from agg data.
     print("main: ... creating induced pairs from aggregated conversations...")
-    for action_confirmed, user_utterances_by_role in agg_role_utterances_role_chosen_pairs:
-        new_i_pairs = a.induce_utterance_grounding_pairs_from_conversation(user_utterances_by_role,
-                                                                           action_confirmed)
-        a.induced_utterance_grounding_pairs.extend(new_i_pairs)
+    for entry in agg_action_role_utterance_pairs:
+        for r in entry:
+            for g in entry[r]:
+                us = {r: entry[r][g]}
+                rs = {r: g}
+                new_i_pairs = a.induce_utterance_grounding_pairs_from_conversation(us, rs)
+                a.induced_utterance_grounding_pairs.extend(new_i_pairs)
     print("main: ...... done; induced " + str(len(a.induced_utterance_grounding_pairs)) + " pairs")
     log_f.write("induced " + str(len(a.induced_utterance_grounding_pairs)) + " utterance/grounding pairs\n")
 
