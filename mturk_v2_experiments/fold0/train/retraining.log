@@ -19,7 +19,7 @@ epoch 3: got 180 utterance/semantic pairs from 303 possible (0.59)
 epoch 3: total (224); trained on 197 (0.88); failed on 27 (0.12); matched on 103 (0.46); genlex only on 0 (0.00); 
 epoch 4: got 177 utterance/semantic pairs from 303 possible (0.58)
 epoch 4: total (221); trained on 192 (0.87); failed on 28 (0.13); matched on 94 (0.43); genlex only on 0 (0.00); 
-epoch 5: got 183 utterance/semantic pairs from 303 possible (0.60)
+epoch 5: got 183 utterance/semantic pairs from 303 possible (0.60)***
 epoch 5: total (227); trained on 198 (0.87); failed on 28 (0.12); matched on 102 (0.45); genlex only on 3 (0.01); 
 epoch 6: got 178 utterance/semantic pairs from 303 possible (0.59)
 epoch 6: total (222); trained on 194 (0.87); failed on 27 (0.12); matched on 89 (0.40); genlex only on 0 (0.00); 
