@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,6
+frustrated,2
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,4
+Hope you're having a good day =)

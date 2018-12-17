@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,2
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,4
+Interesting experience - have never completed a task like this before!

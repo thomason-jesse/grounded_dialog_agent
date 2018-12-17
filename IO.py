@@ -49,7 +49,7 @@ class KeyboardIO:
         print("YOU: ")
         u = None
         while u is None or len(u) == 0:
-            u = raw_input()
+            u = input()
             u = process_raw_utterance(u)
         return u
 

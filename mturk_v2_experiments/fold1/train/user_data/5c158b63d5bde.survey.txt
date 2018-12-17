@@ -1,0 +1,9 @@
+tasks_easy,1
+understood,4
+frustrated,4
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,0
+I am not sure how this was supposed to work, it was very confusing.
+

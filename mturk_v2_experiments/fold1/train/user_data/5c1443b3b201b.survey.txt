@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,3
+frustrated,4
+object_qs,4
+use_navigation,
+use_delivery,3
+use_relocation,
+This was a good attempt, really think there are better robot intelligence out there but if this robot has the ability to learn, it has great potential. Great study, loved this actually.

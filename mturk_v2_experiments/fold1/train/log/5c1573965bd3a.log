@@ -1,0 +1,88 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move object from pod next to printer, to the pod next to Walter Ward's office.'
+get_from_user (processed): 'move object from pod next to printer to the pod next to walter ward 's office'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No, it refers to a person.'
+get_from_user (processed): 'no it refers to a person'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'pod between w and s'
+get_from_user (processed): 'pod between w and s'
+say_to_user: I haven't heard the word 'w' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'pod next to Walter Ward's office'
+get_from_user (processed): 'pod next to walter ward 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 22
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3424', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'pod next to printer'
+get_from_user (processed): 'pod next to printer'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3424', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'pod next to lounge'
+get_from_user (processed): 'pod next to lounge'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3424', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 18
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3424', 'action': 'move', 'source': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'pringles'
+get_from_user (processed): 'pringles'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'refers' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3424', 'action': 'move', 'source': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'pringles can'
+get_from_user (processed): 'pringles can'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'goal': '3424', 'patient': 'oidx_13', 'action': 'move', 'source': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'goal': '3424', 'patient': 'oidx_13', 'action': 'move', 'recipient': None, 'source': '3410'}
+main: ... done; got action {'goal': '3424', 'patient': 'oidx_13', 'action': 'move', 'recipient': None, 'source': '3410'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': '3424', 'patient': 'oidx_13', 'action': 'move', 'recipient': None, 'source': '3410'}], [{'all': ["move object from pod next to printer to the pod next to walter ward 's office"], 'action': [], 'goal': ['pod between w and s', "pod next to walter ward 's office"], 'patient': ['pringles', 'pringles can'], 'recipient': [], 'source': ['pod next to printer', 'pod next to lounge']}], [('pringles', 5, 0), ('pringles', 14, 0), ('pringles', 8, 0), ('pringles', 15, 0), ('pringles', 1, 0), ('pringles', 30, 0), ('pringles', 29, 0), ('pringles', 31, 0), ('block', 5, 0), ('block', 14, 0), ('block', 8, 0), ('block', 15, 0), ('block', 1, 0), ('block', 30, 0), ('block', 29, 0), ('block', 31, 0), ('metallic', 5, 0), ('metallic', 14, 0), ('metallic', 8, 0), ('metallic', 15, 0), ('metallic', 1, 0), ('metallic', 30, 0), ('metallic', 29, 0), ('metallic', 31, 0)], [], [2], [0]]

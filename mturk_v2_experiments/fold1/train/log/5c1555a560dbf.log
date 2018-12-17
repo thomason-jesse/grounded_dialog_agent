@@ -1,0 +1,60 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bring the pringles from Lounge to Peggy Parker, Intern'
+get_from_user (processed): 'bring the pringles from lounge to peggy parker intern'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes to Peggy Parker, Intern'
+get_from_user (processed): 'yes to peggy parker intern'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker, Intern'
+get_from_user (processed): 'peggy parker intern'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Pringles'
+get_from_user (processed): 'pringles'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'empty' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 5
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 5
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Can to Peggy Parker, Intern'
+get_from_user (processed): 'can to peggy parker intern'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker'
+get_from_user (processed): 'peggy parker'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'p', 'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'recipient': 'p', 'action': 'bring', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: ... done; got action {'recipient': 'p', 'action': 'bring', 'patient': 'oidx_13', 'goal': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': 'p', 'action': 'bring', 'patient': 'oidx_13', 'goal': None, 'source': None}], [{'patient': ['pringles', 'can to peggy parker intern'], 'all': ['bring the pringles from lounge to peggy parker intern'], 'recipient': ['peggy parker intern', 'peggy parker'], 'action': [], 'goal': [], 'source': []}], [('pringles', 5, 0), ('pringles', 14, 0), ('pringles', 8, 0), ('pringles', 15, 0), ('pringles', 1, 0), ('pringles', 30, 0), ('pringles', 29, 0), ('pringles', 31, 0), ('empty', 5, 1), ('tower', 5, 1)], [], [1], [0]]

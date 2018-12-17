@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,3
+object_qs,6
+use_navigation,2
+use_delivery,
+use_relocation,
+I didn't fully understand the task as the instructions were not clear to me.  I assumed I had to get the robot to the red X, but like I said, the instructions were vague and difficult to understand.

@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,6
+object_qs,4
+use_navigation,
+use_delivery,0
+use_relocation,
+It didn't understand &quot;soda&quot; or &quot;drink&quot;, that seems like some basic info it should know

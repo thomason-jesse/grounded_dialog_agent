@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,0
+object_qs,3
+use_navigation,
+use_delivery,4
+use_relocation,
+The survey was well structured and interesting.

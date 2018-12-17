@@ -23,6 +23,8 @@ Launch server (generic):
 
 Server fold 0:
 	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/init/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold0/train/ --num_dialogs 1 --active_train_set 10,3,27,7,18,2,20,17
+Server fold 1:
+	python3 Server.py --parser_fn ../trained_parsers/mturk_fold0.pkl.5 --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/fold0/train/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold1/train/user_data/ --num_dialogs 1 --active_train_set 5,14,8,15,1,30,29,31
 
 Todo:
 	[x] Pilot 1:
@@ -49,16 +51,22 @@ Todo:
 		    - Batch 4 [total so far] users [66, 66, 56] completion [29, 46, 11] average rates [0.44, 0.70, 0.20]
 		    - Batch 5; average times so far 28m, 22m, 41m, 14m
 		        - [total so far] users [80, 80, 73] completion [39, 57, 16] average rates [0.49, 0.71, 0.22]
-		    - Estimate whether we need to increase number of batches before proceeding (retrain parser+perc and viz).
-		    - Estimate whether we need to bonus workers based on completion rates.
-		- Retrain
+		    - Estimate whether we need to increase number of batches before proceeding (retrain parser+perc and viz) [looks ok; x]
+		    - Estimate whether we need to bonus workers based on completion rates [nah; x]
+		- Retrain [x]
 		- Fold 1 task *
-		    - Batch 1, 2, 3, 4, 5
+		    - Batch 1 users [15, 18, 12] corr [12, 12, 6] rate [0.80, 0.67, 0.50]
+		    - Batch 2 users [29, 35, 23] corr [20, 19, 9] rate [0.69, 0.54, 0.39]
+		    - Batch 3 users [46, 53, 34] corr [25, 31, 10] rate [0.54, 0.58, 0.29]
+		    - Batch 4 users [63, 70, 48] corr [33, 39, 13] rate [0.52, 0.56, 0.27]
+		    - Batch 5 users [81, 82, 66] corr [44, 46, 18] rate [0.54, 0.56, 0.27]
 		- Retrain
 		- Fold 2 task *
 		    - Batch 1, 2, 3, 4, 5
 		- Retrain
-		- Test Fold 3 task * [NO REPEAT USERS, intersperse batches]
-		    - Batch 1, 2, 3, 4, 5
 		- Test Fold 0 task * [NO REPEAT USERS, intersperse batches]
+		    - Batch 1, 2, 3, 4, 5
+		- Test Fold 3 (init parser) tastk * [NO REPEAT USERS, intersperse batches]
+			- Batch 1, 2, 3, 4, 5
+		- Test Fold 3 task * [NO REPEAT USERS, intersperse batches]
 		    - Batch 1, 2, 3, 4, 5

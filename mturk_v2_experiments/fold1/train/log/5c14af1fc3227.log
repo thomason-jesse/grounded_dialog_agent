@@ -1,0 +1,82 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take item to secretary from'
+get_from_user (processed): 'take item to secretary from'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to secretary'
+get_from_user (processed): 'go to secretary'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'the' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'object' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 8
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Bob'
+get_from_user (processed): 'bob'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): ''
+get_from_user (processed): ''
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): ''
+get_from_user (processed): ''
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'Bob'
+get_from_user (processed): 'bob'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'Robert brown'
+get_from_user (processed): 'robert brown'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'Yez'
+get_from_user (processed): 'yez'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'Yez'
+get_from_user (processed): 'yez'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'Can'
+get_from_user (processed): 'can'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'b'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'patient': 'oidx_11', 'goal': None, 'action': 'bring', 'recipient': 'b', 'source': None}
+main: ... done; got action {'patient': 'oidx_11', 'goal': None, 'action': 'bring', 'recipient': 'b', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_11', 'goal': None, 'action': 'bring', 'recipient': 'b', 'source': None}], [{'all': ['take item to secretary from'], 'patient': ['go to secretary', 'can'], 'action': [], 'source': [], 'recipient': ['bob'], 'goal': []}], [('bean', 5, 0), ('bean', 14, 0), ('bean', 8, 0), ('bean', 15, 0), ('bean', 1, 0), ('bean', 30, 0), ('bean', 29, 0), ('bean', 31, 0), ('metallic', 5, 0), ('metallic', 14, 0), ('metallic', 8, 0), ('metallic', 15, 0), ('metallic', 1, 0), ('metallic', 30, 0), ('metallic', 29, 0), ('metallic', 31, 0), ('yellow', 8, 1)], [], [0], [0]]

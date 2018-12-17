@@ -1,0 +1,83 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the object to Walter Ward.'
+get_from_user (processed): 'take the object to walter ward'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Walter Ward is a supervisor'
+get_from_user (processed): 'walter ward is a supervisor'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'It refers to the person who needs the object'
+get_from_user (processed): 'it refers to the person who needs the object'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Walter Ward'
+get_from_user (processed): 'walter ward'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Walter'
+get_from_user (processed): 'walter'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'w', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a white and red cylinder'
+get_from_user (processed): 'a white and red cylinder'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Would you use the word 'cylinder' when describing <p>this</p> object? {'patient': 'oidx_31'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'bottle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 30
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'ward' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'w', 'action': 'bring', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a white cylinder with a red top'
+get_from_user (processed): 'a white cylinder with a red top'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'recipient': 'w', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'w', 'action': 'bring', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'w', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+perform_action: {'recipient': 'w', 'source': None, 'action': 'bring', 'goal': None, 'patient': 'oidx_12'}
+main: ... done; got action {'recipient': 'w', 'source': None, 'action': 'bring', 'goal': None, 'patient': 'oidx_12'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': 'w', 'source': None, 'action': 'bring', 'goal': None, 'patient': 'oidx_12'}], [{'source': [], 'action': [], 'goal': [], 'recipient': ['walter ward', 'walter'], 'all': ['take the object to walter ward'], 'patient': ['a white and red cylinder', 'a white cylinder with a red top']}], [('cylinder', 31, 1), ('white', 30, 1), ('peach', 5, 0), ('peach', 14, 0), ('peach', 8, 0), ('peach', 15, 0), ('peach', 1, 0), ('peach', 30, 0), ('peach', 29, 0), ('peach', 31, 0)], [], [2], [0]]

@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,6
+frustrated,0
+object_qs,0
+use_navigation,
+use_delivery,6
+use_relocation,
+I had so much fun with this HIT! I could do these all day long. It felt like I was teaching a cute newborn robot about the world. Thank you!

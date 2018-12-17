@@ -1,0 +1,127 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take it'
+get_from_user (processed): 'take it'
+say_to_user: I haven't heard the word 'it' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Red'
+get_from_user (processed): 'red'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'it' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'it' mean the same thing as 'the'?
+get_from_user requested feedback
+get_from_user (raw): 'color'
+get_from_user (processed): 'color'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'it' mean the same thing as 'the'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'it' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 31
+say_to_user_with_referents: Among these nearby objects, could you show me one you could not use the word 'it' when describing, or shake your head if you could use 'it' when describing all of them? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 14
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'it' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 8
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'moon'
+get_from_user (processed): 'moon'
+say_to_user: I haven't heard the word 'moon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'color'
+get_from_user (processed): 'color'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'moon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'here'
+get_from_user (processed): 'here'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'where'
+get_from_user (processed): 'where'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'hi'
+get_from_user (processed): 'hi'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'shape'
+get_from_user (processed): 'shape'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'go to'
+get_from_user (processed): 'go to'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'done'
+get_from_user (processed): 'done'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'enough'
+get_from_user (processed): 'enough'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'not'
+get_from_user (processed): 'not'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'box'
+get_from_user (processed): 'box'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'computer'
+get_from_user (processed): 'computer'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3520'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'source': None, 'action': 'walk', 'patient': None, 'goal': '3520', 'recipient': None}
+main: ... done; got action {'source': None, 'action': 'walk', 'patient': None, 'goal': '3520', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'action': 'walk', 'patient': None, 'goal': '3520', 'recipient': None}], [{'all': ['take it'], 'source': [], 'goal': ['moon'], 'action': [], 'patient': [], 'recipient': []}], [('it', 31, 1), ('it', 14, 0), ('it', 8, 1)], [('it', 'the', False)], [0], [0]]

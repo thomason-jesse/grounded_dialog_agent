@@ -1,0 +1,84 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give the can to D'
+get_from_user (processed): 'give the can to d'
+say_to_user: I haven't heard the word 'd' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.  Give the can to Dave.'
+get_from_user (processed): 'no give the can to dave'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'd' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'd' mean the same thing as 'metal'?
+get_from_user requested feedback
+get_from_user (raw): 'It means dave a man'
+get_from_user (processed): 'it means dave a man'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'd' mean the same thing as 'metal'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'd' mean the same thing as 'jar'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'd' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'it' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 8
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Dave'
+get_from_user (processed): 'dave'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A can'
+get_from_user (processed): 'a can'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Can'
+get_from_user (processed): 'can'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A yellow empty can'
+get_from_user (processed): 'a yellow empty can'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Dave'
+get_from_user (processed): 'dave'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 8
+perform_action: {'recipient': 'b', 'patient': 'oidx_11', 'action': 'bring', 'source': None, 'goal': None}
+main: ... done; got action {'recipient': 'b', 'patient': 'oidx_11', 'action': 'bring', 'source': None, 'goal': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': 'b', 'patient': 'oidx_11', 'action': 'bring', 'source': None, 'goal': None}], [{'source': [], 'recipient': ['dave', 'dave'], 'patient': ['a can', 'can'], 'action': [], 'all': ['give the can to d'], 'goal': []}], [('d_0', 5, 0), ('d_0', 14, 0), ('d_0', 8, 0), ('d_0', 15, 0), ('d_0', 1, 0), ('d_0', 30, 0), ('d_0', 29, 0), ('d_0', 31, 0), ('pringles', 5, 0), ('pringles', 14, 0), ('pringles', 8, 0), ('pringles', 15, 0), ('pringles', 1, 0), ('pringles', 30, 0), ('pringles', 29, 0), ('pringles', 31, 0), ('metallic', 8, 1)], [('d', 'metal', False), ('d', 'jar', False)], [0], [0]]

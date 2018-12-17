@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,5
+frustrated,4
+object_qs,4
+use_navigation,5
+use_delivery,
+use_relocation,
+The images of the various objects were off the bottom of my screen, so I didn't notice them until the second interaction caused me to scroll down. You should highlight or otherwise indicate that there is more down there. I would have indicated that the can was metallic, possibly changing the whole sequence of interaction. Oops.

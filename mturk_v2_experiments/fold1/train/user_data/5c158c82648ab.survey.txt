@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,4
+object_qs,3
+use_navigation,
+use_delivery,1
+use_relocation,
+It was fun, but it's a long way from retail. 

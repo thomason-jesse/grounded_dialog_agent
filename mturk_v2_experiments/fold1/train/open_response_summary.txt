@@ -1,0 +1,194 @@
+5c1423658b4c4: No comments.
+
+5c14336bb69e8: The bot performed very well
+
+5c143099194c0: no comment
+
+5c1426de200bc: I initially thought the spice jar was a medicine bottle. Couldn't see it as clearly as I needed to. So, the robot would have probably done better if I had not given it the wrong instructions initially. Very fun and interesting!
+
+5c140a4e4bc0f: Interesting project. Thanks. Good luck.
+
+5c140abe4af20: Usage of D for Dave ws not recognized by the Robot.  Perhaps on purpose?
+
+5c14296886ed9: Can't it understand basic colors?
+
+5c141a9e92d95: The robot said it had never heard certain words, even though it had previously used those exact words. If the robot refers to itself as &quot;I&quot; it should have no problem being referred to as &quot;you.&quot;
+
+5c140cdb4a6db: None
+
+5c1426b6c3f44: None
+
+5c140cd8c0305: That was interesting. Thank you.
+
+5c1450a557976: It was confusing trying to figure out if the object actually got moved by the robot!
+
+5c1463605ddd6: my first time so was not really sure what I was doing. The robot seemed to repeat itself, maybe it was because I was not sure what to do
+
+5c14324497d07: all good survey
+
+5c1443b3b201b: This was a good attempt, really think there are better robot intelligence out there but if this robot has the ability to learn, it has great potential. Great study, loved this actually.
+
+5c147c1a773a8: The interface doesn't always register my key strokes and I have to press the same letter a few times.
+
+5c147bc78260b: It was fun, but it was a little complicated.
+
+5c148519acbdd: very nice
+
+5c14995a9c824: None
+
+5c147c6f3269a: None
+
+5c147c8f80331: No.
+
+5c149842f41d7: The robot didn't understand as many words as I thought it would initially! I expected it to understand more than just shapes and colors. However, in learning how to actually understand the English language entirely I totally understand how the robot wouldn't understand words like it and lid. This was super fun and very enlightening. Thank you for the opportunity!
+
+5c147ef70e810: Instructions seemed unclear at the start.
+
+5c149ef2b671c: none
+
+5c147ccd6f3df: The robots questions were kind of confusing.
+
+5c14a3d1e4f6d: good
+
+5c147b09321d2: nice
+
+5c149aad665ee: VERY NICE.
+
+5c147dc124961: Good
+
+5c147fe38a54b: very nice
+
+5c147bdfb7866: The typing box is not very responsive and lagged for me.
+
+5c14861df227e: nil
+
+5c147b9fc03b7: This was very interesting and am curious what the robot is being developed for.
+
+5c147bacd4cf5: I thought that the robot was breaking down my request into smaller portions. It asked me where to go and once I got it there, the exercise ended. I would have been more specific had I realized that would happen.
+
+5c147f055ab73: That robot needs a lot of training.  I'll take a human being over a robot please. :)
+
+5c147b51b192b: This was extremely confusing.
+
+5c147c9a68a49: I may have directed initially incorrectly as a test and got sidetracked with any real mission.
+
+5c14b9686ef32: Pretty neat.
+
+5c14b29e3aa1a: I tried to communicate more but it does not let me do it.
+
+5c14aedd2b126: The robot was adorable trying to learn stuff. If you ever need my help in future robot studies let me know :)
+
+5c14c03eb37f7: loved the survey
+
+5c14a8572fa90: It could not understand that the task was to pick up an object, maybe add in instructions about how to word the action as 3 different steps
+
+5c14d6c3220d0: The interface does seem very intuitive.  It feels a little clunky.//Thanks
+
+5c14bfd92813c: nil
+
+5c14c5c243ad7: Fun!
+
+5c14a83109445: it was hard to understand what to expect at first
+
+5c14acef2b5b6: Nil.
+
+5c14a98797af7: NICE
+
+5c14ba37d33da: The can should be delivered to the conference room but the robot asked who to deliver it to. It gave the people's names but no option for the conference room. VERY frustrating.
+
+5c14b1ee7981f: it was difficult for me to accomplish the task.
+
+5c14ab2a7c685: I felt like the &quot;problem&quot; could have been worded differently to make more sense.
+
+5c14a7c58a6b8: This was one of the coolest tests I've done on Mturk. I would love to do more in the future. Email me at y5nthon5a@aol.com if you'd like me to help further.
+
+5c14b06fab661: Good
+
+5c14b34a6bad2: Hope you're having a good day =)
+
+5c14b5e3699bd: the screen is very laggy. I'm using a pretty high end computer but it was pretty frustrating to use this. But thanks for the hit.
+
+5c14abaa85fb4: Robot performs as expected. Is smart and figures things out quickly
+
+5c14a80979a29: It's good to use.
+
+5c14a81fddb7c: NONE
+
+5c14b033aef8b: I ended up delivering to the wrong person; my mistake, I thought the options were going through different objects. I intended to deliver to &quot;H&quot;
+
+5c14ab7cc4ffe: Very Nice
+
+5c14b030d3e6d: Good
+
+5c14b0f5640b1: very cool would love more interactions like this
+
+5c156d94b0b8b: Was interesting, it didn't move the right object though.  Would like to try again, I think I messed up too to be honest.
+
+5c154f9b0c2fc: 
+
+5c156bf002250: The survey was well structured and interesting.
+
+5c1550fb8e7eb: I wasn't sure what the object was.
+
+5c155036c1dab: everything was very well explained
+
+5c155118387ab: Hope you're having a great day =)
+
+5c156f0110e15: No problems with the task.
+
+5c156c220b23a: The survey was fun. Thank you.
+
+5c15541889cfb: It didn't understand &quot;soda&quot; or &quot;drink&quot;, that seems like some basic info it should know
+
+5c156274bf89f: I didn't understand where the robot was in relation to where the pop can was and where the person was that the robot needed to bring the can to. I have no idea if the lounge is where the pop can would be. Why was it shown on a white table? What was the orange box with the R in a circle supposed to mean, other than the R stood for a specific person on the right?
+
+5c154f42ca2a3: no comments
+
+5c154fc4856c3: n/a
+
+5c1550064de56: Interesting experience - have never completed a task like this before!
+
+5c15612465789: this one was a very straight forward task
+
+5c1555f7878dc: Why didn't the robot see the Pringles when it displayed nearby objects? It would have sped things up quite a bit.
+
+5c154f5a4732c: I've built robots before and drones.  I'd push this particular robot off a building and claim it fell over.
+
+5c1554f0186ee: Interesting
+
+5c15551209c51: The robot didn't really get the object, but at least it managed to go to the room it was supposed to go.
+
+5c1551f60c41a: This was harhatdrd. Maybe give more instructions.
+
+5c158c83092ba: great
+
+5c158daeaf0ca: I love having an experience like this, I learned a lot because first time I do one like that, thanks
+
+5c158b63d5bde: I am not sure how this was supposed to work, it was very confusing.
+
+5c15aacb8ad10: I had so much fun with this HIT! I could do these all day long. It felt like I was teaching a cute newborn robot about the world. Thank you!
+
+5c158c825bf0b: no issues
+
+5c158f5dee92c: The images of the various objects were off the bottom of my screen, so I didn't notice them until the second interaction caused me to scroll down. You should highlight or otherwise indicate that there is more down there. I would have indicated that the can was metallic, possibly changing the whole sequence of interaction. Oops.
+
+5c15a9e781291: interesting task.
+
+5c159159a6749: Robot learns quickly but seems to always need guidance through visual commands
+
+5c158d5fa5e01: no
+
+5c159cd3a1e3b: I didn't fully understand the task as the instructions were not clear to me.  I assumed I had to get the robot to the red X, but like I said, the instructions were vague and difficult to understand.
+
+5c158f86c67a7: This was an interesting project and I enjoyed completing it.
+
+5c158b71d0af2: had a bit of trouble typing my responses, My key strokes were not registering on the screen at times.
+
+5c158b42f3e62: the robot seemed easy to teach.
+
+5c158c832d1be: Good
+
+5c158d969a835: I didn't know why the robot was starting to ask me questions.
+
+5c15b887dd0f5: No option to revise the destination/origination of the object easily. Also difficult to see what the object was.
+

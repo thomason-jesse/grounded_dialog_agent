@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,0
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,5
+I thought that the robot was breaking down my request into smaller portions. It asked me where to go and once I got it there, the exercise ended. I would have been more specific had I realized that would happen.

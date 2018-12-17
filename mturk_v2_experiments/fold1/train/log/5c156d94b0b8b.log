@@ -1,0 +1,74 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick up object and go from Kitchen to Conference room'
+get_from_user (processed): 'pick up object and go from kitchen to conference room'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'correct'
+get_from_user (processed): 'correct'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Kitchen'
+get_from_user (processed): 'kitchen'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Conference'
+get_from_user (processed): 'conference'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'action': 'move', 'goal': '3516'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Conference between Pod and Office'
+get_from_user (processed): 'conference between pod and office'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'source': '3520', 'action': 'move', 'goal': '3416'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3520', 'action': 'move', 'goal': '3416'}
+get_from_user requested feedback
+get_from_user (raw): 'pill bottle'
+get_from_user (processed): 'pill bottle'
+say_to_user: I haven't heard the word 'pill' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'up' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'box' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pick' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3520', 'action': 'move', 'goal': '3416'}
+get_from_user requested feedback
+get_from_user (raw): 'white bottle'
+get_from_user (processed): 'white bottle'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'source': '3520', 'action': 'move', 'patient': 'oidx_11', 'goal': '3416'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'recipient': None, 'source': '3520', 'action': 'move', 'patient': 'oidx_11', 'goal': '3416'}
+main: ... done; got action {'recipient': None, 'source': '3520', 'action': 'move', 'patient': 'oidx_11', 'goal': '3416'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': None, 'source': '3520', 'action': 'move', 'patient': 'oidx_11', 'goal': '3416'}], [{'all': ['pick up object and go from kitchen to conference room'], 'action': [], 'patient': ['pill bottle', 'white bottle'], 'recipient': [], 'source': ['kitchen'], 'goal': ['conference', 'conference between pod and office']}], [('metallic', 5, 0), ('metallic', 14, 0), ('metallic', 8, 0), ('metallic', 15, 0), ('metallic', 1, 0), ('metallic', 30, 0), ('metallic', 29, 0), ('metallic', 31, 0), ('rectangle', 5, 0), ('rectangle', 14, 0), ('rectangle', 8, 0), ('rectangle', 15, 0), ('rectangle', 1, 0), ('rectangle', 30, 0), ('rectangle', 29, 0), ('rectangle', 31, 0), ('red', 5, 0), ('red', 14, 0), ('red', 8, 0), ('red', 15, 0), ('red', 1, 0), ('red', 30, 0), ('red', 29, 0), ('red', 31, 0)], [], [1], [0]]

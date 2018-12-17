@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,2
+frustrated,1
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,1
+The robot said it had never heard certain words, even though it had previously used those exact words. If the robot refers to itself as &quot;I&quot; it should have no problem being referred to as &quot;you.&quot;

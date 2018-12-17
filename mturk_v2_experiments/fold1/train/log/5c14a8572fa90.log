@@ -1,0 +1,86 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick up the object that is a plastic container with a red lid in the room named Pod next to Mallory "Mal" Maroon's office and then place it down in Mallory "Mal" Maroon's office'
+get_from_user (processed): 'pick up the object that is a plastic container with a red lid in the room named pod next to mallory mal maroon 's office and then place it down in mallory mal maroon 's office'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'is' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'plastic' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'plastic' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'lid' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'lid' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'lid' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'named' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'then' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'place' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'it' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'the pod next to the office that Mal is in'
+get_from_user (processed): 'the pod next to the office that mal is in'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'The pod room next to the office Mallory "Mal" Maroon is in'
+get_from_user (processed): 'the pod room next to the office mallory mal maroon is in'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+perform_action: {'action': 'walk', 'patient': None, 'source': None, 'goal': '3504', 'recipient': None}
+main: ... done; got action {'action': 'walk', 'patient': None, 'source': None, 'goal': '3504', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'patient': None, 'source': None, 'goal': '3504', 'recipient': None}], [{'all': ["pick up the object that is a plastic container with a red lid in the room named pod next to mallory mal maroon 's office and then place it down in mallory mal maroon 's office"], 'recipient': [], 'source': [], 'action': [], 'patient': [], 'goal': ['the pod next to the office that mal is in', 'the pod room next to the office mallory mal maroon is in']}], [], [('is', 'can', False), ('plastic', 'container', True), ('lid', 'container', False), ('lid', 'cylinder', False)], [2], [0]]

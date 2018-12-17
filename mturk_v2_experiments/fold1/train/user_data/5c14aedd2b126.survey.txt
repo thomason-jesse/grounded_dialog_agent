@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,5
+frustrated,0
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,6
+The robot was adorable trying to learn stuff. If you ever need my help in future robot studies let me know :)

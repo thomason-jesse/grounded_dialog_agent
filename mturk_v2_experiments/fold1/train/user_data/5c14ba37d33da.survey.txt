@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,6
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,0
+The can should be delivered to the conference room but the robot asked who to deliver it to. It gave the people's names but no option for the conference room. VERY frustrating.

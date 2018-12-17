@@ -1,0 +1,72 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'deliver the object to the lab'
+get_from_user (processed): 'deliver the object to the lab'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'box' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Bob's office to the lab'
+get_from_user (processed): 'bob 's office to the lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'lab'
+get_from_user (processed): 'lab'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3414a', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3414b', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'office'
+get_from_user (processed): 'office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3414b', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Bob'
+get_from_user (processed): 'bob'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3414b', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3414b', 'source': '3510', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'bottle'
+get_from_user (processed): 'bottle'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3414b', 'source': '3510', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the object'
+get_from_user (processed): 'the object'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3414b', 'source': '3510', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+perform_action: {'goal': '3414b', 'patient': 'oidx_6', 'source': '3510', 'recipient': None, 'action': 'move'}
+main: ... done; got action {'goal': '3414b', 'patient': 'oidx_6', 'source': '3510', 'recipient': None, 'action': 'move'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': '3414b', 'patient': 'oidx_6', 'source': '3510', 'recipient': None, 'action': 'move'}], [{'all': ['deliver the object to the lab'], 'recipient': [], 'action': [], 'goal': ["bob 's office to the lab", 'lab'], 'patient': ['bottle', 'the object'], 'source': ['office', 'bob']}], [('spice', 5, 0), ('spice', 14, 0), ('spice', 8, 0), ('spice', 15, 0), ('spice', 1, 0), ('spice', 30, 0), ('spice', 29, 0), ('spice', 31, 0), ('rectangle', 5, 0), ('rectangle', 14, 0), ('rectangle', 8, 0), ('rectangle', 15, 0), ('rectangle', 1, 0), ('rectangle', 30, 0), ('rectangle', 29, 0), ('rectangle', 31, 0), ('peach', 5, 0), ('peach', 14, 0), ('peach', 8, 0), ('peach', 15, 0), ('peach', 1, 0), ('peach', 30, 0), ('peach', 29, 0), ('peach', 31, 0)], [], [0], [0]]

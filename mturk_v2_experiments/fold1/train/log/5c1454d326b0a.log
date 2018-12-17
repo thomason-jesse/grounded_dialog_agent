@@ -1,0 +1,69 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'walk into the hallway'
+get_from_user (processed): 'walk into the hallway'
+say_to_user: I haven't heard the word 'into' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'n'
+get_from_user (processed): 'n'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'into' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'hallway' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'box' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'bottle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'south'
+get_from_user (processed): 'south'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to the room labeled N'
+get_from_user (processed): 'to the room labeled n'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'n'
+get_from_user (processed): 'n'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3520', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go to nancy's office'
+get_from_user (processed): 'go to nancy 's office'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3404', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'source': None, 'goal': '3404', 'recipient': None, 'action': 'walk', 'patient': None}
+main: ... done; got action {'source': None, 'goal': '3404', 'recipient': None, 'action': 'walk', 'patient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'goal': '3404', 'recipient': None, 'action': 'walk', 'patient': None}], [{'source': [], 'recipient': [], 'goal': ['n', "go to nancy 's office"], 'patient': [], 'action': [], 'all': ['walk into the hallway']}], [('empty', 5, 0), ('empty', 14, 0), ('empty', 8, 0), ('empty', 15, 0), ('empty', 1, 0), ('empty', 30, 0), ('empty', 29, 0), ('empty', 31, 0), ('rectangle', 5, 0), ('rectangle', 14, 0), ('rectangle', 8, 0), ('rectangle', 15, 0), ('rectangle', 1, 0), ('rectangle', 30, 0), ('rectangle', 29, 0), ('rectangle', 31, 0), ('white', 5, 0), ('white', 14, 0), ('white', 8, 0), ('white', 15, 0), ('white', 1, 0), ('white', 30, 0), ('white', 29, 0), ('white', 31, 0)], [], [0], [0]]

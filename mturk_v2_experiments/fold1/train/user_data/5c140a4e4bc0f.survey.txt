@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,5
+frustrated,4
+object_qs,3
+use_navigation,
+use_delivery,4
+use_relocation,
+Interesting project. Thanks. Good luck.

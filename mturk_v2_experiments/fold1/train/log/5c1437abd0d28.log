@@ -1,0 +1,79 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give Bob the object'
+get_from_user (processed): 'give bob the object'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'object' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'the' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 8
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes, I do. I want you to give the rectangular object to Dr. Heidi.'
+get_from_user (processed): 'yes i do i want you to give the rectangular object to dr heidi'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes. Dr. Heidi.'
+get_from_user (processed): 'yes dr heidi'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Heidi.'
+get_from_user (processed): 'dr heidi'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The object.'
+get_from_user (processed): 'the object'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'h', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'This object.'
+get_from_user (processed): 'this object'
+say_to_user: I haven't heard the word 'this' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user: Does 'this' mean the same thing as 'the'?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'h', 'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Not this.'
+get_from_user (processed): 'not this'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'h', 'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+perform_action: {'recipient': 'h', 'goal': None, 'patient': 'oidx_11', 'action': 'bring', 'source': None}
+main: ... done; got action {'recipient': 'h', 'goal': None, 'patient': 'oidx_11', 'action': 'bring', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': 'h', 'goal': None, 'patient': 'oidx_11', 'action': 'bring', 'source': None}], [{'recipient': ['dr heidi'], 'patient': ['the object', 'this object'], 'action': [], 'source': [], 'goal': [], 'all': ['give bob the object']}], [('yellow', 5, 0), ('yellow', 14, 0), ('yellow', 8, 0), ('yellow', 15, 0), ('yellow', 1, 0), ('yellow', 30, 0), ('yellow', 29, 0), ('yellow', 31, 0), ('bean', 8, 1), ('clear', 5, 0), ('clear', 14, 0), ('clear', 8, 0), ('clear', 15, 0), ('clear', 1, 0), ('clear', 30, 0), ('clear', 29, 0), ('clear', 31, 0)], [('this', 'the', False)], [1], [0]]
