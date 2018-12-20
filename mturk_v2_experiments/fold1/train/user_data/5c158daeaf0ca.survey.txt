@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,6
+frustrated,0
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,4
+I love having an experience like this, I learned a lot because first time I do one like that, thanks

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,1
+object_qs,2
+use_navigation,
+use_delivery,1
+use_relocation,
+I initially thought the spice jar was a medicine bottle. Couldn't see it as clearly as I needed to. So, the robot would have probably done better if I had not given it the wrong instructions initially. Very fun and interesting!

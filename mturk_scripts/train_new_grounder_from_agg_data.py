@@ -300,7 +300,9 @@ def main():
                    "pairs from induced utterance/grounding pairs" +
                    "(%.2f" % (len(utterance_semantic_grounding_triples) / float(len(a.induced_utterance_grounding_pairs))) + ")")
             log_f.write("epoch " + str(epoch) + ": got " + str(len(utterance_semantic_grounding_triples)) +
-                        " utterance/semantic pairs\n")
+                        " utterance/semantic pairs from " + str(len(a.induced_utterance_grounding_pairs)) +
+                        " possible (%.2f" % (len(utterance_semantic_grounding_triples) / float(len(a.induced_utterance_grounding_pairs))) +
+                        ")\n")
 
             # Write out induced pairs to logfile(s) for later inspection and qualitative analysis.
             fplfn.write("epoch " + str(epoch) + ":\n\n" +
@@ -326,9 +328,13 @@ def main():
                                                  use_condor=use_condor, condor_target_dir=condor_target_dir,
                                                  condor_script_dir=condor_parser_script_dir,
                                                  perf_log=perf)
-        log_f.write("epoch " + str(epoch) + ": parser trained on " + str(perf[0][0]) + " examples and " +
-                    "failed on " + str(perf[0][1]) + " out of " +
-                    str(len(parser_base_pairs) + len(utterance_semantic_pairs)) + "\n")
+        total_pairs = len(parser_base_pairs) + len(utterance_semantic_pairs)
+        log_f.write("epoch " + str(epoch) + ": total (" + str(total_pairs) + "); " +
+                    "trained on " + str(perf[0][0]) + " (%.2f" % (perf[0][0] / float(total_pairs)) + "); " +
+                    "failed on " + str(perf[0][1]) + " (%.2f" % (perf[0][1] / float(total_pairs)) + "); " +
+                    "matched on " + str(perf[0][2]) + " (%.2f" % (perf[0][2] / float(total_pairs)) + "); " +
+                    "genlex only on " + str(perf[0][3]) + " (%.2f" % (perf[0][3] / float(total_pairs)) + "); " +
+                    "\n")
 
     # Write the final parser to file.
     print("main: writing current re-trained parser to file...")

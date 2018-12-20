@@ -1,0 +1,43 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go to Bob's office'
+get_from_user (processed): 'go to bob 's office'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'empty' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 8
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes Bob's office'
+get_from_user (processed): 'yes bob 's office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to Bob's office'
+get_from_user (processed): 'to bob 's office'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3510', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'patient': None, 'goal': '3510', 'recipient': None, 'source': None, 'action': 'walk'}
+main: ... done; got action {'patient': None, 'goal': '3510', 'recipient': None, 'source': None, 'action': 'walk'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': None, 'goal': '3510', 'recipient': None, 'source': None, 'action': 'walk'}], [{'patient': [], 'all': ["go to bob 's office"], 'recipient': [], 'action': [], 'source': [], 'goal': ["to bob 's office"]}], [('pringles', 5, 0), ('pringles', 14, 0), ('pringles', 8, 0), ('pringles', 15, 0), ('pringles', 1, 0), ('pringles', 30, 0), ('pringles', 29, 0), ('pringles', 31, 0), ('clear', 5, 0), ('clear', 14, 0), ('clear', 8, 0), ('clear', 15, 0), ('clear', 1, 0), ('clear', 30, 0), ('clear', 29, 0), ('clear', 31, 0), ('empty', 8, 1)], [], [0], [0]]

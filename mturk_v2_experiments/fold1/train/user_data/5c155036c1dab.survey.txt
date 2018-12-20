@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,2
+object_qs,2
+use_navigation,
+use_delivery,2
+use_relocation,
+everything was very well explained

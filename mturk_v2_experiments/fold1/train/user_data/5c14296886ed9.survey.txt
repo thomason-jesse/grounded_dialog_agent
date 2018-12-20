@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,5
+object_qs,4
+use_navigation,
+use_delivery,2
+use_relocation,
+Can't it understand basic colors?

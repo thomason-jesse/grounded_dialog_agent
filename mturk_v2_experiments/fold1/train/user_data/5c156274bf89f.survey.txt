@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,4
+use_navigation,
+use_delivery,1
+use_relocation,
+I didn't understand where the robot was in relation to where the pop can was and where the person was that the robot needed to bring the can to. I have no idea if the lounge is where the pop can would be. Why was it shown on a white table? What was the orange box with the R in a circle supposed to mean, other than the R stood for a specific person on the right?

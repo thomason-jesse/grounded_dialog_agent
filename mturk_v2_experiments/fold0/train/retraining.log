@@ -1,11 +1,32 @@
 added noun entry for 'item' with synonym container
 added noun entry for 'metal' with synonym container
+added noun entry for 'jar' with synonym container
 added noun entry for 'coke' with synonym container
 added noun entry for 'red' with synonym None
-added noun entry for 'jar' with synonym container
-added noun entry for 'bottle' with synonym container
 added noun entry for 'object' with synonym container
 added noun entry for 'box' with synonym container
+added noun entry for 'bottle' with synonym container
 added noun entry for 'canister' with synonym container
 updated classifiers with 2040 new labels across 21 predicates...
 induced 303 utterance/grounding pairs
+epoch 0: got 159 utterance/semantic pairs from 303 possible (0.52)
+epoch 0: total (203); trained on 183 (0.90); failed on 16 (0.08); matched on 104 (0.51); genlex only on 26 (0.13); 
+epoch 1: got 166 utterance/semantic pairs from 303 possible (0.55)
+epoch 1: total (210); trained on 187 (0.89); failed on 19 (0.09); matched on 103 (0.49); genlex only on 2 (0.01); 
+epoch 2: got 180 utterance/semantic pairs from 303 possible (0.59)
+epoch 2: total (224); trained on 199 (0.89); failed on 23 (0.10); matched on 101 (0.45); genlex only on 8 (0.04); 
+epoch 3: got 180 utterance/semantic pairs from 303 possible (0.59)
+epoch 3: total (224); trained on 197 (0.88); failed on 27 (0.12); matched on 103 (0.46); genlex only on 0 (0.00); 
+epoch 4: got 177 utterance/semantic pairs from 303 possible (0.58)
+epoch 4: total (221); trained on 192 (0.87); failed on 28 (0.13); matched on 94 (0.43); genlex only on 0 (0.00); 
+epoch 5: got 183 utterance/semantic pairs from 303 possible (0.60)***
+epoch 5: total (227); trained on 198 (0.87); failed on 28 (0.12); matched on 102 (0.45); genlex only on 3 (0.01); 
+epoch 6: got 178 utterance/semantic pairs from 303 possible (0.59)
+epoch 6: total (222); trained on 194 (0.87); failed on 27 (0.12); matched on 89 (0.40); genlex only on 0 (0.00); 
+epoch 7: got 175 utterance/semantic pairs from 303 possible (0.58)
+epoch 7: total (219); trained on 191 (0.87); failed on 27 (0.12); matched on 103 (0.47); genlex only on 0 (0.00); 
+epoch 8: got 146 utterance/semantic pairs from 303 possible (0.48)
+epoch 8: total (190); trained on 161 (0.85); failed on 28 (0.15); matched on 94 (0.49); genlex only on 0 (0.00); 
+epoch 9: got 50 utterance/semantic pairs from 303 possible (0.17)
+epoch 9: total (94); trained on 71 (0.76); failed on 22 (0.23); matched on 42 (0.45); genlex only on 0 (0.00); 
+>>>>>>> a098663889041a2334ed88a06dd685474dba6e18

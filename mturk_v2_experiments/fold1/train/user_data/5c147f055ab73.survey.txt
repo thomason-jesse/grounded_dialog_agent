@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,4
+object_qs,4
+use_navigation,
+use_delivery,0
+use_relocation,
+That robot needs a lot of training.  I'll take a human being over a robot please. :)

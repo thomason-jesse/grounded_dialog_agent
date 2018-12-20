@@ -1,0 +1,38 @@
+added noun entry for 'canister' with synonym container
+added noun entry for 'bottle' with synonym container
+added noun entry for 'metal' with synonym container
+added noun entry for 'tub' with synonym container
+added noun entry for 'want' with synonym can
+added noun entry for 'tube' with synonym cylinder
+added noun entry for 'coke' with synonym container
+added noun entry for 'jar' with synonym container
+added noun entry for 'item' with synonym container
+added noun entry for 'tall' with synonym tower
+added noun entry for 'red' with synonym None
+added noun entry for 'color' with synonym white
+added noun entry for 'box' with synonym container
+added noun entry for 'object' with synonym container
+added noun entry for 'wipes' with synonym None
+added noun entry for 'open' with synonym empty
+updated classifiers with 3973 new labels across 22 predicates...
+induced 606 utterance/grounding pairs
+epoch 0: got 289 utterance/semantic pairs from 606 possible (0.48)
+epoch 0: total (333); trained on 294 (0.88); failed on 35 (0.11); matched on 161 (0.48); genlex only on 53 (0.16); 
+epoch 1: got 320 utterance/semantic pairs from 606 possible (0.53)**
+epoch 1: total (364); trained on 331 (0.91); failed on 31 (0.09); matched on 196 (0.54); genlex only on 11 (0.03); 
+epoch 2: got 305 utterance/semantic pairs from 606 possible (0.50)
+epoch 2: total (349); trained on 316 (0.91); failed on 29 (0.08); matched on 173 (0.50); genlex only on 8 (0.02); 
+epoch 3: got 172 utterance/semantic pairs from 606 possible (0.28)
+epoch 3: total (216); trained on 188 (0.87); failed on 21 (0.10); matched on 100 (0.46); genlex only on 2 (0.01); 
+epoch 4: got 153 utterance/semantic pairs from 606 possible (0.25)
+epoch 4: total (197); trained on 175 (0.89); failed on 21 (0.11); matched on 98 (0.50); genlex only on 1 (0.01); 
+epoch 5: got 149 utterance/semantic pairs from 606 possible (0.25)
+epoch 5: total (193); trained on 163 (0.84); failed on 28 (0.15); matched on 103 (0.53); genlex only on 2 (0.01); 
+epoch 6: got 138 utterance/semantic pairs from 606 possible (0.23)
+epoch 6: total (182); trained on 79 (0.43); failed on 25 (0.14); matched on 54 (0.30); genlex only on 2 (0.01); 
+epoch 7: got 117 utterance/semantic pairs from 606 possible (0.19)
+epoch 7: total (161); trained on 138 (0.86); failed on 22 (0.14); matched on 89 (0.55); genlex only on 1 (0.01); 
+epoch 8: got 85 utterance/semantic pairs from 606 possible (0.14)
+epoch 8: total (129); trained on 108 (0.84); failed on 20 (0.16); matched on 65 (0.50); genlex only on 1 (0.01); 
+epoch 9: got 66 utterance/semantic pairs from 606 possible (0.11)
+epoch 9: total (110); trained on 92 (0.84); failed on 18 (0.16); matched on 54 (0.49); genlex only on 1 (0.01); 

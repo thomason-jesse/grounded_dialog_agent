@@ -1,0 +1,82 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to R'
+get_from_user (processed): 'go to r'
+say_to_user: I haven't heard the word 'r' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'It's what we call a letter.  Have you heard of Richard Rogue?'
+get_from_user (processed): 'it 's what we call a letter have you heard of richard rogue'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'r' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 8
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 15
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3432', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to <g>there</g> (not give it to someone)? {'goal': '3418', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no i need you to go to an office'
+get_from_user (processed): 'no i need you to go to an office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to <g>there</g> (not give it to someone)? {'goal': '3418', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'secretary richard rogue'
+get_from_user (processed): 'secretary richard rogue'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue'
+get_from_user (processed): 'richard rogue'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 8
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'n', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'n', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'nothing, just go there'
+get_from_user (processed): 'nothing just go there'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'n', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'recipient': 'n', 'patient': 'oidx_11', 'goal': None, 'source': None, 'action': 'bring'}
+main: ... done; got action {'recipient': 'n', 'patient': 'oidx_11', 'goal': None, 'source': None, 'action': 'bring'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': 'n', 'patient': 'oidx_11', 'goal': None, 'source': None, 'action': 'bring'}], [{'recipient': ['secretary richard rogue', 'richard rogue'], 'goal': [], 'source': [], 'patient': ['no', 'nothing just go there'], 'all': ['go to r'], 'action': []}], [('spice', 5, 0), ('spice', 14, 0), ('spice', 8, 0), ('spice', 15, 0), ('spice', 1, 0), ('spice', 30, 0), ('spice', 29, 0), ('spice', 31, 0), ('block', 8, 1), ('pringles', 15, 1)], [], [2], [0]]

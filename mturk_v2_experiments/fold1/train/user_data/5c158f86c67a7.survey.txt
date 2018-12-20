@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,6
+frustrated,1
+object_qs,1
+use_navigation,5
+use_delivery,
+use_relocation,
+This was an interesting project and I enjoyed completing it.

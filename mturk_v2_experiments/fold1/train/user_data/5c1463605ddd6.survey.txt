@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,1
+use_relocation,
+my first time so was not really sure what I was doing. The robot seemed to repeat itself, maybe it was because I was not sure what to do

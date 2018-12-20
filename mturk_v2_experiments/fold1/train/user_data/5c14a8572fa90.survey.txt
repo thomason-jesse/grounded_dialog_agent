@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,5
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,1
+It could not understand that the task was to pick up an object, maybe add in instructions about how to word the action as 3 different steps

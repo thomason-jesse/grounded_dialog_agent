@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,0
+object_qs,3
+use_navigation,
+use_delivery,5
+use_relocation,
+The robot didn't understand as many words as I thought it would initially! I expected it to understand more than just shapes and colors. However, in learning how to actually understand the English language entirely I totally understand how the robot wouldn't understand words like it and lid. This was super fun and very enlightening. Thank you for the opportunity!

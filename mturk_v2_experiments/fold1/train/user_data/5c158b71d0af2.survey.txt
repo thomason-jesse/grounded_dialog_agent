@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,0
+object_qs,3
+use_navigation,5
+use_delivery,
+use_relocation,
+had a bit of trouble typing my responses, My key strokes were not registering on the screen at times.

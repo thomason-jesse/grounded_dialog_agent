@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,0
+object_qs,0
+use_navigation,
+use_delivery,1
+use_relocation,
+This was one of the coolest tests I've done on Mturk. I would love to do more in the future. Email me at y5nthon5a@aol.com if you'd like me to help further. 

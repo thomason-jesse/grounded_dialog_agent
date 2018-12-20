@@ -1,0 +1,117 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Get the soda can from the pod and take it to R's office'
+get_from_user (processed): 'get the soda can from the pod and take it to r 's office'
+say_to_user: I haven't heard the word 'soda' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes, it is a red cylinder.'
+get_from_user (processed): 'yes it is a red cylinder'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'soda' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Retrieve red cylinder from pod, take cylinder to Richard's office'
+get_from_user (processed): 'retrieve red cylinder from pod take cylinder to richard 's office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'soda' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'soda' mean the same thing as 'bean'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'soda' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'soda' mean the same thing as 'bottle'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'r' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'pod'
+get_from_user (processed): 'pod'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Pod'
+get_from_user (processed): 'pod'
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue's office'
+get_from_user (processed): 'richard rogue 's office'
+say_to_user_with_referents: What should I move from <s>here</s>? {'action': 'move', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'red cylinder'
+get_from_user (processed): 'red cylinder'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'it' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 8
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'clear' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'patient': 'oidx_11', 'source': '3424', 'goal': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_28', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move from <s>here</s>? {'action': 'move', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'red metal can'
+get_from_user (processed): 'red metal can'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to somewhere (not give it to someone)? {'action': 'move', 'patient': 'oidx_11', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move from <s>here</s>? {'action': 'move', 'source': '3424'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'patient': 'oidx_22', 'source': '3424', 'goal': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'patient': 'oidx_22', 'source': '3424'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue's office'
+get_from_user (processed): 'richard rogue 's office'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'action': 'move', 'patient': 'oidx_22', 'source': '3424', 'goal': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'action': 'move', 'patient': 'oidx_22', 'source': '3424'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'action': 'move', 'recipient': None, 'patient': 'oidx_22', 'source': '3424', 'goal': '3512'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'patient': 'oidx_22', 'source': '3424', 'goal': '3512'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'patient': 'oidx_22', 'source': '3424', 'goal': '3512'}], [{'action': [], 'recipient': [], 'source': ['pod', 'pod'], 'patient': ['red cylinder', 'red metal can'], 'all': ["get the soda can from the pod and take it to r 's office"], 'goal': ["richard rogue 's office", "richard rogue 's office"]}], [('red', 5, 0), ('red', 14, 0), ('red', 8, 0), ('red', 15, 0), ('red', 1, 0), ('red', 30, 0), ('red', 29, 0), ('red', 31, 0), ('spice', 8, 1), ('clear', 5, 0), ('clear', 14, 0), ('clear', 8, 0), ('clear', 15, 0), ('clear', 1, 0), ('clear', 30, 0), ('clear', 29, 0), ('clear', 31, 0)], [('soda', 'bean', False), ('soda', 'coffee', False), ('soda', 'bottle', True)], [3], [0]]

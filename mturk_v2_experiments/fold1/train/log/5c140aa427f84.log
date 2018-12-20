@@ -1,0 +1,78 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'give R medicine'
+get_from_user (processed): 'give r medicine'
+say_to_user: I haven't heard the word 'r' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'medicine' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Would you use the word 'cylinder' when describing <p>this</p> object? {'patient': 'oidx_1'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'box' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'medicine'
+get_from_user (processed): 'medicine'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'i don't know'
+get_from_user (processed): 'i don' 's know'
+say_to_user: I haven't heard the word 'i' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'medicine'
+get_from_user (processed): 'medicine'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_26', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_6', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'secretary'
+get_from_user (processed): 'secretary'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_6', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 8
+perform_action: {'patient': 'oidx_6', 'goal': None, 'recipient': 'r', 'source': None, 'action': 'bring'}
+main: ... done; got action {'patient': 'oidx_6', 'goal': None, 'recipient': 'r', 'source': None, 'action': 'bring'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_6', 'goal': None, 'recipient': 'r', 'source': None, 'action': 'bring'}], [{'patient': ['medicine', 'medicine'], 'goal': [], 'recipient': ["i don' 's know", 'secretary'], 'all': ['give r medicine'], 'source': [], 'action': []}], [('spice', 5, 0), ('spice', 14, 0), ('spice', 8, 0), ('spice', 15, 0), ('spice', 1, 0), ('spice', 30, 0), ('spice', 29, 0), ('spice', 31, 0), ('cylinder', 1, 1), ('rectangle', 5, 0), ('rectangle', 14, 0), ('rectangle', 8, 0), ('rectangle', 15, 0), ('rectangle', 1, 0), ('rectangle', 30, 0), ('rectangle', 29, 0), ('rectangle', 31, 0)], [], [0], [0]]

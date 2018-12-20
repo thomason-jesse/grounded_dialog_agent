@@ -1,0 +1,92 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bring me the bottle of cleaner cloths'
+get_from_user (processed): 'bring me the bottle of cleaner cloths'
+say_to_user: I haven't heard the word 'cleaner' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No. The bottle has a red top'
+get_from_user (processed): 'no the bottle has a red top'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'cleaner' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'bottle' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 5
+say_to_user_with_referents: Would you use the word 'bottle' when describing <p>this</p> object? {'patient': 'oidx_15'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Would you use the word 'bottle' when describing <p>this</p> object? {'patient': 'oidx_30'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Bring it to me'
+get_from_user (processed): 'bring it to me'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from <s>here</s> to somewhere (not give it to someone)? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'I want it.'
+get_from_user (processed): 'i want it'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from <s>here</s> to somewhere (not give it to someone)? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Take it to Dr. Sybil Smalt'
+get_from_user (processed): 'take it to dr sybil smalt'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from <s>here</s> to somewhere (not give it to someone)? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'to the office'
+get_from_user (processed): 'to the office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the office'
+get_from_user (processed): 'the office'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'source': '3520', 'goal': '3430', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3520', 'goal': '3430', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'to the office of Dr, Sybil Smalt'
+get_from_user (processed): 'to the office of dr sybil smalt'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3520', 'goal': '3430', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the bottle with the red top'
+get_from_user (processed): 'the bottle with the red top'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3520', 'goal': '3430', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'source': '3520', 'patient': 'oidx_11', 'action': 'move', 'goal': '3430', 'recipient': None}
+main: ... done; got action {'source': '3520', 'patient': 'oidx_11', 'action': 'move', 'goal': '3430', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3520', 'patient': 'oidx_11', 'action': 'move', 'goal': '3430', 'recipient': None}], [{'goal': ['to the office', 'the office'], 'patient': ['to the office of dr sybil smalt', 'the bottle with the red top'], 'source': [], 'recipient': [], 'action': [], 'all': ['bring me the bottle of cleaner cloths']}], [('white', 5, 1), ('white', 15, 1), ('white', 30, 1)], [], [2], [0]]
