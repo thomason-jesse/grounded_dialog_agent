@@ -110,6 +110,7 @@ def main():
     print ("_condor_get_utt_sem_pairs: finished " + str(len(d) - len(jobs_remaining)) + " of " +
            str(len(d)) + " jobs; abandoned " + str(len(jobs_remaining)) + " due to time limit; got " +
            str(len(t)) + " actual pairs")
+    os.system("condor_rm jesse")
 
     # Output results.
     with open(outfile, 'wb') as f:
