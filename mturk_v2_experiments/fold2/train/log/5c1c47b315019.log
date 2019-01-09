@@ -1,0 +1,99 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Walk down the north hall past two offices and a pod, and place the object in Walter Ward's office on the right.'
+get_from_user (processed): 'walk down the north hall past two offices and a pod and place the object in walter ward 's office on the right'
+say_to_user: I haven't heard the word 'past' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No, it means you should continue walking beyond two offices and a pod.'
+get_from_user (processed): 'no it means you should continue walking beyond two offices and a pod'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'past' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'From the lab to an office'
+get_from_user (processed): 'from the lab to an office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'From the lab'
+get_from_user (processed): 'from the lab'
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'action': 'move', 'source': '3414b'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3436'}
+get_from_user requested feedback
+get_from_user (raw): 'An office'
+get_from_user (processed): 'an office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3436'}
+get_from_user requested feedback
+get_from_user (raw): 'Office'
+get_from_user (processed): 'office'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3510', 'source': '3436'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3436'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3422', 'source': '3436'}
+get_from_user requested feedback
+get_from_user (raw): 'Pringles can'
+get_from_user (processed): 'pringles can'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'can' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 0
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3422', 'source': '3436'}
+get_from_user requested feedback
+get_from_user (raw): 'Chips'
+get_from_user (processed): 'chips'
+say_to_user: I haven't heard the word 'chips' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'goal': '3422', 'source': '3436', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3422', 'source': '3436'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+perform_action: {'action': 'move', 'recipient': None, 'goal': '3422', 'source': '3436', 'patient': 'oidx_13'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'goal': '3422', 'source': '3436', 'patient': 'oidx_13'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'goal': '3422', 'source': '3436', 'patient': 'oidx_13'}], [{'patient': ['pringles can', 'chips'], 'all': ["walk down the north hall past two offices and a pod and place the object in walter ward 's office on the right"], 'source': ['from the lab to an office', 'from the lab'], 'action': [], 'goal': ['an office', 'office'], 'recipient': []}], [('pringles', 21, 0), ('pringles', 24, 0), ('pringles', 19, 0), ('pringles', 23, 0), ('pringles', 16, 0), ('pringles', 0, 0), ('pringles', 4, 0), ('pringles', 9, 0), ('can', 21, 0), ('can', 24, 0), ('can', 19, 0), ('can', 23, 0), ('can', 16, 0), ('can', 0, 0), ('can', 4, 0), ('can', 9, 0), ('metallic', 0, 1)], [], [2], [0]]

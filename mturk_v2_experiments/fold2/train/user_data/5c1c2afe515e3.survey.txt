@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,3
+frustrated,2
+object_qs,1
+use_navigation,
+use_delivery,4
+use_relocation,
+Great experince. The poor robot ended up looking for a “wet” item, even though that was inside the container. It didn’t understand enough to learn what wet was. It needs to ask more questions so it can learn.

@@ -103,7 +103,7 @@ def main():
                     pos, neg = g.kb.query(q)
                     oidx_pos[oidx] = pos
                 s = sum([oidx_pos[oidx] for oidx in oidx_pos.keys()])
-                oidx_d = {oidx: oidx_pos[oidx] / s for oidx in oidx_pos.keys()}
+                oidx_d = {oidx: oidx_pos[oidx] / s if s > 0 else 0 for oidx in oidx_pos.keys()}
                 for oidx, pos in sorted(oidx_pos.items(), key=operator.itemgetter(1), reverse=True):
                     f.write("<td><img width=\"200px\" height=\"200px\" " +
                             "src=\"../www/images/objects/oidx_" + str(oidx) + ".jpg\"><br/>conf %.2f" % pos +

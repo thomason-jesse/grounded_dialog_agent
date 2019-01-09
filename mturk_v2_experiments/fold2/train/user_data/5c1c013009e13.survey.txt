@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,5
+frustrated,1
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,6
+Mistakenly entered my Mturk ID A3T8LBUQU7D5L1 as the code. Overall, enjoyed this HIT and would love to help participate in more! Thanks.

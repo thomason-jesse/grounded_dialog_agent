@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,4
+frustrated,4
+object_qs,5
+use_navigation,4
+use_delivery,
+use_relocation,
+There was no clear goal provided to me to give to the robot, so I made one up. It asked numerous questions that hint to me that it's in learning mode, not task completion mode. This process was frustrating since I was thinking in task completion mode. My expectations led to frustration. Overall, the robot responses were fine and good had I gone in thinking about the task a bit differently.

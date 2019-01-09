@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,5
+use_relocation,
+It may of helped if there were a better example of how to speak to the robot.

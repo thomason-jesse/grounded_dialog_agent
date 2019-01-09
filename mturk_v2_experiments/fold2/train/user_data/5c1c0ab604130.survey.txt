@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,6
+object_qs,3
+use_navigation,
+use_delivery,0
+use_relocation,
+The menu to select which human to pick dissipated before I could click it.

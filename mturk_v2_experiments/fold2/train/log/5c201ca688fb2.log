@@ -1,0 +1,68 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver the coke can to Bob.'
+get_from_user (processed): 'deliver the coke can to bob'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 0
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'patient': 'oidx_11', 'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Coke can'
+get_from_user (processed): 'coke can'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'patient': 'oidx_11', 'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Aluminum can'
+get_from_user (processed): 'aluminum can'
+say_to_user: I haven't heard the word 'aluminum' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'aluminum' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'aluminum' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'aluminum' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+perform_action: {'patient': 'oidx_26', 'recipient': 'b', 'source': None, 'action': 'bring', 'goal': None}
+main: ... done; got action {'patient': 'oidx_26', 'recipient': 'b', 'source': None, 'action': 'bring', 'goal': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_26', 'recipient': 'b', 'source': None, 'action': 'bring', 'goal': None}], [{'patient': ['coke can', 'aluminum can'], 'recipient': [], 'all': ['deliver the coke can to bob'], 'source': [], 'goal': [], 'action': []}], [('peach', 21, 0), ('peach', 24, 0), ('peach', 19, 0), ('peach', 23, 0), ('peach', 16, 0), ('peach', 0, 0), ('peach', 4, 0), ('peach', 9, 0), ('metallic', 0, 1), ('column', 21, 0), ('column', 24, 0), ('column', 19, 0), ('column', 23, 0), ('column', 16, 0), ('column', 0, 0), ('column', 4, 0), ('column', 9, 0)], [('aluminum', 'container', False), ('aluminum', 'cylinder', False), ('aluminum', 'metallic', True)], [0], [0]]

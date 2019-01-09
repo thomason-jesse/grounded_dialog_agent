@@ -307,10 +307,10 @@ def main():
                                 print ("WARNING: " + row[id_header] + " gen id " + gen_id +
                                        " logfile may contain runtime warning report")
 
+                        ids_seen.append(gen_id)
                     else:
-                        print(row[id_header] + " gen id " + gen_id + " invalid survey code " + code)
+                        print(row[id_header] + " invalid survey code format " + code)
                     total += 1
-                    ids_seen.append(gen_id)
             print(str(valid) + " workers of " + str(total) + " were valid ('" + csv_fn + "')")
 
     # Write CSV output data.

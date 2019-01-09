@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,5
+use_relocation,
+Did not get to interact with robot, but would have liked to - very much. Maybe another time? Maybe in a future hit? Count me in.

@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,5
+object_qs,2
+use_navigation,
+use_delivery,1
+use_relocation,
+The robot bamboozled me into giving up on Pringles and settling for peaches.

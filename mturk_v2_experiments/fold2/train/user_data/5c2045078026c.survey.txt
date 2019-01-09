@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,5
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,1
+I'm sorry, I am a little nearsighted and misread the P as a B and thought it was for Bob initially. My apologies!

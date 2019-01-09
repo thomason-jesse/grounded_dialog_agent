@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,
+use_delivery,0
+use_relocation,
+It was hard to see exactly what the object was which made this a lot more difficult than it needed to be in my opinion.

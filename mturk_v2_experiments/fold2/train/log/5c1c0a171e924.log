@@ -1,0 +1,95 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move object from room S to room with printer'
+get_from_user (processed): 'move object from room s to room with printer'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'take object from room S to Printer'
+get_from_user (processed): 'take object from room s to printer'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'paper'
+get_from_user (processed): 'paper'
+say_to_user: I haven't heard the word 'paper' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'cylinder' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'wipes' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move <p>this</p> from somewhere to somewhere (not give it to someone)? {'patient': 'oidx_6', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'block'
+get_from_user (processed): 'block'
+say_to_user_with_referents: You want me to move <p>this</p> from somewhere to somewhere (not give it to someone)? {'patient': 'oidx_26', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'patient': 'oidx_28', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'to printer'
+get_from_user (processed): 'to printer'
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'patient': 'oidx_28', 'source': '3506', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'S'
+get_from_user (processed): 's'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'patient': 'oidx_28', 'source': '3506', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'patient': 'oidx_28', 'source': '3506', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'patient': 'oidx_28', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'From S'
+get_from_user (processed): 'from s'
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> somewhere else? {'patient': 'oidx_28', 'source': '3506', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'patient': 'oidx_28', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 16
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'patient': 'oidx_28', 'source': '3430', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 22
+perform_action: {'patient': 'oidx_28', 'goal': '3506', 'source': '3430', 'action': 'move', 'recipient': None}
+main: ... done; got action {'patient': 'oidx_28', 'goal': '3506', 'source': '3430', 'action': 'move', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_28', 'goal': '3506', 'source': '3430', 'action': 'move', 'recipient': None}], [{'source': ['to printer', 'from s'], 'action': [], 'goal': ['s', 'no'], 'all': ['move object from room s to room with printer'], 'patient': ['paper', 'block'], 'recipient': []}], [('cylinder', 21, 0), ('cylinder', 24, 0), ('cylinder', 19, 0), ('cylinder', 23, 0), ('cylinder', 16, 0), ('cylinder', 0, 0), ('cylinder', 4, 0), ('cylinder', 9, 0), ('wipes', 19, 1), ('block', 21, 0), ('block', 24, 0), ('block', 19, 0), ('block', 23, 0), ('block', 16, 0), ('block', 0, 0), ('block', 4, 0), ('block', 9, 0)], [], [0], [0]]

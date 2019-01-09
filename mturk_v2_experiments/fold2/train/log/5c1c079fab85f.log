@@ -1,0 +1,78 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Dr. Smalt's office'
+get_from_user (processed): 'go to dr smalt 's office'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes. You must pick up the object in Dr. Smalt's office.'
+get_from_user (processed): 'yes you must pick up the object in dr smalt 's office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver it to the large lab across from Dr. Smalt's office.'
+get_from_user (processed): 'deliver it to the large lab across from dr smalt 's office'
+say_to_user: I haven't heard the word 'large' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No. There is a lab directly across from Dr. Smalt's office. That is where the object must be delivered.'
+get_from_user (processed): 'no there is a lab directly across from dr smalt 's office that is where the object must be delivered'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'large' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The lab directly across from Dr. Smalt's office.'
+get_from_user (processed): 'the lab directly across from dr smalt 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 8
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 's', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A tall, narrow, white object.'
+get_from_user (processed): 'a tall narrow white object'
+say_to_user: I haven't heard the word 'narrow' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user: Does 'narrow' mean the same thing as 'clear'?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: Does 'narrow' mean the same thing as 'long'?
+get_from_user requested feedback
+get_from_user (raw): 'Not quite.'
+get_from_user (processed): 'not quite'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'narrow' mean the same thing as 'long'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 's', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A tall, white object.'
+get_from_user (processed): 'a tall white object'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 's', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 4
+perform_action: {'recipient': 's', 'patient': 'oidx_28', 'goal': None, 'action': 'bring', 'source': None}
+main: ... done; got action {'recipient': 's', 'patient': 'oidx_28', 'goal': None, 'action': 'bring', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': 's', 'patient': 'oidx_28', 'goal': None, 'action': 'bring', 'source': None}], [{'patient': ['a tall narrow white object', 'a tall white object'], 'goal': [], 'action': [], 'source': [], 'recipient': ["deliver it to the large lab across from dr smalt 's office", "the lab directly across from dr smalt 's office"], 'all': ["go to dr smalt 's office"]}], [], [('narrow', 'clear', False), ('narrow', 'long', False)], [4], [0]]

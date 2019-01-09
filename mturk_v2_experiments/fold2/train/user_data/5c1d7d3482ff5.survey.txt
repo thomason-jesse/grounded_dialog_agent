@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,0
+use_navigation,0
+use_delivery,
+use_relocation,
+The robot was &quot;thinking&quot; during the entire process.  I was unable to complete any part of this task other than clicking on the link to open it.

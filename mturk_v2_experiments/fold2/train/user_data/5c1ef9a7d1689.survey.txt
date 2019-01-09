@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,3
+object_qs,2
+use_navigation,
+use_delivery,2
+use_relocation,
+Interesting and I would not mind doing it again as I enjoy these kinds of tasks.  I attempted to use language I thought the &quot;robot&quot; would understand, but apparently, it did not.  Perhaps a listing of terms the bot understands would be helpful or if you are trying to build it language understanding then this is fine the way it is.  Happy Holidays and I wish all of you the best in the coming year!

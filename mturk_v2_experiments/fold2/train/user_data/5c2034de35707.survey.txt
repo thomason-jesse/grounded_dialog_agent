@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,4
+object_qs,4
+use_navigation,2
+use_delivery,
+use_relocation,
+The robot did not seem to understand that I just wanted him to go to the office the person was in, he did not necessarily need to interact with them specifically, but the robot wanted to bring them something so I picked an object.

@@ -206,9 +206,10 @@ def main():
     print("writing open response collation...")
     open_response_count = {aid: len(open_responses[aid]) for aid in open_responses.keys()}
     with open(open_response_out, 'w') as f:
-        for aid, _ in [(k, open_response_count[k]) for k in sorted(open_response_count, key=open_response_count.get, reverse=True)]:
+        for aid, _ in [(k, open_response_count[k]) for k in sorted(open_response_count,
+                                                                   key=open_response_count.get, reverse=True)]:
             f.write(aid + "\n")
-            for uid16, __ in sorted(open_responses[aid].iteritems()):
+            for uid16 in open_responses[aid]:
                 cond, fold, r = open_responses[aid][uid16]
                 f.write("(" + cond + ", " + fold + ")\t" + r + "\n")
             f.write("\n")

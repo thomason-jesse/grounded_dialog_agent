@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,1
+frustrated,5
+object_qs,4
+use_navigation,5
+use_delivery,
+use_relocation,
+Chat box for robot was very slow to type in

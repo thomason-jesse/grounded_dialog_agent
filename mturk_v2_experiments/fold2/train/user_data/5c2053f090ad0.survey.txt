@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,6
+object_qs,6
+use_navigation,
+use_delivery,0
+use_relocation,
+Is this the &quot;artificial intelligence&quot; that Elon Musk is so scared of?

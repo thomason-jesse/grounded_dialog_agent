@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,6
+object_qs,4
+use_navigation,
+use_delivery,0
+use_relocation,
+As I always say, God gave me little patience and I´ve used most of it on my son.

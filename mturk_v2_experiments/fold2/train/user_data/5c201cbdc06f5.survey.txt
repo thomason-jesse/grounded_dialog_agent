@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,5
+frustrated,3
+object_qs,2
+use_navigation,
+use_delivery,6
+use_relocation,
+Robot figured it out fast!

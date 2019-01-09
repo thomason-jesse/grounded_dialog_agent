@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,5
+frustrated,2
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,6
+I might have struggled a bit with giving higher-level commands but I think I still managed to experience some difficulty where I had to define the objects/area. The choices definitely helped!

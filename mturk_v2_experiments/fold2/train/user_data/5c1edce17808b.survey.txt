@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,5
+frustrated,0
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,5
+This is so cool! I understand why there isn't one, but I think it would be extremely helpful to have some sort of list of words that the robot absolutely doesn't understand so people do not get him off topic and confused. Otherwise, this is fantastic! Hope I get to do another one!

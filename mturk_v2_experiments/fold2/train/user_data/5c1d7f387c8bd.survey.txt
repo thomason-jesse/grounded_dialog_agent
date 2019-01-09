@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,3
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,0
+Robot did not understand that I wanted it to deliver the can to the pod. It only gave me choices of different people, I was not able to tell it that it was wrong.

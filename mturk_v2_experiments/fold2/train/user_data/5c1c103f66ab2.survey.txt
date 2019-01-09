@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,5
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,0
+The map showed that the object was supposed to be delivered next to one of the identified people's office. So it was confusing as to where the object was supposed to be delivered. The person to where the object is to be delivered should be clearly defined, not vague. 

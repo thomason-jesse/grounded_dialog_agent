@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,6
+use_navigation,
+use_delivery,
+use_relocation,0
+The robot did not understand the names (long or short) or room designations (such as &quot;pod&quot; or &quot;office&quot;) that were clearly labeled in or alongside the map. 

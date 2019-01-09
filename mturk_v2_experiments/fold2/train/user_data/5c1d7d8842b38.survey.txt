@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,3
+use_delivery,
+use_relocation,
+I was not able to communicate with the robot as something went wrong.  I am ended task as per hit instructions and submitting for payment.  Thanks!

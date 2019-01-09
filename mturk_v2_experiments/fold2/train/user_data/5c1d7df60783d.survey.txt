@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,4
+frustrated,2
+object_qs,4
+use_navigation,3
+use_delivery,
+use_relocation,
+I don't know why it asked questions on objects just to be commanded to the conference room. This can be useful but needs more an understanding of things
