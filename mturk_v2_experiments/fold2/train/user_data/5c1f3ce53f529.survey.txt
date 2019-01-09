@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,3
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,3
+The menu to choose where the robot needed to take the item appeared and then disappeared before I could use it, and never came back; I was then given a message that the robot had a problem and I could skip to the survey, so the task was not completed. The robot did not frustrate me, I frustrated myself.

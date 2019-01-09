@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,4
+object_qs,4
+use_navigation,3
+use_delivery,
+use_relocation,
+I wasn't completely sure what my task was. The task said &quot;the robot should be at the position of the red x&quot;, and nothing else, so I asked to robot to go to that location; but I wasn't sure that was my objective. Maybe that was the robot's starting position and the task was just not printed?

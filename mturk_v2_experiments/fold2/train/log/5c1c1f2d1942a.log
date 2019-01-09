@@ -1,0 +1,38 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the lounge.'
+get_from_user (processed): 'go to the lounge'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'beans' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'wipes' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'lounge'
+get_from_user (processed): 'lounge'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3406', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'recipient': None, 'patient': None, 'goal': '3406', 'action': 'walk', 'source': None}
+main: ... done; got action {'recipient': None, 'patient': None, 'goal': '3406', 'action': 'walk', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': None, 'patient': None, 'goal': '3406', 'action': 'walk', 'source': None}], [{'recipient': [], 'all': ['go to the lounge'], 'patient': [], 'goal': ['lounge'], 'action': [], 'source': []}], [('bean', 21, 0), ('bean', 24, 0), ('bean', 19, 0), ('bean', 23, 0), ('bean', 16, 0), ('bean', 0, 0), ('bean', 4, 0), ('bean', 9, 0), ('wipes', 19, 1), ('pringles', 21, 0), ('pringles', 24, 0), ('pringles', 19, 0), ('pringles', 23, 0), ('pringles', 16, 0), ('pringles', 0, 0), ('pringles', 4, 0), ('pringles', 9, 0)], [], [0], [0]]

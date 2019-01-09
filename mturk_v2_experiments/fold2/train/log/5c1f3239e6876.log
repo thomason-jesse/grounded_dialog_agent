@@ -1,0 +1,47 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go into the Dr. Heidi Hughes'sroom.'
+get_from_user (processed): 'go into the dr heidi hughes'sroom 's'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'yellow' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 4
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'I want you to go into Dr. Heidi Hughes's room.'
+get_from_user (processed): 'i want you to go into dr heidi hughes 's room'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3402'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'patient': None, 'source': None, 'recipient': None, 'goal': '3402'}
+main: ... done; got action {'action': 'walk', 'patient': None, 'source': None, 'recipient': None, 'goal': '3402'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'patient': None, 'source': None, 'recipient': None, 'goal': '3402'}], [{'action': [], 'source': [], 'all': ["go into the dr heidi hughes'sroom 's"], 'patient': [], 'goal': [], 'recipient': []}], [('spice', 21, 0), ('spice', 24, 0), ('spice', 19, 0), ('spice', 23, 0), ('spice', 16, 0), ('spice', 0, 0), ('spice', 4, 0), ('spice', 9, 0), ('pringles', 21, 0), ('pringles', 24, 0), ('pringles', 19, 0), ('pringles', 23, 0), ('pringles', 16, 0), ('pringles', 0, 0), ('pringles', 4, 0), ('pringles', 9, 0), ('yellow', 4, 1)], [], [1], [0]]

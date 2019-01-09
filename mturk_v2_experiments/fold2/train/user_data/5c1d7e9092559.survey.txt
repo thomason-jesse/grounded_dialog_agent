@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,6
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,0
+The robot requires significant improvements in artificial intelligence and machine learning programming in order to understand human language.

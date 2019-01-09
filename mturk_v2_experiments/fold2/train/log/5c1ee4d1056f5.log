@@ -1,0 +1,58 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Please escort Peggy Parker to the Lab farthest from the kitchen.'
+get_from_user (processed): 'please escort peggy parker to the lab farthest from the kitchen'
+say_to_user: I haven't heard the word 'please' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker.'
+get_from_user (processed): 'peggy parker'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'wipes' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'yellow' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The Lab farthest from the kitchen.'
+get_from_user (processed): 'the lab farthest from the kitchen'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker.'
+get_from_user (processed): 'peggy parker'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The Lab farthest from the kitchen.'
+get_from_user (processed): 'the lab farthest from the kitchen'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+perform_action: {'patient': 'oidx_28', 'goal': None, 'action': 'bring', 'recipient': 'p', 'source': None}
+main: ... done; got action {'patient': 'oidx_28', 'goal': None, 'action': 'bring', 'recipient': 'p', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_28', 'goal': None, 'action': 'bring', 'recipient': 'p', 'source': None}], [{'patient': ['peggy parker', 'peggy parker'], 'goal': [], 'action': [], 'all': ['please escort peggy parker to the lab farthest from the kitchen'], 'recipient': ['the lab farthest from the kitchen', 'the lab farthest from the kitchen'], 'source': []}], [('pringles', 21, 0), ('pringles', 24, 0), ('pringles', 19, 0), ('pringles', 23, 0), ('pringles', 16, 0), ('pringles', 0, 0), ('pringles', 4, 0), ('pringles', 9, 0), ('wipes', 19, 1), ('yellow', 19, 1)], [], [1], [0]]

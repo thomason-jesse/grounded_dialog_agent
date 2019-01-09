@@ -1,0 +1,64 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go forward'
+get_from_user (processed): 'go forward'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'box' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'yellow' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'grab the tall, white styrofoam'
+get_from_user (processed): 'grab the tall white styrofoam'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'white styrofoam'
+get_from_user (processed): 'white styrofoam'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'styrofoam'
+get_from_user (processed): 'styrofoam'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Sybil Smalt'
+get_from_user (processed): 'dr sybil smalt'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'patient': 'oidx_28', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'source': None, 'patient': 'oidx_28', 'recipient': 's', 'goal': None}
+main: ... done; got action {'action': 'bring', 'source': None, 'patient': 'oidx_28', 'recipient': 's', 'goal': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'source': None, 'patient': 'oidx_28', 'recipient': 's', 'goal': None}], [{'all': ['go forward'], 'patient': ['white styrofoam', 'styrofoam'], 'recipient': ['dr sybil smalt'], 'goal': [], 'action': [], 'source': []}], [('rectangle', 21, 0), ('rectangle', 24, 0), ('rectangle', 19, 0), ('rectangle', 23, 0), ('rectangle', 16, 0), ('rectangle', 0, 0), ('rectangle', 4, 0), ('rectangle', 9, 0), ('yellow', 21, 0), ('yellow', 24, 0), ('yellow', 19, 0), ('yellow', 23, 0), ('yellow', 16, 0), ('yellow', 0, 0), ('yellow', 4, 0), ('yellow', 9, 0), ('pringles', 21, 0), ('pringles', 24, 0), ('pringles', 19, 0), ('pringles', 23, 0), ('pringles', 16, 0), ('pringles', 0, 0), ('pringles', 4, 0), ('pringles', 9, 0)], [], [0], [0]]

@@ -1,0 +1,73 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the office in between Dr. Sybil Smalt's office and the lab.'
+get_from_user (processed): 'go to the office in between dr sybil smalt 's office and the lab'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes, the Pringles container.'
+get_from_user (processed): 'yes the pringles container'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The Pringle's container.'
+get_from_user (processed): 'the pringle 's container'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 23
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'It is blue.'
+get_from_user (processed): 'it is blue'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'The person in the office in between Dr. Sybil Smalt's office and the lab'
+get_from_user (processed): 'the person in the office in between dr sybil smalt 's office and the lab'
+say_to_user: I haven't heard the word 'person' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'next to Dr. Sybil Smalt'
+get_from_user (processed): 'next to dr sybil smalt'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+perform_action: {'source': None, 'action': 'bring', 'goal': None, 'patient': 'oidx_13', 'recipient': 's'}
+main: ... done; got action {'source': None, 'action': 'bring', 'goal': None, 'patient': 'oidx_13', 'recipient': 's'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'action': 'bring', 'goal': None, 'patient': 'oidx_13', 'recipient': 's'}], [{'goal': [], 'recipient': ["the person in the office in between dr sybil smalt 's office and the lab", 'next to dr sybil smalt'], 'source': [], 'action': [], 'all': ["go to the office in between dr sybil smalt 's office and the lab"], 'patient': ["the pringle 's container", 'it is blue']}], [('spice', 23, 1), ('pringles', 21, 0), ('pringles', 24, 0), ('pringles', 19, 0), ('pringles', 23, 0), ('pringles', 16, 0), ('pringles', 0, 0), ('pringles', 4, 0), ('pringles', 9, 0), ('block', 21, 0), ('block', 24, 0), ('block', 19, 0), ('block', 23, 0), ('block', 16, 0), ('block', 0, 0), ('block', 4, 0), ('block', 9, 0)], [], [0], [0]]

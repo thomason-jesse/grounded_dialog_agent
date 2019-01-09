@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,0
+frustrated,5
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,1
+I enjoyed taking this survey. Now after having done this one i feel i have a better understanding of how to go about instructing the robot. I would like to do more tasks like this.

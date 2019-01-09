@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,6
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,6
+The robot is getting smarter! It started to understand locations when I pointed them out.

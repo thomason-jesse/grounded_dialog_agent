@@ -1,0 +1,30 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the Kitchen.'
+get_from_user (processed): 'go to the kitchen'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'beans' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'column' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3520', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+perform_action: {'patient': None, 'action': 'walk', 'goal': '3520', 'source': None, 'recipient': None}
+main: ... done; got action {'patient': None, 'action': 'walk', 'goal': '3520', 'source': None, 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': None, 'action': 'walk', 'goal': '3520', 'source': None, 'recipient': None}], [{'all': ['go to the kitchen'], 'patient': [], 'recipient': [], 'action': [], 'goal': [], 'source': []}], [('bean', 21, 0), ('bean', 24, 0), ('bean', 19, 0), ('bean', 23, 0), ('bean', 16, 0), ('bean', 0, 0), ('bean', 4, 0), ('bean', 9, 0), ('column', 21, 0), ('column', 24, 0), ('column', 19, 0), ('column', 23, 0), ('column', 16, 0), ('column', 0, 0), ('column', 4, 0), ('column', 9, 0), ('peach', 21, 0), ('peach', 24, 0), ('peach', 19, 0), ('peach', 23, 0), ('peach', 16, 0), ('peach', 0, 0), ('peach', 4, 0), ('peach', 9, 0)], [], [0], [0]]

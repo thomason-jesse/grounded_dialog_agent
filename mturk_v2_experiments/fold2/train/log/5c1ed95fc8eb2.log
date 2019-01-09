@@ -1,0 +1,43 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move the object from the Pod next to Mal's office and place it in the office next to Dr. Smalt's office.'
+get_from_user (processed): 'move the object from the pod next to mal 's office and place it in the office next to dr smalt 's office'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the pod next to Mal's office'
+get_from_user (processed): 'go to the pod next to mal 's office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'The Pod next to Mal's office'
+get_from_user (processed): 'the pod next to mal 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'The pod next to Mallory Maroon's office'
+get_from_user (processed): 'the pod next to mallory maroon 's office'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3504', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'source': None, 'goal': '3504', 'patient': None, 'action': 'walk', 'recipient': None}
+main: ... done; got action {'source': None, 'goal': '3504', 'patient': None, 'action': 'walk', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'goal': '3504', 'patient': None, 'action': 'walk', 'recipient': None}], [{'goal': ["the pod next to mal 's office", "the pod next to mallory maroon 's office"], 'action': [], 'patient': [], 'recipient': [], 'source': [], 'all': ["move the object from the pod next to mal 's office and place it in the office next to dr smalt 's office"]}], [], [], [1], [0]]

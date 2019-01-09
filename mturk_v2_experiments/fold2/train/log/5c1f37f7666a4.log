@@ -1,0 +1,64 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Dr. Sybil Smalt's office.'
+get_from_user (processed): 'go to dr sybil smalt 's office'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'block' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 0
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'To Dr. Smalt's office.'
+get_from_user (processed): 'to dr smalt 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'The X marked in office S.'
+get_from_user (processed): 'the x marked in office s'
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'It is a letter.'
+get_from_user (processed): 'it is a letter'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'x' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'x' mean the same thing as 'want'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'source': None, 'action': 'walk', 'goal': '3430', 'recipient': None, 'patient': None}
+main: ... done; got action {'source': None, 'action': 'walk', 'goal': '3430', 'recipient': None, 'patient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'action': 'walk', 'goal': '3430', 'recipient': None, 'patient': None}], [{'action': [], 'all': ["go to dr sybil smalt 's office"], 'source': [], 'goal': ["to dr smalt 's office", 'the x marked in office s'], 'recipient': [], 'patient': []}], [('pringles', 21, 0), ('pringles', 24, 0), ('pringles', 19, 0), ('pringles', 23, 0), ('pringles', 16, 0), ('pringles', 0, 0), ('pringles', 4, 0), ('pringles', 9, 0), ('block', 21, 0), ('block', 24, 0), ('block', 19, 0), ('block', 23, 0), ('block', 16, 0), ('block', 0, 0), ('block', 4, 0), ('block', 9, 0), ('metallic', 0, 1)], [('x', 'cylinder', False), ('x', 'want', False)], [0], [0]]

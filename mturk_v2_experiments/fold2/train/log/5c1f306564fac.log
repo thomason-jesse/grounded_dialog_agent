@@ -1,0 +1,99 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Get the gray bottle at the pod next to Dr. Nancy Nagel's office and bring it to the office next to Dr. Sybil Smalt's office'
+get_from_user (processed): 'get the gray bottle at the pod next to dr nancy nagel 's office and bring it to the office next to dr sybil smalt 's office'
+say_to_user: I haven't heard the word 'gray' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'gray' mean the same thing as 'canister'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'gray' mean the same thing as 'white'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'gray' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'from pod next to N office to Office next to S Office'
+get_from_user (processed): 'from pod next to n office to office next to s office'
+say_to_user: I haven't heard the word 'n' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move from Pod next to Dr. Nancy Nagel's Office to Office next to Dr. Sybil Smalt's office'
+get_from_user (processed): 'move from pod next to dr nancy nagel 's office to office next to dr sybil smalt 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 18
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3408', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'To Office between Dr. Sybil Smalt's Office and Lab'
+get_from_user (processed): 'to office between dr sybil smalt 's office and lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3408', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move to Office next to Dr. Sybil Smalt's Office'
+get_from_user (processed): 'move to office next to dr sybil smalt 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3408', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 14
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3408', 'goal': '3432', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Bottle with Grey Top'
+get_from_user (processed): 'bottle with grey top'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3408', 'goal': '3432', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Container'
+get_from_user (processed): 'container'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'metallic' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'gray' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'source': '3408', 'patient': 'oidx_11', 'goal': '3432', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Wrong item'
+get_from_user (processed): 'wrong item'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'source': '3408', 'patient': 'oidx_11', 'goal': '3432', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3408', 'goal': '3432', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+perform_action: {'source': '3408', 'recipient': None, 'patient': 'oidx_25', 'goal': '3432', 'action': 'move'}
+main: ... done; got action {'source': '3408', 'recipient': None, 'patient': 'oidx_25', 'goal': '3432', 'action': 'move'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3408', 'recipient': None, 'patient': 'oidx_25', 'goal': '3432', 'action': 'move'}], [{'source': ['from pod next to n office to office next to s office', "move from pod next to dr nancy nagel 's office to office next to dr sybil smalt 's office"], 'recipient': [], 'goal': ["to office between dr sybil smalt 's office and lab", "move to office next to dr sybil smalt 's office"], 'action': [], 'patient': ['bottle with grey top', 'container'], 'all': ["get the gray bottle at the pod next to dr nancy nagel 's office and bring it to the office next to dr sybil smalt 's office"]}], [('metallic', 21, 0), ('metallic', 24, 0), ('metallic', 19, 0), ('metallic', 23, 0), ('metallic', 16, 0), ('metallic', 0, 0), ('metallic', 4, 0), ('metallic', 9, 0), ('peach', 21, 0), ('peach', 24, 0), ('peach', 19, 0), ('peach', 23, 0), ('peach', 16, 0), ('peach', 0, 0), ('peach', 4, 0), ('peach', 9, 0), ('gray', 21, 0), ('gray', 24, 0), ('gray', 19, 0), ('gray', 23, 0), ('gray', 16, 0), ('gray', 0, 0), ('gray', 4, 0), ('gray', 9, 0)], [('gray', 'canister', False), ('gray', 'white', False), ('gray', 'blue', False)], [1], [2]]

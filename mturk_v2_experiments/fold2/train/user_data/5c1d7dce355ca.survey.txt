@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,5
+object_qs,0
+use_navigation,
+use_delivery,0
+use_relocation,
+The robot didn't work, I'd rather just have this oend forever then be rejected,but maybe there is a deadline to make a decish.

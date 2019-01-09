@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,3
+use_delivery,
+use_relocation,
+It said the robot was having problems or somehting like that and told me to go ahead and do survey. I hope I didnt do anything wrong

@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,0
+I thought I could write a sentences with more commands. Like take can and move it to here. But it was more one command per sentence. take can.

@@ -1,0 +1,56 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the soda to Dr. Sybil Smalt.'
+get_from_user (processed): 'take the soda to dr sybil smalt'
+say_to_user: I haven't heard the word 'soda' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Sybil Smalt'
+get_from_user (processed): 'dr sybil smalt'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'peaches' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'yellow' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 4
+say_to_user: Thanks. Now, back to business.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user requested feedback
+get_from_user (raw): 'the can of soda'
+get_from_user (processed): 'the can of soda'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 's'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'action': 'bring', 'goal': None, 'recipient': 's', 'patient': 'oidx_26', 'source': None}
+main: ... done; got action {'action': 'bring', 'goal': None, 'recipient': 's', 'patient': 'oidx_26', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'goal': None, 'recipient': 's', 'patient': 'oidx_26', 'source': None}], [{'action': [], 'source': [], 'recipient': ['dr sybil smalt'], 'goal': [], 'patient': ['yes', 'the can of soda'], 'all': ['take the soda to dr sybil smalt']}], [('spice', 21, 0), ('spice', 24, 0), ('spice', 19, 0), ('spice', 23, 0), ('spice', 16, 0), ('spice', 0, 0), ('spice', 4, 0), ('spice', 9, 0), ('peach', 21, 0), ('peach', 24, 0), ('peach', 19, 0), ('peach', 23, 0), ('peach', 16, 0), ('peach', 0, 0), ('peach', 4, 0), ('peach', 9, 0), ('yellow', 4, 1)], [], [0], [0]]

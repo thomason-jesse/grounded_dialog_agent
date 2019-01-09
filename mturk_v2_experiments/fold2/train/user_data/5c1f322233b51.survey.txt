@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,1
+frustrated,3
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,0
+It was a bit confusing as to the task even after reading the instructions and even when it came to finding the &quot;similar&quot; items related to the words the robot ask about. I believe I did it right but again it was a bit confusing.

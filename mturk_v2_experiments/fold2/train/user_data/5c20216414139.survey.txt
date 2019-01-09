@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,2
+object_qs,4
+use_navigation,
+use_delivery,4
+use_relocation,
+This is pretty cool. I think that it will take some time to teach robots to understand humans better or humans to learn how to communicate with robots better. All things considered it was fun and challenging to get the robot to understand me.

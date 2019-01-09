@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,4
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,1
+THE ROBOT WAS VERY HARD TO COMMUNICATE WITH BUT THIS WAS FUN 

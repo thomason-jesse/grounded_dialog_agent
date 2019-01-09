@@ -1,0 +1,64 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bring the object from the pod room to the office between the conference room and David Daniel's office.'
+get_from_user (processed): 'bring the object from the pod room to the office between the conference room and david daniel 's office'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes, deliver the object.'
+get_from_user (processed): 'yes deliver the object'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The bottle of peppercorns.'
+get_from_user (processed): 'the bottle of peppercorns'
+say_to_user: I'm still learning the meanings of some words. I'm going to ask you a few questions about these nearby objects before we continue.
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'pringles' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'spices' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: None
+say_to_user_with_referents: Among these nearby objects, could you show me one you would use the word 'cylinder' when describing, or shake your head if there are none? {}
+get_oidx_from_user requested feedback
+get_oidx_from_user: 19
+say_to_user: Thanks. Now, back to business.
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Spices.'
+get_from_user (processed): 'spices'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 4
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'The office between the conference room and David Daniel's office.'
+get_from_user (processed): 'the office between the conference room and david daniel 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user requested feedback
+get_from_user (raw): 'The office.'
+get_from_user (processed): 'the office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_25'}
+get_from_user_enum requested feedback
+get_from_user_enum: 1
+perform_action: {'action': 'bring', 'goal': None, 'source': None, 'patient': 'oidx_25', 'recipient': 'd'}
+main: ... done; got action {'action': 'bring', 'goal': None, 'source': None, 'patient': 'oidx_25', 'recipient': 'd'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'goal': None, 'source': None, 'patient': 'oidx_25', 'recipient': 'd'}], [{'action': [], 'patient': ['the bottle of peppercorns', 'spices'], 'goal': [], 'all': ["bring the object from the pod room to the office between the conference room and david daniel 's office"], 'source': [], 'recipient': ["the office between the conference room and david daniel 's office", 'the office']}], [('pringles', 21, 0), ('pringles', 24, 0), ('pringles', 19, 0), ('pringles', 23, 0), ('pringles', 16, 0), ('pringles', 0, 0), ('pringles', 4, 0), ('pringles', 9, 0), ('spice', 21, 0), ('spice', 24, 0), ('spice', 19, 0), ('spice', 23, 0), ('spice', 16, 0), ('spice', 0, 0), ('spice', 4, 0), ('spice', 9, 0), ('cylinder', 19, 1)], [], [1], [1]]

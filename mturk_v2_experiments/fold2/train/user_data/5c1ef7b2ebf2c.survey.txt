@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,0
+frustrated,0
+object_qs,6
+use_navigation,0
+use_delivery,
+use_relocation,
+He doesn’t understand much conversation.

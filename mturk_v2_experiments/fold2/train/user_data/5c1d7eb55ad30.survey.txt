@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,6
+object_qs,6
+use_navigation,
+use_delivery,
+use_relocation,2
+Was the robot supposed to be told to pick up the object or did it already have it?
