@@ -1,0 +1,33 @@
+added noun entry for 'jar' with synonym container
+added noun entry for 'silver' with synonym metallic
+added noun entry for 'coke' with synonym container
+added noun entry for 'tub' with synonym container
+added noun entry for 'tube' with synonym cylinder
+added noun entry for 'pink' with synonym yellow
+added noun entry for 'tin' with synonym metallic
+added noun entry for 'want' with synonym can
+added noun entry for 'bottle' with synonym container
+added noun entry for 'canister' with synonym container
+added noun entry for 'item' with synonym container
+added noun entry for 'aluminum' with synonym metallic
+added noun entry for 'color' with synonym white
+added noun entry for 'red' with synonym None
+added noun entry for 'wipes' with synonym None
+added noun entry for 'open' with synonym empty
+added noun entry for 'box' with synonym container
+added noun entry for 'tall' with synonym tower
+added noun entry for 'object' with synonym container
+added noun entry for 'plastic' with synonym container
+added noun entry for 'metal' with synonym container
+updated classifiers with 6351 new labels across 22 predicates...
+induced 965 utterance/grounding pairs
+epoch 0: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 1: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 2: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 3: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 4: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 5: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 6: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 7: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 8: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 
+epoch 9: total (44); trained on 30 (0.68); failed on 10 (0.23); matched on 29 (0.66); genlex only on 0 (0.00); 

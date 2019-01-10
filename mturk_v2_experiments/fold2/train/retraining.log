@@ -1,0 +1,43 @@
+added noun entry for 'tube' with synonym cylinder
+added noun entry for 'object' with synonym container
+added noun entry for 'pink' with synonym yellow
+added noun entry for 'aluminum' with synonym metallic
+added noun entry for 'metal' with synonym container
+added noun entry for 'wipes' with synonym None
+added noun entry for 'color' with synonym white
+added noun entry for 'item' with synonym container
+added noun entry for 'tin' with synonym metallic
+added noun entry for 'plastic' with synonym container
+added noun entry for 'tub' with synonym container
+added noun entry for 'red' with synonym None
+added noun entry for 'open' with synonym empty
+added noun entry for 'want' with synonym can
+added noun entry for 'tall' with synonym tower
+added noun entry for 'silver' with synonym metallic
+added noun entry for 'canister' with synonym container
+added noun entry for 'jar' with synonym container
+added noun entry for 'bottle' with synonym container
+added noun entry for 'box' with synonym container
+added noun entry for 'coke' with synonym container
+updated classifiers with 6351 new labels across 22 predicates...
+induced 965 utterance/grounding pairs
+epoch 0: got 437 utterance/semantic pairs from 965 possible (0.45)
+epoch 0: total (481); trained on 426 (0.89); failed on 51 (0.11); matched on 210 (0.44); genlex only on 98 (0.20); 
+epoch 1: got 500 utterance/semantic pairs from 965 possible (0.52)
+epoch 1: total (544); trained on 509 (0.94); failed on 34 (0.06); matched on 248 (0.46); genlex only on 30 (0.06); 
+epoch 2: got 525 utterance/semantic pairs from 965 possible (0.54)
+epoch 2: total (569); trained on 534 (0.94); failed on 26 (0.05); matched on 269 (0.47); genlex only on 9 (0.02); 
+epoch 3: got 548 utterance/semantic pairs from 965 possible (0.57)
+epoch 3: total (592); trained on 564 (0.95); failed on 23 (0.04); matched on 328 (0.55); genlex only on 8 (0.01); 
+epoch 4: got 549 utterance/semantic pairs from 965 possible (0.57)***
+epoch 4: total (593); trained on 559 (0.94); failed on 28 (0.05); matched on 333 (0.56); genlex only on 2 (0.00); 
+epoch 5: got 546 utterance/semantic pairs from 965 possible (0.57)
+epoch 5: total (590); trained on 556 (0.94); failed on 32 (0.05); matched on 309 (0.52); genlex only on 18 (0.03); 
+epoch 6: got 514 utterance/semantic pairs from 965 possible (0.53)
+epoch 6: total (558); trained on 530 (0.95); failed on 25 (0.04); matched on 285 (0.51); genlex only on 4 (0.01); 
+epoch 7: got 522 utterance/semantic pairs from 965 possible (0.54)
+epoch 7: total (566); trained on 528 (0.93); failed on 32 (0.06); matched on 278 (0.49); genlex only on 3 (0.01); 
+epoch 8: got 527 utterance/semantic pairs from 965 possible (0.55)
+epoch 8: total (571); trained on 538 (0.94); failed on 30 (0.05); matched on 278 (0.49); genlex only on 7 (0.01); 
+epoch 9: got 514 utterance/semantic pairs from 965 possible (0.53)
+epoch 9: total (558); trained on 524 (0.94); failed on 31 (0.06); matched on 257 (0.46); genlex only on 16 (0.03); 
