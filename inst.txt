@@ -25,6 +25,8 @@ Server fold 0:
 	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/init/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold0/train/ --num_dialogs 1 --active_train_set 10,3,27,7,18,2,20,17
 Server fold 1:
 	python3 Server.py --parser_fn ../trained_parsers/mturk_fold0.pkl.5 --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/fold0/train/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold1/train/user_data/ --num_dialogs 1 --active_train_set 5,14,8,15,1,30,29,31
+Server fold 2:
+    python3 Server.py --parser_fn ../trained_parsers/mturk_fold1.pkl.1 --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/fold1/train/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold2/train/user_data/ --num_dialogs 1 --active_train_set 21,24,19,23,16,0,4,9
 
 Todo:
 	[x] Pilot 1:
@@ -60,9 +62,13 @@ Todo:
 		    - Batch 3 users [46, 53, 34] corr [25, 31, 10] rate [0.54, 0.58, 0.29]
 		    - Batch 4 users [63, 70, 48] corr [33, 39, 13] rate [0.52, 0.56, 0.27]
 		    - Batch 5 users [81, 82, 66] corr [44, 46, 18] rate [0.54, 0.56, 0.27]
-		- Retrain
+		- Retrain [x]
 		- Fold 2 task *
-		    - Batch 1, 2, 3, 4, 5
+		    - Batch 1 users [13, 15, 17] corr [9, 10, 9] rate [0.69, 0.67, 0.53]
+		    - Batch 2 users [23, 27, 33] corr [16, 18, 12] rate [0.70, 0.67, 0.36]
+		    - Batch 3 users [42, 45, 44] corr [22, 30, 16] rate [0.52, 0.67, 0.36]
+		    - Batch 4 users [62, 63, 53] corr [33, 43, 19] rate [0.53, 0.68, 0.36]
+		    - Batch 5 users [83, 75, 67] corr [47, 52, 22] rate [0.57, 0.69, 0.33]
 		- Retrain
 		- Test Fold 0 task * [NO REPEAT USERS, intersperse batches]
 		    - Batch 1, 2, 3, 4, 5

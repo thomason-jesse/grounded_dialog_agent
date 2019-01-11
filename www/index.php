@@ -520,8 +520,8 @@ require_once('functions.php');
 
 # Variables that control what tasks and objects will be shown.
 # These should be changed whenever a new Turk task is made.
-$fold = 2;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
-$setting = "train";  # either init, train, or test
+$fold = 3;  # out of 0, 1, 2. Fold 3 is reserved as the test fold always.
+$setting = "test";  # either init, train, or test
 # $run_forever = false;  # if false, still running MTurk experiments, if true, show additional info
 
 $d = 'client/';
@@ -584,7 +584,7 @@ else {
   if (!$finished) {
 
     # Check whether the mturk ID is unique, creating a new Agent if it is, and ending the session otherwise.
-    if (false and in_array($mturk_id, $past_turk_ids)) {
+    if (in_array($mturk_id, $past_turk_ids)) {
       die("It looks like you have completed this task in a similar HIT before; please return this one! Sorry for the inconvenience.");
     }
     else {
