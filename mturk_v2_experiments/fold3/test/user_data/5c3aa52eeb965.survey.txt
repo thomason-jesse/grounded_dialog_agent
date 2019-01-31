@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,5
+object_qs,4
+use_navigation,
+use_delivery,3
+use_relocation,
+I feel like I'd have to have more interactions with a robot like this before making an informed decision about how I'd feel about working with it.

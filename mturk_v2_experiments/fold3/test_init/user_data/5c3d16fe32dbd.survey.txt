@@ -1,0 +1,9 @@
+tasks_easy,6
+understood,0
+frustrated,6
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,0
+the robot continued to ask the same question repeatedly which was a yes or no question
+very frustrating I would not have continued to invest time into him

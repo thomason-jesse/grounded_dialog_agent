@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,5
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,4
+I thought I would have another chance to get the object to its intended location. I intended to complete the task in steps.

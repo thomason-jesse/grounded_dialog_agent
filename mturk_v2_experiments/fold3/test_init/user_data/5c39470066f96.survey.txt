@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,0
+frustrated,6
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,0
+It was pretty much roundabout questions from the robot. I started with, “Go to the conference room.” It kept asking the same questions, even though I “dumbed it down” to simple commands and “yes” answers. It didn’t get very far, to say the least.

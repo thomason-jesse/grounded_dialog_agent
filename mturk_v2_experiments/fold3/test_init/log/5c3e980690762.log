@@ -1,0 +1,80 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick up the tall white object and give it to Bob'
+get_from_user (processed): 'pick up the tall white object and give it to bob'
+say_to_user: I haven't heard the word 'tall' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Tall is the height of a shape'
+get_from_user (processed): 'tall is the height of a shape'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'tall' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'tall' mean the same thing as 'tower'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'object' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Tall object that looks like a container'
+get_from_user (processed): 'tall object that looks like a container'
+say_to_user: I haven't heard the word 'looks' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Tall object'
+get_from_user (processed): 'tall object'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Bob'
+get_from_user (processed): 'bob'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Person B'
+get_from_user (processed): 'person b'
+say_to_user: I haven't heard the word 'person' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'person' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+perform_action: {'patient': 'oidx_28', 'action': 'bring', 'source': None, 'recipient': 'b', 'goal': None}
+main: ... done; got action {'patient': 'oidx_28', 'action': 'bring', 'source': None, 'recipient': 'b', 'goal': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_28', 'action': 'bring', 'source': None, 'recipient': 'b', 'goal': None}], [{'recipient': ['bob', 'person b'], 'source': [], 'patient': ['tall object that looks like a container', 'tall object'], 'action': [], 'all': ['pick up the tall white object and give it to bob'], 'goal': []}], [], [('tall', 'tower', True), ('object', 'container', True), ('person', 'can', False)], [3], [0]]

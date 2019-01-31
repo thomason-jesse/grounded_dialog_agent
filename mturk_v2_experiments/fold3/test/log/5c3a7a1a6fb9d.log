@@ -1,0 +1,71 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give the long white rectangular object to Robert Brown (who's nickname is Bob.)'
+get_from_user (processed): 'give the long white rectangular object to robert brown who 's nickname is bob'
+say_to_user: I haven't heard the word 'rectangular' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'rectangular' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'nickname' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The long white object. I think it is Styrofoam'
+get_from_user (processed): 'the long white object i think it is styrofoam'
+say_to_user: I haven't heard the word 'i' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'it' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The long white rectangle thing'
+get_from_user (processed): 'the long white rectangle thing'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Robert Brown'
+get_from_user (processed): 'robert brown'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'b', 'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'source': None, 'recipient': 'b', 'goal': None, 'patient': 'oidx_28', 'action': 'bring'}
+main: ... done; got action {'source': None, 'recipient': 'b', 'goal': None, 'patient': 'oidx_28', 'action': 'bring'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'recipient': 'b', 'goal': None, 'patient': 'oidx_28', 'action': 'bring'}], [{'source': [], 'all': ["give the long white rectangular object to robert brown who 's nickname is bob"], 'patient': ['the long white object i think it is styrofoam', 'the long white rectangle thing'], 'goal': [], 'recipient': ['yes', 'robert brown'], 'action': []}], [], [('rectangular', 'metallic', False)], [3], [0]]

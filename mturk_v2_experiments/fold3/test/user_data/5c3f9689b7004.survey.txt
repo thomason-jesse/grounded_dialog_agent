@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,5
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,3
+It kept saying something like &quot;you want me to move *this* from there on its way to there&quot; and I didn't understand what it meant. 

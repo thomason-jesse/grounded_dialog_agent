@@ -1,0 +1,42 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Office N'
+get_from_user (processed): 'go to office n'
+say_to_user: I haven't heard the word 'n' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'The office one over from the top left one on the map.'
+get_from_user (processed): 'the office one over from the top left one on the map'
+say_to_user: I haven't heard the word 'map' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Nancy Nagel's office'
+get_from_user (processed): 'dr nancy nagel 's office'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3404', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'patient': None, 'source': None, 'action': 'walk', 'recipient': None, 'goal': '3404'}
+main: ... done; got action {'patient': None, 'source': None, 'action': 'walk', 'recipient': None, 'goal': '3404'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': None, 'source': None, 'action': 'walk', 'recipient': None, 'goal': '3404'}], [{'patient': [], 'action': [], 'recipient': [], 'goal': ['the office one over from the top left one on the map', "dr nancy nagel 's office"], 'source': [], 'all': ['go to office n']}], [], [], [1], [0]]

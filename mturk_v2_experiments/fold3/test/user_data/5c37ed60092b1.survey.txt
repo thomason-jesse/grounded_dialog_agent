@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,3
+use_delivery,
+use_relocation,
+I never figured out what he problem was. The paragraph at the end said that the robot experienced a problem and I should end the task. 

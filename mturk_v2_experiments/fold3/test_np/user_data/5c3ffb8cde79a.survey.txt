@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,5
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,2
+There should be a way to clarify a comment freely.  I know it is necessary but the robot is rigid.

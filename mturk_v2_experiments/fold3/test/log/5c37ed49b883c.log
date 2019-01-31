@@ -1,0 +1,7 @@
+main: loading grounder from file...
+Traceback (most recent call last):
+  File "main.py", line 212, in <module>
+    main()
+  File "main.py", line 89, in main
+    with open(grounder_fn, 'rb') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'www/client/grounder.pickle'

@@ -42,7 +42,7 @@ def main():
 
                 else:
                     code = row[survey_header]
-                    if '_' in code:
+                    if '_' in code and code.count('_') == 2:
                         code_parts = code.split('_')
                         if len(code_parts) > 3:
                             print (row[id_header] + " survey code doesn't match form '" + code + "'")

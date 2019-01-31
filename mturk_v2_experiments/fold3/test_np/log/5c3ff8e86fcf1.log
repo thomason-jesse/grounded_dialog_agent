@@ -1,0 +1,55 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick up the Pringles can in Walter Ward's office, go through his office to the lab and then straight to the kitchen and leave the Pringles can there.'
+get_from_user (processed): 'pick up the pringles can in walter ward 's office go through his office to the lab and then straight to the kitchen and leave the pringles can there'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A snack'
+get_from_user (processed): 'a snack'
+say_to_user: I haven't heard the word 'snack' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Pringles canister'
+get_from_user (processed): 'pringles canister'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 4
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'The kitchen'
+get_from_user (processed): 'the kitchen'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'Kitchen'
+get_from_user (processed): 'kitchen'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_13'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+perform_action: {'source': None, 'action': 'bring', 'patient': 'oidx_13', 'recipient': 'w', 'goal': None}
+main: ... done; got action {'source': None, 'action': 'bring', 'patient': 'oidx_13', 'recipient': 'w', 'goal': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'action': 'bring', 'patient': 'oidx_13', 'recipient': 'w', 'goal': None}], [{'recipient': ['the kitchen', 'kitchen'], 'all': ["pick up the pringles can in walter ward 's office go through his office to the lab and then straight to the kitchen and leave the pringles can there"], 'source': [], 'action': [], 'patient': ['a snack', 'pringles canister'], 'goal': []}], [], [], [1], [0]]

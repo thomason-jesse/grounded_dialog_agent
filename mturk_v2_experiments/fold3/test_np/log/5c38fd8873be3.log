@@ -1,0 +1,50 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick up the object that is in the lounge next to Richard Rogue and take it to David Daniel's office.'
+get_from_user (processed): 'pick up the object that is in the lounge next to richard rogue and take it to david daniel 's office'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.  It is a verb.  It means to be at present.'
+get_from_user (processed): 'no it is a verb it means to be at present'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the object in the lounge next to richard rogue's office'
+get_from_user (processed): 'the object in the lounge next to richard rogue 's office'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'David Daniel'
+get_from_user (processed): 'david daniel'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'a pringles can'
+get_from_user (processed): 'a pringles can'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+perform_action: {'goal': None, 'source': None, 'action': 'bring', 'patient': 'oidx_13', 'recipient': 'd'}
+main: ... done; got action {'goal': None, 'source': None, 'action': 'bring', 'patient': 'oidx_13', 'recipient': 'd'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': None, 'source': None, 'action': 'bring', 'patient': 'oidx_13', 'recipient': 'd'}], [{'action': [], 'patient': ["the object in the lounge next to richard rogue 's office", 'a pringles can'], 'source': [], 'all': ["pick up the object that is in the lounge next to richard rogue and take it to david daniel 's office"], 'goal': [], 'recipient': ['david daniel']}], [], [], [2], [0]]

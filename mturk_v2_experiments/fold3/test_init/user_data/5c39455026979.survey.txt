@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,2
+object_qs,6
+use_navigation,
+use_delivery,
+use_relocation,3
+The robot does not know what a object and what the adjective &quot;small&quot; is. But I had fun doing it

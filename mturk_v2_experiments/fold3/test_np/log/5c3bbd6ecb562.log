@@ -1,0 +1,108 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go grab the bottle on the table, open it and take out 5 pills out. Then put 1 pill back to the bottle and put the cap back on.'
+get_from_user (processed): 'go grab the bottle on the table open it and take out 5 pills out then put 1 pill back to the bottle and put the cap back on'
+say_to_user: I haven't heard the word 'pills' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'It is the thing captured in the bottle.'
+get_from_user (processed): 'it is the thing captured in the bottle'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'pills' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'pills' mean the same thing as 'spices'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'pills' mean the same thing as 'peaches'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'pill' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'pill' mean the same thing as 'bean'?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'cap' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'cap' mean the same thing as 'jar'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'cap' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'move to the other end of the table'
+get_from_user (processed): 'move to the other end of the table'
+say_to_user: I haven't heard the word 'end' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'to the other side of the table'
+get_from_user (processed): 'to the other side of the table'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'front'
+get_from_user (processed): 'front'
+say_to_user: I haven't heard the word 'front' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'front' mean the same thing as 'empty'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3508', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the bottle on the table'
+get_from_user (processed): 'the bottle on the table'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3508', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'a bottle'
+get_from_user (processed): 'a bottle'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3508', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'patient': 'oidx_22', 'goal': '3508', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'patient': 'oidx_22', 'source': '3508', 'recipient': None, 'action': 'move', 'goal': '3508'}
+main: ... done; got action {'patient': 'oidx_22', 'source': '3508', 'recipient': None, 'action': 'move', 'goal': '3508'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_22', 'source': '3508', 'recipient': None, 'action': 'move', 'goal': '3508'}], [{'goal': ['to the other side of the table', 'front'], 'patient': ['the bottle on the table', 'a bottle'], 'all': ['go grab the bottle on the table open it and take out 5 pills out then put 1 pill back to the bottle and put the cap back on'], 'source': ['move to the other end of the table', 'yes'], 'recipient': [], 'action': []}], [], [('pills', 'spices', False), ('pills', 'peaches', True), ('pill', 'bean', True), ('cap', 'jar', False), ('cap', 'blue', False), ('front', 'empty', False)], [5], [0]]

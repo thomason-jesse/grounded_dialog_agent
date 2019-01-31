@@ -1,0 +1,71 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'PICK UP CANISTER OF POTATO CHIPS AND GIVE TO rICHARD rOGUE, SECRETARY'
+get_from_user (processed): 'pick up canister of potato chips and give to richard rogue secretary'
+say_to_user: I haven't heard the word 'potato' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'NO IT REFERS TO A TYPE OF VEGETABLE'
+get_from_user (processed): 'no it refers to a type of vegetable'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'potato' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'chips' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: Does 'chips' mean the same thing as 'spices'?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user: Does 'chips' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user: Does 'chips' mean the same thing as 'beans'?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue, Secretary'
+get_from_user (processed): 'richard rogue secretary'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'THE BLUE CANISTER'
+get_from_user (processed): 'the blue canister'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'THE CANISTER'
+get_from_user (processed): 'the canister'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_13', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue, Secretary'
+get_from_user (processed): 'richard rogue secretary'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_13', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 1
+perform_action: {'goal': None, 'recipient': 'r', 'patient': 'oidx_13', 'action': 'bring', 'source': None}
+main: ... done; got action {'goal': None, 'recipient': 'r', 'patient': 'oidx_13', 'action': 'bring', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': None, 'recipient': 'r', 'patient': 'oidx_13', 'action': 'bring', 'source': None}], [{'patient': ['the blue canister', 'the canister'], 'source': [], 'goal': [], 'all': ['pick up canister of potato chips and give to richard rogue secretary'], 'recipient': ['richard rogue secretary', 'richard rogue secretary'], 'action': []}], [], [('chips', 'spices', False), ('chips', 'metallic', False), ('chips', 'beans', False)], [2], [0]]

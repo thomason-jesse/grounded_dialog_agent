@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,5
+object_qs,3
+use_navigation,
+use_delivery,4
+use_relocation,
+It became evident that it was important to give literal and simple responses. It also became evident that the robot, when it did not understand verbal descriptions, searched its visual environment for objects or persons, which worked better under these circumstances.

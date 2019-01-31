@@ -1,0 +1,62 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the object in Walter Ward's office and place it in mallory Maroon's office.'
+get_from_user (processed): 'take the object in walter ward 's office and place it in mallory maroon 's office'
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No. It refers to a person.'
+get_from_user (processed): 'no it refers to a person'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'ward' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'The supervisor's office.'
+get_from_user (processed): 'the supervisor 's office'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Mal's office.'
+get_from_user (processed): 'mal 's office'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3402', 'source': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'The objects.'
+get_from_user (processed): 'the objects'
+say_to_user: I haven't heard the word 'objects' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3402', 'source': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3402', 'source': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'The object.'
+get_from_user (processed): 'the object'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3402', 'source': '3508'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+perform_action: {'action': 'move', 'patient': 'oidx_11', 'source': '3508', 'recipient': None, 'goal': '3402'}
+main: ... done; got action {'action': 'move', 'patient': 'oidx_11', 'source': '3508', 'recipient': None, 'goal': '3402'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'patient': 'oidx_11', 'source': '3508', 'recipient': None, 'goal': '3402'}], [{'action': [], 'recipient': [], 'source': ["the supervisor 's office"], 'patient': ['the objects', 'the object'], 'goal': ["mal 's office"], 'all': ["take the object in walter ward 's office and place it in mallory maroon 's office"]}], [], [], [1], [0]]

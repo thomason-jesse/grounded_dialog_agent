@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,4
+object_qs,5
+use_navigation,
+use_delivery,0
+use_relocation,
+Although it was frustrating, I'm sure that as I learned to use the proper words to direct the Robot, it would probably get easier.

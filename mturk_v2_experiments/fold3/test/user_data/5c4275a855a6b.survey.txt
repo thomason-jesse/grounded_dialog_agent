@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,0
+frustrated,5
+object_qs,6
+use_navigation,0
+use_delivery,
+use_relocation,
+This seems like a ludicrous test of a technology that would have a very dim future.  It would require much more development to be viable even for testing in a genuine context.  As a brain teasing exercise, the uncertainties and apparent lack of motility or comprehension of the 'robot' challenge patience, though the time parameter was respectful, as initially indicated.

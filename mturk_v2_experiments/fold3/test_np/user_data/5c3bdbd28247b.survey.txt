@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,6
+frustrated,0
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,6
+Actually it was very responsive and I only had to answer two question in order to complete the entire task!

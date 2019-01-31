@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,2
+object_qs,1
+use_navigation,
+use_delivery,4
+use_relocation,
+There were no difficulties with the survey, technical or otherwise.  Well done. Thanks!

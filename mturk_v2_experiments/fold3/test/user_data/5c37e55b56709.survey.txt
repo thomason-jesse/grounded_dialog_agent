@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,0
+frustrated,5
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,0
+The robot malfunctioned and did not take my questions at all.

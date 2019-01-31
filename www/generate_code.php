@@ -47,13 +47,13 @@ else {
 
   # Show exit instructions.
   $uid = $_POST['uid'];
-  $mturk_code = $uid."_".$rotated_id."_".substr(sha1("phm_salted_hash".$uid.$mturk_id."rwhpidcwha_v2train3fte1b"),0,13);
+  $mturk_code = $uid."_".$rotated_id."_".substr(sha1("phm_salted_hash".$uid.$mturk_id."rwhpidcwha_v2train3fte5b"),0,13);
   ?>
   <div class="row">
     <div class="col-md-12">
       <p>
         Thank you for your participation!</p>
-      <p>Copy the code below, return to Mechanical Turk, and enter it to receive payment:<br/>
+      <p>Copy the code below, return to Mechanical Turk where you clicked the link for this page, and enter this code into the form there to receive payment:<br/>
         <b><?php echo $mturk_code; ?></b>
       </p>
     </div>

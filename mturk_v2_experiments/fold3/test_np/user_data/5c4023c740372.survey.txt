@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,4
+object_qs,5
+use_navigation,
+use_delivery,0
+use_relocation,
+Robot seemed to get confused by the complete sentences. It did not have a memory. I gave it the name of the recipient early on and it asked me who to deliver to later on. 

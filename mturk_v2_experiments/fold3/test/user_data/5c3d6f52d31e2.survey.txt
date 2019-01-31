@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,2
+frustrated,1
+object_qs,0
+use_navigation,
+use_delivery,1
+use_relocation,
+I admit I didn't understand the object or where the robot was located and I made an assumption about the object when I selected where on the floorplan to move the robot.  In its current state, I would not use the robot as it seems to have a lot of learning to do about translating human commands to movement but if that is worked out, I don't think I would have any problem using this robot to complete tasks for me like grabbing a printout from the printer across the office or delivering a note to a coworker

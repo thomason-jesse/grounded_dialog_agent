@@ -1,0 +1,10 @@
+tasks_easy,1
+understood,1
+frustrated,5
+object_qs,5
+use_navigation,1
+use_delivery,
+use_relocation,
+Initial instuctions were unclear. They specified sending the robot to the 'X' located on the GREEN map. The green portion of the map did not contain an 'X'
+
+It was unclear if the red X designated where the robot began or where it was supposed to go.

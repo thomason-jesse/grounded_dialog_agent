@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,5
+object_qs,4
+use_navigation,
+use_delivery,0
+use_relocation,
+A picture showed up and then went away.  Couldn't select picture.

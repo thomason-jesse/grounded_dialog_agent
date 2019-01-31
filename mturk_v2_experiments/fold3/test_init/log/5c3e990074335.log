@@ -1,0 +1,66 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'pick up  the item'
+get_from_user (processed): 'pick up the item'
+say_to_user: I haven't heard the word 'item' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'item' mean the same thing as 'spices'?
+get_from_user requested feedback
+get_from_user (raw): 'item means a conntainer in ttthis case'
+get_from_user (processed): 'item means a conntainer in ttthis case'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'item' mean the same thing as 'spices'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'item' mean the same thing as 'column'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'item' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue'
+get_from_user (processed): 'richard rogue'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'R'
+get_from_user (processed): 'r'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'container'
+get_from_user (processed): 'container'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'r'}
+get_from_user requested feedback
+get_from_user (raw): 'the container'
+get_from_user (processed): 'the container'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'r'}
+get_from_user_enum requested feedback
+get_from_user_enum: 4
+perform_action: {'goal': None, 'action': 'bring', 'source': None, 'patient': 'oidx_12', 'recipient': 'r'}
+main: ... done; got action {'goal': None, 'action': 'bring', 'source': None, 'patient': 'oidx_12', 'recipient': 'r'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': None, 'action': 'bring', 'source': None, 'patient': 'oidx_12', 'recipient': 'r'}], [{'recipient': ['richard rogue', 'r'], 'source': [], 'patient': ['container', 'the container'], 'all': ['pick up the item'], 'goal': [], 'action': []}], [], [('item', 'spices', False), ('item', 'column', False), ('item', 'container', True)], [1], [0]]

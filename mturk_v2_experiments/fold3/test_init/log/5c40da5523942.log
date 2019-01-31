@@ -1,0 +1,64 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bring Bob the jar.'
+get_from_user (processed): 'bring bob the jar'
+say_to_user: I haven't heard the word 'jar' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'It is a cylinder and is 8 ounces.'
+get_from_user (processed): 'it is a cylinder and is 8 ounces'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'jar' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'jar' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go somewhere and manipulate an object'
+get_from_user (processed): 'go somewhere and manipulate an object'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Bob'
+get_from_user (processed): 'bob'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'container'
+get_from_user (processed): 'container'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'jar'
+get_from_user (processed): 'jar'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'b', 'patient': 'oidx_25', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'recipient': 'b', 'patient': 'oidx_25', 'action': 'bring', 'source': None, 'goal': None}
+main: ... done; got action {'recipient': 'b', 'patient': 'oidx_25', 'action': 'bring', 'source': None, 'goal': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': 'b', 'patient': 'oidx_25', 'action': 'bring', 'source': None, 'goal': None}], [{'recipient': ['bob'], 'patient': ['container', 'jar'], 'source': [], 'goal': [], 'action': [], 'all': ['bring bob the jar']}], [], [('jar', 'container', True)], [1], [1]]

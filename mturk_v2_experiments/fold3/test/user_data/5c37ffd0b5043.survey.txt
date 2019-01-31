@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,5
+object_qs,4
+use_navigation,6
+use_delivery,
+use_relocation,
+You should have put the robot on the map also. I didn't know how to start.

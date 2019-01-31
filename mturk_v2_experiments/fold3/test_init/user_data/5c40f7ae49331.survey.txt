@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,0
+object_qs,2
+use_navigation,0
+use_delivery,
+use_relocation,
+The task was not easy but it was fun, I laughed a lot.

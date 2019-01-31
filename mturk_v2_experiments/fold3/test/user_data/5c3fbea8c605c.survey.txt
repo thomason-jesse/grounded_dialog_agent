@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,0
+object_qs,1
+use_navigation,
+use_delivery,3
+use_relocation,
+Was a fun task outside what's normally on mturk. Felt a bit like an old school text adventure and really made me think about using specific words. Only complaint I have is how the typing would lag and skip letters if you typed too fast.

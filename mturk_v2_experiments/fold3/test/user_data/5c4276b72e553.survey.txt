@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,5
+frustrated,2
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,1
+You asked me to move the jar of peanuts to a room that was not an option. My X was in the printer room not an office on the floor plan.

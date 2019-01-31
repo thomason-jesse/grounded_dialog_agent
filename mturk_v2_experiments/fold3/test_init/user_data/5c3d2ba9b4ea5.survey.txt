@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,4
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,2
+The explanation of the task was not very clear, had to learn from experience interacting with robot to figure out how I should interact.

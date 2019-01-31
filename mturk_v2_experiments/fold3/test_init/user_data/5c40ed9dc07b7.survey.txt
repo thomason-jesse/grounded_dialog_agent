@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,1
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,3
+I was told to have the robot take the item to a room labeled pod, with no person indicated in that room.  My only option at the end was to select a person for the robot to deliver it to, so I chose the person in the closest office.

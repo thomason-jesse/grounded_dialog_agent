@@ -1,0 +1,89 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Get the Pringles in Richard Rogue's office and take them over to the Conference room.'
+get_from_user (processed): 'get the pringles in richard rogue 's office and take them over to the conference room'
+say_to_user: I haven't heard the word 'them' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes. It refers to the item. In this case the Pringles.'
+get_from_user (processed): 'yes it refers to the item in this case the pringles'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'them' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user: Does 'them' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No. I want you to deliver the Pringles.'
+get_from_user (processed): 'no i want you to deliver the pringles'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'From Richard Rogue's office to the Conference room.'
+get_from_user (processed): 'from richard rogue 's office to the conference room'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'From Office R to the Conference room.'
+get_from_user (processed): 'from office r to the conference room'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 21
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'Conference'
+get_from_user (processed): 'conference'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'You need to move the Pringles to the Conference room.'
+get_from_user (processed): 'you need to move the pringles to the conference room'
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'action': 'move', 'source': '3512'}
+get_from_user_enum requested feedback
+get_from_user_enum: 16
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3516', 'source': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'The Pringles.'
+get_from_user (processed): 'the pringles'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3516', 'source': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'The can of Pringles.'
+get_from_user (processed): 'the can of pringles'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'action': 'move', 'goal': '3516', 'patient': 'oidx_11', 'source': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3516', 'source': '3512'}
+get_from_user_enum requested feedback
+get_from_user_enum: 1
+perform_action: {'action': 'move', 'goal': '3516', 'recipient': None, 'patient': 'oidx_13', 'source': '3512'}
+main: ... done; got action {'action': 'move', 'goal': '3516', 'recipient': None, 'patient': 'oidx_13', 'source': '3512'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'goal': '3516', 'recipient': None, 'patient': 'oidx_13', 'source': '3512'}], [{'action': [], 'recipient': [], 'patient': ['the pringles', 'the can of pringles'], 'goal': ['conference', 'you need to move the pringles to the conference room'], 'all': ["get the pringles in richard rogue 's office and take them over to the conference room"], 'source': ["from richard rogue 's office to the conference room", 'from office r to the conference room']}], [], [('them', 'can', False)], [4], [0]]

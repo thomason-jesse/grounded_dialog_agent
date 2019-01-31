@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,3
+use_relocation,
+the robot needs to understand English better I believe to do its job, it needs to be programmed at a higher IQ. thanks for the work. 

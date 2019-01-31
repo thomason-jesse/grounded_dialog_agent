@@ -1,0 +1,70 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'hai'
+get_from_user (processed): 'hai'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a yes'
+get_from_user (processed): 'a yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'i find to deliverd'
+get_from_user (processed): 'i find to deliverd'
+say_to_user: I haven't heard the word 'i' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'green and box'
+get_from_user (processed): 'green and box'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'i' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'i' mean the same thing as 'tin'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'i' mean the same thing as 'pink'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'i' mean the same thing as 'aluminum'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'goal': None, 'source': None, 'patient': 'oidx_28', 'action': 'bring', 'recipient': 's'}
+main: ... done; got action {'goal': None, 'source': None, 'patient': 'oidx_28', 'action': 'bring', 'recipient': 's'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': None, 'source': None, 'patient': 'oidx_28', 'action': 'bring', 'recipient': 's'}], [{'goal': [], 'action': [], 'patient': ['i find to deliverd', 'yes'], 'all': ['hai'], 'recipient': ['yes', 'no'], 'source': []}], [], [('i', 'tin', False), ('i', 'pink', False), ('i', 'aluminum', True)], [1], [0]]

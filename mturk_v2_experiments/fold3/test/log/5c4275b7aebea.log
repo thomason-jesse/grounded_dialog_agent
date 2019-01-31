@@ -1,0 +1,60 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move Richard Rogue, Secretary "x" to the lounge in the green box'
+get_from_user (processed): 'move richard rogue secretary x to the lounge in the green box'
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes, red'
+get_from_user (processed): 'yes red'
+say_to_user: Does 'x' mean the same thing as 'tin'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'x' mean the same thing as 'aluminum'?
+get_from_user requested feedback
+get_from_user (raw): 'Move Richard Rogue, Secretary foam rectangle to the lounge in the green box'
+get_from_user (processed): 'move richard rogue secretary foam rectangle to the lounge in the green box'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'x' mean the same thing as 'aluminum'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go to Richard Rogue, Secretary'
+get_from_user (processed): 'go to richard rogue secretary'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Richard Rogue, Secretary'
+get_from_user (processed): 'richard rogue secretary'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Office R'
+get_from_user (processed): 'office r'
+say_to_user: I haven't heard the word 'r' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 15
+perform_action: {'action': 'walk', 'recipient': None, 'goal': '3514', 'patient': None, 'source': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'goal': '3514', 'patient': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'goal': '3514', 'patient': None, 'source': None}], [{'all': ['move richard rogue secretary x to the lounge in the green box'], 'recipient': [], 'goal': ['richard rogue secretary', 'office r'], 'patient': [], 'action': [], 'source': []}], [], [('x', 'tin', False), ('x', 'aluminum', False)], [2], [0]]

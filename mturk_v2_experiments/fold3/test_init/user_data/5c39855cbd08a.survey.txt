@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,3
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,5
+It think it was pretty cool. I'd like to develop more with this robot

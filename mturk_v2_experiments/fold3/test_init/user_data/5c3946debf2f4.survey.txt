@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,6
+frustrated,0
+object_qs,0
+use_navigation,6
+use_delivery,
+use_relocation,
+I asked the robot to go to office S, thinking that I was supposed to use the letters in the command, to simplify it for the robot. It was confused when I said, &quot;Go to office S.&quot; Once I typed, &quot;Dr. Sybil Smalt's office.&quot; in response to the robot's question of, &quot;Where do you want me to go?&quot; the robot immediately understood, and went there.

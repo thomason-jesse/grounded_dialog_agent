@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,3
+object_qs,0
+use_navigation,
+use_delivery,3
+use_relocation,
+The task was fairly easy to understand. However, an additional explanation should be given so we know not to tell the robot to pick up whatever is on the table.

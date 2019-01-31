@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,4
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,2
+The robot understood very little of what I was saying. However, it was helpful that the robot would bring up location maps and the pictures so I could choose what I meant. 

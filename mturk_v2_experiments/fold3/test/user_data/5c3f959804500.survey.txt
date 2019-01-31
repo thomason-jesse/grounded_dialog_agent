@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,3
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,2
+I think the task was a bit difficult to understand and could have been a little more in depth.

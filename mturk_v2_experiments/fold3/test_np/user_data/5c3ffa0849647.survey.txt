@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,1
+frustrated,2
+object_qs,2
+use_navigation,
+use_delivery,2
+use_relocation,
+I did not note an office map until later in the conversation. Fun? Sort of. I would like to try again.

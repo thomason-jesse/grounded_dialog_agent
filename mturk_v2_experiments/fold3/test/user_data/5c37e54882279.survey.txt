@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,3
+use_delivery,
+use_relocation,
+The survey said the robot was having issues and recommended I advance to the end to conclude the session.

@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,1
+frustrated,3
+object_qs,1
+use_navigation,0
+use_delivery,
+use_relocation,
+This is very confusing. Maybe its me but the position where the robot was at was no clear, I am not sure if you wanted to move it to there or from there. If is the former you don't even know where the robot is at. Then, the robot talks about an object. Its very confusing.

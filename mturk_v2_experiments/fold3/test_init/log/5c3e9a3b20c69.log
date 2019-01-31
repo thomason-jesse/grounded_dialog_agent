@@ -1,0 +1,39 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick up the Can and walk out the door across the hall to the next office.'
+get_from_user (processed): 'pick up the can and walk out the door across the hall to the next office'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes , Go to Walter Wards Office across the hall.'
+get_from_user (processed): 'yes  go to walter wards office across the hall'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go To Walter Wards Office.'
+get_from_user (processed): 'go to walter wards office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Walk across the hall to Walter Wards Office.'
+get_from_user (processed): 'walk across the hall to walter wards office'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'goal': '3422', 'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'recipient': None, 'source': None, 'goal': '3422', 'action': 'walk', 'patient': None}
+main: ... done; got action {'recipient': None, 'source': None, 'goal': '3422', 'action': 'walk', 'patient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': None, 'source': None, 'goal': '3422', 'action': 'walk', 'patient': None}], [{'source': [], 'action': [], 'patient': [], 'recipient': [], 'goal': ['go to walter wards office', 'walk across the hall to walter wards office'], 'all': ['pick up the can and walk out the door across the hall to the next office']}], [], [], [3], [0]]

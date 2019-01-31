@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,1
+frustrated,5
+object_qs,5
+use_navigation,0
+use_delivery,
+use_relocation,
+Noticed that the interface menu (where you talk to the robot) was VERY sluggish to load and allow typing. Unlikely this is a computer issue as im using an updated version of chrome, AMD Threadripper 1950X 16 core processor, 8 GB ram and multiple AMD VEGA Frontier GPUs. I suspect you would get less frustration if the interface were faster and didnt cause more aggravations due to having to wait so long before you could type a response. Im afraid the frustration with the interface is compounded with the robot 

@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,2
+frustrated,4
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,3
+Good luck with your studies!

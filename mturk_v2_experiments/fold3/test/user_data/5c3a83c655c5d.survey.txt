@@ -1,0 +1,9 @@
+tasks_easy,1
+understood,4
+frustrated,6
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,1
+Robot did not ask me about the object but it asked me too much about simple word like &quot;you&quot;. 
+Also somehow robot seemed like understand &quot;A can of Coke&quot; and a picture of coke (same picture as &quot;object&quot;) just popup at the right side of chatting box, but it disappeared in 2 second. After that it stopped. 

@@ -1,0 +1,76 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give Heidi the pill bottle.'
+get_from_user (processed): 'give heidi the pill bottle'
+say_to_user: I haven't heard the word 'pill' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Give Heidi the bottle'
+get_from_user (processed): 'give heidi the bottle'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'pill' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The object depicted in the blue square'
+get_from_user (processed): 'the object depicted in the blue square'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'depicted' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'GIVE HEIDI WHAT IS IN THE BLUE SQUARE'
+get_from_user (processed): 'give heidi what is in the blue square'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'depicted' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'HEIDI'
+get_from_user (processed): 'heidi'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'h'}
+get_from_user requested feedback
+get_from_user (raw): 'BLUE SQUARE'
+get_from_user (processed): 'blue square'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'PICTURE'
+get_from_user (processed): 'picture'
+say_to_user: I haven't heard the word 'picture' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'h'}
+get_from_user requested feedback
+get_from_user (raw): 'ON TABLE'
+get_from_user (processed): 'on table'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'action': 'bring', 'recipient': 'h'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'h'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+perform_action: {'action': 'bring', 'goal': None, 'recipient': 'h', 'source': None, 'patient': 'oidx_6'}
+main: ... done; got action {'action': 'bring', 'goal': None, 'recipient': 'h', 'source': None, 'patient': 'oidx_6'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'goal': None, 'recipient': 'h', 'source': None, 'patient': 'oidx_6'}], [{'action': [], 'goal': [], 'source': [], 'all': ['give heidi the pill bottle'], 'recipient': ['the object depicted in the blue square', 'heidi'], 'patient': ['blue square', 'picture']}], [], [], [3], [0]]

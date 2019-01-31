@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,6
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,0
+This application is EXTREMELY cumbersome to operate!!  I found it difficult to scroll the screen even before I started interacting with the robot.  It would just lock up.  Very, very frustrating!!!

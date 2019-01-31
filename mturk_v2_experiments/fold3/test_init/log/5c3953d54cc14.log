@@ -1,0 +1,102 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'THE SHAPE IS NOT CIRCE'
+get_from_user (processed): 'the shape is not circe'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'GRAY COLOR'
+get_from_user (processed): 'gray color'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: Does 'is' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'LONG SHAPE OF IN PICTURE'
+get_from_user (processed): 'long shape of in picture'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'is' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'not' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'WEIGH 60KG'
+get_from_user (processed): 'weigh 60kg'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'not' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'NOTHING IS NOT SOMEONE IN ITEM'
+get_from_user (processed): 'nothing is not someone in item'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'NOHING'
+get_from_user (processed): 'nohing'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'YES IS DID'
+get_from_user (processed): 'yes is did'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'NO I GIVE MOVE THE ITEM'
+get_from_user (processed): 'no i give move the item'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'YES'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'CENTER  POINT'
+get_from_user (processed): 'center point'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'LEFT'
+get_from_user (processed): 'left'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'NO'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_12'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: To where should I move <p>this</p> from <s>here</s>? {'source': '3402', 'action': 'move', 'patient': 'oidx_12'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'source': '3402', 'action': 'move', 'patient': 'oidx_12', 'goal': '3402', 'recipient': None}
+main: ... done; got action {'source': '3402', 'action': 'move', 'patient': 'oidx_12', 'goal': '3402', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3402', 'action': 'move', 'patient': 'oidx_12', 'goal': '3402', 'recipient': None}], [{'action': [], 'patient': ['center point', 'left'], 'recipient': [], 'all': ['the shape is not circe'], 'source': ['no', 'no'], 'goal': ['no', 'no']}], [], [('is', 'can', True)], [2], [0]]

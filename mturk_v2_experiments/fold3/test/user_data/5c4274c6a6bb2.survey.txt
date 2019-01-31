@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,3
+Looking back, I guess it would be helpful to state that the robot has limited language so be concise and use words for directions that it may recognize

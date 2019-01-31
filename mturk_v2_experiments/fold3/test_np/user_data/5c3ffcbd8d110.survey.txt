@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,3
+frustrated,4
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,1
+The task was a bit confusing, the options to choose the location was for the robot to take and deliver to felt off, I tried to switch options on the tool bar provided but accidentally picked a wrong area

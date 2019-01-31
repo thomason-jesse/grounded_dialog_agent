@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,0
+frustrated,4
+object_qs,3
+use_navigation,
+use_delivery,2
+use_relocation,
+Even I was confused.  What room were the chips in??

@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "main.py", line 11, in <module>
+    import KBGrounder
+  File "/var/www/mturk/phm/grounded_dialog_agent/KBGrounder.py", line 5, in <module>
+    import KnowledgeBase
+  File "/var/www/mturk/phm/grounded_dialog_agent/KnowledgeBase.py", line 5, in <module>
+    import PerceptionClassifiers
+  File "/var/www/mturk/phm/grounded_dialog_agent/PerceptionClassifiers.py", line 7, in <module>
+    from sklearn.svm import SVC
+  File "/home/jesse/.local/lib/python3.5/site-packages/sklearn/svm/__init__.py", line 13, in <module>
+    from .classes import SVC, NuSVC, SVR, NuSVR, OneClassSVM, LinearSVC, \
+  File "/home/jesse/.local/lib/python3.5/site-packages/sklearn/svm/classes.py", line 4, in <module>
+    from .base import _fit_liblinear, BaseSVC, BaseLibSVM
+  File "/home/jesse/.local/lib/python3.5/site-packages/sklearn/svm/base.py", line 11, in <module>
+    from ..preprocessing import LabelEncoder
+  File "/home/jesse/.local/lib/python3.5/site-packages/sklearn/preprocessing/__init__.py", line 6, in <module>
+    from ._function_transformer import FunctionTransformer
+  File "/home/jesse/.local/lib/python3.5/site-packages/sklearn/preprocessing/_function_transformer.py", line 5, in <module>
+    from ..utils.testing import assert_allclose_dense_sparse
+  File "/home/jesse/.local/lib/python3.5/site-packages/sklearn/utils/testing.py", line 21, in <module>
+    import scipy.io
+  File "/home/jesse/.local/lib/python3.5/site-packages/scipy/io/__init__.py", line 97, in <module>
+    from .matlab import loadmat, savemat, whosmat, byteordercodes
+  File "/home/jesse/.local/lib/python3.5/site-packages/scipy/io/matlab/__init__.py", line 13, in <module>
+    from .mio import loadmat, savemat, whosmat
+  File "/home/jesse/.local/lib/python3.5/site-packages/scipy/io/matlab/mio.py", line 12, in <module>
+    from .miobase import get_matfile_version, docfiller
+  File "/home/jesse/.local/lib/python3.5/site-packages/scipy/io/matlab/miobase.py", line 22, in <module>
+    from scipy.misc import doccer
+  File "/home/jesse/.local/lib/python3.5/site-packages/scipy/misc/__init__.py", line 68, in <module>
+    from scipy.interpolate._pade import pade as _pade
+  File "/home/jesse/.local/lib/python3.5/site-packages/scipy/interpolate/__init__.py", line 175, in <module>
+    from .interpolate import *
+  File "/home/jesse/.local/lib/python3.5/site-packages/scipy/interpolate/interpolate.py", line 32, in <module>
+    from .interpnd import _ndim_coords_from_arrays
+  File "interpnd.pyx", line 1, in init scipy.interpolate.interpnd
+  File "/home/jesse/.local/lib/python3.5/site-packages/scipy/spatial/__init__.py", line 95, in <module>
+    from .ckdtree import *
+ImportError: /home/jesse/.local/lib/python3.5/site-packages/scipy/spatial/ckdtree.cpython-35m-x86_64-linux-gnu.so: failed to map segment from shared object

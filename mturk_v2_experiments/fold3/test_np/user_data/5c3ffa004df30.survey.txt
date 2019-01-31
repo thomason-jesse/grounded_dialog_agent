@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,5
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,1
+As there were multiple lounges and pods, the robot seemed confused about where it should go. It was helpful that it popped up a map so that I could better select.

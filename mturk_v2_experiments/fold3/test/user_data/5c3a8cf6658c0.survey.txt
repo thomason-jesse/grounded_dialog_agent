@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,5
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,2
+I feel like I was getting closer to understanding how the robot needed to hear my directions but it was definitely a bit frustrating.

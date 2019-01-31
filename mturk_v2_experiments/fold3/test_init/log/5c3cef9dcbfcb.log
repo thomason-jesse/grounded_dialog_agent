@@ -1,0 +1,63 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give object to Bob.'
+get_from_user (processed): 'give object to bob'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No. The white shape in front of you.'
+get_from_user (processed): 'no the white shape in front of you'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'object' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'object' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'white object'
+get_from_user (processed): 'white object'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'White rectangle'
+get_from_user (processed): 'white rectangle'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'b', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 4
+perform_action: {'recipient': 'b', 'action': 'bring', 'goal': None, 'source': None, 'patient': 'oidx_28'}
+main: ... done; got action {'recipient': 'b', 'action': 'bring', 'goal': None, 'source': None, 'patient': 'oidx_28'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': 'b', 'action': 'bring', 'goal': None, 'source': None, 'patient': 'oidx_28'}], [{'recipient': [], 'goal': [], 'all': ['give object to bob'], 'source': [], 'action': [], 'patient': ['white object', 'white rectangle']}], [], [('object', 'container', False), ('object', 'metallic', False)], [1], [0]]

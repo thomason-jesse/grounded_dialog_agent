@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,4
+object_qs,1
+use_navigation,1
+use_delivery,
+use_relocation,
+The task could have been clearer, for example, clearly explain that you are to tell the robot where to navigate too. I was confused on what I was trying to accomplish.

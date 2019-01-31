@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,2
+frustrated,0
+object_qs,0
+use_navigation,
+use_delivery,3
+use_relocation,
+The robot wasn't really the issue here for me - it was the directions I found confusing. I did not know if the robot already had the object, or first needed to be directed to fetch it. The table showing possible locations did not load right away, so I did not know to use it in order to direct the robot. Again, it's fairly simplistic once one knows what to do and the robot reacted just fine once I had the right information.

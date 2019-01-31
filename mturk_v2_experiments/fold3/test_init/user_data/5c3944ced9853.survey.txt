@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,2
+frustrated,3
+object_qs,3
+use_navigation,2
+use_delivery,
+use_relocation,
+Please rewrite your directions / HIT description; the actual goal of this HIT was extremely hard to understand through the instructions and description you gave.

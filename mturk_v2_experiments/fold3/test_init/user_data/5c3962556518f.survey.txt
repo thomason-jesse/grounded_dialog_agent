@@ -1,0 +1,7 @@
+tasks_easy,0
+understood,5
+frustrated,6
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,1

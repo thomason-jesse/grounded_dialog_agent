@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,2
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,0
+More direction need to be given on the allowable words to use. Right and left, up and down, etc.

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,5
+object_qs,4
+use_navigation,
+use_delivery,4
+use_relocation,
+Once it got past repeating questions about properties, or just asking for a yes or no, it was easy.

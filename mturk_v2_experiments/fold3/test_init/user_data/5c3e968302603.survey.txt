@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,3
+object_qs,1
+use_navigation,
+use_delivery,5
+use_relocation,
+I was unaware that there were multiple objects the robot could select from. Had I known this I could have worded my first question better.

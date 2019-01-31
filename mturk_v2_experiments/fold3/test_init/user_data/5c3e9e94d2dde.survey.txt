@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,5
+object_qs,5
+use_navigation,
+use_delivery,5
+use_relocation,
+Having photos to choose the intended object from simplified things greatly and should have been offered from the start! Also it didn’t really make sense to have names labeled with letters unless those choices were going to be given to the robot - kind of unclear! Thanks

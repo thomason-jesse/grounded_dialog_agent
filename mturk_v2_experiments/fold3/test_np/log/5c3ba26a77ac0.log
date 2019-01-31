@@ -1,0 +1,54 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give this object to Richard Rogue, Secretary.'
+get_from_user (processed): 'give this object to richard rogue secretary'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes, go give this object to Richard.'
+get_from_user (processed): 'yes go give this object to richard'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'To Richard Rogue'
+get_from_user (processed): 'to richard rogue'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'You need to take the object to Richard.'
+get_from_user (processed): 'you need to take the object to richard'
+say_to_user: I haven't heard the word 'you' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'It refers to the robot'
+get_from_user (processed): 'it refers to the robot'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'you' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 14
+perform_action: {'source': None, 'patient': None, 'recipient': None, 'goal': '3512', 'action': 'walk'}
+main: ... done; got action {'source': None, 'patient': None, 'recipient': None, 'goal': '3512', 'action': 'walk'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'patient': None, 'recipient': None, 'goal': '3512', 'action': 'walk'}], [{'all': ['give this object to richard rogue secretary'], 'patient': [], 'source': [], 'recipient': [], 'goal': ['to richard rogue', 'you need to take the object to richard'], 'action': []}], [], [], [2], [0]]

@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,3
+frustrated,4
+object_qs,3
+use_navigation,
+use_delivery,3
+use_relocation,
+There was no option to indicate and correct a typographical error. I accidentally typed &quot;c&quot; instead of &quot;can&quot; and couldn't correct my error easily.

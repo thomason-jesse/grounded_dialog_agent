@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,0
+frustrated,3
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,0
+The instructions were a bit unclear. I was instructed to tell the robot my command, I did not know how I should command it, should I tell it to &quot;Go to the lab&quot;? or how? Should I tell it &quot;take the pringles to the lab&quot;? should I just say 'walk' to the lab, or what?

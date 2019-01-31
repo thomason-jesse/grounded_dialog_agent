@@ -1,0 +1,37 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'walk'
+get_from_user (processed): 'walk'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'get the pringles'
+get_from_user (processed): 'get the pringles'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'get pringles'
+get_from_user (processed): 'get pringles'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'kitchen'
+get_from_user (processed): 'kitchen'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 1
+perform_action: {'patient': None, 'action': 'walk', 'source': None, 'goal': '3514', 'recipient': None}
+main: ... done; got action {'patient': None, 'action': 'walk', 'source': None, 'goal': '3514', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': None, 'action': 'walk', 'source': None, 'goal': '3514', 'recipient': None}], [{'all': ['walk'], 'recipient': [], 'goal': ['get pringles', 'kitchen'], 'patient': [], 'action': [], 'source': []}], [], [], [0], [1]]

@@ -1,0 +1,56 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the smallest Lab.'
+get_from_user (processed): 'go to the smallest lab'
+say_to_user: I haven't heard the word 'smallest' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Smallest refers to size.'
+get_from_user (processed): 'smallest refers to size'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'smallest' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'smallest' mean the same thing as 'the'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'smallest' mean the same thing as 'jar'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go the the Lab in between two other Labs.'
+get_from_user (processed): 'go the the lab in between two other labs'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the Lab above the Kitchen.'
+get_from_user (processed): 'go to the lab above the kitchen'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go the lab across from Walter Ward's office.'
+get_from_user (processed): 'go the lab across from walter ward 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+perform_action: {'action': 'walk', 'patient': None, 'goal': '3414', 'recipient': None, 'source': None}
+main: ... done; got action {'action': 'walk', 'patient': None, 'goal': '3414', 'recipient': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'patient': None, 'goal': '3414', 'recipient': None, 'source': None}], [{'goal': ['go to the lab above the kitchen', "go the lab across from walter ward 's office"], 'recipient': [], 'source': [], 'action': [], 'patient': [], 'all': ['go to the smallest lab']}], [], [('smallest', 'the', False), ('smallest', 'jar', False)], [3], [0]]

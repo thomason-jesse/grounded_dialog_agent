@@ -1,0 +1,55 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the red can to the Lab'
+get_from_user (processed): 'take the red can to the lab'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver the red can to the Lab'
+get_from_user (processed): 'deliver the red can to the lab'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the red can'
+get_from_user (processed): 'the red can'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the Lab'
+get_from_user (processed): 'the lab'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'red can in Lounge'
+get_from_user (processed): 'red can in lounge'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_26', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Lab'
+get_from_user (processed): 'lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_26', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'patient': 'oidx_26', 'source': None, 'recipient': 's', 'action': 'bring', 'goal': None}
+main: ... done; got action {'patient': 'oidx_26', 'source': None, 'recipient': 's', 'action': 'bring', 'goal': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_26', 'source': None, 'recipient': 's', 'action': 'bring', 'goal': None}], [{'source': [], 'goal': [], 'recipient': ['the lab', 'lab'], 'all': ['take the red can to the lab'], 'patient': ['the red can', 'red can in lounge'], 'action': []}], [], [], [0], [1]]

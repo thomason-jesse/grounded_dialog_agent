@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,2
+frustrated,4
+object_qs,3
+use_navigation,2
+use_delivery,
+use_relocation,
+I misspelled Person at the beginning, so sorry about that.

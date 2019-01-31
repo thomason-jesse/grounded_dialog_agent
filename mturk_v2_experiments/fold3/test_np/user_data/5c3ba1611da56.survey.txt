@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,5
+frustrated,0
+object_qs,1
+use_navigation,5
+use_delivery,
+use_relocation,
+The robot understood where I wanted it to go within three questions. This entire process was very easy and I had little complications. The only issue I can think of is an input delay between typing and the letters appearing within the box.

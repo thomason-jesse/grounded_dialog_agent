@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,6
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,1
+I got NO response from the robot. I was unable to type an order to give to the robot. This disappointing because I was curious to see what the study entailed. 

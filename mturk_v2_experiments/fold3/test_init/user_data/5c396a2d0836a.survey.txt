@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,5
+frustrated,2
+object_qs,0
+use_navigation,4
+use_delivery,
+use_relocation,
+The description did not say where i should want the robot to go so I had the same problem the robot likely had.  I interpreted it as send the robot to a person, and they were all in offices so I told it to go to an office.  its navigation system seemed to work alright by selecting an office

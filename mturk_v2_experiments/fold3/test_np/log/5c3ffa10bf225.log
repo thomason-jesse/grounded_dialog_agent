@@ -1,0 +1,133 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give Richard Rogue the container with the red cap.'
+get_from_user (processed): 'give richard rogue the container with the red cap'
+say_to_user: I haven't heard the word 'cap' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No. It refers to the covering or top of a container.'
+get_from_user (processed): 'no it refers to the covering or top of a container'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'cap' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'I want you to deliver something to someone'
+get_from_user (processed): 'i want you to deliver something to someone'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'give the white container to Richard Rogue'
+get_from_user (processed): 'give the white container to richard rogue'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'the secretary's desk'
+get_from_user (processed): 'the secretary 's desk'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'move the container to the secretary's desk'
+get_from_user (processed): 'move the container to the secretary 's desk'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'move the white container from the white table to the secretary's desk'
+get_from_user (processed): 'move the white container from the white table to the secretary 's desk'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'action': 'move', 'goal': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'from the white table'
+get_from_user (processed): 'from the white table'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'action': 'move', 'goal': '3512'}
+get_from_user requested feedback
+get_from_user (raw): 'from the lab'
+get_from_user (processed): 'from the lab'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3512', 'source': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'ye'
+get_from_user (processed): 'ye'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3512', 'source': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3512', 'source': '3414a'}
+get_from_user requested feedback
+get_from_user (raw): 'a white container with a red lid'
+get_from_user (processed): 'a white container with a red lid'
+say_to_user: I haven't heard the word 'lid' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3512', 'source': '3414a'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+perform_action: {'action': 'move', 'recipient': None, 'goal': '3512', 'source': '3414a', 'patient': 'oidx_12'}
+main: ... done; got action {'action': 'move', 'recipient': None, 'goal': '3512', 'source': '3414a', 'patient': 'oidx_12'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'move', 'recipient': None, 'goal': '3512', 'source': '3414a', 'patient': 'oidx_12'}], [{'action': [], 'recipient': [], 'goal': ["move the container to the secretary 's desk", "move the white container from the white table to the secretary 's desk"], 'source': ['from the white table', 'from the lab'], 'patient': ["the secretary 's desk", 'a white container with a red lid'], 'all': ['give richard rogue the container with the red cap']}], [], [], [6], [0]]

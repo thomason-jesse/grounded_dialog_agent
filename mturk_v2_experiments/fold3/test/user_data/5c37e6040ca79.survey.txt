@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,3
+Wish it would have worked. The command I would have given was: Pick up the object in the kitchen and take it to Dr. Heidi Hughes office.

@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,6
+frustrated,0
+object_qs,0
+use_navigation,5
+use_delivery,
+use_relocation,
+I was unsure about the instructions - I thought we would be given a specific prompt to give the robot. I eventually figured it out, but that would have been helpful to know upfront!

@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,3
+object_qs,0
+use_navigation,
+use_delivery,3
+use_relocation,
+The robot had a problem and I was told to advance to the next page. I'm interested in actually doing the task though! 

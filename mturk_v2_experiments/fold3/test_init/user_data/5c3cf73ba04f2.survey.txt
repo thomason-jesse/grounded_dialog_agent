@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,1
+object_qs,1
+use_navigation,
+use_delivery,3
+use_relocation,
+I inadvertently told the robot to deliver the wrong item. Frustrating, because I was on a roll getting it to understand me. 

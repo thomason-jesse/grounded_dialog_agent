@@ -1,0 +1,66 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick up the glue and give the glue to Dave'
+get_from_user (processed): 'pick up the glue and give the glue to dave'
+say_to_user: I haven't heard the word 'glue' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Pick up the cylinder container and give the container to Dave.'
+get_from_user (processed): 'pick up the cylinder container and give the container to dave'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'glue' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'glue' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the cylinder container'
+get_from_user (processed): 'the cylinder container'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the object in the middle of the table'
+get_from_user (processed): 'the object in the middle of the table'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_6', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Dave'
+get_from_user (processed): 'dave'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_6', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'David Daniel'
+get_from_user (processed): 'david daniel'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'patient': 'oidx_6', 'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'patient': 'oidx_6', 'action': 'bring', 'goal': None, 'source': None, 'recipient': 'd'}
+main: ... done; got action {'patient': 'oidx_6', 'action': 'bring', 'goal': None, 'source': None, 'recipient': 'd'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_6', 'action': 'bring', 'goal': None, 'source': None, 'recipient': 'd'}], [{'action': [], 'recipient': ['dave', 'david daniel'], 'all': ['pick up the glue and give the glue to dave'], 'patient': ['the cylinder container', 'the object in the middle of the table'], 'goal': [], 'source': []}], [], [('glue', 'container', True)], [3], [0]]

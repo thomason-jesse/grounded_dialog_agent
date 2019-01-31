@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,4
+use_relocation,
+The instruction for using the robot could have been more clear. For example, only giving yes and no questions. And the interface could be more user friendly, less clunky

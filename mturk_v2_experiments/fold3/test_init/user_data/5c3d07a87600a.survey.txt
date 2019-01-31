@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,1
+object_qs,1
+use_navigation,5
+use_delivery,
+use_relocation,
+Interesting experience - raised questions about how clear I am in giving commands

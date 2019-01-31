@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,0
+frustrated,5
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,4
+I feel I the directions could have been a little more clear. Maybe lead with an example, it just seemed tough from the beginning as how to start

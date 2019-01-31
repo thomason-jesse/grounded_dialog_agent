@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,5
+frustrated,2
+object_qs,1
+use_navigation,2
+use_delivery,
+use_relocation,
+I was unaware of the illistration option until  towards the end. I was under the impression that i had to verbally describe which room I wanted the bot to navigate to. Other than that, this study was very unique &amp; interesting, and I genuinely enjoyed participating in it.

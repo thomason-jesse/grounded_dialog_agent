@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,2
+frustrated,1
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,1
+I was probably confusing the robot as I tried to give it way too many instructions at first.  I was more confused than the robot!  We got it done though!

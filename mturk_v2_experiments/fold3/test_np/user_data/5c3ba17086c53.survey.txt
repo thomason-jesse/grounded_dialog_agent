@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,5
+object_qs,0
+use_navigation,2
+use_delivery,
+use_relocation,
+I got completely confused and thought I was supposed to guide the robot to the red x. I was looking for where the robot was, but couldn't find him, so just gave instructions. If you wish to reject my efforts, so be it, but I really was trying!

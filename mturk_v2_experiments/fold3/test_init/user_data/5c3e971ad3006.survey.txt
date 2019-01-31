@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,3
+frustrated,4
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,1
+Robot needs improve to understand commands better, like right, left

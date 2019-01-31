@@ -1,0 +1,62 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'I need to know who owns the office you are in'
+get_from_user (processed): 'i need to know who owns the office you are in'
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No. Tell mee who owns the office you are in'
+get_from_user (processed): 'no tell mee who owns the office you are in'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Are you near the kitchen'
+get_from_user (processed): 'are you near the kitchen'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Go to pod nect to Nagel office'
+get_from_user (processed): 'go to pod nect to nagel office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Are you in the pod yet'
+get_from_user (processed): 'are you in the pod yet'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'need' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'need' mean the same thing as 'can'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Pod next to conference room one side. Nagel office on the other side'
+get_from_user (processed): 'pod next to conference room one side nagel office on the other side'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to top office 3rd from left'
+get_from_user (processed): 'go to top office 3rd from left'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'recipient': None, 'source': None, 'action': 'walk', 'goal': '3406', 'patient': None}
+main: ... done; got action {'recipient': None, 'source': None, 'action': 'walk', 'goal': '3406', 'patient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': None, 'source': None, 'action': 'walk', 'goal': '3406', 'patient': None}], [{'action': [], 'goal': ['pod next to conference room one side nagel office on the other side', 'go to top office 3rd from left'], 'patient': [], 'recipient': [], 'source': [], 'all': ['i need to know who owns the office you are in']}], [], [('need', 'can', False)], [7], [0]]

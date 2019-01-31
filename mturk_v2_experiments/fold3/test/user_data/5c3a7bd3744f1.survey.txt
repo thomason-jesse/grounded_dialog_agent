@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,0
+object_qs,0
+use_navigation,5
+use_delivery,
+use_relocation,
+I think the robot, when confused, lacks certain amount of politeness. Just my personal view, of course.

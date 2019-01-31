@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,6
+object_qs,5
+use_navigation,
+use_delivery,0
+use_relocation,
+Very frustrating to chat with the robot, but an interesting experience. I am interested in seeing the results of this study.

@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,0
+frustrated,0
+object_qs,4
+use_navigation,
+use_delivery,6
+use_relocation,
+At first, I expected it to understand more than I should have. Overall, I enjoyed the survey and would love to work on more! I'm a huge fan of robotics &amp; AI. Keep up the great work!

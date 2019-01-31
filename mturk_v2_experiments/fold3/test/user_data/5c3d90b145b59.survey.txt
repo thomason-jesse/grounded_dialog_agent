@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,6
+object_qs,5
+use_navigation,
+use_delivery,2
+use_relocation,
+Might be less frustrating with some guidelines for what the robot is expecting to hear/syntax

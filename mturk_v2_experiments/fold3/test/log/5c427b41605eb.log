@@ -1,0 +1,61 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go to Dr. Sybil Smalt's office.'
+get_from_user (processed): 'go to dr sybil smalt 's office'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes, good job. Can you ask him to see me in the Kitchen?'
+get_from_user (processed): 'yes good job can you ask him to see me in the kitchen'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'Come to the kitchen please.'
+get_from_user (processed): 'come to the kitchen please'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'go to Kitchen please.'
+get_from_user (processed): 'go to kitchen please'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'Kitchen'
+get_from_user (processed): 'kitchen'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'are you sick?'
+get_from_user (processed): 'are you sick'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'who is here?'
+get_from_user (processed): 'who is here'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'where is Dr. Sybil Smalt?'
+get_from_user (processed): 'where is dr sybil smalt'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'go to see Peggy Parker, Intern.'
+get_from_user (processed): 'go to see peggy parker intern'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3430'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'walk', 'source': None, 'patient': None, 'goal': '3430', 'recipient': None}
+main: ... done; got action {'action': 'walk', 'source': None, 'patient': None, 'goal': '3430', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'source': None, 'patient': None, 'goal': '3430', 'recipient': None}], [{'all': ["go to dr sybil smalt 's office"], 'source': [], 'goal': [], 'action': [], 'patient': [], 'recipient': []}], [], [], [5], [0]]

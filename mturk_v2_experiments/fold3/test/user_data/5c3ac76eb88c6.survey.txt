@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,4
+frustrated,4
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,4
+Confusing at first, but eventually you get the hang of the robot! 

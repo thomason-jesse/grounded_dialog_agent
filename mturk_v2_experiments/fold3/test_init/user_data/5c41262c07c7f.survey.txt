@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,1
+object_qs,3
+use_navigation,
+use_delivery,4
+use_relocation,
+I like the idea and I found that the robot asked good questions, however I couldn't name the container because I couldn't see it very well. The Pringles can would be easier, so maybe you should define better the objects to be moved.

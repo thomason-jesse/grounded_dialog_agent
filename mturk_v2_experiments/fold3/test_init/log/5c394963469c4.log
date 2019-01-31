@@ -1,0 +1,79 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Collect object in conference room between pod and office, and deliver to Peggy Parker's office'
+get_from_user (processed): 'collect object in conference room between pod and office and deliver to peggy parker 's office'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'This use of "object" refers to a white rectangular prism approximately 12" in length'
+get_from_user (processed): 'this use of object refers to a white rectangular prism approximately 12 in length'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'object' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'object' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'to Peggy Parker'
+get_from_user (processed): 'to peggy parker'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'conference room'
+get_from_user (processed): 'conference room'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'rectangular prism'
+get_from_user (processed): 'rectangular prism'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'piece of styrofoam'
+get_from_user (processed): 'piece of styrofoam'
+say_to_user: I haven't heard the word 'piece' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+say_to_user_with_referents: To where should I move <p>this</p> from somewhere? {'action': 'move', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'to Peggy Parker's office'
+get_from_user (processed): 'to peggy parker 's office'
+say_to_user_with_referents: I should move <p>this</p> from somewhere to <g>there</g>? {'goal': '3508', 'action': 'move', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'goal': '3508', 'action': 'move', 'patient': 'oidx_13'}
+get_from_user requested feedback
+get_from_user (raw): 'conference room'
+get_from_user (processed): 'conference room'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'goal': '3508', 'action': 'move', 'patient': 'oidx_13'}
+get_from_user_enum requested feedback
+get_from_user_enum: 12
+perform_action: {'goal': '3508', 'recipient': None, 'action': 'move', 'source': '3416', 'patient': 'oidx_13'}
+main: ... done; got action {'goal': '3508', 'recipient': None, 'action': 'move', 'source': '3416', 'patient': 'oidx_13'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': '3508', 'recipient': None, 'action': 'move', 'source': '3416', 'patient': 'oidx_13'}], [{'goal': ['to peggy parker', "to peggy parker 's office"], 'recipient': [], 'action': [], 'source': ['conference room', 'conference room'], 'patient': ['rectangular prism', 'piece of styrofoam'], 'all': ["collect object in conference room between pod and office and deliver to peggy parker 's office"]}], [], [('object', 'container', False), ('object', 'metallic', False)], [2], [0]]

@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,4
+frustrated,1
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,5
+I was going to give it one command at a time so I did't get the robot to do the whole command.

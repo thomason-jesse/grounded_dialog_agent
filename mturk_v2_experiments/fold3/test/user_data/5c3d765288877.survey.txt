@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,3
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,2
+This was my first time doing something like this. I found it really interesting! 

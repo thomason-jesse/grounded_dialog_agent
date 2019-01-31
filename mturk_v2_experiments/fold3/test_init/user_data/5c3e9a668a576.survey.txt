@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,3
+frustrated,4
+object_qs,3
+use_navigation,2
+use_delivery,
+use_relocation,
+It was hard to tell if the robot knew anything about what i was telling it to do until i was presented with the map to choose a location for it to go.

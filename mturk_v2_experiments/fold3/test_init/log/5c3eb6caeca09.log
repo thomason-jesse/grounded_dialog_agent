@@ -1,0 +1,79 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move the Pringles jar from the office of Mal to the pod next door'
+get_from_user (processed): 'move the pringles jar from the office of mal to the pod next door'
+say_to_user: I haven't heard the word 'jar' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'No, I want you to move something from one place to another'
+get_from_user (processed): 'no i want you to move something from one place to another'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Pod next to office of Peggy Parker and office of Mallory Maroon'
+get_from_user (processed): 'pod next to office of peggy parker and office of mallory maroon'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Pod'
+get_from_user (processed): 'pod'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3424', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3504', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'office of Mallory'
+get_from_user (processed): 'office of mallory'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3504', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'office'
+get_from_user (processed): 'office'
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3504', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Pringles can'
+get_from_user (processed): 'pringles can'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3504', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'can'
+get_from_user (processed): 'can'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3504', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'patient': 'oidx_13', 'goal': '3504', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 8
+perform_action: {'patient': 'oidx_13', 'goal': '3504', 'action': 'move', 'source': '3502', 'recipient': None}
+main: ... done; got action {'patient': 'oidx_13', 'goal': '3504', 'action': 'move', 'source': '3502', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_13', 'goal': '3504', 'action': 'move', 'source': '3502', 'recipient': None}], [{'recipient': [], 'action': [], 'source': ['office of mallory', 'office'], 'all': ['move the pringles jar from the office of mal to the pod next door'], 'patient': ['pringles can', 'can'], 'goal': ['pod next to office of peggy parker and office of mallory maroon', 'pod']}], [], [], [3], [0]]

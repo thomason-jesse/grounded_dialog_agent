@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,4
+frustrated,4
+object_qs,4
+use_navigation,2
+use_delivery,
+use_relocation,
+I'm still not certain why the robot was not able to go to the office named after Dave the first time I typed it in, but then chose to ask about it later after answering a question about the hallway. *shrug* Maybe I treated it too much like a robot? Like it forgot that I had asked him to go the office in the first place. I don't know.

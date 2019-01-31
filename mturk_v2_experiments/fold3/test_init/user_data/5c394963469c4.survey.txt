@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,1
+frustrated,3
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,4
+This totally reminded me of programming my Omnibot and Big Trax toy bots as a kid in the 80's.  Good luck in your endeavors, and enjoy the good parts of your day.

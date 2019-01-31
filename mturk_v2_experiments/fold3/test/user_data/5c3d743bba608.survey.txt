@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,4
+object_qs,1
+use_navigation,
+use_delivery,2
+use_relocation,
+The robot was fine, the tasks were lagging and making it difficult to type and choose the person in the program

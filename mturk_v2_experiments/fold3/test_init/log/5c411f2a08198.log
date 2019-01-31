@@ -1,0 +1,32 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Dave's office'
+get_from_user (processed): 'go to dave 's office'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Dave's office'
+get_from_user (processed): 'go to dave 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Dave'
+get_from_user (processed): 'go to dave'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'goal': '3420', 'recipient': None, 'source': None, 'action': 'walk', 'patient': None}
+main: ... done; got action {'goal': '3420', 'recipient': None, 'source': None, 'action': 'walk', 'patient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': '3420', 'recipient': None, 'source': None, 'action': 'walk', 'patient': None}], [{'recipient': [], 'goal': ["go to dave 's office", 'go to dave'], 'all': ["go to dave 's office"], 'source': [], 'action': [], 'patient': []}], [], [], [0], [0]]

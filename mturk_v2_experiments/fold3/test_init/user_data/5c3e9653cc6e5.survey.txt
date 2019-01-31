@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,1
+Could not get the robot to go to the office AND take the Pringles can. I only got the robot to go to the office with the can in it. 

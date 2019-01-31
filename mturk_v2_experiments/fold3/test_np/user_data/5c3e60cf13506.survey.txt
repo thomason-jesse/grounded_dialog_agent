@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,5
+object_qs,5
+use_navigation,
+use_delivery,0
+use_relocation,
+It was a little difficult to instruct this robot to do what I wanted. the picture wasn't too obvious and it was hard to explain that to the robot.

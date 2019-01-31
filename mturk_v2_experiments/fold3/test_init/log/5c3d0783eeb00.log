@@ -1,0 +1,104 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move the object from Dr. Nancy Nagel's office, to intern Peggy Parker's office.'
+get_from_user (processed): 'move the object from dr nancy nagel 's office to intern peggy parker 's office'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes an object is a noun'
+get_from_user (processed): 'yes an object is a noun'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'object' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Does 'object' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The thing in Dr. Nancy Nagel's office'
+get_from_user (processed): 'the thing in dr nancy nagel 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'You can find it on the pink map. It is labeled x'
+get_from_user (processed): 'you can find it on the pink map it is labeled x'
+say_to_user: I haven't heard the word 'you' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'pink' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes pink is color'
+get_from_user (processed): 'yes pink is color'
+say_to_user: Does 'pink' mean the same thing as 'white'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Does 'pink' mean the same thing as 'yellow'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Does 'pink' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'map' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'labeled' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Shape'
+get_from_user (processed): 'shape'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'x' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Does 'x' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker'
+get_from_user (processed): 'peggy parker'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'patient': 'oidx_28', 'recipient': 'p', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+perform_action: {'goal': None, 'patient': 'oidx_28', 'source': None, 'recipient': 'p', 'action': 'bring'}
+main: ... done; got action {'goal': None, 'patient': 'oidx_28', 'source': None, 'recipient': 'p', 'action': 'bring'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': None, 'patient': 'oidx_28', 'source': None, 'recipient': 'p', 'action': 'bring'}], [{'all': ["move the object from dr nancy nagel 's office to intern peggy parker 's office"], 'goal': [], 'patient': ["the thing in dr nancy nagel 's office", 'you can find it on the pink map it is labeled x'], 'source': [], 'recipient': ['peggy parker'], 'action': []}], [], [('object', 'container', False), ('object', 'metallic', False), ('pink', 'white', False), ('pink', 'yellow', False), ('pink', 'blue', False), ('x', 'metallic', False), ('x', 'cylinder', False)], [4], [0]]

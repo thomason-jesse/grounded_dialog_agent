@@ -1,0 +1,78 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Look in the conference room.'
+get_from_user (processed): 'look in the conference room'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move the coke can to Dr. Nagel's office.'
+get_from_user (processed): 'move the coke can to dr nagel 's office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: I should move something from <s>here</s> to <g>there</g>? {'source': '3416', 'goal': '3416', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3416', 'goal': '3416', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move the Coke can from the conference room on the pink map to the conference room on the green map.'
+get_from_user (processed): 'move the coke can from the conference room on the pink map to the conference room on the green map'
+say_to_user: I haven't heard the word 'green' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'color'
+get_from_user (processed): 'color'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'green' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Green is a color.'
+get_from_user (processed): 'green is a color'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'green' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'green' mean the same thing as 'object'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'green' mean the same thing as 'yellow'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'green' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'They are both colors.'
+get_from_user (processed): 'they are both colors'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'green' mean the same thing as 'blue'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3416', 'goal': '3416', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'coke can'
+get_from_user (processed): 'coke can'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3416', 'goal': '3416', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'source': '3416', 'goal': '3416', 'action': 'move', 'patient': 'oidx_11', 'recipient': None}
+main: ... done; got action {'source': '3416', 'goal': '3416', 'action': 'move', 'patient': 'oidx_11', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3416', 'goal': '3416', 'action': 'move', 'patient': 'oidx_11', 'recipient': None}], [{'goal': [], 'action': [], 'patient': ['move the coke can from the conference room on the pink map to the conference room on the green map', 'coke can'], 'all': ['look in the conference room'], 'source': [], 'recipient': []}], [], [('green', 'object', False), ('green', 'yellow', False), ('green', 'blue', False)], [3], [0]]

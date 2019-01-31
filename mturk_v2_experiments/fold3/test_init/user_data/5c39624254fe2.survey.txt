@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,4
+frustrated,6
+object_qs,4
+use_navigation,3
+use_delivery,
+use_relocation,
+I had no idea what to tell the robot in order for it to go to the X. The instructions were not at all clear. 

@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,2
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,6
+I did not communicate well with the robot. I told it to move the object on x in the pink map to the x on the green map and I confused the robot. I was not sure how to command it. 

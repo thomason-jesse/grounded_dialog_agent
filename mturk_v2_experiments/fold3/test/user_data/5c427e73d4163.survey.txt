@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,4
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,1
+the page seemed to lag 

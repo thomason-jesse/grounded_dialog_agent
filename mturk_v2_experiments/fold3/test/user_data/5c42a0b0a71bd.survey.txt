@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,4
+object_qs,2
+use_navigation,3
+use_delivery,
+use_relocation,
+I was a little confused on how to start this task because of all the bolded text. 

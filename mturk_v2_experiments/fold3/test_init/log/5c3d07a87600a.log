@@ -1,0 +1,82 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the pod next to the center lounge'
+get_from_user (processed): 'go to the pod next to the center lounge'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move yourself to the pod between the lounge and the printer'
+get_from_user (processed): 'move yourself to the pod between the lounge and the printer'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'to the pod between the printer and the lounge'
+get_from_user (processed): 'to the pod between the printer and the lounge'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'tell me where you are now'
+get_from_user (processed): 'tell me where you are now'
+say_to_user: I haven't heard the word 'you' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'it refers to you, the robot'
+get_from_user (processed): 'it refers to you the robot'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'you' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'are' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 24
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3410', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'I want you to move yourself'
+get_from_user (processed): 'i want you to move yourself'
+say_to_user: I haven't heard the word 'want' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3410', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'move the robot'
+get_from_user (processed): 'move the robot'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3410', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3410', 'action': 'move', 'source': '3506'}
+get_from_user requested feedback
+get_from_user (raw): 'the robot'
+get_from_user (processed): 'the robot'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3410', 'action': 'move', 'source': '3506'}
+get_from_user requested feedback
+get_from_user (raw): 'move the printer'
+get_from_user (processed): 'move the printer'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3410', 'action': 'move', 'source': '3506'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+perform_action: {'goal': '3410', 'action': 'move', 'source': '3506', 'recipient': None, 'patient': 'oidx_12'}
+main: ... done; got action {'goal': '3410', 'action': 'move', 'source': '3506', 'recipient': None, 'patient': 'oidx_12'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': '3410', 'action': 'move', 'source': '3506', 'recipient': None, 'patient': 'oidx_12'}], [{'goal': ['to the pod between the printer and the lounge', 'tell me where you are now'], 'all': ['go to the pod next to the center lounge'], 'action': [], 'source': ['i want you to move yourself', 'move the robot'], 'recipient': [], 'patient': ['the robot', 'move the printer']}], [], [], [3], [3]]

@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,1
+frustrated,4
+object_qs,5
+use_navigation,1
+use_delivery,
+use_relocation,
+The robot didn't know what marked was. It would be help to just say &quot;go to the spot marked&quot;

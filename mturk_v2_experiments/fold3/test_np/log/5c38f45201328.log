@@ -1,0 +1,19 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'walk to the left middle pod'
+get_from_user (processed): 'walk to the left middle pod'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3410'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'recipient': None, 'action': 'walk', 'goal': '3410', 'source': None, 'patient': None}
+main: ... done; got action {'recipient': None, 'action': 'walk', 'goal': '3410', 'source': None, 'patient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': None, 'action': 'walk', 'goal': '3410', 'source': None, 'patient': None}], [{'action': [], 'goal': [], 'recipient': [], 'patient': [], 'all': ['walk to the left middle pod'], 'source': []}], [], [], [0], [0]]

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,4
+frustrated,4
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,1
+I was a little confused on how to get the robot to understand what it was supposed to deliver, but it was easy enough to figure that out.

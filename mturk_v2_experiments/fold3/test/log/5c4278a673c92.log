@@ -1,0 +1,46 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'lean foward and pick up object.'
+get_from_user (processed): 'lean foward and pick up object'
+say_to_user: I haven't heard the word 'lean' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no lean is a body movement as in bend your body towards the object.'
+get_from_user (processed): 'no lean is a body movement as in bend your body towards the object'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'lean' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'long rectangle'
+get_from_user (processed): 'long rectangle'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'robert bob brown'
+get_from_user (processed): 'robert bob brown'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'patient': 'oidx_28', 'action': 'bring', 'recipient': 'b'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'patient': 'oidx_28', 'action': 'bring', 'goal': None, 'source': None, 'recipient': 'b'}
+main: ... done; got action {'patient': 'oidx_28', 'action': 'bring', 'goal': None, 'source': None, 'recipient': 'b'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_28', 'action': 'bring', 'goal': None, 'source': None, 'recipient': 'b'}], [{'patient': ['long rectangle'], 'source': [], 'recipient': ['robert bob brown'], 'goal': [], 'action': [], 'all': ['lean foward and pick up object']}], [], [], [2], [0]]

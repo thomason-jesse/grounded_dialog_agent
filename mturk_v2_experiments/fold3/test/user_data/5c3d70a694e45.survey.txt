@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,4
+object_qs,5
+use_navigation,
+use_delivery,3
+use_relocation,
+I had some difficulty with the schematic of the facility as I found the spot for Robert Brown .. however, I didn;t see the object posted in the schematic. If I had known this locateion I could have directed robot there. This combined with the verbal ie typewritten instruction to use type and command the robot also confused me somewhat as I wa sowrking on two levels the diagram with arrows and the constant verbal interaction. As a first time participant .. it would be easier for me to use the schematic dia.

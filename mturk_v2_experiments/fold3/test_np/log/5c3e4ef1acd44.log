@@ -1,0 +1,75 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Grab the can in peggy parker's office and take it to the largest lab.'
+get_from_user (processed): 'grab the can in peggy parker 's office and take it to the largest lab'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes, move the item'
+get_from_user (processed): 'yes move the item'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'to the lad next an office'
+get_from_user (processed): 'to the lad next an office'
+say_to_user: I haven't heard the word 'lad' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'to the lab next an office'
+get_from_user (processed): 'to the lab next an office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 24
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3436', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'from peggy parker's office'
+get_from_user (processed): 'from peggy parker 's office'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3436', 'action': 'move', 'source': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'a can'
+get_from_user (processed): 'a can'
+say_to_user_with_referents: You want me to move <p>this</p> from somewhere to <g>there</g> (not give it to someone)? {'goal': '3436', 'patient': 'oidx_11', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3436', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'a soda can'
+get_from_user (processed): 'a soda can'
+say_to_user: I haven't heard the word 'soda' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move <p>this</p> from somewhere to <g>there</g> (not give it to someone)? {'goal': '3436', 'patient': 'oidx_11', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'goal': '3436', 'patient': 'oidx_26', 'action': 'move', 'source': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'goal': '3436', 'patient': 'oidx_26', 'source': '3508', 'action': 'move', 'recipient': None}
+main: ... done; got action {'goal': '3436', 'patient': 'oidx_26', 'source': '3508', 'action': 'move', 'recipient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': '3436', 'patient': 'oidx_26', 'source': '3508', 'action': 'move', 'recipient': None}], [{'patient': ['a can', 'a soda can'], 'recipient': [], 'all': ["grab the can in peggy parker 's office and take it to the largest lab"], 'source': ["from peggy parker 's office"], 'goal': ['to the lad next an office', 'to the lab next an office'], 'action': []}], [], [], [1], [1]]

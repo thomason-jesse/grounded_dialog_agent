@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,4
+frustrated,4
+object_qs,0
+use_navigation,
+use_delivery,0
+use_relocation,
+I didn't understand what I needed to do which of course made it hard for the robot.  It took me reading everything several times to really get the idea of what needed to be done.

@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,6
+frustrated,0
+object_qs,1
+use_navigation,5
+use_delivery,
+use_relocation,
+UNSURE ABOUT WHERE THE ROBOT WAS TO END UP. THOUGH HE UNDERSTOOD ME WELL, I DID NOT HAVE AN END TASK CLEARLY ILLUSTRATED TO ME.

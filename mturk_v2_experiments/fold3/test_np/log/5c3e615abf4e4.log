@@ -1,0 +1,23 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'go to peggy parkers office'
+get_from_user (processed): 'go to peggy parkers office'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3508'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'patient': None, 'action': 'walk', 'goal': '3508', 'recipient': None, 'source': None}
+main: ... done; got action {'patient': None, 'action': 'walk', 'goal': '3508', 'recipient': None, 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': None, 'action': 'walk', 'goal': '3508', 'recipient': None, 'source': None}], [{'patient': [], 'all': ['go to peggy parkers office'], 'source': [], 'recipient': [], 'action': [], 'goal': []}], [], [], [0], [0]]

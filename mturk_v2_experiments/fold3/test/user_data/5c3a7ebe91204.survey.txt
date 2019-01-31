@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,3
+use_relocation,
+The robot could not understand what I wanted it to give the person. I felt like I couldn't properly describe the object.

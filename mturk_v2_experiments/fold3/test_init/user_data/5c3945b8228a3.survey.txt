@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,4
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,5
+I was told to select an option from the menu/map but the menu/map never showed up.... I tried clicking around on the page and moving about to find it or maybe trigger it into showing up until I got the error message that the robot messed up and I could advance to payment. I was enjoying my conversation with it (the robot) though, and I think it would have understood me eventually; I would love to do a task like this in the future.

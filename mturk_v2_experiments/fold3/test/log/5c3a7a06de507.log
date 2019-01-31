@@ -1,0 +1,72 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Give the jar of nuts to Peggy Parker'
+get_from_user (processed): 'give the jar of nuts to peggy parker'
+say_to_user: I haven't heard the word 'nuts' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No. Nuts are food.'
+get_from_user (processed): 'no nuts are food'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'nuts' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'do you see the jar on the table?'
+get_from_user (processed): 'do you see the jar on the table'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'nuts' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'nuts' mean the same thing as 'bean'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Peggy Parker'
+get_from_user (processed): 'peggy parker'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The jar of nuts'
+get_from_user (processed): 'the jar of nuts'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'p', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the jar'
+get_from_user (processed): 'the jar'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'p', 'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'yes deliver the can to Peggy Parker'
+get_from_user (processed): 'yes deliver the can to peggy parker'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'p', 'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'goal': None, 'recipient': 'p', 'action': 'bring', 'patient': 'oidx_26', 'source': None}
+main: ... done; got action {'goal': None, 'recipient': 'p', 'action': 'bring', 'patient': 'oidx_26', 'source': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': None, 'recipient': 'p', 'action': 'bring', 'patient': 'oidx_26', 'source': None}], [{'all': ['give the jar of nuts to peggy parker'], 'recipient': ['peggy parker'], 'goal': [], 'source': [], 'patient': ['the jar of nuts', 'the jar'], 'action': []}], [], [('nuts', 'bean', True)], [3], [0]]

@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,5
+frustrated,0
+object_qs,0
+use_navigation,5
+use_delivery,
+use_relocation,
+When it asked where I would like it to go, I had to retype out the entire phrase (Go to... versus just stating the name of the location); however, I liked that it confirmed the request instead of doing something that may be incorrect.

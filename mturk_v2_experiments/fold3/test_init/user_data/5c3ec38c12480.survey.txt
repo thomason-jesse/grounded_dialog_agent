@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,4
+frustrated,1
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,1
+I did not see the robot move

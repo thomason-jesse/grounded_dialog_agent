@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,4
+object_qs,3
+use_navigation,3
+use_delivery,
+use_relocation,
+The robot never responded. Just sat at &quot;thinking....&quot; until the button allowing me to proceed to the end of the task appeared.

@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,0
+frustrated,5
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,0
+I guess we take for granted the supposed simplicity of the English language. I also feel that maybe that I did not understand the instructions correctly. When asked if the color gray was like the color yellow (blue, etc.), did the question mean was gray a &quot;color&quot; like yellow? 

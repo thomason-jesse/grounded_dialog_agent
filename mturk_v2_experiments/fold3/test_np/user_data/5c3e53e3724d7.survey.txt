@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,0
+frustrated,4
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,0
+I  accidentally chose the wrong lab and I couldn't figure out how to go back and fix it.  

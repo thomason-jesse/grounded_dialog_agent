@@ -1,0 +1,54 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Goto office H'
+get_from_user (processed): 'goto office h'
+say_to_user: I haven't heard the word 'h' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Go to DR. Heidi hughes office'
+get_from_user (processed): 'go to dr heidi hughes office'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'h' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a pan in the kitchen'
+get_from_user (processed): 'a pan in the kitchen'
+say_to_user: I haven't heard the word 'pan' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'dr heidi hughes'
+get_from_user (processed): 'dr heidi hughes'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'recipient': 'h', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'h', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'a pan'
+get_from_user (processed): 'a pan'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'h', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'source': None, 'patient': 'oidx_26', 'recipient': 'h', 'goal': None, 'action': 'bring'}
+main: ... done; got action {'source': None, 'patient': 'oidx_26', 'recipient': 'h', 'goal': None, 'action': 'bring'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'patient': 'oidx_26', 'recipient': 'h', 'goal': None, 'action': 'bring'}], [{'all': ['goto office h'], 'recipient': ['dr heidi hughes'], 'goal': [], 'source': [], 'patient': ['a pan in the kitchen', 'a pan'], 'action': []}], [], [], [0], [0]]

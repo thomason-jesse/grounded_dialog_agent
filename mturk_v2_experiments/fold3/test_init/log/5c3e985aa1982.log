@@ -1,0 +1,43 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the pod that is between Dr. Nancy Nagel's office and a conference room.'
+get_from_user (processed): 'go to the pod that is between dr nancy nagel 's office and a conference room'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'The word is shows up before other words that help to describe the thing or person before it.'
+get_from_user (processed): 'the word is shows up before other words that help to describe the thing or person before it'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'The room between Dr. Nancy Nagel's office and the conference room.'
+get_from_user (processed): 'the room between dr nancy nagel 's office and the conference room'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go down the hallway to a pod.'
+get_from_user (processed): 'go down the hallway to a pod'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+perform_action: {'patient': None, 'goal': '3408', 'source': None, 'recipient': None, 'action': 'walk'}
+main: ... done; got action {'patient': None, 'goal': '3408', 'source': None, 'recipient': None, 'action': 'walk'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': None, 'goal': '3408', 'source': None, 'recipient': None, 'action': 'walk'}], [{'all': ["go to the pod that is between dr nancy nagel 's office and a conference room"], 'recipient': [], 'patient': [], 'action': [], 'goal': ["the room between dr nancy nagel 's office and the conference room", 'go down the hallway to a pod'], 'source': []}], [], [], [2], [1]]

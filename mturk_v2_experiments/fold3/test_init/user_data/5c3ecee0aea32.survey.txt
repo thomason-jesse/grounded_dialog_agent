@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,1
+object_qs,0
+use_navigation,2
+use_delivery,
+use_relocation,
+The robot would need a lot more information to accomplish even the most basic task.

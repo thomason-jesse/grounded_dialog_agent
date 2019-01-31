@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,1
+frustrated,5
+object_qs,3
+use_navigation,
+use_delivery,1
+use_relocation,
+I think I should have read the instructions more clearly in the beginning. It was my understanding I was to speak via a sentence to the robot instead of using the arrows.
