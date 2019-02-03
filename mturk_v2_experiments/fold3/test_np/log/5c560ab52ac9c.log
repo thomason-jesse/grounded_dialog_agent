@@ -1,0 +1,65 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move the coke to the office'
+get_from_user (processed): 'move the coke to the office'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'office'
+get_from_user (processed): 'office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'kitchen'
+get_from_user (processed): 'kitchen'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Office next to conference'
+get_from_user (processed): 'office next to conference'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'office'
+get_from_user (processed): 'office'
+say_to_user_with_referents: What should I move from <s>here</s>? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'drink'
+get_from_user (processed): 'drink'
+say_to_user: I haven't heard the word 'drink' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Coke'
+get_from_user (processed): 'coke'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'drink' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: I should move something from <s>here</s> somewhere else? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move from <s>here</s>? {'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'coke'
+get_from_user (processed): 'coke'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3520', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 8
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3520', 'goal': '3418', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+perform_action: {'source': '3520', 'goal': '3418', 'recipient': None, 'action': 'move', 'patient': 'oidx_26'}
+main: ... done; got action {'source': '3520', 'goal': '3418', 'recipient': None, 'action': 'move', 'patient': 'oidx_26'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3520', 'goal': '3418', 'recipient': None, 'action': 'move', 'patient': 'oidx_26'}], [{'source': ['office', 'kitchen'], 'goal': ['office next to conference', 'office'], 'action': [], 'recipient': [], 'all': ['move the coke to the office'], 'patient': ['drink', 'coke']}], [], [], [0], [0]]

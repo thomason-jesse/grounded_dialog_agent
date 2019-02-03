@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,4
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,3
+Was unable to understand description of the object and wanted to deliver to a specific person rather than a room

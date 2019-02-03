@@ -1,0 +1,53 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the object from the largest Lab to the Office that is located to the left of Dave's office.'
+get_from_user (processed): 'take the object from the largest lab to the office that is located to the left of dave 's office'
+say_to_user: I haven't heard the word 'largest' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'largest' mean the same thing as 'the'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'that' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to the Lab next to the kitchen'
+get_from_user (processed): 'to the lab next to the kitchen'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'To the Lab'
+get_from_user (processed): 'to the lab'
+say_to_user_with_referents: You want me to go to <g>here</g> (not manipulate any objects)? {'action': 'walk', 'goal': '3414'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 3
+perform_action: {'action': 'walk', 'source': None, 'patient': None, 'recipient': None, 'goal': '3414b'}
+main: ... done; got action {'action': 'walk', 'source': None, 'patient': None, 'recipient': None, 'goal': '3414b'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'source': None, 'patient': None, 'recipient': None, 'goal': '3414b'}], [{'source': [], 'patient': [], 'recipient': [], 'goal': ['to the lab next to the kitchen', 'to the lab'], 'action': [], 'all': ["take the object from the largest lab to the office that is located to the left of dave 's office"]}], [], [('largest', 'the', False)], [1], [0]]

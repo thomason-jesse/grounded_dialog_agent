@@ -1,0 +1,8 @@
+tasks_easy,0
+understood,0
+frustrated,6
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,0
+The robot didn't seem to understand where to move things from one area to the next. I made a mistake and tried correcting it but it was hard for the robot to understand and then try and re understand what I was saying.

@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,2
+frustrated,6
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,3
+This was an interesting HIT. Thanks for the opportunity to participate!

@@ -1,0 +1,80 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Pick the small white bottle from the white table which is in the lab located on the right end , then keep it the the lounge which is exactly located in between Richard Rogue, Secretary's office and conference room'
+get_from_user (processed): 'pick the small white bottle from the white table which is in the lab located on the right end  then keep it the the lounge which is exactly located in between richard rogue secretary 's office and conference room'
+say_to_user: I haven't heard the word 'small' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Small means tiny . I meant tiny sized white bottle'
+get_from_user (processed): 'small means tiny  i meant tiny sized white bottle'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'small' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No it's a size'
+get_from_user (processed): 'no it 's a size'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'end' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move the White bottle from the lab to the Lounge.'
+get_from_user (processed): 'move the white bottle from the lab to the lounge'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'To the Lounge'
+get_from_user (processed): 'to the lounge'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3514', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'YEs'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3514', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'White Colour Bottle'
+get_from_user (processed): 'white colour bottle'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3514', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'White colour Tiny bottle'
+get_from_user (processed): 'white colour tiny bottle'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3514', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'patient': 'oidx_6', 'action': 'move', 'goal': '3514'}
+get_from_user_enum requested feedback
+get_from_user_enum: 25
+perform_action: {'source': '3514', 'patient': 'oidx_6', 'action': 'move', 'recipient': None, 'goal': '3514'}
+main: ... done; got action {'source': '3514', 'patient': 'oidx_6', 'action': 'move', 'recipient': None, 'goal': '3514'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3514', 'patient': 'oidx_6', 'action': 'move', 'recipient': None, 'goal': '3514'}], [{'recipient': [], 'goal': ['to the lounge'], 'source': ['move the white bottle from the lab to the lounge', 'yes'], 'all': ["pick the small white bottle from the white table which is in the lab located on the right end  then keep it the the lounge which is exactly located in between richard rogue secretary 's office and conference room"], 'action': [], 'patient': ['white colour bottle', 'white colour tiny bottle']}], [], [], [3], [0]]

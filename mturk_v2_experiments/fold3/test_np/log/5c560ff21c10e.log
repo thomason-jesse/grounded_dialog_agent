@@ -1,0 +1,76 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Leave the office, take an immediate right, and then enter the second lab on the left.'
+get_from_user (processed): 'leave the office take an immediate right and then enter the second lab on the left'
+say_to_user: I haven't heard the word 'immediate' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'I want you to move the X from the current office and place it in the second Lab from the right'
+get_from_user (processed): 'i want you to move the x from the current office and place it in the second lab from the right'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A bottle on an empty table'
+get_from_user (processed): 'a bottle on an empty table'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A pill bottle'
+get_from_user (processed): 'a pill bottle'
+say_to_user: I haven't heard the word 'pill' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_6', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver it to a lab'
+get_from_user (processed): 'deliver it to a lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_6', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Not to a person, to a new room'
+get_from_user (processed): 'not to a person to a new room'
+say_to_user: I haven't heard the word 'not' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'person' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_6', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 8
+perform_action: {'source': None, 'patient': 'oidx_6', 'goal': None, 'recipient': 'w', 'action': 'bring'}
+main: ... done; got action {'source': None, 'patient': 'oidx_6', 'goal': None, 'recipient': 'w', 'action': 'bring'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'patient': 'oidx_6', 'goal': None, 'recipient': 'w', 'action': 'bring'}], [{'source': [], 'goal': [], 'all': ['leave the office take an immediate right and then enter the second lab on the left'], 'action': [], 'recipient': ['deliver it to a lab', 'not to a person to a new room'], 'patient': ['a bottle on an empty table', 'a pill bottle']}], [], [], [3], [0]]

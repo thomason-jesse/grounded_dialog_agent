@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,3
+Waited for about five minutes to make sure it wasn't just taking it's time, but nothing ever happened. Just marked neutral for everything on the survey. Was looking forward to trying it.

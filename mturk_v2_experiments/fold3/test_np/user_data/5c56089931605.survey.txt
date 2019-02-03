@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,2
+frustrated,5
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,1
+It would be easier if I tried it again. Takes a little practice.

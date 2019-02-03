@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,1
+frustrated,5
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,2
+It is just a matter of my getting used the to the type of command that the robot understands. The robot &quot;thinks&quot; differently, analyzes the situation in different steps  than myself obviously

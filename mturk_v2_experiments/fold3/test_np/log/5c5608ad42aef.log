@@ -1,0 +1,65 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move X from office M to X in office P'
+get_from_user (processed): 'move x from office m to x in office p'
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes it is a pill bottle'
+get_from_user (processed): 'yes it is a pill bottle'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'x' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'x' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'x' mean the same thing as 'cylinder'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'm' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'p' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'peggy parker'
+get_from_user (processed): 'peggy parker'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'p', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'x'
+get_from_user (processed): 'x'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'pill bottle'
+get_from_user (processed): 'pill bottle'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 'p', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'recipient': 'p', 'action': 'bring', 'patient': 'oidx_6'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'source': None, 'recipient': 'p', 'action': 'bring', 'goal': None, 'patient': 'oidx_6'}
+main: ... done; got action {'source': None, 'recipient': 'p', 'action': 'bring', 'goal': None, 'patient': 'oidx_6'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'recipient': 'p', 'action': 'bring', 'goal': None, 'patient': 'oidx_6'}], [{'source': [], 'all': ['move x from office m to x in office p'], 'action': [], 'goal': [], 'recipient': ['peggy parker'], 'patient': ['x', 'pill bottle']}], [], [('x', 'metallic', False), ('x', 'cylinder', False)], [2], [0]]

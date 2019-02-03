@@ -1,0 +1,9 @@
+tasks_easy,6
+understood,1
+frustrated,3
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,5
+I'd love a 2nd shot at this.  It was a challenge, but could be fun.  Clearly I failed to succeed in the task as I got the robot to go to Office P, but then the task ended.  I was assuming I could give the robot more commands once it got to the office.
+One thing of note, quite often the words I typed into the command box were missing letters.  This might be an issue with the program interface, and I know I was typing the letters.  It's not a big deal and it did force me to pay attention to what I was typing.

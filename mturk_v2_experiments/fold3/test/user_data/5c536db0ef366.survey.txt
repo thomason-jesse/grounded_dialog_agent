@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,0
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,0
+There was not a person in the room marked that the robot should deliver the object to- it was just a Pod. This made the task especially confusing and, ultimately, unsuccessful.

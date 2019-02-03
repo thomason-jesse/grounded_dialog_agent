@@ -1,0 +1,57 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the object from Mal's office to pod.'
+get_from_user (processed): 'take the object from mal 's office to pod'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No, an object is a thing. Take the red and white cylinder thing from Mal's office to the pod.'
+get_from_user (processed): 'no an object is a thing take the red and white cylinder thing from mal 's office to the pod'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes!'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Pod.'
+get_from_user (processed): 'pod'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Red and white thing'
+get_from_user (processed): 'red and white thing'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Object.'
+get_from_user (processed): 'object'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'No one.'
+get_from_user (processed): 'no one'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_12', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+perform_action: {'goal': None, 'recipient': 'p', 'patient': 'oidx_12', 'source': None, 'action': 'bring'}
+main: ... done; got action {'goal': None, 'recipient': 'p', 'patient': 'oidx_12', 'source': None, 'action': 'bring'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': None, 'recipient': 'p', 'patient': 'oidx_12', 'source': None, 'action': 'bring'}], [{'recipient': ['pod', 'no one'], 'source': [], 'action': [], 'all': ["take the object from mal 's office to pod"], 'patient': ['red and white thing', 'object'], 'goal': []}], [], [], [2], [0]]

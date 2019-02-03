@@ -1,0 +1,1 @@
+recipient:None;goal:3418;action:move;patient:oidx_6;source:3506

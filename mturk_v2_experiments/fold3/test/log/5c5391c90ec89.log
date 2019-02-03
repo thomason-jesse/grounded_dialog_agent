@@ -1,0 +1,59 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Deliver the container of wipes from the kitchen to the lounge.'
+get_from_user (processed): 'deliver the container of wipes from the kitchen to the lounge'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Correct. Please move the container of wipes from the kitchen to the lounge.'
+get_from_user (processed): 'correct please move the container of wipes from the kitchen to the lounge'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'To the lounge from the kitchen.'
+get_from_user (processed): 'to the lounge from the kitchen'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'To the lounge.'
+get_from_user (processed): 'to the lounge'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3514', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'goal': '3514', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'From the kitchen.'
+get_from_user (processed): 'from the kitchen'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3514', 'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Container of wipes.'
+get_from_user (processed): 'container of wipes'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'goal': '3514', 'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Pink and white container on the table.'
+get_from_user (processed): 'pink and white container on the table'
+say_to_user_with_referents: What should I move to <g>there</g>? {'goal': '3514', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+say_to_user_with_referents: I should move <p>this</p> from <s>here</s> to <g>there</g>? {'goal': '3514', 'patient': 'oidx_12', 'source': '3520', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes.'
+get_from_user (processed): 'yes'
+perform_action: {'goal': '3514', 'patient': 'oidx_12', 'recipient': None, 'source': '3520', 'action': 'move'}
+main: ... done; got action {'goal': '3514', 'patient': 'oidx_12', 'recipient': None, 'source': '3520', 'action': 'move'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'goal': '3514', 'patient': 'oidx_12', 'recipient': None, 'source': '3520', 'action': 'move'}], [{'all': ['deliver the container of wipes from the kitchen to the lounge'], 'source': ['from the kitchen'], 'action': [], 'patient': ['container of wipes', 'pink and white container on the table'], 'recipient': [], 'goal': ['to the lounge from the kitchen', 'to the lounge']}], [], [], [3], [0]]

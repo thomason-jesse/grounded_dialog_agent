@@ -1,0 +1,66 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the can of fruit from the office next to Dr. Sybil Smalt and move it to the lab directly across the hall from David "Dave"Daniel's office'
+get_from_user (processed): 'take the can of fruit from the office next to dr sybil smalt and move it to the lab directly across the hall from david dave"daniel 's office'
+say_to_user: I haven't heard the word 'it' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'it refers to the object specifically'
+get_from_user (processed): 'it refers to the object specifically'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'it' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'directly' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'directly' mean the same thing as 'the'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the lab'
+get_from_user (processed): 'the lab'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the can'
+get_from_user (processed): 'the can'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the can'
+get_from_user (processed): 'the can'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_26', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the lab across from Dave's office'
+get_from_user (processed): 'the lab across from dave 's office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_11', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 8
+perform_action: {'patient': 'oidx_11', 'goal': None, 'action': 'bring', 'source': None, 'recipient': 'd'}
+main: ... done; got action {'patient': 'oidx_11', 'goal': None, 'action': 'bring', 'source': None, 'recipient': 'd'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_11', 'goal': None, 'action': 'bring', 'source': None, 'recipient': 'd'}], [{'recipient': ['the lab', "the lab across from dave 's office"], 'patient': ['the can', 'the can'], 'source': [], 'all': ['take the can of fruit from the office next to dr sybil smalt and move it to the lab directly across the hall from david dave"daniel \'s office'], 'goal': [], 'action': []}], [], [('directly', 'the', False)], [3], [0]]

@@ -1,0 +1,8 @@
+tasks_easy,1
+understood,6
+frustrated,2
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,4
+the robot understood very well, i really was surprised.
