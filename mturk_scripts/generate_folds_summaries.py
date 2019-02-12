@@ -102,6 +102,7 @@ def main():
                                 if (not strip_repeat_workers or
                                         (turk_id in seen_turk_ids and seen_turk_ids[turk_id] == uid)):
 
+                                    survey_added = False
                                     for task in range(1, 4):
                                         if (data[headers.index("task_" + str(task) + "_correct")] == "1" or
                                                 (data[headers.index("task_" + str(task) + "_correct")] == "0"
@@ -115,16 +116,18 @@ def main():
                                                                                         "_clarification")])
                                                 raw_results["task_" + str(task) + "_clarification"].append(
                                                     task_user_strs)
-                                                task_user_enum = int(data[headers.index("task_" + str(task) +
-                                                                                        "_enum_from_user")])
+                                                enum_header = "task_" + str(task) + "_enum_from_user"
+                                                task_user_enum = int(data[headers.index(enum_header)]) if enum_header in headers else -1
                                                 raw_results["task_" + str(task) + "_enum"].append(task_user_enum)
 
                                             # Allow this to be included only if the task was correct, in the event
                                             # that we're flagging only correct tasks.
-                                            for sq in ["tasks_easy", "understood", "frustrated", "object_qs",
-                                                       "use_navigation", "use_delivery", "use_relocation"]:
-                                                if len(data[headers.index(sq)]) > 0:
-                                                    raw_results[sq].append(int(data[headers.index(sq)]))
+                                            if not survey_added:
+                                                for sq in ["tasks_easy", "understood", "frustrated", "object_qs",
+                                                           "use_navigation", "use_delivery", "use_relocation"]:
+                                                    if len(data[headers.index(sq)]) > 0:
+                                                        raw_results[sq].append(int(data[headers.index(sq)]))
+                                                survey_added = True
                                 else:
                                     print("WARNING: ignoring repeat worker " + turk_id)
                                     pass
@@ -175,8 +178,9 @@ def main():
             print("==========")
             print("condition '" + cond + "' results:")
             krk = krkl[0]
+            krk = "0"  # hard-coded baseline fold 0, for now
             for r in cond_results[cond][krk].keys():
-                print("----------")
+                print("---------- (baseline " + krk + ")")
                 print("\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)")  # \t(p)"
                 for fold in folds:
                     ablations = ['']
@@ -184,7 +188,7 @@ def main():
                         ablations.append('_np')
                     fold = str(fold)
                     for abl in ablations:
-                        if cond_results[cond][fold + abl][r]["n"] > 0:
+                        if (fold + abl) in cond_results[cond] and cond_results[cond][fold + abl][r]["n"] > 0:
 
                             # Perform t-test against fold 0.
                             sig = ''

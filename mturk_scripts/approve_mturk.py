@@ -42,23 +42,24 @@ def main():
 
                 else:
                     code = row[survey_header]
-                    if '_' in code and code.count('_') == 2:
-                        code_parts = code.split('_')
-                        if len(code_parts) > 3:
-                            print (row[id_header] + " survey code doesn't match form '" + code + "'")
-                            total += 1
-                            continue
-                        gen_id, rot_mid, id_hash = code.split('_')
-                        mid = rot_mid[-3:] + rot_mid[:-3]
-                        stripped_mid = mid.strip()
-                        true_hash = hashlib.sha1(("phm_salted_hash" + gen_id + mid +
-                                                 "rwhpidcwha_" + add_salt).encode('ascii', 'ignore')).hexdigest()[:13]
+                    if '_' in code:
+                        if code.count('_') == 2:
+                            gen_id, rot_mid, id_hash = code.split('_')
+                            mid = rot_mid[-3:] + rot_mid[:-3]
+                            stripped_mid = mid.strip()
+                            true_hash = hashlib.sha1(("phm_salted_hash" + gen_id + mid +
+                                                     "rwhpidcwha_" + add_salt).encode('ascii', 'ignore')).hexdigest()[:13]
+                        elif code.count('_') == 1:
+                            gen_id, id_hash = code.split('_')
+                            stripped_mid = mid = None
+                            true_hash = hashlib.sha1(("phm_salted_hash" + gen_id +
+                                                     "rwhpidcwha_" + add_salt).encode('ascii', 'ignore')).hexdigest()[:13]
                         if id_hash != true_hash:
                             print (row[id_header] + " gen id " + gen_id +
                                    " gave hash " + id_hash + " != " + true_hash)
                         elif id_hash in ids_seen:
                             print(row[id_header] + " gen id " + gen_id + " already seen")
-                        elif stripped_mid != row[id_header]:
+                        elif stripped_mid is not None and stripped_mid != row[id_header]:
                             print(row[id_header] + " provided non-matching worker id '" + mid + "'")
                         else:
                             valid += 1
