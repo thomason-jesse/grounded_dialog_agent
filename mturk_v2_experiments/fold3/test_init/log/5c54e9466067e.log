@@ -1,0 +1,67 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'deliver object from Dr. Sybil Smalt's office to Mallory Maroon's office.'
+get_from_user (processed): 'deliver object from dr sybil smalt 's office to mallory maroon 's office'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes, in this case it is a cube taller then it is wide.'
+get_from_user (processed): 'yes in this case it is a cube taller then it is wide'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'object' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move something from somewhere? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Mal's office'
+get_from_user (processed): 'mal 's office'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): '?'
+get_from_user (processed): ''
+say_to_user_with_referents: Where should I move something from on its way to <g>there</g>? {'action': 'move', 'goal': '3404'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Nancy Nagel's office'
+get_from_user (processed): 'dr nancy nagel 's office'
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'action': 'move', 'goal': '3404', 'source': '3404'}
+get_from_user requested feedback
+get_from_user (raw): 'the container'
+get_from_user (processed): 'the container'
+say_to_user_with_referents: What should I move from <s>here</s>? {'action': 'move', 'source': '3404'}
+get_from_user requested feedback
+get_from_user (raw): 'the container'
+get_from_user (processed): 'the container'
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'patient': 'oidx_6', 'action': 'move', 'goal': '3404', 'source': '3404'}
+get_from_user requested feedback
+get_from_user (raw): 'give to Nancy Nagel'
+get_from_user (processed): 'give to nancy nagel'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move <p>this</p> from <s>here</s> to <g>there</g> (not give it to someone)? {'patient': 'oidx_6', 'action': 'move', 'goal': '3404', 'source': '3404'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+perform_action: {'patient': 'oidx_6', 'goal': '3404', 'action': 'move', 'recipient': None, 'source': '3404'}
+main: ... done; got action {'patient': 'oidx_6', 'goal': '3404', 'action': 'move', 'recipient': None, 'source': '3404'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_6', 'goal': '3404', 'action': 'move', 'recipient': None, 'source': '3404'}], [{'action': [], 'recipient': [], 'patient': ['the container', 'the container'], 'all': ["deliver object from dr sybil smalt 's office to mallory maroon 's office"], 'source': ['', "dr nancy nagel 's office"], 'goal': ["mal 's office"]}], [], [('object', 'container', True)], [2], [0]]

@@ -1,0 +1,39 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Get the object in the Pod, then travel into the hallway, then into the conference room.'
+get_from_user (processed): 'get the object in the pod then travel into the hallway then into the conference room'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'No.  Go to the Pod, get the jar in the pod, then go into the hallway, then into the conference room.'
+get_from_user (processed): 'no go to the pod get the jar in the pod then go into the hallway then into the conference room'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'The Pod'
+get_from_user (processed): 'the pod'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Pod'
+get_from_user (processed): 'pod'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 2
+perform_action: {'action': 'walk', 'recipient': None, 'goal': '3408', 'source': None, 'patient': None}
+main: ... done; got action {'action': 'walk', 'recipient': None, 'goal': '3408', 'source': None, 'patient': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'walk', 'recipient': None, 'goal': '3408', 'source': None, 'patient': None}], [{'patient': [], 'source': [], 'action': [], 'recipient': [], 'goal': ['the pod', 'pod'], 'all': ['get the object in the pod then travel into the hallway then into the conference room']}], [], [], [2], [0]]

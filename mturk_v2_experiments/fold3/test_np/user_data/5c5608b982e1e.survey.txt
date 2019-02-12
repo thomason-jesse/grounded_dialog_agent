@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,0
+frustrated,6
+object_qs,5
+use_navigation,
+use_delivery,
+use_relocation,1
+If the robot encounters a word it does not understand, if it encounters that word again it should not keep asking what does it mean (in my opinion).  It should ask about that word only once.

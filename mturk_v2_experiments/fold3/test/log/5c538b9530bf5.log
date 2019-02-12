@@ -1,0 +1,35 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Move can from office of Dr. Heidi Hughes to office of David "Dave" Daniel'
+get_from_user (processed): 'move can from office of dr heidi hughes to office of david dave daniel'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'David "Dave" Daniel'
+get_from_user (processed): 'david dave daniel'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'action': 'bring', 'recipient': 'd'}
+get_from_user requested feedback
+get_from_user (raw): 'Can on table'
+get_from_user (processed): 'can on table'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Aluminium can'
+get_from_user (processed): 'aluminium can'
+say_to_user_with_referents: You want me to deliver <p>this</p> to <r>this person</r>? {'action': 'bring', 'recipient': 'd', 'patient': 'oidx_11'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+perform_action: {'action': 'bring', 'recipient': 'd', 'goal': None, 'source': None, 'patient': 'oidx_11'}
+main: ... done; got action {'action': 'bring', 'recipient': 'd', 'goal': None, 'source': None, 'patient': 'oidx_11'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'recipient': 'd', 'goal': None, 'source': None, 'patient': 'oidx_11'}], [{'action': [], 'recipient': ['david dave daniel'], 'source': [], 'patient': ['can on table', 'aluminium can'], 'all': ['move can from office of dr heidi hughes to office of david dave daniel'], 'goal': []}], [], [], [0], [0]]

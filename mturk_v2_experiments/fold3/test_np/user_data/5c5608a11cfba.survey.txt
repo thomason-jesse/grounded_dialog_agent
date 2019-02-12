@@ -1,0 +1,8 @@
+tasks_easy,4
+understood,4
+frustrated,4
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,4
+I failed to scroll all the way down to the section where I could scroll through options. About two minutes passed until I realized this. If my input skills were sharper I would’ve found the task much easier.

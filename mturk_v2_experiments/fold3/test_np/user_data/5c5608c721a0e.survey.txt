@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,4
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,1
+Robot did not understand it was to deliver an object to the kitchen, rather than to a person.

@@ -1,0 +1,54 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the styrofoam block from the Lab next to the printer office to the printer office.'
+get_from_user (processed): 'take the styrofoam block from the lab next to the printer office to the printer office'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Correct'
+get_from_user (processed): 'correct'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'a block of styrofoam'
+get_from_user (processed): 'a block of styrofoam'
+say_to_user_with_referents: Where should I move <p>this</p> from on its way somewhere else? {'action': 'move', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To where should I move <p>this</p> from somewhere? {'action': 'move', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'The printer office'
+get_from_user (processed): 'the printer office'
+say_to_user_with_referents: I should move something from somewhere to <g>there</g>? {'goal': '3506', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to move <p>this</p> from somewhere to <g>there</g> (not give it to someone)? {'goal': '3506', 'action': 'move', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'goal': '3506', 'action': 'move', 'patient': 'oidx_28'}
+get_from_user requested feedback
+get_from_user (raw): 'Lab'
+get_from_user (processed): 'lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'goal': '3506', 'action': 'move', 'patient': 'oidx_28'}
+get_from_user_enum requested feedback
+get_from_user_enum: 1
+perform_action: {'recipient': None, 'goal': '3506', 'source': '3414a', 'action': 'move', 'patient': 'oidx_28'}
+main: ... done; got action {'recipient': None, 'goal': '3506', 'source': '3414a', 'action': 'move', 'patient': 'oidx_28'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': None, 'goal': '3506', 'source': '3414a', 'action': 'move', 'patient': 'oidx_28'}], [{'all': ['take the styrofoam block from the lab next to the printer office to the printer office'], 'recipient': [], 'goal': ['the printer office'], 'patient': ['a block of styrofoam'], 'source': ['yes', 'lab'], 'action': []}], [], [], [1], [0]]

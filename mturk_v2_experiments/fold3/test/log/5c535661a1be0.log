@@ -1,0 +1,38 @@
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bring the object to Dr. Sybil Smalt's office.'
+get_from_user (processed): 'bring the object to dr sybil smalt 's office'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Sybil Smalt'
+get_from_user (processed): 'dr sybil smalt'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The container on the table in the lounge.'
+get_from_user (processed): 'the container on the table in the lounge'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 's', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'The object in the lounge.'
+get_from_user (processed): 'the object in the lounge'
+say_to_user_with_referents: You want me to deliver something to <r>this person</r>? {'recipient': 's', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I deliver to <r>this person</r>? {'recipient': 's', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 7
+perform_action: {'source': None, 'recipient': 's', 'goal': None, 'action': 'bring', 'patient': 'oidx_25'}
+main: ... done; got action {'source': None, 'recipient': 's', 'goal': None, 'action': 'bring', 'patient': 'oidx_25'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'recipient': 's', 'goal': None, 'action': 'bring', 'patient': 'oidx_25'}], [{'source': [], 'goal': [], 'all': ["bring the object to dr sybil smalt 's office"], 'recipient': ['dr sybil smalt'], 'action': [], 'patient': ['the container on the table in the lounge', 'the object in the lounge']}], [], [], [1], [0]]

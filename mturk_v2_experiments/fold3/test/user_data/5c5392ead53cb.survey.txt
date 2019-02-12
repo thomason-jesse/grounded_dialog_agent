@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,2
+object_qs,1
+use_navigation,
+use_delivery,
+use_relocation,3
+the robot only had context for rooms or destinations based on the people in them. The object being in a room not belonging to anyone and going to an empty room made the robot confused. If he developed more of an understanding of navigational direction, it would become more adept.

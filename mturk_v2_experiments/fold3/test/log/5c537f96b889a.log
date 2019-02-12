@@ -1,0 +1,89 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Leave Richard Rogue's office and go straight, right, and left, to the lab that is behind the kitchen.'
+get_from_user (processed): 'leave richard rogue 's office and go straight right and left to the lab that is behind the kitchen'
+say_to_user: I haven't heard the word 'that' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No it does not.'
+get_from_user (processed): 'no it does not'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'that' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Leave the room. Go to the Lab that is across from your room and one office to the right.'
+get_from_user (processed): 'leave the room go to the lab that is across from your room and one office to the right'
+say_to_user: I haven't heard the word 'your' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'one' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'one' mean the same thing as 'the'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Straight, right, left'
+get_from_user (processed): 'straight right left'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move something from on its way somewhere else? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 10
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3414', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Stay'
+get_from_user (processed): 'stay'
+say_to_user_with_referents: What should I move from <s>here</s>? {'source': '3414', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Nowhere'
+get_from_user (processed): 'nowhere'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move from <s>here</s>? {'source': '3414', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3414', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'new answer'
+get_from_user (processed): 'new answer'
+say_to_user: I haven't heard the word 'new' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move something from <s>here</s>? {'source': '3414', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 10
+say_to_user_with_referents: What should I move from <s>here</s> to <g>there</g>? {'source': '3414', 'goal': '3414', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+perform_action: {'source': '3414', 'recipient': None, 'goal': '3414', 'action': 'move', 'patient': 'oidx_25'}
+main: ... done; got action {'source': '3414', 'recipient': None, 'goal': '3414', 'action': 'move', 'patient': 'oidx_25'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': '3414', 'recipient': None, 'goal': '3414', 'action': 'move', 'patient': 'oidx_25'}], [{'goal': ['stay', 'new answer'], 'action': [], 'all': ["leave richard rogue 's office and go straight right and left to the lab that is behind the kitchen"], 'source': ['leave the room go to the lab that is across from your room and one office to the right', 'straight right left'], 'recipient': [], 'patient': ['nowhere', 'no']}], [], [('one', 'the', False)], [3], [0]]

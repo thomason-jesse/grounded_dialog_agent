@@ -1,0 +1,8 @@
+tasks_easy,3
+understood,3
+frustrated,3
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,3
+i was unable to type anything... if you wish to hold my payment please feel free to do so because your survey was not working properly

@@ -1,0 +1,77 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the can to Robert brown's office.'
+get_from_user (processed): 'take the can to robert brown 's office'
+say_to_user: I haven't heard the word 'brown' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Take the can to office B.'
+get_from_user (processed): 'take the can to office b'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'brown' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no.'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to move an item from somewhere to somewhere (not give it to someone)? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move the item to office B.'
+get_from_user (processed): 'move the item to office b'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'The object'
+get_from_user (processed): 'the object'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I move? {'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: To where should I move <p>this</p> from somewhere? {'patient': 'oidx_13', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move it to office B'
+get_from_user (processed): 'move it to office b'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move <p>this</p> from somewhere? {'patient': 'oidx_13', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move this item from where it is now to office B.'
+get_from_user (processed): 'move this item from where it is now to office b'
+say_to_user: I haven't heard the word 'is' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To where should I move <p>this</p> from somewhere? {'patient': 'oidx_13', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'patient': 'oidx_13', 'goal': '3510', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Move it from the office closest to the lab.'
+get_from_user (processed): 'move it from the office closest to the lab'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'patient': 'oidx_13', 'goal': '3510', 'action': 'move'}
+get_from_user requested feedback
+get_from_user (raw): 'Down the hallway.'
+get_from_user (processed): 'down the hallway'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I move <p>this</p> from on its way to <g>there</g>? {'patient': 'oidx_13', 'goal': '3510', 'action': 'move'}
+get_from_user_enum requested feedback
+get_from_user_enum: 20
+perform_action: {'recipient': None, 'patient': 'oidx_13', 'goal': '3510', 'source': '3432', 'action': 'move'}
+main: ... done; got action {'recipient': None, 'patient': 'oidx_13', 'goal': '3510', 'source': '3432', 'action': 'move'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'recipient': None, 'patient': 'oidx_13', 'goal': '3510', 'source': '3432', 'action': 'move'}], [{'patient': ['move the item to office b', 'the object'], 'action': [], 'recipient': [], 'all': ["take the can to robert brown 's office"], 'goal': ['move it to office b', 'move this item from where it is now to office b'], 'source': ['move it from the office closest to the lab', 'down the hallway']}], [], [], [2], [3]]

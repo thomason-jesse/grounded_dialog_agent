@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,1
+object_qs,4
+use_navigation,
+use_delivery,
+use_relocation,1
+If I were really using this robot I would expect more names to be established. Such as Lab 1, Lab 2, Lab 3, etc. I would expect to know common commands, such as move bring etc. Then I would feel confident to issue a command such as, &quot;move pringles from conference 1 to lab 2.&quot; It was strange that the robot told me it did not know the word &quot;is.&quot; I disagreed that I would use a robot like this. It is cool, but I just don't have a practical need for it.

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,0
+frustrated,0
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,0
+I was not able to give the robot any instructions, it was stuck on &quot;thinking&quot; during the task.

@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,1
+frustrated,4
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,0
+I was told to respond to a robot's question by &quot;select[ing] a command from the menu&quot; or something like that. I tried finding this menu for a minute or two but got an error message and ended before I could find it.

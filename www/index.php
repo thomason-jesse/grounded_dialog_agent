@@ -532,7 +532,8 @@ shuffle($active_train_set);
 # This is a new landing, so we need to set up the task and call the Server to make an instance.
 if (!isset($_POST['uid'])) {
   $uid = uniqid();
-  $curr_task_num = draw_task_num();
+  # $curr_task_num = draw_task_num();
+  $curr_task_num = 3;
 
   # $pre_inst = "";
   # if ($run_forever) {

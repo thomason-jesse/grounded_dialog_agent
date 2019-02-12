@@ -1,0 +1,72 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the object to the Pod directly across the hall.'
+get_from_user (processed): 'take the object to the pod directly across the hall'
+say_to_user: I haven't heard the word 'directly' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'No, it means the same as 'straight''
+get_from_user (processed): 'no it means the same as 'straight''
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'directly' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes, get the object from the pod in between Dr. Nagel's office and the conference room and take it across the hall.'
+get_from_user (processed): 'yes get the object from the pod in between dr nagel 's office and the conference room and take it across the hall'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'An object that looks like a styrofoam rectangle.'
+get_from_user (processed): 'an object that looks like a styrofoam rectangle'
+say_to_user: I haven't heard the word 'that' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'looks' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no, it means the same as 'appears''
+get_from_user (processed): 'no it means the same as 'appears''
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'looks' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'white styrofoam rectangle'
+get_from_user (processed): 'white styrofoam rectangle'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'pod across the hall'
+get_from_user (processed): 'pod across the hall'
+say_to_user_with_referents: Who should receive what I deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'the pod'
+get_from_user (processed): 'the pod'
+say_to_user_with_referents: You want me to deliver <p>this</p> to someone? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'patient': 'oidx_28', 'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+perform_action: {'patient': 'oidx_28', 'action': 'bring', 'source': None, 'recipient': 'n', 'goal': None}
+main: ... done; got action {'patient': 'oidx_28', 'action': 'bring', 'source': None, 'recipient': 'n', 'goal': None}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'patient': 'oidx_28', 'action': 'bring', 'source': None, 'recipient': 'n', 'goal': None}], [{'patient': ['an object that looks like a styrofoam rectangle', 'white styrofoam rectangle'], 'action': [], 'recipient': ['pod across the hall', 'the pod'], 'source': [], 'goal': [], 'all': ['take the object to the pod directly across the hall']}], [], [], [5], [0]]

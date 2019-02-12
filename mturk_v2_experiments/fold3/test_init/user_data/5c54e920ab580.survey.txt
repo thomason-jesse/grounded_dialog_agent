@@ -1,0 +1,8 @@
+tasks_easy,2
+understood,4
+frustrated,5
+object_qs,3
+use_navigation,
+use_delivery,
+use_relocation,1
+The instructions weren't fully clear on what was needed. I tried to make it go step by step when apparently it was easier to just make it one instead.  I'm not 100% sure how you would be able to make it more clear as you advised to make it one complete sentence. It's possible I just was over-thinking it.

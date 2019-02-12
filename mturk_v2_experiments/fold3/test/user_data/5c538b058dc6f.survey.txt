@@ -1,0 +1,8 @@
+tasks_easy,5
+understood,2
+frustrated,6
+object_qs,0
+use_navigation,
+use_delivery,
+use_relocation,0
+I could only get the robot to enter the initial room and didn't realize it could only process one command at a time until the end of the experience. I would say the robot was good at being frustrating without knowing what commands and wording it actually recognizes.

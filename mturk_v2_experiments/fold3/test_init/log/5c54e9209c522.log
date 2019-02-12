@@ -1,0 +1,60 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Go to Dr. Sybil Smalt office and get the item.'
+get_from_user (processed): 'go to dr sybil smalt office and get the item'
+say_to_user: I haven't heard the word 'item' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'item' mean the same thing as 'spices'?
+get_from_user requested feedback
+get_from_user (raw): 'No.'
+get_from_user (processed): 'no'
+say_to_user: Does 'item' mean the same thing as 'column'?
+get_from_user requested feedback
+get_from_user (raw): 'NoNNosfg'
+get_from_user (processed): 'nonnosfg'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'item' mean the same thing as 'column'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Does 'item' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'I want you to go to Dr. Sybil Smalt office and pick up the pepper'
+get_from_user (processed): 'i want you to go to dr sybil smalt office and pick up the pepper'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Dr. Sybil Smalt office'
+get_from_user (processed): 'dr sybil smalt office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'Go to the office'
+get_from_user (processed): 'go to the office'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 0
+perform_action: {'source': None, 'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3430'}
+main: ... done; got action {'source': None, 'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3430'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'action': 'walk', 'recipient': None, 'patient': None, 'goal': '3430'}], [{'action': [], 'recipient': [], 'source': [], 'patient': [], 'goal': ['dr sybil smalt office', 'go to the office'], 'all': ['go to dr sybil smalt office and get the item']}], [], [('item', 'spices', False), ('item', 'column', False), ('item', 'container', True)], [2], [0]]

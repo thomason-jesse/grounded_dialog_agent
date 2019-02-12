@@ -1,0 +1,3 @@
+chmod: cannot access 'www/client/5c5625550d8ac.smsgur.txt': No such file or directory
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):

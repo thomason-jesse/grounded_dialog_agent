@@ -1,0 +1,68 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Take the object from the conference room to the pool room'
+get_from_user (processed): 'take the object from the conference room to the pool room'
+say_to_user_with_referents: You want me to deliver something for someone? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'There’d can in the conference room on the table'
+get_from_user (processed): 'there’d can in the conference room on the table'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user requested feedback
+get_from_user (raw): 'A red soda can in the conference room'
+get_from_user (processed): 'a red soda can in the conference room'
+say_to_user: I haven't heard the word 'soda' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'Yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'soda' mean the same thing as 'bean'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Does 'soda' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'Take the red can from the conference room table'
+get_from_user (processed): 'take the red can from the conference room table'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: Does 'soda' mean the same thing as 'coffee'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Does 'soda' mean the same thing as 'peaches'?
+get_from_user requested feedback
+get_from_user (raw): 'No'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: What should I find to deliver? {'action': 'bring'}
+get_from_user_enum requested feedback
+get_from_user_enum: 5
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'Pool'
+get_from_user (processed): 'pool'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user requested feedback
+get_from_user (raw): 'the room between Mallory and peggy'
+get_from_user (processed): 'the room between mallory and peggy'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: To whom should I deliver <p>this</p>? {'action': 'bring', 'patient': 'oidx_26'}
+get_from_user_enum requested feedback
+get_from_user_enum: 6
+perform_action: {'action': 'bring', 'patient': 'oidx_26', 'goal': None, 'source': None, 'recipient': 'm'}
+main: ... done; got action {'action': 'bring', 'patient': 'oidx_26', 'goal': None, 'source': None, 'recipient': 'm'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'action': 'bring', 'patient': 'oidx_26', 'goal': None, 'source': None, 'recipient': 'm'}], [{'source': [], 'all': ['take the object from the conference room to the pool room'], 'recipient': ['pool', 'the room between mallory and peggy'], 'action': [], 'patient': ['there’d can in the conference room on the table', 'a red soda can in the conference room'], 'goal': []}], [], [('soda', 'bean', False), ('soda', 'coffee', False), ('soda', 'peaches', False)], [3], [0]]

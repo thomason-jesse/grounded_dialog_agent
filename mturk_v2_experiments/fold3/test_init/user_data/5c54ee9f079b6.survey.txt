@@ -1,0 +1,8 @@
+tasks_easy,6
+understood,4
+frustrated,3
+object_qs,2
+use_navigation,
+use_delivery,
+use_relocation,4
+The Robot didn't know what the word please meant and that's sad. :(

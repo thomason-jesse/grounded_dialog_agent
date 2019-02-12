@@ -1,0 +1,59 @@
+/home/jesse/.local/lib/python3.5/site-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+main: loading grounder from file...
+main: ... done
+main: instantiating IO...
+main: ... done
+main: instantiating Agent...
+main: ... done
+main: running command dialog...
+say_to_user_with_referents: What should I do? {}
+get_from_user requested feedback
+get_from_user (raw): 'Bring the object to the pod to the right of Mallory "Mal" Maroon's office and to the left of Peggy Parker's office.'
+get_from_user (processed): 'bring the object to the pod to the right of mallory mal maroon 's office and to the left of peggy parker 's office'
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes it is the tall white object'
+get_from_user (processed): 'yes it is the tall white object'
+say_to_user: Sorry, I am confused and just need a 'yes' or 'no' response for now.
+say_to_user: I haven't heard the word 'object' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user: Does 'object' mean the same thing as 'container'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Does 'object' mean the same thing as 'metallic'?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: I haven't heard the word 'maroon' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user_with_referents: You want me to go somewhere? (not manipulate any objects) {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'yes'
+get_from_user (processed): 'yes'
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'to the pod closest to the bottom left corner'
+get_from_user (processed): 'to the pod closest to the bottom left corner'
+say_to_user: I haven't heard the word 'corner' before. Does it refer to properties of things, like a color, shape, or weight?
+get_from_user requested feedback
+get_from_user (raw): 'no'
+get_from_user (processed): 'no'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user requested feedback
+get_from_user (raw): 'go to the pod in the bottom left'
+get_from_user (processed): 'go to the pod in the bottom left'
+say_to_user: Sorry, I didn't understand that.
+say_to_user_with_referents: Where should I go? {'action': 'walk'}
+get_from_user_enum requested feedback
+get_from_user_enum: 17
+perform_action: {'source': None, 'action': 'walk', 'patient': None, 'recipient': None, 'goal': '3504'}
+main: ... done; got action {'source': None, 'action': 'walk', 'patient': None, 'recipient': None, 'goal': '3504'}
+main: writing new information from dialog(s) to file...
+main: ... done; wrote data d = [[{'source': None, 'action': 'walk', 'patient': None, 'recipient': None, 'goal': '3504'}], [{'action': [], 'source': [], 'recipient': [], 'all': ["bring the object to the pod to the right of mallory mal maroon 's office and to the left of peggy parker 's office"], 'patient': [], 'goal': ['to the pod closest to the bottom left corner', 'go to the pod in the bottom left']}], [], [('object', 'container', False), ('object', 'metallic', False)], [3], [0]]
