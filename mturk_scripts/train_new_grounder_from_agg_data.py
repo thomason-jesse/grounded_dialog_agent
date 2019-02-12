@@ -366,6 +366,7 @@ def get_syn_from_candidates(a, pred, synonymy_candidates):
             return [nsfidx, forms]
     return None
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--agg_fns', type=str, required=True,

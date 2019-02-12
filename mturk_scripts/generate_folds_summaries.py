@@ -26,7 +26,7 @@ def main():
         for fold in folds:
             ablations = ['']
             if fold == 3:
-                ablations.append('_np')
+                ablations.extend(['_np', '_init'])
             fold = str(fold)
             for abl in ablations:
                 summary_csv_fn = os.path.join(experiment_dir, experiment_prefix + fold, cond + abl, "summary.csv")
@@ -56,7 +56,7 @@ def main():
         for fold in folds:
             ablations = ['']
             if fold == 3:
-                ablations.append('_np')
+                ablations.extend(['_np', '_init'])
             fold = str(fold)
             for abl in ablations:
                 summary_csv_fn = os.path.join(experiment_dir, experiment_prefix + fold, cond + abl,
@@ -181,7 +181,7 @@ def main():
                 for fold in folds:
                     ablations = ['']
                     if fold == 3:
-                        ablations.append('_np')
+                        ablations.extend(['_np', '_init'])
                     fold = str(fold)
                     for abl in ablations:
                         if cond_results[cond][fold + abl][r]["n"] > 0:
@@ -246,21 +246,24 @@ def main():
             ns = []
             if graph_type == "learning":
                 # Three series across conditions.
-                for cond in ["train", "test", "test_np"]:
+                for cond in ["train", "test", "test_np", "test_init"]:
                     cond_mus = []
                     cond_stds = []
                     cond_ns = []
                     for fold in folds:
-                        if cond == "test_np":
-                            if fold == 3:
-                                cond_mus.append(cond_results["test"]["3_np"][metric]["mu"])
-                                cond_stds.append(cond_results["test"]["3_np"][metric]["s"])
-                                cond_ns.append(cond_results["test"]["3_np"][metric]["n"])
-                            else:
-                                cond_mus.append(0)
-                                cond_stds.append(0)
-                                cond_ns.append(0)
-                        elif cond in cond_results:
+                        cond_is_abl = False
+                        for abl in ["np", "init"]:
+                            if cond == "test_" + abl:
+                                cond_is_abl = True
+                                if fold == 3:
+                                    cond_mus.append(cond_results["test"]["3_" + abl][metric]["mu"])
+                                    cond_stds.append(cond_results["test"]["3_" + abl][metric]["s"])
+                                    cond_ns.append(cond_results["test"]["3_" + abl][metric]["n"])
+                                else:
+                                    cond_mus.append(0)
+                                    cond_stds.append(0)
+                                    cond_ns.append(0)
+                        if not cond_is_abl and cond in cond_results:
                             if str(fold) in cond_results[cond]:
                                 cond_mus.append(cond_results[cond][str(fold)][metric]["mu"])
                                 cond_stds.append(cond_results[cond][str(fold)][metric]["s"])
@@ -304,7 +307,7 @@ def main():
 
             else:
                 # Single series across conditions
-                for cond, fold in [("test", "0"), ("test", "3_np"), ("test", "3")]:
+                for cond, fold in [("test", "0"), ("test", "3_np"), ("test", "3_init"), ("test", "3")]:
                     mus.append(cond_results[cond][fold][metric]["mu"])
                     stds.append(cond_results[cond][fold][metric]["s"])
                     ns.append(cond_results[cond][fold][metric]["n"])
