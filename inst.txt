@@ -21,12 +21,38 @@ Fold 2 train set: 21,24,19,23,16,0,4,9
 Launch server (generic):
 	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/[PD]/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold[F]/train/ --num_dialogs 1 --active_train_set [X]
 
+Train Servers:
+
 Server fold 0:
 	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/init/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold0/train/ --num_dialogs 1 --active_train_set 10,3,27,7,18,2,20,17
 Server fold 1:
 	python3 Server.py --parser_fn ../trained_parsers/mturk_fold0.pkl.5 --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/fold0/train/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold1/train/user_data/ --num_dialogs 1 --active_train_set 5,14,8,15,1,30,29,31
 Server fold 2:
     python3 Server.py --parser_fn ../trained_parsers/mturk_fold1.pkl.1 --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/fold1/train/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold2/train/user_data/ --num_dialogs 1 --active_train_set 21,24,19,23,16,0,4,9
+
+
+Test Servers:
+
+Server test fold 3 init:
+	python3 Server.py --parser_fn ../trained_parsers/mturk_init_parser_noembeddings_merge_typeraising.pkl --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/init/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold3/test_init/user_data/ --num_dialogs 1
+Approve test fold 3 init:
+	python approve_mturk.py --csvs ../mturk_v2_experiments/fold3/test_init/batch_1.csv,../mturk_v2_experiments/fold3/test_init/batch_2.csv,../mturk_v2_experiments/fold3/test_init/batch_3.csv,../mturk_v2_experiments/fold3/test_init/batch_4.csv,../mturk_v2_experiments/fold3/test_init/batch_1_rel.csv --add_salts v2train3ftein1b,v2train3ftein2b,v2train3ftenp3b,v2train3ftein4b,v2train3ftein1brel --user_data_dir ../mturk_v2_experiments/fold3/test_init/user_data/ --log_dir ../mturk_v2_experiments/fold3/test_init/log/ --outfile ../mturk_v2_experiments/fold3/test_init/summary.csv --open_response_outfile ../mturk_v2_experiments/fold3/test_init/open_response.csv --show_bonus 0
+Aggregate test fold 3 init:
+	python3 aggregate_user_dialog_pickles.py --summary_csv ../mturk_v2_experiments/fold3/test_init/summary.csv --log_dir ../mturk_v2_experiments/fold3/test_init/log/ --user_data_dir ../mturk_v2_experiments/fold3/test_init/user_data/ --include_correct_role_pairs 1 --drop_f1_zero_perc_syn_data 1 --remove_contrasting_pairs 1 --outfile ../mturk_v2_experiments/fold3/test_init/agg.pkl
+
+Server test fold 3 np:
+	python3 Server.py --parser_fn ../trained_parsers/mturk_fold2_np.pkl.1 --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/fold2/train/perception_source_np/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold3/test_np/user_data/ --num_dialogs 1
+Approve test fold 3 np:
+    python approve_mturk.py --csvs ../mturk_v2_experiments/fold3/test_np/batch_1.csv,../mturk_v2_experiments/fold3/test_np/batch_2.csv,../mturk_v2_experiments/fold3/test_np/batch_3.csv,../mturk_v2_experiments/fold3/test_np/batch_4.csv,../mturk_v2_experiments/fold3/test_np/batch_1_rel.csv --add_salts v2train3ftenp1b,v2train3ftenp2b,v2train3ftenp3b,v2train3ftenp4b,v2train3ftein1brel --user_data_dir ../mturk_v2_experiments/fold3/test_np/user_data/ --log_dir ../mturk_v2_experiments/fold3/test_np/log/ --outfile ../mturk_v2_experiments/fold3/test_np/summary.csv --open_response_outfile ../mturk_v2_experiments/fold3/test_np/open_response.csv --show_bonus 0
+Aggregate test fold 3 np:
+    python3 aggregate_user_dialog_pickles.py --summary_csv ../mturk_v2_experiments/fold3/test_np/summary.csv --log_dir ../mturk_v2_experiments/fold3/test_np/log/ --user_data_dir ../mturk_v2_experiments/fold3/test_np/user_data/ --include_correct_role_pairs 1 --drop_f1_zero_perc_syn_data 1 --remove_contrasting_pairs 1 --outfile ../mturk_v2_experiments/fold3/test_np/agg.pkl
+
+Server test fold 3:
+	python3 Server.py --parser_fn ../trained_parsers/mturk_fold2.pkl.4 --word_embeddings_fn ../embeddings/GoogleNews-vectors-negative300.bin --kb_static_facts_fn ispy_setting/static_facts.txt --kb_perception_source_dir mturk_v2_experiments/fold2/train/perception_source/ --kb_perception_feature_dir ispy_setting/perception_resources/features+resnet/ --active_test_set 6,11,12,13,22,25,26,28 --server_spin_time 1 --client_dir www/client/ --log_dir www/log/ --data_dir mturk_v2_experiments/fold3/test/user_data/ --num_dialogs 1
+Approve test fold 3:
+    python approve_mturk.py --csvs ../mturk_v2_experiments/fold3/test/batch_1.csv,../mturk_v2_experiments/fold3/test/batch_2.csv,../mturk_v2_experiments/fold3/test/batch_3.csv,../mturk_v2_experiments/fold3/test/batch_4.csv,../mturk_v2_experiments/fold3/test/batch_5.csv,../mturk_v2_experiments/fold3/test/batch_1_rel.csv --add_salts v2train3fte1b,v2train3fte2b,v2train3fte3b,v2train3fte4b,v2train3fte5b,v2train3fte1brel --user_data_dir ../mturk_v2_experiments/fold3/test/user_data/ --log_dir ../mturk_v2_experiments/fold3/test/log/ --outfile ../mturk_v2_experiments/fold3/test/summary.csv --open_response_outfile ../mturk_v2_experiments/fold3/test/open_response.csv --show_bonus 0
+Aggregate test fold 3:
+    python3 aggregate_user_dialog_pickles.py --summary_csv ../mturk_v2_experiments/fold3/test/summary.csv --log_dir ../mturk_v2_experiments/fold3/test/log/ --user_data_dir ../mturk_v2_experiments/fold3/test/user_data/ --include_correct_role_pairs 1 --drop_f1_zero_perc_syn_data 1 --remove_contrasting_pairs 1 --outfile ../mturk_v2_experiments/fold3/test/agg.pkl
 
 Todo:
 	[x] Pilot 1:
@@ -70,9 +96,22 @@ Todo:
 		    - Batch 4 users [62, 63, 53] corr [33, 43, 19] rate [0.53, 0.68, 0.36]
 		    - Batch 5 users [83, 75, 67] corr [47, 52, 22] rate [0.57, 0.69, 0.33]
 		- Retrain
-		- Test Fold 0 task * [NO REPEAT USERS, intersperse batches]
-		    - Batch 1, 2, 3, 4, 5
-		- Test Fold 3 (init parser) tastk * [NO REPEAT USERS, intersperse batches]
-			- Batch 1, 2, 3, 4, 5
+		- Test Fold 3 (init parser, init perception) task * [NO REPEAT USERS, intersperse batches]
+		    - Batch 1 users [12, 16, 17] corr [7, 8, 3]  rate [0.58, 0.50, 0.18]
+		    - Batch 2 users [24, 37, 30] corr [14, 19, 5] rate [0.58, 0.51, 0.17]
+		    - Batch 3 users [36, 54, 49] corr [21, 33, 7] rate [0.58, 0.61, 0.14]
+		    - Batch 4 users [54, 67, 65] corr [32, 43, 10] rate [0.59, 0.64, 0.15]
+		    - Task3 Batch 1 users [54, 67, 107] corr [32, 43, 14] rate [0.59, 0.64, 0.13]
+		- Test Fold 3 (init parser) * [NO REPEAT USERS, intersperse batches]
+			- Batch 1 users [20, 13, 11] corr [11, 4, 2] rate [0.55, 0.31, 0.18]
+			- Batch 2 users [37, 26, 28] corr [22, 13, 5] rate [0.59, 0.50, 0.18]
+			- Batch 3 users [49, 48, 41] corr [28, 30, 8] rate [0.57, 0.62, 0.20]
+			- Batch 4 users [63, 66, 54] corr [33, 41, 9] rate [0.52, 0.62, 0.17]
+			- Task3 Batch 1 users [63, 66, 100] corr [33, 41, 21] rate [0.52, 0.62, 0.21]
 		- Test Fold 3 task * [NO REPEAT USERS, intersperse batches]
-		    - Batch 1, 2, 3, 4, 5
+		    - Batch 1 users [10, 3, 3] corr [6, 2, 1] rate [0.60, 0.67, 0.33]
+		    - Batch 2 users [25, 20, 16] corr [13, 9, 4] rate [0.52, 0.45, 0.25]
+		    - Batch 3 users [41, 42, 27] corr [23, 23, 7] rate [0.56, 0.55, 0.26]
+		    - Batch 4 users [53, 61, 38] corr [28, 35, 7] rate [0.53, 0.57, 0.18]
+		    - Batch 5 users [73, 76, 50] corr [37, 44, 7] rate [0.51, 0.58, 0.14]
+		    - Task3 Batch 1 users [73, 76, 93] corr [37, 44, 15] rate [0.51, 0.58, 0.16]
