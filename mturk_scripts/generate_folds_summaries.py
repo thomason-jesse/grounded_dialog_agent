@@ -19,6 +19,7 @@ def main():
     show_graphs = FLAGS_show_graphs
     strip_repeat_workers = False if FLAGS_allow_repeat == 1 else True
     require_correct = True if FLAGS_require_correct == 1 else False
+    require_f1 = float(FLAGS_require_f1)
 
     seen_turk_ids = {}
     aid_to_uids = {}
@@ -34,6 +35,8 @@ def main():
                     with open(summary_csv_fn, 'r') as f:
                         lines = f.readlines()
                         headers = lines[0].strip().split(',')
+                        print(summary_csv_fn)  # DEBUG
+                        print(headers.index('task_3_slot_qs'))  # DEBUG
                         for lidx in range(1, len(lines)):
                             data = lines[lidx].strip().split(',')
                             turk_id = data[headers.index('worker_id')]
@@ -67,16 +70,22 @@ def main():
 
                     raw_results = {"task_1_correct": [],
                                    "task_1_f1": [],
-                                   "task_1_clarification": [],
-                                   "task_1_enum": [],
+                                   "task_1_slot_qs": [],  # Clarifications, confirmations, and enumerations.
+                                   "task_1_perc_qs": [],  # Is-perceptual, synonymy, yes/no qs, example qs.
+                                   "task_1_all_qs": [],  # Sum of above.
+                                   "task_1_enum": [],  # Only enum count.
                                    "task_2_correct": [],
                                    "task_2_f1": [],
-                                   "task_2_clarification": [],
-                                   "task_2_enum": [],
+                                   "task_2_slot_qs": [],  # Clarifications, confirmations, and enumerations.
+                                   "task_2_perc_qs": [],  # Is-perceptual, synonymy, yes/no qs, example qs.
+                                   "task_2_all_qs": [],  # Sum of above.
+                                   "task_2_enum": [],  # Only enum count.
                                    "task_3_correct": [],
                                    "task_3_f1": [],
-                                   "task_3_clarification": [],
-                                   "task_3_enum": [],
+                                   "task_3_slot_qs": [],  # Clarifications, confirmations, and enumerations.
+                                   "task_3_perc_qs": [],  # Is-perceptual, synonymy, yes/no qs, example qs.
+                                   "task_3_all_qs": [],  # Sum of above.
+                                   "task_3_enum": [],  # Only enum count.
                                    "tasks_easy": [],
                                    "understood": [],
                                    "frustrated": [],
@@ -104,21 +113,26 @@ def main():
 
                                     survey_added = False
                                     for task in range(1, 4):
-                                        if (data[headers.index("task_" + str(task) + "_correct")] == "1" or
+                                        if ((data[headers.index("task_" + str(task) + "_correct")] == "1" or
                                                 (data[headers.index("task_" + str(task) + "_correct")] == "0"
-                                                 and not require_correct)):
+                                                 and not require_correct)) and
+                                                float(data[headers.index("task_" + str(task) + "_f1")]) > require_f1):
                                             task_correct = int(data[headers.index("task_" + str(task) + "_correct")])
                                             task_f1 = float(data[headers.index("task_" + str(task) + "_f1")])
                                             raw_results["task_" + str(task) + "_correct"].append(task_correct)
                                             raw_results["task_" + str(task) + "_f1"].append(task_f1)
-                                            if task_correct:
-                                                task_user_strs = int(data[headers.index("task_" + str(task) +
-                                                                                        "_clarification")])
-                                                raw_results["task_" + str(task) + "_clarification"].append(
-                                                    task_user_strs)
-                                                enum_header = "task_" + str(task) + "_enum_from_user"
-                                                task_user_enum = int(data[headers.index(enum_header)]) if enum_header in headers else -1
-                                                raw_results["task_" + str(task) + "_enum"].append(task_user_enum)
+
+                                            raw_results["task_" + str(task) + "_slot_qs"].append(
+                                                int(data[headers.index("task_" + str(task) + "_slot_qs")]))
+                                            raw_results["task_" + str(task) + "_perc_qs"].append(
+                                                int(data[headers.index("task_" + str(task) + "_perc_qs")]))
+                                            raw_results["task_" + str(task) + "_all_qs"].append(
+                                                int(data[headers.index("task_" + str(task) + "_all_qs")]))
+
+                                            enum_header = "task_" + str(task) + "_enum_from_user"
+                                            task_user_enum = int(data[headers.index(enum_header)]) if \
+                                                enum_header in headers else -1
+                                            raw_results["task_" + str(task) + "_enum"].append(task_user_enum)
 
                                             # Allow this to be included only if the task was correct, in the event
                                             # that we're flagging only correct tasks.
@@ -157,7 +171,6 @@ def main():
 
                     pr = {}
                     for r in raw_results:
-                        print(r, raw_results[r])  # DEBUG
                         n = len(raw_results[r])
                         if n > 0:
                             mu = np.mean(raw_results[r])
@@ -177,11 +190,24 @@ def main():
         if len(krkl) > 0:
             print("==========")
             print("condition '" + cond + "' results:")
-            krk = krkl[0]
-            krk = "0"  # hard-coded baseline fold 0, for now
-            for r in cond_results[cond][krk].keys():
-                print("---------- (baseline " + krk + ")")
-                print("\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)")  # \t(p)"
+            # krk = "0"  # hard-coded baseline fold 0, for exp 1
+            krk = "3_init" if cond == "test" else "0"  # exp 2 baselines fold 0 (train), fold 3 init (test)
+            # Want to print metrics in a coherent and easy to read order.
+            metrics = ["task_1_correct", "task_2_correct", "task_3_correct", "\n",
+                       "task_1_f1", "task_2_f1", "task_3_f1", "\n",
+                       "task_1_all_qs", "task_2_all_qs", "task_3_all_qs", "\n",
+                       "task_1_perc_qs", "task_2_perc_qs", "task_3_perc_qs", "\n",
+                       "task_1_slot_qs", "task_2_slot_qs", "task_3_slot_qs", "\n",
+                       "task_1_enum", "task_2_enum", "task_3_enum", "\n",
+                       "use_navigation", "use_delivery", "use_relocation", "\n",
+                       "understood", "frustrated", "\n",
+                       "tasks_easy", "object_qs"]
+            for r in metrics:
+                if r == "\n":
+                    print("\n")
+                    continue
+                print("----------")
+                print("\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)\t(P)")  # \t(p)"
                 for fold in folds:
                     ablations = ['']
                     if fold == 3:
@@ -192,7 +218,7 @@ def main():
 
                             # Perform t-test against fold 0.
                             sig = ''
-                            if int(fold) > 0:
+                            if fold + abl != krk:
                                 t, p = ttest_ind(cond_results[cond][krk][r]["d"],
                                                  cond_results[cond][fold + abl][r]["d"],
                                                  equal_var=False)
@@ -200,7 +226,7 @@ def main():
                                     sig = '*'
                                 elif p < 0.1:
                                     sig = '+'
-                                # sig += "\t" + str(p)
+                                sig += "\t" + str(p)
 
                             print ("\t" + fold + abl + "\t%.2f" % cond_results[cond][fold + abl][r]["mu"] +
                                    "\t\t+/-%.2f" % cond_results[cond][fold + abl][r]["s"] + "\t\t" +
@@ -381,6 +407,8 @@ if __name__ == '__main__':
                         help="whether to count repeat users")
     parser.add_argument('--require_correct', type=int, required=False, default=0,
                         help="whether to select only for users who correctly completed the task")
+    parser.add_argument('--require_f1', type=float, required=False, default=-1,
+                        help="whether to select only for users who exceeded this f1 score")
     args = parser.parse_args()
     for k, v in vars(args).items():
         globals()['FLAGS_%s' % k] = v

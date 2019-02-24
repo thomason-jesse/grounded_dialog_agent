@@ -59,8 +59,9 @@ def main():
                                    " gave hash " + id_hash + " != " + true_hash)
                         elif id_hash in ids_seen:
                             print(row[id_header] + " gen id " + gen_id + " already seen")
-                        elif stripped_mid is not None and stripped_mid != row[id_header]:
-                            print(row[id_header] + " provided non-matching worker id '" + mid + "'")
+                        # Removing matching worker ID restriction for anlysis since it's almost always small typos.
+                        # elif stripped_mid is not None and stripped_mid != row[id_header]:
+                        #     print(row[id_header] + " provided non-matching worker id '" + mid + "'")
                         else:
                             valid += 1
 
@@ -101,7 +102,9 @@ def main():
                                          "task_1_str_from_user": "0",
                                          "task_1_enum_from_user": "0",
                                          "task_1_oidx_from_user": "0",
-                                         "task_1_clarification": "0",
+                                         "task_1_slot_qs": "0",
+                                         "task_1_perc_qs": "0",
+                                         "task_1_all_qs": "0",
                                          "task_1_perception_q": "0",
                                          "task_1_synonym": "0",
                                          "task_1_perception_yn": "0",
@@ -109,7 +112,9 @@ def main():
                                          "task_2_str_from_user": "0",
                                          "task_2_enum_from_user": "0",
                                          "task_2_oidx_from_user": "0",
-                                         "task_2_clarification": "0",
+                                         "task_2_slot_qs": "0",
+                                         "task_2_perc_qs": "0",
+                                         "task_2_all_qs": "0",
                                          "task_2_perception_q": "0",
                                          "task_2_synonym": "0",
                                          "task_2_perception_yn": "0",
@@ -117,7 +122,9 @@ def main():
                                          "task_3_str_from_user": "0",
                                          "task_3_enum_from_user": "0",
                                          "task_3_oidx_from_user": "0",
-                                         "task_3_clarification": "0",
+                                         "task_3_slot_qs": "0",
+                                         "task_3_perc_qs": "0",
+                                         "task_3_all_qs": "0",
                                          "task_3_perception_q": "0",
                                          "task_3_synonym": "0",
                                          "task_3_perception_yn": "0",
@@ -266,11 +273,19 @@ def main():
                                         user_data["task_" + str(completed_task) + "_oidx_from_user"] = \
                                             str(oidx_from_user_count)
 
-                                        clarification_qs = ((str_from_user_count + enum_from_user_count) -
-                                                            perception_yn_count - perception_q_count -
-                                                            synonym_count)
-                                        user_data["task_" + str(completed_task) + "_clarification"] = \
-                                            str(clarification_qs)
+                                        all_slot_qs = ((str_from_user_count + enum_from_user_count) -
+                                                       perception_yn_count - perception_q_count -
+                                                       synonym_count)
+                                        all_perception_qs = (perception_yn_count + perception_q_count + synonym_count +
+                                                             perception_ex_count)
+                                        total_qs = all_slot_qs + all_perception_qs
+                                        user_data["task_" + str(completed_task) + "_slot_qs"] = \
+                                            str(all_slot_qs)
+                                        user_data["task_" + str(completed_task) + "_perc_qs"] = \
+                                            str(all_perception_qs)
+                                        user_data["task_" + str(completed_task) + "_all_qs"] = \
+                                            str(total_qs)
+
                                         user_data["task_" + str(completed_task) + "_perception_q"] = \
                                             str(perception_q_count)
                                         user_data["task_" + str(completed_task) + "_synonym"] = \
