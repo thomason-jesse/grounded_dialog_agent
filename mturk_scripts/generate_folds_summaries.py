@@ -178,7 +178,8 @@ def main():
             print("==========")
             print("condition '" + cond + "' results:")
             krk = krkl[0]
-            krk = "0"  # hard-coded baseline fold 0, for now
+            # krk = "0"  # hard-coded baseline fold 0, for exp 1
+            krk = "3_init" if cond == "test" else "0"  # hard-coded baseline fold 3 initial models, for exp 2
             for r in cond_results[cond][krk].keys():
                 print("---------- (baseline " + krk + ")")
                 print("\tfold\t" + r + "\t(STDDEV)\t(N)\t(SIG)")  # \t(p)"
