@@ -11,7 +11,7 @@ import PerceptionClassifiers
 
 
 def get_results_for_behaviors_and_modalities(kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
-                                             active_test_set, fold_size, behaviors, modalities, debug=False):
+                                             active_test_set, fold_size, behaviors, modalities, debug=True):
     # Instantiate a grounder.
     g = KBGrounder.KBGrounder(None, kb_static_facts_fn, kb_perception_source_dir, kb_perception_feature_dir,
                               active_test_set, behaviors=behaviors, modalities=modalities)
@@ -22,10 +22,16 @@ def get_results_for_behaviors_and_modalities(kb_static_facts_fn, kb_perception_s
     sum_trained_pk = sum_trained_no = sum_trained_p = 0
     if debug:
         print("PRED:\tKAPPA\t(#OBJS)\t[[TN, FP], [FN, TP]]")
-    num_folds = (32 - len(active_test_set)) // fold_size
     available_oidxs = [oidx for oidx in range(32) if oidx not in active_test_set]
-    train_folds = [[available_oidxs[idx + jdx] for jdx in range(fold_size)]
-                   for idx in range(num_folds)]
+    if fold_size == 32 - len(active_test_set):  #i.e., leave-one-out cross validation.
+        num_folds = fold_size
+        train_folds = []
+        for idx in range(len(available_oidxs)):
+            train_folds.append([available_oidxs[jdx] for jdx in range(len(available_oidxs)) if jdx != idx])
+    else:
+        num_folds = (32 - len(active_test_set)) // fold_size
+        train_folds = [[available_oidxs[idx + jdx] for jdx in range(fold_size)]
+                       for idx in range(num_folds)]
     for p in g.kb.perceptual_preds:
         pidx = g.kb.perceptual_preds.index(p)
         cm = [[0, 0], [0, 0]]
@@ -37,7 +43,7 @@ def get_results_for_behaviors_and_modalities(kb_static_facts_fn, kb_perception_s
             g.kb.pc.labels = [lt for lt in g.kb.pc.labels if lt[0] != pidx or lt[1] in train_fold]
             g.kb.pc.train_classifiers([pidx])
 
-            # Get held-out result nad update the appropriate cell in the confusion matrix.
+            # Get held-out result and update the appropriate cell in the confusion matrix.
             for oidx in available_oidxs:  # e.g., not in the active_test_set
                 if oidx not in train_fold:  # not something we trained on just now
                     vote_sum = sum([1 if lt[2] else -1
@@ -89,13 +95,13 @@ def main(args):
     fold_size = args.fold_size if args.fold_size is not None else 1
     assert ((32 - len(active_test_set)) / fold_size) % 1 == 0
 
-    if args.sweep is None:
+    if args.sweep is None or args.sweep == 0:
         behaviors = args.behaviors.split(',') if args.behaviors is not None else None
         modalities = args.modalities.split(',') if args.modalities is not None else None
 
         sum_pk, sum_no, sum_p, sum_nomv_pk, sum_nomv_no, sum_nomv_p, sum_trained_pk, sum_trained_no, sum_trained_p = \
             get_results_for_behaviors_and_modalities(args.kb_static_facts_fn, args.kb_perception_source_dir,
-                                                     args.kb_perception_feature_dir, active_test_set, 24,
+                                                     args.kb_perception_feature_dir, active_test_set, fold_size,
                                                      behaviors, modalities)
 
         # Averages.
@@ -162,5 +168,5 @@ if __name__ == '__main__':
     parser.add_argument('--sweep', type=int, required=False,
                         help="if 1, sweep range of behaviors and modalities and report performance diffs")
     parser.add_argument('--fold_size', type=int, required=False,
-                        help="number of folds to train; always generalizes from small train -> large test")
+                        help="number of folds to train; always generalizes from small train -> large test except leave-one-out")
     main(parser.parse_args())

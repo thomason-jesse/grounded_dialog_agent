@@ -247,9 +247,14 @@ def main():
                                                             first_user_response = False
                                                         else:
                                                             rt = "REP"
-                                                        fr.write('{"task": "%d", "type": "%s", "msg": "%s"}\n'
-                                                                 % (completed_task, rt,
-                                                                    msg.strip().strip("'").replace('"', '\\"')))
+                                                        if "train" in csv_fn:
+                                                            c = "TRAIN"
+                                                        else:
+                                                            c = "TEST"
+                                                        fr.write(
+                                                            '{"task": "%d", "cond": "%s", "type": "%s", "msg": "%s"}\n'
+                                                            % (completed_task, c, rt,
+                                                               msg.strip().strip("'").replace('"', '\\"')))
 
                                             elif msg_type == "get_from_user_enum":
                                                 enum_from_user_count += 1
