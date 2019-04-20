@@ -216,6 +216,7 @@ def main():
                                     synonym_count = None
                                     perception_yn_count = None
                                     perception_ex_count = None
+                                    first_user_response = True
                                     for l in lines:
                                         ps = l.split(': ')
                                         if len(ps) > 1:
@@ -237,6 +238,18 @@ def main():
                                             # Got string from user.
                                             elif msg_type == "get_from_user (processed)":
                                                 str_from_user_count += 1
+
+                                                # DEBUG - print all user responses to a file.
+                                                with open("all_utterances.json", 'a') as fr:
+                                                    if completed_task is not None:
+                                                        if first_user_response:
+                                                            rt = "CMD"
+                                                            first_user_response = False
+                                                        else:
+                                                            rt = "REP"
+                                                        fr.write('{"task": "%d", "type": "%s", "msg": "%s"}\n'
+                                                                 % (completed_task, rt,
+                                                                    msg.strip().strip("'").replace('"', '\\"')))
 
                                             elif msg_type == "get_from_user_enum":
                                                 enum_from_user_count += 1
